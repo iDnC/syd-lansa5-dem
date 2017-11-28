@@ -1,0 +1,396 @@
+* -----------------------------------------------------------------------------------------------------
+* This is the custom server side logon validator for framework <<FRAMEWORK>>
+* It was created on <<CREATEDDATE>> by <<CREATEDUSER>>
+* You may need to check it into your IBM i server and compile it.
+* -----------------------------------------------------------------------------------------------------
+*
+* Note: It is often useful to have a ‘special’ user (eg: QSECOFR) defined because it may resolve
+* ----  a potential ‘chicken-and-egg’ dilemma for you.
+*
+* i.e. If no VLF users exist, how can anyone log on to create the first one?
+*
+* Using the ‘special’ user resolves this dilemma by allowing you to log on and create an initial
+* set of VLF administration users.
+*
+* Those new VLF administrators themselves can then log on themselves to create and maintain other
+* normal user profiles.
+*
+* To do this:
+*    1 - Check that chosen ‘special’ user’s credentials are correct.
+*    2 - Only if they are valid, return #UseFrameworkObjectAuthority := False from this validation logic.
+*
+* This allows the ‘special’ user to logon on to your framework and create an initial set of administrators.
+* When the special user starts to use the user maintenance feature they will see a message indicating that
+* security is turned off for them. This allows them to go ahead and create the initial set of administrators.
+*  
+* -----------------------------------------------------------------------------------------------------
+Begin_Com Role(*EXTENDS #VF_AC027O)
+
+* The common system object
+Define_Com Class(#VF_SY001X) Name(#uSystemCommon) Scope(*APPLICATION)
+
+* Fields and global declarations
+Define Field(#HostPort) Type(*DEC) Length(5) Decimals(0)
+Define Field(#BIF_UserProfile) Type(*CHAR) Length(10)
+Define Field(#BIF_OldPassword) Type(*char) Length(32) Input_Atr(LC)
+Define Field(#BIF_NewPassword) Type(*char) Length(32) Input_Atr(LC)
+Define_Com Class(#PRIM_DC.UnicodeString) Name(#MessageText)
+
+* -------------------------------------------------------------------------------------------
+* Method CheckUserCredentials is where you may customize your logon to validate users signing
+* into your VLF-ONE application. You need to return #MajorReturnCode as
+*    OK --> The VLF ONE session is allowed to start.
+*    ER --> The VLF-ONE session is not allowed to start.
+* -------------------------------------------------------------------------------------------
+
+Mthroutine Name(CheckUserCredentials) Options(*REDEFINE *RETURNS_MESSAGES)
+
+Define_Com Class(#vf_elretc) Name(#TemporaryReturnCode)
+
+#uSystemCommon.TraceEvent From(#COM_OWNER) Text('CheckUserCredentials started.') Systemtrace(False)
+
+* ================= DEFAULT BEHAVIOUR =================
+* Successful execution
+#MajorReturnCode := OK
+
+* User to display is the same as the one typed in the logon dialog
+* #UserProfiletoCheck contains the real or derived user profile.
+#UserNametoDisplay := #UserProfiletoCheck
+
+* For this example we will not use framework authority - also see preceding comment about creating a special user
+#UseFrameworkObjectAuthority := False
+
+* The Persistent_ApplicationString's 1 through 5 can be used to pass information to you
+* own web service routines. For this example we will just return them as example strings.
+#Persistent_ApplicationString1 := "Example string 1"
+#Persistent_ApplicationString2 := "Example string 2"
+#Persistent_ApplicationString3 := "Example string 3"
+#Persistent_ApplicationString4 := "Example string 4"
+#Persistent_ApplicationString5 := "Example string 5"
+
+* ================== PASSWORD VALIDATION EXAMPLE ==================
+
+#TemporaryReturnCode := OK
+
+#com_owner.ValidatePassword Userprofile(#UserProfiletoCheck) Password(#PassWordtoCheck) Validationreturncode(#TemporaryReturnCode)
+
+* Its not valid so get out now with a bad return code
+If (#TemporaryReturnCode <> OK)
+#MajorReturnCode := #TemporaryReturnCode
+Return
+Endif
+
+* Now that we know the user and password combination are valid for system entry, check
+* whether this is the 'special' user previously described in the program's preamble comments.
+* This is the user who can log on with framework authority turned off so that they
+* can create the initial set of VLF administrator profiles, who in turn can then
+* log on to create other user profiles.
+
+* #UserProfiletoCheck := #UserProfiletoCheck.Trim.UpperCase
+* If ((#UserProfiletoCheck = QSECOFR) Or (#UserProfiletoCheck = QADMIN)) /* For example */
+* #UseFrameworkObjectAuthority := False
+* Endif
+
+
+* ====== EXTENDED PASSWORD VALIDATION FOR IBM i SERVERS ONLY ============
+
+* Check the password expiry date and issue message if appropriate
+* Uncomment this code if you want to verify and eventually show a warning message if the password expires prior to the value  specified in the framework
+
+* If (#IsIBMiWebServer *And #ApplyExtendedValidation *And (#MajorReturnCode = OK))
+
+* #com_owner.CheckPasswordExpiry Userprofile(#UserProfiletoCheck) Password(#PassWordtoCheck) Servername(#ServerName) Serverport(#HostPort) Dayswarningbeforeexpiry(#IssueWarning) Returncode(#TemporaryReturnCode)
+
+* Please refer to notes about return codes at the beginning of this source
+* Assuming you set #TemporaryReturnCode to the value to be returned (OK, VE or ER) map it back to the one to send back to the caller
+* #MajorReturnCode := #TemporaryReturnCode
+
+* Endif
+
+
+#uSystemCommon.TraceEvent From(#COM_OWNER) Text('CheckUserCredentials ending with MajorReturnCode=' + #MajorReturnCode) Systemtrace(False)
+
+Return
+
+Endroutine
+
+
+* =================== ================= ============== ==================
+* ================== CHANGE PASSWORD FOR IBM i SERVERS ONLY =============
+* =================== ================= ============== ==================
+* -----------------------------------------------------------------------
+* Uncomment this code to have the password changed on the server.
+* First you must allow the password to be changed, see framework properties --> User administration settings,
+* Provided is the logic to change an IBM i password.
+* If your server is not IBM you can write your own password change code.
+Mthroutine Name(ChangePassword) Options(*REDEFINE *RETURNS_MESSAGES)
+
+* ==== Logic for IBM i Servers ===
+
+If (#IsIBMiWebServer)
+* Map and convert some parameters to pass to the BIF ....
+
+#BIF_UserProfile := #UserProfile
+#BIF_OldPassword := #OldPassword.AsNativeString
+#BIF_NewPassword := #NewPassword.AsNativeString
+#HostPort := #ServerPort.AsNumber
+
+* Attempt to change the password using the LANSA BIF ..................
+
+Use Builtin(CHANGE_IBMI_SIGNON) With_Args(#ServerName N #BIF_UserProfile #BIF_OldPassword #BIF_NewPassword Y #HostPort) To_Get(#MajorReturnCode)
+*
+If (#MajorReturnCode <> OK)
+#COM_OWNER.ConvertReturnCodetoMessage Tempreturncode(#MajorReturnCode)
+#MajorReturnCode := ER
+Else
+Message Msgtxt(*Mtxtuf_PSW_CHGD)
+#MajorReturnCode := OK
+Endif
+
+Else
+
+* ==== SPECIFY YOUR OWN LOGIC FOR NON IBM i SERVERS ====
+
+Endif
+
+Return
+
+Endroutine
+
+* =================== ================= ============== ==================
+* ===================== VALIDATE A GIVEN PASSWORD =======================
+* =================== ================= ============== ==================
+*
+* Invoke this method to validate the password entered according to your own inhouse password rules
+
+Mthroutine Name(ValidatePassword) Options(*REDEFINE *RETURNS_MESSAGES)
+
+* This example is going to use shipped example program UF_3GCHKPW
+* Note that this is shipped an example only. See source file UF_3GSRC.
+Define Field(#U3GUserProfile) Type(*char) Length(10)
+Define Field(#U3GPassword) Type(*char) Length(128)
+Define Field(#U3GReturnCode) Type(*char) Length(2)
+Define_Com Class(#prim_alph) Name(#u3GErrorMessage)
+
+#uSystemCommon.TraceEvent From(#COM_OWNER) Text('ValidatePassword started.') Systemtrace(False)
+
+* Default behaviour: the password conforms to the rules
+#ValidationReturnCode := OK
+
+* Add your own logic here. Remember to set #ValidationReturnCode if there are errors
+
+* As an example - for IBM i servers only we can use the shipped example program
+* UF_3GCHKPW. These are examples only. You need to copy the code and make
+* your own software in case they change in future VLF-ONE versions.
+
+If (*osapi = IBMI)
+
+#U3GUserProfile := #UserProfile.UpperCase /* IBM i servers like uppercase user profiles */
+#U3GPassword := #Password.AsNativeString
+
+Call Pgm(UF_3GCHKPW) Parm(#U3GUserProfile #U3GPassword #U3GReturnCode) If_Error(*next)
+
+#uSystemCommon.TraceEvent From(#COM_OWNER) Text('Call to UF_3GCHKPW ended with U3GReturnCode=' + #U3GReturnCode) Systemtrace(False)
+
+Case (#U3GReturnCode)
+When (= OK)
+#u3GErrorMessage := ""
+When (= IU)
+#u3GErrorMessage := *MTXTUF_OLOGON_002
+When (= IP)
+#u3GErrorMessage := *MTXTUF_USRPASSW
+When (= EX)
+#u3GErrorMessage := *MTXTUF_USR_PSW_EXP
+When (= UD)
+#u3GErrorMessage := *MTXTUF_DIS_USERNAME
+Otherwise
+#u3GErrorMessage := *MTXTUF_OLOGON_003 + *MTXTUF_FAILED
+Endcase
+
+#uSystemCommon.TraceEvent From(#COM_OWNER) Text('ValidatePassword ended with error message "' + #u3GErrorMessage + '"') Systemtrace(False)
+
+If (#u3GErrorMessage <> "")
+#ValidationReturnCode := ER
+Message Msgtxt(#u3GErrorMessage)
+Endif
+
+Endif
+
+* Finished
+#uSystemCommon.TraceEvent From(#COM_OWNER) Text('ValidatePassword ended with ValidationReturnCode=' + #ValidationReturnCode) Systemtrace(False)
+
+Endroutine
+
+* =======================================================================
+* ====== EXTENDED PASSWORD VALIDATION FOR IBM i SERVERS ONLY ============
+* =======================================================================
+*
+* Uncomment this code if you wish to verify how many days - if applicable - until the given password expires.
+* You must set Check Password Expiry to try in the User settings administration tab
+*
+Mthroutine Name(CheckPasswordExpiry) Options(*REDEFINE *RETURNS_MESSAGES)
+
+* Define Field(#DaysWarning) Reffld(#vf_elnum)
+* Define Field(#DaysToPasswordExpiry) Reffld(#vf_elnum)
+* Define Field(#BIF_Password) Type(*char) Length(32) Input_Atr(LC)
+* Define Field(#ExpiryDate) Type(*char) Length(8)
+* Define Field(#Today) Type(*CHAR) Length(8) Desc('Work field - todays date') Default(*YYYYMMDDC)
+* Define Field(#SIGN) Type(*CHAR) Length(1)
+* Define Field(#BifReturnCode) Reffld(#vf_elretc)
+*
+#ReturnCode := OK
+*
+* #BIF_Password := #Password.AsNativeString
+* #BIF_UserProfile := #UserProfile
+* #HostPort := #ServerPort
+* #DaysWarning := #DaysWarningBeforeExpiry
+* #DaysToPasswordExpiry := 0
+*
+* Use Builtin(CHECK_IBMI_SIGNON) With_Args(#ServerName N #BIF_UserProfile #BIF_Password Y #HostPort) To_Get(#BifReturnCode #ExpiryDate)
+*
+* If Cond(#BifReturnCode <> OK)
+*
+* #com_owner.ConvertReturnCodetoMessage Tempreturncode(#BifReturnCode)
+*
+* * Note you can decide this is a problem and send back a VE return code or even an ER
+* #ReturnCode := VE
+* Return
+*
+* Endif
+*
+* #Today := *DEFAULT
+*
+* * Calculate the difference between today and the password's expiry date
+* Use Builtin(DATEDIFFERENCE_ALPHA) With_Args(#Today J #ExpiryDate J) To_Get(#DaysToPasswordExpiry #SIGN)
+*
+* If Cond(#SIGN = '+')
+*
+* If Cond(#DaysToPasswordExpiry < #DaysWarning)
+*
+* #com_owner.ConvertReturnCodetoMessage Tempreturncode(DD) Appendtext(" " + #DaysToPasswordExpiry.AsString)
+*
+* Endif
+*
+* Else
+*
+* #com_owner.ConvertReturnCodetoMessage Tempreturncode(EX)
+* #ReturnCode := ER
+*
+* Endif
+
+Endroutine
+
+* -----------------------------------------------------------------------------------
+Mthroutine Name(ConvertReturnCodetoMessage) Options(*REDEFINE *RETURNS_MESSAGES)
+
+Case Of_Field(#TempReturnCode)
+
+When Value_Is(= OK)
+* Password expired
+#MessageText := ""
+
+When Value_Is(= EX)
+* Password expired
+#MessageText := *MTxtUF_IBMIPSWEXMSG
+
+When Value_Is(= DD)
+* Days until password expires
+#MessageText := *MTxtUF_IBMPSWMSG + #AppendText
+
+When Value_Is(= CE)
+* Conection failed
+#MessageText := *MTxtUF_CONFAIL
+
+When Value_Is(= LE)
+* Encryption error
+#MessageText := *MTxtUF_ENCRERROR
+
+When Value_Is(= NR)
+* Username doesn't exist
+#MessageText := *MTxtUF_NO_USERNAME
+
+When Value_Is(= SE)
+* Server error
+#MessageText := *MTxtUF_SERVER_ERROR
+
+When Value_Is(= WP)
+* Wrong password
+#MessageText := *MTxtUF_WRONGPSW
+
+When Value_Is(= UD)
+* User profile disabled
+#MessageText := *MTxtUF_DIS_USERNAME
+
+When Value_Is(= LP)
+* Password is too long
+#MessageText := *MTxtUF_LONGPSW
+
+When Value_Is(= NE)
+* New password error
+#MessageText := *MTxtUF_NEWPSWERROR
+
+* ---------------------------------------------------------------------------------------------------
+* You can call this routine from ValidatePassword and have a message automatically sent to the client
+* ---------------------------------------------------------------------------------------------------
+* When Value_Is(= <YOUR OWN>)
+* #MessageText := <YOUR OWN MESSAGE>
+
+Otherwise
+* Set your own return error message here should you wish to terminate the application for any reason
+#MessageText := 'Return code "' + #TempReturnCode + '" encountered.'
+
+Endcase
+
+
+If (#MessageText <> "")
+Message Msgtxt(#MessageText)
+Endif
+
+Endroutine
+
+
+* -------------------------------------------------------------------------------------------
+* Change this property routine to use #Value := True if you want use an avCheckAuth
+* method at sign in time. Also see avCheckAuth method following.
+* -------------------------------------------------------------------------------------------
+Ptyroutine Name(Get_UseavCheckAuth) Options(*REDEFINE)
+
+#Value := False /* This is default behaviour - it is specifically designed to be overwritten */
+
+Endroutine
+
+* -----------------------------------------------------------------------------------
+* The method allows you to snap in your own VLF-ONE authority model.
+*
+* To enable it, change the preceding Get_UseavCheckAuth property routine to
+* return true. Once you do this that this method will be called for each
+* major object in your framework at application sign in time.
+*
+* You must return #FrameworkObject.AllowAccess as true or false.
+*
+* The VF_SY188O #FrameworkObject object also has these other read only properties:
+*
+* #Class  - The VLF class of the object. Generally you should not use this property. Use the Type property instead.
+*
+* TYpe - The type of the object. Will be FRAMEWORK, APPLICATION, APPLICATION_VIEW, BUSINESS_OBJECT, COMMAND_REFERENCE or UNKNOWN
+*
+* Id - The GUID of the object. Generally you should not need to use this property in your code.
+*
+* BeginEntry - Do not use this property.
+*
+* UserObjectType - The User Object Name/Type of the object as defined by the framework designer. Note that for COMMAND_REFERENCEs this is for the command reference shown on the commands allowed tab, not the command definition.
+*
+* CommandUsageContextType - The type of the command's usage context. Will be FRAMEWORK, APPLICATION, BUSINESS_OBJECT or UNKNOWN. Only supplied for COMMAND_REFERENCE objects to indicate the usage context of the command usage.
+*
+* CommandUsageContextUserObjectType - The User Object Name/Type of a command's usage context. Only supplied for COMMAND_REFERENCE objects to indicate the context of the command usage.
+
+Mthroutine Name(avCheckAuth) Options(*REDEFINE)
+
+* Default logic
+
+#FrameworkObject.AllowAccess := True
+
+Endroutine
+
+End_Com
+

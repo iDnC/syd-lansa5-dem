@@ -1,0 +1,136 @@
+﻿<!-- saved from url=(0022)http://internet.e-mail -->
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html xmlns="http://www.w3.org/1999/xhtml" >
+
+<head>
+<meta http-equiv='content-type' content='text/html; charset=windows-1252' />
+<script id="ScriptLoad" type="text/javascript">
+</script> 
+<script>
+var GError   = false;
+var GLine    = 0; 
+var GMessage = "";        
+
+window.onerror = handleErrors; 
+
+function handleErrors(errorMessage, url, line)
+{
+   GError   = true;
+   GLine    = line - 1;
+   GMessage = errorMessage;  
+
+   return(true); 
+}
+
+function uLoadFile()
+{
+    // var oScript = document.createElement("SCRIPT");
+       
+    GError   = true;
+    GLine    = 99999; 
+    GMessage = "Erreur de chargement du fichier Javascript";  
+
+    ScriptLoad.src  = VFPROP_Get("LoadJSFrom",1);
+
+    if (VFPROP_Get("DUMMY",1) == "TRUE")
+    {
+       VFPROP_Signal("DUMMY");
+    }
+    else
+    {  
+       VFPROP_Set("CurrentError.Status",1,GError.toString());
+       VFPROP_Set("CurrentError.Line",1,GLine.toString());
+       VFPROP_Set("CurrentError.Message",1,GMessage);
+       VFPROP_Signal("LOADFINISHED", ('Erreur:' + GError.toString() + ' ligne:' + GLine.toString() + ' message:' + GMessage) );
+    }
+    return; 
+} 
+
+function uLoadBraces()
+{
+   VFPROP_Set("Initialize.OpenBrace",1,"{");
+   VFPROP_Set("Initialize.CloseBrace",1,"}");  
+}
+
+</script>
+
+<script language='JavaScript'>
+/* ======================================================================== */
+/* Standard generic script code to allow interaction with VL resuable parts */
+/* ======================================================================== */
+/* Globally defined value storage bucket and exchange area */ 
+var arrayVFPROP            = new Array(); 
+var objVFPROP_Exchange1    = null; 
+var objVFPROP_Exchange2    = null; 
+var objVFPROP_LastTransact = null; 
+var intVFPROP_LastTransact = 0;  
+/* Initialization logic */
+function VFPROP_Initialize()
+{
+    if (objVFPROP_Exchange1 == null)
+    {  
+       objVFPROP_Exchange1    = document.getElementById("VFPROP_Exchange1");
+       objVFPROP_Exchange2    = document.getElementById("VFPROP_Exchange2");
+       objVFPROP_LastTransact = document.getElementById("VFPROP_LastTransAct");
+       if (objVFPROP_Exchange1 == null) alert("Erreur de chargement des éléments"); 
+    }
+    return; 
+}
+/* Get a property value */
+function VFPROP_Get(strId,intInstance)
+{
+   VFPROP_Initialize(); 
+   {
+      var strKey   = strId.toUpperCase() + "." +  intInstance.toString();        
+      var strValue = arrayVFPROP[strKey];  
+      if (strValue == null) return("");
+      else                  return(strValue);     
+   }       
+}
+/* Set a property value */
+function VFPROP_Set(strId,intInstance,strValue)
+{
+   VFPROP_Initialize(); 
+   {
+      var strKey   = strId.toUpperCase() + "." + intInstance.toString();
+      arrayVFPROP[strKey] = strValue;     
+   }        
+   return;   
+}
+/* Get get a property value for a VL routine */
+function VFPROP_Get_VL(strId,intInstance)  
+{
+   objVFPROP_Exchange1.innerText = VFPROP_Get(strId,intInstance); 
+   return;
+}  
+/* Set a property value for a VL routine */ 
+function VFPROP_Set_VL(strId,intInstance)  
+{
+   VFPROP_Initialize(); 
+   VFPROP_Set(strId,intInstance,objVFPROP_Exchange1.innerText);  
+   return;  
+}  
+/* Signal into the VL code */
+function VFPROP_Signal(strEventId,strEventPayLoad)
+{
+   VFPROP_Initialize(); 
+   objVFPROP_Exchange1.innerText = strEventId; 
+   objVFPROP_Exchange2.innerText = strEventPayLoad; 
+   intVFPROP_LastTransact++; 
+   objVFPROP_LastTransact.innerText = intVFPROP_LastTransact.toString();  
+   window.document.title = "<<VLF_SIGNAL>>";  
+   return; 
+}
+</script>
+
+
+</head>
+
+<body>
+<div id='VFPROP_Exchange1'    style='visibility:hidden;display:none'>xxx</div>
+<div id='VFPROP_Exchange2'    style='visibility:hidden;display:none'>xxx</div>
+<div id='VFPROP_LastTransAct' style='visibility:hidden;display:none'>xxx</div>
+
+
+</body>
+</html>

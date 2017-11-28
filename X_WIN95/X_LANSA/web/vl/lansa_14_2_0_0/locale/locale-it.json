@@ -1,0 +1,35 @@
+﻿{
+ "no":                        "No",
+ "ok":                        "OK",
+ "yes":                       "Si",
+ "today":                     "Oggi",
+ "retry":                     "Riprova",
+ "cancel":                    "Anulla",
+ "ignore":                    "Ignorare",
+
+ "dayLong":                   ["Domenica","Lunedi","Martedi","Mercoledi","Giovedi","Venerdi","Sabato"],
+ "dayShort":                  ["Dom","Lub","Mar","Mer","Gio","Ven","Sab"],
+ "monthLong":                 ["Gennaio","Febbraio","Marzo","Aprile","Mai","Giugno","Luglio","Agosto","Setembre","Ottobre","Novembre","Dicembre"],
+ "monthShort":                ["Gen","Feb","Mar","Apr","Mai","Giu","Lug","Ago","Set","Ott","Nov","Dic"],
+ "dateFormat":                "dd-MM-yyyy",
+ "timeFormat":                "HH:mm:ss",
+ "startOfWeek":               "Lunedi",
+
+ "decimalPoint":              ",",
+ "thousandsSep":              ".",
+ "currencySymbol":            "€",
+
+ "tabIncreaseDockGroup":      "Aumentare Gruppo",
+ "tabDecreaseDockGroup":      "Diminiuere Gruppo",
+ "tabLayoutPriority":         "Disposizione Priorità",
+ "tabAutoHide":               "Auto Nascondere",
+ "tabHide":                   "Nascondere",
+ "tabConfigureButtons":       "Configurare Pagine",
+ "tabShowMoreButtons":        "Presente di più Pulsanti",
+ "tabShowFewerButtons":       "presente di meno Pulsanti",
+ "tabAddOrRemoveButtons":     "Aggiungere o Rimuovere Pagine",
+ "tabPageCloseButton":        "Chiude Pagina",
+ 
+ "cardCaption":               "Primary Text",
+ "cardTertiary":              "Tertiary Text"
+}

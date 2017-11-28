@@ -1,0 +1,13 @@
+DF_PROC   Framework Demo Process                                         000000000000000
+DF_RAMP   RAMP Demo Process Container                                    000000000000000
+DFXPROC   Framework Demo RDMLX process                                   000000000000000
+PTEST8    process v124SP2 test                                           171108183708006ptest8
+STDFORM   'Standard form' dummy process   (6.0 G7)                       000000000000000
+STDTRIG   Standard Triggers                                              000000000000000
+UF_PR01   ISeries Utility Programs                                       000000000000000
+UF_SYSBR  Imbedded Interface Points                                      000000000000000
+VF_PR001  Container Process for normal functions                         000000000000000
+VF_PR004  VL Framework Miscellaneous                                     000000000000000
+VF_PR005  Functions used by BEMS                                         000000000000000
+VF_PR0X1  LL2 Versions of VF_PRnnn functions                             000000000000000
+VF_PRINC  Standard includes for VL Framework Web                         000000000000000

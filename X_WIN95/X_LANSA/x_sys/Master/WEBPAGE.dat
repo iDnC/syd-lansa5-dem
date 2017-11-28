@@ -1,0 +1,8 @@
+DF_OEXEC 1\OC=VLF-ONE Demonsration Entry point                           000000000000000
+LH8MAIN  1Holidays                                                       171109110345007LH8Main
+UF_OEXEC 1\OC=VLF-ONE Execution Entry point                              000000000000000
+XD1MAIN  1Main Page                                                      000000000000007XD1Main
+XD2MAIN  1Main Page                                                      000000000000007XD2Main
+XD3MAIN  1Main Page                                                      000000000000007XD3Main
+XD4MAIN  1Main Page                                                      000000000000007XD4Main
+XVLWEBTST1VL Web Configuration Test                                      000000000000000

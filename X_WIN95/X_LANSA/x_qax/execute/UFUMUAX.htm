@@ -1,0 +1,647 @@
+﻿<!-- ================================================================================================= -->
+<!-- =============================== COPYRIGHT NOTICE ================================================ -->
+<!-- ================================================================================================= -->
+<!-- (C) Copyright 2014 LANSA. LANSA is a trade name and registered trademark of LANSA in the          -->
+<!-- United States of America, Australia, the United Kingdom and other countries. All rights reserved. -->
+<!--                                                                                                   -->
+<!-- ------------------------------------------------------------------------------------------------- -->
+<!--                                                                                                   -->
+<!--          #     #       #       ######     #     #    ###    #     #     #####                     -->
+<!--          #  #  #      # #      #     #    ##    #     #     ##    #    #     #                    -->
+<!--          #  #  #     #   #     #     #    # #   #     #     # #   #    #                          -->
+<!--          #  #  #    #     #    ######     #  #  #     #     #  #  #    #  ####                    -->
+<!--          #  #  #    #######    #   #      #   # #     #     #   # #    #     #                    -->
+<!--          #  #  #    #     #    #    #     #    ##     #     #    ##    #     #                    -->
+<!--           ## ##     #     #    #     #    #     #    ###    #     #     #####                     -->
+<!--                                                                                                   -->
+<!-- ------------------------------------------------------------------------------------------------- -->
+<!-- Modification of this shipped HTML file will result one or more of the following:                  -->
+<!-- The introduction of incompatibilities with future versions of this framework.                     -->
+<!-- Voiding or limitation of any maintenance contract you may have in place for this framework.       -->
+<!-- Being charged for problem resolutions that are traced back to any such modifications.             -->
+<!-- ------------------------------------------------------------------------------------------------- -->
+<html>
+
+<head id='HEAD_Tag'>
+<script type="text/javascript" language="javascript" src="vf_xbrowser.js"></script> 
+<link rel='stylesheet' type='text/css' href='vf_vs001.css' />   
+
+<style type="text/css" >
+
+div
+{
+   display: inline;
+}
+
+input
+{
+   display: inline;
+}
+
+.Tree_Container
+{
+   height: 90%;
+   width:  90%;
+   border: 1px solid Highlight;   
+   margin-top: 10px;
+   margin-left:10px;
+   overflow:auto;
+   background:window;   
+   display: block;
+}
+
+.Tree_Header
+{
+   background: inactivecaption;
+   height:20px;
+   width:80%;
+   font: small-caption;
+   padding-left: 3px;
+   color:HighlightText;
+}
+
+.Tree_Entry
+{
+   font-size: x-small;
+   display:block;
+}
+
+</style>
+<script type="text/javascript">
+
+/* GLOBAL VARIABLES */
+
+var objTreeContainer, objCurrentUser, strCurrentUserIDN, objVFentry, intInUserGroupMax, flagAuthorized, strAuthorized, arrayCopiedGroups, objGroupUser, intCounter, intAuthLineMax, objFrameworkObj, flagChecked, strAuthority, objFrameworkId, arrayTempAuth,flagDftAuth, flagParentAuth, objFramework;
+var bInit = false;
+
+/* ======================================================================= */
+/* ======================== Handle Page Initialization ==================== */
+/* ======================================================================== */
+
+function VF_AJAX_Initialize()
+{
+   if (bInit) return;
+
+   bInit = true;
+
+   /* Insert the variable style sheet (ie: XP, WIN, WEB style) into this page */
+   {
+      var objLink  = document.createElement("LINK");
+      objLink.rel  = "stylesheet"; objLink.type = "text/css"; 
+      objLink.href = STYLESHEET();
+      document.getElementById("HEAD_Tag").insertAdjacentElement("afterBegin",objLink); 
+   }
+
+   /* Make a permananent global reference to the framework and framework id */
+   objFramework = VF_System.VF_Framework;   
+   objFrameworkId = objFramework.strUniqueID;
+      
+   var objVF_FP018, objVF_FP003, Bob, App, AppView, objBobEntry, objAppEntry, objViewEntry, objAppChildsContainer, objCmdContainer, objBobContainer, objVFContainer, objLogicalContainer;
+   
+   /* Create the container for the Framework, Apps and Bobs tree view */
+   /* The tree view build in this routine looks like this (where FO = framework object): */
+   /* <div id=FOid><input checkbox (first child)><img - FO icon><p FO caption><optional span containing FO children (last child)></div> */
+   
+   objTreeContainer = document.createElement("div");
+   objTreeContainer.className = "Tree_Container"
+
+   document.body.appendChild(objTreeContainer);
+   
+   /* the span contains the actual tree to make it compatible with the structure of the html tree for recursive navigation purposes */
+   objLogicalContainer = CreateContSpan();
+   
+   objVFentry = AddTreeEntry(objFramework, 2, objLogicalContainer, null, null);
+
+   objVFContainer = CreateContSpan();
+
+   objVFentry.appendChild(objVFContainer);
+   
+   AddCommands(objFramework, 20, objVFContainer);
+
+   var i, j, iFP018ChildLength;
+   var iFP002ChildLength = objFramework.arrayobjVF_FP002ChildLength();
+   
+   for ( i = 0; i < iFP002ChildLength; i++) 
+   {
+
+      App = objFramework.arrayobjVF_FP002ChildItem(i);
+      if ( App == null) continue;
+
+      objAppEntry = AddTreeEntry(App, 20, objVFContainer, null, null);
+
+      objAppChildsContainer = CreateContSpan();
+      objAppEntry.appendChild(objAppChildsContainer);
+
+      AddCommands(App, 48, objAppChildsContainer);      
+      
+      objVFContainer.appendChild(objAppEntry);
+      
+      if (App.flagHasViews)
+      {
+         iFP018ChildLength = App.arrayobjVF_FP018ChildLength();
+         
+         for ( j = 0; j < iFP018ChildLength; j++)
+         {
+            AppView = App.arrayobjVF_FP018ChildItem(j);
+            if ( AppView == null) continue;
+
+            objViewEntry = AddTreeEntry(AppView, 46, objAppChildsContainer, null, null);
+         }
+
+         /* Now do the business objects that belong to the views at the same level */
+         for (j = 0; j < iFP018ChildLength; j++)
+         {
+            AppView = App.arrayobjVF_FP018ChildItem(j);
+            if ( AppView == null) continue;
+            
+            AddBobs(AppView, objAppChildsContainer);
+         }
+
+      }
+      else
+      {
+         AddBobs(App, objAppChildsContainer);
+      }
+   }      
+   
+   objTreeContainer.appendChild(objLogicalContainer);
+   
+   /* Finished */
+   return;
+} 
+
+function AddBobs(objBobParent, objContainer)
+{
+   var i;
+   var iUBUSINESSOBJECTLength = objBobParent.UBUSINESSOBJECTLength();
+   
+   for (i = 0; i < iUBUSINESSOBJECTLength; i++)
+   {
+      Bob = objBobParent.UBUSINESSOBJECTChildItem(i);
+      objBobEntry = AddTreeEntry(Bob, 46, objContainer, null, null);
+
+      objCmdContainer = CreateContSpan();
+      objBobEntry.appendChild(objCmdContainer);
+      
+      AddCommands(Bob, 65, objCmdContainer);
+   }                        
+}
+
+/* Add an entry in the VLF objects tree */
+function AddTreeEntry(forObject, intMargin, objAppendTo, strCaption, strImgSrc)
+{
+   var newentry = document.createElement("div");
+       newentry.id = forObject.strUniqueID;
+       newentry.className = "Tree_Entry";
+       newentry.noWrap = true;
+       newentry.IsContainer = false;
+       newentry.cap = (strCaption == null) ? forObject.UCAPTION : strCaption;
+
+   var objCheckBox = document.createElement("input");
+       objCheckBox.type = "checkbox";
+
+       try { objCheckBox.addEventListener("click", function(event) { EntrySelect(event); }, false);}
+       catch (oE) { objCheckBox.attachEvent("onclick", EntrySelect); }
+       
+       objCheckBox.IsContainer = false;
+       
+   var objImg = document.createElement("img");
+   
+       objImg.src = (strImgSrc == null) ? VF_System.ReturnImgSource(forObject.UICONNAME) + "1.gif" : strImgSrc;
+       objImg.style.marginLeft = intMargin;
+       objImg.IsContainer = false;
+
+       if (VF_System.usingExplorer)
+       {  
+         objImg.align = "middle";
+       }
+       else
+       {
+         objImg.align = "absmiddle";
+         objImg.style.marginBottom = "7px";
+       }
+
+   var objCaption = document.createElement("span");
+       objCaption.innerText = (strCaption == null) ? forObject.UCAPTION : strCaption;
+       objCaption.style.marginLeft = "3px";
+       objCaption.IsContainer = false;
+       
+   newentry.appendChild(objCheckBox);
+   newentry.appendChild(objImg);
+   newentry.appendChild(objCaption);
+              
+   objAppendTo.appendChild(newentry);
+
+   return newentry;
+}
+
+function AddCommands(forObj, intMargin, objAppendTo)
+{
+   var iLength = forObj.arrayVF_FP010ChildLength();
+
+   for ( i = 0; i < iLength; i++)
+   {
+      objVF_FP010 = forObj.arrayVF_FP010ChildItem(i);
+     
+      if ( objVF_FP010 == null) continue;
+      objVF_FP009 = objVF_FP010.OBJVF_FP009REFERENCE; 
+      AddTreeEntry(objVF_FP010, intMargin, objAppendTo, objVF_FP009.UCAPTION, (VF_System.ReturnImgSource(objVF_FP009.UICONNAME) + "1.gif"));
+   }            
+}
+
+/* A checkbox was checked or unchecked */
+function EntrySelect(e)
+{
+   var objSrcCheckbox;
+   
+   try {  objSrcCheckbox = event.srcElement; }
+   catch (oE) { objSrcCheckbox = e.srcElement; }
+   
+   var objLastChild = objSrcCheckbox.parentElement.lastChild; 
+   var SpecialAuthChild = null;
+   
+   /* If this entry has children, it's last child will be a SPAN with an expando property IsContainer set to true. See the structure of the tree view in the initialize routine. If there are children, if the checkbox state has changed to checked, we must expand and check its children. Otherwise, hide them. */
+
+   if (objLastChild.IsContainer == true)
+   {
+      if (objSrcCheckbox.checked == true) 
+      {
+         SetChildrenAuth(objLastChild);
+         
+         objLastChild.style.display = "inline";
+      }
+      else
+      {
+         objLastChild.style.display = "none";
+      }
+   }
+
+   objCurrentUser.ResetAuth();
+   
+   var objFrameworkEntry = document.getElementById(objFrameworkId);
+
+   intAuthLineMax = 1;
+
+   /* If the framework entry has been unchecked all we have to do is add an EXCLUDE for the framework */
+   /* Otherwise, it must be USE for the framework and keep going down the tree starting with the children of hte framework */
+   if ( ( objSrcCheckbox.checked != true) && (objSrcCheckbox.parentElement.id == objFrameworkId) )
+   {
+         objCurrentUser.UpdateObjectAuthority(objFrameworkId, "EXCLUDE", intAuthLineMax);
+   }
+   else
+   {
+      objCurrentUser.UpdateObjectAuthority(objFrameworkId, "USE", intAuthLineMax);
+
+      if ( (objCurrentUser.UINUSERGROUPMAX > 0) && (objSrcCheckbox.checked == true) ) 
+      {
+         SpecialAuthChild = objSrcCheckbox.parentElement;
+         UpdateParentsAndSiblings(SpecialAuthChild);
+      }
+
+      UpdateAuthority(objFrameworkEntry.lastChild);
+   }
+
+   UFUMUAX_SetBusy(true);
+   UPDUSER(strCurrentUserIDN, objCurrentUser, UpdAuthResponse);
+}
+
+function UpdateAuthority(objParent)
+{
+   var i, objChild;
+   
+   for (i=0; i < objParent.children.length; i++)
+   {
+      objChild = objParent.children[i];
+      objFrameworkObj = VF_System.VF_FPNNNbyID(objChild.id);
+      flagChecked = objChild.firstChild.checked;
+      strAuthority = "";
+      
+      /* The checkbox could be checked because : */
+      /* 1. A user belongs to a group that has authority to the object. In this case, the user could still be EXCLUDEd in which case we write an EXCLUDE record */
+      /* 2. The user is a group which is authorised - continue */
+      /* 3. The user is a user not belonging to any groups and its authorised - continue */
+      /* 4. The user has restricted access but the admninistrator has authorised it - write a USE record */
+      
+      if ( flagChecked ) 
+      {
+         /* This is case 1. The checkbox is disabled can only mean it belongs to a group and the authority is false, exclude this guy */
+         if ( ( objChild.firstChild.disabled == true ) && ( objChild.flagAuthorised == false ) )
+         {
+            strAuthority = "EXCLUDE";
+         }
+         else if ( objFrameworkObj.URESTRICTEDACCESS ) 
+         {
+            strAuthority = "USE"; 
+         }
+      }
+      else
+      {
+         strAuthority = "EXCLUDE";
+      }
+
+      if (strAuthority != "")
+      {
+         intAuthLineMax++;
+         objCurrentUser.UpdateObjectAuthority(objChild.id, strAuthority, intAuthLineMax);
+      }
+
+      if ( ( objChild.lastChild.IsContainer == true ) && ( strAuthority != "EXCLUDE" ) ) UpdateAuthority(objChild.lastChild);
+   }
+}
+
+/* Traverse tree upwards explicitly authorising the parents. Then EXCLUDE */
+function UpdateParentsAndSiblings(srcObject)
+{
+   var i, objChild;
+
+   if (srcObject.id != objFrameworkId)
+   {
+      var objContainer = srcObject.parentElement; /* this is the span container */
+      var objParent = objContainer.parentElement; /* this is the actual parent  */
+      flagParentAuth = objParent.flagAuthorised;
+
+      for (i=0; i < objContainer.children.length; i++)
+      {
+         objChild = objContainer.children[i];
+         
+         /* if the object is not the one who triggered the update */
+         if ( objChild.id != srcObject.id ) 
+         {
+            if (flagParentAuth == false) objChild.flagAuthorised = false; 
+         }
+         else 
+         {
+            objChild.flagAuthorised = true;
+         }
+      }
+
+      UpdateParentsAndSiblings(objContainer.parentElement);
+   }
+}
+
+/* this routine receives a SPAN which is the last child of a tree entry and contains it's children DIVs. See the structure of the tree view in the initialize routine */
+function ProcessChildren(objParent, flagCheck, flagDisabled)
+{
+   var i, objChild;
+   
+   for (i=0; i < objParent.children.length; i++)
+   {
+      objChild = objParent.children[i];
+      
+      ProcessChildren(objChild.lastChild, flagCheck, flagDisabled);
+      
+      objChild.firstChild.checked = flagCheck;
+      objChild.firstChild.disabled = flagDisabled;      
+   }
+}
+
+function SetChildrenAuth(objParent)
+{
+   var i, objChild;
+   
+   for (i=0; i < objParent.children.length; i++)
+   {
+      objChild = objParent.children[i];
+
+      SetChildrenAuth(objChild.lastChild);
+           
+      objFrameworkObj = VF_System.VF_FPNNNbyID(objChild.id);
+
+      strAuthorized = objCurrentUser.CheckObjectAuthority(objCurrentUser, objFrameworkObj, "INHERIT");
+      
+      objChild.firstChild.checked = (strAuthorized != false);
+
+      objChild.firstChild.disabled = false;
+      
+   }
+}
+
+
+function CreateContSpan()
+{
+   var objContainerSpan = document.createElement("span");
+       objContainerSpan.IsContainer = true;
+       
+   return objContainerSpan;
+}
+
+/* Apply the authorities of each group and user if applicable (i.e. if the selected instance is a group or a user that doesn't belong to a group then only  ApplyUserAuthorities() will be executed) */
+function TraverseGroups()
+{
+   var flagVFauthorized = false;
+
+   /* do the groups first to make the authorities cascade */
+   for (j in arrayCopiedGroups)
+   {
+      objGroupUser = arrayCopiedGroups[j];
+
+      /* First check the framework which is a special case and will have a USE entry if for all groups and users, defaults to false */
+      flagVFauthorized = objGroupUser.CheckObjectAuthority(objGroupUser, objFramework, false);
+
+      if (flagVFauthorized) ApplyGroupAuthorities(objTreeContainer.firstChild, objGroupUser, true);
+   }
+   
+   /* After the groups, do a final override with user properties. Check the authority of the current user to the framework and pass it as the default */
+
+   flagVFauthorized = objCurrentUser.CheckObjectAuthority(objCurrentUser, objFramework, false);
+
+   ApplyUserAuthorities(objTreeContainer.firstChild, flagVFauthorized);
+   
+   UFUMUAX_SetBusy(false);
+
+}
+
+function ApplyGroupAuthorities(objVFcontainer, objGroupUser, flagDftAuth)
+{
+   var i, objChild;
+
+   for (i=0; i < objVFcontainer.children.length; i++)
+   {
+      objChild = objVFcontainer.children[i];
+      objCheckBox = objChild.firstChild;
+            
+      /* check the authority */
+      flagAuthorized = objGroupUser.CheckObjectAuthority(objGroupUser, VF_System.VF_FPNNNbyID(objChild.id), flagDftAuth);
+         
+      if (flagAuthorized)
+      {
+         objChild.firstChild.disabled = true;
+         objChild.firstChild.checked = true;
+         objChild.lastChild.style.display = "inline";
+         ApplyGroupAuthorities(objChild.lastChild, objGroupUser, true); 
+      }
+      else 
+      {
+         /* If this enty has been checked don't do anything, it means another group has authority to it */
+         if (objCheckBox.checked != true)
+         {
+            objCheckBox.checked = false;
+            objCheckBox.disabled = false;
+
+            if ( objChild.lastChild.IsContainer == true) 
+            {
+               ProcessChildren(objChild.lastChild, false, false);
+               objChild.lastChild.style.display = "none";
+            }
+         }
+      }
+   }
+}
+
+function ApplyUserAuthorities(objVFcontainer, flagParentAuth)
+{
+   var i, objChild, objCheckBox;
+
+   for (i=0; i < objVFcontainer.children.length; i++)
+   {
+      objChild = objVFcontainer.children[i];
+      objCheckBox = objChild.firstChild;
+      
+      strAuthorized = objCurrentUser.CheckObjectAuthority(objCurrentUser, VF_System.VF_FPNNNbyID(objChild.id), "INHERIT");
+
+      if ( strAuthorized == "INHERIT" ) strAuthorized = flagParentAuth;
+      
+      objChild.flagAuthorised = strAuthorized;
+
+      if (objCheckBox.checked == true)
+      {
+         ApplyUserAuthorities(objChild.lastChild, strAuthorized);
+      }
+      else
+      {
+         objCheckBox.disabled = false;
+         
+         if ( strAuthorized ) 
+         {
+            objCheckBox.checked = true;
+            objChild.lastChild.style.display = "inline";            
+            ApplyUserAuthorities(objChild.lastChild, true);
+         }
+         else if ( objChild.lastChild.IsContainer == true) 
+         {
+            ProcessChildren(objChild.lastChild, false, false);
+            objChild.lastChild.style.display = "none";            
+         }
+      }
+   }
+}
+
+function UpdAuthResponse()
+{
+   /* Reset all checkboxes entries to unselected and enabled */
+   InitializeTree(objTreeContainer.firstChild);
+   
+   TraverseGroups();
+}
+
+/* ======================================================================== */
+/* ======================== Handle Page Execution ========================= */
+/* ======================================================================== */
+
+function VF_AJAX_Execute(objInstance)
+{
+   UFUMUAX_SetBusy(false);
+
+   /* Initialize global variables */
+   objCurrentUser = null;
+   strCurrentUserIDN = "";
+   
+   UFUMUAX_SetBusy(true);
+   
+   /* get the current user's identifier from the selected instance's AKye */
+   strCurrentUserIDN = objInstance.arraystrAKeyN[0];
+   
+   /* Reset all checkboxes entries to unselected and enabled */
+   InitializeTree(objTreeContainer.firstChild);
+
+   /* get the user object - control returns to routine GETUSER_response() */
+   GETUSER(strCurrentUserIDN,GETUSER_response);    
+
+  /* Finished */
+  return;
+} 
+
+/* for the selected user or group, update the authorities tree */
+function GETUSER_response(flagOkay, strMessage, objUser, strUserIDN)
+{
+   if (flagOkay)
+   {
+      objCurrentUser = objUser;
+
+      intInUserGroupMax = objCurrentUser.UINUSERGROUPMAX;
+      
+      delete arrayCopiedGroups;
+      arrayCopiedGroups = new Array();
+
+      delete arrayTempAuth;
+      arrayTempAuth = new Array();
+      
+      /* If there are groups, do them first */
+      if (intInUserGroupMax > 0)
+      {
+         intCounter = 0;
+         GETUSER( objCurrentUser.UINUSERGROUP[1], GET_GUSER_Response );
+      }
+      else
+      {
+         //ApplyUserAuthorities(objTreeContainer.firstChild, false);
+         TraverseGroups();
+         UFUMUAX_SetBusy(false);
+      }
+     
+   }
+   return;
+}
+
+function GET_GUSER_Response(flagOkay, strMessage, objUser, strUserIDN)
+{
+   if (flagOkay)
+   {
+      intCounter++;
+      arrayCopiedGroups[arrayCopiedGroups.length] = objUser;
+
+      if (intCounter == intInUserGroupMax) TraverseGroups();
+      else GETUSER( objCurrentUser.UINUSERGROUP[intCounter + 1], GET_GUSER_Response );
+   }
+   else
+   {
+      alert(strMessage);
+   }
+}
+
+function InitializeTree(objParent)
+{
+   var i, objChild;
+   
+   for (i=0; i < objParent.children.length; i++)
+   {
+      objChild = objParent.children[i];
+      
+      if (objChild.lastChild.IsContainer == true) objChild.lastChild.style.display = "inline";
+      
+      InitializeTree(objChild.lastChild);
+      
+      objChild.firstChild.checked = false;      
+      objChild.firstChild.disabled = false;      
+   }
+}
+
+function UFUMUAX_SetBusy(flagBusy)
+{
+   document.body.disabled = flagBusy;
+   SETBUSY(flagBusy);
+
+   return;
+} 
+
+function VF_AJAX_Terminate()
+{
+  return;
+} 
+</script>
+</head>
+
+<body id='BODY_Tag' oncontextmenu="return false">
+
+</body>
+</html>   

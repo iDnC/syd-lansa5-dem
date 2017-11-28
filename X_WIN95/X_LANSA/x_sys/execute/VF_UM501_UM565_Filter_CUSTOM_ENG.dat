@@ -1,0 +1,112 @@
+* ---------------------------------------------------------------------------------
+* This is a filter in framework <<FRAMEWORK>>.
+* It belongs to business object <<BUSINESS_OBJECT_CAPTION>>.
+* It was created on <<CREATEDDATE>> by <<CREATEDUSER>>.
+* ---------------------------------------------------------------------------------
+Begin_Com Role(*EXTENDS #VF_AC007O) Height(182) Width(215)
+
+* Remove this field definition
+Define Field(#ReplaceMe) Type(*Char) Length(15) Desc('Placeholder field') Default('Replace Me')
+
+
+* Group the fields that are used as search values
+* - Replace field #ReplaceMe with the fields you want the user to enter search values for.
+Group_By Name(#XG_SearchFields) Fields(#ReplaceMe)
+
+Def_List Name(#SearchFields) Fields(#XG_SearchFields) Type(*Working) Entrys(1)
+
+
+* Panels and layout
+Define_Com Class(#Prim_panl) Name(#DataItemPanel) Parent(#COM_OWNER) Displayposition(1) Tabposition(1) Height(150) Left(0) Top(0) Width(215) Horizontalscroll(True) Verticalscroll(True) Tabstop(False)
+Define_Com Class(#Prim_panl) Name(#ButtonPanel) Parent(#COM_OWNER) Displayposition(2) Tabposition(2) Left(0) Top(150) Width(215) Layoutmanager(#ButtonPanelAttachmenthManager) Height(32) Tabstop(False)
+Define_Com Class(#PRIM_ATLI) Name(#AttachDataItemPanel) Manage(#DataItemPanel) Parent(#MainPanelAttachmentManager) Attachment(Center)
+Define_Com Class(#PRIM_ATLI) Name(#AttachButtonPanel) Manage(#ButtonPanel) Parent(#MainPanelAttachmentManager) Attachment(Bottom)
+
+Define_Com Class(#Prim_atlm) Name(#ButtonPanelAttachmenthManager)
+Define_Com Class(#Prim_atli) Name(#ButtonPanelAttachmentSave) Parent(#ButtonPanelAttachmenthManager) Manage(#Search_Button) Attachment(Right) Marginright(4) Margintop(4) Marginbottom(4)
+
+* search button
+
+Define_Com Class(#Prim_phbn) Name(#Search_Button) Parent(#ButtonPanel) Caption('Search') Displayposition(1) Tabposition(1) Height(24) Left(131) Top(4) Buttondefault(True)
+
+* Clear list checkbox
+
+Define_Com Class(#PRIM_CKBX) Name(#CLEAR_LIST) Caption('Clear List') Parent(#ButtonPanel) Displayposition(2) Tabposition(2) Buttonstate(Checked) Left(0) Top(0) Height(32)
+Define_Com Class(#PRIM_ATLI) Name(#AttachItem1) Manage(#CLEAR_LIST) Parent(#ButtonPanelAttachmenthManager) Attachment(Left)
+
+
+* Define the search fields that appear on the filter form
+* Replace this label with the fields you want the user to enter search values for.
+
+Define_Com Class(#PRIM_LABL) Name(#ReplaceMe1) Caption('Remove this label and add your search fields here') Displayposition(1) Ellipses(Word) Height(105) Left(8) Parent(#DataItemPanel) Tabposition(1) Tabstop(False) Top(16) Verticalalignment(Center) Width(193)
+
+
+* The list used to receive data from the Server Module
+
+Def_List Name(#InstanceList_Columns) Fields(<<EXPAND_INSTANCELISTNAMES>>) Counter(#ListCount) Type(*Working) Entrys(*Max)
+
+* ================================================================================
+* Routines
+* ================================================================================
+
+
+Mthroutine Name(uInitialize) Options(*Redefine)
+
+* Do any initialization defined in the ancestor
+
+#Com_Ancestor.uInitialize
+
+#COM_OWNER.avFilterLocation := LEFT /* This filter is on the left */
+#COM_OWNER.avAllowLocationChange := True /* Allow user to move filter */
+
+* <your initialize logic goes here>
+
+Endroutine
+
+
+Evtroutine Handling(#Search_Button.Click)
+#Com_Owner.uSelectData
+Endroutine
+
+
+Mthroutine Name(uSelectData)
+
+* Define the data service
+Define_Com Class(<<SERVER_MODULE>>.Search) Name(#Search)
+
+* Save the current search values
+Inz_List Named(#SearchFields)
+
+* Go to busy state
+#COM_OWNER.avGotoBusyState Showbusytext('Searching') Animated(False)
+
+* Ask Server Module to get the data from the server using the search values
+#Search.ExecuteAsync SearchFields(#SearchFields) Instancelist_Columns(#InstanceList_Columns)
+
+
+Evtroutine Handling(#Search.Completed)
+
+If Cond(#CLEAR_LIST.ButtonState *EQ Checked)
+#AVLISTMANAGER.ClearList
+Endif
+
+Selectlist Named(#InstanceList_Columns)
+
+* Add instance details to the instance list
+
+#AVLISTMANAGER.AddtoList <<EXPAND_ADDTOLIST>>
+
+Endselect
+
+Clr_List Named(#InstanceList_Columns)
+
+* Restore the saved search values
+Get_Entry Number(1) From_List(#SearchFields)
+
+* Go back to display free state
+#com_Owner.avGotoFreeState
+
+Endroutine
+Endroutine
+
+End_Com

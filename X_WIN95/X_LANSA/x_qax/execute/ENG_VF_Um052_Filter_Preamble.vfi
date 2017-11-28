@@ -1,0 +1,25 @@
+* <<majorsep>>
+* Type            : BUSINESS OBJECT FILTER
+<<if WEB_MODE>>
+* Platform        : WEB (LANSA for the WEB)
+<<else>>
+<<if WAM_MODE>>
+* Platform        : MS-WINDOWS (Web Access Module)
+<<else>>
+<<if ONE_MODE>>
+* Platform        : Web browser (Visual LANSA)
+* Ancestor        : VF_AC007O  
+<<else>> 
+* Platform        : MS-WINDOWS (Visual LANSA)
+* Ancestor        : VF_AC007  
+<<endif>>    
+<<endif>>
+<<endif>>
+* Written By      : <<user>> 
+* Written On      : <<date>> at <<time>>
+* Copyright       : <<copyright>>
+* Framework       : <<framework_lang ucaption>>
+* Application     : <<application_lang ucaption>>
+* Business Object : <<businessobject_lang ucaption>>
+* Filter          : <<filter_lang ucaption>>
+* <<majorsep>>

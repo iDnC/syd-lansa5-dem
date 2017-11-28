@@ -1,0 +1,1 @@
+﻿LANSA.addComponent({id:"VF_UI007O",ot:"rp",tp:"Reusable Part",de:"\OC=Push Button",tl:14015000},function(l,oI,u){var cO=l.rC(oI,{an:"PRIM_PHBN",co:function(){cO.aN.call(this);var C0=this.cA("USSYSTEM","VF_SY001O");if((C0!=null)&&(C0.iI()==false)){C0.iC();}this.setDisplayPosition(1);this.setTabPosition(1);}});},{rc:["VF_SY001O"],rp:["PRIM_PHBN"]});

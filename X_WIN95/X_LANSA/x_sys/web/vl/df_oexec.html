@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html lang="en" style="height:100%">
+   <head>
+      <meta charset="utf-8" />
+      <meta name="mobile-web-app-capable" content="yes">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta name="apple-touch-fullscreen" content="yes">
+      <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   </head>
+   <body style="height:100%; margin-left:0px;margin-right:0px;margin-top:0px;margin-bottom:0px">
+      <script src="/%{lansa_webalias}%/lansa_14_1_50_0/lansa.js"></script>
+      <script src="VLFONE_Engine.js"></script>
+      <script>
+         (function(LANSA){
+            if(!LANSA){document.write("Failed to load /%{lansa_webalias}%/lansa_14_1_50_0/lansa.js");return}
+            LANSA.init({part:"%{lansa_partition}%",sys:"%{lansa_webalias}%",ver:"079138657",lang:{def:"ENG",code:{"ENG":"en","FRA":"fr","JPN":"ja"}},slz:0,splash:{limg:"spin",mtxt:{"ENG":"Loading","FRA":"Chargement","JPN":"ロード中"}}});%{lansa_webroutine_output}%
+            LANSA.showPage("DF_OEXEC");
+         }(window["LANSA"]))
+      </script>
+      <noscript>This page requires JavaScript.</noscript>
+   </body>
+</html>

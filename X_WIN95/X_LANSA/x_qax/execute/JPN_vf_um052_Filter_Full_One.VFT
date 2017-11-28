@@ -1,0 +1,174 @@
+<caption>
+フィルターとインスタンス リスト      
+</caption>
+<context>
+Filter 
+</context>
+<mode>
+ONE
+</mode>
+<preamble>
+ENG_vf_um052_Filter_Full_One.htm
+</preamble>
+<sequence>
+000100  
+</sequence>
+<handlertxt>
+ビジネス オブジェクトがベースとする物理ファイルを指定し、インスタンス リストに表示するフィールド、レコードを一意に識別するフィールドを選択します。
+このフィルターで行う検索を支える物理ファイルを指定して、このファイルのデータ取得に使用するサーバー モジュールを指定します。その後、表示に従って必要なビュー、キー、検索オプションを選択します。
+その他必要なオプションを選択します。
+</handlertxt>
+<handler>
+VF_UM128 
+VF_UM058    
+VF_UM109 
+</handler>
+<hint>
+このアシスタントは、指定のファイルまたはビューをベースとし、手作業を全く、またはほとんど必要としないフィルターのコードを作成します。VL フレームワークの初心者である開発者向けに設計されています。
+</hint>
+<code>
+<<include VF_UM052_Filter_Preamble.vfi>>
+Function Options(*DIRECT)
+Begin_Com Role(*EXTENDS #VF_AC007O) Height(182) Width(215) LayoutManager(#TableLayout_Main)  Verticalscroll(True)
+* <<majorsep>>
+* 簡素なフィールドやグループ、および条件の定義
+* <<majorsep>>
+Group_By   Name(#XG_Keys)    Fields(<<UM058_FullKeyList>>)
+Def_List   Name(#Save_Keys)   Fields(#XG_Keys) Type(*Working) Entrys(1)
+Def_Cond   Name(*SearchOK)   <<UM058_SearchCondition>> 
+* <<majorsep>>
+* コンポーネント定義
+* <<majorsep>>
+
+* テーブル レイアウト
+
+Define_Com Class(#PRIM_TBLO) Name(#TableLayout_Main)
+
+Define_Com Class(#PRIM_TBLO.Column) Name(#Column1) Displayposition(1) Parent(#TableLayout_Main)
+Define_Com Class(#PRIM_TBLO.Row) Name(#Row1) Displayposition(1) Parent(#TableLayout_Main) Height(1.72)
+Define_Com Class(#PRIM_TBLO.Row) Name(#Row2) Displayposition(2) Parent(#TableLayout_Main) Height(25) Units(Pixels)
+
+* 検索ボタン
+
+Define_Com class(#PRIM_PHBN) Name(#Search_Button) Buttondefault(True) Caption('Search') Parent(#Com_Owner)
+Define_Com Class(#PRIM_TBLO.Item) Name(#Search_ButtonItem1) Manage(#Search_Button) Parent(#TableLayout_Main) Row(#Row2) Column(#Column1) Sizing(FitToHeight) Alignment(CenterLeft) Flow(Right)
+
+<<if CA_UM058_CLEARLIST>>
+
+* リストのチェックボックスのクリア
+
+Define_Com Class(#PRIM_CKBX) Name(#CLEAR_LIST) Caption('Clear List') Parent(#Com_owner) Displayposition(9) Tabposition(9)  Buttonstate(Checked)
+Define_Com Class(#PRIM_TBLO.Item) Name(#CLEAR_LISTItem1) Manage(#CLEAR_LIST) Parent(#TableLayout_Main) Row(#Row1) Sizing(None) Column(#Column1) Alignment(TopLeft) Flow(Down) Marginleft(5) Margintop(5)
+<<endif>>
+
+<<Comment>>フィルター フォーム上のフィールドとコンポーネント定義
+<<UM058_Repeat False>>Define_Com Class(#<<field>>.Visual) Parent(#Com_Owner) Labelposition(Top) Marginleft(0) Margintop(19) Height(38) Left(5) Top(5)
+<<UM058_Repeat False>>Define_Com Class(#PRIM_TBLO.Item) Name(#<<Field>>Item1) Manage(#<<Field>>) Parent(#TableLayout_Main) Row(#Row1) Sizing(FitToWidth) Column(#Column1) Alignment(TopLeft) Flow(Down) Marginleft(5) Margintop(5) Marginright(5)
+
+* ファイルにアクセスするサーバー モジュールからのデータ受信に使用するリスト 
+
+Def_List Name(#<<UM055_BaseFile>>List) Counter(#ListCount) Type(*Working) Entrys(*Max) <<UM055_BaseFileFields>> 
+
+* <<majorsep>>
+* ルーチン
+* <<majorsep>>
+
+<<CommentBlock>>
+Mthroutine Name(uInitialize) Options(*Redefine) 
+<<Comment>>祖先ですでに初期化処理が定義されているか
+#Com_Ancestor.uInitialize
+<<CommentBlock>>
+#COM_OWNER.avFilterLocation := LEFT /* This filter is on the left */
+#COM_OWNER.avAllowLocationChange := True /* Allow user to move filter */
+<<CommentBlock>>
+* <初期化ロジックをここに記述>
+<<CommentBlock>>
+Endroutine
+<<if CA_UM109_TERMINATE>>
+<<CommentBlock>>
+Mthroutine Name(uTerminate) Options(*REDEFINE)
+<<CommentBlock>>
+* <終了ロジックをここに記述>
+<<Comment>>祖先ですでに終了処理が定義されているか
+#Com_Ancestor.uTerminate
+<<CommentBlock>>
+Endroutine
+<<endif>>
+
+<<CommentBlock>>
+EvtRoutine Handling(#Search_Button.Click)
+#Com_Owner.uSelectData
+Endroutine
+
+<<CommentBlock>>
+Mthroutine Name(uSelectData)  
+
+* データ サービスの定義
+Define_Com Class(#<<UM058_BaseFileWAM>>.Find<<UM058_ViewName truncate>>) Name(#Find<<UM058_ViewName>>)
+
+* 選択ループで行われた上書きから得た現在のキー値を保存 
+Inz_List #Save_Keys 1 
+
+* ビジー状態に移行
+#COM_OWNER.avGotoBusyState Showbusytext('Searching') Animated(False)
+
+* サーバー モジュール <<UM058_BaseFileWAM>>  にサーバーからのデータ取得を依頼
+#Find<<UM058_ViewName>>.ExecuteAsync(<<UM058_FullKeyList>> #<<UM055_BaseFile>>List )
+
+Evtroutine Handling(#Find<<UM058_ViewName>>.Completed)
+
+<<if CA_UM058_CLEARLIST>>
+If Cond(#CLEAR_LIST.ButtonState *EQ Checked)
+#AVLISTMANAGER.ClearList
+Endif
+<<else>>
+#AVLISTMANAGER.ClearList
+<<endif>>
+
+Selectlist Named(#<<UM055_BaseFile>>List)
+
+* その他の選択ロジックはここに記述
+
+<<UM055_AddtoList>>  
+
+Endselect
+Clr_List Named(#<<UM055_BaseFile>>List)
+
+* 保存された値を復元 
+Get_Entry 1 #Save_Keys 
+
+* 表示が自由にできる状態に戻す
+#com_Owner.avGotoFreeState
+
+endroutine
+endroutine
+
+<<if CA_UM109_LISTEN>>
+* <<minorsep>>
+* インスタンス リスト更新の外部要求処理  
+* <<minorsep>>
+EvtRoutine #Com_owner.avEvent WithId(#EventId) WithAInfo1(#AInfo1) WithAInfo2(#AInfo2) WithAInfo3(#AInfo3) WithAInfo4(#AInfo4) WithAInfo5(#AInfo5)  WithNInfo1(#NInfo1) WithNInfo2(#NInfo2) WithNInfo3(#NInfo3) WithNInfo4(#NInfo4) WithNInfo5(#NInfo5)
+
+* 受信した値をフィールドに入れる
+#vf_elIdn := #EventId.Value
+
+* 受け取った AInfo と NInfo 値をキー フィールドにマップ - <<UM055_BaseFileKeys>>
+<<UM055_GenMapKeys>> 
+Case #vf_elIDN
+
+when value_is(= Refresh_Instance_List)
+* インスタント リストの再ロード
+
+Invoke #Com_Owner.uSelectData
+
+when value_is(= Add_List_Entry)
+* エントリーをリスト ビューに追加
+
+* <独自のロジックはここに記述>
+
+endcase
+Endroutine
+<<endif>>
+
+End_Com
+</code>  

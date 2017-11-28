@@ -1,0 +1,131 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>What</title>
+</head>
+
+<body>
+
+  <table border="0" width="100%" height="133">
+    <tr>
+      
+    <td width="11%" valign="top" align="left" height="18"><b><font color="#0000FF">機能</font></b></td>
+    <td width="89%" valign="top" align="left" height="18"><font face="ＭＳ Ｐゴシック, Osaka">この<font color="#FF0000">CRUD</font>ウィザードは、ビジネス・オブジェクト・コマンド・ハンドラ用のコードを生成します。</font>
+      <p><font face="ＭＳ Ｐゴシック, Osaka">ビジネス・オブジェクト・コマンド・ハンドラは、選択されたひとつ以上の<i>ビジネスオブジェクトインスタンス</i>(例：<i>社員</i>を<i>表示</i>する、<i>製品</i>の<i>履歴</i>を表示する、選択されたすべての<i>オーダー</i>を<i>印刷</i>する)に対して、<i>コマンド</i>を実行します。</font></p>
+      <p><font face="ＭＳ Ｐゴシック, Osaka">多くのVisual LANSAフレームワークでは、コマンド・ハンドラは、以下のように表示されます(赤で囲んだ部分)。</font></p>
+      <p align="center"><img border="0" src="VF_Command_panel.png" width="419" height="308"></p>
+      <p><font face="ＭＳ Ｐゴシック, Osaka">しかし、コマンド・ハンドラを表示する方法は、他にもたくさんあります。詳細及びコマンド・ハンドラの例については、ヘルプアシスタントを参照して下さい。</font></p>
+      </td>
+    </tr>
+    <tr>
+      
+    <td width="11%" valign="top" align="left" height="20"><b><font color="#0000FF">対象者</font></b></td>
+      
+    <td width="89%" valign="top" align="left" height="20"><font face="ＭＳ Ｐゴシック, Osaka">新参の開発者</font></td>
+    </tr>
+    <tr>
+      
+    <td width="11%" valign="top" align="left" height="22"><b><font color="#0000FF">環境</font></b></td>
+      
+    <td width="89%" valign="top" align="left" height="22"><font face="ＭＳ Ｐゴシック, Osaka">ブラウザプラットフォーム(WAM 
+      RDMLコードを生成)</font></td>
+    </tr>
+    <tr>
+      <td width="11%" valign="top" align="left" height="18"></td>
+      <td width="89%" valign="top" align="left" height="18"></td>
+    </tr>
+    <tr>
+      
+    <td width="11%" valign="top" align="left" height="1"><b><font color="#0000FF">詳細</font></b></td>
+      <td width="89%" valign="top" align="left" height="1"><font face="Verdana"><font face="ＭＳ Ｐゴシック, Osaka">CRUDウィザードは、フィルタ及びコマンド・ハンドラの迅速な生成を手助けするように設計されています。コマンド・ハンドラは、共通コードやシステム定義テーブルに格納された情報のCRUD(Create/Read/Update/Delete)で必要になるものです。これらのタイプのテーブルは、多くの商用アプリケーション(例：会社、
+      通貨、郵便番号、地域等)に存在し、一般に列が少なく、更新の度合いが低いです。CRUDウィザードは、これらのタイプのテーブルの保守を行うアプリケーションの構築過程をスピードアップさせます。CRUDウィザードを使用した推奨開発サイクルは、以下のようになります。</font>
+      <ul>
+        <li><font face="ＭＳ Ｐゴシック, Osaka"><i>テーブル保守</i>と呼ばれるアプリケーションを定義します。</font></li>
+      </ul>
+      </font><ul><font face="Verdana">
+        <li><font face="ＭＳ Ｐゴシック, Osaka">各共通コードまたはシステム定義テーブルの場合：</font> 
+          <p><font face="ＭＳ Ｐゴシック, Osaka">=&gt; ビジネス・オブジェクト(例：通貨、郵便番号)を定義します。</font></p>
+          <p><font face="ＭＳ Ｐゴシック, Osaka">=&gt; フィルタをひとつだけ定義します。</font></p>
+          <p><font face="ＭＳ Ｐゴシック, Osaka">=&gt; コマンドを、新規作成、コピー、明細及び削除のみ有効にします。</font></p>
+          <p><font face="ＭＳ Ｐゴシック, Osaka">=&gt; Windows及びブラウザプラットフォームで繰り返します(必要に応じて)：</font> 
+          <ul>
+            <li><font face="ＭＳ Ｐゴシック, Osaka"><i>CRUD ﾌｨﾙﾀ </i>ウィザードを使用してビジネス・オブジェクト向けのフィルタ・プログラムを作成し、スナップインします。</font></li>
+            <li><font face="ＭＳ Ｐゴシック, Osaka">このウィザードを使用してシングル・コマンド・ハンドラ・プログラムを作成します。シングル・コマンド・ハンドラを、新規作成、コピー、明細及び削除の各コマンドにスナップインします(例：4つのコマンドすべてに、コマンド・ハンドラとして同じプログラムを使用します)。</font></li>
+          </ul></li></font>
+          
+        
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td width="11%" valign="top" align="left" height="18"></td>
+      <td width="89%" valign="top" align="left" height="18"></td>
+    </tr>
+    <tr>
+      
+    <td width="11%" valign="top" align="left" height="1"><b><font color="#0000FF">使用方法</font></b></td>
+      <td width="89%" valign="top" align="left" height="1">
+        <div align="left">
+          <table border="0" width="100%">
+            <tr>
+              <td width="27%" valign="top" align="center"><img border="0" src="VF_Protocol_Panel.png" width="114" height="128"></td>
+              <td width="73%" valign="top" align="left"><font face="ＭＳ Ｐゴシック, Osaka">このフォームの下部にある<i>次へ 
+              &gt;&gt;</i>ボタンをクリックします。</font>
+              <p><font face="ＭＳ Ｐゴシック, Osaka">その後、ビジネス・オブジェクトの識別プロトコルとビジネス・オブジェクトを支える物理ファイルを指定します。</font></p>
+              <p><font face="ＭＳ Ｐゴシック, Osaka">ビジネス・オブジェクトの識別プロトコルの詳細については、ヘルプアシスタント (F1キー押下)を利用して下さい。</font></p>
+              <p><font face="ＭＳ Ｐゴシック, Osaka"><i>次へ &gt;&gt;</i>ボタンをクリックします。</font>
+              <p>&nbsp;</td>
+            </tr>
+            <tr>
+              <td width="27%" valign="top" align="center"><img border="0" src="VF_Select_Fields_panel.png" width="137" height="135"></td>
+              <td width="73%" valign="top" align="left"><font face="ＭＳ Ｐゴシック, Osaka">CRUDフォームに表示するフィールドを指定します。</font>
+              <p><font face="ＭＳ Ｐゴシック, Osaka"><i>次へ &gt;&gt;</i>ボタンをクリックします。</font></p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</td>
+            </tr>
+            <tr>
+              <td width="27%" valign="top" align="center"><img border="0" src="VF_Generate_Options.png" width="133" height="97"></td>
+              
+            <td width="73%" valign="top" align="left"><font face="ＭＳ Ｐゴシック, Osaka">コマンド・ハンドラがサポートするオプションのタイプを定義づける各種オプションから選択します。</font>
+              <p><font face="ＭＳ Ｐゴシック, Osaka">このフォームで表示されるオプションの詳細については、ヘルプアシスタント 
+                (F1キー押下)を利用して下さい。</font></p>
+              <p>&nbsp;</td>
+            </tr>
+            <tr>
+              <td width="27%" valign="top" align="center"><img border="0" src="VF_Generate_Button.png" width="91" height="31"></td>
+              
+            <td width="73%" valign="top" align="left"><font face="ＭＳ Ｐゴシック, Osaka"><i>コード生成</i>ボタンをクリックして、コマンド・ハンドラ・コードを生成します。</font> 
+              <p>&nbsp;</td>
+            </tr>
+            <tr>
+              <td width="27%" valign="top" align="center"><img border="0" src="VF_Copy_Button.png" width="138" height="30"></td>
+            <td width="73%" valign="top" align="left"><font face="ＭＳ Ｐゴシック, Osaka"><i>クリップボードへコードをコピー</i>ボタンを使用します。</font> 
+              <p>&nbsp;</td>
+            </tr>
+            <tr>
+              <td width="27%" valign="top" align="center"><img border="0" src="VF_Editor_panel.png" width="149" height="120"></td>
+              <td width="73%" valign="top" align="left"><font face="ＭＳ Ｐゴシック, Osaka">生成したコードをVisual 
+              LANSAエディタ内のコマンド・ハンドラ・プログラムにペーストします。</font></td>
+            </tr>
+          </table>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td width="11%" valign="top" align="left" height="13"></td>
+      <td width="89%" valign="top" align="left" height="13"></td>
+    </tr>
+    <tr>
+      
+    <td width="11%" valign="top" align="left" height="53"><b><font color="#0000FF">注意</font></b></td>
+      
+    <td width="89%" valign="top" align="left" height="53"><font face="ＭＳ Ｐゴシック, Osaka">このアシスタントのオプションの詳細を見たい場合は、オプションをクリックし F1 キーを押してヘルプアシスタントを表示して下さい。</font></td>
+    </tr>
+  </table>
+
+</body>
+</html>

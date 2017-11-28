@@ -1,0 +1,240 @@
+<context>
+CommandHandler 
+</context>
+<caption>
+CSVﾌｧｲﾙでMS-Excelへﾃﾞｰﾀを送信
+</caption>
+<preamble>
+JPN_vf_um052_Handler_SendXL.htm
+</preamble>
+<hint>
+このｱｼｽﾀﾝﾄはCSVﾌｧｲﾙとしてMS-Excelへﾃﾞｰﾀを送ることをﾕｰｻﾞｰに許可するためのｺｰﾄﾞを作成します。
+</hint>
+<sequence>
+000100  
+</sequence>
+<handler>
+VF_UM055 
+VF_UM057     
+</handler>
+<handlertxt>
+ﾋﾞｼﾞﾈｽ･ｵﾌﾞｼﾞｪｸﾄで使用することを決定した識別ﾌﾟﾛﾄｺﾙを指定します。物理ﾌｧｲﾙがこのﾋﾞｼﾞﾈｽ･ｵﾌﾞｼﾞｪｸﾄに類似している場合、その名前を指定してください。ｱｼｽﾀﾝﾄは自動的に基本的な識別ﾌﾟﾛﾄｺﾙを推論することを試みます。
+ｴﾝﾄﾞﾕｰｻﾞｰに選択を許可する全てのﾌｨｰﾙﾄﾞを先頭の領域に指定してください。ｴﾝﾄﾞﾕｰｻﾞｰはそれらのﾌｨｰﾙﾄﾞから、ｽﾌﾟﾚｯﾄﾞｼｰﾄに送りたいﾌｨｰﾙﾄﾞを選択することができます。ﾘｽﾄ領域には何も指定しないでください。
+</handlertxt>
+<code>
+<<include VF_UM052_CommandHandler_Preamble.vfi>>
+Function Options(*DIRECT) 
+Begin_Com Role(*EXTENDS #VF_AC010) Layoutmanager(#MAIN_LAYOUT) Width(600) Height(240) 
+* <<majorsep>>
+* ﾌｨｰﾙﾄﾞとｸﾞﾙｰﾌﾟの定義
+* <<majorsep>>   
+<<if UM057_Has_HEADFields>>
+Group_by Name(#XG_HEAD) <<UM057_GenHeadGroup>>
+<<endif>>
+* <<majorsep>>
+* ｺﾝﾎﾟｰﾈﾝﾄの定義
+* <<majorsep>>
+<<Comment>>ﾒｲﾝの部分とﾎﾞﾀﾝを整列させるためのﾊﾟﾈﾙ
+define_com class(#PRIM_PANL) name(#BUTTON_PANEL) displayposition(2) height(240) layoutmanager(#BUTTON_FLOW) left(485) parent(#COM_OWNER) tabposition(2) tabstop(False) top(0) width(115)
+define_com class(#PRIM_PANL) name(#BODY_HEAD) displayposition(1) height(240) layoutmanager(#ATLM_1) left(0) parent(#COM_OWNER) tabposition(1) tabstop(False) top(0) verticalscroll(True) width(485)
+
+<<Comment>>「添付」と「ﾌﾛｰ」のﾚｲｱｳﾄ ﾏﾈｰｼﾞｬ
+define_com class(#PRIM_ATLM) name(#MAIN_LAYOUT)
+define_com class(#PRIM_ATLI) name(#BUTTON_ATTACH) attachment(Right) manage(#BUTTON_PANEL) parent(#MAIN_LAYOUT)
+define_com class(#PRIM_FWLM) name(#BUTTON_FLOW) direction(TopToBottom) flowoperation(Center) marginbottom(4) marginleft(4) marginright(4) margintop(4) spacing(4) spacingitems(4)
+define_com class(#PRIM_ATLI) name(#BODY_ATTACH) attachment(Center) manage(#BODY_HEAD) parent(#MAIN_LAYOUT)
+define_com class(#PRIM_ATLI) name(#ATLI_2) attachment(Center) manage(#GPBX_BODY) parent(#ATLM_1)
+define_com class(#PRIM_FWLM) name(#FWLM_1) direction(TopToBottom) sizingrulehor(Maximize) spacing(2) spacingitems(2)
+define_com class(#PRIM_FWLI) name(#FWLI_2) manage(#RDBN_ALL) parent(#FWLM_1)
+define_com class(#PRIM_FWLI) name(#FWLI_3) manage(#RDBN_SEL) parent(#FWLM_1)
+
+<<Comment>>MS-Excelへの送信ﾎﾞﾀﾝ
+define_com class(#PRIM_PHBN) name(#PHBN_XL) caption(*MTXTUF_SENDXL) displayposition(1) left(5) parent(#BUTTON_PANEL) tabposition(1) top(4) width(104)
+define_com class(#PRIM_FWLI) name(#FWLI_1) manage(#PHBN_XL) parent(#BUTTON_FLOW)
+
+<<Comment>>ﾌｨｰﾙﾄﾞ選択ﾘｽﾄﾋﾞｭｰ
+define_com class(#PRIM_LTVW) name(#LTVW_FLDS) checkboxes(True) componentversion(2) displayposition(1) fullrowselect(True) height(240) left(0) parent(#BODY_HEAD) showsortarrow(True) tabposition(1) top(0) width(187)
+define_com class(#PRIM_LVCL) name(#LVCL_1) displayposition(1) parent(#LTVW_FLDS) source(#FP_EDESC) width(100)
+define_com class(#PRIM_LVCL) name(#LVCL_2) parent(#LTVW_FLDS) source(#FP_EIDN) visible(False)
+define_com class(#PRIM_ATLM) name(#ATLM_1)
+define_com class(#PRIM_ATLI) name(#ATLI_1) attachment(Left) manage(#LTVW_FLDS) parent(#ATLM_1)
+
+<<Comment>>全てまたは選択された明細行の選択
+define_com class(#PRIM_GPBX) name(#GPBX_BODY) displayposition(2) height(240) left(142) parent(#BODY_HEAD) tabposition(2) tabstop(False) top(0) width(343)
+define_com class(#PRIM_GPBX) name(#GPBX_SEL) displayposition(1) height(69) layoutmanager(#FWLM_1) parent(#GPBX_BODY) tabposition(1) tabstop(False) top(13) width(222)
+define_com class(#PRIM_RDBN) name(#RDBN_ALL) buttonchecked(True) caption('All Instance List entries') displayposition(1) left(4) parent(#GPBX_SEL) tabposition(1) top(11) width(214)
+define_com class(#PRIM_RDBN) name(#RDBN_SEL) caption('Just the selected instance list entries') displayposition(2) left(4) parent(#GPBX_SEL) tabposition(2) top(38) width(214)
+
+<<if UM057_Has_HEADFields>>
+* <<majorsep>>
+* ｲﾍﾞﾝﾄの定義
+* <<majorsep>>
+<<CommentBlock>>
+* <<majorsep>>
+* ﾌﾟﾛﾊﾟﾃｨの定義
+* <<majorsep>>
+<<CommentBlock>>
+* <<majorsep>>
+* ﾒｿｯﾄﾞの定義
+* <<majorsep>>
+* <<minorsep>>
+* ｺﾏﾝﾄﾞ実行の処理
+* <<minorsep>>
+<<CommentBlock>>
+Mthroutine Name(uExecute) Options(*REDEFINE)
+<<Comment>>ﾘﾀｰﾝ･ｺｰﾄﾞのﾌｨｰﾙﾄﾞと正常時の条件定義
+Define #Ret_Code reffld(#VF_ELRETC)
+Def_cond   Name(*RetOkay) Cond(#Ret_Code = OK) 
+<<Comment>>Ancestor の実行ﾛｼﾞｯｸを実行します。
+#Com_Ancestor.uExecute
+
+<<UM055_GenGetLst>>
+<<comment>>ﾌｫｰﾑのﾍｯﾀﾞﾌｨｰﾙﾄﾞを満たすために主なﾌｧｲﾙから情報をFetch
+Fetch Fields(#XG_HEAD) From_File(<<UM055_BaseFile>>) With_Key(<<UM055_BaseFileKeys>>) 
+<<CommentBlock>>
+Endroutine
+<<CommentBlock>>
+* <<minorsep>>
+* 初期化処理
+* <<minorsep>>
+Mthroutine Name(uInitialize) Options(*REDEFINE)
+<<Comment>>Ancestor の初期化ﾛｼﾞｯｸを実行します 
+#Com_Ancestor.uInitialize
+
+<<Comment>> ﾘｽﾄの初期化
+clr_list #ltvw_flds
+
+<<UM057_Repeat False ALL HEAD>>execute add_field with_parms('<<field>>' '<<field_description>>')
+
+Endroutine
+
+<<CommentBlock>>
+* <<minorsep>>
+* CSVﾌｧｲﾙのﾌｨｰﾙﾄﾞをｸｫｰﾃｰｼｮﾝで囲み、ｺﾝﾏを追加する
+* <<minorsep>>
+mthroutine uCSVQuote
+define_map for(*both) class(#std_strng) name(#uString)
+<<Comment>> '"'の埋め込みに必要な追加処理
+<<Comment>> (埋め込まれるｺﾝﾏは、全体の文字列をｸｫｰﾃｰｼｮﾝで囲むことにより処理されます。)
+define #DblQuote reffld(#Quote) default('"')
+define #FourQuote *char 2 default('""')
+<<CommentBlock>>
+if #uString.Contains(#DblQuote)
+#uString := #uString.ReplaceAll(#DblQuote #FourQuote)
+endif
+#uString :=   #DblQuote + #uString + #DblQuote +  #DELIMITER
+<<CommentBlock>>
+endroutine
+<<CommentBlock>>
+
+* <<majorsep>>
+* ｻﾌﾞﾙｰﾁﾝ
+* <<majorsep>>
+<<CommentBlock>>
+subroutine name(Add_field) parms((#fp_eidn *received) (#fp_edesc *received) )
+add_entry #ltvw_flds
+#ltvw_flds.CurrentItem.Checked := true
+endroutine
+
+* <<majorsep>>
+* ｲﾍﾞﾝﾄ･ﾊﾝﾄﾞﾗｰ
+* <<majorsep>>
+<<CommentBlock>>
+* MS-Excelへの送信ﾎﾞﾀﾝの処理
+
+EVTROUTINE HANDLING(#PHBN_XL.Click)
+define #toFile reffld(#vf_elurl)
+define #OutString type(*STRING) length(3000)
+define #AsString type(*STRING)
+
+define field(#FILENO) type(*DEC) length(3) decimals(0) desc('Allocated file number')
+define field(#OPTIONS) type(*CHAR) length(256) desc('Options for stream file open')
+define field(#RETC) type(*Char) length(2) desc('Return Code')
+define #retn *dec 7 0
+
+define field(#delimiter) type(*char) length(1) default(''',''')
+* determine what the excel delimiter character is for this PC - (for excel, CSV does not necessarily mean comma delimited)
+use builtin(GET_REGISTRY_VALUE) with_args(HKEY_CURRENT_USER 'Control Panel\International' 'sList') to_get(#DELIMITER #VF_ELRETC)
+
+
+if #RDBN_ALL.ButtonChecked
+* 全ての明細を取得
+#avListManager.GetInstance First(TRUE) <<UM055_GenANKeys>>  ReturnCode(#Ret_code)
+
+else
+<<UM055_GenGetSel FIRST Ret_Code>>
+endif
+
+
+if *RetOkay
+
+* ｽﾄﾘｰﾑ･ﾌｧｲﾙのｾｯﾄｱｯﾌﾟ
+
+#toFile := *Temp_dir + #com_owner.Name + '_' + *datetimec + '.csv'
+
+#OPTIONS := 'Write'
+
+use builtin(STM_FILE_OPEN) with_args(#toFile #Options) to_get(#FILENO #RETC)
+
+* 欄見出しの出力
+
+#OutString := *null
+
+selectlist #ltvw_flds
+if cond(#ltvw_flds.CurrentItem.Checked *eq True)
+#AsString := #fp_edesc.Trim
+#Com_Owner.uCSVQuote uString(#AsString)
+
+#OutString := #OutString + #AsString
+endif
+endselect
+
+* 欄見出しの文字列をﾌｧｲﾙへ書き出し
+use builtin(STM_FILE_WRITE) with_args(#FILENO #OutString) to_get(#RETC)
+
+
+DoWhile *RetOkay
+Fetch Fields(#XG_HEAD) From_File(<<UM055_BaseFile>>) With_Key(<<UM055_BaseFileKeys>>) 
+
+#OutString := *null
+
+selectlist #ltvw_flds
+if cond(#ltvw_flds.CurrentItem.Checked *eq True)
+#AsString := *null
+
+* 
+CASE #fp_eidn
+<<UM057_Repeat False ALPHA HEAD>>when value_is(= '<<field>>')<<split>>#AsString := #<<field>>
+<<UM057_Repeat False NUMERIC HEAD>>when value_is(= '<<field>>')<<split>>#AsString := #<<field>>.AsDisplayString
+endcase
+
+#Com_Owner.uCSVQuote uString(#AsString)
+#OutString := #OutString + #AsString
+
+endif
+endselect
+
+* 文字列をﾌｧｲﾙへ書き出し
+use builtin(STM_FILE_WRITE) with_args(#FILENO #OutString) to_get(#RETC)
+
+if #RDBN_ALL.ButtonChecked
+* 全ての明細を取得
+<<UM055_GenGetIns TRUE Ret_Code>>
+
+else
+<<UM055_GenGetSel NEXT Ret_Code>>
+endif
+
+EndWhile
+
+use builtin(STM_FILE_CLOSE) with_args(#FILENO)
+
+USE builtin(SYSTEM_COMMAND) with_args(H #toFile) to_get(#retn)
+
+endif
+ENDROUTINE
+<<commentblock>>
+End_Com
+
+<<endif>>
+</code>

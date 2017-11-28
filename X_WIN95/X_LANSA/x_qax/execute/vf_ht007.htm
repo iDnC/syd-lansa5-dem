@@ -1,0 +1,90 @@
+﻿<HTML>
+	<HEAD id="VF_HT007_Head">
+		<TITLE>Confirm Password</TITLE>
+		<script language="JavaScript" type="text/javascript">
+		
+/* --------------------------------------------------------------------- */
+/* --------------  P R I V A T E   M E T H O D S  ---------------------- */
+/* --------------------------------------------------------------------- */
+
+var objVF_UMnnn    = window.dialogArguments;
+	
+objVF_UMnnn.ModalDisplayStatus  = "Active";
+
+/* Give VF_UM036 a reference to this dialog */
+objVF_UMnnn.objVF_HTnnnModalWindow = this;
+
+/* --------------------------------------------------------------------- */
+/* ---------------------------SetDialogHTML----------------------------- */
+/* --------------------------------------------------------------------- */
+
+function SetDialogHTML()
+{
+	var objLink  = document.createElement("LINK");
+	objLink.rel  = "stylesheet";
+	objLink.type = "text/css";
+	objLink.href = "vf_vs001_" + objVF_UMnnn.strStyleScheme + ".css";
+
+	document.getElementById("VF_HT007_Head").insertAdjacentElement("afterBegin", objLink);
+
+	document.body.innerHTML = objVF_UMnnn.strHTML;
+
+    document.body.attachEvent("onkeydown", VF_HT007_EVENT_HANDLER_onkeydown);	
+
+	document.body.onbeforeunload   = VF_HT007_EVENT_HANDLER_onBeforeUnload;
+	
+	VF_UM036_Password.focus();
+}
+
+function VF_HT007_PRIVATE_SET_VALUES(argstrOkCancel)
+{
+	
+	objVF_UMnnn.flagCancel  = true;
+
+	if (argstrOkCancel == "OK") 
+
+		{
+			objVF_UMnnn.flagCancel  = false;
+			objVF_UMnnn.strPassword = VF_UM036_Password.value;
+		}
+
+	window.close();
+}
+
+function DestroyDialog()
+{
+	objVF_UMnnn.objVF_HTnnnModalWindow = null;
+}
+
+/* --------------------------------------------------------------------------------- */
+/* VF_HT007_EVENT_HANDLER_onBeforeUnload - Set the status pty of dialog to Inactive */
+/* -------------------------------------------------------------------------------- */ 
+
+function VF_HT007_EVENT_HANDLER_onBeforeUnload()
+{
+	objVF_UMnnn.ModalDisplayStatus = "Inactive";
+}
+
+function VF_HT007_EVENT_HANDLER_onkeydown(argobjEvent)
+{
+
+   /* The keyCode property of the onkeydown event tells you what key was */
+   /* press. When the enter key is pressed it returns the integer 13     */
+
+	if ( argobjEvent.keyCode != 13 ) return;
+
+	if ( argobjEvent.srcElement.id != "VF_HT007_cancel_button" ) 
+	
+		{
+			VF_HT007_dft_button.fireEvent("onclick");
+			return;
+		}
+
+    VF_HT007_cancel_button.fireEvent("onclick");
+}
+
+		</script>
+	</HEAD>
+	<BODY class="VF_HT007_BODY" onload="SetDialogHTML()" onunload="DestroyDialog()">
+	</BODY>
+</HTML>

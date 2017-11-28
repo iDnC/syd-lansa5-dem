@@ -1,0 +1,132 @@
+<caption>
+CRUD フィルターとインスタンス リスト      
+</caption>
+<preamble>
+JPN_vf_um052_Filter_Blind_One.htm
+</preamble>
+<context>
+Filter 
+</context>
+<mode>
+ONE
+</mode>
+<sequence>
+000100  
+</sequence>
+<handlertxt>
+ビジネス オブジェクトがベースにする物理ファイルを指定し、インスタンス リストに表示するフィールド、レコードを一意に識別するフィールドを選択します。
+その他必要なオプションを選択します。
+</handlertxt>
+<handler>
+VF_UM128 
+VF_UM109 
+</handler>
+<hint>
+このアシスタントは、指定のファイルまたはビューをベースとし、手作業を全く、またはほとんど必要としないフィルターのコードを作成します。VL フレームワークの初心者である開発者向けに設計されています。
+</hint>
+<code>
+<<include VF_UM052_Filter_Preamble.vfi>>
+Function Options(*DIRECT)
+Begin_Com Role(*EXTENDS #VF_AC007O) Height(182) Width(326) 
+* <<majorsep>>
+* 簡素なフィールドやグループ、および条件の定義
+* <<majorsep>>
+Group_By   Name(#XG_Ident)   Fields(<<UM055_GenFldList>>)
+Group_By   Name(#XG_Keys)   Fields(<<UM055_BaseFileKeys>>)
+
+* ファイル アクセスのサーバー モジュールからのデータ受信時に使用するリスト 
+Def_List Name(#<<UM055_BaseFile>>List) Counter(#ListCount) Type(*Working) Entrys(*Max)  <<UM055_BaseFileFields>> 
+
+* <<majorsep>>
+* ルーチン
+* <<majorsep>>
+
+<<CommentBlock>>
+Mthroutine Name(uInitialize) Options(*Redefine)
+* データ サービスの定義
+Define_Com Class(#<<UM055_BaseFileWAM>>.FindAll) Name(#FindAll)
+
+* 非表示のフィルターにする
+Set Com(#Com_Owner) Avfilterlocation(NONE)
+* 非表示フィルターは TOP LEFT RIGHT BOTTOM への移動はできない
+Set Com(#Com_Owner) Avallowlocationchange(False)
+
+* ビジー状態に移行
+#COM_OWNER.avGotoBusyState Showbusytext('Searching') Animated(False)
+
+* サーバー モジュール <<UM055_BaseFileWAM>> にサーバーからの全データ取得を要求
+#XG_Keys := *NULL
+#FindAll.ExecuteAsync( #<<UM055_BaseFile>>List )
+
+Evtroutine Handling(#FindAll.Completed)
+
+#avListManager.ClearList
+
+Selectlist Named(#<<UM055_BaseFile>>List)
+
+* その他の選択ロジックはここに記述
+
+<<UM055_AddtoList>>  
+
+Endselect
+Clr_List Named(#<<UM055_BaseFile>>List)
+
+* 表示が自由にできる状態に戻す
+#com_Owner.avGotoFreeState
+
+Endroutine
+Endroutine
+
+<<if CA_UM109_TERMINATE>>
+Mthroutine Name(uTerminate) Options(*REDEFINE)
+<<CommentBlock>>
+* <終了ロジックをここに記述>
+* <終了ロジックをここに記述>
+* <終了ロジックをここに記述>
+<<CommentBlock>>
+<<Comment>>祖先に終了定義があるか
+#Com_Ancestor.uTerminate
+<<CommentBlock>>
+Endroutine
+<<endif>>
+
+<<if CA_UM109_LISTEN>>
+* <<minorsep>>
+* インスタンス リスト更新のための外部要求処理  
+* <<minorsep>>
+EvtRoutine #Com_owner.avEvent WithId(#EventId) WithAInfo1(#AInfo1) WithAInfo2(#AInfo2) WithAInfo3(#AInfo3) WithAInfo4(#AInfo4) WithAInfo5(#AInfo5)  WithNInfo1(#NInfo1) WithNInfo2(#NInfo2) WithNInfo3(#NInfo3) WithNInfo4(#NInfo4) WithNInfo5(#NInfo5)
+
+* 受信した値をフィールドに入れる
+#vf_elIdn := #EventId.Value
+
+* 受け取った AInfo と NInfo 値をキー フィールドにマップ - <<UM055_BaseFileKeys>>
+<<UM055_GenMapKeys>> 
+
+Case #vf_elIDN
+
+when value_is(= Refresh_Instance_List)
+* インスタント リストのリロード
+
+#Com_Owner.uInitialize
+
+when value_is(= Add_List_Entry)
+* エントリーをリスト ビューに追加
+
+* <個別のロジックはここに記述>
+
+when value_is(= Update_List_Entry)
+* インスタンス リストに既に存在するエントリーの更新
+
+* <個別のロジックはここに記述>
+
+when value_is(=  Delete_List_Entry)
+
+* <個別のロジックはここに記述>
+
+endcase
+
+Endroutine
+<<endif>>
+
+End_Com
+</code>  

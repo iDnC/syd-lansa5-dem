@@ -1,0 +1,42 @@
+<context>
+CommandHandler 
+</context>
+<caption>
+複数インスタンス uExecute ルーチン (コード フラグメント)  
+</caption>
+<preamble>
+JPN_vf_um052_Handler_uExecute_Multiple.htm
+</preamble>
+<hint>
+このアシスタントは、ビジネス オブジェクトの複数のインスタンスを処理するコマンド ハンドラーで使用する典型的な uExecute ルーチンのためのコードを作成します。    
+</hint>
+<sequence>
+000400   
+</sequence>
+<handler>
+VF_UM055 
+</handler>
+<handlertxt>
+このビジネス オブジェクトに使用する識別プロトコルを指定します。このビジネス オブジェクトに類似する物理ファイルの名前が指定されると、このアシスタントは自動的に基本識別プロトコルの推測を試みます。    
+</handlertxt>
+<code>
+* <<minorsep>>
+* コマンド実行処理
+* <<minorsep>>
+<<CommentBlock>>
+Mthroutine Name(uExecute) Options(*REDEFINE)
+<<Comment>>戻りコード フィールドとテスト条件
+Define #Ret_Code reffld(#STD_BOOL)
+Def_cond Name(*RetOkay) Cond((#Ret_Code = OK) *OR (#Ret_Code = TRUE))
+<<Comment>>祖先に実行ロジックが定義されているか 
+#Com_Ancestor.uExecute
+<<UM055_GenGetSel FIRST Ret_Code>>
+DoWhile *RetOkay
+Fetch Fields(<<TBA>>) From_File(<<UM055_BaseFile>>) With_Key(<<UM055_BaseFileKeys>>) 
+<<CommentBlock>>
+<<CommentBlock>>
+<<UM055_GenGetSel NEXT Ret_Code>>
+EndWhile
+<<CommentBlock>>
+Endroutine
+</code>   

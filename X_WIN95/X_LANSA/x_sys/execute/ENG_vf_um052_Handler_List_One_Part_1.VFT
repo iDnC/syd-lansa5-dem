@@ -1,0 +1,143 @@
+<context>
+CommandHandler 
+</context>
+<caption>
+Command Handler that maintains a list (Part 1)
+</caption>
+<mode>
+ONE
+</mode>
+<preamble>
+ENG_vf_um052_Handler_List_One.htm
+</preamble>
+<hint>
+This assistant produces the code for a command handler that allows maintainance of a list of child data.   
+</hint>
+<sequence>
+000100  
+</sequence>
+<handler>
+VF_UM105
+VF_UM106
+VF_UM056   
+</handler>
+<handlertxt>
+What is the physical file that best resembles the Parent business object?
+How do you want to get the Child data for the list on this command handler?  
+Specify the things that you would like to include in the generated code.     
+</handlertxt>
+<code>
+<<include VF_UM052_CommandHandler_Preamble.vfi>>
+FUNCTION OPTIONS(*DIRECT)
+
+Begin_Com Role(*EXTENDS #VF_AC010O) Layoutmanager(#TableLayout_Main) Width(600) Height(240)
+
+* The Visual List definition
+
+* Replace #Part_2 with the name of the component you generate using Part 2 of this code assistant
+Define_Com Class(#PRIM_TREE<  #PART_2  >) Name(#Tree) Displayposition(1) Left(0) Parent(#COM_OWNER) Tabposition(1) Top(0) Height(200) Width(600)
+Define_Com Class(#PRIM_PHBN) Name(#Button_Sort) Caption('Sort') Displayposition(2) Left(0) Parent(#COM_OWNER) Tabposition(2) Top(208)
+
+* Layout Management
+
+Define_Com Class(#PRIM_TBLO) Name(#TableLayout_Main)
+* Layout Columns and Rows
+Define_Com Class(#PRIM_TBLO.Column) Name(#Column1) Displayposition(1) Parent(#TableLayout_Main)
+Define_Com Class(#PRIM_TBLO.Row) Name(#Row1) Displayposition(1) Parent(#TableLayout_Main) Height(1.72)
+Define_Com Class(#PRIM_TBLO.Row) Name(#Row2) Displayposition(2) Parent(#TableLayout_Main) Height(40) Units(Pixels)
+
+* Layout Items
+Define_Com Class(#PRIM_TBLO.Item) Name(#TreeItem1) Manage(#Tree) Parent(#TableLayout_Main) Row(#Row1) Column(#Column1)
+
+Define_Com Class(#PRIM_TBLO.Item) Name(#Button1Item1) Manage(#Button_Sort) Parent(#TableLayout_Main) Row(#Row2) Sizing(None) Column(#Column1) Alignment(CenterLeft) Flow(Right)
+
+
+Def_List Name(#PassList) Fields(<<UM106_ChildViewFields>>) Counter(#ListCount) Type(*Working) Entrys(*Max)
+Def_List Name(#Save_Keys) Fields(<<UM106_ChildViewKeysUsed ALL>>) Type(*WORKING) Entrys(1)
+
+
+* ===================================================================
+* Routines
+* ===================================================================
+
+* <<minorsep>>
+* Handle Command Execution
+* <<minorsep>>
+Mthroutine Name(uExecute) Options(*REDEFINE)
+Define_Com Class(#prim_boln) Name(#Ret_code)
+
+* Clear any previous messages
+#AVFRAMEWORKMANAGER.avClearMessages Requester(#COM_OWNER)
+
+*  Do any execution logic defined in the ancestor
+#Com_Ancestor.uExecute GotoFreeState(#GotoFreeState) SwitchCallerReference(#SwitchCallerReference)
+
+If_Ref Com(#Com_Owner.avAssociatedInstance) Is_Not(*NULL)
+
+* Set all the view keys to null
+#Save_Keys := *NULL
+
+* Get the details of the associated instance
+<<UM105_GenGetLst ASSOCIATED>>
+
+* Save a copy of the key fields for restoring later
+Inz_List Named(#Save_Keys)
+
+
+If (#Ret_code)
+* Get the data from the server by doing an asynchronous call to the Data service Server Module
+
+* Go to busy state
+#COM_OWNER.avGotoBusyState Showbusytext('Searching') Animated(False)
+
+* Ask the file Server Module to get the data from the server
+#Com_Owner.uSelectData 
+Else
+#AVFRAMEWORKMANAGER.avIssueMessage Text('No associated item found') Requester(#Com_Owner)
+Endif
+Endif
+
+Endroutine
+
+Mthroutine Name(uSelectData)
+
+* Define the data service
+Define_Com Class(#<<UM106_ChildViewWAM>>.FindAll) Name(#Find)
+Define_Com Class(#Prim_tree.TreeItem) Name(#TempListItem) Reference(*DYNAMIC)
+
+
+#Find.ExecuteAsync( <<UM106_ChildViewKeysUsed ALL>> #PassList )
+
+Evtroutine Handling(#Find.Completed)
+
+
+Selectlist Named(#PassList)
+
+* the fields in List #PassList defined in #PART2 will be automatically sent to #PART2 if Add_entry is used
+Add_Entry To_List(#Tree)
+Endselect
+
+* Go back to display free state
+#com_Owner.avGotoFreeState
+
+* Restore the key fields back to what they were
+Get_Entry Number(1) From_List(#Save_Keys)
+
+Endroutine
+
+
+Endroutine
+
+
+Evtroutine Handling(#Button_Sort.Click)
+
+* For example
+* if you want to sort the list by field Skildesc,
+* Uncomment the code below and then edit the OnSort routine in #PART_2
+
+*#Tree.Sort Key('SKILDESC')
+
+Endroutine
+
+END_COM
+</code>

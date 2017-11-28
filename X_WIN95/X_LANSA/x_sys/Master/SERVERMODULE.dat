@@ -1,0 +1,28 @@
+DF_EMDSO 1\OS=Employee Server Side Controller                            000000000000000
+DF_FILTSO1\OS=Server module used by DF_FILTXO                            000000000000000
+DF_MSGSMO1\OS=Example of issuing server messages                         000000000000000
+DF_NOTE_51\OS=Note Server Module                                         000000000000020DF_NOTE_ServerModule
+DF_PRMDSO1\OS=5250 Prompter Data Service                                 000000000000000
+DF_RAMPSV1\OS=RAMP Demo Services - Server                                000000000000000
+DF_T31DSO1\OS=VLF-ONE spool file services                                000000000000000
+DF_T41DSO1\OS=Data Service                                               000000000000000
+DF_T42DSO1\OS=Business Object 101 Data Service                           000000000000000
+DF_T43DSO1\OS=Server Module that crashes                                 000000000000000
+DF_T49DSO1\OS=Charts example Server Module                               000000000000000
+DF_T51DSO1\OS=Remember and Set Focus Data Service                        000000000000000
+DF_T52DSO1\OS=Business Object 102 Server Module                          000000000000000
+DF_T53DSO1\OS=Business Object 103 Server Module                          000000000000000
+DF_T54DSO1\OS=List Manager Data Service                                  000000000000000
+DF_T60SVO1\OS=Server queue services                                      000000000000000
+DF_T62SMO1\OS=Server Module for DF_T62H1O                                000000000000000
+DF_T68DSO1\OS=Server Module                                              000000000000000
+DF_T72DSO1\OS=Server Module                                              000000000000000
+LH8SERVER1Server Module                                                  171109110345009LH8Server
+VF_SW100O1\OS=VLF-ONE Session Services                                   000000000000000
+VF_SW101O1\OS=Copy to CSV Service (VLF-ONE)                              000000000000000
+VF_SW102O1\OS=Session Services (VLF-ONE)                                 000000000000000
+XD1SERV  1Services                                                       000000000000011XD1Services
+XD2SERV  1Services                                                       000000000000011XD2Services
+XD3SERV  1Services                                                       000000000000011XD3Services
+XD4SERV  1Services                                                       000000000000011XD4Services
+XVLSMTST 1Test VL Web Application Server                                 000000000000000

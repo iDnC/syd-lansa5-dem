@@ -1,0 +1,35 @@
+<context>
+CommandHandler 
+</context>
+<caption>
+Single Instance uExecute Routine (code fragment)  
+</caption>
+<hint>
+This assistant creates the code for a typical uExecute routine for use in a command handler that works with a single instance of a business object.    
+</hint>
+<preamble>
+ENG_vf_um052_Handler_uExecute_Single.htm
+</preamble> 
+<sequence>
+000300  
+</sequence>
+<handler>
+VF_UM055 
+</handler>
+<handlertxt>
+Specify the identification protocol you have decided to use for this business object. If a physical file resembles this business object specify its name and the assistant will attempt to automatically deduce a basic identification protocol for you.    
+</handlertxt>
+<code>
+* <<minorsep>>
+* Handle Command Execution
+* <<minorsep>>
+<<CommentBlock>>
+Mthroutine Name(uExecute) Options(*REDEFINE)
+<<Comment>>Do any execution logic defined in the ancestor 
+#Com_Ancestor.uExecute
+<<UM055_GenGetLst>>
+<<comment>>Fetch information from the main file to fill in the header fields on the form 
+Fetch Fields(<<TBA>>) From_File(<<UM055_BaseFile>>) With_Key(<<UM055_BaseFileKeys>>) 
+<<CommentBlock>>
+Endroutine
+</code>   

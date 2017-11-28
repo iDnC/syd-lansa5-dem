@@ -1,0 +1,551 @@
+﻿<html>
+    <head>
+        <title>0</title>
+        <style>            
+            body            
+            {
+            	margin: 0px;
+            	overflow: hidden;
+            	font-family: Sans-Serif;
+                font-weight: lighter;
+            	font-size: 14px;
+            }
+            #main
+            {
+            	background-repeat: no-repeat;
+            	background-position: -3 -1;
+            	width: 100%;
+            	height: 100%;
+            	filter:alpha(opacity=30);
+            }
+            #mainTable
+            {
+                width: 100%;
+            	height: 100%;
+            }
+            #content
+            {
+            	width: 100%;
+            	padding-top: 20px;
+            	padding-left: 20px;
+            	padding-right: 20px;
+            	height: 70px;
+            	position: absolute;
+            	bottom: 0px;
+            	text-align: center;
+            	filter:progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr=#FFD8EF9B, endColorstr=#FFF4FBE4) progid:DXImageTransform.Microsoft.MotionBlur(strength=11, direction=45);
+            }
+            .contentMainItem
+            {
+            	white-space: nowrap;
+            }
+            .link
+            {
+            	cursor: pointer;
+            	padding-right: 20px;
+            }
+            .sublink
+            {
+            	position: absolute;
+            	cursor: pointer;
+            }
+            .sublink_text
+            {
+            	padding: 10px;
+            	white-space: nowrap;                
+            }
+            .subItemsContainer
+            {
+            	display: none;
+            	position: absolute;
+            	left: 0px;
+            	top: 0px;            	
+            }
+            .itemImage
+            {
+            	vertical-align: top;
+            }
+        </style>
+        <script type="text/javascript" src="vf_si001.js"></script>
+        <script type="text/javascript">
+            var data =
+            {
+            };
+
+            //
+            function VF_AddLink()
+            {
+                var text = getExchangedValue("Text");
+                var key = getExchangedValue("Key");
+                var image = getExchangedValue("Image") + "3.gif";
+                var parent = getExchangedValue("ParentKey");
+                var sequence = parseInt(getExchangedValue("Sequence"), 10);
+
+                //
+                var $linkContainer;
+                var $item = $("<img/>").attr("src", image).attr("alt", text).attr("title", text);
+                var $parent = null;
+                var $parentContainer = null;
+
+                //
+                if (parent != null && parent.length > 0) $parent = $("#" + parent);
+
+                //
+                var reverseSortingOrder = false;
+                if ($parent == null || $parent.length == 0)
+                {
+                    $parentContainer = data.$contentPane;
+                    $linkContainer = $("<span/>")
+                    $linkContainer.addClass("link");
+
+                    $item.appendTo($linkContainer);
+                    $item.attr("_am", "1");
+                }
+                else
+                {
+                    reverseSortingOrder = true;
+                    var subItemsContainerId = "sic_" + parent;
+                    var $subItemsContainer = $("#" + subItemsContainerId);
+
+                    //
+                    if ($subItemsContainer.length == 0)
+                    {
+                        var level = getItemLevel($parent[0]) + 1;
+
+                        //
+                        $subItemsContainer = $("<div/>").appendTo(data.$floatingArea).addClass("subItemsContainer").attr("id", subItemsContainerId);
+                        $subItemsContainer.attr("_level", level);
+                    }
+
+                    //
+                    $parentContainer = $subItemsContainer;
+                    $linkContainer = $("<div/>")
+                    $linkContainer.addClass("sublink");
+
+                    var $innerContainer = $("<div/>").appendTo($linkContainer);
+
+                    //
+                    $innerContainer.css("position", "absolute");
+                    $innerContainer.attr("_ic", "1");
+                    $item.appendTo($innerContainer);
+
+                    //
+                    var $text = $("<span/>").appendTo($innerContainer);
+                    $text.text(text).addClass("sublink_text");
+                }
+
+                //
+                $linkContainer.attr("_seq", sequence);
+                $linkContainer.attr("_text", text);
+
+                //
+                var $children = $parentContainer.children();
+
+                //
+                if ($children.length == 0)
+                {
+                    $linkContainer.appendTo($parentContainer);
+                }
+                else
+                {
+                    var insertBefore = null;
+                    for (var i = 0; i < $children.length; i++)
+                    {
+                        var c = $children[i];
+                        var cseq = parseInt(c.getAttribute("_seq"), 10);
+
+                        //
+                        var found = false;
+                        if (sequence < cseq) found = true;
+                        else if(sequence == cseq) found = text < c.getAttribute("_text");
+
+                        //
+                        if (reverseSortingOrder) found = !found;
+
+                        //
+                        if (found)
+                        {
+                            insertBefore = c;
+                            break;
+                        }
+                    }
+
+                    //
+                    if (insertBefore) $parentContainer[0].insertBefore($linkContainer[0], insertBefore);
+                    else $linkContainer.appendTo($parentContainer);
+                }
+
+                //
+                $linkContainer.attr("id", key).attr("_lc", "1");
+                $linkContainer.addClass("contentMainItem");
+
+                //
+                $item.attr("_pic", 1);
+                $item.addClass("itemImage");
+                $linkContainer.mouseenter(onMouseEnter);
+                $linkContainer.mouseout(onMouseOut);
+            }
+                
+
+            function VF_SetBackgroundImage()
+            {
+                var path = getExchangedValue("Path");
+                $("#main").css("background-image", "url(" + path + "?" + (new Date().getTime()) + ")");
+            }
+
+            function VF_FacadeVisible(show)
+            {
+                data.facadeVisible = show;
+                delete data.dim;
+
+                //
+                if (!show) $("#main").hide();
+                else $("#main").show();
+            }
+
+            //
+            function getExchangedValue(name)
+            {
+                return data.$exchange.attr("_" + name);
+            }
+
+            function exchangeValue(name, value)
+            {
+                data.$exchange.attr("_" + name, value);
+            }
+
+            function signalContainer()
+            {
+                document.title = parseInt(document.title, 10) + 1;
+            }
+
+            //
+            function onClick(e)
+            {
+                var src = e.target;
+
+                //
+                var $target = getItemContainer(e.target, true);
+                var target = $target[0];
+                var key = $target.attr("id");
+
+                //
+                if (key)
+                {
+                    var $subItemsContainer = $("#sic_" + key);
+                    var $children = $subItemsContainer.children();
+                    var isTerminal = ($children.length == 0);
+
+                    //
+                    if (!isTerminal)
+                    {
+                        var level = getItemLevel(target);
+                        hideItems(level + 1);
+                        data.expand = { target: target, $children: $children, $subItemsContainer: $subItemsContainer };
+                    }
+                    else
+                    {
+                        resetFacade();
+                    }
+
+                    //
+                    exchangeValue("Type", "Command");
+                    exchangeValue("Key", key);
+                    exchangeValue("Terminal", isTerminal ? "1" : "0");
+                    exchangeValue("Level", getItemLevel(target));
+                    signalContainer();
+                }
+                else
+                {
+                    closeFacade();
+                }
+            }
+
+            function resetFacade()
+            {
+                stopAllAnimations();
+                $("[_level]").hide();
+                $("#main").hide();
+            }
+
+            function closeFacade()
+            {
+                exchangeValue("Type", "Restore");
+                signalContainer();
+
+                resetFacade();
+            }
+
+            function getItemLevel(item)
+            {
+                var $item = $(item);
+                var result = 1;
+
+                if (!$item.attr("_level")) $item = $item.parents("[_level]");
+                if ($item.length > 0) result = parseInt($item.attr("_level"), 10);
+
+                return result;
+            }
+
+            function onBodyResize()
+            {
+                var dim = data.dim;
+                var body = document.body;
+
+                //
+                var bw = body.offsetWidth;
+                var bh = body.offsetHeight;
+
+                //
+                if (dim != null && (dim.w != bw || dim.h != bh))
+                {
+                    if (data.facadeVisible) closeFacade();
+                }
+
+                //
+                data.dim = { w: bw, h: bh };
+            }
+
+            function getItemContainer(item, returnjQueryObj)
+            {
+                var $item = $(item);
+                if (!$item.attr("_lc")) $item = $item.parents("[_lc]");
+
+                return returnjQueryObj ? $item : $item[0];
+            }
+
+            function getItemImage(item, returnjQueryObj)
+            {
+                var $item = getItemContainer(item, true).find("[_pic]");
+
+                return returnjQueryObj ? $item : $item[0];
+            }
+
+            function onMouseEnter(e)
+            {
+                var el = e.target;
+                if (el != null)
+                {
+                    var $el = getItemImage(el, true);
+                    if ($el.length > 0)
+                    {
+                        if (!data.initialImgSize)
+                        {
+                            is = { w: $el.attr("width"), h: $el.attr("height") };
+                            data.initialImgSize = is;
+                        }
+
+                        //
+                        var tw = is.w * 1.5;
+                        var th = is.h * 1.5;
+
+                        $el.width(tw).height(th);
+
+                        if ($el.attr("_am")) $el.css("margin-right", -(tw - is.w) + "px");
+                    }
+                }
+            }
+
+            function onMouseOut(e)
+            {
+                var el = e.target;
+                if (el != null)
+                {
+                    var $el = getItemImage(el, true);
+                    var is = data.initialImgSize;
+                    if (is != null)
+                    {
+                        $el.width(is.w).height(is.h).css("margin-right", "");
+                        delete data.initialImgSize;
+                    }
+                }
+            }
+
+            function GetLinkCoordinates(parentItem, childItems)
+            {
+                var $pi = $(parentItem);
+                var center = $pi.offset();
+
+                //
+                var result = [];
+                var radius = 100 * childItems.length;
+                var unitAngle = 20 / childItems.length; // degree
+
+                //
+                center.top -= 60;
+                center.left += radius;
+
+                //
+                var level = getItemLevel(parentItem);
+                if (level == "2")
+                {
+                    center.left += 150;
+                    center.top += 60;
+                }
+
+                //
+                for (var i = 0; i < childItems.length; i++)
+                {
+                    var item = childItems[i];
+
+                    //
+                    var angle = i * unitAngle * Math.PI * 2 / 360;
+                    var rotation = angle;
+                    var offsetY = radius * Math.sin(angle);
+                    var offsetX = radius * Math.cos(angle);
+                    var x = center.left - offsetX;
+                    var y = center.top - offsetY;
+
+                    //
+                    var coord =
+                    {
+                        left: x,
+                        top: y,
+                        item: item,
+                        rotation: rotation
+                    };
+
+                    //
+                    result.push(coord);
+                }
+
+                //
+                return result;
+            }
+
+            function VF_StartSubItemsAnimation()
+            {
+                var expand = data.expand;
+                var coords = GetLinkCoordinates(expand.target, expand.$children);
+                var $subItemsContainer = expand.$subItemsContainer;
+
+                //
+                var bottom = null;
+                var top = null;
+                var left = null;
+
+                //
+                for (var i = 0; i < coords.length; i++)
+                {
+                    var c = coords[i];
+                    var $item = $(c.item);
+                    var $innerContainer = $item.find("[_ic]");
+
+                    //
+                    $item.css("left", c.left + "px").css("top", c.top + "px");
+                    $innerContainer.css("filter", "progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand')");
+                    setRotation($innerContainer[0], c.rotation);
+
+                    //
+                    if (bottom == null || c.top > bottom) bottom = c.top;
+                    if (top == null || c.top < top) top = c.top;
+                    if (left == null || c.left < left) left = c.left;
+                }
+
+                //
+                expand.targetZoom = 1;
+                expand.targetTop = 0;
+                expand.targetLeft = 0;
+                expand.top = bottom;
+                expand.left = left;
+                expand.zoom = 0.5;
+                expand.visible = false;
+
+                //
+                if (top < 0)
+                {
+                    expand.targetZoom -= (-top) / 700;
+                    if (expand.targetZoom < 0.6) expand.targetZoom = 0.6;
+                    expand.targetTop = -top * expand.targetZoom;
+                    expand.targetLeft += (1 - expand.targetZoom) * left;
+                }
+
+                //
+                animateZoomingIn();
+            }
+
+            function animateZoomingIn()
+            {
+                var expand = data.expand;
+                var $subItemsContainer = expand.$subItemsContainer;
+
+                //
+                expand.top /= 1.9;
+                expand.zoom *= 1.1;
+
+                var left = (1 - expand.zoom) * expand.left;
+
+                //
+                if (expand.zoom > expand.targetZoom)
+                {
+                    expand.zoom = expand.targetZoom;
+                    expand.top = expand.targetTop;
+                    left = expand.targetLeft;
+                }
+
+                //
+                $subItemsContainer.css("zoom", expand.zoom).css("top", expand.top + "px").css("left", left + "px");
+
+                //
+                if (expand.zoom < expand.targetZoom) setTimeout(animateZoomingIn, 5);
+                if (!expand.visible)
+                {
+                    expand.visible = true;
+                    $subItemsContainer.show();
+                }
+            }
+
+            function hideItems(fromLevel)
+            {
+                for (var i = fromLevel; i <= 3; i++)
+                {
+                    $("[_level=" + i + "]").hide();
+                }
+            }
+
+            function stopAllAnimations()
+            {
+            }
+
+            function init()
+            {
+                $(document.body).click(onClick);
+
+                document.body.onresize = onBodyResize;
+
+                //
+                data.$contentPane = $("#content");
+                data.$exchange = $("#exchange");
+                data.$floatingArea = $(document.body);
+
+                //
+                var contentHeight = data.$contentPane.height();
+                exchangeValue("Type", "Height");
+                exchangeValue("Value", "70");
+                signalContainer();
+            }
+
+            function setRotation(oObj, deg)
+            {
+                //var deg2radians = Math.PI * 2 / 360;
+                //rad = deg * deg2radians;
+                var rad = deg;
+                var costheta = Math.cos(rad);
+                var sintheta = Math.sin(rad);
+
+                oObj.filters.item(0).M11 = costheta;
+                oObj.filters.item(0).M12 = -sintheta;
+                oObj.filters.item(0).M21 = sintheta;
+                oObj.filters.item(0).M22 = costheta;
+            }
+
+            //
+            $(init);
+        </script>
+    </head>
+    <body>
+            <div id="main"></div>
+            <div id="content"></div>
+        <input type="hidden" id="exchange" name="exchange" />
+    </body>
+</html>

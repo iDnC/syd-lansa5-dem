@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<context>
+CommandHandler
+</context>
+<caption>
+Routine uExecute type sur instance multiple (fragment de code)  
+</caption>
+<preamble>
+FRA_vf_um052_Handler_uExecute_Multiple.htm
+</preamble>
+<hint>
+Cet assistant crée le code type pour une routine uExecute à utiliser dans un gestionnaire d´action gérant des instances multiples d´un objet métier.    
+</hint>
+<sequence>
+000400   
+</sequence>
+<handler>
+VF_UM055 
+</handler>
+<handlertxt>
+Préciser le protocole d´identification que vous avez choisi d´utiliser pour cet objet métier. si un fichier physique ressemble à cet objet métier, donner son nom et l´assistant essaiera automatiquement de déduire un protocole d´identification type pour vous.    
+</handlertxt>
+<code>
+* <<minorsep>>
+* Gérer l´exécution de l´action
+* <<minorsep>>
+<<CommentBlock>>
+Mthroutine Name(uExecute) Options(*REDEFINE)
+<<Comment>>La zone de code retour et la condition de bon achèvement
+Define £Ret_Code REFFLD(£STD_BOOL)
+Def_cond   Name(*RetOkay) Cond((£Ret_Code = OK) *OR (£Ret_Code = TRUE)) 
+<<Comment>>Exécuter toute logique définie dans l´ancêtre 
+£Com_Ancestor.uExecute
+<<UM055_GenGetSel FIRST Ret_Code>>
+DoWhile *RetOkay
+Fetch Fields(<<TBA>>) From_File(<<UM055_BaseFile>>) With_Key(<<UM055_BaseFileKeys>>) 
+<<CommentBlock>>
+<<CommentBlock>>
+<<UM055_GenGetSel NEXT Ret_Code>>
+EndWhile
+<<CommentBlock>>
+Endroutine
+</code>   

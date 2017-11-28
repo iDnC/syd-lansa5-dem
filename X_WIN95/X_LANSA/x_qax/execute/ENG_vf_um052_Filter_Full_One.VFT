@@ -1,0 +1,174 @@
+<caption>
+Filter and Instance List      
+</caption>
+<context>
+Filter 
+</context>
+<mode>
+ONE
+</mode>
+<preamble>
+ENG_vf_um052_Filter_Full_One.htm
+</preamble>
+<sequence>
+000100  
+</sequence>
+<handlertxt>
+Specify the physical file that your business object is to be based on.  Then choose which fields to show on the instance list and which field / fields uniquely identify a record.
+Specify the physical file that will underpin the search made by this filter. Then specify the Server Module that is used to get data for this file. Then choose the required view, keys and search options as they appear.
+Choose any other options you may want. 
+</handlertxt>
+<handler>
+VF_UM128 
+VF_UM058    
+VF_UM109 
+</handler>
+<hint>
+This assistant produces the code for a filter that requires little or no manual completion based on a specified file or view. It is designed for developers who are new to the VL Framework.
+</hint>
+<code>
+<<include VF_UM052_Filter_Preamble.vfi>>
+Function Options(*DIRECT)
+Begin_Com Role(*EXTENDS #VF_AC007O) Height(182) Width(215) LayoutManager(#TableLayout_Main)  Verticalscroll(True)
+* <<majorsep>>
+* Simple Field, Group and Condition Definitions
+* <<majorsep>>
+Group_By   Name(#XG_Keys)    Fields(<<UM058_FullKeyList>>)
+Def_List   Name(#Save_Keys)   Fields(#XG_Keys) Type(*Working) Entrys(1)
+Def_Cond   Name(*SearchOK)   <<UM058_SearchCondition>> 
+* <<majorsep>>
+* Component definitions
+* <<majorsep>>
+
+* Table Layout
+
+Define_Com Class(#PRIM_TBLO) Name(#TableLayout_Main)
+
+Define_Com Class(#PRIM_TBLO.Column) Name(#Column1) Displayposition(1) Parent(#TableLayout_Main)
+Define_Com Class(#PRIM_TBLO.Row) Name(#Row1) Displayposition(1) Parent(#TableLayout_Main) Height(1.72)
+Define_Com Class(#PRIM_TBLO.Row) Name(#Row2) Displayposition(2) Parent(#TableLayout_Main) Height(25) Units(Pixels)
+
+* Search Button
+
+Define_Com class(#PRIM_PHBN) Name(#Search_Button) Buttondefault(True) Caption('Search') Parent(#Com_Owner)
+Define_Com Class(#PRIM_TBLO.Item) Name(#Search_ButtonItem1) Manage(#Search_Button) Parent(#TableLayout_Main) Row(#Row2) Column(#Column1) Sizing(FitToHeight) Alignment(CenterLeft) Flow(Right)
+
+<<if CA_UM058_CLEARLIST>>
+
+* Clear List checkbox
+
+Define_Com Class(#PRIM_CKBX) Name(#CLEAR_LIST) Caption('Clear List') Parent(#Com_owner) Displayposition(9) Tabposition(9)  Buttonstate(Checked)
+Define_Com Class(#PRIM_TBLO.Item) Name(#CLEAR_LISTItem1) Manage(#CLEAR_LIST) Parent(#TableLayout_Main) Row(#Row1) Sizing(None) Column(#Column1) Alignment(TopLeft) Flow(Down) Marginleft(5) Margintop(5)
+<<endif>>
+
+<<Comment>>Define the fields and components that are on the filter form
+<<UM058_Repeat False>>Define_Com Class(#<<field>>.Visual) Parent(#Com_Owner) Labelposition(Top) Marginleft(0) Margintop(19) Height(38) Left(5) Top(5)
+<<UM058_Repeat False>>Define_Com Class(#PRIM_TBLO.Item) Name(#<<Field>>Item1) Manage(#<<Field>>) Parent(#TableLayout_Main) Row(#Row1) Sizing(FitToWidth) Column(#Column1) Alignment(TopLeft) Flow(Down) Marginleft(5) Margintop(5) Marginright(5)
+
+* The list used to receive data from the file access Server Module 
+
+Def_List Name(#<<UM055_BaseFile>>List) Counter(#ListCount) Type(*Working) Entrys(*Max) <<UM055_BaseFileFields>> 
+
+* <<majorsep>>
+* Routines
+* <<majorsep>>
+
+<<CommentBlock>>
+Mthroutine Name(uInitialize) Options(*Redefine) 
+<<Comment>>Do any initialization defined in the ancestor
+#Com_Ancestor.uInitialize
+<<CommentBlock>>
+#COM_OWNER.avFilterLocation := LEFT /* This filter is on the left */
+#COM_OWNER.avAllowLocationChange := True /* Allow user to move filter */
+<<CommentBlock>>
+* <your initialize logic goes here>
+<<CommentBlock>>
+Endroutine
+<<if CA_UM109_TERMINATE>>
+<<CommentBlock>>
+Mthroutine Name(uTerminate) Options(*REDEFINE)
+<<CommentBlock>>
+* <your termination logic goes here>
+<<Comment>>Do any termination defined in the ancestor
+#Com_Ancestor.uTerminate
+<<CommentBlock>>
+Endroutine
+<<endif>>
+
+<<CommentBlock>>
+EvtRoutine Handling(#Search_Button.Click)
+#Com_Owner.uSelectData
+Endroutine
+
+<<CommentBlock>>
+Mthroutine Name(uSelectData)  
+
+* Define the data service
+Define_Com Class(#<<UM058_BaseFileWAM>>.Find<<UM058_ViewName truncate>>) Name(#Find<<UM058_ViewName>>)
+
+* Save the current key values from overwrites done by the select loop 
+Inz_List #Save_Keys 1 
+
+* Go to busy state
+#COM_OWNER.avGotoBusyState Showbusytext('Searching') Animated(False)
+
+* Ask Server Module <<UM058_BaseFileWAM>>  to get the data from the server
+#Find<<UM058_ViewName>>.ExecuteAsync(<<UM058_FullKeyList>> #<<UM055_BaseFile>>List )
+
+Evtroutine Handling(#Find<<UM058_ViewName>>.Completed)
+
+<<if CA_UM058_CLEARLIST>>
+If Cond(#CLEAR_LIST.ButtonState *EQ Checked)
+#AVLISTMANAGER.ClearList
+Endif
+<<else>>
+#AVLISTMANAGER.ClearList
+<<endif>>
+
+Selectlist Named(#<<UM055_BaseFile>>List)
+
+* Extra selection logic could go here
+
+<<UM055_AddtoList>>  
+
+Endselect
+Clr_List Named(#<<UM055_BaseFile>>List)
+
+* Restore the saved key values 
+Get_Entry 1 #Save_Keys 
+
+* Go back to display free state
+#com_Owner.avGotoFreeState
+
+endroutine
+endroutine
+
+<<if CA_UM109_LISTEN>>
+* <<minorsep>>
+* Handle any external requests to update the Instance List  
+* <<minorsep>>
+EvtRoutine #Com_owner.avEvent WithId(#EventId) WithAInfo1(#AInfo1) WithAInfo2(#AInfo2) WithAInfo3(#AInfo3) WithAInfo4(#AInfo4) WithAInfo5(#AInfo5)  WithNInfo1(#NInfo1) WithNInfo2(#NInfo2) WithNInfo3(#NInfo3) WithNInfo4(#NInfo4) WithNInfo5(#NInfo5)
+
+* put the received values into fields
+#vf_elIdn := #EventId.Value
+
+* Map the AInfo and NInfo values passed, into the key fields - <<UM055_BaseFileKeys>>
+<<UM055_GenMapKeys>> 
+Case #vf_elIDN
+
+when value_is(= Refresh_Instance_List)
+* Reload the Instance List
+
+Invoke #Com_Owner.uSelectData
+
+when value_is(= Add_List_Entry)
+* Add an entry to the list view
+
+* <your  logic goes here>
+
+endcase
+Endroutine
+<<endif>>
+
+End_Com
+</code>  

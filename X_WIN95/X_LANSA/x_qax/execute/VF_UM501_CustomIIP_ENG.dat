@@ -1,0 +1,56 @@
+* ------------------------------------------------------------------------------
+* This is the custom IIP for framework <<FRAMEWORK>>
+* It was created on <<CREATEDDATE>> by <<CREATEDUSER>>
+* ------------------------------------------------------------------------------
+Begin_Com Role(*EXTENDS #VF_AC011O)
+
+* ----------------------------------------------------------------------------
+* Initialization
+Mthroutine Name(uInitialize) Options(*REDEFINE)
+
+* Do any ancestor logic
+#COM_ANCESTOR.uInitialize
+
+* Do custom  behaviour
+#avCustomManagerId := "<<CUSTOMMANAGER>>" /* Set the id of the avCustomManager used */
+
+* Set up some custom logic
+#MaximumOpenFilterandHandlerPanes := 10
+#MaxiumQuickSearchSize := 200
+#SharedMessageSetinTabletMode := True /* Use a single shared message set in tablet mode */
+
+Endroutine
+
+* -----------------------------------------------------------------------------
+* Termination
+Mthroutine Name(uTerminate) Options(*REDEFINE)
+
+* Custom logic ...........
+
+
+* Do any ancestor logic
+#COM_ANCESTOR.uTerminate
+
+Endroutine
+* -----------------------------------------------------------------------------
+* Start the Main window
+Mthroutine Name(avMAINWindowReady) Options(*REDEFINE)
+
+* Continue with execution
+#Continue := True
+
+Endroutine
+
+* -------------------------------------------------------------------------------------
+* Close the MAIN window
+Mthroutine Name(avCloseMAINWindow) Options(*REDEFINE)
+
+* Clean up and deallocate resources
+
+* Continue to close.
+* Note that returning false is only viable if #PossibletoCancel is true)
+#Continue := True
+
+Endroutine
+
+End_Com

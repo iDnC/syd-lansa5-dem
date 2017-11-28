@@ -1,0 +1,64 @@
+* ---------------------------------------------------------------------------------
+* This is a server module in framework <<FRAMEWORK>>.
+* It belongs to business object <<BUSINESS_OBJECT_CAPTION>>.
+* It was created on <<CREATEDDATE>> by <<CREATEDUSER>>.
+* ---------------------------------------------------------------------------------
+Begin_Com Role(*EXTENDS #PRIM_SRVM) Sessionidentifier('VLFONE')
+
+* ---------------------------------------------------------------------------------
+* Declare the shared server system manager. It must be declared exactly this
+* way in any server modules or reusable parts that want to use it.
+Define_Com Class(#<<SERVER_MANAGER>>) Name(#ServerSystemManager) Scope(*APPLICATION)
+* These strings coming from the logon validator. They allow the logon validator to pass information
+* into your shared server system manager. For example, an IBM i library list to be used, or
+* details about the currently logged on user or other system states.
+Define Field(#Persistent_ApplicationString1) Type(*NVARCHAR)
+Define Field(#Persistent_ApplicationString2) Type(*NVARCHAR)
+Define Field(#Persistent_ApplicationString3) Type(*NVARCHAR)
+Define Field(#Persistent_ApplicationString4) Type(*NVARCHAR)
+Define Field(#Persistent_ApplicationString5) Type(*NVARCHAR)
+* ---------------------------------------------------------------------------------
+
+* Lists for accessing server data
+
+* The list of data returned by this server module
+Def_List Name(#ServerDataItems) Fields(#STD_TextL #STD_STRNG) Type(*Working) Entrys(*MAX)
+
+* ---------------------------------------------------------------------------------
+Srvroutine Name(GetData) Session(*REQUIRED)
+List_Map For(*Output) List(#ServerDataItems)
+
+* Invoke the server manager to set up the execution context for this server routine
+#ServerSystemManager.InitializeServiceRoutine Persistentstring1(#Persistent_ApplicationString1) Persistentstring2(#Persistent_ApplicationString2) Persistentstring3(#Persistent_ApplicationString3) Persistentstring4(#Persistent_ApplicationString4) Persistentstring5(#Persistent_ApplicationString5)
+
+* Process the request
+* Build a list of data to return
+* You would replace this with your own logic
+
+#STD_TEXTL := 'LANSA Sydney'
+#STD_STRNG := "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3313.974770060435!2d151.20758031520947!3d-33.838761280664485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12aef2ac332673%3A0x5084547ab78a9e4d!2s122+Arthur+St%2C+North+Sydney+NSW+2060%2C+Australia!5e0!3m2!1sen!2snz!4v1467939119941"
+Add_Entry To_List(#ServerDataItems)
+
+#STD_TEXTL := 'Empire State Building New York'
+#STD_STRNG := "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12090.470159428245!2d-73.9856644!3d40.7484405!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xd134e199a405a163!2sEmpire+State+Building!5e0!3m2!1sen!2snz!4v1467939376666"
+Add_Entry To_List(#ServerDataItems)
+
+#STD_TEXTL := 'Sky Tower Auckland'
+#STD_STRNG := "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12771.002504947613!2d174.762191!3d-36.848448!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x2d1b5c380ad9387!2sSky+Tower!5e0!3m2!1sen!2snz!4v1467945311571"
+Add_Entry To_List(#ServerDataItems)
+
+* Invoke the server manager to clean up and finalize the execution context for this server routine
+#ServerSystemManager.TerminateServiceRoutine
+
+Endroutine
+
+Mthroutine Name(uAddListItem)
+Define_Map For(*input) Class(#std_int) Name(#Data)
+Define_Map For(*input) Class(#sTD_Textl) Name(#Label)
+
+#STD_NUM := #Data
+#STD_TEXTL := #Label
+Add_Entry To_List(#ServerDataItems)
+
+Endroutine
+End_Com

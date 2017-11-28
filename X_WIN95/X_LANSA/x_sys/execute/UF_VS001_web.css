@@ -1,0 +1,366 @@
+/* ============ Standard LANSA Styles =========== */
+#VF_Main_TABLE
+{
+   border-collapse:collapse;
+   height:auto;  
+}
+.hidden__
+{
+	position: absolute;
+	visibility: hidden;
+	overflow: hidden;
+	width: 0px;
+	height: 0px;
+	display: none;
+}
+
+/* Default BODY details */ 
+
+   BODY
+   {
+      background:   #eeeeee;
+      border:       none; 
+      margin:     0;
+   }  
+
+   INPUT,TD,SELECT,TEXTAREA
+   {
+     	font-family:      Verdana, Arial, Helvetica;
+   	font-size:        8pt;
+   }
+
+   STRONG
+   {
+      font-weight: normal;
+   }
+
+   TD
+   {
+      padding: 0px;
+      background: #eee;
+   }
+
+   TH
+   {
+      BACKGROUND:   #6699cc;
+      font:         caption;
+		color:		  #fff;
+   }  
+
+   TEXTAREA
+   {
+      border: 1px solid #78d3ff;   
+      overflow: auto;
+   }
+   BUTTON
+   {
+      width:         90px;
+      font:          icon;
+   }
+   .VF_SY506_Dft_Button
+   {
+      width:         90px;
+      font:          icon;
+      border: 1px solid;
+   }
+
+	.FP_RTIME_HHMMSS
+	{
+		border:      1px solid #78acff;
+	   background:  window;
+	}
+
+	.FP_RTIME_Container_ReadOnly
+	{
+      cursor: default;
+	}
+
+	.FP_RTIME_Container_ReadOnly
+	{
+		border: none;
+	}
+
+	.FP_RTIME_AMPM
+	{
+		border: 	1px solid #eeeeee;
+		font-family: Courier;
+		background: #eeeeee;
+	}
+
+	.FP_RTIME_UpImage
+	{
+		border-bottom: 1px solid #eeeeee;
+		margin-left: 2px;
+	}
+
+	.FP_RTIME_DownImage
+	{
+		border-top: 1px solid #eeeeee;
+		margin-left: 2px;
+	}
+
+/* ============ F P _ R C A L C classes =========== */
+
+   .FP_RCALC_ReadOnly
+   {
+		border: none;
+      cursor: default;
+		background: #eeeeee;
+   }
+   
+	.FP_RCALC_CalculatorImg
+   {
+		border: 1px solid #eeeeee;
+		width: 17px;
+		height: 18px;
+		margin-left: 2px;
+   }
+
+	.FP_RCALC_CalculatorImgEnter
+   {
+		border-top: 1px solid threedhighlight;
+		border-left: 1px solid threedhighlight;
+		border-bottom: 1px solid threeddarkshadow;
+		border-right: 1px solid threeddarkshadow;
+		width: 17px;
+		height: 18px;
+		margin-left: 2px;
+   }
+   
+	.FP_RCALC_CalculatorImgDown
+   {
+		border-top: 1px solid threeddarkshadow;
+		border-left: 1px solid threeddarkshadow;
+		border-bottom: 1px solid threedhighlight;
+		border-right: 1px solid threedhighlight;
+		width: 17px;
+		height: 18px;
+		margin-left: 2px;
+   }
+
+/* ============ F P _ R C O M B classes =========== */
+
+   .FP_RCOMB_DisabledEntry
+   {
+      color: #999;
+   }
+
+
+/* ============ F P _ R D A T E classes =========== */
+
+   .FP_RDATE_ReadOnly
+   {
+		border: none;
+      cursor: default;
+		background: #eeeeee;
+   }
+
+ 	.FP_RDATE_CalendarImg
+   {
+		border: 1px solid #eeeeee;
+		width: 17px;
+		height: 18px;
+		margin-left: 2px;
+   }
+
+	.FP_RDATE_CalendarImgEnter
+   {
+		border-top: 1px solid threedhighlight;
+		border-left: 1px solid threedhighlight;
+		border-bottom: 1px solid threeddarkshadow;
+		border-right: 1px solid threeddarkshadow;
+		width: 17px;
+		height: 18px;
+		margin-left: 2px;
+   }
+
+/* ============ F P _ R L I S T classes =========== */
+
+   .FP_RLIST_OuterContainer
+   {
+      overflow-y:    hidden;  
+		border: solid 1px Highlight;
+      cursor:        default;
+   }
+
+   .FP_RLIST_ListContainer
+   {
+      background  :window;
+      overflow-y  :auto; 
+      overflow-x  :hidden; 
+      height      :100%;
+   }
+
+   .FP_RLIST_Colhdg
+   {
+      border-top:    1px solid Highlight; 
+      overflow:      hidden;
+      display:       inline;
+      cursor:        default;
+      text-overflow: ellipsis;
+   }
+
+   .FP_RLIST_ColDivider
+   {
+      border-left:   1px solid Highlight;
+      width:         1px; 
+      display:       inline;
+      cursor:        col-resize;
+   }
+
+   .FP_RLIST_ColDivider_NoLines
+   {
+      border-top:    1px solid window;
+      border-bottom: 1px solid window;
+      border-left:   1px solid window;
+      width:         1px; 
+      display:       inline;
+   }
+
+   .FP_RLIST_InputCell
+   {
+      background : azure;
+      color      : #000;
+      cursor     : text;
+      border     : 1px solid #808080;
+   }
+
+   .FP_RLIST_Cell_IE
+   {
+      display:       inline; 
+   }
+
+   .FP_RLIST_Cell
+   {
+      /* padding-left:  2px;  */
+      /* padding-top:   1px; */
+      display:       inline;
+      overflow:      hidden;
+      text-overflow: ellipsis;
+      font-family: Arial;
+      font-size: 8pt;
+      white-space: nowrap;
+   }
+
+   .FP_RLIST_TreeContainer
+   {
+      background  :window;
+      border: 1px solid;
+      width:  190px;
+      height: 290px;
+      overflow:auto;
+      padding: 3px;
+      cursor: default;
+      font: icon;
+   }
+
+   .FP_RLIST_LargeImageContainer
+   {
+      overflow-x : hidden;
+      white-space: nowrap;
+      text-overflow : ellipsis;
+      display      : inline;
+      margin-left : 3px;
+   }
+
+/* ============ F P _ R M E M O classes =========== */
+
+   .FP_RMEMO_Variable_Font
+   {
+     	font-family:      Verdana, Arial, Helvetica;
+   	font-size:        8pt;
+   }
+
+   .FP_RMEMO_Fixed_Font
+   {
+     	font-family:      Lucida Console;
+   	font-size:        8pt;
+   }
+
+   /* ============ F P _ R F O R M classes =========== */
+
+   .FP_RFORM_Title
+   {
+      text-align : center;
+      font-family: Verdana, Arial, Helvetica;
+      font-size:   8pt;
+   }
+
+   .FP_RFORM_Instruction
+   {
+      text-align : left;
+      font-family: Verdana, Arial, Helvetica;
+      font-weight: bold;
+      font-size:   8pt;
+    }
+
+   .FP_RFORM_Note
+   {
+      text-align : left;
+      color : brown; 
+      font-family: Verdana, Arial, Helvetica;
+      font-size:   8pt;
+   }
+
+  
+   .FP_RFORM_Divider
+   {
+      text-align : left;
+      color : white;  
+      background-color : background;
+      font-family: Verdana, Arial, Helvetica;
+      font-size:   10pt;
+   }	
+
+	/* ============ WAM classes =========== */
+
+   input.number
+   {
+      text-align: right;
+   }
+   input.text
+   {
+      text-align: left;
+   }
+   input.ltext
+   {
+      text-align: left;
+      text-transform: lowercase
+   }
+   input.utext
+   {
+      text-align: left;
+      text-transform: uppercase
+   }
+
+   th.text
+   {
+      text-align: left;
+   }
+   th.number
+   {
+      text-align: right;
+   }
+   td.text
+   {
+      text-align: left;
+   }
+   td.number
+   {
+      text-align: right;
+   }
+   .hidden
+   {
+	display: none;
+   }
+/****************************************************** */
+/*	XHTML Standard Weblet Styles                     */
+/* These styles need to be kept in sync with the styles */
+/* for weblets in std_style.css                         */   
+/****************************************************** */
+
+img.disabled
+{
+	opacity: 0.4;
+	filter: alpha(opacity=40);
+}

@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head id="VF_RADPAD_Head">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+<script type="text/javascript">
+    function CheckDrag()
+    {
+        if ((event != null) && (event.srcElement != null) && (event.srcElement.tagName == "IMG"))
+        {
+            event.cancelBubble = true; event.returnValue = false;
+        }
+    }
+    window.onload = function ()
+    {
+        var qstring = location.search;
+        var isVLFONE = (qstring.search("VLFONE=TRUE") >= 0);
+        var isVLFWIN = (qstring.search("VLFWIN=TRUE") >= 0);
+        var eBODY = document.body;
+        eBODY.style.margin = "8px 8px 8px 8px";
+        eBODY.style.fontFamily = "Verdana,Arial,Helvetica,sans-serif";
+        eBODY.style.fontSize = "9pt";
+        if (isVLFONE || isVLFWIN)
+        {
+            eBODY.style.backgroundColor = "#" + qstring.substr(qstring.indexOf("&BC=") + 4, 6);
+            eBODY.style.color = "#" + qstring.substr(qstring.indexOf("&TC=") + 4, 6);
+        }
+        else
+        {
+            if ((parent != null) && (parent.VF_UseBackGroundColor != null))
+                eBODY.style.backgroundColor = parent.VF_UseBackGroundColor;
+            else
+                eBODY.style.backgroundColor = "#f4f3ee";
+        }
+        if (isVLFONE == false) window.document.body.ondragover = CheckDrag;
+    }
+</script>
+</head>
+<body id="VF_RADPAD_Body">
+<P><b><<BOCAPTION>> のフィルター</b>.</P>
+<P>フィルターのプロトタイプとして、 <<BOCAPTION>> がどのように見えるかを確認してください。</P>
+<P>通常、ユーザーはここに検索値を入力します。</P>
+<P>"検索のサンプル" をクリックすると、フィルターの動きを確認できます。</P> 
+<P>次に、<<BOCAPTION>> のリストから1レコード選択し、詳細情報の動作を確認してください。</P>
+<P>動きを説明するためにこのパネルを編集し、テキストとイメージを追加することもできます。</P>
+<P>その後、ユーザーが <<BOCAPTION>> を表示できるよう、このフィルターを実際のプログラムに取り替えることができます。</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+</body>
+</html>

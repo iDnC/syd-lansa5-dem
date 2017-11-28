@@ -1,0 +1,35 @@
+<context>
+CommandHandler 
+</context>
+<caption>
+単一インスタンス uExecute ルーチン (コード フラグメント) 
+</caption>
+<hint>
+このアシスタントは、ビジネス オブジェクトの単一のインスタンスを処理するコマンド ハンドラーで使用する典型的な uExecute ルーチンのためのコードを作成します。     
+</hint>
+<preamble>
+JPN_vf_um052_Handler_uExecute_Single.htm
+</preamble> 
+<sequence>
+000300  
+</sequence>
+<handler>
+VF_UM055 
+</handler>
+<handlertxt>
+このビジネス オブジェクトに使用する識別プロトコルを指定します。このビジネス オブジェクトに類似する物理ファイルの名前が指定されると、このアシスタントは自動的に基本識別プロトコルの推測を試みます。    
+</handlertxt>
+<code>
+* <<minorsep>>
+* コマンド実行処理
+* <<minorsep>>
+<<CommentBlock>>
+Mthroutine Name(uExecute) Options(*REDEFINE)
+<<Comment>>祖先に実行ロジックが定義されているか 
+#Com_Ancestor.uExecute
+<<UM055_GenGetLst>>
+<<comment>>メイン ファイルから情報をフェッチして、フォームの見出しフィールドを埋める 
+Fetch Fields(<<TBA>>) From_File(<<UM055_BaseFile>>) With_Key(<<UM055_BaseFileKeys>>) 
+<<CommentBlock>>
+Endroutine
+</code>   

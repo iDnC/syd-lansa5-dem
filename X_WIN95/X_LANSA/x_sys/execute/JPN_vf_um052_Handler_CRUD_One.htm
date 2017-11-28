@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>機能</title>
+</head>
+
+<body>
+
+  <table border="0" width="100%" height="133">
+    <tr>
+      <td width="11%" valign="top" align="left" height="18"><b><font face="Meiryo UI" size="2" color="#0000FF">機能</font></b></td>
+      <td width="89%" valign="top" align="left" height="18"><font face="Meiryo UI" size="2">この <font color="#FF0000">CRUD</font> ウィザードは、ビジネス オブジェクトのコマンド ハンドラーのためのコードを生成します。</font>
+        <p><font face="Meiryo UI" size="2">ビジネス オブジェクトのコマンド ハンドラーは、選択された、ひとつ以上の<i>ビジネス オブジェクト インスタンス</i> (例: <i>社員</i>の<i>表示</i>、<i>製品</i><i>履歴</i>の表示、選択されたすべての<i>オーダー</i>の<i>印刷</i>など) に対して、<i>コマンド</i>を実行します。</font></p>
+        <p><font face="Meiryo UI" size="2">Visual LANSA フレームワークでは、コマンド ハンドラーは多くの場合、以下のようにユーザーに表示されます (赤で囲んだ部分):</font></p>
+        <p align="center"><img border="0" src="VF_CodeAssistant_Command_Handler_01.png" width="500"></p>
+        <p><font face="Meiryo UI" size="2">しかし、コマンド ハンドラーの表示方法は、他にもたくさんあります。コマンド ハンドラーの詳細と使用例については、ヘルプ アシスタントを参照してください。</font></p>
+        <p><font face="Meiryo UI" size="2">&nbsp;&nbsp;</font></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="11%" valign="top" align="left" height="18"><b><font face="Meiryo UI" size="2" color="#0000FF">対象者</font></b></td>
+      <td width="89%" valign="top" align="left" height="18"><font face="Meiryo UI" size="2">新規の開発者</font></td>
+    </tr>
+    <tr>
+      <td width="11%" valign="top" align="left" height="18"><b><font face="Meiryo UI" size="2" color="#0000FF">環境</font></b></td>
+      <td width="89%" valign="top" align="left" height="18"><font face="Meiryo UI" size="2">ブラウザ プラットフォーム (Visual LANSA のブラウザ コード (RDMLX) を生成)</font></td>
+    </tr>
+    <tr>
+      <td width="11%" valign="top" align="left" height="18"></td>
+      <td width="89%" valign="top" align="left" height="18"></td>
+    </tr>
+    <tr>
+      <td width="11%" valign="top" align="left" height="1"><b><font face="Meiryo UI" size="2" color="#0000FF">詳細</font></b></td>
+      <td width="89%" valign="top" align="left" height="1"><font face="Meiryo UI" size="2">CRUD ウィザードは、共通コードやシステム定義テーブルに格納された情報の CRUD (Create(作成)/Read (読み込み)/Update(更新)/Delete(削除)) に必要となる、コマンド ハンドラーやフィルターを、ユーザーが素早く生成できるように設計されています。このようなタイプのテーブルは、多くの商用アプリケーション (例: 会社、 通貨、郵便番号、地域コードなど) で見られ、一般的には行が少なく、更新の度合いも低いです。CRUD ウィザードにより、この種のテーブルの保守を行うアプリケーションの構築がスピードアップされます。CRUD ウィザードを使用した推奨開発サイクルは、以下の通りです。</font>
+        <ul>
+          <li><font face="Meiryo UI" size="2">例えば、<i>コード テーブル </i>という名前のアプリケーションを定義します。</font></li>
+        </ul>
+        <ul>
+          <li><font face="Meiryo UI" size="2">各共通コードまたはシステム定義テーブルに対し、以下を行います。</font>
+            <p><font face="Meiryo UI" size="2">=&gt; ビジネス オブジェクト (例：通貨、郵便番号) を定義します。</font></p>
+            <p><font face="Meiryo UI" size="2">=&gt; フィルタをひとつだけ定義します。</font></p>
+            <p><font face="Meiryo UI" size="2">=&gt; コマンドを、新規作成、コピー、明細及び削除のみ有効にします。</font></p>
+            <p><font face="Meiryo UI" size="2">=&gt; (必要に応じて) Windows 及びブラウザ プラットフォームで次の処理を繰り返します</font>
+            <ul>
+              <li><font face="Meiryo UI" size="2"><i>CRUD フィルター ウィザード</i>を使用して、ビジネス オブジェクト向けのフィルター プログラムを作成します。これをスナップインします。</font></li>
+              <li><font face="Meiryo UI" size="2"><i><b>このウィザード</b></i>を使用して、単独のコマンド ハンドラー プログラムを作成します。この単独のコマンド ハンドラーを、新規作成、コピー、明細及び削除の各コマンドにスナップインします (つまり、4 つのコマンドすべてに、コマンド ハンドラーとして同じプログラムを使用します)。</font></li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td width="11%" valign="top" align="left" height="18"></td>
+      <td width="89%" valign="top" align="left" height="18"></td>
+    </tr>
+    <tr>
+      <td width="11%" valign="top" align="left" height="1"><b><font face="Meiryo UI" size="2" color="#0000FF">使用方法</font></b></td>
+      <td width="89%" valign="top" align="left" height="1">
+        <div align="left">
+          <table border="0" width="100%">
+            <tr>
+              <td width="27%" valign="top" align="center"></td>
+              <td width="73%" valign="top" align="left"><font face="Meiryo UI" size="2">このフォームの下にある [<i>次へ </i>] をクリックします。</font><BR><BR></td>
+            </tr>
+            <tr>
+              <td width="27%" valign="top" align="center"><img border="1" src="VF_CodeAssistant_ID_Panel_01.png" width="200"></td>
+              <td width="73%" valign="top" align="left">
+                <p><font face="Meiryo UI" size="2">その後、ビジネス オブジェクト識別プロトコルとこのビジネス オブジェクトを支える物理ファイルを指定します。<BR><BR>ファイルのアクセスに使用するサービス モジュールも指定します。</font></p>
+                <p><font face="Meiryo UI" size="2">ビジネス オブジェクト識別プロトコルの詳細については、ヘルプ アシスタント (F1) を利用して下さい。</font></p>
+                <p><font face="Meiryo UI" size="2">[<i>次へ</i>] をクリックします。</font>
+                <p>&nbsp;</td>
+            </tr>
+            <tr>
+              <td width="27%" valign="top" align="center"><img border="1" src="VF_CodeAssistant_Command_Handler_Fields.png" width="200" ></td>
+              <td width="73%" valign="top" align="left"><font face="Meiryo UI" size="2">CRUD フォームに表示するフィールドを指定します。</font>
+                <p><font face="Meiryo UI" size="2">[<i>次へ</i>] をクリックします。</font>
+                </p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</td>
+            </tr>
+            <tr>
+              <td width="27%" valign="top" align="center"><img border="1" src="VF_CodeAssistant_Command_Handler_Options.png" width="200"></td>
+              <td width="73%" valign="top" align="left"><font face="Meiryo UI" size="2">様々なオプションから適宜選択して、コマンド ハンドラーがサポートするオプションを定義します。</font>
+                <p><font face="Meiryo UI" size="2">このフォームに表示するオプションについての詳細は、ヘルプ アシスタント (F1) を利用して下さい。</font></p>
+                <p>&nbsp;</td>
+            </tr>
+            <tr>
+              <td width="27%" valign="top" align="center"><img border="1" src="VF_CodeAssistant_Generate_Button.png" width="91" height="31"></td>
+              <td width="73%" valign="top" align="left"><font face="Meiryo UI" size="2">[<i>コード生成</i>] をクリックし、コマンド ハンドラーのコードを生成します。</font>
+                <p>&nbsp;</td>
+            </tr>
+            <tr>
+              <td width="27%" valign="top" align="center"><img border="1" src="VF_CodeAssistant_Generated_Code.png" width="200"></td>
+              <td width="73%" valign="top" align="left"><font face="Meiryo UI" size="2">名前と記述を入力し、[生成] をクリックして生成されたコードから新規再利用可能パーツを直接作成する、<BR><BR>もしくは<BR><BR>[クリップボードへコピー] をクリックし、既に作成されている再利用可能パーツにソースコードを貼り付けます (ターゲット プラットフォームは Web ブラウザ) 。</font>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td width="11%" valign="top" align="left" height="13"></td>
+      <td width="89%" valign="top" align="left" height="13"></td>
+    </tr>
+    <tr>
+      <td width="11%" valign="top" align="left" height="53"><b><font face="Meiryo UI" size="2" color="#0000FF">注意</font></b></td>
+      <td width="89%" valign="top" align="left" height="53"><font face="Meiryo UI" size="2">このアシスタントのオプションの詳細を見たい場合は、オプションをクリックし F1キーを押してヘルプアシスタントを表示します。</font></td>
+    </tr>
+  </table>
+
+</body>
+
+</html>

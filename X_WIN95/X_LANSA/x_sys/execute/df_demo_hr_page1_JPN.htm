@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+    <title>ACME ソフトウェア - 人事資産管理</title>
+    <style type="text/css">
+    body
+    {
+        color: rgb(32, 77, 137);
+        background-color: white;
+        font-family: Tahoma;
+        font-size: 12px;
+        margin: 0px;
+    }
+    #topbar, #topbar_body
+    {
+        height: 170px;
+    }
+    #topbar
+    {
+        background-image: url(df_demo_vlf_image17.png);
+        background-repeat: repeat-x;
+        padding-right: 20px;
+    }
+    #topbar_body
+    {
+        background-image: url(df_demo_vlf_image16.png);
+        background-repeat: no-repeat;
+        padding-top: 15px;
+        padding-left: 15px;
+    }
+    #topbar_whole
+    {
+    	background-image: url(df_demo_hr_image2.png); 
+    	background-position: right 30px;
+    	background-repeat: no-repeat;
+    }
+    .main
+    {
+        padding: 8px;
+        padding-right: 20px;
+    }
+    .title
+    {
+        font-weight: bold;
+    }
+    .navlink
+    {
+        border-bottom: 1px dotted rgb(150, 150, 150);
+        cursor: pointer;
+        line-height: 25px;
+    }
+    .content
+    {
+        border: 0px solid rgb(101, 147, 207);
+        padding-left: 50px;
+        padding-top: 7px;
+        line-height: 18px;
+    }
+    .data
+    {
+        display: none;
+    }
+    .icon
+    {
+        padding-right: 10px;
+    }
+    .banner
+    {
+        border-bottom: 1px solid rgb(101, 147, 207);
+    }
+    .footer
+    {
+        border: 1px solid rgb(101, 147, 207);
+        background-color: rgb(184, 215, 255);
+        padding: 10px;
+        padding-left: 12px;
+        line-height: 19px;
+    }
+    .linkhovermarkcolumn
+    {
+    }
+    .linkhovermark1
+    {
+        background-color: rgb(200, 200, 210);
+    }
+    .linkhovermark2
+    {
+        background-color: rgb(230, 230, 245);
+    }
+    </style>
+</head>
+<body onload="body_onload()">
+    <div style="overflow:hidden; height: 580px">
+     <table margin="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td id="topbar">
+                <div id="topbar_whole"/>
+                <div id="topbar_body">
+                    <img src="df_demo_hr_image1.png"/>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="main">
+                <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                    <tr>
+                        <td valign=top>
+                            <table border="0" cellspacing="0" cellpadding="3">
+                                <tr><td class="linkhovermarkcolumn" id="m1"></td><td class="navlink" nowrap id="1" onmouseout="out(this)" onmouseover="hover(this)" onclick="navigate(this)">HR アプリケーション サポート </td></tr>
+                                <tr><td class="linkhovermarkcolumn" id="m2"></td><td class="navlink" nowrap id="2" onmouseout="out(this)" onmouseover="hover(this)" onclick="navigate(this)">システム ドキュメンテーション</td></tr>
+                                <tr><td class="linkhovermarkcolumn" id="m3"></td><td class="navlink" nowrap id="3" onmouseout="out(this)" onmouseover="hover(this)" onclick="navigate(this)">ご意見・ご質問</td></tr>
+                                <tr><td class="linkhovermarkcolumn" id="m4"></td><td class="navlink" nowrap id="4" onmouseout="out(this)" onmouseover="hover(this)" onclick="navigate(this)">最新情報</td></tr>
+                                <tr><td class="linkhovermarkcolumn" id="m5"></td><td class="navlink" nowrap id="5" onmouseout="out(this)" onmouseover="hover(this)" onclick="navigate(this)">法的情報</td></tr>
+                                <tr><td class="linkhovermarkcolumn" id="m6"></td><td class="navlink" nowrap id="6" onmouseout="out(this)" onmouseover="hover(this)" onclick="navigate(this)">カレンダー</td></tr>
+                                <tr><td class="linkhovermarkcolumn" id="m7"></td><td class="navlink" nowrap id="7" onmouseout="out(this)" onmouseover="hover(this)" onclick="navigate(this)">関連リンク</td></tr>
+                                <tr><td class="linkhovermarkcolumn">&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+                            </table>
+                        </td>
+                        <td valign=top width="100%" class=content>
+                            <table cellpadding=0 cellspacing=0 width="100%">
+                                <tr>
+                                    <td><img src="df_demo_hr_image3.png"/></td>
+                                    <td width="100%" style="background-image: url(df_demo_hr_image4.png); background-repeat:repeat-x"></td>
+                                    <td><img src="df_demo_hr_image5.png"/></td>
+                                </tr>
+                            </table>
+                            <div style="padding: 20px;padding-bottom: 0px; position: relative; top: -340px;">
+                            <img align=absmiddle id="icon_link5" src="vf_ic5391.gif" class=icon />
+                            <label id="title" class="title"></label>
+                            </div>
+                            <div style="padding: 20px;padding-bottom: 20px; position: relative; top: -340px;" id=content></div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    
+    <div id="linkhovermark" class=data>
+        <table cellspacing=0 cellpadding=0>
+            <tr>
+                <td class="linkhovermark1" height="25">&nbsp;</td>
+                <td class="linkhovermark2">&nbsp;&nbsp</td>
+           </tr>
+        </table>
+    </div>
+    
+       <label id="mainContent" class="data">
+これは架空の入り口のページです。あなた自身のページに置き換えることができます。<br /><br /> 架空の ACME ソフトウェアの従業員は、私たちの最も重要な資産です。人事部は、従業員に質の良い技能を付与するために十分な給与と福利厚生制度を作り上げて管理することと同様に、優れた才能のある人々を特定して採用し、雇い続ける責任があります。我々は、充実した作業環境を保持することを支援します。そして、その作業環境は大きな功績を生み出す要因となるものです。
+    </label>
+    
+    </div>
+
+    <div style="font-size:smaller; padding-left:20px">If Japanese characters appear corrupted use the CHGATR command to change the *CCSID attribute of file <b>df_demo_hr_page_JPN.htm</b> in your VLF project folder to 1208.</div>
+ 
+    <script language=javascript>
+        function body_onload()
+        {
+            navigate(document.getElementById("1"));
+            setContent("mainContent");
+        }
+        
+        function setContent(contentID)
+        {
+            document.getElementById("content").innerHTML = document.getElementById(contentID).innerHTML;
+        }
+        
+        function navigate(link)
+        {
+            document.getElementById("title").innerText = link.innerText;
+        }
+    
+        function hover(link)
+        {
+            document.getElementById("m" + link.id).innerHTML = document.getElementById("linkhovermark").innerHTML;
+        }
+
+        function out(link)
+        {
+            document.getElementById("m" + link.id).innerHTML = "";
+        }
+    </script>
+</body>
+</html>

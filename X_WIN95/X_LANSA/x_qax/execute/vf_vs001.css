@@ -1,0 +1,499 @@
+.VF_MenuContainer
+{
+	padding:1px;
+	position:absolute; 
+	display:none; 
+   -webkit-user-select: none;
+   -moz-user-select: -moz-none;
+}
+
+DIV,TABLE,SPAN,SELECT
+{
+	font-family: Tahoma;
+   font-size: 11px;
+}
+
+button
+{
+   font: normal normal normal 8pt Tahoma;
+}
+
+html, body { height:100%; }
+
+body 
+{
+   max-height:100%; /* fix height for other browsers */
+   overflow:hidden; /*get rid of scroll bars in IE */
+   padding:0; /*remove padding */
+   margin:0; /* remove margins */
+   border:none; /* remove borders */
+}
+/* ------------------------------------------------------- */
+/* ------------ Main Frame Classes ----------------------- */
+/* ------------------------------------------------------- */
+
+#VF_BODY_Table
+{
+
+}
+ .VF_AC006_CLASS_TD_Container
+   {
+		padding:       0px;  
+      overflow:      hidden; 
+      white-space:nowrap;
+      -moz-user-select: -moz-none;
+      -webkit-user-select: none;
+   } 
+
+   .VF_UM005_CLASS_MainContainer
+   {
+		padding:       0px;  
+      width:         100%;   
+      height:        22px;  
+      overflow:      visible; 
+      -moz-user-select: -moz-none;
+      -webkit-user-select: none;
+   }
+
+   .VF_UM008_CLASS_MainContainer
+   {
+		padding:       0px;  
+      height:        27px;  
+      overflow:      visible; 
+      -moz-user-select: -moz-none;
+      -webkit-user-select: none;
+   }
+
+   .VF_AC006_CLASS_MainContainer
+   {
+      padding:       2px;  
+      padding-left:  4px;  
+      width:         100%;   
+      overflow:      hidden;
+      display: table-row; 
+   }
+
+   .VF_AC006_Container_TD
+   {
+      vertical-align: middle;
+   }
+
+   .VF_BODY_CLASS_MainContainer
+   {
+      overflow:      hidden;  
+      padding:       0px;   
+      width:         100%;   
+      height:        100%; 
+            display:table;
+   }
+
+   .VF_UM007_CLASS_MainContainer
+   {
+      width:         100%;   
+      height:       100%;   
+   }
+
+   .VF_UM007_UPDOWN_BTN
+   {
+      height: 12px;
+      width: 20px;
+      padding: 0;
+   }
+
+   .VF_UM009_CLASS_MainContainer
+   {
+      height:           100%;
+      width:            100%; 
+      overflow:         auto; 
+      user-select: none;
+      -moz-user-select: -moz-none;
+      -webkit-user-select: none;
+      white-space:nowrap;
+   }
+
+   .VF_UM010_CLASS_MainContainer
+   {
+      height:        100%;  
+   }
+
+   .VF_UM011_CLASS_MainContainer
+   {
+      height:        100%;  
+      width:         100%;  
+      /* overflow:auto; This is now set programatically otherwise it upsets Android tablets. */
+      -moz-user-select: -moz-none;
+      -webkit-user-select: none;
+   }
+
+   .VF_UM012_CLASS_MainContainer
+   {
+      height:        100%;  
+      overflow:      hidden;
+   }
+
+   .VF_UM006_CLASS_MainContainer
+   {
+      height:           100%;  
+      overflow:         hidden; 
+   }
+
+   .VF_RIGHT_CLASS_MainContainer
+   {
+      overflow:      hidden; 
+      width:         100%;   
+      height:        100%; 
+   }
+
+   .VF_TOP_RIGHT_CLASS_MainContainer
+   {
+      width:         100%;   
+      height:        100%; 
+      overflow:      hidden;
+   }
+
+   .VF_AC006_CLASS_VerticalSplit
+   {
+      /* width:         2px; */
+      height:        100%;  
+      overflow:      hidden; 
+      cursor:        col-resize;
+      -moz-user-select: none;
+      -webkit-user-select: none; 
+   }
+
+   .VF_AC006_CLASS_HorizontalSplit
+   {
+      width:         100%;  
+      /* height:        3px;  */
+      overflow:      hidden; 
+      -moz-user-select: none;
+      -webkit-user-select: none; 
+    }
+
+   .VF_AC006_BarDIV
+   {
+		height:100%; 
+   }
+
+   .VF_AC006_Bar_AppDIV
+   {
+		height:100%; 
+   }
+   
+	.VF_AC006_BarTABLE
+   {
+		display: inline;
+   }
+
+   .VF_SY504_CLASS_MainContainer
+   {
+		visibility:    hidden;  
+      display:       none; 
+   }  
+
+/* ------------------------------------------------------- */
+/* ------------ Tabbed Folder Classes -------------------- */
+/* ------------------------------------------------------- */
+
+    .VF_SY503_CLASS_Title  
+	{
+		padding:       2px;  
+      width:         100%;
+      cursor:		   Default;
+      font-weight: bold;
+  	}
+
+    .VF_SY503_CLASS_TabStrip  
+	{
+      width:         100%;
+      -moz-user-select: -moz-none;
+      -webkit-user-select: none;
+      margin-top: 4px;
+  	}
+
+    .VF_SY503_CLASS_SelectedTab
+    {
+      height:        26px;
+      width:         auto;   
+      vertical-align: middle;
+      margin-top: 3px;
+		margin-left: 2px; 
+      position:relative;
+      top:1px;
+	}  
+
+   .VF_SY503_CLASS_UnSelectedTab
+	{
+      vertical-align: middle;
+		margin-left: 2px; 
+      position:relative;
+      top:1px;
+	}
+
+   .VF_SY503_CLASS_Folder  
+	{
+      height:        100%; 
+      /* width:         100%; */
+      margin-top: 3px;
+	}
+
+   .VF_SY503_CLASS_Frame    
+	{
+      height:        100%;    
+      width:         100%;
+	}
+
+/* ------------------------------------------------------- */
+/* ---- VF_UM009 TREE AND LIST VIEW CONTAINER DIV     ---- */
+/* ------------------------------------------------------- */
+
+   .VF_UM009_DIV_Container
+   {
+      width: 100%; 
+      height: 100%; 
+      overflow: auto; 
+   }
+
+   .VF_UM009_ButtonSwitchView
+   {
+      width: 100%; 
+      margin-top: 0px;
+   }
+
+/* ------------------------------------------------------- */
+/* ------------ Tree View Classes -------------------- */
+/* ------------------------------------------------------- */
+
+   .VF_UM009_DIVTree
+   {
+      width           : 100%; 
+      height          : 100%;  
+      /* ATTENTION: the overflow below stuffs up the tree view for Androids but it doesn't matter because tablets don't get to see the tree view overflow:auto;*/      
+   }
+
+   .VF_UM009_Node_L2
+   {
+		margin-left: 18px;
+      display:     block; 
+      white-space:   nowrap;
+   }
+
+   .VF_UM009_Node_L3
+   {
+		margin-left: 28px;
+      display:     block;
+      white-space:   nowrap;
+	}
+
+   .VF_UM009_Caption
+   {
+		font-weight: normal;
+   }
+
+   .VF_UM009_DIVList
+   {
+      width:            100%;
+      padding:          0px;
+      min-width:        250px;      
+      overflow:         hidden;
+      /*table-layout: fixed; */ 
+   } 
+
+   .VF_UM009_DIVList_OU
+   {
+      width:            100%;
+      padding:          0px;
+      overflow:         hidden;
+   } 
+
+/* ------------------------------------------------------- */
+/* ------------ List View Classes -------------------- */
+/* ------------------------------------------------------- */
+
+   .VF_UM009_ListView
+   {
+      width:           100%;       
+      height:          100%;  
+      overflow:        auto; 
+   }
+
+   .VF_UM009_ListView_OU
+   {
+      width:           100%;       
+      height:          100%;
+      overflow-x:        hidden; 
+      overflow-y:        auto; 
+   }
+   
+   .VF_UM009_BobListView
+   {
+      width:           100%;       
+      height:          100%;  
+      overflow:      auto; 
+   }
+
+   .VF_UM009_LISTVIEW_BOBTABLE
+   {
+       height :    100%;       
+       width :     100%;
+		 table-layout : fixed;		 
+   }
+
+   .VF_UM009_ListView_Table
+   {
+      width:           100%;       
+      table-layout: fixed;
+   }
+
+   .VF_UM009_VerticalSplit_TD
+   {
+      height:  100%;
+      width:   2px;
+      padding: 0px 0px 0px 0px;
+      background: gray;
+   }
+
+   .VF_UM009_VerticalSplit_DIV
+   {
+      height:  100%;
+      width:   100%;
+      overflow:      hidden; 
+   }
+
+   .VF_UM009_HorizontalSplit
+   {
+		width: 100%;
+		height: 100%;
+		cursor: row-resize;
+  		border-bottom:   2px outset ButtonHighlight; 
+      border-top:  2px outset ButtonHighlight; 
+      border-left: none; 
+      border-right:    none; 
+      overflow:      hidden; 
+   }
+   #VF_UM009_BObjListTD
+   {
+      white-space:   nowrap;
+      height: 100%;		 
+		padding: 0px;
+   }
+
+	.VF_UM009_ViewBtnCaption
+	{
+      white-space:   nowrap; 
+      text-overflow: ellipsis;      
+      margin-top: 2px;
+	}
+
+	.VF_UM009_ViewBtnImg
+	{
+		height: 22px;
+      width:  100%;
+      text-align:left;
+	}
+/* ------------------------------------------------------- */
+/* -------------------- Status Bar Classes -------------------- */
+/* ------------------------------------------------------- */
+
+   .VF_UM007_StatusBarContainer
+   {
+      width:            100%;
+      margin-right:     3px;
+      margin-left:      0px;
+   }
+
+   .VF_UM007_StatusBarMessages
+   {
+       height:           100%;
+   }
+
+
+
+   .VF_UM007_Messages_Container
+   {
+      overflow:         auto;
+      width: 100%;
+      height: 100%;
+   }
+
+   .VF_UM007_DateCell 
+   {
+      border:none;
+      padding: 2px;
+   }
+
+   .VF_UM007_ScrollImage
+   {
+      height: 20px;
+      width:  19px;
+      padding: 0px;
+   }
+
+   .VF_UM007_MSGS_BTN
+   {
+      margin-top: 1px;
+      width:100%;
+   }
+
+   .VF_UM007_MouseDownImg
+   {
+      border: 1px buttonhighlight inset;
+   }
+
+/* ------------------------------------------------------- */
+/* -------------------- Menu  Classes -------------------- */
+/* ------------------------------------------------------- */
+
+    .VF_UM005_CLASS_MenuItem 
+      {
+      display:          block;
+      width:            100%;
+      padding-left:     10px;    
+      padding-right:    30px;    
+      }
+
+    .VF_UM005_CLASS_MenuItemDisabled 
+      {
+      /* width:            100%; */
+      /* padding-left:     10px; */   
+      /* padding-right:    30px; */  
+      color:            #CCC;
+      }
+
+    .VF_UM005_CLASS_MenuItemSel 
+      { 
+      padding-left:     10px;    
+      padding-right:    30px;    
+      }
+
+/* ------------------------------------------------------- */
+/* ------------ Instance List Classes -------------------- */
+/* ------------------------------------------------------- */
+
+    .VF_UM011_CLASS_InstanceList_Table  
+	{
+      overflow :    auto;
+      margin:       0px; 
+      width:        100%; 
+   }
+
+   .VF_UM011_CLASS_InstanceList_Header  
+	{
+      height:              16px;
+		padding-bottom:      0px; 
+		padding-top:         0px; 
+    }
+
+   .VF_UM076_MINIFLT_BTN
+   {
+      font: normal normal normal 8pt Tahoma;
+      height: 21px;
+      margin-left: 2px; 
+      padding: 0 3px 2px;
+   }
+
+   .VF_UM076_MINIFLT_INPUT
+   {
+      height:        18px;
+      margin-bottom: 1px; 
+   }

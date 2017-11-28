@@ -1,0 +1,1 @@
+﻿LANSA.addComponent({id:"XDTOOL_5",nm:"xDToolsDataObject",ot:"rp",tp:"Reusable Part",de:"Base Object",tl:14020000},function(l,oI,u){var cO=l.rC(oI,{an:"PRIM_OBJT",co:function(){cO.aN.call(this);var C0=this.cA("GDATAMODEL","XDTOOL_4");if((C0!=null)&&(C0.iI()==false)){C0.iC();}}});},{rc:["XDTOOL_4"],rp:["PRIM_OBJT"]});

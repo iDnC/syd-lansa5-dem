@@ -1,0 +1,155 @@
+﻿<HTML>
+<head> 
+<title>VF_HT012 - Analyse Problem HTML Page</title>  
+<script language="JavaScript" type="text/javascript">
+/* =============================================================================== */
+var GLOBAL_HtmlException = null;
+var oText_HTML = null;
+var oText_Title = null;
+var oShow_Button = null;
+var oReport_Table_Body = null;
+var sErrorColor = "#feceb7";
+var sNormColor = "#a1c1ff";
+/* =============================================================================== */
+function innerText(o, s)
+{
+o.innerHTML = s;
+return; 
+}
+/* =============================================================================== */
+function Report(argobjMessage)
+{
+   var objHtmlException = GLOBAL_HtmlException;
+   var objMessage = argobjMessage;
+   try
+   { 
+      var objNewTR = document.createElement("TR");
+      var objNewTD1 = document.createElement("TD");
+      var objNewTD2 = document.createElement("TD");
+
+      /* Column 1 */  
+      innerText(objNewTD1,objMessage.strMessage);
+      if (objMessage.flagError) objNewTD1.style.backgroundColor = sErrorColor;
+      else                      objNewTD1.style.backgroundColor = sNormColor; 
+      
+      /* Column 2 */
+      if ((objMessage.strHint != null) && (GLOBAL_HtmlException.flagIsDeveloper)) 
+      {
+          if (objMessage.strHint == "") objMessage.strHint = "No details available.";
+          objNewTD1.title = objMessage.strHint;
+ 	      innerText(objNewTD2, objMessage.strHint);
+      }		   
+      else
+	  {
+	     innerText(objNewTD2, "No details available for this context.");
+	  }
+
+      /* Insert Details */
+
+	  objNewTR.appendChild(objNewTD1);
+	  objNewTR.appendChild(objNewTD2);
+     oReport_Table_Body.appendChild(objNewTR);
+   }
+   catch (objError) { }
+}
+/* =============================================================================== */
+function ReportError(sMessageText) 
+{
+    Report({flagError:true,strHint:sMessageText,strMessage:"ERROR"});
+}
+
+/* =============================================================================== */
+function SupplyHTML() { return(oText_HTML.value); }
+/* =============================================================================== */
+function AttemptShow()
+{
+   try { window.open("javascript:window.opener.SupplyHTML();","_blank"); }
+   catch (objError) { alert("Attempt to open window failed - " + objError.description); }
+}
+/* =============================================================================== */
+function AttemptCopy()
+{
+   try 
+	{ 
+	   var strSaveContent = oText_HTML.value;
+	   oText_HTML.value = GLOBAL_HtmlException.strClipboardText;
+	   var objCopy = oText_HTML.createTextRange(); 
+	   objCopy.execCommand("Copy"); 
+	   oText_HTML.value = strSaveContent;  
+	}
+   catch (objError) 
+   { 
+      if ( GLOBAL_HtmlException.objWindow.usingExplorer )
+      {
+         alert("Attempt to copy HTML to clipboard failed - " + objError.description); 
+      }
+      else
+      {
+         /* Only IE supports writing to the clipboard, for other browsers make the textarea selectable and select its contents */
+         oText_HTML.contentEditable = "true";
+         oText_HTML.removeAttribute("onfocus");
+         oText_HTML.setSelectionRange(0, oText_HTML.value.length);
+         alert("Your browser doesn't support copying to the clipboard. Please copy the selected text manually."); 
+      }
+   }
+}
+/* =============================================================================== */
+function LookonServer()
+{
+  var strLaunchURL = GLOBAL_HtmlException.GetServerLogUrl();
+  if (strLaunchURL != null)
+  {
+      window.open(strLaunchURL,"servercheck","");
+  }  
+  return;
+}
+/* =============================================================================== */
+function Init()
+{
+
+
+   try 
+   {
+      GLOBAL_HtmlException = window.opener.VF_System.currentobjVF_UMnn;
+      oText_HTML = document.getElementById("Text_HTML");
+      oText_Title = document.getElementById("Text_Title");
+      oShow_Button = document.getElementById("Show_Button");
+      oReport_Table_Body = document.getElementById("Report_Table_Body");
+      if (GLOBAL_HtmlException == null) { ReportError("No accessible arguments passed to report window (objArg is null)"); return; }
+      innerText(oText_Title, GLOBAL_HtmlException.strTitle);
+      oText_HTML.value = GLOBAL_HtmlException.strHTML;
+      oShow_Button.disabled = (oText_HTML.value == "");
+      
+      for(var i in GLOBAL_HtmlException.objMessageList) 
+      {
+         Report(GLOBAL_HtmlException.objMessageList[i]);
+      }
+   }
+   catch (objError) 
+   {
+       ReportError("Analysis Report Failed - " + objError.description); 
+   }
+   return;  
+}
+</script>
+</head>  
+<body onload="Init();" style='font-family:Arial; font-size:small'>
+<div style='margin:4px; text-align:left; font-weight:bold' id='Text_Title'></div>
+<input style='width:160px' type='button' title='Print' value='Print' onclick='window.print();' />
+<input style='width:160px'  type='button' title='Attempt to look for any associated error details on the server. NOTE: You should also look yourself.' value='Look for Server Details' onclick='LookonServer();' />
+<input style='width:160px'  type='button' title='Copy the report and HTML page details to the clipboard' value='Copy HTML' onclick='AttemptCopy();' />
+<input style='width:160px'  id='Show_Button' title='Attempt to open the HTML below in a separate browser window. Note: this may not succeed if the HTML is not correctly formed.' disabled='true' type='button' value='Display HTML in Browser' onclick='AttemptShow();' />
+
+<table id="Report_Table" style="border:1px solid black;font-size:small; height:60%">  
+<thead>
+<tr>
+<th style='text-align:left'>Check/Step Completed</th>
+<th style='text-align:left'>Details and Comments</th>
+</tr>
+</thead>
+<tbody id='Report_Table_Body' style='text-align:left;font-size:small'></tbody>
+</table> 
+<div style='margin:4px; text-align:left; font-weight:bold'>Problem HTML</div>
+<textarea onfocus="this.blur()" cols="1"  id='Text_HTML' contenteditable="false" style='font-size:medium;border:1px solid black;word-wrap:break-word;width:80%; height:30%;background-color:white;'></textarea>
+</body>
+</html>

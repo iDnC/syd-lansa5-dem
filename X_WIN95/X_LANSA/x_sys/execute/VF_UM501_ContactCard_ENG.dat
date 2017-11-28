@@ -1,0 +1,141 @@
+* ---------------------------------------------------------------------------------
+* This is a contact card instance list pane in framework <<FRAMEWORK>>.
+* It belongs to business object <<BUSINESS_OBJECT_CAPTION>>.
+* It was created on <<CREATEDDATE>> by <<CREATEDUSER>>.
+* ---------------------------------------------------------------------------------
+Begin_Com Role(*EXTENDS #VF_AC035O) Height(<<FINALHEIGHT>>) Width(500) Style(#BorderBottom) Layoutmanager(#AttachLayoutMainPanel)
+
+Define_Com Class(#PRIM_ATLM) Name(#AttachLayoutMainPanel)
+
+* ------------------------------------------------------------------------------------------------------------- <<COND_IMAGE>>
+* The main left panel <<COND_IMAGE>>
+Define_Com Class(#PRIM_ATLI) Name(#AttachItem_Main_LeftPane) Manage(#Main_Left_Pane) Parent(#AttachLayoutMainPanel) Attachment(Left) Margintop(4) <<COND_IMAGE>>
+Define_Com Class(#Prim_panl) Name(#Main_Left_Pane) Parent(#COM_OWNER) Displayposition(2) Tabposition(2) Height(124) Left(0) Top(4) Width(80) Tabstop(False) <<COND_IMAGE>>
+Define_Com Class(#Prim_imag) Name(#RelatedImage) Displayposition(1) Left(4) Parent(#Main_Left_Pane) Tabposition(1) Width(72) Top(5) Height(72) Imagesizing(BestFit) <<COND_IMAGE>>
+
+* -------------------------------------------------------------------------------------------------------------
+* The main right panel
+Define_Com Class(#PRIM_ATLI) Name(#AttachItem_Main_Right_Pane) Manage(#Main_Right_Pane) Parent(#AttachLayoutMainPanel) Attachment(Center) Margintop(4)
+Define_Com Class(#Prim_panl) Name(#Main_Right_Pane) Parent(#COM_OWNER) Displayposition(1) Tabposition(1) Height(124) Left(80) Top(4) Width(425) Layoutmanager(#Right_Pane_LayoutManager) Tabstop(False)
+
+Define_Com Class(#PRIM_ATLM) Name(#Right_Pane_LayoutManager)
+Define_Com Class(#PRIM_ATLI) Name(#AttachItem_Title) Manage(#Title) Parent(#Right_Pane_LayoutManager) Attachment(Top)
+Define_Com Class(#PRIM_ATLI) Name(#AttachItem_Details_Title_Panel) Manage(#Details_Title_Panel) Parent(#Right_Pane_LayoutManager) Attachment(Top)
+Define_Com Class(#PRIM_ATLI) Name(#AttachItem_Details_Panel) Manage(#Details_Panel) Parent(#Right_Pane_LayoutManager) Attachment(Center)
+
+* -------------------------------------------------------------------------------------------------------------
+* Style for divider line
+Define_Com Class(#prim_vs.Style) Name(#BorderBottom) Borderbottom(1)
+
+* No border style
+Define_Com Class(#prim_vs.Style) Name(#TransparentBorder) Bordercolor(Transparent)
+
+* Heading1 style
+Define_Com Class(#PRIM_VS.Style) Name(#Heading1Style) Foregroundbrush(#Heading1Foreground) Fontsize(14) Fontunits(Point) Cornerbottomleft(5) Cornerbottomright(5) Cornertopleft(5) Cornertopright(5)
+Define_Com Class(#PRIM_VS.Style) Name(#Heading1BoldStyle) Foregroundbrush(#Heading1Foreground) Fontsize(14) Fontunits(Point) Cornerbottomleft(5) Cornerbottomright(5) Cornertopleft(5) Cornertopright(5) Bold(True)
+Define_Com Class(#PRIM_VS.SolidBrush) Name(#Heading1Foreground) Color(Theme900)
+Define_Com Class(#PRIM_VS.Style) Name(#Heading1MouseOver) Underline(True)
+
+* Heading2 style
+Define_Com Class(#PRIM_VS.Style) Name(#Heading2Style) Foregroundbrush(#Heading2Foreground) Fontsize(10) Fontunits(Point) Backgroundbrush(#Heading2Background) Cornerbottomleft(5) Cornerbottomright(5) Cornertopleft(5) Cornertopright(5)
+Define_Com Class(#PRIM_VS.SolidBrush) Name(#Heading2Foreground) Color(Theme900)
+Define_Com Class(#PRIM_VS.SolidBrush) Name(#Heading2Background) Color(Theme50)
+Define_Com Class(#PRIM_VS.Style) Name(#Heading2StyleBackground) Backgroundbrush(#Heading2Background)
+
+* Labels style
+Define_Com Class(#PRIM_VS.Style) Name(#LabelStyle) Textcolor(18:69:114)
+
+* ------------------------------------------------------------------------------
+Define_Com Class(#Prim_labl) Name(#Title) Parent(#Main_Right_Pane) Displayposition(1) Tabposition(1) Left(0) Top(0) Tabstop(False) Verticalalignment(Center) Style(#Heading1Style) Mouseoverstyle(#Heading1MouseOver) Caption('xxxxxxxxxxx - xxxxxxxxx') Marginleft(2) Ellipses(Path) Wordwrap(False) Width(425) Height(28)
+Define_Com Class(#Prim_Panl) Name(#Details_Title_Panel) Displayposition(2) Tabstop(False) Parent(#Main_Right_Pane) Tabposition(3) Layoutmanager(#LayoutManager_Details_Title_Panel) Left(0) Top(28) Width(425) Height(28) Style(#Heading2StyleBackground)
+
+Define_Com Class(#PRIM_ATLM) Name(#LayoutManager_Details_Title_Panel)
+Define_Com Class(#PRIM_ATLI) Name(#AttachItem_Details_Title) Manage(#Details_Title) Parent(#LayoutManager_Details_Title_Panel) Attachment(Center)
+Define_Com Class(#PRIM_ATLI) Name(#AttachItem_OptionsButton) Manage(#OptionsButton) Parent(#LayoutManager_Details_Title_Panel) Attachment(Right) Margintop(4) Marginbottom(4) Marginright(4)
+
+Define_Com Class(#PRIM_LABL) Name(#Details_Title) Caption(*MTXTUF_DETAILS) Displayposition(1) Ellipses(Word) Left(0) Parent(#Details_Title_Panel) Tabposition(1) Tabstop(False) Top(0) Verticalalignment(Center) Width(349) Style(#Heading2Style) Marginleft(4) Height(28)
+
+Define_Com Class(#PRIM_PHBN) Name(#OptionsButton) Caption(*MTXTUF_MORE) Displayposition(2) Left(349) Parent(#Details_Title_Panel) Tabposition(2) Top(4) Width(72) Height(20)
+
+Define_Com Class(#PRIM_PANL) Name(#Details_Panel) Displayposition(3) Left(0) Parent(#Main_Right_Pane) Tabposition(2) Tabstop(False) Top(56) Height(68) Width(425)
+
+<<EXPAND_CONTACT_CARD>> <<PARM2=True>> <<INDEX1=1:1>> <<INDEX2=4:24>> <<INDEX3=22:0>> <<PARM1=Define_Com Class(#%TARGET%.Visual) Parent(#Details_Panel) Displayposition(%INDEX1%) Height(22) TabStop(False) Top(%INDEX2%) Left(16) Width(470) Marginleft(120) Labeltype(Caption) Readonly(True) EditStyle(#TransparentBorder) Labelstyle(#LabelStyle) Caption('%LABEL%')>>
+
+* ------------------------------------------------------------------------------
+Mthroutine Name(UContains) Options(*REDEFINE)
+
+#Found := #DataItem.avContains(#UpperCaseWords)
+
+Endroutine
+
+* ------------------------------------------------------------------------------
+Mthroutine Name(uCreateorUpdateDisplay) Options(*REDEFINE)
+
+* Standard upward handling
+#COM_ANCESTOR.uCreateorUpdateDisplay
+
+* This snap in panel handles its own selections
+#COM_OWNER.avHandlesOwnSelection := True
+                                                                                                        <<COND_IMAGE>>
+* Load up the image or  default, unless it has already been loaded                                      <<COND_IMAGE>>
+If (#RelatedImage.Image *is *null)                                                                      <<COND_IMAGE>>     
+If (#DataItem.avRelatedReference *IsNot *null)   /* An image reference was supplied in instance list */ <<COND_IMAGE>>
+#RelatedImage.Image <= #DATAITEM.avRelatedReference *As #Prim_bmp                                       <<COND_IMAGE>>
+Else /* Otherwise default image */                                                                      <<COND_IMAGE>>
+#AVFRAMEWORKMANAGER.avGetImageReference Bitmap(#RelatedImage.Image) Filename(about_outline.png) Size(Large) Source(T) <<COND_IMAGE>>
+Endif <<COND_IMAGE>>
+Endif <<COND_IMAGE>>
+      <<COND_IMAGE>>
+* Set up the title
+#Title := #DATAITEM.avVisualID1 + " - " + #DATAITEM.avVisualID2
+
+* Map the fields from the nstance list data item onto the data panel
+<<EXPAND_CONTACT_CARD>> <<PARM1=#%TARGET% := #DataItem.%SOURCE%>>
+
+* Set the selected (or not) look
+#COM_OWNER.uRefreshVisibleCurrentState
+
+Endroutine
+
+* ------------------------------------------------------------------------------
+Mthroutine Name(uRefreshVisibleCurrentState) Options(*REDEFINE)
+
+If (#DATAITEM.avIsCurrent)
+#Title.Style <= #Heading1BoldStyle
+Else
+#Title.Style <= #Heading1Style
+Endif
+
+Endroutine
+
+* ------------------------------------------------------------------------------
+Evtroutine Handling(#Com_owner.Click) Handled(#Handled)
+
+#Handled := True /* Stop propogation up to the parent */
+
+Endroutine
+
+* -----------------------------------------------------------------------------
+Evtroutine Handling(#OptionsButton.Click) Handled(#Handled)
+
+#Com_Owner.DataItem.avIsCurrent := True /* Make the current item in the instance list */
+
+#COM_OWNER.uShowCommandMenu
+
+#Handled := True
+
+Endroutine
+
+
+* -----------------------------------------------------------------------------
+Evtroutine Handling(#Title.Click) Handled(#Handled)
+
+#Com_Owner.DataItem.avIsCurrent := True /* Make the current item in the instance list */
+
+#Com_Owner.DataItem.avExecuteDefaultCommand /* Execute any associated default command */
+
+#Handled := True
+
+Endroutine
+
+End_Com

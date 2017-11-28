@@ -1,0 +1,43 @@
+﻿<HTML>
+	<HEAD id="VF_HT001_Head">
+		<TITLE>About</TITLE>
+		<LINK rel=stylesheet type="text/css" href="vf_vs001.css" >
+		<script language="JavaScript" type="text/javascript">
+
+/*--------------------------------------------------------------------- */
+/* --------------  P R I V A T E   M E T H O D S  ---------------------- */
+/* --------------------------------------------------------------------- */
+
+var objVF_UMnnn    = window.dialogArguments;
+
+/* --------------------------------------------------------------------- */
+/* ---------------------------SetDialogHTML----------------------------- */
+/* --------------------------------------------------------------------- */
+
+function SetDialogHTML()
+{
+	/* Give VF_UM036 a reference to this dialog */
+	objVF_UMnnn.objVF_HTnnnModalWindow = this;
+
+	/* insert the appropiate style sheet according to the Style Scheme property */
+
+	var objLink  = document.createElement("LINK");
+	objLink.rel  = "stylesheet";
+	objLink.type = "text/css";
+	objLink.href = "vf_vs001_" + objVF_UMnnn.strStyleScheme + ".css";
+
+	document.getElementById("VF_HT001_Head").appendChild(objLink);
+	document.body.innerHTML = objVF_UMnnn.strHTML;
+}
+
+function DestroyDialog()
+{
+	objVF_UMnnn.objVF_HTnnnModalWindow = null;
+}
+
+
+		</script>
+	</HEAD>
+	<BODY class="VF_HT001_BODY" onload="SetDialogHTML()" onunload="DestroyDialog()">
+	</BODY>
+</HTML>

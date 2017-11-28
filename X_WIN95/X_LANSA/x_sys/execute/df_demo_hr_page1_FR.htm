@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>ACME Software - Ressources Humaines</title>
+    <style type="text/css">
+    body
+    {
+        color: rgb(32, 77, 137);
+        background-color: white;
+        font-family: Tahoma;
+        font-size: 12px;
+        margin: 0px;
+    }
+    #topbar, #topbar_body
+    {
+        height: 170px;
+    }
+    #topbar
+    {
+        background-image: url(df_demo_vlf_image17.png);
+        background-repeat: repeat-x;
+        padding-right: 20px;
+    }
+    #topbar_body
+    {
+        background-image: url(df_demo_vlf_image16.png);
+        background-repeat: no-repeat;
+        padding-top: 15px;
+        padding-left: 15px;
+    }
+    #topbar_whole
+    {
+    	background-image: url(df_demo_hr_image2.png); 
+    	background-position: right 30px;
+    	background-repeat: no-repeat;
+    }
+    .main
+    {
+        padding: 8px;
+        padding-right: 20px;
+    }
+    .title
+    {
+        font-weight: bold;
+    }
+    .navlink
+    {
+        border-bottom: 1px dotted rgb(150, 150, 150);
+        cursor: pointer;
+        line-height: 25px;
+    }
+    .content
+    {
+        border: 0px solid rgb(101, 147, 207);
+        padding-left: 50px;
+        padding-top: 7px;
+        line-height: 18px;
+    }
+    .data
+    {
+        display: none;
+    }
+    .icon
+    {
+        padding-right: 10px;
+    }
+    .banner
+    {
+        border-bottom: 1px solid rgb(101, 147, 207);
+    }
+    .footer
+    {
+        border: 1px solid rgb(101, 147, 207);
+        background-color: rgb(184, 215, 255);
+        padding: 10px;
+        padding-left: 12px;
+        line-height: 19px;
+    }
+    .linkhovermarkcolumn
+    {
+    }
+    .linkhovermark1
+    {
+        background-color: rgb(200, 200, 210);
+    }
+    .linkhovermark2
+    {
+        background-color: rgb(230, 230, 245);
+    }
+    </style>
+</head>
+<body onload="body_onload()">
+    <div style="overflow:hidden; height: 580px">
+    <table margin="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td id="topbar">
+                <div id="topbar_whole"/>
+                <div id="topbar_body">
+                    <img src="df_demo_hr_image1.png"/>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="main">
+                <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                    <tr>
+                        <td valign=top>
+                            <table border="0" cellspacing="0" cellpadding="3">
+                                <tr><td class="linkhovermarkcolumn" id="m1"></td><td class="navlink" nowrap id="1" onmouseout="out(this)" onmouseover="hover(this)" onclick="navigate(this)">Support technique</td></tr>
+                                <tr><td class="linkhovermarkcolumn" id="m2"></td><td class="navlink" nowrap id="2" onmouseout="out(this)" onmouseover="hover(this)" onclick="navigate(this)">Documentation système</td></tr>
+                                <tr><td class="linkhovermarkcolumn" id="m3"></td><td class="navlink" nowrap id="3" onmouseout="out(this)" onmouseover="hover(this)" onclick="navigate(this)">Retour d'expérience et FAQ</td></tr>
+                                <tr><td class="linkhovermarkcolumn" id="m4"></td><td class="navlink" nowrap id="4" onmouseout="out(this)" onmouseover="hover(this)" onclick="navigate(this)">Nouveautés</td></tr>
+                                <tr><td class="linkhovermarkcolumn" id="m5"></td><td class="navlink" nowrap id="5" onmouseout="out(this)" onmouseover="hover(this)" onclick="navigate(this)">Informations légales</td></tr>
+                                <tr><td class="linkhovermarkcolumn" id="m6"></td><td class="navlink" nowrap id="6" onmouseout="out(this)" onmouseover="hover(this)" onclick="navigate(this)">Calendrier</td></tr>
+                                <tr><td class="linkhovermarkcolumn" id="m7"></td><td class="navlink" nowrap id="7" onmouseout="out(this)" onmouseover="hover(this)" onclick="navigate(this)">Autres liens</td></tr>
+                                <tr><td class="linkhovermarkcolumn">&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+                            </table>
+                        </td>
+                        <td valign=top width="100%" class=content>
+                            <table cellpadding=0 cellspacing=0 width="100%">
+                                <tr>
+                                    <td><img src="df_demo_hr_image3.png"/></td>
+                                    <td width="100%" style="background-image: url(df_demo_hr_image4.png); background-repeat:repeat-x"></td>
+                                    <td><img src="df_demo_hr_image5.png"/></td>
+                                </tr>
+                            </table>
+                            <div style="padding: 20px;padding-bottom: 0px; position: relative; top: -340px;">
+                            <img align=absmiddle id="icon_link5" src="vf_ic5391.gif" class=icon />
+                            <label id="title" class="title"></label>
+                            </div>
+                            <div style="padding: 20px;padding-bottom: 20px; position: relative; top: -340px;" id=content></div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    
+    <div id="linkhovermark" class=data>
+        <table cellspacing=0 cellpadding=0>
+            <tr>
+                <td class="linkhovermark1" height="25">&nbsp;</td>
+                <td class="linkhovermark2">&nbsp;&nbsp</td>
+           </tr>
+        </table>
+    </div>
+    
+     <label id="mainContent" class=data>
+    Ceci est une page d'accueil typique à remplacer par la vôtre.
+    <br /><br />
+    Au sein de ACME Software, les hommes sont notre principale préoccupation. 
+    Les ressources humaines sont chargées d'identifier et de retenir nos talents, aussi bien que de développer et de gérer nos programmes d'intéressement et de participation afin de fidéliser nos salariés. Nous essayons de créer un environnement de travail stimulant, garant des plus grandes réussites.
+    </label>
+    
+    </div>
+
+    <script language=javascript>
+        function body_onload()
+        {
+            navigate(document.getElementById("1"));
+            setContent("mainContent");
+        }
+        
+        function setContent(contentID)
+        {
+            document.getElementById("content").innerHTML = document.getElementById(contentID).innerHTML;
+        }
+        
+        function navigate(link)
+        {
+            document.getElementById("title").innerText = link.innerText;
+        }
+    
+        function hover(link)
+        {
+            document.getElementById("m" + link.id).innerHTML = document.getElementById("linkhovermark").innerHTML;
+        }
+
+        function out(link)
+        {
+            document.getElementById("m" + link.id).innerHTML = "";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head id="VF_RADPAD_Head">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+<script type="text/javascript">
+
+   function onLoadHandler() {
+      var qstring = location.search;
+      var isVLFONE = (qstring.search("VLFONE=TRUE") >= 0);
+      var isVLFWIN = (qstring.search("VLFWIN=TRUE") >= 0);
+      var eBODY = document.body;
+
+      if (isVLFONE || isVLFWIN) {
+         eBODY.style.backgroundColor = "#" + qstring.substr(qstring.indexOf("&BC=") + 4, 6);
+         eBODY.style.color = "#" + qstring.substr(qstring.indexOf("&TC=") + 4, 6);
+      }
+      else {
+         if ((parent != null) && (parent.VF_UseBackGroundColor != null))
+            eBODY.style.backgroundColor = parent.VF_UseBackGroundColor;
+         else
+            eBODY.style.backgroundColor = "#f4f3ee";
+      }
+   }
+ 
+</script>
+</head>
+<body style="margin:8px 8px 8px 8px; font-family:Verdana,Arial,Helvetica,sans-serif; font-size:9pt;" onload="onLoadHandler()" id="VF_RADPAD_Body" id="VF_RADPAD_Body">
+<P>This is a RAD-PAD for a filter.</P> 
+<P>When working as a designer you can change this text.</P>
+<P>The purpose of this RAD-PAD is to help you and other developers or users to rapidly prototype and visualize how your application will look and feel.</P> 
+<P>Later you can replace it with a real filter.</P>
+<P>To learn more about the things you can do with RAD-PADs please use the F1.</P>
+</body>
+</html>

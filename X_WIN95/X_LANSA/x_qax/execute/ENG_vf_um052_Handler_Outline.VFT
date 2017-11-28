@@ -1,0 +1,166 @@
+<context>
+CommandHandler 
+</context>
+<caption>
+Basic Command Handler
+</caption>
+<preamble>
+ENG_vf_um052_Handler_Outline.htm
+</preamble>
+<hint>
+This assistant produces the code for a basic command handler.   
+</hint>
+<sequence>
+000100  
+</sequence>
+<handler>
+VF_UM128 
+VF_UM129     
+VF_UM130   
+</handler>
+<handlertxt>
+If  the Instance List fields and Identifier fields are correct, proceed to the next step.   
+Specify the fields that you want show in your command handler.                  
+Specify the things that you would like to include in the generated code.     
+</handlertxt>
+<code>
+<<include VF_UM052_CommandHandler_Preamble.vfi>>
+Function Options(*DIRECT) 
+Begin_Com Role(*EXTENDS #VF_AC010) Layoutmanager(#MAIN_LAYOUT) Width(600) Height(240) 
+* <<majorsep>>
+* Simple Field and Group Definitions
+* <<majorsep>>   
+<<if UM057_Has_HEADFields>>
+Group_by Name(#XG_HEAD) <<UM057_GenHeadGroup>>
+<<endif>>
+<<if CA_UM056_CHK_CONNECT>>
+define field(#con_rslt) type(*char) length(2)
+Def_Cond Name(*conresult) Cond(#con_rslt = OK)
+<<endif>> 
+* <<majorsep>>
+* Component definitions
+* <<majorsep>>
+<<Comment>>Body and Button arrangement panels
+Define_Com Class(#PRIM_PANL) Name(#BUTTON_PANEL) Displayposition(2) Height(182) Layoutmanager(#BUTTON_FLOW) Left(246) Parent(#COM_OWNER) Tabposition(2) Tabstop(False) Top(0) Width(88)
+Define_Com Class(#PRIM_PANL) Name(#BODY_HEAD) VerticalScroll(True) Displayposition(1) Layoutmanager(#BODY_HEAD_FLOW)  Left(0) Parent(#COM_OWNER) Tabposition(1) Tabstop(False) Top(0) Width(246)
+
+<<Comment>>Attachment and flow layout managers
+Define_Com Class(#PRIM_ATLM) Name(#MAIN_LAYOUT)
+Define_Com Class(#PRIM_ATLI) Name(#BUTTON_ATTACH) Attachment(Right)  Manage(#BUTTON_PANEL) Parent(#MAIN_LAYOUT)
+Define_Com Class(#PRIM_FWLM) Name(#BUTTON_FLOW)   Direction(TopToBottom) Flowoperation(Center) Marginbottom(4) Marginleft(4) Marginright(4) Margintop(4) Spacing(4) Spacingitems(4)
+
+Define_Com Class(#PRIM_ATLI) Name(#BODY_ATTACH)   Attachment(Center) Manage(#BODY_HEAD) Parent(#MAIN_LAYOUT)
+Define_Com Class(#PRIM_FWLM) Name(#BODY_HEAD_FLOW) Direction(TopToBottom) Marginbottom(4) Marginleft(4) Marginright(4) Margintop(4) Spacing(4) Spacingitems(4)
+<<if CA_UM056_SAVEBTN>>
+<<Comment>> The save button
+Define_Com class(#PRIM_PHBN) Name(#SAVE_BUTTON) Buttondefault(True) Caption('Save') Parent(#BUTTON_PANEL) 
+Define_Com Class(#PRIM_FWLI) Name(#FWLI_SAVE_BUTTON) Manage(#SAVE_BUTTON) Parent(#BUTTON_FLOW)
+<<endif>>
+<<if UM057_Has_HEADFields>>
+<<comment>>Fields in the head area
+<<UM057_Repeat True ALL HEAD>>Define_Com Class(#<<field>>.Visual) Parent(#BODY_HEAD) LabelType(<<UM056_Identify_With>>) Marginleft(160)
+<<UM057_Repeat False ALL HEAD>>Define_Com Class(#PRIM_FWLI) Name(#FWLI_<<Field>>) Manage(#<<field>>) Parent(#BODY_HEAD_FLOW)
+<<endif>> 
+* <<majorsep>>
+* Events Definitions
+* <<majorsep>>
+<<CommentBlock>>
+* <<majorsep>>
+* Property Definitions
+* <<majorsep>>
+<<CommentBlock>>
+* <<majorsep>>
+* Method Definitions
+* <<majorsep>>
+* <<minorsep>>
+* Handle Command Execution
+* <<minorsep>>
+<<CommentBlock>>
+Mthroutine Name(uExecute) Options(*REDEFINE)
+<<Comment>>The return code field and testing condition
+Define #Ret_Code reffld(#STD_BOOL)
+Def_cond Name(*RetOkay) Cond((#Ret_Code = OK) *OR (#Ret_Code = TRUE)) 
+<<Comment>>Do any execution logic defined in the ancestor 
+#Com_Ancestor.uExecute
+<<Comment>>Clear any old validation messages 
+use builtin(clr_messages)
+<<if CA_UM056_CHK_CONNECT>>
+<<comment>>Check that the connection is still live 
+#avFrameworkManager.avCheckConnection ReturnValue(#con_rslt)
+If Cond(*conresult)
+<<endif>> 
+<<if UM057_Has_HEADFields>>
+<<UM055_GenGetLst>>
+<<comment>>Fetch information from the main file to fill in the header fields on the form 
+Fetch Fields(#XG_HEAD) From_File(<<UM055_BaseFile>>) With_Key(<<UM055_BaseFileKeys>>) 
+<<if CA_UM056_CHK_CONNECT>>
+endif
+<<endif>> 
+<<CommentBlock>>
+Endroutine
+<<CommentBlock>>
+<<if CA_UM056_INITIALIZE>>
+* <<minorsep>>
+* Handle Initialization
+* <<minorsep>>
+Mthroutine Name(uInitialize) Options(*REDEFINE)
+<<Comment>>Do any initialization defined in the ancestor 
+#Com_Ancestor.uInitialize
+<<CommentBlock>>
+* <your initialization logic goes here> 
+* <your initialization logic goes here> 
+* <your initialization logic goes here> 
+<<CommentBlock>>
+Endroutine
+<<endif>>
+<<if CA_UM056_TERMINATE>>
+* <<minorsep>>
+* Handle Termination
+* <<minorsep>>
+Mthroutine Name(uTerminate) Options(*REDEFINE)
+<<CommentBlock>>
+* <your termination logic goes here>
+* <your termination logic goes here>
+* <your termination logic goes here>
+<<CommentBlock>>
+<<Comment>>Do any termination defined in the ancestor
+#Com_Ancestor.uTerminate 
+<<CommentBlock>>
+Endroutine
+<<endif>>
+* <<majorsep>>
+* Subroutines
+* <<majorsep>>
+<<CommentBlock>>
+* <<majorsep>>
+* Event Handlers
+* <<majorsep>>
+<<CommentBlock>>
+<<if CA_UM056_SAVEBTN>>
+* <<minorsep>>
+* Handle the save button 
+* <<minorsep>>
+<<CommentBlock>>
+EvtRoutine Handling(#SAVE_BUTTON.Click)
+<<comment>>Messages will be cleared
+<<if CA_UM056_CHK_CONNECT>>
+<<comment>>Check that the connection is still live 
+#avFrameworkManager.avCheckConnection ReturnValue(#con_rslt)
+If Cond(*conresult)
+<<endif>> 
+<<CommentBlock>>
+Check_For In_File(<<UM055_BaseFile>>) With_Key(<<UM055_BaseFileKeys>>)
+If_Status Is_Not(*EQUALKEY)
+Insert Fields(#XG_HEAD) To_File(<<UM055_BaseFile>>)  IO_ERROR(*NEXT) VAL_ERROR(*NEXT) ISSUE_MSG(*YES)
+Else
+Update Fields(#XG_HEAD) In_File(<<UM055_BaseFile>>) With_Key(<<UM055_BaseFileKeys>>)  IO_ERROR(*NEXT) VAL_ERROR(*NEXT) ISSUE_MSG(*YES)
+Endif
+<<CommentBlock>>
+<<if CA_UM056_CHK_CONNECT>>
+endif
+<<endif>> 
+Endroutine
+<<endif>>
+<<commentblock>>
+End_Com
+</code>

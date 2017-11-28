@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head id="VF_RADPAD_Head">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+<script type="text/javascript">
+    function CheckDrag()
+    {
+        if ((event != null) && (event.srcElement != null) && (event.srcElement.tagName == "IMG"))
+        {
+            event.cancelBubble = true; event.returnValue = false;
+        }
+    }
+    window.onload = function ()
+    {
+        var qstring = location.search;
+        var isVLFONE = (qstring.search("VLFONE=TRUE") >= 0);
+        var isVLFWIN = (qstring.search("VLFWIN=TRUE") >= 0);
+        var eBODY = document.body;
+        eBODY.style.margin = "8px 8px 8px 8px";
+        eBODY.style.fontFamily = "Verdana,Arial,Helvetica,sans-serif";
+        eBODY.style.fontSize = "9pt";
+        if (isVLFONE || isVLFWIN)
+        {
+            eBODY.style.backgroundColor = "#" + qstring.substr(qstring.indexOf("&BC=") + 4, 6);
+            eBODY.style.color = "#" + qstring.substr(qstring.indexOf("&TC=") + 4, 6);
+        }
+        else
+        {
+            if ((parent != null) && (parent.VF_UseBackGroundColor != null))
+                eBODY.style.backgroundColor = parent.VF_UseBackGroundColor;
+            else
+                eBODY.style.backgroundColor = "#f4f3ee";
+        }
+        if (isVLFONE == false) window.document.body.ondragover = CheckDrag;
+    }
+</script>
+</head>
+<body id="VF_RADPAD_Body">
+<P>&nbsp;</P>
+<P>Ce panneau va gérer l'action (ou commande) <b><<CMDCAPTION>></b> pour l'objet métier <b><<BOCAPTION>></b>.</P>
+<P>Pour l'instant ce panneau est un prototype. Quand vous aurez validé votre prototype vous remplacerez ce panneau par un programme réel.</P>
+<P>Ce panneau est modifiable. Vous pouvez supprimer ce texte et ajouter vos propres notes (et même des images de la palette d'images).<P>      
+<P>Toutes les notes que vous ajoutez ici sont enregistrées et peuvent être utilisées pour vois aider à préparer la présentation de votre prototype et/ou à décrire ses fonctionnalités aux autres développeurs.<P>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+</body> 
+</html>

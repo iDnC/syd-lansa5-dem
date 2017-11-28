@@ -1,0 +1,28 @@
+* -------------------------------------------------------------------------------------------------------------					
+* This is the logon trailer panel snap in for framework <<FRAMEWORK>>
+* It was created on <<CREATEDDATE>> by <<CREATEDUSER>>* This is your logon trailer panel.
+* It defines a custom panel that is displayed on the bottom of the log on form.
+* -------------------------------------------------------------------------------------------------------------					
+
+Begin_Com Role(*EXTENDS #PRIM_PANL) Displayposition(1) Height(50) Left(0) Tabposition(1) Top(0) Width(335) Layoutmanager(#AttachLayout1)
+
+Define_Com Class(#PRIM_ATLM) Name(#AttachLayout1)
+Define_Com Class(#PRIM_ATLI) Name(#Attach_TextMessage) Manage(#TextMessage) Parent(#AttachLayout1) Attachment(Center) Marginleft(4) Marginright(4) Marginbottom(4) Margintop(4)
+
+* The trailer contains a simple label with a message in it
+Define_Com Class(#PRIM_LABL) Name(#TextMessage) Parent(#COM_OWNER) Displayposition(1) Tabposition(1) Tabstop(False) Height(40) Left(0) Top(0) Width(335) Style(#SmallText) Verticalalignment(Center) Alignment(Center) Caption('Your text message goes here')
+
+* Define a style to style the text message
+Define_Com Class(#Prim_Vs.Style) Name(#SmallText) Fontsize(10) Textcolor(Black)
+
+* -------------------------------------------------------------------------------
+Evtroutine Handling(#COM_OWNER.CreateInstance)
+
+* Set up the text message that is displayed
+
+#TextMessage.Caption := (169).AsUnicodeString + " Copyright " + *YYYYC + " <<COMPANYNAME>>." + (10).AsUnicodeString + "All rights reserved."
+
+Endroutine
+
+
+End_Com

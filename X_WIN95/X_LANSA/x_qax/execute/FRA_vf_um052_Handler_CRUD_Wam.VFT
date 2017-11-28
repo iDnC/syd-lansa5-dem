@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<context>
+CommandHandler 
+</context>
+<mode>
+WAM 
+</mode>
+<caption>
+Gestionnaire d'action CLMS
+</caption>
+<preamble>
+FRA_vf_um052_Handler_CRUD_WAM.htm
+</preamble>
+<hint>
+Cet assistant génére le code d'un gestionnaire d'action WAM de Création/Lecture/Modification/Suppression .
+</hint>
+<sequence>
+000100  
+</sequence>
+<handler>
+VF_UM055 
+VF_UM057     
+</handler>
+<handlertxt>
+Préciser le protocole d'identification choisi pour cet objet métier. Si un fichier physique ressemble à cet objet métier préciser son nom et l'assistant essaiera de déduire un protocole d'identification de base pour vous.    
+Préciser les zones que vous voulez afficher dans les zones hautes (entête) ou basses (listes) du panneau du gestionnaire d'action. Votre choix de placer les zones en zone d'entête ou de liste affecte la structure du code généré par l'assistant de code.                  
+</handlertxt>
+<code>
+<<include VF_UM052_CommandHandler_Preamble.vfi>>
+<<CommentBlock>>
+* NOTE: Ce gestionnaire d'action a été conçu
+* pour être appellé par les actions Nouveau, Supprimer, et autre
+* (exple. Détails ou Création/Lecture/Modification/Suppression)
+* Il utilise le type d'objet utilisateur de l'action
+* pour décider comment se comporter.
+<<CommentBlock>>
+BEGIN_COM ROLE(*EXTENDS £PRIM_WAM) Sessionstatus(None) Layoutweblet('vlf_layout_v2')
+Define_Com Class(£vf_sw100) NAME(£avFrameworkManager)
+Define_Com Class(£vf_aw010) Name(£ThisHandler) Reference(*Dynamic)
+Define_Com Class(£vf_lw002) Name(£avListManager) Reference(*Dynamic)
+Define_Com Class(£fp_in001) Name(£FastPart) Reference(*Dynamic)
+<<comment>>Zones de mappage du Framework VL. NE PAS MODIFIER.
+Web_Map For(*both) Fields((£VF_FRAMEI *private) (£VF_FRAMEW *private) (£VF_FRAMES *private) (£VF_ELXTOF *private) (£VF_ELXN01 *private) (£VF_ELXN02 *private) (£VF_ELXN03 *private) (£VF_ELXN04 *private) (£VF_ELXN05 *private) (£VF_ELXN06 *private) 
++ (£VF_ELXN07 *private) (£VF_ELXN08 *private) (£VF_ELXN09 *private) (£VF_ELXN10 *private) (£VF_ELXA01 *private) (£VF_ELXA02 *private) (£VF_ELXA03 *private) (£VF_ELXA04 *private) (£VF_ELXA05 *private) 
++ (£VF_ELXA06 *private) (£VF_ELXA07 *private) (£VF_ELXA08 *private) (£VF_ELXA09 *private) (£VF_ELXA10 *private)(£VF_ELMETA *private))
+<<if UM057_Has_HEADFields>>
+<<comment>>Definition des zones d entete du formulaire
+GROUP_BY NAME(£Wam_Data) FIELDS(<<UM057_GenHeadGroupInline>>
+<<if UM057_Has_LISTFields>> 
+<<comment>>Définition des zones de liste du formulaire
+GROUP_BY NAME(£XG_LIST) FIELDS(<<UM057_GenListGroupInline>>
+<<comment>>Définition de la liste à afficher sur le formulaire
+Def_list Name(£Wam_List) type(*working) Fields(<<UM057_GenListGroupInline>>
+<<comment>>Mapper les zones du formulaire.
+Web_Map For(*both) Fields((£UB_PUSHB1 *NOID) £WAM_LIST £Wam_Data)
+<<else>>
+<<comment>>Mapper les zones du formulaire.
+Web_Map For(*both) Fields((£UB_PUSHB1 *NOID) £Wam_Data)
+<<endif>>
+<<else>>
+<<if UM057_Has_LISTFields>> 
+<<comment>>Définition de la liste à afficher sur le formulaire
+Def_list Name(£Wam_List) type(*working) Fields(<<UM057_GenListGroupInline>>
+Web_Map For(*both) Fields((£UB_PUSHB1 *NOID) £WAM_LIST)
+<<endif>>
+<<endif>>
+<<CommentBlock>>
+* Zones de travail
+DEFINE FIELD(£CMD_TYPE) TYPE(*CHAR) LENGTH(32) DESC('Type d objet utilisateur de l action')
+DEFINE FIELD(£RET_CODE) REFFLD(£STD_BOOL)
+DEF_COND NAME(*OKAY) COND((£RET_CODE = OK) or (£RET_CODE = TRUE))
+DEF_COND NAME(*NOTOKAY) COND((£RET_CODE *ne OK) and (£RET_CODE *ne TRUE))
+<<CommentBlock>>
+Webroutine Name(UHandleEvent)
+<<comment>>Enregistre l'évènement qui s'exécutera suite à un clic sur le bouton 1 du gestionnaire comme évènement wam numéro 1.
+£avFrameworkManager.avRegisterEvent Named(UB_PUSHB1.CLICK) Signalaswamevent(1)
+<<comment>>Initialisation standard du WAM. 
+£avFrameworkManager.avInitializeWAM Type(COMMAND) Invoker(£com_owner) Listmanager(£avListManager) Handlermanager(£ThisHandler) Fastpartmanager(£FastPart)
+£avFrameworkManager.avHandleWAMEvent Anchorblock(£vf_framew) Event(£vf_event) Designmode(£vf_framed) Skin(£VF_Frames) Metatag(£vf_elmeta) 
++ Tof(£vf_elxtof) N01(£vf_elxn01) N02(£vf_elxn02) N03(£vf_elxn03) N04(£vf_elxn04) N05(£vf_elxn05) N06(£vf_elxn06) N07(£vf_elxn07) N08(£vf_elxn08) 
++ N09(£vf_elxn09) N10(£vf_elxn10) A01(£vf_elxA01) A02(£vf_elxA02) A03(£vf_elxA03) A04(£vf_elxA04) A05(£vf_elxA05) A06(£vf_elxA06) A07(£vf_elxA07) A08(£vf_elxA08) A09(£vf_elxA09) A10(£vf_elxA10) Ssiname(£VF_FRAMEI)
+Endroutine
+
+<<comment>>Initialisation du gestionnaire d'action
+Evtroutine Handling(£avFrameworkManager.uInitialize) Options(*noclearmessages *noclearerrors)
+* Le comportement de ce gestionnaire d'action est modifié par type d objet utilisateur de l'action qui l'a déclenché.
+£Cmd_Type :=  £ThisHandler.avCommandType
+<<CommentBlock>>
+* Bouton activé par défaut
+£ThisHandler.avSetButton ButtonName(UB_PUSHB1)  Enabled(TRUE)
+<<comment>>Ajoutez votre logique d'initialisation ici
+Endroutine
+<<CommentBlock>>
+Evtroutine Handling(£avFrameworkManager.uexecute) Options(*noclearmessages *noclearerrors)
+Case Of_Field(£Cmd_Type)
+<<CommentBlock>>
+* Gère l'action Nouveau
+When Value_is(= New)
+£UB_PUSHB1 := 'Enregistrer'
+£Wam_Data := *NULL 
+<<CommentBlock>>
+* Gère la copie
+When Value_Is(= Copy)
+£UB_PUSHB1 := 'Enregistrer'
+Execute Subroutine(GETCURRENT) with_parms(TRUE)
+<<CommentBlock>>
+* Gère la suppression
+When Value_Is(= Delete)
+£UB_PUSHB1 := 'Confirmer suppression'
+Execute Subroutine(GETCURRENT) WITH_PARMS(TRUE)
+<<CommentBlock>>
+* Gère le détail
+Otherwise
+£UB_PUSHB1 := 'Enregistrer'
+Execute Subroutine(GETCURRENT) WITH_PARMS(TRUE)
+EndCase
+EndRoutine
+<<if UM057_Has_HEADFields>>
+<<comment>>Gère le click sur le bouton
+* Effectue la logique associée au bouton 1. La routine evénementielle enregistrée par £avFrameworkManager.avRegisterEvent comme évènement 1.
+Evtroutine Handling(£avFrameworkManager.uWAMEvent_1) Options(*noclearmessages *noclearerrors)
+DEFINE FIELD(£VIS_RESLT) REFFLD(£STD_TEXT)
+DEFINE FIELD(£MSG_RSLT) TYPE(*CHAR) LENGTH(132)
+<<comment>>Effectuer différentes tâches en fonction de l'action
+CASE OF_FIELD(£Cmd_Type)
+<<CommentBlock>>
+* Gère les actions Nouveau ou Copier
+when value_is(= New = Copy)
+<<CommentBlock>>
+£UB_PUSHB1 := 'Enregistrer'
+£VIS_RESLT :=  'Nouveau'
+£MSG_RSLT := 'Nouvelles informations enregistrées'
+INSERT FIELDS(£Wam_Data) TO_FILE(<<UM055_BaseFile>>) IO_STATUS(£RET_CODE) IO_ERROR(*NEXT) VAL_ERROR(*NEXT) ISSUE_MSG(*YES)
+<<CommentBlock>>
+* Gèrer la suppression
+WHEN VALUE_IS(= Delete)
+<<CommentBlock>>
+£UB_PUSHB1 := 'Confirmer la suppression'
+£VIS_RESLT :=  'Supprimé'
+£MSG_RSLT := 'Les informations ont été supprimées'
+EXECUTE SUBROUTINE(GETCURRENT) WITH_PARMS(TRUE)
+IF COND(*OKAY)
+DELETE FROM_FILE(<<UM055_BaseFile>>) IO_STATUS(£RET_CODE) IO_ERROR(*NEXT) VAL_ERROR(*NEXT) ISSUE_MSG(*YES)
+ENDIF
+<<CommentBlock>>
+* Handle details
+OTHERWISE
+<<CommentBlock>>
+£UB_PUSHB1 := 'Enregistrer'
+£VIS_RESLT :=  'Mis à jour'
+£MSG_RSLT := 'Les informations modifiéees ont été enregistrées'
+UPDATE FIELDS(£Wam_Data) IN_FILE(<<UM055_BaseFile>>) WITH_KEY(<<UM055_BaseFileKeys>>) IO_STATUS(£RET_CODE) IO_ERROR(*NEXT) VAL_ERROR(*NEXT) ISSUE_MSG(*YES)
+<<CommentBlock>>
+ENDCASE
+<<comment>>Gérer si l'opération s'est déroulée correctement ou non
+IF COND(*NOTOKAY)
+Set £ThisHandler avShowMessages(TRUE)
+ELSE
+£avListManager.BeginListUpdate
+<<UM055_AddtoList VIS_RESLT>>  
+<<CommentBlock>>
+* Mise à jour de la liste d'instances
+£avListManager.EndListUpdate
+* 
+CASE OF_FIELD(£CMD_TYPE)
+WHEN VALUE_IS(= NEW)
+<<CommentBlock>>
+* Se préparer à l'entrée suivante
+£Wam_Data := *NULL 
+WHEN VALUE_IS(= DELETE)
+<<CommentBlock>>
+* Désactiver le bouton supprimer
+£ThisHandler.avSetButton ButtonName(UB_PUSHB1)  Enabled(FALSE)
+ENDCASE
+<<CommentBlock>>
+* Envoyer le message demandé
+USE BUILTIN(CLR_MESSAGES)
+MESSAGE MSGID(DCM9899) MSGF(DCàM01) MSGDTA(£MSG_RSLT)
+ENDIF
+ENDROUTINE
+<<endif>>
+* GetCurrent: lire le détail de l'objet en cours
+SUBROUTINE NAME(GETCURRENT) PARMS((£DF_FETCH *RECEIVED))
+DEFINE FIELD(£DF_FETCH) REFFLD(£STD_BOOL)
+<<if UM057_Has_HEADFields>>
+<<UM055_GenGetLst>>
+<<comment>>lire les informations du fichier principal pour alimenter l'entête du formulaire 
+IF (£DF_FETCH = TRUE)
+Fetch Fields(£Wam_Data) From_File(<<UM055_BaseFile>>) With_Key(<<UM055_BaseFileKeys>>) IO_STATUS(£RET_CODE)
+<<if UM057_Has_LISTFields>>
+Clr_List £Wam_List
+<<endif>>
+ENDIF
+<<CommentBlock>>
+use builtin(clr_messages)
+<<comment>> Gestionnaire introuvable
+if (*notokay)
+message msgtxt('L´objet demandé n a pas été trouvé. Il a peut être été supprimé.')
+Set £ThisHandler avShowMessages(TRUE)
+£ThisHandler.avSetButton ButtonName(UB_PUSHB1)  Enabled(FALSE)
+£Wam_Data := *NULL
+else
+<<if UM057_Has_LISTFields>>
+<<comment>>Lire les informations de tout autre fichier lié pour remplir la liste visible 
+Clr_List £Wam_List
+Select Fields(£XG_LIST) From_File(<<tba>>) With_key(<<tba>>)
+<<Comment>>Ajouter une entrée à la liste visible
+Add_Entry £Wam_List
+EndSelect    
+<<endif>>
+endif
+<<endif>>
+endroutine
+End_Com
+<<code>>

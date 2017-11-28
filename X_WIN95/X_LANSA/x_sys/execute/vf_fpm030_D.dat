@@ -1,0 +1,81 @@
+// This script was generated from skeleton file vf_fpm030_D.js, which is in your LANSA partition execute folder.
+// You may alter this file to change how new scripts are generated. **NOTE** You must backup skeleton file changes. 
+// Script skeleton files are replaced with the standard shipped versions when reinstalling or upgrading RAMP-TS. 
+
+{
+   /* ====================================================== */
+   /* ==================  vHandle_ARRIVE  ================== */
+   /* ====================================================== */
+   /* Handle arrival at this Destination                     */
+   /* oPayload: The payload supplied by the event initiator  */
+   /* oPreviousForm: Reference to previous Form object       */
+
+   vHandle_ARRIVE: function(oPayload, oPreviousForm) 
+   {
+     var bReturn = true;
+
+     SHOW_CURRENT_FORM(true); /* Show the form in the framework and show VLF buttons */
+     HIDE_5250_BUTTONS();     /* Hide any 5250 style buttons displayed               */ 
+     GET_FORM_MESSAGE(22);    /* Extract messages and hide the message line          */
+     SETBUSY(false);          /* Last thing done - turn off the busy state           */
+
+     /* <ARRIVE /> - Do not remove or alter this line */
+
+     return(bReturn);
+   }, 
+
+   /* ====================================================== */
+   /* ==================  BUTTONCLICK  ===================== */
+   /* ====================================================== */
+   /* sButton: The button that was clicked                   */
+
+   vHandle_BUTTONCLICK: function(sButton) 
+   {
+
+     var bReturn = true;
+
+     if (HANDLE_PROMPT()) return(bReturn); /* If the focus element is automatically prompted finish now */
+     
+     /* <BUTTONCLICK /> - Do not remove or alter this line */
+        
+          
+     return(bReturn);
+   },
+
+
+   /* ====================================================== */
+   /* ===================  NAVIGATETO  ===================== */
+   /* ====================================================== */
+   /* sToForm:       Name of the Form to navigate to */
+   /* oPreviousForm: Reference to previous Form object */
+
+   vHandle_NAVIGATETO: function(sToForm, oPreviousForm) 
+   {
+     var bReturn = true;
+  
+     HIDE_CURRENT_FORM();
+     SETBUSY(true); 
+
+     switch (sToForm)
+     {
+        /* <NAVIGATESWITCH> - Do not remove or alter this line */
+        
+        default:
+              alert("Form " + this.vName + " cannot navigate to form " + sToForm);  
+              bReturn = false; 
+              break; 
+          
+     }
+
+        /* </NAVIGATESWITCH> - Do not remove or alter this line */ 
+
+     return(bReturn);
+   },
+
+    
+
+// Do not alter any script after this line 
+//<SYSINFO>
+//</SYSINFO>
+
+}

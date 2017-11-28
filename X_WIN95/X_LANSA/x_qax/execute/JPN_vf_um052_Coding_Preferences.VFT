@@ -1,0 +1,58 @@
+<caption>
+LANSA コード生成ユーザー設定 
+</caption>
+<preamble>
+JPN_vf_um052_Coding_Preferences.HTM 
+</preamble>
+<context>
+Framework 
+</context>
+<mode>
+EITHER
+</mode>
+<hint>
+このアシスタントを使って、アシスタントが生成するコードに使用される基本設定の設定、変更ができます。 
+</hint>
+<context>
+Framework 
+</context>
+<sequence>
+999999     
+</sequence>
+<handler>
+VF_UM053
+</handler>
+<handlertxt>
+希望の設定を選択し、[コード生成] ボタンをクリックしてください。選択された設定を使った生成コードのサンプルが表示されます。     
+</handlertxt>
+<code>
+<<comment>>著作権の通知は次のように表示されます。
+<<comment>> <<copyright>>
+<<comment>>手動で完成する必要があるコードには次のマークが記されています。
+<<comment>> <<tba>>  
+* <<majorsep>>
+* ここはメインとなるコード ブロックのサンプルです。 
+* <<majorsep>>     
+* 
+* <<minorsep>>
+* ここはサブとなるコード ブロックのサンプルです。
+* <<minorsep>>    
+<<Comment>>個別のコメント行
+<<Comment>>個別のコメント行
+<<Comment>>個別のコメント行
+<<commentBlock>> 
+* コメント ブロック 1 
+* コメント ブロック 1 
+* コメント ブロック 1 
+<<commentBlock>> 
+* コメント ブロック 2 
+* コメント ブロック 2 
+<<commentBlock>> 
+* コメント ブロック 3 
+* コメント ブロック 3 
+* コメント ブロック 3
+<<Comment>>フィルター パネルの単純なフィールドは次のような属性になります。
+Define_Com Class(#Std_Num) Name(#SimpleField1) <<filterfield>>
+<<Comment>>コマンド ハンドラー パネルの単純なフィールドは次のような属性になります。
+Define_Com Class(#Std_Num) Name(#SimpleField2) <<handlerfield>>
+</code>

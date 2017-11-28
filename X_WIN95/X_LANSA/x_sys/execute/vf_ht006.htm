@@ -1,0 +1,198 @@
+﻿<HTML>
+	<title>AutoSignoff</title>
+	<script language="JavaScript">
+var flagFatalError = false;  
+window.onerror = VF_HT006_PRIVATE_ErrorTrap;
+var objCheckStllAliveTimer   = null;  
+var objLogonTimer			 = null;  
+var objLogoffTimer			 = null;  
+var flagSystemIsShuttingDown = false; /* See VF_SY001      */ 
+var flagAlreadyShutDown      = false;
+var flagWaitingFrameLoad     = false;     
+var objFrameReloadTimer      = null; 
+/* ======================================================= */
+function VF_HT006_PRIVATE_ErrorTrap()
+{
+   if ( !(flagFatalError) )
+   {
+      flagFatalError = true; 
+	  try { window.close(); }
+	  catch (objError) { }
+   }
+   return(true);  
+}
+/* ======================================================= */
+function VF_HT006_PUBLIC_ShutDown(flagInitiateClose,flagZapOpener)
+{ 
+   if ( !(flagAlreadyShutDown) && !(flagFatalError) )
+   {
+     flagAlreadyShutDown = true;
+     if ((flagZapOpener) && (VF_HT006_PRIVATE_ValidateOpener())) 
+	 {
+	    try { window.opener.VF_System.objVF_SY504.objVF_HT006Window = null; }
+		catch (objError) { }
+	 }  	  
+     if (objCheckStllAliveTimer != null) 
+	 {
+	    window.clearInterval(objCheckStllAliveTimer);
+	    objCheckStllAliveTimer = null; 
+	 } 	 
+     if (objLogonTimer != null) 
+	 {
+	    window.clearInterval(objLogonTimer);
+	    objLogonTimer = null; 
+	 } 	 
+     if (objLogoffTimer != null) 
+	 {
+	    window.clearInterval(objLogoffTimer);
+	    objLogoffTimer = null; 
+	 } 	 
+     if (flagInitiateClose) window.close(); 
+   } 
+   
+   return; 
+}
+/* ======================================================= */
+function VF_HT006_PUBLIC_StartLogonTimer()
+{
+	try { objLogonTimer = window.setInterval(VF_HT006_PRIVATE_LogonTimer_Tick,window.opener.VF_System.intCheckSeparation,"JavaScript"); }
+	catch (objError) { } 
+	return; 
+}
+/* ======================================================= */
+function VF_HT006_PUBLIC_StartLogoffTimer()
+{
+	try { objLogoffTimer = window.setInterval(VF_HT006_PRIVATE_LogoffTimer_Tick,window.opener.VF_System.intCheckSeparation,"JavaScript"); }
+    catch (objError) { } 
+	return; 
+}
+/* ======================================================= */
+function VF_HT006_PUBLIC_StopLogonTimer()
+{
+   window.clearInterval(objLogonTimer);
+}
+/* ======================================================= */
+function VF_HT006_PUBLIC_StopLogoffTimer()
+{
+   window.clearInterval(objLogoffTimer);
+}
+/* ======================================================= */
+function VF_HT006_PRIVATE_LogonTimer_Tick()
+{
+   try { window.opener.VF_SY504_PUBLIC_CheckLogonTimeout(); }
+   catch (objError) { } 
+   return;
+}
+/* ======================================================= */
+function VF_HT006_PRIVATE_LogoffTimer_Tick()
+{
+   try { window.opener.VF_SY504_PUBLIC_CheckLogoffTimeout(); }
+   catch (objError) { } 
+   return;
+}
+/* ======================================================= */
+function VF_HT006_PRIVATE_ValidateOpener()
+{
+   try
+   {
+	   if (flagFatalError) return(false); 
+	   if (typeof(window.opener) != "object") return(false); 
+	   if (window.opener == null) return(false);  
+	   if (typeof(window.opener.VF_System) != "object") return(false);  
+	   if (window.opener.VF_System == null) return(false); 
+	   if (typeof(window.opener.VF_System.objVF_SY504) != "object") return(false);  
+	   if (window.opener.VF_System.objVF_SY504 == null) return(false); 
+	   if (typeof(window.opener.VF_System.objVF_SY504.objVF_HT006Window) != "object") return(false);  
+	   if (window.opener.VF_System.objVF_SY504.objVF_HT006Window == null) return(false); 
+   }
+   catch (objError)
+   {
+      return(false); 
+   }
+
+   return(true);  
+}
+/* ======================================================= */
+function VF_HT006_PRIVATE_HideThisWindow()
+{
+	try {  window.moveTo(-500,-500); } catch (objError) { } 
+	return;
+}
+/* ======================================================= */
+function VF_HT006_PRIVATE_OpenerStillAlive()
+{
+  if (flagSystemIsShuttingDown) return(false); 
+  return(VF_HT006_PRIVATE_ValidateOpener()); 
+}
+/* ======================================================= */
+function VF_HT006_PRIVATE_CheckStllAliveTimerTick()
+{
+   if ( flagFatalError ) return;  
+   
+   if ( VF_HT006_PRIVATE_OpenerStillAlive() ) return; 
+
+   if ( !(flagAlreadyShutDown) 
+     && !(flagFatalError) 
+     && (typeof(strLANSAFormAction) == "string")
+     && (typeof(strVF_FRAMEW) == "string"))
+   {
+
+	  VF_HT006_PRIVATE_HideThisWindow();
+      /* XBROWSER this used to get the document of hte iframe via document.frames("HT006_PRIVATE_IFrame") which is not supported by Chrome/Safari */
+      objDocument = document.getElementById("HT006_PRIVATE_IFrame").contentWindow.document;
+      if (objCheckStllAliveTimer != null) window.clearInterval(objCheckStllAliveTimer);
+      objCheckStllAliveTimer = null;  
+      flagWaitingFrameLoad   = true;
+	  window.setInterval(VF_HT006_PRIVATE_iFrameReLoad,3000,"Javascript");
+      objDocument.LANSA.action           = strLANSAFormAction;
+      objDocument.LANSA.AVF_FRAMEW.value = strVF_FRAMEW; 
+      objDocument.LANSA._PROCESS.value   = "VF_PR002";
+      objDocument.LANSA._FUNCTION.value  = "VFU0202";
+      objDocument.LANSA.submit();
+
+   }
+   else
+   {
+      VF_HT006_PUBLIC_ShutDown(true,false);
+   }
+
+   return;
+}
+/* ======================================================= */
+function VF_HT006_PRIVATE_Unload()
+{
+   if ( !(flagAlreadyShutDown) && !(flagFatalError) ) VF_HT006_PUBLIC_ShutDown(false,true); 
+}
+/* ======================================================= */
+function VF_HT006_PRIVATE_iFrameReLoad()
+{
+   if (flagWaitingFrameLoad) 
+   {
+      if (objFrameReloadTimer != null) window.clearInterval(objFrameReloadTimer);
+	  objFrameReloadTimer = null; 
+      VF_HT006_PUBLIC_ShutDown(true,false);   
+   }
+}
+function Init()
+{
+    window.document.body.style.visibility = "hidden"; 
+    window.document.body.style.display    = "none";   
+	/* window.moveTo(-500,-500); */                         
+	VF_HT006_PRIVATE_HideThisWindow();
+	try { window.opener.focus(); }
+	catch (objError) {   }
+
+	/* window.attachEvent("onbeforeunload",VF_HT006_PRIVATE_Unload);
+	window.attachEvent("onunload",VF_HT006_PRIVATE_Unload); */
+   window.onbeforeunload = VF_HT006_PRIVATE_Unload;
+   window.onunload = VF_HT006_PRIVATE_Unload;
+	objCheckStllAliveTimer = window.setInterval(VF_HT006_PRIVATE_CheckStllAliveTimerTick,3000,"Javascript");   
+}
+
+	</script>
+	<!-- XBROWSER this is only supported by IE <script for='window' event='onload'></script> -->
+	<body onload="Init()">
+		<P id='HT006_PRIVATE_Text'></P>
+		<IFRAME id='HT006_PRIVATE_IFrame' src='javascript:parent.opener.VF_SY503_PRIVATE_MakeFrameHTML(0);' onload='VF_HT006_PRIVATE_iFrameReLoad();'></IFRAME>
+	</body>
+</HTML>

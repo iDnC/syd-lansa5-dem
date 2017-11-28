@@ -1,0 +1,229 @@
+* ---------------------------------------------------------------------------------
+* This is a command handler in framework <<FRAMEWORK>>.
+* It belongs to business object <<BUSINESS_OBJECT_CAPTION>>.
+* It was created on <<CREATEDDATE>> by <<CREATEDUSER>>.
+* ---------------------------------------------------------------------------------
+* ----------------------------------------------------------------------------------------------------------
+Begin_Com Role(*EXTENDS #VF_AC010O) Height(401) Width(857) Layoutmanager(#MainTableLayout)
+
+* --------------------------------------------------------------------------
+
+Define_Com Class(#PRIM_TBLO) Name(#MainTableLayout)
+Define_Com Class(#PRIM_TBLO.Column) Name(#Column1) Displayposition(1) Parent(#MainTableLayout) Width(0.93)
+
+Define_Com Class(#PRIM_ATLM) Name(#AttachLayoutLeftPanel)
+Define_Com Class(#PRIM_ATLI) Name(#AttachItemLeftNotes) Manage(#NotesList) Parent(#AttachLayoutLeftPanel) Attachment(Center)
+Define_Com Class(#PRIM_ATLI) Name(#AttachItem1) Manage(#LeftPanelBottom) Parent(#AttachLayoutLeftPanel) Attachment(Bottom)
+
+Define_Com Class(#Prim_panl) Name(#LeftPanelBottom) Displayposition(2) Parent(#MainPanel_Left) Tabposition(2) Height(30) Left(0) Top(371) Width(399)
+
+Define_Com Class(#PRIM_ATLM) Name(#AttachLayoutRightPanel)
+Define_Com Class(#PRIM_ATLI) Name(#AttachItemRight) Manage(#DF_NOTE_NOTEDETAILPANEL) Parent(#AttachLayoutRightPanel) Attachment(Center)
+
+Define_Com Class(#PRIM_TBLO.ColumnDivider) Name(#Column12Divider) Displayposition(2) Parent(#MainTableLayout)
+Define_Com Class(#PRIM_TBLO.Column) Name(#Column2) Displayposition(3) Parent(#MainTableLayout) Width(1.07)
+Define_Com Class(#PRIM_TBLO.Row) Name(#Row1) Displayposition(1) Parent(#MainTableLayout)
+Define_Com Class(#PRIM_TBLO.Item) Name(#Manage_MainPanel_Left) Parent(#MainTableLayout) Row(#Row1) Column(#Column1) Manage(#MainPanel_Left)
+Define_Com Class(#PRIM_TBLO.Item) Name(#Manage_MainPanel_Right) Parent(#MainTableLayout) Row(#Row1) Column(#Column2) Manage(#MainPanel_Right)
+
+Define_Com Class(#Prim_panl) Name(#MainPanel_Left) Parent(#COM_OWNER) Displayposition(1) Tabposition(1) Top(0) Height(401) Left(0) Width(399) Layoutmanager(#AttachLayoutLeftPanel)
+Define_Com Class(#Prim_panl) Name(#MainPanel_Right) Parent(#COM_OWNER) Displayposition(2) Tabposition(2) Layoutmanager(#AttachLayoutRightPanel) Height(401) Left(400) Top(0) Width(457)
+
+Define_Com Class(#Prim_List) Name(#NotesList) Parent(#MainPanel_Left) Displayposition(1) Tabposition(1) Height(371) Left(0) Top(0) Width(399) Columnlines(False) Rowlines(False)
+
+Define_Com Class(#PRIM_LIST.String) Name(#ColumnDF_NOTE_Subject) Columnwidth(287) Displayposition(1) Parent(#NotesList) Source(#DF_NOTE_Subject) Sortonclick(True)
+
+Define_Com Class(#PRIM_LIST.String) Name(#ColumnDF_NOTE_GUID) Columnwidth(311) Displayposition(2) Parent(#NotesList) Source(#DF_NOTE_GUID) Visible(False) Columnvisible(False)
+
+Define_Com Class(#PRIM_LIST.DateTime) Name(#ColumnDF_NOTE_Updated) Columnwidth(1) Displayposition(3) Parent(#NotesList) Source(#DF_NOTE_Updated) Columnunits(Proportion) Sortonclick(True)
+
+Define_Com Class(#DF_Note_NoteDetailPanel) Parent(#MainPanel_Right) Height(401) Width(457)
+
+Define Field(#DF_NOTE_WorkingList_Counter) Reffld(#Std_int)
+
+Define_Com Class(#prim_phbn) Name(#CreateNewButton) Parent(#LeftPanelBottom) Caption('Create a New Note') Displayposition(1) Tabposition(1) Height(22) Top(4) Width(150) Left(4)
+Define_Com Class(#prim_phbn) Name(#RefreshButton) Parent(#LeftPanelBottom) Caption('Refresh Notes List') Displayposition(2) Tabposition(2) Height(22) Left(157) Top(4) Width(150)
+
+* --------------------------------------------------------------------------
+
+Define_Com Class(#DF_NOTE_GUID) Name(#CurrentNoteGUID)
+Define_Com Class(#Prim_Boln) Name(#UserInterfaceLocked)
+
+* --------------------------------------------------------------------------
+Def_List Name(#DF_NOTE_ProxyList) Fields(#DF_NOTE_GUID #DF_NOTE_Subject #DF_NOTE_Created #DF_NOTE_CreatedBy #DF_NOTE_Updated #DF_NOTE_UpdatedBy) Counter(#DF_NOTE_WorkingList_Counter) Type(*Working) Entrys(*Max)
+
+* --------------------------------------------------------------------------
+Mthroutine Name(uInitialize) Options(*REDEFINE) Access(*PRIVATE)
+* Do ancestor first
+#COM_ANCESTOR.uInitialize
+* Custom code here ....
+#DF_Note_NoteDetailPanel.uInitialize
+Endroutine
+
+* --------------------------------------------------------------------------
+Mthroutine Name(uTerminate) Options(*REDEFINE) Access(*PRIVATE)
+* Custom code here ....
+Clr_List Named(#NotesList)
+Clr_List Named(#DF_NOTE_ProxyList)
+#DF_Note_NoteDetailPanel.uTerminate
+* Do ancestor last
+#COM_ANCESTOR.uTerminate
+Endroutine
+* --------------------------------------------------------------------------
+Mthroutine Name(uExecute) Options(*REDEFINE) Access(*PRIVATE)
+* Do any ancestor logic first.
+#COM_ANCESTOR.uExecute Gotofreestate(#GotoFreeState) Switchcallerreference(#SwitchCallerReference)
+* Fill the list
+#Com_Owner.LoadNoteList
+* Return control and let the free state be returned
+
+Endroutine
+
+* --------------------------------------------------------------------------
+Mthroutine Name(uQueryCanClose) Options(*REDEFINE)
+
+If (#CanBeCancelled)
+#DF_Note_NoteDetailPanel.SaveCurrentNoteIfDirty Askfirst(#CanBeCancelled)
+Endif
+
+#Allow := True
+
+Endroutine
+
+* --------------------------------------------------------------------------
+Mthroutine Name(LoadNoteList) Access(*PRIVATE)
+Define_Com Class(#DF_NOTE_ServerModule.LoadProxyList) Name(#LoadProxyList)
+
+* Locked
+#UserInterfaceLocked := True
+
+* Drop what we already have
+Clr_List Named(#NotesList)
+
+* Load the list of notes from the server
+#LoadProxyList.Execute Forbusinessobjectnametype(#COM_OWNER.avAssociatedInstance.avBusinessObjectReference.uUserObjectType) Forinstancekey(#COM_OWNER.avAssociatedInstance.CombinedKey) Intoproxyworkinglist(#DF_NOTE_ProxyList)
+
+* Transfer them into the visibel list
+Selectlist Named(#DF_NOTE_ProxyList)
+Add_Entry To_List(#NotesList)
+Endselect
+
+* Show nothing
+#DF_Note_NoteDetailPanel.ShowNothing
+
+* UnLocked
+#UserInterfaceLocked := False
+
+Endroutine
+
+* --------------------------------------------------------------------------
+Evtroutine Handling(#NotesList.ItemGotFocus)
+
+If (#UserInterfaceLocked.Not)
+#CurrentNoteGUID := #DF_NOTE_GUID
+Set Com(#AVLOCALTIMER) Componenttag(Show) Interval(2)
+#COM_OWNER.avGotoBusyState Showbusytext("Loading") Animated(False)
+Endif
+
+Endroutine
+
+* --------------------------------------------------------------------------
+Evtroutine Handling(#CreateNewButton.Click)
+
+Set Com(#AVLOCALTIMER) Componenttag(New) Interval(2)
+#COM_OWNER.avGotoBusyState Showbusytext("Creating") Animated(False)
+
+Endroutine
+
+* --------------------------------------------------------------------------
+Evtroutine Handling(#RefreshButton.Click)
+
+Set Com(#AVLOCALTIMER) Componenttag(Refresh) Interval(2)
+#COM_OWNER.avGotoBusyState Showbusytext("Refreshing") Animated(False)
+
+Endroutine
+
+* --------------------------------------------------------------------------
+Evtroutine Handling(#DF_Note_NoteDetailPanel.DeletedNoteDetails) Guid(#GUID)
+
+Define_Com Class(#Std_Int) Name(#PreviousEntryNumber)
+
+* Lock the interface
+#UserInterfaceLocked := True
+
+* Update an existing ite,
+Selectlist Named(#NotesList) Where(#DF_NOTE_GUID = #GUID)
+#PreviousEntryNumber := #NotesList.CurrentItem.Entry - 1
+Dlt_Entry From_List(#NotesList)
+Endselect
+
+* Try to select the previous list entry
+If (#PreviousEntryNumber < 1)
+#PreviousEntryNumber := 1
+Endif
+
+Get_Entry Number(#PreviousEntryNumber) From_List(#NotesList)
+If_Status Is(*okay)
+Set Com(#NotesList.CurrentItem) Selected(True) Focus(True)
+#CurrentNoteGUID := #DF_NOTE_GUID
+Set Com(#AVLOCALTIMER) Componenttag(Show) Interval(2)
+#COM_OWNER.avGotoBusyState Showbusytext("Loading") Animated(False)
+Endif
+
+* Unlocked
+#UserInterfaceLocked := False
+
+Endroutine
+
+* --------------------------------------------------------------------------
+Evtroutine Handling(#DF_Note_NoteDetailPanel.UpdatedNoteDetails) Guid(#GUID) Updated(#Updated) Subject(#Subject)
+
+* Locked
+#UserInterfaceLocked := True
+
+* Update an existing ite,
+Selectlist Named(#NotesList) Where(#DF_NOTE_GUID = #GUID)
+#DF_NOTE_Updated := #Updated
+#DF_NOTE_Subject := #Subject
+Upd_Entry In_List(#NotesList)
+#UserInterfaceLocked := False
+Return
+Endselect
+
+* If we reach here, create a new item
+#DF_NOTE_GUID := #GUID
+#DF_NOTE_Updated := #Updated
+#DF_NOTE_Subject := #Subject
+Add_Entry To_List(#NotesList)
+Set Com(#NotesList.CurrentItem) Selected(True) Focus(True)
+#NotesList.VerticalScrollTo Item(#NotesList.CurrentItem) Scrollposition(Visible)
+
+#UserInterfaceLocked := False
+
+Endroutine
+
+* --------------------------------------------------------------------------
+Evtroutine Handling(#AVLOCALTIMER.Tick)
+
+#AVLOCALTIMER.Interval := 0
+
+Case (#avLocalTimer.ComponentTag.UpperCase)
+
+When (= Show)
+#DF_Note_NoteDetailPanel.ShowExistingNote Forguid(#CurrentNoteGUID) Forboitem(#com_owner.avAssociatedInstance)
+
+When (= New)
+#DF_Note_NoteDetailPanel.MakeNewNote Forboitem(#com_owner.avAssociatedInstance)
+
+When (= Refresh)
+#Com_Owner.LoadNoteList
+
+Endcase
+
+#COM_OWNER.avGotoFreeState
+
+Endroutine
+
+End_Com
+
+

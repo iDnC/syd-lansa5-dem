@@ -1,0 +1,24 @@
+* ---------------------------------------------------------------------------------
+* This is the "<<CAPTION>>" command handler for framework <<FRAMEWORK>>
+* It was created on <<CREATEDDATE>> by <<CREATEDUSER>>
+* It is a framework level command executed from the toolbar
+* ---------------------------------------------------------------------------------
+Begin_Com Role(*EXTENDS #VF_AC010O) Height(185) Width(441)
+
+* Temporary attachment item and label - delete when ready
+Define_Com Class(#PRIM_ATLI) Name(#AttachItem1) Manage(#TemporaryMessage) Parent(#MainPanelAttachmentManager) Attachment(Center) Marginbottom(8) Marginleft(8) Marginright(8) Margintop(8)
+
+Define_Com Class(#Prim_Labl) Name(#TemporaryMessage) Displayposition(1) Tabstop(False) Parent(#COM_OWNER) Tabposition(1) Height(169) Left(8) Top(8) Width(425) Style(#BigText) Alignment(Center) Verticalalignment(Center) Caption('This is your <<CAPTION>> command handler <<OBJECT_NAME>>. Delete this label and add your own content.')
+
+Define_Com Class(#Prim_vs.Style) Name(#BigText) Fontsize(14) Fontunits(Point) Textcolor(18:69:114)
+
+Mthroutine Name(uExecute) Options(*REDEFINE)
+
+* Do the ancestor thing
+Invoke Method(#Com_Ancestor.uExecute) Gotofreestate(#GotoFreeState) Switchcallerreference(#SwitchCallerReference)
+
+* Add your custom logic here .....
+
+Endroutine
+
+End_Com

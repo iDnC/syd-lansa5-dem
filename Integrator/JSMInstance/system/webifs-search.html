@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>WebIFS Search</title>
+<!-- Mobile -->
+<meta name="MobileOptimized" content="320">
+<meta name="HandheldFriendly" content="true">
+<meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1.0;"/>
+
+<script>
+if ( typeof WEBIFSSEARCH === 'undefined' )
+{
+    WEBIFSSEARCH = {} ;
+
+    if ( window.opera )
+    {
+        history.navigationMode='compatible';
+    }
+
+    (function ()
+    {
+        var m_template = null;
+        var m_mouseOverGoto = null;
+        var m_mouseOverOpen = null;
+
+        WEBIFSSEARCH.begin = function( template,
+                                       folderPath,
+                                       mouseOverBack,
+                                       mouseOverGoto,
+                                       mouseOverOpen,
+                                       columnName,
+                                       columnSize,
+                                       columnDate )
+        {
+            m_template = template;
+            m_mouseOverGoto = mouseOverGoto;
+            m_mouseOverOpen = mouseOverOpen;
+
+            document.title = "WebIFS Search " + folderPath;
+
+            /*
+                Navigation bar
+            */
+
+            document.getElementById("id-webifs-back").title = mouseOverBack;  // Mouse over back
+
+            /*
+                Table head
+            */
+
+            var table = document.getElementById("id-webifs-table");
+
+            var row = document.createElement("tr");
+
+            row.setAttribute("class", "webifs-head");
+            row.appendChild(createCell("","webifs-head-goto"));          // Goto (blank)
+            row.appendChild(createCell(columnName,"webifs-head-name"));  // Name
+            row.appendChild(createCell(columnSize,"webifs-head-size"));  // Size
+            row.appendChild(createCell(columnDate,"webifs-head-date"));  // Date
+
+            table.appendChild(row);
+        }
+
+        WEBIFSSEARCH.end = function()
+        {
+        }
+
+        WEBIFSSEARCH.addRowBegin = function()
+        {
+        }
+
+        WEBIFSSEARCH.addRow = function(fileName,
+                                       fileURL,
+                                       fileSize,
+                                       lastModified,
+                                       lastModifiedDate)
+        {
+            function createCellGoto()
+            {
+                var cell = document.createElement("td");
+                cell.setAttribute("class","webifs-cell-goto");
+
+                var link = document.createElement("a");
+                link.setAttribute("class","webifs-image-goto");
+                link.setAttribute("onclick","WEBIFSSEARCH.submitOpenFolder(event)");
+                var path = window.location.pathname ;
+                var index = fileURL.lastIndexOf("/");
+                if ( index != -1 )
+                {
+                    if (path.substr(-1) !== "/")
+                    {
+                        path = path + "/";
+                    }
+                    path = path + fileURL.substring(0,index);
+                }
+                if ( m_template )
+                {
+                    path = path + "?template=" + m_template;
+                }
+                link.href = path;
+                link.title = m_mouseOverGoto;
+
+                cell.appendChild(link);
+                return cell;
+            }
+
+            function createCellName()
+            {
+                var cell = document.createElement("td");
+                cell.setAttribute("class","webifs-cell-name");
+
+                var span = document.createElement("span");
+                span.setAttribute("class","webifs-cell-name-span");
+
+                var link = document.createElement("a");
+                link.setAttribute("class","webifs-cell-name-link");
+                var path = window.location.pathname ;
+                if (path.substr(-1) !== "/")
+                {
+                    path = path + "/";
+                }
+                link.href = path + fileURL;
+                link.title = m_mouseOverOpen;
+                setText(link, fileName);
+
+                span.appendChild(link);
+                cell.appendChild(span);
+                return cell;
+            }
+
+            function createCellSize()
+            {
+                var cell = document.createElement("td");
+                cell.setAttribute("class","webifs-cell-size");
+                setText(cell,fileSize);
+                return cell;
+            }
+
+            function createCellDate()
+            {
+                var cell = document.createElement("td");
+                cell.setAttribute("class","webifs-cell-date");
+                setText(cell,lastModifiedDate);
+                return cell;
+            }
+
+            /*
+                Add file/folder row
+            */
+
+            var table = document.getElementById("id-webifs-table");
+
+            var row = document.createElement("tr");
+
+            row.appendChild(createCellGoto());  // File image (link)
+            row.appendChild(createCellName());  // File name (link)
+            row.appendChild(createCellSize());  // File size
+            row.appendChild(createCellDate());  // File date
+
+            table.appendChild(row);
+        }
+
+        WEBIFSSEARCH.addRowEnd = function()
+        {
+        }
+
+        WEBIFSSEARCH.pageLoad = function()
+        {
+            wait(false);
+        }
+
+        WEBIFSSEARCH.pageShow = function()
+        {
+            /*
+                Firefox, Safari load back/forward pages from the BFCache
+            */
+            wait(false);
+        }
+
+        WEBIFSSEARCH.submitOpenFolder = function(event)
+        {
+            /*
+                Only wait on folder links, a user can cancel a file saveas dialog and the wait will still be active
+            */
+            wait(true);
+        }
+
+        WEBIFSSEARCH.submitBack = function(event)
+        {
+            window.history.back();
+        }
+
+        function createCell(text,classname)
+        {
+            var cell = document.createElement("td");
+
+            if ( classname )
+            {
+                cell.setAttribute("class",classname);
+            }
+            
+            setText(cell,text);
+
+            return cell;
+        }
+
+        function setText(element,text)
+        {
+            while (element.firstChild !== null)
+            {
+                element.removeChild(element.firstChild);
+            }
+            element.appendChild(document.createTextNode(text));
+        }
+
+        function wait(state)
+        {
+            if ( state )
+            {
+                document.getElementById("id-webifs-wait").style.display='block';
+
+                return;
+            }
+
+            document.getElementById("id-webifs-wait").style.display='none';
+        }
+
+    }() ) ;
+}
+</script>
+<style>
+*
+{
+    margin:0;
+    padding:0;
+}
+body
+{
+    font-family: arial, helvetica, 'Sans Serif';
+    font-size: 80%;
+}
+.webifs-nav-bar
+{
+    padding: 1em;
+    border-top: #858585 0.1em solid;
+    border-bottom: #000000 0.1em solid;
+    background: #646464; /* Old browsers */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzY0NjQ2NCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMyNTI1MjUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top, #646464 0%, #252525 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#646464), color-stop(100%,#252525)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #646464 0%,#252525 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #646464 0%,#252525 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #646464 0%,#252525 100%); /* IE10+ */
+    background: linear-gradient(top, #646464 0%,#252525 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#646464', endColorstr='#252525',GradientType=0 ); /* IE6-8 */
+}
+.webifs-path
+{
+    color:white;
+    text-align:left;
+    padding-left:8px;
+    white-space:nowrap;
+    text-shadow: black 0 1px 0;
+    height:40px;
+    line-height: 40px;
+    border-top: #7e8a92 0.1em solid;
+    border-bottom: #989ea4 0.1em solid;
+    background: #95a4ae; /* Old browsers */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzk1YTRhZSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNiN2MxYzgiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top, #95a4ae 0%, #b7c1c8 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#95a4ae), color-stop(100%,#b7c1c8)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #95a4ae 0%,#b7c1c8 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #95a4ae 0%,#b7c1c8 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #95a4ae 0%,#b7c1c8 100%); /* IE10+ */
+    background: linear-gradient(top, #95a4ae 0%,#b7c1c8 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#95a4ae', endColorstr='#b7c1c8',GradientType=0 ); /* IE6-8 */
+}
+
+/* Table files and folders */
+.webifs-table
+{
+    border-collapse: collapse;
+    border-spacing: 0px;
+    width: 100%;
+    max-width: 100%;
+}
+tr.webifs-head
+{
+    font-weight: bold;
+}
+.webifs-table td
+{
+    padding-left: 0.5em;
+    height: 48px;
+    border-bottom: solid 0.1em #e0e0e0;
+}
+
+/* Table head */
+.webifs-head-goto
+{
+    text-align: left;
+    vertical-align: middle;
+}
+.webifs-head-name
+{
+    text-align: left;
+    vertical-align: middle;
+}
+.webifs-head-size
+{
+    text-align: right;
+    vertical-align: middle;
+}
+.webifs-head-date
+{
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Table cells */
+.webifs-cell-goto
+{
+    padding-left: 2em;
+    text-align: left;
+    white-space: nowrap;
+    width: 30px;
+}
+.webifs-cell-name-span
+{
+    display: inline-block;
+    overflow: hidden;
+    width: 100px;
+}
+.webifs-cell-name
+{
+    padding-left: 0.5em;
+    text-align: left;
+    overflow: hidden;
+}
+.webifs-cell-name-link
+{
+    display:block;
+    width: 100%;
+    height: 100%;
+    line-height:48px;
+    white-space: nowrap;
+    text-decoration: none; /* Hide anchor underline */
+}
+.webifs-cell-size
+{
+    padding-left: 2em;
+    text-align: right;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+.webifs-cell-date
+{
+    padding-left: 2em;
+    padding-right: 0.5em;
+    text-align: right;
+    vertical-align: middle;
+}
+
+/* Images */
+.webifs-image-goto
+{
+    border:0;
+    width: 48px;
+    height: 48px;
+    cursor:pointer;
+    display: block;
+    background: no-repeat url("data:image/png;base64,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");
+}
+.webifs-image-back
+{
+    border:0;
+    width: 32px;
+    height: 32px;
+    display:block;
+    cursor:default;
+    margin: 0 1.4em;
+    text-decoration: none;
+    background: no-repeat url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAATNJREFUeNpi/P//P8NAAiaGAQbD0gHCQFwLxOpEqQalASpibSC+8B8CJhCjh5oh4AXEe4FYH8rnpmcU5AHxRiAWRxL7R4xGFgotZgPiPiDOJtcAShwgAcQLgNidEh+Q6wBjIF5KdEqnchoIAeLd1LCcHAdUAPFKIBakVtYhNgq4gHgKECdSu9QixgFyQLwIiO1pURQTcoAFEC8HYgVa1QX4HMAPxKuAWHagKiNWIBYayNrwDRDnA/HPgayO5wKxLxA/H8j2AKjQcQDi0wPZILkFxG7QRDlgLaIPQBwBxK0D2SQDNaFroCXi14FsE4KqYU8gfjiQjdLD0MR5ZCBbxQ+gIbFoIJvlX4A4HtoURwaM9O4XtABxJBB/REqwdO8XgLA5EG8DYidi1DOOdk4H2gEAAQYA6HTtBFEfBggAAAAASUVORK5CYII=");
+}
+
+.webifs-wait
+{
+    display:none;
+    top:0;
+    right:0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #000000;
+    opacity:0.5;
+    filter:alpha(opacity=50)
+}
+
+/* 480px */
+@media only screen and (min-width: 480px) {
+.webifs-table
+{
+    table-layout: auto;
+}
+.webifs-cell-name-span
+{
+    display: inline-block;
+    overflow: hidden;
+    width: 220px;
+    line-height: 48px;
+}
+}
+
+/* 600px */
+@media only screen and (min-width: 600px) {
+.webifs-cell-name-span
+{
+    width: 300px;
+}
+}
+
+/* 768px */
+@media only screen and (min-width: 768px) {
+.webifs-nav-bar
+{
+    padding: 0.5em;
+}
+.webifs-nav-head
+{
+    height: 24px;
+}
+.webifs-nav-head form{
+    height: 24px;
+}
+.webifs-table td
+{
+    height: 30px;
+}
+.webifs-head-size
+{
+    text-align: right;
+}
+.webifs-cell-name-span
+{
+    width: 460px;
+}
+.webifs-cell-name-link
+{
+    display:block;
+    width: 100%;
+    height: 32px;
+    line-height:32px;
+}
+.webifs-image-goto
+{
+    background-size: 32px 32px;
+    width: 32px;
+    height: 32px;
+}
+.webifs-image-back
+{
+    background-size: 24px 24px;
+    height: 24px;
+}
+}
+
+/* 992px */
+@media only screen and (min-width: 992px) {
+.webifs-cell-name-span
+{
+    width: 680px;
+}
+.webifs-image-goto
+{
+    background-size: 32px 32px;
+    width: 32px;
+    height: 32px;
+}
+}
+
+/* 1382px */
+@media only screen and (min-width: 1382px) {
+body{
+    max-width: 1280px;
+    text-align: center;
+    margin: 0 auto;
+}
+}
+</style>
+</head>
+<body onload="WEBIFSSEARCH.pageLoad()" onpageshow="WEBIFSSEARCH.pageShow()">
+
+<!-- Navigation Bar -->
+<div class="webifs-nav-bar">
+  <table class="webifs-nav-head">
+  <tr>
+  <td>
+    <a href="javascript:void(0)" id="id-webifs-back" class="webifs-image-back" onclick="WEBIFSSEARCH.submitBack(event)"></a>
+  </td>
+  </tr>
+  </table>
+</div>
+
+<!-- Path -->
+<div class="webifs-path">
+  <h2 id="id-webifs-path"></h2>
+</div>
+
+<!-- Table of files and folder -->
+<table id="id-webifs-table" class="webifs-table"></table>
+
+<!-- Wait -->
+<div id="id-webifs-wait" class="webifs-wait"></div>
+
+</body>
+</html>

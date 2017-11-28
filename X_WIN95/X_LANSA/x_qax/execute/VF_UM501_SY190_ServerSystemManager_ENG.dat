@@ -1,0 +1,170 @@
+* ------------------------------------------------------------------------------------------------
+* This is a generated example of a shared server system manager.
+* Add new methods, properties and events to this object as you see fit.
+* It was created on <<CREATEDDATE>> by <<CREATEDUSER>>.
+* ------------------------------------------------------------------------------------------------
+Begin_Com Role(*EXTENDS #PRIM_OBJT)
+
+* ----------------------------------------------------------------------------------------------------------
+* Initialize the execution context for a server module
+Mthroutine Name(InitializeServiceRoutine)
+Define_Map For(*Both) Class(#Prim_dc.UnicodeString) Name(#PersistentString1)
+Define_Map For(*Both) Class(#Prim_dc.UnicodeString) Name(#PersistentString2)
+Define_Map For(*Both) Class(#Prim_dc.UnicodeString) Name(#PersistentString3)
+Define_Map For(*Both) Class(#Prim_dc.UnicodeString) Name(#PersistentString4)
+Define_Map For(*Both) Class(#Prim_dc.UnicodeString) Name(#PersistentString5)
+
+* Do any execution context initialization at the start of any server module
+* For example, set the user profile that all Server Module jobs will run 
+* under, or set the library list that all Server Module jobs will run under
+
+
+Endroutine
+
+* ----------------------------------------------------------------------------------------------------------
+* Clean up and terminate the execution context for a server module
+Mthroutine Name(TerminateServiceRoutine)
+
+* Do any clean up when the server module's routine has ended
+
+Endroutine
+
+* ----------------------------------------------------------------------------------------------------------
+* Build an SQL WHERE clause
+Mthroutine Name(uMakeWhereString)
+Define_Map For(*both) Class(#prim_alph) Name(#uWhere) Help('The string to contain the where clause')
+Define_Map For(*input) Class(#prim_alph) Name(#uCompareValue) Help('The value to be compared, as a string')
+Define_Map For(*input) Class(#prim_alph) Name(#uLongName) Help('The field long name')
+Define_Map For(*input) Class(#prim_alph) Name(#uShortname) Help('The field short name')
+Define_Map For(*input) Class(#prim_boln) Name(#uUnicode) Mandatory(False) Help('Is the field a unicode field True/False')
+Define_Map For(*input) Class(#prim_alph) Name(#uType) Help('The type of field - ALPHA NUMERIC DATE DATETIME ')
+Define_Map For(*input) Class(#prim_alph) Name(#uOperator) Help('The comparison operation - BEGINS CONTAINS ENDS GT GE LT LE EQ')
+Define_Map For(*input) Class(#prim_alph) Name(#uNoSearchValue) Mandatory('<<UNSPECIFIED>>') Help('The value that indicates that no search is required - May be unspecified in which case standard values like blank/0 are used')
+Define_Map For(*input) Class(#prim_boln) Name(#uIgnoreCase) Mandatory(False) Help('Is the search to be case insensitive - True/False')
+Define_Map For(*both) Class(#prim_boln) Name(#uValid) Help('Is the where clause valid? (does not contain embedded blanks, quotes etc)  - True/False')
+
+If (#uValid)
+* You must add your own SQL Injection checking here
+
+* Elementary checks on user entered data which may contain SQL Injection
+#uCompareValue := #uCompareValue.Trim
+If (#uCompareValue.Contains( ' ' ) Or #uCompareValue.Contains( #QUOTE ) Or #uCompareValue.Contains( ';' ) Or #uCompareValue.Contains( '"' ))
+* embedded blanks or quote or SQL new statement
+#uValid := False
+Return
+Endif
+
+
+If (#uNoSearchValue *EQ '<<UNSPECIFIED>>')
+* Exclude searches for the standard default values
+Case (#uType.Uppercase)
+When (= ALPHA)
+If (#uCompareValue = *BLANKS)
+Return
+Endif
+When (= NUMERIC)
+If (#uCompareValue.IsNumber AndIf (#uCompareValue.AsNumber = 0))
+Return
+Endif
+If (#uCompareValue = *blanks)
+Return
+Endif
+When (= DATE)
+If (#uCompareValue.IsDate( ISO ))
+If (#uCompareValue.AsDate( ISO ).IsNull Or #uCompareValue.AsDate( ISO ).IsSqlNull)
+Return
+Endif
+Endif
+When (= DATETIME)
+If (#uCompareValue.IsDateTime( ISO ))
+If (#uCompareValue.AsDateTime( ISO ).IsNull Or #uCompareValue.AsDateTime( ISO ).IsSqlNull)
+Return
+Endif
+Endif
+
+Endcase
+Else
+* Exclude searches based on the NoSearchValue
+If (#uCompareValue = #uNoSearchValue)
+Return
+Endif
+Endif
+
+
+* Add AND if there is a previous part of the WHERE statement and we are going to add more to it
+If (#uWhere *NE *blanks)
+#uWhere += ' AND '
+Endif
+
+If (#uIgnoreCase And (#uType = ALPHA))
+#uCompareValue := #uCompareValue.UpperCase
+Endif
+
+If (*OSAPI = IBMI)
+If (#uIgnoreCase And (#uType = ALPHA))
+#uWhere += '( UPPER(' + #uShortname.UpperCase + ') '
+Else
+#uWhere += '(' + #uShortname.UpperCase + ' '
+Endif
+Else
+If (#uIgnoreCase And (#uType = ALPHA))
+#uWhere += '( UPPER(' + #uLongName.UpperCase + ') '
+Else
+#uWhere += '(' + #uLongName.UpperCase + ' '
+Endif
+Endif
+
+Case (#uOperator)
+When (= BEGINS = CONTAINS = ENDS)
+#uWhere += ' LIKE '
+
+When (= GT)
+#uWhere += ' >  '
+
+When (= GE)
+#uWhere += ' >=  '
+
+When (= LT)
+#uWhere += ' <  '
+
+When (= LE)
+#uWhere += ' <=  '
+
+When (= EQ)
+#uWhere += ' =  '
+
+Endcase
+
+If (#uUnicode)
+If (*OSAPI = IBMI)
+* Convert string to unicode so it can be compared with the unicode field
+#uWhere += N
+Endif
+Endif
+
+If (#uType *NE NUMERIC)
+#uWhere += #QUOTE
+Endif
+
+Case (#uOperator)
+When (= CONTAINS = ENDS)
+#uWhere += '%'
+Endcase
+
+#uWhere += #uCompareValue.Trim
+
+Case (#uOperator)
+When (= CONTAINS = BEGINS)
+#uWhere += '%'
+Endcase
+
+If (#uType *NE NUMERIC)
+#uWhere += #QUOTE
+Endif
+
+#uWhere += ')'
+
+Endif
+Endroutine
+
+End_Com

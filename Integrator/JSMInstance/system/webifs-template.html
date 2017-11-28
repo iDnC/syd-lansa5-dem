@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>WebIFS</title>
+<!-- Mobile -->
+<meta name="MobileOptimized" content="320">
+<meta name="HandheldFriendly" content="true">
+<meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1.0;"/>
+
+<script>
+if ( typeof WEBIFS === 'undefined' )
+{
+    /*
+        File Download Options
+
+            1. Click link to view image & PDF files, other file types will prompt with Save As dialog.
+            2. Right click on link and use 'Save Link As' menu option.
+            3. Drag and Drop link to desktop (Chrome only).
+    */
+
+    WEBIFS = {} ;
+
+    if ( window.opera )
+    {
+        history.navigationMode='compatible';
+    }
+
+    (function ()
+    {
+        var m_isRoot = false;
+        var m_template = null;
+        var m_folderPath = null;
+        var m_allowCreate = false;
+        var m_allowUpload = false;
+        var m_allowSearch = false;
+        var m_allowDelete = false;
+        var m_allowRename = false;
+        var m_messageCreate = null;
+        var m_messageUpload = null;
+        var m_messageSearch = null;
+        var m_messageDelete = null;
+        var m_messageRename = null;
+        var m_mouseOverOpen = null;
+        var m_mouseOverRename = null;
+        var m_mouseOverDelete = null;
+
+        WEBIFS.begin = function( isRoot,
+                                 template,
+                                 folderPath,
+                                 messageUpload,
+                                 messageCreate,
+                                 messageDelete,
+                                 messageRename,
+                                 messageSearch,
+                                 mouseOverBack,
+                                 mouseOverReload,
+                                 mouseOverCreate,
+                                 mouseOverUpload,
+                                 mouseOverSearch,
+                                 mouseOverRename,
+                                 mouseOverOpen,
+                                 mouseOverDelete,
+                                 columnName,
+                                 columnSize,
+                                 columnDate,
+                                 allowCreate,
+                                 allowUpload,
+                                 allowDelete,
+                                 allowRename,
+                                 allowSearch )
+        {
+            m_isRoot = isRoot;
+            m_template = template;
+            m_folderPath = folderPath;
+            m_allowCreate = allowCreate;
+            m_allowUpload = allowUpload;
+            m_allowSearch = allowSearch;
+            m_allowDelete = allowDelete;
+            m_allowRename = allowRename;
+            m_messageCreate = messageCreate;
+            m_messageUpload = messageUpload;
+            m_messageSearch = messageSearch;
+            m_messageDelete = messageDelete;
+            m_messageRename = messageRename;
+            m_mouseOverOpen = mouseOverOpen;
+            m_mouseOverRename = mouseOverRename;
+            m_mouseOverDelete = mouseOverDelete;
+
+            document.title = "WebIFS " + folderPath;
+
+            /*
+                Navigation bar
+            */
+
+            if ( m_isRoot )
+            {
+                document.getElementById("id-webifs-back").setAttribute("class","webifs-image-back-disabled");
+            }
+            else
+            {
+                document.getElementById("id-webifs-back").title = mouseOverBack;  // Mouse over back
+            }
+
+            document.getElementById("id-webifs-reload").title = mouseOverReload;  // Mouse over reload
+
+            if ( m_allowCreate )
+            {
+                document.getElementById("id-webifs-create").title = mouseOverCreate;  // Mouse over create folder
+            }
+            else
+            {
+                document.getElementById("id-webifs-create").disabled = true;
+                document.getElementById("id-webifs-create").setAttribute("class","webifs-image-create-disabled");
+            }
+
+            if ( m_allowUpload )
+            {
+                document.getElementById("id-webifs-upload-div").title = mouseOverUpload;  // Mouse over upload file
+            }
+            else
+            {
+                document.getElementById("id-webifs-upload-file").disabled = true;
+                document.getElementById("id-webifs-upload-div").setAttribute("class","webifs-image-upload-disabled");
+            }
+
+            if ( m_allowSearch )
+            {
+                document.getElementById("id-webifs-search").title = mouseOverSearch;  // Mouse over search
+            }
+            else
+            {
+                document.getElementById("id-webifs-search").disabled = true;
+                document.getElementById("id-webifs-search").setAttribute("class","webifs-image-search-disabled");
+            }
+
+            /*
+                Folder path
+            */
+
+            setText(document.getElementById("id-webifs-path"),m_folderPath);
+
+            /*
+                Table head
+            */
+
+            var table = document.getElementById("id-webifs-table");
+
+            var row = document.createElement("tr");
+
+            row.setAttribute("class", "webifs-head");
+            row.appendChild(createCell("","webifs-head-rename"));        // Rename (blank)
+            row.appendChild(createCell(columnName,"webifs-head-name"));  // Name
+            row.appendChild(createCell(columnSize,"webifs-head-size"));  // Size
+            row.appendChild(createCell(columnDate,"webifs-head-date"));  // Date
+            row.appendChild(createCell("","webifs-head-delete"));        // Delete (blank)
+
+            table.appendChild(row);
+        }
+
+        WEBIFS.end = function()
+        {
+        }
+
+        WEBIFS.addRowBegin = function()
+        {
+        }
+
+        WEBIFS.addRow = function(fileName,
+                                 fileURL,
+                                 isFolder,
+                                 fileSize,
+                                 lastModified,
+                                 lastModifiedDate)
+        {
+            function createCellRename()
+            {
+                var name = fileName;
+                var title = m_mouseOverRename ;
+
+                // Select file, folder or sharedbox image class
+
+                var className = "webifs-image-file" ;
+
+                if ( isFolder )
+                {
+                    className = "webifs-image-folder";
+
+                    if ( isSharedBox() )
+                    {
+                        /*
+                            Disable Rename, relies on WEBIFS.submitRename returning false due to empty name value
+                        */
+                        name = "" ;
+                        title = "" ;
+                        className = "webifs-image-sharedbox";
+                    }
+                }
+
+                if ( !m_allowRename )
+                {
+                    /*
+                        Disable Rename, relies on WEBIFS.submitRename returning false due to empty name value
+                    */
+                    name = "" ;
+                    title = "" ;
+                }
+
+                var cell = document.createElement("td");
+                cell.setAttribute("class","webifs-cell-rename");
+                cell.innerHTML = '<form action="" method="POST" autocomplete="off" enctype="application/x-www-form-urlencoded" onsubmit="return WEBIFS.submitRename(event,this)">' +
+                                 '<input name="ACTION" type="hidden" value="RENAME"/>' +
+                                 '<input name="NAME"   type="hidden" value="' + name + '"/>' +
+                                 '<input name="TONAME" type="hidden" value=""/>' +
+                                 '<input type="submit" class="' + className + '" title="' + title +'" value=""/>' +
+                                 '</form>';
+                return cell;
+            }
+
+            function createCellName()
+            {
+                var cell = document.createElement("td");
+                cell.setAttribute("class","webifs-cell-name");
+
+                var span = document.createElement("span");
+                span.setAttribute("class","webifs-cell-name-span");
+
+                var link = document.createElement("a");
+                link.setAttribute("class","webifs-cell-name-link");
+
+                if ( isFolder )
+                {
+                    link.setAttribute("onclick","WEBIFS.submitOpenFolder(event)");
+                }
+                else
+                {
+                    if ( navigator.userAgent.indexOf("Chrome/") >= 0 )
+                    {
+                        /*
+                            Allow chrome file download Dnd
+                        */
+                        link.draggable=true;
+                        link.addEventListener("dragstart",onDragStart,false);
+                    }
+                }
+
+                var path = window.location.pathname ;
+                if (path.substr(-1) !== "/")
+                {
+                    path = path + "/";
+                }
+                link.href = path + fileURL;
+                link.title = m_mouseOverOpen;
+                setText(link, fileName);
+
+                span.appendChild(link);
+                cell.appendChild(span);
+                return cell;
+            }
+
+            function onDragStart( event )
+            {
+                /*
+                    "DownloadURL" only works for Chrome
+                */
+                var element = event.target;
+                var index = element.href.lastIndexOf ( "/" );
+                var name = element.href.substring( index + 1 ) ;
+                event.dataTransfer.setData("DownloadURL", "application/octet-stream" + ":" + name + ":" + element.href);
+                var image = new Image() ;
+                image.src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAACihJREFUeNrsWUtsXGcVPue/M56XZxy79qR1k5CENG0iQqW0SqmQEAiVLNgguikgIRaAhJCQQCzYlCVqkXiI7Kqk6qJdAKJBgoo3UgkRWyQjV5BUbpK2wk7s2J7Me+5/+N//uffaKckGVeQmtue+z/P7vvMPEhG8nzcB7/PtngP/662kfz36oRPwwN423FetwlyrBR8/+RjsfXCxutntPXVs795P7luYb08mEymJUgRABATdOWT+qwP6EPheckfRX+mPobvY3omkz5tP6pe71z1F31Mpl6eudzqdtc2tP1/v937797feunms3YaGuvbMq+fh4vIyrL7ztnVA3yDUyzrDIcwmovWBmdY3TtYbX4OpqUXs3oLR+jqURUwWMQP8ftgxJmFwx7pg9wxgGL/Q+aTOEgF/ir8jJQntcgkWpypf7leqW3P33//yrVrte52t7XdjsFwG9B03ej14dHHx6Lee+Mgrh5vNx2n9BowmE/UgZRCKGN2wYYh28GUHQCN3DfrP6Ez0iQrOZx3Q26hPMIEOVBIx89hU5etUr3/6tfWNL3XS9HWPnsaBm/0+PLF/34Fvnjr10uF64/H+O+9CqlItXIr/G6C1D0RWWG7PvShkRO1Ld1Kfl7mQAD+mApeqLPVMxjvQ6Nw6+LFEvHx+pvXMX9P0YnBgOJ7AZ/Yf+PbxpPRkb2UFhpSq7kaQmOwe2l22GL9QOPmUZK29fVRsj7itI29Ca3bPvi8ePPidpWtvP62TZBw4sjB/9FSjcRpWV6Hf64JQ9W4jT3CnNMcdAMybj3f2MJ09XcK2FGCk+gKGffhwUvroI63Wk+qK140DB8qlEwu97qF0pGp+MgbyDatuoDt9aSHcd38/OjDTv0iSKcduKmF2fn72wWbzSHBg3O1Whtevi3qSQKrKyTsPd5GB94o33YUDRLFpJuMxpNUKlARORxSSMqFbHdVdqgDSVKEK2Zt8ALH4Zg2FxFPto6VLjzzeY5YXiKOOcwcxmyhi1+td4ZsfTXPTcASk+EqOhklwYFISsH7jOow3tmFDWCOEjwFyHHfvQQut1kkGOcgLnwKERkKzqGR4AhlLGKh2UKoCaK5X1UDOGUQfCoSKQsztfhduTU8PgwPb9cbmzxvNzngoZ4eq/jWpIfIA2hBhoF7KGIoYiUD3mTc4OuBMdfVAHIoMj7hOIwxZQVMF7Hr3zHK9pqwuT5Y73e3gwLhcGSx+5auDmfl56G5t2a53RmGuon2Z+DLKIiOrOWSM7MCAZyFPW5y/yaGPvc41sdmXUK/XgSYSl86exeBAoq46+cHDcPTho7C2ugYiES5iDBrRRxZ9efIOC03mK86Um8ukNUjfKV2Q0Z13WaM8Pah2NM+Q4YT+rLQYNJVWGw1H+IfmtIg9kKZjpZ0mzekmdLuKB1R9++jaP8KyMmtm3MnoHZDHtwkiRMczF3o+RgcAynjpX6L+SpcNdXMqU2gpG3uiF1wzDugTSZKYA7VKVZWQCMk15RTwWMT3ssgTa3TMQah1IFuOyNidiDG3LjUixsLZSGg7qwqBJulEXZrK4ICcyMBXpVLJNZEwpZQx1jc3ZSRPcLKA/RjxjE+uiASFOJiyERkNZVuBot6V9um6Qkhm1CgWNIpNpXSIhDEykG/uvHbxXYNZPYRFMvNkmeEWZ3jeFuLZYvVY8hHxUfT1Z2AsBSMrhMDQE8EIBJbuPM3qF0q275z25cgQjaKVgSMAKKNSLQDoP7KQzZK/gNgd8UXsl/QTFN1GH1BBSETYpaCTCYnDQOzrwBPWSYM8kk96svCWUnxKFL/oUEMYRwQjmwIr5CZrzKpShELEsjoHTbD0X92TqZQBfbx448gVwIk1YCmMgQi5qOtycuWFUBhWyJFVIGbIQExk4V2GH30qUdcKx/zmmHIi4JkHDOmcySBW5KJS3GVw5m7Qk6TwBhlvOD9gbpZ1mmYno9HNnRk9ZLFdAwXo+YNPbkxLSQOtro0EZfqFZQCygi2QE0GqoxIaMN7oo2Eg0UsYKKJZIGtko6ZAV+NgHDBGuuhHSHWEZsrMGx2zS5iH0R0GcS+qPCxmJDTvA0nFlSai3EiWlyAOa2SGs42Rkrymc1MhZWFO2yI4jHKrdOfbVYjs4oiOBiaYgUBwmI2Zuqd8KNgqRCyBuCQT69oLtngZhaUYXjZmQcbSfywhkrQzIZkoOBw2ww5mZhHAGHbcdXzELMwSy4ygnG7yTUsFxUsepbSBAimDQvneC0OEqcMYSQw5R7eqxggtSGr2YnJIxqKNfCIgC9WW+Cguq2AcdsLEJzCCjNJFzIHc6hnPgkCHLOjYl2Mx5TA/Fp10pINB6zt57CWDT0pK1mQPP3o9Sti+Mv9k1EJRpepNIJMSWRZCyDZbED9sVuVzcnDaeJoVgMSCwRe38sswxMorRB2jPrJ8ILPTK2diDMMT2UHa4Z+NFiMs9x6JlHU0DORpkasRWFkR7KRd7dBuNRR6mCQIbKwDLowqsCKTuANKnqp/Xjtr/WE90iyJrGmByyxyc0COuUKC+LxAwLSpNdEvexSaNGTLQirmGlzzg0gSkZQStiqhREjq8kO27KP+0MjjqtgMOpwzQoPJXAvn52Su93wLU2Ee8J6SC78d7CkITf1ZB3U8Hg/6vX4/4N+1q1fWlpaW/qk/q9ESIvSmgcrJT0zaIfej3GbQtovucQ1rI+z7RTLnKTA8xVTEicLhvwpy4Ms3lt+4/A9nr3FgY33937/8xasXNze30mazqWdkpQwdSflHUVFVBlCUzjjlkM6Y+dF1Gn6yxnLMRrcKy9fP/DAlZcyVHifn5ubMPefPn//TysrKleDA3Nzs4De/fu1333322Z8OhkNYWFgwTkg/aQaGzK8dkBsyvFbHWBwUwQuJWBYZo6JVvBEqKUCtlxCqtk1A9iqbNLye+cmZP7507tzPatVqJ/RAvd4YqmdcPfvCC6/0et3qc88/99l2e8E8qK9KTaYTKy8cMgnHcmxUDl+C+Io3BCUwwCgXDmGlAqJA5COrxX+pmxVqtZpp9NF4DD/64Y//8oPvP39GZedNlY3UgQXBkUOH9MXlfrfXVuV04uHjx5/63Oe/8IlPnT597OChg9Xp6QYkAh18RXjlsyzft19BZSfKjN5iXe1vk94Jlzkd7cFgCGurq/LChQuXXjz34u//dvHir2ZaraU9e/asq/4bX1pZiQ6YelJbOknnNzY29o9Go8MPLC4+cuShhw612+0ZfVpjVfhSjq1tFheEiM+JzpncRXxNl0kkm2EF6qWEVE923rx86cq1q1eXFZj86765uWvlqakNKa2OuJx1IJKRimZFHZ8ZDAaz3V53WjmjoEkPUMis5eublDuE+XUUBpWcO3aYOb3UJjkplUvDRr3RrdZqm8qhbXXZgC8mawdKu4x8euV3rVqrrqkaFG5xp/hlGfcHcGeYovcWp7f5dkSapQCnUPNzS+iBe9/U33Pg/9iB/wgwAOupS2DMkLysAAAAAElFTkSuQmCC";
+                event.dataTransfer.setDragImage(image,0,0);
+                event.dataTransfer.effectAllowed = "copy";
+            }
+
+            function createCellSize()
+            {
+                var cell = document.createElement("td");
+                cell.setAttribute("class","webifs-cell-size");
+                setText(cell,fileSize);
+                return cell;
+            }
+
+            function createCellDate()
+            {
+                var cell = document.createElement("td");
+                cell.setAttribute("class","webifs-cell-date");
+                setText(cell,lastModifiedDate);
+                return cell;
+            }
+
+            function createCellDelete()
+            {
+                var cell = document.createElement("td");
+                cell.setAttribute("class","webifs-cell-delete");
+                cell.innerHTML = '<form action="" method="POST" autocomplete="off" enctype="application/x-www-form-urlencoded" onsubmit="return WEBIFS.submitDelete(event,this)">' +
+                                 '<input name="ACTION" type="hidden" value="DELETE"/>' +
+                                 '<input name="NAME"   type="hidden" value="' + fileName + '"/>' +
+                                 '<input type="submit" class="webifs-image-delete" title="' + m_mouseOverDelete + '" value=""/>' +
+                                 '</form>';
+                return cell;
+            }
+
+            function canDelete()
+            {
+                if ( isSharedBox() )
+                {
+                    return false;
+                }
+
+                return true;
+            }
+
+            function isSharedBox()
+            {
+                if ( m_folderPath == "/" )
+                {
+                    if ( fileURL == "SharedBox" )
+                    {
+                        return true;
+                    }
+
+                    if ( startsWith( fileURL, "SharedBox?" ) )
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+
+            /*
+                Add file/folder row
+            */
+
+            var table = document.getElementById("id-webifs-table");
+
+            var row = document.createElement("tr");
+
+            row.appendChild(createCellRename());  // File image
+            row.appendChild(createCellName());    // File name (link)
+            row.appendChild(createCellSize());    // File size
+            row.appendChild(createCellDate());    // File date
+
+            if ( m_allowDelete && canDelete() )
+            {
+                row.appendChild(createCellDelete()); // Delete image
+            }
+            else
+            {
+                row.appendChild(createCell("",""));
+            }
+
+            table.appendChild(row);
+        }
+
+        WEBIFS.addRowEnd = function()
+        {
+        }
+
+        WEBIFS.pageLoad = function()
+        {
+            wait(false);
+        }
+
+        WEBIFS.pageShow = function()
+        {
+            /*
+                Firefox, Safari load back/forward pages from the BFCache
+            */
+            wait(false);
+        }
+
+        WEBIFS.submitOpenFolder = function(event)
+        {
+            /*
+                Only wait on folder links, a user can cancel a file saveas dialog and the wait will still be active
+            */
+            wait(true);
+        }
+
+        WEBIFS.submitDelete = function(event,form)
+        {
+            if ( !m_allowDelete )
+            {
+                return false;
+            }
+
+            wait(true);
+
+            try
+            {
+                var name = getName(form);
+
+                if ( name )
+                {
+                    if ( confirm ( m_messageDelete + " " + name ) )
+                    {
+                        return true;
+                    }
+                }
+            }
+            catch ( e )
+            {
+            }
+
+            wait(false);
+
+            return false;
+        }
+
+        WEBIFS.submitRename = function(event,form)
+        {
+            if ( !m_allowRename )
+            {
+                return false;
+            }
+
+            wait(true);
+
+            try
+            {
+                var name = getName(form);
+
+                if ( name )
+                {
+                    var value = trim ( prompt ( m_messageRename, name ) ) ;
+
+                    if ( value )
+                    {
+                        form.elements['TONAME'].value = value;
+
+                        return true;
+                    }
+                }
+            }
+            catch ( e )
+            {
+            }
+
+            wait(false);
+
+            return false;
+        }
+
+        WEBIFS.submitBack = function(event)
+        {
+            if ( m_isRoot )
+            {
+                return ;
+            }
+
+            wait(true);
+
+            var path = window.location.pathname ;
+
+            if (path.substr(-1) !== "/")
+            {
+                path = path + "/";
+            }
+
+            path = path + "../" ;
+
+            if ( m_template )
+            {
+                path = path + "?template=" + m_template;
+            }
+
+            window.location = path;
+        }
+
+        WEBIFS.submitReload = function(event)
+        {
+            wait(true);
+
+            window.location.reload (true) ;
+        }
+
+        WEBIFS.submitCreate = function(event,form)
+        {
+            if ( !m_allowCreate )
+            {
+                return false;
+            }
+
+            wait(true);
+
+            try
+            {
+                var value = trim ( prompt ( m_messageCreate, "" ) ) ;
+
+                if ( value )
+                {
+                    form.elements['NAME'].value = value;
+
+                    return true;
+                }
+            }
+            catch ( e )
+            {
+            }
+
+            wait(false);
+
+            return false;
+        }
+
+        WEBIFS.submitSearch = function(event,form)
+        {
+            if ( !m_allowSearch )
+            {
+                return false;
+            }
+
+            wait(true);
+
+            try
+            {
+                var value = trim ( prompt ( m_messageSearch, "" ) ) ;
+
+                if ( value )
+                {
+                    form.elements['NAME'].value = value;
+
+                    return true;
+                }
+            }
+            catch ( e )
+            {
+            }
+
+            wait(false);
+
+            return false;
+        }
+
+        WEBIFS.submitUpload = function(event,form)
+        {
+            if ( !m_allowUpload )
+            {
+                return false;
+            }
+
+            wait(true);
+
+            try
+            {
+                var name = getFile(form)
+
+                if ( name )
+                {
+                    if ( confirm ( m_messageUpload + " " + name ) )
+                    {
+                        return true;
+                    }
+                }
+
+                // Clear selected file
+                form.elements['FILE'].value = "";
+            }
+            catch ( e )
+            {
+            }
+
+            wait(false);
+
+            return false ;
+        }
+
+        WEBIFS.fileChosen = function(event,control)
+        {
+            if ( !m_allowUpload )
+            {
+                return;
+            }
+
+            document.getElementById("id-webifs-upload").click();
+        }
+
+        function getFile(form)
+        {
+            var input = form.elements['FILE'];
+
+            var name = input.value;
+
+            /*
+                Chrome - C:\fakepath\filename
+                IE     - C:\Users\Alick\Desktop\filename
+            */
+
+            var index = name.lastIndexOf ( "\\" );
+
+            if ( index != -1 )
+            {
+                name = name.substring( index + 1 ) ;
+            }
+
+            return name;
+        }
+
+        function getName(form)
+        {
+            var input = form.elements['NAME'];
+
+            var name = trim ( input.value );
+
+            input.value = name;
+
+            return name;
+        }
+
+        function createCell(text,classname)
+        {
+            var cell = document.createElement("td");
+
+            if ( classname )
+            {
+                cell.setAttribute("class",classname);
+            }
+
+            setText(cell,text);
+
+            return cell;
+        }
+
+        function setText(element,text)
+        {
+            while (element.firstChild !== null)
+            {
+                element.removeChild(element.firstChild);
+            }
+            element.appendChild(document.createTextNode(text));
+        }
+
+        function trim(value)
+        {
+            if ( value )
+            {
+                return value.replace ( /^\s+|\s+$/g, "" ) ;
+            }
+
+            return "";
+        }
+
+        function startsWith(value,compare)
+        {
+            if ( compare.length > value.length )
+            {
+                return false ;
+            }
+
+            if ( value.substr ( 0, compare.length ) === compare )
+            {
+                return true ;
+            }
+
+            return false ;
+        }
+
+        function wait(state)
+        {
+            if ( state )
+            {
+                document.getElementById("id-webifs-wait").style.display='block';
+
+                return;
+            }
+
+            document.getElementById("id-webifs-wait").style.display='none';
+        }
+
+    }() ) ;
+}
+</script>
+<style>
+*
+{
+    margin:0;
+    padding:0;
+}
+body
+{
+    font-family: arial, helvetica, 'Sans Serif';
+    font-size: 80%;
+}
+.webifs-nav-bar
+{
+    padding: 1em;
+    border-top: #858585 0.1em solid;
+    border-bottom: #000000 0.1em solid;
+    background: #646464; /* Old browsers */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzY0NjQ2NCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMyNTI1MjUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top, #646464 0%, #252525 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#646464), color-stop(100%,#252525)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #646464 0%,#252525 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #646464 0%,#252525 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #646464 0%,#252525 100%); /* IE10+ */
+    background: linear-gradient(top, #646464 0%,#252525 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#646464', endColorstr='#252525',GradientType=0 ); /* IE6-8 */
+}
+.webifs-path
+{
+    color:white;
+    text-align:left;
+    padding-left:8px;
+    white-space:nowrap;
+    text-shadow: black 0 1px 0;
+    height:40px;
+    line-height: 40px;
+    border-top: #7e8a92 0.1em solid;
+    border-bottom: #989ea4 0.1em solid;
+    background: #95a4ae; /* Old browsers */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzk1YTRhZSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNiN2MxYzgiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top, #95a4ae 0%, #b7c1c8 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#95a4ae), color-stop(100%,#b7c1c8)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #95a4ae 0%,#b7c1c8 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #95a4ae 0%,#b7c1c8 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #95a4ae 0%,#b7c1c8 100%); /* IE10+ */
+    background: linear-gradient(top, #95a4ae 0%,#b7c1c8 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#95a4ae', endColorstr='#b7c1c8',GradientType=0 ); /* IE6-8 */
+}
+
+/* Table files and folders */
+.webifs-table
+{
+    border-collapse: collapse;
+    border-spacing: 0px;
+    width: 100%;
+    max-width: 100%;
+}
+tr.webifs-head
+{
+    font-weight: bold;
+}
+.webifs-table td
+{
+    padding-left: 0.5em;
+    height: 48px;
+    border-bottom: solid 0.1em #e0e0e0;
+}
+
+/* Table head */
+.webifs-head-rename
+{
+    text-align: left;
+    vertical-align: middle;
+}
+.webifs-head-name
+{
+    text-align: left;
+    vertical-align: middle;
+}
+.webifs-head-size
+{
+    text-align: right;
+    vertical-align: middle;
+}
+.webifs-head-date
+{
+    text-align: center;
+    vertical-align: middle;
+}
+.webifs-head-delete
+{
+    text-align: left;
+    vertical-align: middle;
+}
+
+/* Table cells */
+.webifs-cell-rename
+{
+    padding-left: 2em;
+    text-align: left;
+    white-space: nowrap;
+    width: 30px;
+}
+.webifs-cell-name-span
+{
+    display: inline-block;
+    overflow: hidden;
+    width: 100px;
+}
+.webifs-cell-name
+{
+    padding-left: 0.5em;
+    text-align: left;
+    overflow: hidden;
+}
+.webifs-cell-name-link
+{
+    display:block;
+    width: 100%;
+    height: 100%;
+    line-height:48px;
+    white-space: nowrap;
+    text-decoration: none; /* Hide anchor underline */
+}
+.webifs-cell-size
+{
+    padding-left: 2em;
+    text-align: right;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+.webifs-cell-date
+{
+    padding-left: 2em;
+    text-align: right;
+    vertical-align: middle;
+}
+.webifs-cell-delete
+{
+    padding-left: 2em;
+    text-align: center;
+    white-space: nowrap;
+    width: 30px;
+    vertical-align: middle;
+}
+
+/* Images */
+.webifs-image-file
+{
+    border:0;
+    width: 48px;
+    height: 48px;
+    cursor:pointer;
+    background: no-repeat url("data:image/png;base64,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");
+}
+.webifs-image-folder
+{
+    border:0;
+    width: 48px;
+    height: 48px;
+    cursor:pointer;
+    text-decoration: none;
+    background: no-repeat url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABU1JREFUeNrsmc1uHEUQx6t7vf6QwSIIRQoByQIFkgNKcskBIRKOSEjkEXgGLkiA4MTbcOHEASkmnHOyBKcoxIdYwXKUWLZi7+50F13d1d01Mz3rXRtnLbQjj6unZ6a3/vWr6p6dBZhv822+zbdZbsr//27juvt/94Rj/A4/fXZ/1gI2Pr997c5SvwfKUgf6P0Bpm32h+euDhy8GlVl3IvZmIWAhNt6/dAHAIqim064P47GF1EYM/R9fvfzGxubfX7veH2cnwHmiRiZFF9nxGGUpAsU16ARduXgBNtd2fnj27b1PQalX4fNXjvZWiwBWtjPKwM6mPgvpHNkvb14heyceR2vFsRX9Ga44B/IacT/k9qPd5/B455/3XFdBwMh2Rrl2TNZiwSGEg8EIfvvrMby+ssiDBgeCxVpp+Z5aWWGh5Op99JmLy6/dq77/w7XNXUfilyTAGjs2yl1WRvnP7V249cHb8OGlN71If54sCXbjWYtpN7zLdiVs5TKa2iPfDja29wdH8HRv94bzNgswjsDA1cGz/cOagwB17DGSyXGOztB94vbeAdy+uQ69hV4SoC0HoyWoLkYKCTsIMZjF+CD34GkzhYw7s7m1A4caYW11CWJBIhkt2pwSKhY/cl9fwRefXIXl1cU0m3miVqQkOx93n4bT0iEalW5Po5UTQDdcW38L3rm4FgS43TtNlkQoEiH6SUgUgew0z1qKj0M7OK+sEHIKOi9HBQHGhIgQOypoxQ4rdhh0EBKOg5AgSoFlkVlQEBIcZjE2VWKLTqo9ISALgpaY5aNeW8DIE6DpFP3uw8bpozqExPRCKSoKo9s1Rz/S4Gk6CMKUguQ0CDo6iSnTWeyXUsjwRWRdQXqHyXl37GvAC2IqJ6Aj0wxsfaVXeZ4M10gicSEVAvr9EgGXOsZdbZy1LoVC5Dn6TYdLdPiaiejoeu1Agw4cQ6dXIjBiArQeUEEr4VxRyCugoxp0Yu3ohWIKWS+UitkLoIE1+ScEsD0NHRBjyBmtSUdOCK3a6SJAKVRJATSebgs4jo5vd9BRQsg4OqhJQ50OxhTrlQT46SqQGLpZSLs76QNprtZNAWPoKJ2jfFZ0sCSgsuG5xhMwNoznklTzBzXtqehYFILKdPyyorvoqC4BYckecgoRhRDlbGP/ODpaNwQwMaWOoZNSim0HHW1sxzqAnEKGU0hBclBz9JPDY+joFNFJ6cj28XSgKMCG5236YkYEdHIIuS2iPws6onbKAmi55lQiEd4xuocGd/MB5XtdxAzoxNqpsPAwxw9gvgaMzc7ZaLFBBIpUzoqOEulEC25bgA0CaT0INcBTdXQYQER9Mjoy6hPR0VnsODr++3tbQHjqq3wdYBgIcqRzuuB/TsdbjXm8ggAtBJhSDRh+DKFz9NVNLJQ8GUjnJqRTmACy0w06dkzNNOhYU0ghW6sBmUJpAhCipqCjsDWbZecadIgC5OMaJZ3pGIPdBCpezPwAgLWVXkZfipqKTrqmQMd20BEBof6qlELI7ztDCnGU6cY0BQdBqubkCemAXGOmp1OVCIRXJOFxwnINkHcWWDkKQQ06NUHT1I4SwZmCTlWuAUjve9JXYnZAiTQyoM6WTko7bM1mkU5lbVkAf/30FJTK738UqvxMBbOlQ+dHBQIvjob7Ds2Q3jG6Kh/KXw9AtX5QYKviMf8X1ytVv1apfI2CvMsxJOl4j7wmnhtUlfc5C9jd+ubo+fbPMHy5dO5/UFpePYR3P9qBpdUHMqD0Ovmy21caAT9vG+XOgduf0MzfzIgVFgLnXADl9+H85835Nt/+J9u/AgwA/AOE5XAuq7EAAAAASUVORK5CYII=");
+}
+.webifs-image-sharedbox
+{
+    border:0;
+    width: 48px;
+    height: 48px;
+    cursor:pointer;
+    text-decoration: none;
+    background: no-repeat url("data:image/png;base64,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");
+}
+.webifs-image-delete
+{
+    border:0;
+    width: 34px;
+    height: 34px;
+    cursor:pointer;
+    text-decoration: none;
+    background: no-repeat url("data:image/png;base64,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");
+}
+.webifs-image-back
+{
+    border:0;
+    width: 32px;
+    height: 32px;
+    display:block;
+    cursor:default;
+    margin: 0 1.4em;
+    text-decoration: none;
+    background: no-repeat url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAATNJREFUeNpi/P//P8NAAiaGAQbD0gHCQFwLxOpEqQalASpibSC+8B8CJhCjh5oh4AXEe4FYH8rnpmcU5AHxRiAWRxL7R4xGFgotZgPiPiDOJtcAShwgAcQLgNidEh+Q6wBjIF5KdEqnchoIAeLd1LCcHAdUAPFKIBakVtYhNgq4gHgKECdSu9QixgFyQLwIiO1pURQTcoAFEC8HYgVa1QX4HMAPxKuAWHagKiNWIBYayNrwDRDnA/HPgayO5wKxLxA/H8j2AKjQcQDi0wPZILkFxG7QRDlgLaIPQBwBxK0D2SQDNaFroCXi14FsE4KqYU8gfjiQjdLD0MR5ZCBbxQ+gIbFoIJvlX4A4HtoURwaM9O4XtABxJBB/REqwdO8XgLA5EG8DYidi1DOOdk4H2gEAAQYA6HTtBFEfBggAAAAASUVORK5CYII=");
+}
+.webifs-image-back-disabled
+{
+    border:0;
+    width: 32px;
+    height: 32px;
+    display:block;
+    cursor:default;
+    margin: 0 1.4em;
+    text-decoration: none;
+    background: no-repeat url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAY5JREFUeNrklzFIw1AQhi+NMVQhrXbQRXEzYECKi5tOioKbg07iqqCODgYXXZ1cBSmIabfO4qSLOHapLurk4qBBaUxp4v/gDaUgbWKbG/zhG/KS8I7Hvbv/lDAMiVMpYlbfby+q1Sq5rkupVLwYG40GmaZJmUwmXgCO41ClUiFd16PunQNbnueVbNt+yOfz8QIQG6fT6agBTIELMK0oSk5V1b0kc2AZXIvN5fNgkkm4A8pgpGkt+FMSdqh+cAK2u34LOtAoOAeLPbmGbTQjk22SoxCtgqtubB4ngH1QBEM9r4QtGgCnYDOxUtykcVAAc4n2AqlZcAkmEm9GkOgiJTDG1Y41MMzpB97ALvjmNCRnYAW8cjoiUXTmwT2nJXsECzIp2TzhO1gDx5ymVFjoA1kRvzhdsWjDS+CF05bfyOS85ZwLnuVJFDgHk0+wAeyWdSXpyegIrIOPpoSN34x836darUYRZ0cHPIFD/FsMgiB+AJZlkWEYpGla1JO4EzNCvV6nbDbb9mPl30/HPwIMADCdVfwuvG2mAAAAAElFTkSuQmCC");
+}
+.webifs-image-reload
+{
+    border:0;
+    width: 32px;
+    height: 32px;
+    display:block;
+    cursor:default;
+    margin: 0 1.4em;
+    text-decoration: none;
+    background: no-repeat url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAjFJREFUeNrk109IVEEcwHGfWyqSFdIfAkE0I73ooX+S0UG81CEkr3VZ8BReuiypeBEEvXTxIl47RXTrFmG0BIEEFaEItujuKZHYNth/wes7MMk4zltnJnx76Aefw8z793tv/r4gDMOGekZjQ53jmMc1bejCeSTwC1vIwf1ziiaw0IhRPEcW1XB//MQHzOBixD1SWERCrbd5+G2kQ/vIYw6tyj0eK4m2uSQwgUroF+KLdCOp1OX0BGr1gSeYM9QX8Rnf8BunMIBO7bzreIszPn0gaXijEuZx2XD+SdzH6iFfJWfTBH0oaBdmcNOiv7RgCmXbBExNsIATSlkMsbtYsxhUJbyTTdPkMwyHtIxFB7xlOVSFG9h1aQJ9JnyolZeRtpxSruIl2mucIyauIOoLHMe6km0RvQ5v/8xiaG7KfrJ3XaAsRpfwBc2y/B5DDpNqBwYPvOH+2MCnqLWgU3m4iK+Os7pYC178y2p4Wjv2vd7LcRh3Annt2Nm4E8iiqpR7404gg22lfE1uPGJLoIwVpdyK8SP/BNpkMqxNHGJRGnCYjJzpFWJieqMlsYZzjje+hzGfBIQrhl3QR7lM2zx8UrnukU8Cf7dieuzItb7DcH5CNt9rw3UjtRIIavyYzGLaUP8Dq9qWrF/So4Bheb7XtjwV+scGBn2bQHVH9gHbENuxJVzw7YRRe70HeCX7gmnDKkbLU9dhG3j8nIptdo/8NWuS7Sz2jZuouN4s+O//jv8IMAAEgxke0pZXmwAAAABJRU5ErkJggg==");
+}
+.webifs-image-create
+{
+    border:0;
+    width: 32px;
+    height: 32px;
+    margin: 0 1.4em;
+    text-decoration: none;
+    background: no-repeat url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAWBJREFUeNrslzFLA0EQhbMmBiKKhaCNTdJYpLHRJp1g5Q8Qf0vyEwRt06ZKmTKazs7GJpDSNgiKoqAm4TJ5C7MyLNl4yu5dCPfgg5BL2Lfz5nbuFBHl0tRaLmVlBgrW5x0wBlNAFt8gCmVgF7TAIfjkhYiNGJ7BNeh4daDvAnBO8fQOavwfL5geKApPX+AJvIBXZsLXtkCTo/Iagcy2DRpgnZtUR7HPEZVBlX/TBYqxDxNlCjznO72ZO/AgI7gQZb5ylOsUjMiP3sCxjEAq76hWD9Q9VX4bnNi3YRxdgj44cJR+kXTpz5iftQtzsvpNN8x/tCEMkOskVAEPvqK9TtJHsdwcLdUwooQiWN5xnNRjEaVtIFYEK90DKmvCOAaigAYi1wOJzEYPi70FY1nmSX9cvGpv3hj4EBcqTGiNZQT34DbB3ns0I12Jd8NNcARKAZtSxzYCAzC0DWTvhqloJsAA56QqCMPBvb4AAAAASUVORK5CYII=");
+}
+.webifs-image-create-disabled
+{
+    border:0;
+    width: 32px;
+    height: 32px;
+    margin: 0 1.4em;
+    text-decoration: none;
+    background: no-repeat url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAeVJREFUeNrsl7tOwzAUhu02SdVWiIoxA2KBTizdEXRhQEVigRdgYEEIRmbEC5Q3gAeAqRMjYqoYKpZOqAMgIW4DFyXkwm/jINekKVXaZABLn5L6yD2/j4+dY+r7Pkmz0X8BqQtoNpuk3W6TbDY7jt8GsIWNKfPEk/E2LKeO4xDTNEm1WiVaq9UijUZjUdO0Omxj4F1yHuCCS7ALOnEFWJZFKpXKlwDDMEihUFiHgHKfcbPABEtxo4Fok1wux98zok+T7E/gDjyI92fJNg/2hpkDgWNH6tsA50AXAtly1EBd2HfEuI6wUylnqPIkSh/jEZyAe3XmQbsB10rfAZgBm+JPtmJOfA2ssKXMhBj1HoNYAp4OKfILYEqOwG8OgxehfBlMhIzxpeVQ+3nugW0wKXaW3msJohpLysMYM18VAr6FZQaIQNymiyh0+QvLAZrECRwlIIn2IwKpfZHSigD98xHwo7YhTXIZ0ooASTsHIs8Bf9R7v9854IxIgKPUCF0FiRyJfXArndtRX7pBZs98TKvLEAh4lQxzCeXeBxfgeR5xXfeIUloTReeoG9y5x/B7xQXk83lSKpXOUBWzmZcHDHXU0oTZeE2IsvyiWCxavMO2bX5RQASSOwZxG2OlObsS/N8NPwUYALg4jzGq4E98AAAAAElFTkSuQmCC");
+}
+.webifs-image-upload
+{
+    border:0;
+    width: 32px;
+    height: 32px;
+    margin: 0 1.4em;
+    overflow:hidden;
+    text-decoration: none;
+    background: no-repeat url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAhxJREFUeNrEl7tLA0EQxrPmVFAQG/FRaCdIGsFasPOFRCxsbIKCTRCtBBsLFREbRcFGsLP2TxBtNBBQEa3EgGKjoohv81i/lQmsw94luUsuA7/i5vbuvpnZ3dkTUspAOa3C4/M95RSwCPbBrCcFqgQumJX/bcrle1wJiEqzTfghICLtLQ3GSilgFKSksyXBSCkEDIFvmZ99gcFiCghLdzacjwArxyIRIA3GwQ/5gmABtGnjEmBeLSq6rqLnhOYr6jKMsWhjbpehngEVURQ0knJ17xFsgCuum10HbaJVG90k6KOsCOIUrIInXc2uTS13DMoP2Zg4EIZxIYc5sqzGVGgRdBgq9AVODP6kIVJhGHcPjrWs6RkKBSjNPK3vlLYb8ALODS/+YdcWicgw/wMYAO30/i6wpX/P0ma71KI7AHcOc5cLqHVobM8gZmh+UndItvRqcixPHmk9kcuq7dqxKLCJvrLrOlo9vp0HzgxzIORFgMyxzrntgTfmi/iZgWuwxHy9YMbPI5nayVZoz8/aGlgHDV4F5DMpVZnmQDfYBJe0h0yDOAizfcZoVsC7HRFqN20lmkAl+VJOQVoO0RVqaWrLiXzPw15L4NWEnQCl7KNEH/3kGTCVQPXtfnBLNSyWqRJ1Os2B7MdUH9j2oQQZvQRK3YXP/6XxvzRof8fNtJ22aIcHvU0LVj9hmDuC3TP5sodYleU3Ue7f818BBgBWrKuNjq946wAAAABJRU5ErkJggg==");
+}
+.webifs-image-upload-disabled
+{
+    border:0;
+    width: 32px;
+    height: 32px;
+    margin: 0 1.4em;
+    overflow:hidden;
+    text-decoration: none;
+    background: no-repeat url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAsZJREFUeNq8l7+LE0EUx9/+yOaHGIQgiY1XynHNgYiVYOepiGJhoY0oaGGhjYoiFlGCd41yBoXTQlAs0ghyf4BCwAMNnIJWYoho4yVK/JEN8bLrd463YV1ns3trsg8+hJ2ZnX3zfk4U27bJT5rNJpmmSYqiUBRRVZUKhcLar5/owzaoVCpUq9UomUz6LdkNnskm+v0+ZbNZKhaLlE6noynQ6/Wo0+mQj5WugSvgIpiTKWAYBg2zcKACwvTCfBIXXOCPC5kFJrjtfTeM69QIrj3DH3XLPDgZKU7Wuf44KPvMLYBj41TgCLgfsNcDcHgcChwAD4EWsE7E1GOwf5QKHARPgRFyT5Gzi+BQmMV6QCERYdwHJ0RW8rCwQhFMuJbWwVXg5JzB7ymJRMIOVEDkeqvV+idtMG5jbNEnE9wKrIBH3jS0LIsajQalUilpiufzeVJEoahWq1QulycymYzYOC/mhXJYtML5/d7z/hLY6XqugR0uCwyMiP1P4XeGrbLmcowta5o2VyqVvrpdUAJHJafdyC74q0iGjIdJcFcyvgdY4LIThBpOO+lUL1cV64JlyQa/JcEsK3tfsM8S72czzv5T3iB0zPcTnAYfwXfwRtYmJLGk8qnIExv7wDae2w7u8Jzlp8AqeA4+D+tTnucNQ1L6G8eMNO39XkoH+NZ70k1MmBoRqECY28cPz3OWs2dkzShIideSGJiKoxs68oSD1dspY1PgA7guye1zcSlAfA27wTXfkZvgFtgchwIibS+BXVyu34Ff4Cx4xV1U/69uGFJeMKJLbmUKIMFjq+NWYHAR5rZcjysGRiKqj287Y/qeGcYFwnd7waeAQmVHcNG0t9jprlNrrsZyLwbr224FcHuy3uKmMh2H38UtDLwcKCAuCLqun8c1SeTylgjmXY+Ia2Ad31pwHqjb7VK73Y78Nzyq5HI5+iPAAIlrvYEmzJ1aAAAAAElFTkSuQmCC");
+}
+.webifs-image-search
+{
+    border:0;
+    width: 32px;
+    height: 32px;
+    margin: 0 1.4em;
+    text-decoration: none;
+    background: no-repeat url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAe5JREFUeNrs1z9IAlEcB3AVsbQyEiyloAiMhiicyiWaXZoqCIqQxghsCAJpaGsJGhtbIohorCgEM1r6g0ERZERJEi05VEOUXN8HP+Fx3DtP3nku/eDDPfXu3Vfv3nunXVEUWy3LYatx1TyA0+A+YeiBFihAFq7gVzoBuwcEnDALGUW7LmFa53hDRB/4YV91wiJ8aATZhmYzA7ghyZ3gFuZgALohDHG45/ZhYevMCrDKdbwFXsHBPtjl9k2YEaALPqnDE7oP9Dpg3/qC9n+HtkoDqIfhKDRAERIG7vJvWKY2GyFR2XkgQtsHODPYRwpy1B6SDeCn7XMFY/wL8tQOygb4oa27wn5c3CWRCvBI217wGeyjHULUzsoGOOQuxZTBPmbAS+0j2anYTRMPqwIMlhlGI9zseGDWRBTlJpc3mNSYD1wQo5Cl2oEJsFcSwC54IInDGvc6A2l4hQ4Yhj7Bj7oFMcM3pE66MXhR9OsG0hrv74FHZjUsCcAipCBP0+0THMM8NMK4IBxboJpkA6gXn4DG4lRPi5ZWJek4UwKUe3jZFIQ4hdZqB2AcsCEIcQ7BagcoWReEuIZOKwKoH2r4uoOQFQGYFZ2HWY8VAZglQYh+qwIwC6qT5/ihaUUAG60RKVqwIkbWgv8/p5bVnwADAL9SYKHrhvdMAAAAAElFTkSuQmCC");
+}
+.webifs-image-search-disabled
+{
+    border:0;
+    width: 32px;
+    height: 32px;
+    margin: 0 1.4em;
+    text-decoration: none;
+    background: no-repeat url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAqxJREFUeNrkl0toE0EcxmdNCUl8N7QiCnqw0oP4QrBFI/YmHtSDEFQi6kV8QEERRUQUD4KHig8Q9KQgWkTFFcUHIhrwpuJBL4aCby+JYLWxaBK/f/g2TpepJp1NenDgx85Odvb/ZWfmm/84pVJJjWYZo0a5NHmVTCajXNdV4XC4rgHli0uMVCqlYrHYHwHZbFal0+lyo0HkAjAbTAZfwGvwDPyqVUChUCjHSCaTQwWEQiEVjUZVJBLRA28CO8E8w7tEwAlwoRYBxWKxHMNxnL/OgRZwE5zTghfBN+2ZheA8uAwmWs8BrURBL+ji/StwBqRBP4MtB9tAG0iybQ0YDGIVHNKCXwKd4DR4AfrAc3AcdIBrfG4F2BPEMpwJdrAu/3gj+DpM3xxYD57yfheYYitgNRgrkxUcqGKWyyc/yLqskJW2Ajo9WwBPqnzHI/CW9Q5bAS28vqlhjX8HH1ifaivgp7YSailhbUisBPTx2g6aq3zHNC5HRYe0EnBXG4pUle8Qt5zA+n1bAfdoPJ4fLP5HfzGkfZr4h7YC8pqhTAIu13qTYcy3gOtgHNv66YqOrRXfpqn0gFZwkaLEmD6B6WAZmOPrt5asorjBkQpQtNr3vMokm0/85SW356Vam3wx2dM3gAGbjOgKWAT2gsfgI4OJRzwA3TSeU4a+sjFdBeNH+gW88hkcI80c+wHf/uBy01rn6ysb1A0OSy6InDBHQf7N6Qc3LVNi0kWBrfVOSsW2N4Ozht+WgFvD2XSQWbFkTFvBScNvMpfugBmNSMu7OWf8ZS5FtDXiXCAr54ihvZ05ZKwRBxNJVPYb2iWZndWok9FRsNvX9o4mN9QH5MCQz+cr+XqApYcJy3bZaxDnMGLkvDNpRUA8HleJRKJeR7NeUjmaeXGc//50/FuAAQBLKp2bdinyVAAAAABJRU5ErkJggg==");
+}
+
+.webifs-wait
+{
+    display:none;
+    top:0;
+    right:0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #000000;
+    opacity:0.5;
+    filter:alpha(opacity=50)
+}
+
+/* 480px */
+@media only screen and (min-width: 480px) {
+.webifs-table
+{
+    table-layout: auto;
+}
+.webifs-cell-name-span
+{
+    display: inline-block;
+    overflow: hidden;
+    width: 220px;
+    line-height: 48px;
+}
+}
+
+/* 600px */
+@media only screen and (min-width: 600px) {
+.webifs-cell-name-span
+{
+    width: 300px;
+}
+}
+/* 768px */
+@media only screen and (min-width: 768px) {
+.webifs-nav-bar
+{
+    padding: 0.5em;
+}
+.webifs-nav-head
+{
+    height: 24px;
+}
+.webifs-nav-head form{
+    height: 24px;
+}
+.webifs-table td
+{
+    height: 30px;
+}
+.webifs-table form
+{
+    height: 32px;
+    width: 32px;
+}
+.webifs-head-size
+{
+    text-align: right;
+}
+.webifs-cell-name-span
+{
+    width: 460px;
+}
+.webifs-cell-name-link
+{
+    display:block;
+    width: 100%;
+    height: 32px;
+    line-height:32px;
+}
+.webifs-image-file
+{
+    background-size: 32px 32px;
+    width: 32px;
+    height: 32px;
+}
+.webifs-image-folder
+{
+    background-size: 32px 32px;
+    width: 32px;
+    height: 32px;
+}
+.webifs-image-sharedbox
+{
+    background-size: 32px 32px;
+    width: 32px;
+    height: 32px;
+}
+.webifs-image-delete
+{
+    background-size: 20px 20px;
+    width: 20px;
+    height: 20px;
+    margin-top: 5px;
+}
+.webifs-image-back
+{
+    background-size: 24px 24px;
+    height: 24px;
+}
+.webifs-image-back-disabled
+{
+    background-size: 24px 24px;
+    height: 24px;
+}
+.webifs-image-reload
+{
+    background-size: 24px 24px;
+    height: 24px;
+}
+.webifs-image-create
+{
+    background-size: 24px 24px;
+    height: 24px;
+}
+.webifs-image-create-disabled
+{
+    background-size: 24px 24px;
+    height: 24px;
+}
+.webifs-image-upload
+{
+    background-size: 24px 24px;
+    height: 24px;
+}
+.webifs-image-upload-disabled
+{
+    background-size: 24px 24px;
+    height: 24px;
+}
+.webifs-image-search
+{
+    background-size: 24px 24px;
+    height: 24px;
+}
+.webifs-image-search-disabled
+{
+    background-size: 24px 24px;
+    height: 24px;
+}
+}
+
+/* 992px */
+@media only screen and (min-width: 992px) {
+.webifs-cell-name-span
+{
+    width: 680px;
+}
+.webifs-image-file
+{
+    background-size: 32px 32px;
+    width: 32px;
+    height: 32px;
+}
+.webifs-image-folder
+{
+    background-size: 32px 32px;
+    width: 32px;
+    height: 32px;
+}
+.webifs-image-sharedbox
+{
+    background-size: 32px 32px;
+    width: 32px;
+    height: 32px;
+}
+}
+
+/* 1382px */
+@media only screen and (min-width: 1382px) {
+body{
+    max-width: 1280px;
+    text-align: center;
+    margin: 0 auto;
+}
+}
+</style>
+</head>
+<body onload="WEBIFS.pageLoad()" onpageshow="WEBIFS.pageShow()">
+
+<!-- Navigation Bar -->
+<div class="webifs-nav-bar">
+  <table class="webifs-nav-head">
+  <tr>
+  <td>
+    <a href="javascript:void(0)" id="id-webifs-back" class="webifs-image-back" onclick="WEBIFS.submitBack(event)"></a>
+  </td>
+  <td>
+    <a href="javascript:void(0)" id="id-webifs-reload" class="webifs-image-reload" onclick="WEBIFS.submitReload(event)"></a>
+  </td>
+  <td>
+    <form action="" method="POST" autocomplete="off" enctype="application/x-www-form-urlencoded" onsubmit="return WEBIFS.submitCreate(event,this)">
+    <input id="id-webifs-create" class="webifs-image-create" type="submit" value=""/>
+    <input name="ACTION" type="hidden" value="CREATE"/>
+    <input name="NAME" type="hidden"/>
+    </form>
+  </td>
+  <td>
+    <form action="" method="POST" autocomplete="off" enctype="multipart/form-data" onsubmit="return WEBIFS.submitUpload(event,this)">
+    <input id="id-webifs-upload" type="submit" style="display:none;"/>
+    <div id="id-webifs-upload-div" class="webifs-image-upload">
+    <input id="id-webifs-upload-file" type="file" name="FILE" onchange="WEBIFS.fileChosen(event,this)" style="width:32px; opacity:0; filter:alpha(opacity:0);"/>
+    </div>
+    </form>
+  </td>
+  <td>
+    <form action="" method="POST" autocomplete="off" enctype="application/x-www-form-urlencoded" onsubmit="return WEBIFS.submitSearch(event,this)">
+    <input id="id-webifs-search" class="webifs-image-search" type="submit" value=""/>
+    <input name="ACTION" type="hidden" value="SEARCH"/>
+    <input name="NAME" type="hidden"/>
+    </form>
+  </td>
+  </tr>
+  </table>
+</div>
+
+<!-- Path -->
+<div class="webifs-path">
+  <h2 id="id-webifs-path"></h2>
+</div>
+
+<!-- Table of files and folder -->
+<table id="id-webifs-table" class="webifs-table"></table>
+
+<!-- Wait -->
+<div id="id-webifs-wait" class="webifs-wait"></div>
+
+</body>
+</html>

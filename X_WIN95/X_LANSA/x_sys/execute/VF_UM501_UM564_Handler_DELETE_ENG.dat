@@ -1,0 +1,53 @@
+* ---------------------------------------------------------------------------------
+* This is a command handler in framework <<FRAMEWORK>>.
+* It belongs to business object <<BUSINESS_OBJECT_CAPTION>>.
+* It was created on <<CREATEDDATE>> by <<CREATEDUSER>>.
+* ---------------------------------------------------------------------------------
+Begin_Com Role(*EXTENDS #vf_ac010O) Height(270) Width(500)  
+
+Group_By Name(#XG_AccessKeys) Fields(<<EXPAND_KEYS>>)
+Def_List Name(#AccessKeys) Fields(#XG_AccessKeys) Type(*Working) Entrys(1)
+Define_Com Class(#Prim_Boln) Name(#ServerModuleResult) 
+
+* ---------------------------------------------------------------------------------
+Mthroutine Name(uExecute) Options(*REDEFINE)
+Define_Com Class(#PRIM_dc.UnicodeString) Name(#ConfirmDeleteText)
+* Do the ancestor thing
+#COM_ANCESTOR.uExecute Gotofreestate(#GotoFreeState) Switchcallerreference(#SwitchCallerReference)
+* Now assuming an instance is selected, get a final confirmation before proceeding.
+If (#Com_Self.avAssociatedInstance *isnot *null)
+#ConfirmDeleteText := *MTxtuf_msg_0010.Substitute( "<<BUSINESS_OBJECT_CAPTION_SINGULAR>>" #COM_SELF.avAssociatedInstance.avVisualID1 #COM_SELF.avAssociatedInstance.avVisualID2 )
+If (#SYS_WEB.Confirm( #ConfirmDeleteText ) = OK)
+#COM_OWNER.avQueueAsyncOperation Operationid(Delete) Busystatetext(*MTXTUF_Delete)
+#GotoFreeState := False 
+Endif
+EndIf
+Endroutine
+
+* ---------------------------------------------------------------------------------
+Mthroutine Name(avExecuteAsyncOperation) Options(*REDEFINE)
+* Handle the requested async operation
+Case (#OperationID)
+When (= Delete)     /* Delete <<BUSINESS_OBJECT_CAPTION_SINGULAR>> */
+#COM_OWNER.Delete
+Endcase
+Endroutine
+
+* ---------------------------------------------------------------------------------
+Mthroutine Name(Delete) Access(*PRIVATE)
+Define_Com Class(<<SERVER_MODULE>>.DeleteData) Name(#DeleteData)
+* Get the access keys from the associated instance and set them up to map to the server
+<<EXPAND_MAPINSTANCETOKEYS>> <<PARM1=Com_Self.avAssociatedInstance>>
+Inz_List Named(#AccessKeys)
+* Ask the server to delete the associated row
+#DeleteData.Execute Accesskeys(#AccessKeys) Servermoduleresult(#ServerModuleResult)
+* Handle a good or bad result
+If (#ServerModuleResult)
+#AVLISTMANAGER.RemovefromList Dataitem(#Com_Self.avAssociatedInstance)
+Else
+#AVFRAMEWORKMANAGER.avShowMessages Requester(#COM_OWNER)
+Endif
+
+Endroutine
+
+End_Com

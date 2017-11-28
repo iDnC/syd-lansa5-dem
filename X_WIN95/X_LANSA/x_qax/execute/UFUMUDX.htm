@@ -1,0 +1,784 @@
+﻿<!-- ================================================================================================= -->
+<!-- =============================== COPYRIGHT NOTICE ================================================ -->
+<!-- ================================================================================================= -->
+<!-- (C) Copyright 2014 LANSA. LANSA is a trade name and registered trademark of LANSA in the          -->
+<!-- United States of America, Australia, the United Kingdom and other countries. All rights reserved. -->
+<!--                                                                                                   -->
+<!-- ------------------------------------------------------------------------------------------------- -->
+<!--                                                                                                   -->
+<!--          #     #       #       ######     #     #    ###    #     #     #####                     -->
+<!--          #  #  #      # #      #     #    ##    #     #     ##    #    #     #                    -->
+<!--          #  #  #     #   #     #     #    # #   #     #     # #   #    #                          -->
+<!--          #  #  #    #     #    ######     #  #  #     #     #  #  #    #  ####                    -->
+<!--          #  #  #    #######    #   #      #   # #     #     #   # #    #     #                    -->
+<!--          #  #  #    #     #    #    #     #    ##     #     #    ##    #     #                    -->
+<!--           ## ##     #     #    #     #    #     #    ###    #     #     #####                     -->
+<!--                                                                                                   -->
+<!-- ------------------------------------------------------------------------------------------------- -->
+<!-- Modification of this shipped HTML file will result one or more of the following:                  -->
+<!-- The introduction of incompatibilities with future versions of this framework.                     -->
+<!-- Voiding or limitation of any maintenance contract you may have in place for this framework.       -->
+<!-- Being charged for problem resolutions that are traced back to any such modifications.             -->
+<!-- ------------------------------------------------------------------------------------------------- -->
+<HTML>
+
+<HEAD id='HEAD_Tag'>
+<script type="text/javascript" language="javascript" src="vf_xbrowser.js"></script> 
+<link rel='stylesheet' type='text/css' href='vf_vs001.css' >   
+
+<style type="text/css" >
+
+#Label_Group
+{
+   border-bottom:1px outset ThreeDFace;
+   border-top:1px solid highlight; 
+   border-right:1px solid highlight; 
+   border-left:1px solid highlight;       
+   font-size:xx-small;
+   font-weight: bold;
+   padding:0px;
+   text-align:center;
+   word-spacing:3px;
+   width:100%;
+   margin-top:6px;
+   height:15px;
+}
+
+#Group_TD
+{
+   padding:0px;
+}
+
+input
+{
+   font-size:xx-small;
+}
+
+.Input
+{
+   width:100%;
+   height:100%;   
+}
+
+#MainTable
+{
+   width:90%;   
+   table-layout: fixed;
+}
+
+.Label_TDs
+{
+   width:32%;
+   white-space: nowrap;
+}
+
+.Data_TDs
+{
+   width:58%;
+}
+
+.Input_TDs
+{
+   width:100%;
+   height:20px;
+}
+
+.Btns
+{
+   width:90px;
+}
+
+.BtnSavClos
+{
+   width:130px;
+}
+
+#leftTD
+{
+   width:60%;   
+}
+
+.Log_Minutes
+{
+   margin-left:3px;
+}
+
+#Group
+{
+   width: 100%;
+}
+
+.Group_DIV
+{
+   background:window; 
+   height:160px; 
+   border-right:1px solid highlight; 
+   border-left:1px solid highlight;       
+   border-bottom:1px solid highlight;       
+   overflow-y:auto; 
+}
+
+#Warning_TR
+{
+   height: 20px;
+}
+
+#Warning_P
+{
+   text-align:center;
+   height:100%;
+   width:100%;   
+   font-size:small-caption;
+   font-weight:bold;
+   color:red;
+}
+
+</style>
+<script type="text/javascript">
+
+/* GLOBAL VARIABLES initialized in uExecute */
+
+var flagInstListDirty, flagUserProfDirty, flagGroupDirty, strCurrentUserIDN, objCurrentUser, strSaveUsrPrf, GLOBAL_CloseWindow, flagSavePsw;
+var bInit = false;
+
+/* ======================================================================= */
+/* ======================== Handle Page Initialization ==================== */
+/* ======================================================================== */
+
+function VF_AJAX_Initialize()
+{
+   /* Insert the variable style sheet (ie: XP, WIN, WEB style) into this page */
+   {
+      var objLink  = document.createElement("LINK");
+      objLink.rel  = "stylesheet"; objLink.type = "text/css"; 
+      objLink.href = STYLESHEET();
+      document.getElementById("HEAD_Tag").insertAdjacentElement("afterBegin",objLink); 
+   }
+
+   document.getElementById("Label_UserPrf").innerText = VF_System.MString(255);
+   document.getElementById("Label_UID").innerText = VF_System.MString(270);
+   document.getElementById("Label_Caption").innerText = VF_System.MString(251);   
+   document.getElementById("Label_nlUser").innerText = VF_System.MString(266);
+   document.getElementById("Label_nlPsw").innerText = VF_System.MString(267);
+   document.getElementById("NL_Details").innerText = VF_System.MString(268);
+
+   /* Finished */
+   return;
+} 
+
+/* ======================================================================== */
+/* ======================== Handle Page Execution ========================= */
+/* ======================================================================== */
+
+function VF_AJAX_Execute(objInstance)
+{
+   /* Initialize global variables */
+   objCurrentUser = null;
+   flagInstListDirty = false;
+   flagGroupDirty = false;   
+   flagUserProfDirty = false;
+   strCurrentUserIDN = "";
+   strSaveUsrPrf = "";
+   GLOBAL_CloseWindow = false;
+
+   UFUMCDX_SetBusy(true);
+
+   var strSavePsw = AVRESTOREAVALUE(true, "UFUMUDX_SavePsw");
+   flagSavePsw = (strSavePsw.toString().toUpperCase() == "TRUE");
+
+   /* Get the current instance user details. Processing will continue in routine GETDETAILS_response */ 
+   switch (AVCOMMANDTYPE)
+   {
+      case "VF_NEW_USER":
+         
+         GETUSER("==NEW==",GETDETAILS_response);
+         break;
+
+      case "VF_NEW_USER_GROUP":
+
+         GETUSER("==NEWGROUP==",GETDETAILS_response);
+         break;
+
+      case "VF_DELETE_PROFILE":
+      
+         strCurrentUserIDN = objInstance.arraystrAKeyN[0];		   
+         GETUSER(strCurrentUserIDN,GETHASUSERS_response);
+         break;
+         
+      default:
+         strCurrentUserIDN = objInstance.arraystrAKeyN[0];		   
+         GETUSER(strCurrentUserIDN,GETDETAILS_response);    
+         break;
+   }                 
+
+  /* Finished */
+  return;
+} 
+
+function SetAsCurrent()
+{
+   AVSIGNALEVENT(window, "VF_USER_NEW", null, strCurrentUserIDN, objCurrentUser.UUSERPROFILE, objCurrentUser.UCAPTION);
+   UFUMCDX_SetBusy(false);
+}
+
+function GETHASUSERS_response(flagOkay, strMessage, objUser, strUserIDN, flagGroupHasUsers)
+{
+   GETUSER(strCurrentUserIDN,GETDETAILS_response); 
+   
+   if (flagGroupHasUsers)
+   {
+      alert(VF_System.MString(275));
+      UFUMCDX_SetBusy(false);
+   }
+   else
+   {
+      Dlt_User(window.confirm(VF_System.MString(254)));
+   }   
+}
+
+function UFUMCDX_SetBusy(flagBusy)
+{
+   SETBUSY(flagBusy);
+   return;
+} 
+
+/* ======================================================================== */
+/* ======================= Handle Page Termination ======================== */
+/* ======================================================================== */
+
+function VF_AJAX_Terminate()
+{
+  return;
+} 
+
+/* ======================================================================== */
+/* ======================= Add groups to table ======================== */
+/* ======================================================================== */
+function AddGroups( flagOkay, strMessage, intTotal, arrayIDN, arrayNAM, arrayCAP )
+{
+
+   if (!(flagOkay) || (intTotal <= 0) ) /* something went wrong or there are no groups */
+   {
+      UFUMCDX_SetBusy(false);
+      document.getElementById("Label_Group").innerText = VF_System.MString(272); /* Put a caption that says there are no groups */
+      document.getElementById("Btns_Sel").disabled = true;
+      return;
+   }
+   
+   var j, i;
+   
+   var intInGroups = objCurrentUser.UINUSERGROUPMAX;
+
+   /* Delete existing TABLE if exists and recreate it */
+
+   var objDivContainer = Group;
+
+   var objChildTable = objDivContainer.firstChild;
+
+   if (objChildTable != null) objChildTable.removeNode(true);
+   
+   var objNewTable = document.createElement("table");
+       objNewTable.id = "GroupTable";
+       objNewTable.style.width = "100%";
+       objNewTable.cellPadding = 0;       
+       objNewTable.cellSpacing = 0;
+   
+   var objNewTbody = document.createElement("tbody");
+       objNewTbody.id = "Label_GUser";
+
+   objNewTable.appendChild(objNewTbody);
+
+   objDivContainer.appendChild(objNewTable);
+   
+   var strID = "";
+   var objNewTR = null;   
+   var objNewTD = null;   
+   var objNewCHKB = null;
+   var objNewSPAN = null;
+   var strCHKB = "";
+
+   
+   for (i = 0; i < intTotal; i++)
+   {
+      objNewTR   = document.createElement("TR");
+      objNewTD   = document.createElement("TD");
+
+      objNewCHKB = document.createElement("input");
+      objNewCHKB.type = "checkbox";
+
+      try { objNewCHKB.addEventListener("click", function(event) { GroupChg(event); }, false); }
+      catch (oE) { objNewCHKB.attachEvent("onclick", GroupChg); } 
+           
+      objNewCHKB.id = arrayIDN[i];
+
+      objNewSPAN = document.createElement("SPAN");
+      objNewSPAN.innerText = arrayNAM[i];
+      
+      objNewTD.appendChild(objNewCHKB);
+      objNewTD.appendChild(objNewSPAN); 
+      objNewTR.appendChild(objNewTD);
+
+      objNewTD   = document.createElement("TD");
+      objNewTD.vAlign = "baseline";
+      objNewSPAN = document.createElement("SPAN");
+      objNewSPAN.innerText = arrayCAP[i];     
+      objNewTD.appendChild(objNewSPAN); 
+      objNewTR.appendChild(objNewTD);
+
+      objNewTbody.appendChild(objNewTR);
+      
+      strID = arrayIDN[i];
+      
+      /* Traverse the user groups the current user belongs to and see if its the current group in the loop */
+      for (j = 1; j <= intInGroups; j++)
+      {
+         if ( objCurrentUser.UINUSERGROUP[j] == arrayIDN[i] )
+         {
+            objNewCHKB.checked = true;
+            break;
+         }
+      }
+   }  
+   
+   UFUMCDX_SetBusy(false);
+   return;
+}
+
+function GETDETAILS_response(flagOkay, strMessage, objUser, strUserIDN)
+{
+   if (flagOkay)
+   {
+      objCurrentUser = objUser;
+      strCurrentUserIDN = strUserIDN;
+      var ConfPsw = document.getElementById("ConfPsw");
+      var NewPsw = document.getElementById("NewPsw");
+
+      if ( ( AVCOMMANDTYPE == "VF_NEW_USER" ) || (AVCOMMANDTYPE == "VF_NEW_USER_GROUP") )
+      {
+         flagInstListDirty = true;
+         document.getElementById("SaveClose_TD").style.display = "block";
+         document.getElementById("SaveNew_TD").style.display = "block";
+         document.getElementById("CDX_SaveNew").value = VF_System.MString(285);         
+         document.getElementById("CDX_SaveClose").value = VF_System.MString(284);   
+         document.getElementById("SaveBtn_TD").style.display = "none";
+      }
+      else
+      {
+         document.getElementById("SaveClose_TD").style.display = "none";
+         document.getElementById("SaveNew_TD").style.display = "none";
+         document.getElementById("SaveBtn_TD").style.display = "block";         
+         document.getElementById("CDX_Save").value = VF_System.MString(252);
+      }
+           
+      document.getElementById("Warning_P").innerText = VF_System.MString(278);
+      document.getElementById("Warning_TR").style.display = "none"; /* set and hide the warning */
+
+      /* Depending on Save Passwords, enable/disable the passowrds fields */
+      document.getElementById("Label_NewPsw").disabled = document.getElementById("Label_ConfPsw").disabled = ConfPsw.disabled = NewPsw.disabled = !(flagSavePsw);
+
+      /* Set the password length based on the system property */
+      if (VF_System.VF_Framework.UMAXWEBPWDLEN != null)
+      {
+         NewPsw.maxLength = VF_System.VF_Framework.UMAXWEBPWDLEN ;
+         ConfPsw.maxLength = VF_System.VF_Framework.UMAXWEBPWDLEN ;
+      }  
+
+      document.getElementById("SaveVLFpsw_chkbox").checked = flagSavePsw;
+      document.getElementById("SaveVLFpsw_Span").innerText = VF_System.MString(289);
+      
+      /* Unique Identifier - output field  - the label is set on intialize */
+      document.getElementById("UID").value = strUserIDN;
+
+      /* Profile - the label is set on intialize */
+      document.getElementById("UserPrf").value = objCurrentUser.UUSERPROFILE;
+      strSaveUsrPrf = document.getElementById("UserPrf").value;
+      
+      /* Caption - the label is set on intialize */
+      document.getElementById("Caption").value = objCurrentUser.UCAPTION;
+      document.getElementById("Lang_Caption").innerText = "(" + VF_System.strLanguageCode + ")";
+
+      /* NL_Details user settings */
+      document.getElementById("nlUser").value = VF_System.Trim(objCurrentUser.UNLUSER);
+      document.getElementById("nlPsw").value = "";
+      
+      /* Do these ones if the selected user is a Group User */
+      if (!(objCurrentUser.UGROUPUSER))
+      {
+         /* Password */
+         document.getElementById("Label_NewPsw").innerText = VF_System.MString(256);      
+         NewPsw.value = "";
+         document.getElementById("Label_ConfPsw").innerText = VF_System.MString(260);      
+         ConfPsw.value = "";
+
+         document.getElementById("NewPsw_TR").style.display  = "";
+         document.getElementById("ConfPsw_TR").style.display  = "";
+                  
+         /* Temp Directory */
+         document.getElementById("Label_TempDir").innerText = VF_System.MString(257);      
+         document.getElementById("TempDir").value = (objCurrentUser.UTEMPDIRECTORY.length <= 0) ? "*DEFAULT" : objCurrentUser.UTEMPDIRECTORY;
+         document.getElementById("TempDir_TR").style.display = "";         
+
+         /* e-mail */
+         document.getElementById("Label_Email").innerText = VF_System.MString(258);      
+         document.getElementById("Email").value = objCurrentUser.UEMAILADDRESS;
+         document.getElementById("Email_TR").style.display   = "";
+
+
+         document.getElementById("Label_SignOnTimeOut").innerText = VF_System.MString(259);      
+         document.getElementById("SignOnTimeOut").value = objCurrentUser.USIGNONTIMEOUT;
+         document.getElementById("LogOn_Minutes").innerText = VF_System.MString(261);
+         document.getElementById("Logon_TR").style.display   = "";
+                  
+         document.getElementById("Label_SignOffTimeOut").innerText = VF_System.MString(263);
+         document.getElementById("SignOffTimeOut").value = objCurrentUser.USIGNOFFTIMEOUT;
+         document.getElementById("LogOff_Minutes").innerText = VF_System.MString(261);
+         document.getElementById("Logoff_TR").style.display  = "";
+                  
+         /* Admin */
+         document.getElementById("Label_Admin").innerText = VF_System.MString(264);
+         document.getElementById("Admin").checked = objCurrentUser.UADMIN;
+         document.getElementById("Admin_TR").style.display   = "";         
+         
+         /* Disabled */
+         document.getElementById("Label_Disabled").innerText = VF_System.MString(265);
+         document.getElementById("Disabled").checked = objCurrentUser.UDISABLED;
+         document.getElementById("Disabled_TR").style.display  = "";
+         
+         document.getElementById("Btn_SelAll").value = VF_System.MString(273);
+         document.getElementById("Btn_UnSelAll").value = VF_System.MString(274);
+         document.getElementById("Btns_Sel").style.display  = "";
+                           
+         document.getElementById("Group").style.display = "block";
+         
+         document.getElementById("Label_Group").innerText = VF_System.MString(269);
+         document.getElementById("Label_Group").style.display = "block";
+         document.getElementById("Btns_Sel").style.display  = "block"; 
+         document.getElementById("Btns_Sel").disabled = false;
+                           
+         /* Add rows to the group users table, processing continues in AddGroups() */         
+         GROUPLIST(AddGroups);
+      }
+      else
+      {
+         document.getElementById("Group").style.display = "none";
+         document.getElementById("Label_Group").style.display = "none";
+         document.getElementById("TempDir_TR").style.display = "none";
+         document.getElementById("Email_TR").style.display   = "none";
+         document.getElementById("Logon_TR").style.display   = "none";
+         document.getElementById("Logoff_TR").style.display  = "none";
+         document.getElementById("Admin_TR").style.display   = "none";
+         document.getElementById("Disabled_TR").style.display  = "none";
+         document.getElementById("Btns_Sel").style.display  = "none";
+         document.getElementById("NewPsw_TR").style.display  = "none";
+         document.getElementById("ConfPsw_TR").style.display  = "none";         
+         document.getElementById("SaveBtn_TD").align = "center";
+         
+         UFUMCDX_SetBusy(false);
+      }
+      
+   } 
+   else
+   {
+      objCurrentUser = null;
+      UFUMCDX_SetBusy(false);      
+   }
+
+   return;
+}
+
+/* ======================================================================== */
+/* ======================= EVENT ROUTINES  ================================ */
+/* ======================================================================== */
+
+/* Delete a user or group */
+function Dlt_User(flagConfirm) 
+{
+   if (flagConfirm)
+   {
+      UFUMCDX_SetBusy(true);
+      DLTUSER(strCurrentUserIDN,Dlt_User_Response);
+   }
+   else
+   {
+      UFUMCDX_SetBusy(false);
+      AVSIGNALEVENT(window, "VF_USER_DELETE_CANCELLED", null, strCurrentUserIDN);
+   }
+   
+   return;
+}
+
+/* Delete response */
+function Dlt_User_Response(flagOkay, strMessage) 
+{
+   UFUMCDX_SetBusy(false);
+   
+   if (flagOkay)
+   {
+      AVSIGNALEVENT(window, "VF_USER_DELETED", null, strCurrentUserIDN);   
+   }
+   
+   return;
+}
+
+/* Save button clicked */
+function Btn_Save(flagCloseWindow)
+{
+   if (objCurrentUser != null) 
+   {
+      UFUMCDX_SetBusy(true);
+
+      objCurrentUser.UpdateProperty("UCAPTION",VF_System.strLanguageCode,1,Caption.value);
+      objCurrentUser.UpdateProperty("UNLUSER","ALL",1,nlUser.value);
+      objCurrentUser.UpdateProperty("UNLPASSWORD","ALL",1,nlPsw.value);
+
+      /* These only apply to non group users */      
+      if (!(objCurrentUser.UGROUPUSER))
+      {
+      
+         if ( (flagSavePsw) && ( ( document.getElementById("NewPsw").value.length > 0 ) || ( flagUserProfDirty ) ) ) /* if the password or the user profile have changed */
+         {
+            var strErrMsg = objCurrentUser.UpdateBlock(document.getElementById("UserPrf").value, document.getElementById("NewPsw").value, document.getElementById("ConfPsw").value);
+            
+            if (strErrMsg != "")
+            {
+               alert(strErrMsg);
+               UFUMCDX_SetBusy(false);
+               return;
+            }
+         }
+                     
+         if (TempDir.value.length <= 0) TempDir.value = "*DEFAULT";
+      
+         objCurrentUser.UpdateProperty("UTEMPDIRECTORY","ALL",1,document.getElementById("TempDir").value);
+         objCurrentUser.UpdateProperty("UEMAILADDRESS","ALL",1,document.getElementById("Email").value);
+         objCurrentUser.UpdateProperty("USIGNONTIMEOUT","ALL",1,document.getElementById("SignOnTimeOut").value);
+         objCurrentUser.UpdateProperty("USIGNOFFTIMEOUT","ALL",1,document.getElementById("SignOffTimeOut").value);
+         objCurrentUser.UpdateProperty("UADMIN","ALL",1,document.getElementById("Admin").checked);
+         objCurrentUser.UpdateProperty("UDISABLED","ALL",1,document.getElementById("Disabled").checked);      
+      }
+
+      if (flagUserProfDirty)
+      {
+         objCurrentUser.UpdateProperty("UUSERPROFILE","ALL",1,document.getElementById("UserPrf").value);
+      }
+
+      /* Update the groups that the user belongs to if there have been any changes */
+      
+      if ( ( flagGroupDirty ) && ( Label_GUser.children.length > 0 ) )
+      {
+         var arrayCheckboxes = Label_GUser.getElementsByTagName("INPUT");
+         var intCheckboxes = arrayCheckboxes.length;
+         var intCounter = 0;
+         
+         for (i = 0; i < intCheckboxes; i++)
+         {
+            if (arrayCheckboxes[i].checked)
+            {
+               intCounter++;
+               objCurrentUser.UpdateProperty("UINUSERGROUP","ALL",intCounter,arrayCheckboxes[i].id);
+            }
+         }
+
+         /* Update the number of groups that the user belongs to */
+         objCurrentUser.UpdateProperty("UINUSERGROUPMAX","ALL",1,intCounter);
+      }      
+
+      GLOBAL_CloseWindow = flagCloseWindow;
+      
+      UPDUSER(UID.value,objCurrentUser,Upd_User_Response);
+      
+   }
+   
+   return;
+}
+
+function Btn_Select(flagSel)
+{
+   var objDivContainer = Group;
+   var arrayCheckboxes = objDivContainer.getElementsByTagName("input");
+   var intLength = arrayCheckboxes.length;
+   
+   for (i = 0; i < intLength; i++)
+   {
+      arrayCheckboxes[i].checked = flagSel;
+   }
+   
+   GroupChg();
+}
+
+/* The user profile has changed */
+function UserPrfChg(strValue)
+{
+   flagUserProfDirty = ( strSaveUsrPrf != strValue.toUpperCase() );
+
+   if ( (flagSavePsw) && (!(objCurrentUser.UGROUPUSER)) && ( flagUserProfDirty ) ) Warning_TR.style.display = "block"; 
+   else Warning_TR.style.display = "none"; 
+
+   return;
+}
+
+/* When a value shown in the instance list is changed we have to signal to the filter to update the instance list */
+function UserChg()
+{
+   flagInstListDirty = true;
+   return;
+}
+
+function PswChg(strValue)
+{
+   if ( strValue.length > 0 ) Warning_TR.style.display = "none"; 
+}
+
+function EnDisSavePsw(flagChecked)
+{
+   flagSavePsw = flagChecked;
+   
+   AVSAVEVALUE(flagSavePsw, "UFUMUDX_SavePsw");
+
+   Label_NewPsw.disabled = Label_ConfPsw.disabled = ConfPsw.disabled = NewPsw.disabled = !(flagSavePsw);
+
+   if (!(flagSavePsw)) 
+   {
+      Warning_TR.style.display = "none";
+      ConfPsw.value = NewPsw.value = "";
+   }
+}
+
+function GroupChg()
+{
+   flagGroupDirty = true;
+   return;
+}
+
+function Upd_User_Response(flagOkay,strMessage)
+{
+   UFUMCDX_SetBusy(false);
+
+   if (!(flagOkay)) return;
+   
+   /* If ok update the instance list when required*/
+   if ( ( flagInstListDirty ) || ( flagUserProfDirty ) )
+   {
+      AVSIGNALEVENT(window, AVCOMMANDTYPE, null, strCurrentUserIDN, objCurrentUser.UUSERPROFILE, objCurrentUser.UCAPTION, objCurrentUser.UDISABLED);
+   }
+   
+   /* reset passwords */
+   NewPsw.value = "";
+   ConfPsw.value = "";
+   nlPsw.value = ""; 
+   flagUserProfDirty = false;
+   flagInstListDirty = false;
+   flagGroupDirty = false;
+   strSaveUsrPrf = UserPrf.value;   
+   
+   if (GLOBAL_CloseWindow)
+   {
+      AVCLOSEFORM(window);
+   }
+   else if ( AVCOMMANDTYPE == "VF_NEW_USER" ) 
+   {  
+      UFUMCDX_SetBusy(true);
+      GETUSER("==NEW==",GETDETAILS_response); 
+   }
+   else if ( AVCOMMANDTYPE == "VF_NEW_USER_GROUP") 
+   {
+      UFUMCDX_SetBusy(true);
+      GETUSER("==NEWGROUP==",GETDETAILS_response);   
+   }
+      
+   return;
+}
+
+</script>
+</HEAD>
+
+<body id='BODY_Tag' oncontextmenu="return false">
+<div style="height:100%; width:100%; overflow:auto;">
+<table id="MainTable">
+ <tr>
+   <td id="leftTD">
+     <table width="100%">
+         <tr>
+            <td class="Label_TDs" id="Label_UID"></td>
+            <td class="Data_TDs"><input class="Input_TDs" disabled type='text' id='UID' /></td>
+         </tr>
+         <tr>
+            <td class="Label_TDs" id="Label_Caption"></td>
+            <td class="Data_TDs"><input class="Input_TDs" type="text" id="Caption" maxlength="40" onchange="UserChg()" /></td>
+            <td><span id="Lang_Caption"></span></td>
+         </tr>
+         <tr>
+            <td class="Label_TDs" id="Label_UserPrf"></td>
+            <td class="Data_TDs"><input class="Input_TDs" type="text" id="UserPrf" maxlength="32" onchange="UserPrfChg(this.value)" /></td>
+         </tr>
+         <tr id="Warning_TR"><td></td><td><p id="Warning_P"></p></td></tr>
+         <tr id="NewPsw_TR">
+            <td class="Label_TDs" style="margin-top:5px" id="Label_NewPsw"></td>
+            <td class="Data_TDs"><input class="Input_TDs" type='password' id='NewPsw' onchange="PswChg(this.value)" maxlength="10" /></td>
+         </tr>
+         <tr id="ConfPsw_TR">
+            <td class="Label_TDs" id="Label_ConfPsw"></td>
+            <td class="Data_TDs"><input class="Input_TDs" type='password' id='ConfPsw' maxlength="10" /></td>
+         </tr>         
+         <tr id="SaveVLFpsw_TR">
+            <td><input type="checkbox" onclick="EnDisSavePsw(this.checked)" id="SaveVLFpsw_chkbox" /><span id="SaveVLFpsw_Span"></span></td>
+         </tr>                  
+         <tr id="TempDir_TR">
+            <td class="Label_TDs" style="margin-top:5px" id="Label_TempDir"></td>
+            <td class="Data_TDs"><input class="Input_TDs" type='text' id='TempDir' maxlength="256" /></td>
+         </tr>
+         <tr id="Email_TR">
+            <td class="Label_TDs" id="Label_Email"></td>
+            <td class="Data_TDs"><input class="Input_TDs" type='text' id='Email' maxlength="256" /></td>
+         </tr>
+         <tr id="Logon_TR">
+            <td class="Label_TDs" ><div style="margin-top:10px;" id="Label_SignOnTimeOut"></div></td>
+            <td class="Data_TDs"><div style="margin-top:10px;"><input type="text" id="SignOnTimeOut" size="5" maxlength="7" /><span class="Log_Minutes" id="LogOn_Minutes"></span></div></td>
+         </tr>
+         <tr id="Logoff_TR">
+            <td class="Label_TDs" id="Label_SignOffTimeOut"></td>
+            <td class="Data_TDs"><input type="text" id="SignOffTimeOut" size="5" maxlength="7" /><span class="Log_Minutes" id="LogOff_Minutes"></span></td>
+         </tr>
+         <tr id="Admin_TR">
+            <td style="padding-left:0px;"><input style="margin-left:0px; margin-top:4px;" type="checkbox" id="Admin" /><span id="Label_Admin"></span></td>
+         </tr>
+         <tr id="Disabled_TR">
+            <td style="padding-left:0px;"><input type="checkbox" id="Disabled" onclick="UserChg()" /><span id="Label_Disabled"></span></td>
+         </tr>
+     </table>
+   </td>
+   <td id="Group_TD" valign="top">
+      <div id="Label_Group"></div>
+      <div id="Group" class="Group_DIV"></div>
+      <div id="Btns_Sel" style="margin-top:3px;" align="center"><input class="Btns" onclick="Btn_Select(true)" type='button' id='Btn_SelAll' /><span style="width:10px;"></span><input class="Btns" onclick="Btn_Select(false)" type='button' id='Btn_UnSelAll' /></div>
+    </td>
+ </tr>
+ <tr>
+   <td >
+      <div style="margin-top:10px;">
+        <fieldset>
+         <legend id="NL_Details"></legend>
+         <table>
+          <tr>
+            <td id="Label_nlUser"></td>
+            <td><input type='text' id='nlUser' size="30" maxlength="32" /></td>
+          </tr>
+          <tr>
+            <td id="Label_nlPsw"></td>
+            <td><input type='password' id='nlPsw' size="30" maxlength="32" /></td>
+          </tr>
+         </table>
+        </fieldset>
+      </div>
+   </td>
+   <td></td>
+</tr>
+<tr>
+<td  colspan="2" id="SaveBtn_TD"><input class="Btns" onclick="Btn_Save(false)" type='button' id='CDX_Save' /></td>
+<td  id="SaveNew_TD"><input class="BtnSavClos" onclick="Btn_Save(false)" type='button' id='CDX_SaveNew' /></td>
+<td  id="SaveClose_TD"><input class="BtnSavClos" onclick="Btn_Save(true)" type='button' id='CDX_SaveClose' /></td>
+</tr>
+</table>
+</div>
+</body>
+</HTML>   

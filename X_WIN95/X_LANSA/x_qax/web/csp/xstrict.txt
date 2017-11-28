@@ -1,0 +1,10 @@
+﻿default-src 'self' *.googleapis.com *.gstatic.com data:;
+font-src 'self' *.googleapis.com *.gstatic.com;
+img-src 'self' data: blob: *.googleapis.com *.gstatic.com www.google.com;
+connect-src 'self';
+object-src 'self';
+style-src 'self' *.googleapis.com www.google.com %{nonce_hdr}%;
+script-src 'self' *.googleapis.com *.gstatic.com www.google.com %{nonce_hdr}%;
+child-src 'self' www.google.com;
+form-action 'self';
+frame-ancestors 'self';

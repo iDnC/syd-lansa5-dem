@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<context>
+CommandHandler 
+</context>
+<caption>
+Routine uExecute type sur une seule instance (fragment de code)   
+</caption>
+<hint>
+Cet assistant crée le code type pour une routine uExecute à utiliser dans un gestionnaire d´action gérant une instance unique d´un objet métier.    
+</hint>
+<preamble>
+FRA_vf_um052_Handler_uExecute_Single.htm
+</preamble> 
+<sequence>
+000300  
+</sequence>
+<handler>
+VF_UM055 
+</handler>
+<handlertxt>
+Préciser le protocole d´identification que vous avez choisi d´utiliser pour cet objet métier. si un fichier physique ressemble à cet objet métier, donner son nom et l´assistant essaiera automatiquement de déduire un protocole d´identification type pour vous.      
+</handlertxt>
+<code>
+* <<minorsep>>
+* Gérer l´exécution de l´action
+* <<minorsep>>
+<<CommentBlock>>
+Mthroutine Name(uExecute) Options(*REDEFINE)
+<<Comment>>Exécuter toute logique définie dans l´ancêtre 
+£Com_Ancestor.uExecute
+<<UM055_GenGetLst>>
+<<comment>>Lire les informations à partir du fichier principal pour alimenter les zones de l´entête du formulaire 
+Fetch Fields(<<TBA>>) From_File(<<UM055_BaseFile>>) With_Key(<<UM055_BaseFileKeys>>) 
+<<CommentBlock>>
+Endroutine
+</code>   

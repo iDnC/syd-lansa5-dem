@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<context>
+Filter 
+</context>
+<caption>
+Sous-programme événementiel type de recherche (fragment de code) 
+</caption>
+<preamble>
+FRA_vf_um052_Filter_Search_Button_Wam.htm
+</preamble>
+<mode>
+WAM
+</mode>
+<hint>
+Cet assistant crée un fragment de code type pour une sous-programme événementiel qui gère le clic sur le bouton rechercher dans un filtre.    
+</hint>
+<sequence>
+000300    
+</sequence>
+<handler>
+VF_UM055 
+</handler>
+<handlertxt>
+Préciser le protocole d´identification que vous avez choisi d´utiliser pour cet objet métier. si un fichier physique ressemble à cet objet métier, donner son nom et l´assistant essaiera automatiquement de déduire un protocole d´identification type pour vous.     
+</handlertxt>
+<code>
+EvtRoutine Handling(<<TBA>>.Click) Options(*NOCLEARMESSAGES *NOCLEARERRORS)
+<<comment>>Indique que la mise à jour de la liste d´instance <<businessobject_lang ucaption>> va commencer
+£avListManager.BeginListUpdate
+<<comment>>Vide la liste d´instance de l´objet métier <<businessobject_lang ucaption>> (optionnel)
+£avListManager.ClearList
+<<Comment>> Choisir les instances appropriées de <<businessobject_lang ucaption>> 
+Select Fields(<<UM055_GenFldList>> + <<TBA>>) 
++ From_File(<<TBA>>) With_key(<<TBA>>)   
+<<UM055_AddtoList>>  
+EndSelect
+<<comment>>Indique que la mise à jour de la liste d´instance <<businessobject_lang ucaption>> est terminée
+£avListManager.EndListUpdate
+<<comment>> 
+Endroutine
+</code>

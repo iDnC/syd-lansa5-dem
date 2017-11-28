@@ -1,0 +1,74 @@
+* ---------------------------------------------------------------------------------
+* This is a command handler in framework <<FRAMEWORK>>.
+* It belongs to business object <<BUSINESS_OBJECT_CAPTION>>.
+* It was created on <<CREATEDDATE>> by <<CREATEDUSER>>.
+* ---------------------------------------------------------------------------------
+Begin_Com Role(*EXTENDS #vf_ac010O) Height(270) Width(500)
+
+Define Field(#ServerModuleResult) Type(*BOOLEAN)
+
+* ---------------------------------------------------------------------------------
+Define_Com Class(#PRIM_ATLI) Name(#AttachBodyPanel) Manage(#BodyPanel) Parent(#MainPanelAttachmentManager) Attachment(Center)
+Define_Com Class(#PRIM_ATLI) Name(#AttachButtonPanel) Manage(#ButtonPanel) Parent(#MainPanelAttachmentManager) Attachment(Bottom)
+
+Define_Com Class(#Prim_panl) Name(#BodyPanel) Parent(#COM_OWNER) Displayposition(1) Tabposition(1) Height(238) Left(0) Top(0) Width(500) Horizontalscroll(True) Verticalscroll(True) Layoutmanager(#BodyPanelAttachmentManager)
+Define_Com Class(#Prim_panl) Name(#ButtonPanel) Parent(#COM_OWNER) Displayposition(2) Tabposition(2) Left(0) Top(238) Width(500) Layoutmanager(#ButtonPanelAttachmenthManager) Height(32)
+
+* ---------------------------------------------------------------------------------
+Define_Com Class(#Prim_atlm) Name(#ButtonPanelAttachmenthManager)
+Define_Com Class(#Prim_atli) Name(#ButtonPanelAttachButton_1) Parent(#ButtonPanelAttachmenthManager) Manage(#Button_Operation_1) Attachment(Right) Marginright(4) Margintop(4) Marginbottom(4)
+Define_Com Class(#Prim_atli) Name(#ButtonPanelAttachButton_2) Parent(#ButtonPanelAttachmenthManager) Manage(#Button_Operation_2) Attachment(Right) Marginright(4) Margintop(4) Marginbottom(4)
+* ---------------------------------------------------------------------------------
+Define_Com Class(#Prim_atlm) Name(#BodyPanelAttachmentManager)
+Define_Com Class(#Prim_atli) Name(#BodyPanelAttachDelete_This_Label) Manage(#Delete_This_Label) Parent(#BodyPanelAttachmentManager) Attachment(Center)
+
+* ---------------------------------------------------------------------------------
+Define_Com Class(#Prim_phbn) Name(#Button_Operation_1) Parent(#ButtonPanel) Caption('Test Operation 1') Displayposition(1) Tabposition(1) Height(24) Left(252) Top(4) Width(120)
+Define_Com Class(#Prim_phbn) Name(#Button_Operation_2) Parent(#ButtonPanel) Caption('Test Operation 2') Displayposition(2) Tabposition(2) Height(24) Left(376) Top(4) Width(120)
+
+* ---------------------------------------------------------------------------------
+Define_Com Class(#PRIM_LABL) Name(#Delete_This_Label) Caption('Delete this label and add you own custom content to this panel.') Tabstop(False) Parent(#BodyPanel) Displayposition(1) Tabposition(1) Height(238) Left(0) Top(0) Width(500) Alignment(Center) Verticalalignment(Center)
+
+* ---------------------------------------------------------------------------------
+Mthroutine Name(uExecute) Options(*REDEFINE)
+* Do the ancestor thing
+#COM_ANCESTOR.uExecute Gotofreestate(#GotoFreeState) Switchcallerreference(#SwitchCallerReference)
+* Add custom logic here
+Endroutine
+
+* ---------------------------------------------------------------------------------
+Mthroutine Name(avExecuteAsyncOperation) Options(*REDEFINE)
+
+Case (#OperationID)
+When (= Operation_1)
+#COM_OWNER.Handle_Operation_1
+When (= Operation_2)
+#COM_OWNER.Handle_Operation_2
+Endcase
+
+Endroutine
+
+* ---------------------------------------------------------------------------------
+Evtroutine Handling(#Button_Operation_1.Click)
+#COM_OWNER.avQueueAsyncOperation Operationid(Operation_1) Busystatetext("Performing operation 1")
+Endroutine
+
+* ---------------------------------------------------------------------------------
+Evtroutine Handling(#Button_Operation_2.Click)
+#COM_OWNER.avQueueAsyncOperation Operationid(Operation_2) Busystatetext("Performing operation 2")
+Endroutine
+
+* ---------------------------------------------------------------------------------
+Mthroutine Name(Handle_Operation_1)
+Define_Com Class(<<SERVER_MODULE>>.Operation_1) Name(#ServerOperation_1)
+#ServerOperation_1.Execute
+Endroutine
+
+* ---------------------------------------------------------------------------------
+Mthroutine Name(Handle_Operation_2)
+Define_Com Class(<<SERVER_MODULE>>.Operation_2) Name(#ServerOperation_2)
+#ServerOperation_2.Execute
+Endroutine
+
+
+End_Com

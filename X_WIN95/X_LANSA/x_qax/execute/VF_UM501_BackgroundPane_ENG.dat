@@ -1,0 +1,84 @@
+* ----------------------------------------------------------------------------------------------
+* This is the background pane for framework <<FRAMEWORK>>
+* It was created on <<CREATEDDATE>> by <<CREATEDUSER>>
+* It has some example appearance and behaviour, but you can change that to be whatever you want.
+* ----------------------------------------------------------------------------------------------
+Begin_Com Role(*EXTENDS #vf_AC037O) Height(409) Width(689) Verticalscroll(True) Style(#SelectedBackground) Layoutmanager(#MainPanelAttachLayout)
+
+Define_Com Class(#PRIM_ATLM) Name(#MainPanelAttachLayout)
+Define_Com Class(#PRIM_ATLI) Name(#Attach_ImagePanel) Manage(#ImagePanel) Parent(#MainPanelAttachLayout) Attachment(Bottom) Marginleft(8) Marginright(8) Marginbottom(8)
+
+Define_Com Class(#PRIM_ATLI) Name(#Attach_CurrentContent) Manage(#CurrentContent) Parent(#MainPanelAttachLayout) Attachment(Bottom) Marginleft(8) Marginright(8) Marginbottom(8)
+Define_Com Class(#PRIM_ATLI) Name(#Attach_CopyRight) Manage(#CopyRight) Parent(#MainPanelAttachLayout) Attachment(Bottom) Marginleft(8) Marginright(8) Marginbottom(8)
+
+Define_Com Class(#PRIM_ATLM) Name(#ImagePanelAttachLayout)
+Define_Com Class(#PRIM_ATLI) Name(#Attach_Image) Manage(#Image) Parent(#ImagePanelAttachLayout) Attachment(Right)
+
+Define_Com Class(#Prim_labl) Name(#CurrentContent) Tabstop(False) Parent(#COM_OWNER) Displayposition(2) Tabposition(2) Opacity(25) Alignment(Right) Verticalalignment(Center) Height(27) Left(8) Top(351) Width(673) Caption('Current Content') Style(#LargeFont)
+
+Define_Com Class(#Prim_labl) Name(#CopyRight) Tabstop(False) Parent(#COM_OWNER) Displayposition(3) Tabposition(1) Opacity(25) Style(#SmallFont) Alignment(Right) Verticalalignment(Center) Height(15) Left(8) Top(386) Width(673) Caption('CopyRight')
+
+Define_Com Class(#PRIM_PANL) Name(#ImagePanel) Parent(#COM_OWNER) Displayposition(1) Tabposition(3) Left(8) Top(295) Width(673) Height(48) Style(#SelectedBackground) Layoutmanager(#ImagePanelAttachLayout)
+
+Define_Com Class(#prim_imag) Name(#Image) Parent(#ImagePanel) Displayposition(1) Tabposition(1) Imagesizing(BestFit) Left(625) Top(0) Width(48) Height(48) Opacity(25)
+
+* -----------------------------------------------------------------------------------
+Define_Com Class(#Prim_vs.SolidBrush) Name(#SelectedBrush) Color(Transparent)
+Define_Com Class(#Prim_vs.Style) Name(#SelectedBackground) Backgroundbrush(#SelectedBrush)
+Define_Com Class(#Prim_vs.Style) Name(#LargeFont) Fontsize(24) Backgroundbrush(#SelectedBrush)
+Define_Com Class(#Prim_vs.Style) Name(#SmallFont) Fontsize(10) Backgroundbrush(#SelectedBrush)
+
+* -----------------------------------------------------------------------------------
+Mthroutine Name(uInitialize) Options(*REDEFINE)
+
+* Do the ancestor thing first
+#COM_ANCESTOR.uInitialize
+
+* On small and medium screen devices act differently to desktop devices
+If ((#AVFRAMEWORKMANAGER.avSmallScreen) Or (#AVFRAMEWORKMANAGER.avMediumScreen))
+
+Set Com(#CurrentContent #CopyRight #ImagePanel #Image) Visible(False)
+
+#COM_OWNER.Opacity := 25
+
+* Desktop sized devices
+Else
+
+#Image.Image <= #SYS_APPLN.CreateBitmap( "VLFONE/Images/Black/XLarge/the_internet_outline.png" )
+
+#CopyRight.Caption := (169).AsUnicodeString + " " + *YYYYC + " <Your Corporation>. All rights reserved."
+
+Endif
+
+Endroutine
+
+* -----------------------------------------------------------------------------------
+Mthroutine Name(uActivate) Options(*REDEFINE)
+
+* Do the ancestor thing first
+#COM_ANCESTOR.uActivate Forapplication(#ForApplication)
+
+* If the application is null then we are activating on the home (framework) page
+If (#ForApplication *Is *null)
+
+If ((#AVFRAMEWORKMANAGER.avSmallScreen) Or (#AVFRAMEWORKMANAGER.avMediumScreen))
+#SelectedBrush.Color := #UFRAMEWORK.uCurrentThemeColor
+Else
+#CurrentContent.Caption := #UFRAMEWORK.uCaption
+Endif
+
+
+* Or we are activating an application
+Else
+
+If ((#AVFRAMEWORKMANAGER.avSmallScreen) Or (#AVFRAMEWORKMANAGER.avMediumScreen))
+#SelectedBrush.Color := #ForApplication.uCurrentThemeColor
+Else
+#CurrentContent.Caption := #ForApplication.uCaption
+Endif
+
+Endif
+
+Endroutine
+
+End_Com

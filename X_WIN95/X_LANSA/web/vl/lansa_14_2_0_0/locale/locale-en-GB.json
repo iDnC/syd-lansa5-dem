@@ -1,0 +1,35 @@
+{
+ "no":                        "No",
+ "ok":                        "OK",
+ "yes":                       "Yes",
+ "today":                     "Today",
+ "retry":                     "Retry",
+ "cancel":                    "Cancel",
+ "ignore":                    "Ignore",
+
+ "dayLong":                   ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+ "dayShort":                  ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
+ "monthLong":                 ["January","February","March","April","May","June","July","August","September","October","November","December"],
+ "monthShort":                ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+ "dateFormat":                "dd/MM/yyyy",
+ "timeFormat":                "HH:mm:ss",
+ "startOfWeek":               "Monday",
+
+ "decimalPoint":              ".",
+ "thousandsSep":              ",",
+ "currencySymbol":            "£",
+
+ "tabIncreaseDockGroup":      "Increase Group",
+ "tabDecreaseDockGroup":      "Decrease Group",
+ "tabLayoutPriority":         "Max Layout",
+ "tabAutoHide":               "Autohide",
+ "tabHide":                   "Close",
+ "tabConfigureButtons":       "Configure Pages",
+ "tabShowMoreButtons":        "Show More Buttons",
+ "tabShowFewerButtons":       "Show Fewer Buttons",
+ "tabAddOrRemoveButtons":     "Add or Remove Pages",
+ "tabPageCloseButton":        "Close Page",
+ 
+ "cardCaption":               "Primary Text",
+ "cardTertiary":              "Tertiary Text"
+}

@@ -1,0 +1,18 @@
+* ---------------------------------------------------------------------------------
+* This is the "Show About" command handler for framework <<FRAMEWORK>>
+* It was created on <<CREATEDDATE>> by <<CREATEDUSER>>
+* Normally it executes as a hidden command from an icon on the tool bar
+* ---------------------------------------------------------------------------------
+Begin_Com Role(*EXTENDS #VF_AC010O)
+
+Mthroutine Name(uExecute) Options(*REDEFINE)
+
+* Do the ancestor thing
+Invoke Method(#Com_Ancestor.uExecute) Gotofreestate(#GotoFreeState) Switchcallerreference(#SwitchCallerReference)
+
+* Switch to the about details at the framework level
+#avFrameworkManager.avSwitch Caller(#COM_OWNER) ToObjectNamed("*FRAMEWORK_ABOUT")
+
+Endroutine
+
+End_Com

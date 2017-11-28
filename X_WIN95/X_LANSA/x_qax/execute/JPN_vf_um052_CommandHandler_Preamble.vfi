@@ -1,0 +1,24 @@
+* <<majorsep>> 
+* タイプ               : コマンド ハンドラー
+<<if WEB_MODE>>
+* プラットフォーム     : WEB (LANSA for the WEB)
+<<else>>
+<<if WAM_MODE>>
+* プラットフォーム     : MS-WINDOWS (Web Access Module)
+<<else>>
+<<if ONE_MODE>>
+* プラットフォーム     : Web ブラウザ (Visual LANSA)
+* 親                   : VF_AC010O  
+<<else>> 
+* プラットフォーム     : MS-WINDOWS (Visual LANSA)
+* 親                   : VF_AC010  
+<<endif>>  
+<<endif>>  
+* 開発者               : <<user>> 
+* 開発日時             : <<date>> at <<time>>
+* 著作権               : <<copyright>>
+* フレームワーク       : <<framework_lang ucaption>>
+* アプリケーション     : <<application_lang ucaption>>
+* ビジネス オブジェクト: <<businessobject_lang ucaption>>
+* コマンド・ハンドラー : <<command_lang ucaption>>
+* <<majorsep>>

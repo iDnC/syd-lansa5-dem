@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<deployment name="defaultServerConfiguration" xmlns="http://xml.apache.org/axis/wsdd/">
+
+ <globalConfiguration>
+   <parameter name="sendMultiRefs" value="false"/>
+   <parameter name="dotNetSoapEncFix" value="true"/>
+   <parameter name="disablePrettyXML" value="true"/>
+   <parameter name="enableNamespacePrefixOptimization" value="false"/>
+ </globalConfiguration>
+
+</deployment>

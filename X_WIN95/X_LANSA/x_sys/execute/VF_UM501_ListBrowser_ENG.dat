@@ -1,0 +1,130 @@
+* ---------------------------------------------------------------------------------
+* This is a command handler in framework <<FRAMEWORK>>.
+* It belongs to business object <<BUSINESS_OBJECT_CAPTION>>.
+* It was created on <<CREATEDDATE>> by <<CREATEDUSER>>.
+* ---------------------------------------------------------------------------------
+Begin_Com Role(*EXTENDS #VF_AC012O) Height(209) Width(825) Layoutmanager(#MainAttachmentManager)
+
+* Layout Managment
+Define_Com Class(#PRIM_ATLM) Name(#MainAttachmentManager)
+Define_Com Class(#PRIM_ATLI) Name(#Attach_VisualizedInstanceList) Manage(#VisualizedInstanceList) Parent(#MainAttachmentManager) Attachment(Center)
+
+* In this case a #PRIM_LIST is used to visualize the details of a business object instance
+Define_Com Class(#Prim_list) Name(#VisualizedInstanceList) Parent(#COM_OWNER) Displayposition(1) Tabposition(1) Height(209) Width(825) Left(0) Top(0) Columnlines(False) Rowlines(False)
+
+* The #PRIM_LIST List columns
+<<EXPAND_CUSTOM_BROWSER>>  <<PARM2=True>> <<PARM1=Define_Com Class(#PRIM_LIST.%LISTTYPE%) Name(#COL_%TARGET%) Displayposition(1) Parent(#VisualizedInstanceList) Source(#%TARGET%) Sortonclick(True) Columncaptiontype(Caption) Columncaption('%LABEL%') >>
+
+* ---------------------------------------------------------------------------------------
+* Watermark this as a custom browser so it stands out - please delete these 2 lines later
+Define_Com Class(#PRIM_LABL) Name(#RemoveThisLabel) Parent(#COM_OWNER) Top(70) Left(20) Caption('Custom Instance List Browser') Displayposition(2) Tabposition(2) Tabstop(False) Height(111) Width(527) Style(#HugeFont) Verticalalignment(Center) Alignment(Center) Opacity(30) Rotation(20)
+Define_Com Class(#Prim_vs.Style) Name(#HugeFont) Fontsize(20) Bold(True) Textcolor(Gray)
+
+* ---------------------------------------------------------------------------------------
+* Redefine the standard uClearInstanceList method
+Mthroutine Name(uClearInstanceList) Options(*Redefine)
+
+Clr_List Named(#VisualizedInstanceList)
+
+Endroutine
+
+* ---------------------------------------------------------------------------------------
+* Redefine the standard uPutListEntryData method
+Mthroutine Name(uPutListEntryData) Options(*REDEFINE)
+
+Define_Com Class(#PRIM_LIST.ListItem) Name(#CurrentListItem) Reference(*DYNAMIC)
+
+* Is there a list entry for this DataItem already?
+#CurrentListItem <= #VisualizedInstanceList.FindReference( #DataItem )
+
+* If yes, get it so that it can be updated
+If (#CurrentListItem *IsNot *NULL)
+Get_Entry Number(#CurrentListItem.Entry)
+Endif
+
+* Map data into the list columns
+<<EXPAND_CUSTOM_BROWSER>> <<PARM2=False>> <<PARM1=#%TARGET% := #DataItem.%SOURCE%>>
+
+* Add/update details to the visible instance list
+If (#CurrentListItem *IsNot *NULL)
+Upd_Entry In_List(#VisualizedInstanceList)
+Else
+Add_Entry To_List(#VisualizedInstanceList)
+#CurrentListItem <= #VisualizedInstanceList.CurrentItem
+Endif
+
+* Remember which DataItem is associated with this list line
+#CurrentListItem.RelatedReference <= #DataItem
+#CurrentListItem.Selected := #DataItem.avIsSelected
+
+Endroutine
+
+* ---------------------------------------------------------------------------------------
+* Redefine the standard uDeleteListEntryData method
+Mthroutine Name(uDeleteListEntryData) Options(*REDEFINE)
+
+Define_Com Class(#PRIM_LIST.ListItem) Name(#CurrentListItem) Reference(*DYNAMIC)
+
+#CurrentListItem <= #VisualizedInstanceList.FindReference( #DataItem )
+If (#CurrentListItem *IsNot *NULL)
+Dlt_Entry Number(#CurrentListItem.Entry)
+Endif
+
+Endroutine
+
+* ---------------------------------------------------------------------------------------
+* Handle list item event ItemGotFocus
+Evtroutine Handling(#VisualizedInstanceList.ItemGotFocus)
+
+Define_Com Class(#vf_lm003O) Name(#DataItem) Reference(*DYNAMIC)
+
+If (#COM_OWNER.UIisLocked.Not)
+
+#DataItem <= #VisualizedInstanceList.CurrentItem.RelatedReference *As #VF_LM003O
+
+* Make this the current item
+#DataItem.avIsCurrent := True
+
+* Execute any default command
+#DataItem.avExecuteDefaultCommand
+
+EndIf
+
+Endroutine
+
+* ---------------------------------------------------------------------------------------
+* Handle list item event ItemGotSelection
+Evtroutine Handling(#VisualizedInstanceList.ItemGotSelection)
+If (#COM_OWNER.UIisLocked.Not)
+(#VisualizedInstanceList.CurrentItem.RelatedReference *As #VF_LM003O).avIsSelected := True
+EndIf
+Endroutine
+
+* ---------------------------------------------------------------------------------------
+* Handle list item event ItemGotSelection
+Evtroutine Handling(#VisualizedInstanceList.ItemLostSelection)
+If (#COM_OWNER.UIisLocked.Not)
+(#VisualizedInstanceList.CurrentItem.RelatedReference *As #VF_LM003O).avIsSelected := False
+Endif
+Endroutine
+
+* ---------------------------------------------------------------------------------------
+* This stops the command handler from popping under the instance list
+Evtroutine Handling(#Com_owner.Click) Handled(#Handled)
+* "Eat" any click event on this control to prevent them flowing up to the container control
+#Handled := True
+Endroutine
+
+* ---------------------------------------------------------------------------------------
+* Handle quick searching
+Mthroutine Name(uPerformQuickSearch) Options(*REDEFINE)
+#COM_ANCESTOR.uHandleQuickSearchbyDefault Searchstring(#SearchString) Inprimlist(#VisualizedInstanceList)
+Endroutine
+
+* ---------------------------------------------------------------------------------------
+* Cancel quick search
+Mthroutine Name(uCancelQuickSearching) Options(*REDEFINE)
+#COM_ANCESTOR.uHandleQuickSearchCancelbyDefault Inprimlist(#VisualizedInstanceList)
+Endroutine
+
+End_Com

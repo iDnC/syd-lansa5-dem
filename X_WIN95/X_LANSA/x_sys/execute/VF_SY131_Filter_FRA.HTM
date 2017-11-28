@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head id="VF_RADPAD_Head">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+<script type="text/javascript">
+    function CheckDrag()
+    {
+        if ((event != null) && (event.srcElement != null) && (event.srcElement.tagName == "IMG"))
+        {
+            event.cancelBubble = true; event.returnValue = false;
+        }
+    }
+    window.onload = function ()
+    {
+        var qstring = location.search;
+        var isVLFONE = (qstring.search("VLFONE=TRUE") >= 0);
+        var isVLFWIN = (qstring.search("VLFWIN=TRUE") >= 0);
+        var eBODY = document.body;
+        eBODY.style.margin = "8px 8px 8px 8px";
+        eBODY.style.fontFamily = "Verdana,Arial,Helvetica,sans-serif";
+        eBODY.style.fontSize = "9pt";
+        if (isVLFONE || isVLFWIN)
+        {
+            eBODY.style.backgroundColor = "#" + qstring.substr(qstring.indexOf("&BC=") + 4, 6);
+            eBODY.style.color = "#" + qstring.substr(qstring.indexOf("&TC=") + 4, 6);
+        }
+        else
+        {
+            if ((parent != null) && (parent.VF_UseBackGroundColor != null))
+                eBODY.style.backgroundColor = parent.VF_UseBackGroundColor;
+            else
+                eBODY.style.backgroundColor = "#f4f3ee";
+        }
+        if (isVLFONE == false) window.document.body.ondragover = CheckDrag;
+    }
+</script>
+</head>
+<body id="VF_RADPAD_Body">
+<P><b>Critère de recherche pour <<BOCAPTION>></b>.</P>
+<P>Ceci est le prototype d'un programme de recherche utilisé pour afficher les <<BOCAPTION>>.</P>
+<P>L'utilisateur saisira normalement ses valeurs de recherche ici.</P>
+<P>Pour voir ce qu'un filtre fait, cliquer sur le bouton "Maquette liste".</P> 
+<P>Puis sélectionnez une entrée de la liste de <<BOCAPTION>> pour voir comment afficher et utiliser les informations détaillées.</P>
+<P>Vous pouvez modifier ce panneau et ajouter vos propres notes et images pour expliquer comment il fonctionnera.</P>
+<P>Enfin, vous remplacerez ce prototype par un programme réel qui permettra aux utilisateurs de choisir le <<BOCAPTION>> à afficher.</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+</body>
+</html>

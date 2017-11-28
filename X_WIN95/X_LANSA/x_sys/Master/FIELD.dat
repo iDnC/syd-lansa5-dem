@@ -1,0 +1,1223 @@
+@@RRNO    0Relative record number                  P0001500                       000000000000000
+@@UPID    0Field update / access identifier        P0000700                       000000000000000
+AB£OPT    0Action Bar Option                       A0000300                       000000000000000
+BLANK     0Blank / blanks variable                 A0000100                       000000000000000
+BLANKS    0Blank / blanks variable                 A0000100                       000000000000000
+COMPANY   0Current company name                    A0003000                       000000000000000
+CPFREL    0Current OS/400 or S/38 CPF release levelS0000301                       000000000000000
+CPUTYPE   0CPU Type (AS400 or S38)                 A0000500                       000000000000000
+CURLOC£FN 0Name of field cursor located in         A0001000                       000000000000000
+DATE      0Numeric date in installation format     S0000600                       000000000000000
+DATE8     08 digit DATE in installation format     S0000800                       000000000000000
+DATE8C    08 Character date in installation format A0000800                       000000000000000
+DATEC     0Character date in installation format   A0000600                       000000000000000
+DATETIME  0Current date and time (numeric)         S0001400                       000000000000000
+DATETIMEC 0Current date and time (character)       A0001400                       000000000000000
+DATETIMEX 1Current date and time (RDMLX)           Z0002600                       000000000000000
+DATEX     1DATE in installation format (RDMLX)     E0001000                       000000000000000
+DAY       0Current day (numeric)                   S0000200                       000000000000000
+DAYC      0Current day (character)                 A0000200                       000000000000000
+DDMMYY    0Numeric date in format DDMMYY           S0000600                       000000000000000
+DDMMYYC   0Character date in format DDMMYY         A0000600                       000000000000000
+DDMMYYYY  0Numeric date in format DDMMYYYY         S0000800                       000000000000000
+DDMMYYYYC 0Character date in format DDMMYYYY       A0000800                       000000000000000
+DEPTDESC   Department Description                  A0002000                       140115113455000
+DEPTMENT   Department Code                         A0000400                       150826165444000
+DF_ELACCT 0Account                                 P0001500                       000000000000000
+DF_ELBLOB 1Document                                4000-100                       000000000000000
+DF_ELCRDT 1Stamp - Create Date/Time                Z0002600                       000000000000000
+DF_ELCRUS 0Stamp - Create User                     A0001000                       000000000000000
+DF_ELDATX 1Standard RDMLX date                     E0001000                       000000000000000
+DF_ELDEPT 0Department                              A0000400                       000000000000000
+DF_ELDESC 0Description                             A0025600                       000000000000000
+DF_ELDS   0Department/Section                      A0000600                       000000000000000
+DF_ELDSTS 0Document status (TEMP or PERM)          A0000400                       000000000000000
+DF_ELEXPD 1Expiry date (when it can be deleted)    E0001000                       000000000000000
+DF_ELFNAM 0Document long file name                 A0025600                       000000000000000
+DF_ELFSIZ 0Document file size                      S0001500                       000000000000000
+DF_ELFUNC 0Current function name                   A0001000                       000000000000000
+DF_ELHLP1 0Help for function DWDET1                A0000100                       000000000000000
+DF_ELHREF 0Open new window                         A0025600                       000000000000000
+DF_ELJOB  0Job Name                                A0001000                       000000000000000
+DF_ELJOBN 0Job Number                              A0000600                       000000000000000
+DF_ELKEY0 0DFDOCS Key                              A0003200                       000000000000000
+DF_ELKEY1 0DFDOCS Key                              A0003200                       000000000000000
+DF_ELKEY2 0DFDOCS Key                              A0003200                       000000000000000
+DF_ELKEY3 0DFDOCS Key                              A0003200                       000000000000000
+DF_ELKEY4 0DFDOCS Key                              A0003200                       000000000000000
+DF_ELKEY5 0DFDOCS Key                              A0003200                       000000000000000
+DF_ELKEY6 0DFDOCS Key                              A0003200                       000000000000000
+DF_ELKEY7 0DFDOCS Key                              A0003200                       000000000000000
+DF_ELKEY8 0DFDOCS Key                              A0003200                       000000000000000
+DF_ELKEY9 0DFDOCS Key                              A0003200                       000000000000000
+DF_ELLICT 0Line continuation number (multiline editP0000700                       000000000000000
+DF_ELLINE 0Line number in multiline edit box       P0000700                       000000000000000
+DF_ELMSG  0Message text                            A0008000                       000000000000000
+DF_ELNET  0Net Salary                              P0001102                       000000000000000
+DF_ELNTX  0Non-Taxable deductions                  P0001102                       000000000000000
+DF_ELOID  0Object ID                               A0003200                       000000000000000
+DF_ELOPER 0Operation (+ - x /)                     A0000100                       000000000000000
+DF_ELORG  0Originators email address               A0005000                       000000000000000
+DF_ELPAGE 0Number of Pages                         A0000500                       000000000000000
+DF_ELQ1HS 0Total hours first quarter               P0003001                       000000000000000
+DF_ELQ2HS 0Total hours worked second quarter       P0003001                       000000000000000
+DF_ELQ3HS 0Total hours worked third quarter        P0003001                       000000000000000
+DF_ELQ4HS 0Total hours worked fourth quarter       P0003001                       000000000000000
+DF_ELQDES 0Queue description                       A0006000                       000000000000000
+DF_ELRCP  0Recipients email address                A0008000                       000000000000000
+DF_ELRCPG 0Recipients email address                A0005000                       000000000000000
+DF_ELRETC 0Return Code                             A0000200                       000000000000000
+DF_ELSECT 0Section Code                            A0000200                       000000000000000
+DF_ELSELT 0Select                                  A0000100                       000000000000000
+DF_ELSEQ  0Document sequence                       S0000500                       000000000000000
+DF_ELSKIL 0Skill                                   A0001000                       000000000000000
+DF_ELSPLF 0Spool File Name                         A0001000                       000000000000000
+DF_ELSPLN 0Spool File Number                       A0000500                       000000000000000
+DF_ELSTAT 0Status                                  A0001000                       000000000000000
+DF_ELSUBJ 0Email Subject                           A0025500                       000000000000000
+DF_ELTX   0Enter Text                              A0025500                       000000000000000
+DF_ELTXTL 0Text                                    A0025500                       000000000000000
+DF_ELUPDT 1Stamp - Update Date/Time                Z0002600                       000000000000000
+DF_ELUPUS 0Stamp - Update User                     A0001000                       000000000000000
+DF_ELURL  0URL                                     A0025600                       000000000000000
+DF_ELURLX 1Demo URL Extended                       10409600                       000000000000000
+DF_ELUSER 0User                                    A0001000                       000000000000000
+DF_ELVL   0Element Level                           S0000100                       000000000000000
+DF_ELWEBF 0Imbedded Web IFrame (GOTO_URL) reuqired A0000100                       000000000000000
+DF_ELWK01 0Total hours workd week 1                P0003001                       000000000000000
+DF_ELWK02 0Total hours workd week 2                P0003001                       000000000000000
+DF_ELWK03 0Total hours workd week 3                P0003001                       000000000000000
+DF_ELWK04 0Total hours workd week 4                P0003001                       000000000000000
+DF_ELWK05 0Total hours workd week 5                P0003001                       000000000000000
+DF_ELWK06 0Total hours workd week 6                P0003001                       000000000000000
+DF_ELWK07 0Total hours workd week 7                P0003001                       000000000000000
+DF_ELWK08 0Total hours workd week 8                P0003001                       000000000000000
+DF_ELWK09 0Total hours workd week 9                P0003001                       000000000000000
+DF_ELWK10 0Total hours workd week 10               P0003001                       000000000000000
+DF_ELWK11 0Total hours workd week 11               P0003001                       000000000000000
+DF_ELWK12 0Total hours workd week 12               P0003001                       000000000000000
+DF_ELWK13 0Total hours workd week 13               P0003001                       000000000000000
+DF_NOTE_1 1Note Business Object Instance Agg Key   90025600                       000000000000025DF_NOTE_BusinessObjectKey
+DF_NOTE_2 1Note in HTML format                     96553500                       000000000000016DF_NOTE_NoteHTML
+DF_NOTE_3 0By                                      A0003200                       000000000000017DF_NOTE_CreatedBy
+DF_NOTE_4 0By                                      A0003200                       000000000000017DF_NOTE_UpdatedBy
+DF_NOTE_B 0Note User Business Object Name/Type     A0003200                       000000000000026DF_NOTE_BusinessObjectType
+DF_NOTE_C 1Created                                 Z0002600                       000000000000015DF_NOTE_Created
+DF_NOTE_G 0GUID                                    A0003200                       000000000000012DF_NOTE_GUID
+DF_NOTE_N 1Note in JSON format                     96553500                       000000000000016DF_NOTE_NoteJSON
+DF_NOTE_S 1Subject                                 90051200                       000000000000015DF_NOTE_Subject
+DF_NOTE_U 1Updated                                 Z0002600                       000000000000015DF_NOTE_Updated
+DF_T60SEN 1Message Sender                          80003200                       000000000000012DF_T60SENDER
+DF_T60TEX 1MessageText                             90051200                       000000000000010DF_T60TEXT
+DF_T60TIM 1Message TimeStamp                       Z0002400                       000000000000010DF_T60TIME
+DX_ELBLOB 1Document                                4000-100                       000000000000000
+DX_ELCRDT 1Stamp - Create Date/Time                Z0002600                       000000000000000
+DX_ELEXPD 1Expiry date (when it can be deleted)    E0001000                       000000000000000
+DX_ELUPDT 1Stamp - Update Date/Time                Z0002600                       000000000000000
+EXP_AVAL  0Expression Builder Alpha Value          A0025600                       000000000000000
+EXP_EMSG  0Expression Builder Error Message        A0010000                       000000000000000
+EXP_ERET  0Expression Builder Return Code          A0000200                       000000000000000
+EXP_ERROR 0Expression Builder Error Flag           A0000100                       000000000000000
+EXP_FLD   0Expression Builder Field Name           A0001000                       000000000000000
+EXP_LEVEL 0Expression Builder Level                P0000300                       000000000000000
+EXP_LISTC 0Expression Builder List Count           P0000300                       000000000000000
+EXP_LISTN 0Expression Builder Saved List Name      A0000700                       000000000000000
+EXP_LISTZ 0Expression Builder List Maximum Size    P0000700                       000000000000000
+EXP_NSTR  0Expression Builder Numeric String       A0003000                       000000000000000
+EXP_NVAL  0Expression Builder Numeric Value        P0002105                       000000000000000
+EXP_OPER  0Expression Builder Operator             A0001000                       000000000000000
+EXP_OPTN  0Expression Builder Option Field         A0000100                       000000000000000
+EXP_TOTAL 0Expression Builder Expression Total     P0000300                       000000000000000
+F03ALS    0Alias name                              A0003000                       000000000000000
+F03CH1    0Column heading 1                        A0002000                       000000000000000
+F03CH2    0Column heading 2                        A0002000                       000000000000000
+F03CH3    0Column heading 3                        A0002000                       000000000000000
+F03DC2    0Decimals                                P0000500                       000000000000000
+F03DEC    0Number of decimals                      P0000100                       000000000000000
+F03DES    0Field description                       A0004000                       000000000000000
+F03DFT    0Default value                           A0002000                       000000000000000
+F03EDC    0Edit code                               A0000100                       000000000000000
+F03EDW    0edit word                               A0002400                       000000000000000
+F03FLD    0Field name                              A0001000                       000000000000000
+F03HLP    0Pointer to help text                    A0001000                       000000000000000
+F03IAT    0Input attributes list                   A0004000                       000000000000000
+F03LBL    0Field label                             A0001500                       000000000000000
+F03LEN    0Field length                            P0000300                       000000000000000
+F03LN2    0Length                                  P0001100                       000000000000000
+F03OAT    0Output attribute list                   A0004000                       000000000000000
+F03P#I    0Partition Identifier                    A0000300                       000000000000000
+F03REF    0Reference name                          A0001000                       000000000000000
+F03TYP    0Field type                              A0000100                       000000000000000
+F03UDT    0Product user area                       A0020000                       000000000000000
+F12ATD    0TIME/DATE MADE ACTIVE                   P0001200                       000000000000000
+F12AUS    0USER WHO MADE ACTIVE                    P0000700                       000000000000000
+F12AVN    0active version no.                      P0000700                       000000000000000
+F12P#I    0Partition Identifier                    A0000300                       000000000000000
+F12PFL    0Physical file name                      A0001000                       000000000000000
+F12PLB    0File library                            A0001000                       000000000000000
+F12UVM    0LAST version no.                        P0000700                       000000000000000
+F14AKI    0list entry info.                        A0002000                       000000000000000
+F14P#I    0Partition Identifier                    A0000300                       000000000000000
+F14PFL    0PF name                                 A0001000                       000000000000000
+F14PLB    0lib name                                A0001000                       000000000000000
+F14PTR    0Pointer value                           A0001000                       000000000000000
+F14SEQ    0sequence number                         P0000700                       000000000000000
+F14TYP    0Field type                              A0000300                       000000000000000
+F14VAL    0list entry                              A0002000                       000000000000000
+F14VER    0version number                          P0000700                       000000000000000
+F15AP1    0ADD PARMS 1                             A0020000                       000000000000000
+F15AP2    0ADD PARMS 2                             A0020000                       000000000000000
+F15APM    0ACCESS PATH MAINT.                      A0000100                       000000000000000
+F15DES    0LF DESCRIPTION                          A0004000                       000000000000000
+F15LGL    0LOGICAL VIEW NAME                       A0001000                       000000000000000
+F15P#I    0Partition Identifier                    A0000300                       000000000000000
+F15PFL    0Physical file name                      A0001000                       000000000000000
+F15PLB    0File library                            A0001000                       000000000000000
+F15PTR    0KEY LIST POINTER                        A0001000                       000000000000000
+F15SP1    0SPARE FIELD 1                           A0000100                       000000000000000
+F15SP2    0UNIQUE AND DYNSLT FLAGS                 A0000500                       000000000000000
+F15SP3    0RECORD FORMAT NAME                      A0001000                       000000000000000
+F15SP4    0SPARE FIELD 4                           A0001000                       000000000000000
+F15SP5    0SPARE FIELD 5                           A0002000                       000000000000000
+F15SP6    0SPARE FIELD 6                           P0000700                       000000000000000
+F15SP7    0SPARE FIELD 7                           P0000700                       000000000000000
+F15VER    0 version no.                            P0000700                       000000000000000
+F15VTP    0VERSION TYPE                            A0000100                       000000000000000
+F18ARF    0ACCESS ROUTE FILE                       A0001000                       000000000000000
+F18ARL    0ACCESS ROUTE LIB.                       A0001000                       000000000000000
+F18ARN    0ACCESS ROUTE NAME                       A0001000                       000000000000000
+F18DES    0ACCESS DESC.                            A0004000                       000000000000000
+F18MAX    0MAX. RECORDS EXPECTED                   P0000700                       000000000000000
+F18NRA    0ACTION TO TAKE IF NO RECORDS            A0001000                       000000000000000
+F18P#I    0Partition Identifier                    A0000300                       000000000000000
+F18PFL    0Physical file name                      A0001000                       000000000000000
+F18PLB    0File library                            A0001000                       000000000000000
+F18PTR    0POINTER TO KEY LIST                     A0001000                       000000000000000
+F18VER    0 version no.                            P0000700                       000000000000000
+F18VTP    0VERSION TYPE                            A0000100                       000000000000000
+F23ANF    0Allowable N.F.                          A0014000                       000000000000000
+F23APM    0DISPLAY MAIN MENU                       A0000100                       000000000000000
+F23CPC    0Compiled PC Level                       A0000200                       000000000000000
+F23CRL    0Compiled Release Level                  A0000300                       000000000000000
+F23DES    0Function description                    A0004000                       000000000000000
+F23DNF    0Default Next Function                   A0000700                       000000000000000
+F23FID    0INTERNAL FUNCTION ID                    A0000600                       000000000000000
+F23FMT    0Function name                           A0000700                       000000000000000
+F23HLP    0HELP text pointer                       A0001000                       000000000000000
+F23MOD    0Process name                            A0001000                       000000000000000
+F23MSQ    0Menu Sequence                           A0000500                       000000000000000
+F23P#I    0Partition Identifier                    A0000300                       000000000000000
+F23SET    0Pointer to 29/30 set                    P0000300                       000000000000000
+F23SP1    0Compiled display file name              A0001000                       000000000000000
+F23SP2    0*DIRECT option indicator                A0000300                       000000000000000
+F23SP3    0Spare Field 3                           A0000500                       000000000000000
+F23SP4    0Spare Field 4                           A0001000                       000000000000000
+F23STY    0Function status                         A0000100                       000000000000000
+F23TYP    0Function type                           A0000100                       000000000000000
+F26DEC    0no. of decimals                         P0000100                       000000000000000
+F26DES    0system description                      A0004000                       000000000000000
+F26DYN    0Dynamic system var flag                 A0000100                       000000000000000
+F26LEN    0system length                           P0000300                       000000000000000
+F26PGM    0systen program                          A0001000                       000000000000000
+F26TYP    0system type                             A0000100                       000000000000000
+F26VAR    0System name                             A0002000                       000000000000000
+F27AP1    0ADD PARMS 1                             A0020000                       000000000000000
+F27AP2    0ADD PARMS 2                             A0020000                       000000000000000
+F27DES    0FILE DESCRIPTION                        A0004000                       000000000000000
+F27EXF    0EXTERNAL FILE INDICATOR                 A0000100                       000000000000000
+F27P#I    0Partition Identifier                    A0000300                       000000000000000
+F27PFL    0Physical file name                      A0001000                       000000000000000
+F27PLB    0File library                            A0001000                       000000000000000
+F27PTR    0LIST OF FIELDS PTR                      A0001000                       000000000000000
+F27SP1    0UNDER COMMITMENT CTRL                   A0000100                       000000000000000
+F27SP2    0AUTOCOMMIT PARAMETER                    A0000500                       000000000000000
+F27SP3    0RECORD FORMAT NAME                      A0001000                       000000000000000
+F27SP4    0SPARE FIELD 4                           A0001000                       000000000000000
+F27SP5    0SPARE FIELD 5                           A0002000                       000000000000000
+F27SP6    0SPARE FIELD 6                           P0000700                       000000000000000
+F27SP7    0SPARE FIELD 7                           P0000700                       000000000000000
+F27UTD    0TIME/DATE AMENDMENT                     P0001200                       000000000000000
+F27UUS    0USER AMENDMENT                          A0001000                       000000000000000
+F27VER    0 version no.                            P0000700                       000000000000000
+F27VTP    0VERSION TYPE                            A0000100                       000000000000000
+F60CHR    0Character set/code page                 A0002000                       000000000000000
+F60DBC    0DBCS support required                   A0000100                       000000000000000
+F60MSG    0Message files                           A0010000                       000000000000000
+F60P#D    0Partition description                   A0004000                       000000000000000
+F60P#I    0Partition identifier                    A0000300                       000000000000000
+F60PLD    0Partition language desc                 A0002000                       000000000000000
+F60PLN    0Partition language code                 A0000400                       000000000000000
+F60RLT    0RLTB support required                   A0000100                       000000000000000
+FANEX2    0FANEX2                                  A0001000                       000000000000000
+FANEXT    0FANEXT                                  A0001000                       000000000000000
+FANLNG    0FANLNG                                  A0025600                       000000000000000
+FANOBJ    0FANOBJ                                  A0001000                       000000000000000
+FANTYP    0FANTYP                                  A0000200                       000000000000000
+FORM08     test v24sp2 0811                        A0001000                       171108165847006Form08
+FP_ECAT   0Category                                A0007000                       000000000000000
+FP_EDESC  0Description                             A0006000                       000000000000000
+FP_EDLT1  0Deleted TRUE / FALSE                    A0000500                       000000000000000
+FP_EDLTD  0Deleted Y/N                             A0000100                       000000000000000
+FP_EFLDID 0 Field Definition Unique Identifier     A0003200                       000000000000000
+FP_EIDN   0Standard Identifier                     A0003200                       000000000000000
+FP_EINST  0Instance                                P0000700                       000000000000000
+FP_EKEY   0Key Value                               A0003200                       000000000000000
+FP_EKEY1  0Key Value 1                             A0003200                       000000000000000
+FP_EKEY2  0Key Value 2                             A0003200                       000000000000000
+FP_EKEY3  0Key Value 3                             A0003200                       000000000000000
+FP_EKEY4  0Key Value 4                             A0003200                       000000000000000
+FP_EKEY5  0Key Value 5                             A0003200                       000000000000000
+FP_EKEYN  0Numeric Key                             P0001505                       000000000000000
+FP_EKEYN1 0Numeric Key 1                           P0001505                       000000000000000
+FP_EKEYN2 0Numeric Key 2                           P0001505                       000000000000000
+FP_EKEYN3 0Numeric Key 3                           P0001505                       000000000000000
+FP_EKEYN4 0Numeric Key 4                           P0001505                       000000000000000
+FP_EKEYN5 0Numeric Key 5                           P0001505                       000000000000000
+FP_EKSEQ  0Key Sequence                            P0000300                       000000000000000
+FP_ELDATN 0Numeric Date                            S0000800                       000000000000000
+FP_ELFUNC 0Interface Function Name                 A0000700                       000000000000000
+FP_ELSEQ  0Sequence                                P0000700                       000000000000000
+FP_ELVL   0Element Level                           S0000100                       000000000000000
+FP_ENOTE  1Note                                    16553500                       000000000000000
+FP_ENOTP  1Note (Plain Text)                       16553500                       000000000000000
+FP_ENUM   0Standard Number                         P0000700                       000000000000000
+FP_EOPER  0 Operation to be Performed              A0002000                       000000000000000
+FP_EPTINS 0Property Instance                       P0000700                       000000000000000
+FP_EPTNAM 0Property Name                           A0003200                       000000000000000
+FP_EPTNV  0Property Numeric Value                  P0001505                       000000000000000
+FP_EPTUVL 1Unicode Property Value                  80025600                       000000000000000
+FP_EPTVAL 0Property Value                          A0015000                       000000000000000
+FP_EPVTYP 0Property Value Type                     A0000100                       000000000000000
+FP_EREAD  0Read Only Keys TRUE / FALSE             A0000500                       000000000000000
+FP_ESAVR  0Save Required TRUE / FALSE              A0000500                       000000000000000
+FP_ESBLOB 1Document                                4000-100                       000000000000000
+FP_ESCRDT 1Stamp - Create Date/Time                Z0002600                       000000000000000
+FP_ESDATA 0User Data                               A0001000                       000000000000000
+FP_ESFNBR 0File Number                             A0000400                       000000000000000
+FP_ESJNAM 0Current AS/400 or S/38 job name         A0001000                       000000000000000
+FP_ESJNBR 0Current AS/400 or S/38 job number       A0000600                       000000000000000
+FP_ESLIB  0Library                                 A0001000                       000000000000000
+FP_ESNAME 0Spool file Name                         A0001000                       000000000000000
+FP_ESOUTQ 0Current output queue name               A0001000                       000000000000000
+FP_ESPAGE 0Pages                                   P0000700                       000000000000000
+FP_ESRETC 0Return Code                             A0000200                       000000000000000
+FP_ESSEQ  0Sequence                                P0000500                       000000000000000
+FP_ESSTS  0Status                                  A0001000                       000000000000000
+FP_ESSUFX 0Show as (.PDF or .TXT)                  A0000300                       000000000000000
+FP_ESUPD  1Stamp - Update Date/Time                Z0002600                       000000000000000
+FP_ESURL  0URL                                     A0025600                       000000000000000
+FP_ESUSER 0Current AS/400 or S/38 user identity    A0001000                       000000000000000
+FP_ETABID 0Table Unique Identifier                 A0003200                       000000000000000
+FP_ETABL  0Table                                   A0002000                       000000000000000
+FP_EUSRC  0Created by User                         A0003200                       000000000000000
+FP_EUSRU  0Updated by User                         A0003200                       000000000000000
+FP_JSON   1Note In JSON Format                     16553500                       000000000000000
+FP_NOTEHT 1Note in HTML Format                     16553500                       000000000000011FP_NoteHTML
+FP_NOTETE 1Note Text                               16553500                       000000000000011FP_NoteText
+FUNCDESC  0Function Description                    A0004000                       000000000000000
+FUNCTION  0Current function name                   A0000700                       000000000000000
+IO£KEY    0Last workstation key used               A0000200                       000000000000000
+IO£MDE    0Current mode                            A0000300                       000000000000000
+IO£MSGTXT 0Message text                            A0008000                       000000000000000
+IO£STS    0Data base I/O operation status code     A0000200                       000000000000000
+JOBMODE   0Current job mode (batch or interactive) A0000100                       000000000000000
+JOBNAME   0Current AS/400 or S/38 job name         A0001000                       000000000000000
+JOBNBR    0Current AS/400 or S/38 job number       A0000600                       000000000000000
+JULIAN    0Numeric date in Julian format           S0000500                       000000000000000
+JULIANC   0Character date in Julian format         A0000500                       000000000000000
+KEYCOUNT  0Number of keys in file key list         P0000700                       000000000000000
+LISTCOUNT 0Number of entries in a browse list      P0000700                       000000000000000
+LISTDUMMY 0List dummy control field                A0000100                       000000000000000
+LISTENTRY 0List entry control field                P0000700                       000000000000000
+LISTPAGE  0List page control field                 P0000700                       000000000000000
+LISTPOS   0List position control field             A0000700                       000000000000000
+LISTREMN  0List remainder control field            P0000505                       000000000000000
+LISTTOP   0Top of list control field               P0000700                       000000000000000
+LW3BASEDS 0Base Description                        A0004000                       000000000000000
+LW3BASEFN 0Base Function Name                      A0000700                       000000000000000
+LW3BASEPR 0Base Process Name                       A0001000                       000000000000000
+LW3SITEFN 0Site Function Name                      A0000700                       000000000000000
+LW3SITEPR 0Site Process Name                       A0001000                       000000000000000
+MMDDYY    0Numeric date in format MMDDYY           S0000600                       000000000000000
+MMDDYYC   0Character date in format MMDDYY         A0000600                       000000000000000
+MMDDYYYY  0Numeric date in format MMDDYYYY         S0000800                       000000000000000
+MMDDYYYYC 0Character date in format MMDDYYYY       A0000800                       000000000000000
+MONTH     0Month Number                            S0000200                       000000000000000
+MONTHC    0Current month (character)               A0000200                       000000000000000
+MSGBXRTN  0Message box return code                 A0001000                       000000000000000
+MSGBXTLE  0Message box title                       A0004000                       000000000000000
+MSGBXTXT  0Message box text                        A0015000                       000000000000000
+OUTQLIB   0Current output queue library name       A0001000                       000000000000000
+OUTQNAME  0Current output queue name               A0001000                       000000000000000
+PARTDESC  0Partition Description                   A0004000                       000000000000000
+PARTITION 0Partition                               A0000300                       000000000000000
+PARTRDMLX 0RDMLX Partition (Y/N)                   A0000100                       000000000000000
+PD£OPT    0Pull Down Option                        A0000300                       000000000000000
+PRIFILRRN 0Primary File Relative Record Number     P0001500                       000000000000000
+PROCESS   0Current process name                    A0001000                       000000000000000
+PRODREL   0Product release level                   S0000301                       000000000000000
+PRODUCT   0Product name                            A0000500                       000000000000000
+PROMPT£FN 0Prompt Field Name                       A0001000                       000000000000000
+PROMPT£RN 0Prompt Reference Field Name             A0001000                       000000000000000
+QUOTE     0Quote field                             A0000100                       000000000000000
+REP1PAGE  0Report number 1 page number field       S0000400                       000000000000000
+REP2PAGE  0Report number 2 page number field       S0000400                       000000000000000
+REP3PAGE  0Report number 3 page number field       S0000400                       000000000000000
+REP4PAGE  0Report number 4 page number field       S0000400                       000000000000000
+REP5PAGE  0Report number 5 page number field       S0000400                       000000000000000
+REP6PAGE  0Report number 6 page number field       S0000400                       000000000000000
+REP7PAGE  0Report number 7 page number field       S0000400                       000000000000000
+REP8PAGE  0Report number 8 page number field       S0000400                       000000000000000
+SEL_ENTRY 0Entry number of selected browse entry   P0000700                       000000000000000
+SELECTOR  0Browse default selector field           A0000100                       000000000000000
+STD_ALPHA 0Standard alpha field                    A0000100                       000000000000000
+STD_AMNT  0Standard AMOUNT                         P0000902                       000000000000000
+STD_BIN   1Standard Binary field                   B0025600                       000000000000000
+STD_BLOB  1Standard BLOB                           4000-100                       000000000000000
+STD_BOOL  0Standard Boolean                        A0000500                       000000000000000
+STD_CENT  0Standard CENTURY                        S0000200                       000000000000000
+STD_CHAR  1Standard fixed character                H0001000                       000000000000000
+STD_CHKBX 0Standard check box                      A0000100                       000000000000000
+STD_CLOB  1Standard CLOB                           3000-100                       000000000000000
+STD_CMPAR 0Standard comparison GT/EQ/LT            A0000200                       000000000000000
+STD_CODE  0Standard CODE                           A0000300                       000000000000000
+STD_CODEL 0Standard CODE LONG                      A0000600                       000000000000000
+STD_CODES 0Standard CODE SHORT                     A0000100                       000000000000000
+STD_COUNT 0Standard count                          P0000700                       000000000000000
+STD_DATE  0Standard DATE                           S0000600                       000000000000000
+STD_DATEX 1Standard RDMLX date                     E0001000                       000000000000000
+STD_DAY   0Standard DAY                            S0000200                       000000000000000
+STD_DESC  0Standard DESCRIPTION                    A0003000                       000000000000000
+STD_DESCL 0Standard DESCRIPTION, LONG              A0004000                       000000000000000
+STD_DESCS 0Standard DESCRIPTION, SHORT             A0001500                       000000000000000
+STD_DIRCT 0Standard sort direction Ascend/Descend  A0000100                       000000000000000
+STD_DTIMX 1Standard RDMLX Datetime                 Z0002600                       000000000000000
+STD_ENTRY 0Standard list entry number              P0000700                       000000000000000
+STD_FILTR 0Standard apply filter Y/N               A0000100                       000000000000000
+STD_FLAG  0Standard FLAG                           A0000100                       000000000000000
+STD_FLOAT 1Standard Float field                    F0000800                       000000000000000
+STD_GUID  0GUID                                    A0003200                       000000000000000
+STD_HOUR  0Standard HOUR                           S0000200                       000000000000000
+STD_IDNO  0Standard Identifying Number             P0000700                       000000000000000
+STD_IDNOL 0Standard Identifying Number (long)      P0001500                       000000000000000
+STD_IDNOS 0Standard Identifying Number (short)     P0000300                       000000000000000
+STD_INST2 0Panel Instruction Line 2                A0007800                       000000000000000
+STD_INSTR 0Panel Instruction Line                  A0007800                       000000000000000
+STD_INT   1Standard Integer field                  I0000400                       000000000000000
+STD_LEVEL 0Standard tree level                     S0000100                       000000000000000
+STD_MONTH 0Standard MONTH                          S0000200                       000000000000000
+STD_NAME  0Standard NAME                           A0002500                       000000000000000
+STD_NCHAR 1Standard unicode character field        80001000                       000000000000000
+STD_NDFLD 0Standard Non-Display field              A0000100                       000000000000000
+STD_NUM   0Standard Number                         P0000700                       000000000000000
+STD_NUMBR 0Standard number                         A0000100                       000000000000000
+STD_NUML  0Standard Number Long                    P0001500                       000000000000000
+STD_NVARC 1Standard unicode varchar                90051200                       000000000000000
+STD_OBJ   0Standard OBJECT NAME (S/38 or AS/400)   A0001000                       000000000000000
+STD_PHONE 0Standard PHONE NUMBER                   A0001800                       000000000000000
+STD_PRICE 0Standard PRICE                          P0000902                       000000000000000
+STD_QNAM  0Query Expression Name                   A0002000                       000000000000000
+STD_QORD  0Query Sort Order Requested              A0025600                       000000000000000
+STD_QSEL  0Query Selection Expression              A0025600                       000000000000000
+STD_QTY   0Standard QUANTITY                       P0000700                       000000000000000
+STD_SORT  0Standard sort flag                      A0000100                       000000000000000
+STD_SPBN  0Standard spin button                    A0000100                       000000000000000
+STD_STRNG 1Standard string field                   10051200                       000000000000000
+STD_SWICH 0Standard SWITCH                         A0000100                       000000000000000
+STD_TEXT  0Standard TEXT                           A0005000                       000000000000000
+STD_TEXTL 0Standard TEXT, LONG                     A0007500                       000000000000000
+STD_TEXTS 0Standard TEXT, SHORT                    A0003000                       000000000000000
+STD_TIME  0Standard TIME                           S0000600                       000000000000000
+STD_TIMX  1Standard RDMLX Time field               M0000800                       000000000000000
+STD_TITLE 0Standard Report Title                   A0004000                       000000000000000
+STD_TOKEN 0Standard Token                          P0001500                       000000000000000
+STD_VBIN  1Standard Varbinary field                20025600                       000000000000000
+STD_XCHAR 1Standard RDMLX Character                H0001000                       000000000000000
+STD_YEAR  0Standard YEAR                           S0000200                       000000000000000
+STD_ZIP   0Standard POST CODE (ZIP)                A0000500                       000000000000000
+STDFORM   0"Standard form" dummy field             A0000100                       000000000000000
+STDLIST   0Webroutine current list                 A0001000                       000000000000000
+STDMORE   0Standard *WEBEVENT template field       A0000100                       000000000000000
+STDNEXT   0Standard *WEBEVENT template field       A0000100                       000000000000000
+STDNXTFUN 0Next function name                      A0000700                       000000000000000
+STDPREV   0Standard *WEBEVENT template field       A0000100                       000000000000000
+STDPRVFUN 0Previous function name                  A0000700                       000000000000000
+STDRENTRY 0Standard *WEBEVENT template field       A0000100                       000000000000000
+STDROWNUM 0Standard *WEBEVENT template field       P0000700                       000000000000000
+STDSEARCH 0Standard *WEBEVENT template field       A0000100                       000000000000000
+STDSELECT 0Standard *WEBEVENT template field       A0000100                       000000000000000
+STDTABFLR 0Standard Tab Folder Indicator           A0002000                       000000000000000
+STDTRCFLD 0Standard Web Trace Fields               A0010000                       000000000000000
+SYSVAR£AV 0System Variable Alphanumeric Result     A0025600                       000000000000000
+SYSVAR£NM 0System Variable Name                    A0002000                       000000000000000
+SYSVAR£NV 0System Variable Numeric Result          P0003009                       000000000000000
+TIME      0Current time (numeric)                  S0000600                       000000000000000
+TIMEC     0Current time (character)                A0000600                       000000000000000
+TIMEDAT8C 0Current time and date (character)       A0001400                       000000000000000
+TIMEDATE  0Current time and date (numeric)         S0001200                       000000000000000
+TIMEDATE8 0Current time and date (numeric)         S0001400                       000000000000000
+TIMEDATEC 0Current time and date (character)       A0001200                       000000000000000
+TIMEX     1Current time (RDMLX)                    M0000800                       000000000000000
+TRIG_OPER 0Trigger Operation                       A0000600                       000000000000000
+TRIG_RETC 0Trigger Return Code                     A0000200                       000000000000000
+UF_ELD1   0Date as character 1                     A0005000                       000000000000000
+UF_ELD2   0Date as character 2                     A0005000                       000000000000000
+UF_ELD3   0Date as character 3                     A0005000                       000000000000000
+UF_ELD4   0Date as character 4                     A0005000                       000000000000000
+UF_ELD5   0Date as character 5                     A0005000                       000000000000000
+UF_ELDATC 0Alphanumeric Date                       A0001000                       000000000000000
+UF_ELDATN 0Numeric Date                            S0000800                       000000000000000
+UF_ELHOUR 0Hour with edit code                     S0000200                       000000000000000
+UF_VIS2   1Visual Identifier 2                     80005000                       000000000000010UF_VISID2u
+UF_VISID1 0Visual Identifier 1                     A0003200                       000000000000000
+UF_VISID2 0Visual Identifier 2                     A0005000                       000000000000000
+UF_VISIDW 0Visual ID Work Field                    A0005000                       000000000000000
+UF_VISU1  1Visual Identifier 1                     80003200                       000000000000010UF_VISID1u
+USER      0Current AS/400 or S/38 user identity    A0001000                       000000000000000
+VALFLD£AV 0Value of field to be validated (AlphanumA0025600                       000000000000000
+VALFLD£DP 0No. of decimals of field to be validatedP0000700                       000000000000000
+VALFLD£LN 0Length of field to be validated         P0000700                       000000000000000
+VALFLD£NM 0Name of Field to be validated           A0001000                       000000000000000
+VALFLD£NV 0Value of field to be validated (Numeric)P0003009                       000000000000000
+VALFLD£RT 0Return code for validated field         A0000100                       000000000000000
+VF_EL2K   1String 2000                             10200000                       000000000000000
+VF_EL33GK 0VF_FP033 Generic Key cluster            A0025600                       000000000000000
+VF_EL33SN 0VF_FP033 Screen Name                    A0025600                       000000000000000
+VF_ELAJAX 0AJAX Transaction Flag                   A0000100                       000000000000000
+VF_ELAPCP 1Application Caption                     80004000                       000000000000000
+VF_ELAPID 0Application Id                          A0003200                       000000000000000
+VF_ELAPSQ 0Application Seq                         P0000700                       000000000000000
+VF_ELAUTH 0Authority                               A0002000                       000000000000000
+VF_ELAVAL 0Alpha Persitent Property                A0013200                       000000000000000
+VF_ELB1   0Block 1                                 A0006400                       000000000000000
+VF_ELB2   0Block 2                                 A0012800                       000000000000000
+VF_ELBIGS 0Search button                           A0002500                       000000000000000
+VF_ELBLDD 0VL Framework Build Date                 A0002000                       000000000000000
+VF_ELBLDN 0VL Framework Build Number               A0000600                       000000000000000
+VF_ELBOCP 1Business Object Caption                 80004000                       000000000000000
+VF_ELBOID 0Business Object ID                      A0003200                       000000000000000
+VF_ELBOLN 1True Boolean                            Y0000100                       000000000000000
+VF_ELBOOL 0Standard Boolean                        A0000500                       000000000000000
+VF_ELBOSQ 0Business Object Seq                     P0000700                       000000000000000
+VF_ELBOT  0Business Object Name/Type               A0003200                       000000000000000
+VF_ELBREL 0Business Object relationship            A0003200                       000000000000000
+VF_ELCA_1 1Caption                                 80004000                       000000000000010VF_ELCAPNU
+VF_ELCA_2 1Caption                                 80020000                       000000000000010VF_ELCaplu
+VF_ELCA_3 1Caption                                 80004000                       000000000000010VF_ELCAP1U
+VF_ELCA_4 1Caption                                 80004000                       000000000000010VF_ELCAP2U
+VF_ELCA_5 1Caption                                 80004000                       000000000000010VF_ELCAP3U
+VF_ELCAP1 0Caption                                 A0004000                       000000000000000
+VF_ELCAP2 0Caption                                 A0004000                       000000000000000
+VF_ELCAP3 0Caption                                 A0004000                       000000000000000
+VF_ELCAP4 0Caption                                 A0004000                       000000000000000
+VF_ELCAP5 0Caption                                 A0004000                       000000000000000
+VF_ELCAPL 0Long Caption                            A0020000                       000000000000000
+VF_ELCAPN 0Caption                                 A0004000                       000000000000000
+VF_ELCAPU 0Current Application Unique Number       A0000700                       000000000000000
+VF_ELCBOU 0Current Busines Object Unique Number    A0000700                       000000000000000
+VF_ELCCSI 0iSeries CCS Id to Use                   A0000500                       000000000000000
+VF_ELCFUI 0Current Function Instance Unique Id     A0000700                       000000000000000
+VF_ELCH15 0Char 15 field                           A0001500                       000000000000000
+VF_ELCH28 0Char 28 field definition                A0002800                       000000000000000
+VF_ELCH78 0char 78 field                           A0007800                       000000000000000
+VF_ELCHAR 1Char 200                                H0020000                       000000000000000
+VF_ELCHGF 0Session Change Flag                     S0000700                       000000000000000
+VF_ELCHKB 0Check Box                               A0001000                       000000000000000
+VF_ELCHR7 0Standard Alpha Overlay of VF_ELZON7     A0000700                       000000000000000
+VF_ELCLS  0Standard Identifier                     A0002000                       000000000000000
+VF_ELCLS1 0Class 1                                 A0002000                       000000000000000
+VF_ELCLS2 0Class 2                                 A0002000                       000000000000000
+VF_ELCLS3 0Class 3                                 A0002000                       000000000000000
+VF_ELCLS4 0Class 4                                 A0002000                       000000000000000
+VF_ELCMCP 1Command Caption                         80004000                       000000000000000
+VF_ELCMD  0Command                                 A0004000                       000000000000000
+VF_ELCMDD 0Default command                         A0004000                       000000000000000
+VF_ELCMTC 0Commitment control (Y/N)                A0000100                       000000000000000
+VF_ELCOBC 0Current Command (uUserObjectType)       A0003200                       000000000000000
+VF_ELCOBI 0Current Object Instance Number          S0000700                       000000000000000
+VF_ELCOBT 0Current Object Type (uUserObjectType)   A0003200                       000000000000000
+VF_ELCOBU 0Current Object Unique Number            S0000700                       000000000000000
+VF_ELCOLR 0CSS String                              A0010000                       000000000000000
+VF_ELCONS 0Console web component                   A0000100                       000000000000000
+VF_ELCPL1 0Long Caption 1                          A0007000                       000000000000000
+VF_ELCPL2 0Long Caption 2                          A0007000                       000000000000000
+VF_ELCPL3 0Long Caption 3                          A0007000                       000000000000000
+VF_ELCPL4 0Long Caption 4                          A0007000                       000000000000000
+VF_ELCPLN 0Long Caption                            A0007000                       000000000000000
+VF_ELCRID 0Command Reference ID                    A0003200                       000000000000000
+VF_ELCSES 0Cherry Session                          A0004000                       000000000000000
+VF_ELCTID 0Control ID                              A0002000                       000000000000000
+VF_ELCTLC 0NL control - column position            P0000300                       000000000000000
+VF_ELCTLI 0NL Control index                        A0000400                       000000000000000
+VF_ELCTLN 0Current (Name) Assigned                 A0025600                       000000000000000
+VF_ELCTLR 0NL control- row position                S0000200                       000000000000000
+VF_ELCTLT 0NL control type                         A0000200                       000000000000000
+VF_ELDAT  1Date                                    E0001000                       000000000000000
+VF_ELDAT1 1Date                                    E0001000                       000000000000000
+VF_ELDAT2 1Date                                    E0001000                       000000000000000
+VF_ELDAT3 1Date                                    E0001000                       000000000000000
+VF_ELDAT4 1Date                                    E0001000                       000000000000000
+VF_ELDAT5 1Date                                    E0001000                       000000000000000
+VF_ELDBCS 0DBCS capable                            A0000100                       000000000000000
+VF_ELDCON 0Developers Console web component        A0000100                       000000000000000
+VF_ELDEC  0Decimals                                P0000100                       000000000000000
+VF_ELDES  0Standard Object Description             A0004000                       000000000000000
+VF_ELDEVS 1Status                                  80001000                       000000000000000
+VF_ELDNAM 0Database name                           A0001000                       000000000000000
+VF_ELDNOT 0Development Status Note                 A0025600                       000000000000000
+VF_ELDPSW 0Database password                       A0003200                       000000000000000
+VF_ELDSTS 0Developement Status Flags               A0001000                       000000000000000
+VF_ELDTFM 0Column Date/Time format                 A0002500                       000000000000000
+VF_ELDTS  0Date Time Storage                       A0001900                       000000000000000
+VF_ELDTS1 0Date Time Storage                       A0001900                       000000000000000
+VF_ELDTS2 0Date Time Storage                       A0001900                       000000000000000
+VF_ELDTS3 0Date Time Storage                       A0001900                       000000000000000
+VF_ELDTS4 0Date Time Storage                       A0001900                       000000000000000
+VF_ELDTS5 0Date Time Storage                       A0001900                       000000000000000
+VF_ELDTU  1Date Time (DUTC)                        Z0002600                       000000000000000
+VF_ELDTU1 1DateTime (Display UTC)                  Z0002600                       000000000000000
+VF_ELDTU2 1DateTime (Display UTC)                  Z0002600                       000000000000000
+VF_ELDTU3 1DateTime (Display UTC)                  Z0002600                       000000000000000
+VF_ELDTU4 1DateTime (Display UTC)                  Z0002600                       000000000000000
+VF_ELDTU5 1DateTime (Display UTC)                  Z0002600                       000000000000000
+VF_ELDTYP 0Database type                           A0001500                       000000000000000
+VF_ELDUSR 0Database User                           A0003200                       000000000000000
+VF_ELDUTC 0Date/Time UTC Conversion Required       A0000300                       000000000000000
+VF_ELDVRL 0Divert Locks (Y/N)                      A0000100                       000000000000000
+VF_ELECOD 0Instance list Edit code for NColumns    A0002000                       000000000000000
+VF_ELEKEY 0Key                                     A0003200                       000000000000000
+VF_ELENA2 0Enable 2                                A0001000                       000000000000000
+VF_ELENAB 0Enable                                  A0000500                       000000000000000
+VF_ELEVNT 0Current Event                           A0003200                       000000000000000
+VF_ELFLAG 0True/False                              A0000500                       000000000000000
+VF_ELFLD  0Field Name                              A0001000                       000000000000000
+VF_ELFP09 0VF_FP009 object GUID                    A0003200                       000000000000000
+VF_ELFP10 0VF_FP010 object GUID                    A0003200                       000000000000000
+VF_ELFRID 0Applies to Framework                    A0003200                       000000000000000
+VF_ELFUNC 0Function Name                           A0000700                       000000000000000
+VF_ELFUNL 0Function Long Name                      A0025600                       000000000000000
+VF_ELFUNO 0Function or Component Name              A0001000                       000000000000000
+VF_ELGPCP 0Group Caption                           A0004000                       000000000000000
+VF_ELGPID 0Group  ID                               A0003200                       000000000000000
+VF_ELGPPR 0Group profile                           A0003200                       000000000000000
+VF_ELHASH 0Hash number for Dest, Junc, Special     A0003000                       000000000000000
+VF_ELHINT 0Hint                                    A0013200                       000000000000000
+VF_ELIC05 0Overlay of VF_ELID05                    A0000500                       000000000000000
+VF_ELICON 0Icon                                    A0002500                       000000000000000
+VF_ELID05 05 Digit Signed Identifier               S0000500                       000000000000000
+VF_ELIDN  0Internal Identifier                     A0003200                       000000000000000
+VF_ELIDU  1Standard Unicode Identifier             80003200                       000000000000000
+VF_ELINDX 1Standard Binary Index Field             I0000400                       000000000000000
+VF_ELINST 0Property Instance Number                A0000700                       000000000000000
+VF_ELIPV6 0IPV6 address                            A0004000                       000000000000000
+VF_ELJCMD 0JSM Command                             A0025500                       000000000000000
+VF_ELJMSG 0JSM Message                             A0025500                       000000000000000
+VF_ELJSON 1JSON Field                              96553500                       000000000000000
+VF_ELJSTS 0JSM Status                              A0002000                       000000000000000
+VF_ELJUNC 0Nearest Junction                        A0020000                       000000000000000
+VF_ELJVAL 0Javascript Save Value                   A0013200                       000000000000000
+VF_ELKEY  0Is a key - True/False                   A0000500                       000000000000000
+VF_ELKSEP 0Cherry Key Separator                    A0000300                       000000000000000
+VF_ELKSEQ 0Function key sequence                   P0000200                       000000000000000
+VF_ELLANG 0Language Code                           A0000400                       000000000000000
+VF_ELLICT 0Line continuation number (multiline editP0000700                       000000000000000
+VF_ELLINE 0Line number in multiline edit box       P0000700                       000000000000000
+VF_ELLNGF 0HTML Pages imported as language:        A0000400                       000000000000000
+VF_ELLNGT 0Convert HTML pages to language:         A0000400                       000000000000000
+VF_ELLOG  0Web Component used in VFU0408           A0000100                       000000000000000
+VF_ELLSAV 0Newlook override Last Saved             A0003000                       000000000000000
+VF_ELLVAL 0Alpha Long Persistent Property          A0025600                       000000000000000
+VF_ELMAXL 0Maximum Length                          P0000700                       000000000000000
+VF_ELMBRI 0Lightweight Member ID                   A0003200                       000000000000000
+VF_ELMCKC 0Web Component for mock up cmd handlers  A0000100                       000000000000000
+VF_ELMCKF 0Web Component for mock up filters       A0000100                       000000000000000
+VF_ELMETA 0Meta Tag                                A0013200                       000000000000000
+VF_ELMOND 0Monitor description                     A0013200                       000000000000000
+VF_ELMSG  0Message                                 A0013200                       000000000000000
+VF_ELN155 0Numeric Value                           S0001505                       000000000000000
+VF_ELN300 0Numeric Value                           S0003000                       000000000000000
+VF_ELN301 0Numeric Value                           S0003001                       000000000000000
+VF_ELN302 0Numeric Value                           S0003002                       000000000000000
+VF_ELN303 0Numeric Value                           S0003003                       000000000000000
+VF_ELN304 0Numeric Value                           S0003004                       000000000000000
+VF_ELN305 0Numeric Value                           S0003005                       000000000000000
+VF_ELN306 0Numeric Value                           S0003006                       000000000000000
+VF_ELN307 0Numeric Value                           S0003007                       000000000000000
+VF_ELN308 0Numeric Value                           S0003008                       000000000000000
+VF_ELN309 0Numeric Value                           S0003009                       000000000000000
+VF_ELNCHR 1NCHAR field                             80051200                       000000000000000
+VF_ELNOT1 0Error note displayed by VFU0408         A0007800                       000000000000000
+VF_ELNOT2 0Error note displayed by VFU0408         A0007800                       000000000000000
+VF_ELNPSW 0Newlook Password                        A0003200                       000000000000000
+VF_ELNUM  0Standard Number                         P0000700                       000000000000000
+VF_ELNUM2 0Same as VL_ELNUM but show zero          P0000700                       000000000000000
+VF_ELNUM3 0Same as VF_ELNUM but with no commas     P0000700                       000000000000000
+VF_ELNUML 0Standard Long Numeric                   S0001505                       000000000000000
+VF_ELNUMP 015 Digit Number - Signed Format         S0001500                       000000000000000
+VF_ELNUMQ 0Maximum NUMERIC_STRING Number           S0002909                       000000000000000
+VF_ELNUMS 0Standard short number                   P0000300                       000000000000000
+VF_ELNUMX 0Maximum Number                          S0003009                       000000000000000
+VF_ELNUSR 0Newlook User                            A0003200                       000000000000000
+VF_ELNVAL 0Numeric Persistent Value                S0001505                       000000000000000
+VF_ELNVL2 0Same as VF_ELNVAL but with edit 4       S0001505                       000000000000000
+VF_ELOBJ  0LANSA Object Identifier                 A0001000                       000000000000000
+VF_ELOBJI 0LANSA Object Id                         A0001000                       000000000000013VF_ELOBJIDENT
+VF_ELOBJN 0LANSA Object Long Name                  A0025600                       000000000000012VF_ELOBJNAME
+VF_ELOID1 0Object ID                               A0003200                       000000000000000
+VF_ELOID2 0Object ID                               A0003200                       000000000000000
+VF_ELOID3 0Object ID                               A0003200                       000000000000000
+VF_ELOID4 0Object ID                               A0003200                       000000000000000
+VF_ELOID5 0Object ID                               A0003200                       000000000000000
+VF_ELOK   0OK button (Mock Up)                     A0002500                       000000000000000
+VF_ELOOVR 0Other overrides                         A0015000                       000000000000000
+VF_ELOPER 0VLF Operational web component           A0000100                       000000000000000
+VF_ELOVRN 0NL override name                        A0025600                       000000000000000
+VF_ELPART 0 Partition                              A0000300                       000000000000000
+VF_ELPASW 0Password                                A0003200                       000000000000000
+VF_ELPASZ 0Password (Encrypted)                    A0006400                       000000000000000
+VF_ELPOR1 0Telnet Port                             P0000500                       000000000000000
+VF_ELPORT 0Telnet Port                             A0000600                       000000000000000
+VF_ELPREL 0Preceding Label / Content               A0025500                       000000000000000
+VF_ELPTN  0Partition                               A0000300                       000000000000000
+VF_ELPTYE 0Property is Encrypted                   A0000100                       000000000000000
+VF_ELPTYI 0Property Instance                       P0000700                       000000000000000
+VF_ELPTYL 0Property Language                       A0000400                       000000000000000
+VF_ELPTYN 0Property Name                           A0003200                       000000000000000
+VF_ELPTYT 0Property Type                           A0000100                       000000000000000
+VF_ELPUVA 1Unicode property Value                  90409600                       000000000000000
+VF_ELQFIL 0Standard fully qualified file name      A0025500                       000000000000000
+VF_ELRETC 0Return Code                             A0000200                       000000000000000
+VF_ELRETN 0Standard numeric return code            S0000200                       000000000000000
+VF_ELRGRP 0Grouping                                A0002000                       000000000000000
+VF_ELRRCC 0At Row / Column                         A0001000                       000000000000000
+VF_ELSEQ1 0Object sequence number                  P0000700                       000000000000000
+VF_ELSEQ2 0Object sequence number                  P0000700                       000000000000000
+VF_ELSESS 0Session Id                              S0001500                       000000000000000
+VF_ELSMAS 0Search button                           A0002500                       000000000000000
+VF_ELSNAP 0Snap in Component Name                  A0001000                       000000000000000
+VF_ELSPAC 0Space Name                              A0025600                       000000000000000
+VF_ELSRTP 0Server Type (AS/400 or OTHER)           A0001000                       000000000000000
+VF_ELSRVN 0Server name                             A0002000                       000000000000000
+VF_ELST_1 1Sub List 1                              90200000                       000000000000010VF_ELSTP1U
+VF_ELSTAT 0Standard Char 1 State Flag              A0000100                       000000000000000
+VF_ELSTEX 1Executions                              I0000400                       000000000000000
+VF_ELSTME 1Mean                                    I0000400                       000000000000000
+VF_ELSTMI 1Minimum                                 I0000400                       000000000000000
+VF_ELSTMP 0Last Change Stamp                       A0002600                       000000000000000
+VF_ELSTMX 1Maximum                                 I0000400                       000000000000000
+VF_ELSTNA 0Routine Name                            A0025600                       000000000000000
+VF_ELSTP1 1Sub List 1                              10200000                       000000000000000
+VF_ELSTP2 1SubType 2                               10200000                       000000000000000
+VF_ELSTTA 1Attributable                            I0000400                       000000000000000
+VF_ELSTTT 1Total                                   I0000400                       000000000000000
+VF_ELSUBT 0Business Object SubType                 A0000500                       000000000000000
+VF_ELSVAV 0Alpha Value                             A0025600                       000000000000000
+VF_ELSVDS 0System Variable or Property Description A0004800                       000000000000000
+VF_ELSVNM 0System Variable or Property Name        A0003200                       000000000000000
+VF_ELSVNV 0Numeric Value                           S0003009                       000000000000000
+VF_ELSXML 0XML String                              A0025600                       000000000000000
+VF_ELSYMN 0Image Name                              A0005000                       000000000000012VF_ELSYMNAME
+VF_ELTOPI 0Topic Id                                A0010000                       000000000000000
+VF_ELTOPL 0Topic ID long. In he003.dat vlf str id  A0022400                       000000000000000
+VF_ELTRCC 0Trace Mode counter                      S0000400                       000000000000000
+VF_ELTRCE 1Trace Event Text                        90204800                       000000000000000
+VF_ELTRCM 0Trace Mode On (Y/N)                     A0000100                       000000000000000
+VF_ELTRCN 1Trace Component Name                    10025600                       000000000000000
+VF_ELTRCS 0Trace Source (Client / Server)          A0000100                       000000000000000
+VF_ELTRCT 1Trace Time                              Z0002600                       000000000000000
+VF_ELTTCS 0Client to Server translation table      A0001000                       000000000000000
+VF_ELTTSC 0Server to Client translation table      A0001000                       000000000000000
+VF_ELTX_1 1Text                                    90013200                       000000000000010VF_ELTXTAU
+VF_ELTX_2 1Long Text                               80025600                       000000000000010VF_ELTXTLU
+VF_ELTXTA 0Standard Long Text                      A0013200                       000000000000000
+VF_ELTXTB 0Standard Long Text                      A0020000                       000000000000000
+VF_ELTXTL 0Standard Long Text                      A0025500                       000000000000000
+VF_ELTXTM 0Standard medium Text                    A0005000                       000000000000000
+VF_ELTXTS 0Standard Short Text                     A0002000                       000000000000000
+VF_ELTXTX 1Full length text string                 16553500                       000000000000000
+VF_ELTYP  0Type                                    A0001000                       000000000000000
+VF_ELTYPE 0Type (A/N)                              A0000100                       000000000000000
+VF_ELUA_1 1Original Value                          80025600                       000000000000010VF_ELUAVLO
+VF_ELUADM 0User is an administrator                A0000500                       000000000000000
+VF_ELUAVL 1XML - Alpha Value Unicode               80025600                       000000000000000
+VF_ELUC   0Is Uppercase only - True/False          A0000500                       000000000000000
+VF_ELUCA1 1Additional Column 1                     80010000                       000000000000000
+VF_ELUCA2 1Additional Column 2                     80010000                       000000000000000
+VF_ELUCA3 1Additional Column 3                     80010000                       000000000000000
+VF_ELUCA4 1Additional Column 4                     80010000                       000000000000000
+VF_ELUCA5 1Additional Column 5                     80010000                       000000000000000
+VF_ELUCA6 1Additional Column 6                     80010000                       000000000000000
+VF_ELUCA7 1Additional Column 7                     80010000                       000000000000000
+VF_ELUCA8 1Additional Column 8                     80010000                       000000000000000
+VF_ELUCA9 1Additional Column 9                     80010000                       000000000000000
+VF_ELUCAA 1Additional Column 10                    80010000                       000000000000000
+VF_ELUCOA 1Unicode Alpha Instance Column           80010000                       000000000000000
+VF_ELUIID 0Unique Object Instance Identifier       A0000700                       000000000000000
+VF_ELUNVC 1Standard Unicode NVarChar               96553500                       000000000000000
+VF_ELUPDC 1Update Counter                          I0000400                       000000000000000
+VF_ELURL  0URL                                     A0025600                       000000000000000
+VF_ELURLU 1URL (Unicode)                           80025600                       000000000000000
+VF_ELURLX 1URL                                     10204800                       000000000000000
+VF_ELUSER 0User profile                            A0001000                       000000000000000
+VF_ELUSET 0User Set                                A0001000                       000000000000000
+VF_ELUSEZ 0User Profile (Encrypted)                A0006400                       000000000000000
+VF_ELUSR2 0User profile                            A0003200                       000000000000000
+VF_ELUSRL 0Long User                               A0003200                       000000000000000
+VF_ELUTXL 1Standard Long Unicode Text              80025500                       000000000000000
+VF_ELUVI1 1Visual Identifier 1                     80003200                       000000000000000
+VF_ELUVI2 1Visual Identifier 2                     80005000                       000000000000000
+VF_ELVLCI 0Component Identifier                    A0001000                       000000000000000
+VF_ELVLRI 0Routine Identifier                      A0002000                       000000000000000
+VF_ELVSEQ 0Ramp FKEY sequence                      P0000200                       000000000000000
+VF_ELVSNM 0Visual Style Name                       A0003200                       000000000000000
+VF_ELWBL  0Web Button Layout (L, R, T, B, M)       A0000100                       000000000000000
+VF_ELWIDP 0Column Width %                          P0000300                       000000000000000
+VF_ELWPL  0Web Panel Layout (A, B, C or D)         A0000100                       000000000000000
+VF_ELXA_1 1XML - Alpha Value Unicode               80409600                       000000000000010VF_ELXAVLU
+VF_ELXA01 0Field Value                             A0025600                       000000000000000
+VF_ELXA02 0Field Value                             A0025600                       000000000000000
+VF_ELXA03 0Field Value                             A0025600                       000000000000000
+VF_ELXA04 0Field Value                             A0025600                       000000000000000
+VF_ELXA05 0Field Value                             A0025600                       000000000000000
+VF_ELXA06 0Field Value                             A0025600                       000000000000000
+VF_ELXA07 0Field Value                             A0025600                       000000000000000
+VF_ELXA08 0Field Value                             A0025600                       000000000000000
+VF_ELXA09 0Field Value                             A0025600                       000000000000000
+VF_ELXA10 0Field Value                             A0025600                       000000000000000
+VF_ELXA11 0Field Value                             A0025600                       000000000000000
+VF_ELXA12 0Field Value                             A0025600                       000000000000000
+VF_ELXA13 0Field Value                             A0025600                       000000000000000
+VF_ELXA14 0Field Value                             A0025600                       000000000000000
+VF_ELXA15 0Field Value                             A0025600                       000000000000000
+VF_ELXA16 0Field Value                             A0025600                       000000000000000
+VF_ELXA17 0Field Value                             A0025600                       000000000000000
+VF_ELXA18 0Field Value                             A0025600                       000000000000000
+VF_ELXA19 0Field Value                             A0025600                       000000000000000
+VF_ELXA20 0Field Value                             A0025600                       000000000000000
+VF_ELXA21 0Field Value                             A0025600                       000000000000000
+VF_ELXA22 0Field Value                             A0025600                       000000000000000
+VF_ELXA23 0Field Value                             A0025600                       000000000000000
+VF_ELXA24 0Field Value                             A0025600                       000000000000000
+VF_ELXA25 0Field Value                             A0025600                       000000000000000
+VF_ELXA26 0Field Value                             A0025600                       000000000000000
+VF_ELXA27 0Field Value                             A0025600                       000000000000000
+VF_ELXA28 0Field Value                             A0025600                       000000000000000
+VF_ELXA29 0Field Value                             A0025600                       000000000000000
+VF_ELXA30 0Field Value                             A0025600                       000000000000000
+VF_ELXAK1 0Alpha Key 1                             A0003200                       000000000000000
+VF_ELXAK2 0Alpha Key 2                             A0003200                       000000000000000
+VF_ELXAK3 0Alpha Key 3                             A0003200                       000000000000000
+VF_ELXAK4 0Alpha Key 4                             A0003200                       000000000000000
+VF_ELXAK5 0Alpha Key 5                             A0003200                       000000000000000
+VF_ELXAVL 0XML - Alpha Value                       A0025600                       000000000000000
+VF_ELXCA1 0Additional Column 1                     A0010000                       000000000000000
+VF_ELXCA2 0Additional Column2                      A0010000                       000000000000000
+VF_ELXCA3 0Additional Column 3                     A0010000                       000000000000000
+VF_ELXCA4 0Additional Column 4                     A0010000                       000000000000000
+VF_ELXCA5 0Additional Column 5                     A0010000                       000000000000000
+VF_ELXCA6 0Additional Column 6                     A0010000                       000000000000000
+VF_ELXCA7 0Additional Column 7                     A0010000                       000000000000000
+VF_ELXCA8 0Additional Column 8                     A0010000                       000000000000000
+VF_ELXCA9 0Additional Coumn 9                      A0010000                       000000000000000
+VF_ELXCAA 0Additional Column 10                    A0010000                       000000000000000
+VF_ELXCD1 0Additional Date Column 1                A0001900                       000000000000000
+VF_ELXCD2 0Additional Date Column 2                A0001900                       000000000000000
+VF_ELXCD3 0Additional Date Column 3                A0001900                       000000000000000
+VF_ELXCD4 0Additional Date Column 4                A0001900                       000000000000000
+VF_ELXCD5 0Additional Date Column 5                A0001900                       000000000000000
+VF_ELXCN1 0Additional Column 1                     S0003009                       000000000000000
+VF_ELXCN2 0Additional Column 2                     S0003009                       000000000000000
+VF_ELXCN3 0Additional Column 3                     S0003009                       000000000000000
+VF_ELXCN4 0Additional Column 4                     S0003009                       000000000000000
+VF_ELXCN5 0Additional Column 5                     S0003009                       000000000000000
+VF_ELXCN6 0Additional Column 6                     S0003009                       000000000000000
+VF_ELXCN7 0Additional Column 7                     S0003009                       000000000000000
+VF_ELXCN8 0Additional Column 8                     S0003009                       000000000000000
+VF_ELXCN9 0Additional Column 9                     S0003009                       000000000000000
+VF_ELXCNA 0Additional Column 10                    S0003009                       000000000000000
+VF_ELXCOA 0Alphanumeric Instance Column            A0010000                       000000000000000
+VF_ELXCOD 0Date Instance list Column               A0001900                       000000000000000
+VF_ELXCOI 0Instance Column Identifier              A0002000                       000000000000000
+VF_ELXCON 0Numeric Instance Column                 S0003009                       000000000000000
+VF_ELXCOT 0Instance Column Type                    A0000100                       000000000000000
+VF_ELXCV1 0Column 1                                A0003200                       000000000000000
+VF_ELXCV2 0Column 2                                A0003200                       000000000000000
+VF_ELXCV3 0Column 3                                A0003200                       000000000000000
+VF_ELXCV4 0Columnn 4                               A0003200                       000000000000000
+VF_ELXCV5 0Column 5                                A0003200                       000000000000000
+VF_ELXCV6 0Column 6                                A0003200                       000000000000000
+VF_ELXCV7 0Column 7                                A0003200                       000000000000000
+VF_ELXCV8 0Column 8                                A0003200                       000000000000000
+VF_ELXCV9 0Column 9                                A0003200                       000000000000000
+VF_ELXCVA 0Coumn 10                                A0003200                       000000000000000
+VF_ELXDLT 0Deleted                                 A0000100                       000000000000000
+VF_ELXFUN 0XML - Function Name                     A0000700                       000000000000000
+VF_ELXHST 0XML - Host URL                          A0025600                       000000000000000
+VF_ELXIED 0Byte 3 - Execute Default Command        A0000100                       000000000000000
+VF_ELXINS 0Instance Number                         P0000700                       000000000000000
+VF_ELXIS1 0Byte 4 - Spare Field 1                  A0000100                       000000000000000
+VF_ELXIS2 0Byte 5 - Spare Field 2                  A0000100                       000000000000000
+VF_ELXIS3 0Byte 4 - Spare Field 3                  A0000100                       000000000000000
+VF_ELXIS4 0Byte 5 - Spare Field 4                  A0000100                       000000000000000
+VF_ELXISC 0Byte 2 - Set as Current                 A0000100                       000000000000000
+VF_ELXISI 0Byte 1 - Selected Instance              A0000100                       000000000000000
+VF_ELXIST 0Intstance Status                        A0000500                       000000000000000
+VF_ELXLON 0Log On Time                             S0001400                       000000000000000
+VF_ELXMSG 0XML - Message Text                      A0013200                       000000000000000
+VF_ELXN01 0Field Name                              A0010800                       000000000000000
+VF_ELXN02 0Field Name                              A0010800                       000000000000000
+VF_ELXN03 0Field Name                              A0010800                       000000000000000
+VF_ELXN04 0Field Name                              A0010800                       000000000000000
+VF_ELXN05 0Field Name                              A0010800                       000000000000000
+VF_ELXN06 0Field Name                              A0010800                       000000000000000
+VF_ELXN07 0Field Name                              A0010800                       000000000000000
+VF_ELXN08 0Field Name                              A0010800                       000000000000000
+VF_ELXN09 0Field Name                              A0010800                       000000000000000
+VF_ELXN10 0Field Name                              A0010800                       000000000000000
+VF_ELXNDC 0XML - Decimal Portion                   S0000909                       000000000000000
+VF_ELXNDG 0XML - Decimal Portion                   S0002100                       000000000000000
+VF_ELXNDP 0XML - Decimal                           A0000100                       000000000000000
+VF_ELXNK1 0Numeric Key 1                           S0001500                       000000000000000
+VF_ELXNK2 0Numeric Key 2                           S0001500                       000000000000000
+VF_ELXNK3 0Numeric Key 3                           S0001500                       000000000000000
+VF_ELXNK4 0Numeric Key 4                           S0001500                       000000000000000
+VF_ELXNK5 0Numeric Key 5                           S0001500                       000000000000000
+VF_ELXNM1 0XML - Symbolic name part 1              A0003200                       000000000000000
+VF_ELXNM2 0XML - Symbolic Name part 2              A0003200                       000000000000000
+VF_ELXNM3 0XML - Symbolic Name part 3              A0003200                       000000000000000
+VF_ELXNMC 0XML - Composite Name                    A0010800                       000000000000000
+VF_ELXNMI 0XML - Instance Number                   S0000700                       000000000000000
+VF_ELXNMT 0XML - Field Type                        A0000100                       000000000000000
+VF_ELXNSV 0XML - Sign                              A0000100                       000000000000000
+VF_ELXNVL 0XML - Numeric Value                     S0003009                       000000000000000
+VF_ELXOBJ 0Object Type Unique Id                   A0003200                       000000000000000
+VF_ELXOPR 0XML - Requested Operation               A0001000                       000000000000000
+VF_ELXSEL 0Selected Flag                           A0000500                       000000000000000
+VF_ELXTOF 0Total Fields                            S0000700                       000000000000000
+VF_ELXU01 1Unicode Field Value                     80409600                       000000000000000
+VF_ELXU02 1Unicode Field Value                     80409600                       000000000000000
+VF_ELXU03 1Unicode Field Value                     80409600                       000000000000000
+VF_ELXU04 1Unicode Field Value                     80409600                       000000000000000
+VF_ELXU05 1Unicode Field Value                     80409600                       000000000000000
+VF_ELXU06 1Unicode Field Value                     80409600                       000000000000000
+VF_ELXUII 0Unique Instance Identifier              S0001500                       000000000000000
+VF_ELXUPD 0XML Update Status                       A0000100                       000000000000000
+VF_ELXV_1 1Composite Visual Id                     80008200                       000000000000010VF_ELXVIDU
+VF_ELXVD1 0Column 1                                A0003500                       000000000000000
+VF_ELXVD2 0Column 2                                A0003500                       000000000000000
+VF_ELXVD3 0Column 3                                A0003500                       000000000000000
+VF_ELXVD4 0Column 4                                A0003500                       000000000000000
+VF_ELXVD5 0Column 5                                A0003500                       000000000000000
+VF_ELXVI1 0Visual Identifier 1                     A0003200                       000000000000000
+VF_ELXVI2 0Visual Identifier 2                     A0005000                       000000000000000
+VF_ELXVID 0Composite Visual Identifier             A0008200                       000000000000000
+VF_ELZON7 0Signed / Zoned 7 digit Field            S0000700                       000000000000000
+W06NAM    0Graphics Identifier                     A0002000                       000000000000000
+W06TYP    0Graphics Type                           A0000100                       000000000000000
+W06VAL    0Value                                   A0025500                       000000000000000
+W08DT1    0User information 1                      A0025600                       000000000000000
+W08DT2    0User information 2                      A0025600                       000000000000000
+W08DT3    0User information 3                      A0025600                       000000000000000
+W08DTA    0User information                        A0025600                       000000000000000
+W08DTV    0Data Version                            P0000500                       000000000000000
+W08NAM    0User ID                                 A0025600                       000000000000000
+W08PRT    0Port Number                             P0000500                       000000000000000
+W08SNM    0System Name                             A0005000                       000000000000000
+W08SP1    0Spare Field                             A0010000                       000000000000000
+W08SVL    0System Variable                         A0002000                       000000000000000
+W08TIM    0Timeout                                 P0001100                       000000000000000
+W08TYP    0Type                                    A0000100                       000000000000000
+W09MOD    0Process                                 A0001000                       000000000000000
+W09P#I    0Partition                               A0000300                       000000000000000
+W09SP1    0Spare Field                             A0010000                       000000000000000
+W10CMP    0Component Identifier                    A0002000                       000000000000000
+W10DES    0Component Description                   A0004000                       000000000000000
+W10P#I    0Partition Identifier                    A0000300                       000000000000000
+W10SET    0Current Set Number                      P0000700                       000000000000000
+W10SP1    0Spare Field                             A0005000                       000000000000000
+W11CLK    0Click count                             P0000700                       000000000000000
+W11CMP    0Component Identifier                    A0002000                       000000000000000
+W11DES    0Advertisment Description                A0004000                       000000000000000
+W11IMG    0Image Identifier                        A0002000                       000000000000000
+W11P#I    0Partition Identifier                    A0000300                       000000000000000
+W11SET    0Set Number                              P0000700                       000000000000000
+W11SP1    0Spare Field                             A0010000                       000000000000000
+W11URL    0URL Identifier                          A0025500                       000000000000000
+W12APP    0WAM Tech Service Name                   A0001000                       000000000000000
+W12COM    0Communications Type                     A0000100                       000000000000000
+W12DTV    0Data Version                            P0000500                       000000000000000
+W12EID    0WAM Tech Service Provider               A0001000                       000000000000000
+W12HLD    0Hold System Indicator                   A0000100                       000000000000000
+W12LIB    0System Library                          A0001000                       000000000000000
+W12MSG    0Hold System Message                     A0025600                       000000000000000
+W12P#I    0Partition identifier                    A0000300                       000000000000000
+W12PRT    0Port Number                             P0000500                       000000000000000
+W12RMT    0Remote System Indicator                 A0000100                       000000000000000
+W12SNM    0System Name                             A0005000                       000000000000000
+W12SP1    0Reserved                                A0005000                       000000000000000
+W12SYM    0Symbolic Destination Name               A0000800                       000000000000000
+W12US1    0User Information -1                     A0025600                       000000000000000
+W12US2    0User Information -2                     A0025600                       000000000000000
+W12US3    0User Information -3                     A0025600                       000000000000000
+W12USR    0User Information                        A0025600                       000000000000000
+W14DES    0Link Button Description                 A0002000                       000000000000000
+W14FUN    0Current Function                        A0000700                       000000000000000
+W14KWD    0Keyword for link                        A0000800                       000000000000000
+W14LFN    0Link to Function                        A0000700                       000000000000000
+W14LPR    0Link to Process                         A0001000                       000000000000000
+W14P#I    0Partition Identifier                    A0000300                       000000000000000
+W14PLN    0Partition language code                 A0000400                       000000000000000
+W14PRO    0Current Process                         A0001000                       000000000000000
+W15BRW    0Browse list identifier                  A0001000                       000000000000000
+W15DSQ    0Display sequence                        A0000300                       000000000000000
+W15FUN    0Function                                A0000700                       000000000000000
+W15P#I    0Partition Identifier                    A0000300                       000000000000000
+W15PRO    0Process                                 A0001000                       000000000000000
+W16DEC    0Number of decimals                      P0000100                       000000000000000
+W16DES    0Field description                       A0004000                       000000000000000
+W16DSQ    0Display sequence                        A0000300                       000000000000000
+W16FLD    0Field name                              A0001000                       000000000000000
+W16FUN    0Function                                A0000700                       000000000000000
+W16LEN    0Field length                            P0000300                       000000000000000
+W16P#I    0Partition Identifier                    A0000300                       000000000000000
+W16PRO    0Process                                 A0001000                       000000000000000
+W16TYP    0Field type                              A0000100                       000000000000000
+W16USG    0Field usage                             A0000100                       000000000000000
+W17DSQ    0Display sequence                        A0000300                       000000000000000
+W17END    0End position                            A0000400                       000000000000000
+W17FLD    0Field name                              A0001000                       000000000000000
+W17FUN    0Function                                A0000700                       000000000000000
+W17P#I    0Partition Identifier                    A0000300                       000000000000000
+W17PRO    0Process                                 A0001000                       000000000000000
+W17STR    0Start position                          A0000400                       000000000000000
+W17TID    0Text Identifier                         A0000500                       000000000000000
+W17TXT    0Text string                             A0007800                       000000000000000
+W20DSQ    0Display sequence                        A0000300                       000000000000000
+W20FLD    0Field name                              A0001000                       000000000000000
+W20FUN    0Function                                A0000700                       000000000000000
+W20P#I    0Partition Identifier                    A0000300                       000000000000000
+W20PRO    0Process                                 A0001000                       000000000000000
+W20TXT    0HTML Line                               A0008000                       000000000000000
+W26FDA    0First Page Date                         A0001000                       000000000000000
+W26FFN    0First Page Accessed - Func              A0000700                       000000000000000
+W26FPO    0First Page Accessed - Proc              A0001000                       000000000000000
+W26FSP    0Spacer                                  A0000100                       000000000000000
+W26FSQ    0First Page Accessed - Seq               A0000300                       000000000000000
+W26FTI    0First Page Time                         A0000800                       000000000000000
+W26IPA    0IP Address                              A0005000                       000000000000000
+W26LDA    0Last Page Date                          A0001000                       000000000000000
+W26LFN    0Last Page Accessed - Func               A0000700                       000000000000000
+W26LPO    0Last Page Accessed - Proc               A0001000                       000000000000000
+W26LSP    0Spacer                                  A0000100                       000000000000000
+W26LSQ    0Last Page Accessed - Seq                A0000300                       000000000000000
+W26LTI    0Last Page Time                          A0000800                       000000000000000
+W26NUM    0Number of Pages Accessed                P0000700                       000000000000000
+W26PRT    0Port Number                             P0000500                       000000000000000
+W26REF    0HTTP Referrer                           A0025500                       000000000000000
+W26SNM    0System Name                             A0005000                       000000000000000
+W26TID    0Trace ID                                A0001500                       000000000000000
+W26USR    0Web User                                A0001000                       000000000000000
+W27DAT    0Page Date                               A0001000                       000000000000000
+W27FN0    0Field Name 00                           A0001000                       000000000000000
+W27FN1    0Field Name 01                           A0001000                       000000000000000
+W27FN2    0Field Name 02                           A0001000                       000000000000000
+W27FN3    0Field Name 03                           A0001000                       000000000000000
+W27FN4    0Field Name 04                           A0001000                       000000000000000
+W27FN5    0Field Name 05                           A0001000                       000000000000000
+W27FN6    0Field Name 06                           A0001000                       000000000000000
+W27FN7    0Field Name 07                           A0001000                       000000000000000
+W27FN8    0Field Name 08                           A0001000                       000000000000000
+W27FN9    0Field Name 09                           A0001000                       000000000000000
+W27FUN    0Page Name - Function                    A0000700                       000000000000000
+W27FV0    0Field Value 00                          A0005000                       000000000000000
+W27FV1    0Field Value 01                          A0005000                       000000000000000
+W27FV2    0Field Value 02                          A0005000                       000000000000000
+W27FV3    0Field Value 03                          A0005000                       000000000000000
+W27FV4    0Field Value 04                          A0005000                       000000000000000
+W27FV5    0Field Value 05                          A0005000                       000000000000000
+W27FV6    0Field Value 06                          A0005000                       000000000000000
+W27FV7    0Field Value 07                          A0005000                       000000000000000
+W27FV8    0Field Value 08                          A0005000                       000000000000000
+W27FV9    0Field Value 09                          A0005000                       000000000000000
+W27PRO    0Page Name - Process                     A0001000                       000000000000000
+W27PSQ    0Page Name - Sequence                    A0000300                       000000000000000
+W27SEQ    0Sequence Number                         P0000700                       000000000000000
+W27SP1    0Spacer                                  A0000100                       000000000000000
+W27TID    0Trace ID                                A0001500                       000000000000000
+W27TIM    0Page Time                               A0000800                       000000000000000
+W28FUN    0Function Name                           A0000700                       000000000000000
+W28PAR    0Function Parameter                      A0001700                       000000000000000
+W28PRT    0Port Number                             P0000500                       000000000000000
+W28SYS    0System Name                             A0005000                       000000000000000
+W28VAL    0Default Value                           A0025600                       000000000000000
+W28VAR    0Header Variable                         A0005000                       000000000000000
+X01DES    0Page Description                        A0004000                       000000000000000
+X01P#I    0Partition Identifier                    A0000300                       000000000000000
+X01PAG    0Page Identifier                         A0002000                       000000000000000
+X01PEN    0Primary Extension Name                  A0000300                       000000000000000
+X01SEN    0Secondary Extension Name                A0000500                       000000000000000
+X01SP1    0Spare Field                             A0002000                       000000000000000
+X02P#I    0Partition Identifier                    A0000300                       000000000000000
+X02PAG    0Page Identifier                         A0002000                       000000000000000
+X02PEN    0Primary Extension Name                  A0000300                       000000000000000
+X02PLN    0Partition language code                 A0000400                       000000000000000
+X02SEN    0Secondary Extension Name                A0000500                       000000000000000
+X02SEQ    0Sequence number                         P0000700                       000000000000000
+X02SET    0Set number                              P0000700                       000000000000000
+X02SP1    0Spare Field                             A0001000                       000000000000000
+X02TXT    0Page Text                               A0025500                       000000000000000
+X03CMP    0Component identifier                    A0002000                       000000000000000
+X03DES    0Component description                   A0004000                       000000000000000
+X03FMT    0Function name                           A0000700                       000000000000000
+X03IOV    0Input or Ouput Visual                   A0000100                       000000000000000
+X03MOD    0Process name                            A0001000                       000000000000000
+X03P#I    0Partition identifier                    A0000300                       000000000000000
+X03PAG    0Page identifier                         A0002000                       000000000000000
+X03PEN    0Primary Extension Name                  A0000300                       000000000000000
+X03SEN    0Secondary Extension Name                A0000500                       000000000000000
+X03SP1    0Spare Field                             A0010000                       000000000000000
+X03TXT    0Page text                               A0025500                       000000000000000
+X03TYP    0Component type                          A0001000                       000000000000000
+XCITY     1City                                    80004000                       000000000000013xEmployeeCity
+XCOUNTRY  1Country                                 80004000                       000000000000016xEmployeeCountry
+XDEMOAL_1 0Alpha 256                               A0025600                       000000000000013xDemoAlpha256
+XDEMOAL_2 0Alpha 256                               A0025600                       000000000000015xDemoAlpha256_2
+XDEMOAL_3 0Alpha 256                               A0025600                       000000000000015xDemoAlpha256_3
+XDEMOALPH 0Alpha 128                               A0012800                       000000000000013xDemoAlpha128
+XDEMOBLOB 1Blob                                    4000-100                       000000000000009xDemoBlob
+XDEMOBOOL 1Boolean                                 Y0000100                       000000000000012xDemoBoolean
+XDEMOBR_1 0Brush Sizing                            A0001200                       000000000000016xDemoBrushSizing
+XDEMOBR_2 0Brush Tile                              A0002000                       000000000000014xDemoBrushTile
+XDEMOBR_3 0Brush Alignment                         A0001200                       000000000000019xDemoBrushAlignment
+XDEMOBR_4 0Brush Units                             A0002000                       000000000000015xDemoBrushUnits
+XDEMOBRUS 0Brush Spread                            A0001000                       000000000000016xDemoBrushSpread
+XDEMOCAPT 1Caption                                 80025600                       000000000000012xDemoCaption
+XDEMOCO_1 0Color At                                P0000500                       000000000000012xDemoColorAt
+XDEMOCOLO 0Color                                   A0001000                       000000000000010xDemoColor
+XDEMODA_1 1DateTime                                Z0002600                       000000000000013xDemoDateTime
+XDEMODATE 1Generic Date                            E0001000                       000000000000009xDemoDate
+XDEMODECI 0Decimal                                 P0003009                       000000000000012xDemoDecimal
+XDEMODESC 1Description                             80025600                       000000000000016xDemoDescription
+XDEMOMEMO 1Memo                                    86553500                       000000000000009xDemoMemo
+XDEMONUMB 0Number                                  P0000700                       000000000000011xDemoNumber
+XDEMOPASS 0Password                                A0012800                       000000000000013xDemoPassword
+XDEMORETU 0Return Code                             A0000200                       000000000000015xDemoReturnCode
+XDEMOTIME 1Time                                    M0000800                       000000000000009xDemoTime
+XDEMOUN_1 1Unicode 128                             80012800                       000000000000017xDemoUnicode128_2
+XDEMOUN_2 1Unicode 128                             80012800                       000000000000017xDemoUnicode128_3
+XDEMOUN_3 1Unicode 4096                            80409600                       000000000000014xDemoUnicode4K
+XDEMOUNIC 1Unicode 128                             80012800                       000000000000015xDemoUnicode128
+XDEMOVALU 1Generic Alphanumeric Value              80025600                       000000000000010xDemoValue
+XDEMOWIND 0Window State                            A0001000                       000000000000016xDemoWindowState
+XDEPTDESC 0Department Description                  A0002000                       000000000000022xDepartmentDescription
+XDEPTMENT 0Department                              A0000400                       000000000000015xDepartmentCode
+XDESTDESC 1Destination Description                 80025600                       000000000000023xDestinationDescription
+XDESTID   1Destination Identification              I0000400                       000000000000014xDestinationId
+XDESTIMG  1Destination Image                       4000-100                       000000000000017xDestinationImage
+XDESTNAME 1Destination Name                        80005000                       000000000000016xDestinationName
+XEMPAGE   1Employee Age                            I0000400                       000000000000012xEmployeeAge
+XEMPDEPT  0Department Description                  A0002000                       000000000000019xEmployeeDepartment
+XEMPDOB   1Date of Birth                           E0001000                       000000000000020xEmployeeDateofBirth
+XEMPGUID  0Note GUID                               A0003200                       000000000000017xEmployeeNoteGUID
+XEMPIMG   1Employee Image                          4000-100                       000000000000014xEmployeeImage
+XEMPLOYID 0Identification                          A0001000                       000000000000023xEmployeeIdentification
+XEMPNOTE  1Employee Note                           90409600                       000000000000013xEmployeeNote
+XEMPNTATT 1Note Attachment                         4000-100                       000000000000023xEmployeeNoteAttachment
+XEMPNTCRU 1Creation/Update DateTime stamp          Z0001900                       000000000000025xEmployeeNoteCreateUpdate
+XEMPTHM   1Employee Image Thumbnail                4000-100                       000000000000023xEmployeeImageThumbnail
+XEMPTITLE 1Title                                   80004000                       000000000000014xEmployeeTitle
+XGENDER   0Gender                                  A0001000                       000000000000015xEmployeeGender
+XGIVENAME 0Given Names                             A0002000                       000000000000019xEmployeeGivenNames
+XHOMEADDR 1Home Address                            80025600                       000000000000012xHomeAddress
+XHOMECITY 1Home City                               80010000                       000000000000009xHomeCity
+XHOMEDESC 1Home Description                        80051200                       000000000000016xHomeDescription
+XHOMEID   1Home Identifier                         I0000400                       000000000000007xHomeId
+XHOMEIMG  1Home Image                              4000-100                       000000000000010xHomeImage
+XMONTHSAL 1Monthly Salary                          P0001502                       000000000000022xEmployeeMonthlySalary
+XPHONEBUS 0Business Telephone                      A0001500                       000000000000026xEmployeeBusinessTelephone
+XPHONEHME 0Home Telephone                          A0001500                       000000000000022xEmployeeHomeTelephone
+XPHONEMOB 0Mobile Phone                            A0001500                       000000000000020xEmployeeMobilePhone
+XPOSTCODE 0Postal Code                             A0001000                       000000000000019xEmployeePostalCode
+XSACC1STN 1First Name                              H0010000                       000000000000018XSAccountFirstname
+XSACCADR1 1Address 1                               H0010000                       000000000000017XSAccountAddress1
+XSACCADR2 1Address 2                               H0010000                       000000000000017XSAccountAddress2
+XSACCCITY 1City                                    H0010000                       000000000000013XSAccountCity
+XSACCCNTY 1Country                                 H0010000                       000000000000016XSAccountCountry
+XSACCEML  1Email                                   H0020000                       000000000000014XSAccountEmail
+XSACCID   1Account Id                              I0000400                       000000000000011XSAccountID
+XSACCLSTN 1Last Name                               H0010000                       000000000000017XSAccountLastname
+XSACCSTS  1Account Status                          H0002000                       000000000000015XSAccountStatus
+XSACCSTT  1State                                   H0010000                       000000000000014XSAccountState
+XSACCTTL  1Account Title                           H0001000                       000000000000014XSAccountTitle
+XSACCZIP  1Postcode                                H0005000                       000000000000012XSAccountZip
+XSALARY   1Annual Salary                           P0001502                       000000000000015xEmployeeSalary
+XSBTHDTE  1Birth Date                              E0001000                       000000000000011XSBirthDate
+XSCNTRYNM 1Country                                 H0010000                       000000000000013XSCountryName
+XSCRTCRT  1Cart Created Date                       E0001000                       000000000000013XSCartCreated
+XSCRTEXP  1Cart Expiry Date                        E0001000                       000000000000012XSCartExpiry
+XSCRTID   0Shopping Cart ID                        A0001000                       000000000000008XSCartID
+XSCRTLST  1Cart Last Saved Date                    E0001000                       000000000000015XSCartLastSaved
+XSCRTPRC  0Cart Total Price                        S0000902                       000000000000016XSCartTotalPrice
+XSCRTQTY  0Number of items in cart                 S0000700                       000000000000019XSCartTotalQuantity
+XSCRTSHP  0Cart Total Shipping                     S0000902                       000000000000019XSCartTotalShipping
+XSCRTSTS  0Cart Status                             A0001000                       000000000000012XSCartStatus
+XSCRTTAX  0Cart Total Tax                          S0000902                       000000000000014XSCartTotalTax
+XSCRTTTL  0Cart Total                              S0000902                       000000000000011XSCartTotal
+XSCSTPRC  0Customer Price                          S0000902                       000000000000015XSCustomerPrice
+XSDLVADR1 1Delivery Address 1                      H0010000                       000000000000018XSDeliveryAddress1
+XSDLVADR2 1Delivery Address 2                      H0010000                       000000000000018XSDeliveryAddress2
+XSDLVCITY 1Delivery City                           H0010000                       000000000000014XSDeliveryCity
+XSDLVCNTY 1Delivery Country                        H0010000                       000000000000017XSDeliveryCountry
+XSDLVINS  1Delivery Instructions                   90051200                       000000000000022XSDeliveryInstructions
+XSDLVSTT  1Delivery State                          H0010000                       000000000000015XSDeliveryState
+XSDLVZIP  1Delivery Postcode                       H0005000                       000000000000013XSDeliveryZip
+XSDSCPCT  0Discount Percentage                     S0000502                       000000000000020XSDiscountPercentage
+XSINVCID  1Invoice Number                          10000600                       000000000000011XSInvoiceID
+XSITMPRC  0Cart Item Total Price                   S0000902                       000000000000016XSItemTotalPrice
+XSITMPRCV 0Cart Item Total Price                   S0000902                       000000000000017XSItemTotalPriceV
+XSITMSHP  0Cart Item Total Shipping                S0000902                       000000000000019XSItemTotalShipping
+XSITMSHPV 0Cart Item Total Shipping                S0000902                       000000000000020XSItemTotalShippingV
+XSITMTAX  0Cart Item Total Tax                     S0000902                       000000000000014XSItemTotalTax
+XSITMTAXV 0Cart Item Total Tax                     S0000902                       000000000000015XSItemTotalTaxV
+XSNWLCNC  1Newsletter Cancel Date                  E0001000                       000000000000022XSNewsletterCancelDate
+XSNWLSBS  1Newsletter Subscribe Date               E0001000                       000000000000025XSNewsletterSubscribeDate
+XSNWLSTS  1Newsletter Status                       H0002000                       000000000000018XSNewsletterStatus
+XSORDDTE  1Order Date                              E0001000                       000000000000011XSOrderDate
+XSORDEML  1Email                                   H0020000                       000000000000012XSOrderEmail
+XSORDERID 1Order ID                                10000900                       000000000000009XSOrderID
+XSPASSWRD 1Password                                10004000                       000000000000010XSPassword
+XSPHNHME  1Home Phone                              H0002000                       000000000000011XSPhoneHome
+XSPHNMBL  1Mobile phone                            H0002000                       000000000000013XSPhoneMobile
+XSPHNWRK  1Work Phone                              H0002000                       000000000000011XSPhoneWork
+XSPRDCTDS 1Product Category Description            H0010000                       000000000000028XSProductCategoryDescription
+XSPRDCTID 0Product Category ID                     A0001000                       000000000000019XSProductCategoryID
+XSPRDDSC  1Product Description                     H0010000                       000000000000020XSProductDescription
+XSPRDDTL  1Product Detail                          H0010000                       000000000000015XSProductDetail
+XSPRDID   0Product ID                              A0001000                       000000000000011XSProductID
+XSPRDLNDS 1Product Line Description                H0010000                       000000000000024XSProductLineDescription
+XSPRDLNID 0Product Line ID                         A0001000                       000000000000015XSProductLineID
+XSPRDMDL  1Product Model                           H0010000                       000000000000014XSProductModel
+XSPRDPRC  0Product Price                           S0000902                       000000000000014XSProductPrice
+XSPRDSHP  0Product Shipping Cost                   S0000902                       000000000000017XSProductShipping
+XSPRDSTS  0Product Stock Status                    A0001000                       000000000000020XSProductStockStatus
+XSPRDTAX  0Product Tax %                           S0000502                       000000000000019XSProductTaxPercent
+XSPRODIMG 1Product Image                           4000-100                       000000000000014XSProductImage
+XSQTY     0Quantity                                S0000700                       000000000000010XSQuantity
+XSSTATEID 1State                                   H0010000                       000000000000009XSStateID
+XSSTTDSC  1State Description                       H0010000                       000000000000018XSStateDescription
+XSTARTDTE 1Start Date                              E0001000                       000000000000018xEmployeeStartDate
+XSTATE    1State                                   80004000                       000000000000014xEmployeeState
+XSTREET   1Street                                  80004000                       000000000000015xEmployeeStreet
+XSURNAME  1Surname                                 80004000                       000000000000016xEmployeeSurname
+XTERMDATE 1Termination Date                        E0001000                       000000000000024xEmployeeTerminationDate
+YEAR      0Year Number                             S0000200                       000000000000000
+YEARC     0Current year (character)                A0000200                       000000000000000
+YYMMDD    0Numeric date in format YYMMDD           S0000600                       000000000000000
+YYMMDDC   0Character date in format YYMMDD         A0000600                       000000000000000
+YYYY      0Year Number                             S0000400                       000000000000000
+YYYYC     0Current year (character)                A0000400                       000000000000000
+YYYYMMDD  0Numeric date in format YYYYMMDD         S0000800                       000000000000000
+YYYYMMDDC 0Character date in format YYYYMMDD       A0000800                       000000000000000
+ZERO      0Zero (0) variable                       S0000100                       000000000000000
+ZEROES    0Zero (0) variable                       S0000100                       000000000000000
+ZEROS     0Zero (0) variable                       S0000100                       000000000000000

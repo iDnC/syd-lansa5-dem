@@ -1,0 +1,157 @@
+<caption>
+ｽｹﾙﾄﾝ ﾌｨﾙﾀ 
+</caption>
+<preamble>
+JPN_vf_um052_Filter_OutLine.htm
+</preamble>
+<context>
+Filter
+</context>
+<sequence>
+000200   
+</sequence>
+<handler>
+VF_UM055 
+VF_UM054  
+</handler>
+<handlertxt>
+このﾋﾞｼﾞﾈｽ ｵﾌﾞｼﾞｪｸﾄの定義を自動的に生成できるように、ﾋﾞｼﾞﾈｽ ｵﾌﾞｼﾞｪｸﾄに近い物理ﾌｧｲﾙの名前を指定して下さい。
+生成するｺｰﾄﾞに含む内容を指定して下さい。
+</handlertxt>
+<hint>
+このｳｨｻﾞｰﾄﾞは基本的なﾌｨﾙﾀｰのｺｰﾄﾞを作成します。これは、何度もﾌｨﾙﾀｰを使っていて、新しいﾌｨﾙﾀｰに主に手動で独自のｺｰﾄﾞを加えたい開発者向けにﾃﾞｻﾞｲﾝされています。
+</hint>
+<code>
+<<include VF_UM052_Filter_Preamble.vfi>>
+Function Options(*DIRECT)
+<<if CA_UM054_LAYMANAGED>>
+Begin_Com Role(*EXTENDS #VF_AC007) Height(182) Width(326) LayoutManager(#MAIN_LAYOUT)
+<<else>>
+Begin_Com Role(*EXTENDS #VF_AC007) Height(182) Width(326) 
+<<endif>>
+* <<majorsep>>
+* ﾌｨｰﾙﾄﾞの定義
+* <<majorsep>>
+<<if CA_UM054_CHK_CONNECT>>
+define field(#con_rslt) type(*char) length(2)
+Def_Cond Name(*conresult) Cond(#con_rslt = OK)
+<<endif>> 
+* <<majorsep>>
+* ｺﾝﾎﾟｰﾈﾝﾄの定義
+* <<majorsep>>
+<<if CA_UM054_LAYMANAGED>>
+<<Comment>> ﾒｲﾝの部分とﾎﾞﾀﾝを整列させるためのﾊﾟﾈﾙ
+Define_Com Class(#PRIM_PANL) Name(#BODY_PANEL) Displayposition(1) Height(182) Layoutmanager(#BODY_FLOW) Left(0) Parent(#COM_OWNER) Tabposition(1) Tabstop(False) Top(0) Width(246)  Horizontalscroll(True) Verticalscroll(True)
+Define_Com Class(#PRIM_PANL) Name(#BUTTON_PANEL) Displayposition(2) Height(182) Layoutmanager(#BUTTON_FLOW) Left(246) Parent(#COM_OWNER) Tabposition(2) Tabstop(False) Top(0) Width(80)
+<<Comment>>「添付」と「ﾌﾛｰ」のﾚｲｱｳﾄ ﾏﾈｰｼﾞｬ
+Define_Com Class(#PRIM_ATLM) Name(#MAIN_LAYOUT)
+Define_Com Class(#PRIM_ATLI) Name(#BODY_ATTACH)   Attachment(Center) Manage(#BODY_PANEL) Parent(#MAIN_LAYOUT)
+Define_Com Class(#PRIM_ATLI) Name(#BUTTON_ATTACH) Attachment(Right)  Manage(#BUTTON_PANEL) Parent(#MAIN_LAYOUT)
+Define_Com Class(#PRIM_FWLM) Name(#BUTTON_FLOW) Direction(TopToBottom) Flowoperation(Center) Marginbottom(4) Marginleft(4) Marginright(4) Margintop(4) Spacing(4) Spacingitems(4)
+Define_Com Class(#PRIM_FWLM) Name(#BODY_FLOW) Direction(TopToBottom) Marginbottom(4) Marginleft(4) Marginright(4) Margintop(4) Spacing(4) Spacingitems(4)
+<<Comment>> 説明ようのﾃｷｽﾄ(必要じゃない場合削除して下さい。)
+Define_Com Class(#PRIM_LABL) Name(#EXAMPLE_LABL_1) Caption('このﾊﾟﾈﾙにﾎﾞﾀﾝを付けます...') Displayposition(1) Height(29) Left(0) Parent(#BUTTON_PANEL) Tabposition(2) Tabstop(False) Top(4) Visible(False) Width(80)
+Define_Com Class(#PRIM_FWLI) Name(#FWLI_2) Manage(#EXAMPLE_LABL_1) Parent(#BUTTON_FLOW)
+Define_Com Class(#PRIM_LABL) Name(#EXAMPLE_LABL_2) Caption('このﾊﾟﾈﾙにﾎﾞﾀﾝを付けます... ') Displayposition(1) Height(20) Left(4) Parent(#BODY_PANEL) Tabposition(3) Tabstop(False) Top(4) Verticalalignment(Center) Visible(False) 
++Width(237)
+Define_Com Class(#PRIM_FWLI) Name(#FWLI_3) Manage(#EXAMPLE_LABL_2) Parent(#BODY_FLOW)
+<<Comment>> ｻﾝﾌﾟﾙ ﾌｨｰﾙﾄﾞ(必要じゃない場合削除して下さい。)
+Define_Com Class(#USER.Visual) Name(#EXAMPLE_USER) Caption('ﾕｰｻﾞｰ') Displayposition(2) Height(19) Labeltype(Caption) Left(4) Marginleft(30) Parent(#BODY_PANEL) Tabposition(1) Top(28) Width(109)
+Define_Com Class(#PRIM_FWLI) Name(#FWLI_4) Manage(#EXAMPLE_USER) Parent(#BODY_FLOW)
+Define_Com Class(#DATE.Visual) Name(#EXAMPLE_DATE) Caption('日付') Displayposition(3) Height(19) Labeltype(Caption) Left(4) Marginleft(30) Parent(#BODY_PANEL) Tabposition(2) Top(51) Width(109)
+Define_Com Class(#PRIM_FWLI) Name(#FWLI_5) Manage(#EXAMPLE_DATE) Parent(#BODY_FLOW)
+<<endif>>
+<<if CA_UM054_SEARCHBTN>>
+<<Comment>> 検索ﾎﾞﾀﾝのｻﾝﾌﾟﾙ
+<<if CA_UM054_LAYMANAGED>>
+Define_Com class(#PRIM_PHBN) Name(#SEARCH_BUTTON_1) Buttondefault(True) Caption('検索 1') Displayposition(2) Left(0) Parent(#BUTTON_PANEL) Tabposition(1) Top(37)
+Define_Com Class(#PRIM_FWLI) Name(#FWLI_1) Manage(#SEARCH_BUTTON_1) Parent(#BUTTON_FLOW)
+<<else>>
+Define_Com Class(#PRIM_PHBN) Name(#SEARCH_BUTTON_1) Buttondefault(True) Caption('検索 1') Displayposition(1) Left(232) Parent(#COM_OWNER) Tabposition(1) Top(16)
+<<endif>>
+<<endif>>
+* <<majorsep>>
+* ｲﾍﾞﾝﾄの定義
+* <<majorsep>>
+<<CommentBlock>>
+* <<majorsep>>
+* ﾌﾟﾛﾊﾟﾃｨの定義
+* <<majorsep>>
+<<CommentBlock>>
+* <<majorsep>>
+* ﾒｿｯﾄﾞの定義
+* <<majorsep>>
+<<CommentBlock>>
+<<if CA_UM054_INITIALIZE>>
+* <<minorsep>>
+* 初期化の処理
+* <<minorsep>>
+Mthroutine Name(uInitialize) Options(*REDEFINE)
+<<Comment>> Ancestor の初期化ﾛｼﾞｯｸを実行します
+#Com_Ancestor.uInitialize
+
+<<CommentBlock>>
+* <初期化ﾛｼﾞｯｸをここに指定して下さい> 
+* <初期化ﾛｼﾞｯｸをここに指定して下さい> 
+* <初期化ﾛｼﾞｯｸをここに指定して下さい> 
+<<CommentBlock>>
+Endroutine
+<<endif>>
+<<if CA_UM054_TERMINATE>>
+* <<minorsep>>
+* 終了の処理
+* <<minorsep>>
+Mthroutine Name(uTerminate) Options(*REDEFINE)
+<<CommentBlock>>
+* <終了ﾛｼﾞｯｸをここに指定して下さい>
+* <終了ﾛｼﾞｯｸをここに指定して下さい>
+* <終了ﾛｼﾞｯｸをここに指定して下さい>
+<<CommentBlock>>
+<<Comment>> Ancestorの終了ﾛｼﾞｯｸを実行します
+#Com_Ancestor.uTerminate
+
+<<CommentBlock>>
+Endroutine
+<<endif>>
+* <<majorsep>>
+* ｻﾌﾞﾙｰﾁﾝ
+* <<majorsep>>
+<<CommentBlock>>
+* <<majorsep>>
+* ｲﾍﾞﾝﾄの処理
+* <<majorsep>>
+<<CommentBlock>>
+<<if CA_UM054_SEARCHBTN>>
+* <<minorsep>>
+* 検索ﾎﾞﾀﾝの処理 
+* <<minorsep>>
+<<CommentBlock>>
+EvtRoutine Handling(#SEARCH_BUTTON_1.Click) Options(*NOCLEARMESSAGES *NOCLEARERRORS)
+<<if CA_UM054_CHK_CONNECT>>
+<<comment>>Check that the connection is still live 
+#avFrameworkManager.avCheckConnection ReturnValue(#con_rslt)
+If Cond(*conresult)
+<<endif>> 
+<<comment>> <<businessobject_lang ucaption>> のｲﾝｽﾀﾝｽ ﾘｽﾄの更新を開始することをｱﾌﾟﾘｹｰｼｮﾝに知らせます。
+#avListManager.BeginListUpdate
+
+<<comment>> <<businessobject_lang ucaption>> のｲﾝｽﾀﾝｽ ﾘｽﾄをｸﾘｱします。
+#avListManager.ClearList
+
+<<Comment>> <<businessobject_lang ucaption>> の適切なｲﾝｽﾀﾝｽを選択します。
+Select Fields(<<UM055_GenFldList>> + <<TBA>>) 
++ From_File(<<TBA>>) With_key(<<TBA>>)   
+<<UM055_AddtoList>>  
+EndSelect
+<<comment>> <<businessobject_lang ucaption>> のｲﾝｽﾀﾝｽ ﾘｽﾄの更新を完了したことをｱﾌﾟﾘｹｰｼｮﾝに知らせます。 
+#avListManager.EndListUpdate
+
+<<if CA_UM054_CHK_CONNECT>>
+endif
+<<endif>>
+<<comment>> 
+Endroutine
+<<endif>>
+<<commentblock>>
+End_Com
+</code>  

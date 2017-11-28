@@ -1,0 +1,25 @@
+* <<majorsep>>
+* タイプ               : ビジネス オブジェクト フィルター
+<<if WEB_MODE>>
+* プラットフォーム     : WEB (LANSA for the WEB)
+<<else>>
+<<if WAM_MODE>>
+* プラットフォーム     : MS-WINDOWS (Web Access Module)
+<<else>>
+<<if ONE_MODE>>
+* プラットフォーム     : Web ブラウザ (Visual LANSA)
+* 親                   : VF_AC007O  
+<<else>> 
+* プラットフォーム     : MS-WINDOWS (Visual LANSA)
+* 親                   : VF_AC007  
+<<endif>>    
+<<endif>>
+<<endif>>
+* 開発者               : <<user>> 
+* 開発日時             : <<date>> at <<time>>
+* 著作権               : <<copyright>>
+* フレームワーク       : <<framework_lang ucaption>>
+* アプリケーション     : <<application_lang ucaption>>
+* ビジネス オブジェクト: <<businessobject_lang ucaption>>
+* フィルター           : <<filter_lang ucaption>>
+* <<majorsep>>

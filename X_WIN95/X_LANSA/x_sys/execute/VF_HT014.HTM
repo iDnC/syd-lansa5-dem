@@ -1,0 +1,361 @@
+﻿<HTML>
+<head id="VF_HT014_Head">
+<title>VF_HT014 - Application Level Tracing</title>
+<script language='JavaScript' type="text/javascript" src="vf_xbrowser.js"></script>
+<link id='VF_HT014_Common_StyleSheet' rel='stylesheet' type='text/css' href='vf_vs001.css'>
+<link id='VF_HT014_StyleSheet'        rel='stylesheet' type='text/css' href='vf_vs001_xp.css'>
+<script language="JavaScript" type="text/javascript">
+
+var VF_System = null;
+var arrayTabs  = new Array(); 
+var arrayAreas = new Array(); 
+var intCurrentTab = 0; 
+
+/* ========================================================================================= */
+function Kill()
+{
+   try
+   {
+      if (VF_System != null)
+      {
+         VF_System.objUserTraceWindow        = null; 
+         VF_System.flagUserTraceWindowLoaded = false;
+         VF_System = null;
+	  }
+   }
+   catch (objError) { }
+}
+
+/* ========================================================================================= */
+function TracePage(objDocument,strContext,objVF_SY503)
+{
+  /* strContext is INTERNAL, WAM, WEBEVENT ir AJAX */ 
+
+   try 
+   {
+       var intTab = 3;
+	   var strTabCaption = "UNKNOWN";  
+
+       /* Work out the tab to use */
+
+       try
+	   {
+
+		   switch (strContext)
+		   {
+			  case "WAM":
+			  case "WEBEVENT":
+
+				   var strUseName  = "UNKNOWN";  
+                   var strPrefix   = "UNKNOWN";  
+
+				   if (strContext == "WAM")
+				   {
+					  var obj = objDocument.getElementById("_WEBAPP");
+					  if (obj != null) strUseName = obj.value;   
+				   }
+				   else 
+				   {
+					  var obj = objDocument.getElementById("_FUNCTION");
+					  if (obj != null) strUseName = obj.value;   
+				   }
+
+				   if (objVF_SY503.objAssociatedVF_FP014 != null) { intTab = 1; strPrefix = "Filter";  }
+				   else    		                                  { intTab = 0; strPrefix = "Handler"; }
+   
+				   strTabCaption = strPrefix + " " + strUseName + "(" + strContext + ") " + Stamp();  
+				   break; 
+
+			  case "AJAX":
+				   intTab = 2;
+				   strTabCaption = "AJAX " + Stamp();  
+				   break;  
+			  
+			  default:
+				   intTab = 3;
+				   strTabCaption = "Internal " + Stamp();  
+				   break;  
+		   }
+       }
+
+	   catch (objError)
+	   {
+          intTab = 3;
+  	      strTabCaption = strContext + " " + " ERROR PAGE - " + Stamp();  
+	   }
+
+       arrayTabs[intTab].innerText = strTabCaption; 
+
+      var arrayobjHTMLElement = objDocument.getElementsByTagName("HTML");
+
+	   if ( (arrayobjHTMLElement == null) || (arrayobjHTMLElement.length < 1))
+	   {
+		  arrayAreas[intTab].value = "ERROR - HTML page does not have a HTML element.";  
+	   }
+	   else
+	   {
+  	      /* arrayAreas[intTab].value = arrayobjHTMLElement[0].outerHTML; */
+  	      arrayAreas[intTab].value = arrayobjHTMLElement[0].innerHTML; 
+	   } 	   
+  
+       ShowTab(intTab);
+
+   }
+   catch (objError) 
+   {
+     alert(("ERROR in VF_HT012.TracePage() when capturing HTML snapshot in context " + strContext + " - " + objError.description));  
+   }
+ 
+   return;
+}
+
+/* ========================================================================================= */
+
+function Stamp()
+{
+   var objDate = new Date();
+   var strHH   = objDate.getHours().toString(); 
+   var strMM   = objDate.getMinutes().toString(); 
+   var strSS   = objDate.getSeconds().toString(); 
+   var strMMM  = objDate.getMilliseconds().toString(); 
+
+   if (strHH.length < 2)  strHH  = "0" + strHH;
+   if (strMM.length < 2)  strMM  = "0" + strMM;
+   if (strSS.length < 2)  strSS  = "0" + strSS;
+   while (strMMM.length < 3) strMMM = "0" + strMMM;
+
+   return((strHH + ":" + strMM + ":" + strSS + ":" + strMMM));
+}
+
+
+/* ========================================================================================= */
+function TraceEvent(strSource,strEvent)
+{
+   try
+   {
+      var HT014_TRACE_Table_Body = document.getElementById("HT014_TRACE_Table_Body");
+      var objNewTR  = document.createElement("TR");
+      var objNewTD1 = document.createElement("TD");
+      var objNewTD2 = document.createElement("TD");
+      var strColor  = "";
+	  
+	  switch (strSource)
+	  {
+	      case "C": strColor = "mediumblue";  break;  
+	      case "S": strColor = "darkred";     break;  
+	      case "R": strColor = "black";       break;  
+ 	      default:  strColor = "forestgreen"; break;  
+	  }
+     
+      objNewTD1.innerText   = Stamp(); 
+      objNewTD1.style.width = "70px";
+      objNewTD1.style.color = strColor;
+
+	   objNewTD2.innerText      = strEvent;
+      objNewTD2.style.color    = strColor;
+      objNewTD2.style.fontSize = "smaller";
+
+	   objNewTR.appendChild(objNewTD1);
+	   objNewTR.appendChild(objNewTD2);
+      HT014_TRACE_Table_Body.appendChild(objNewTR);
+	   objNewTR.scrollIntoView(); 
+
+   }
+   catch (objError) { alert("Trace event failed - " + objError.description); }	     
+   return;
+}
+/* ========================================================================================= */
+function Clear()
+{
+   try
+   {
+      var HT014_TRACE_Table_Body = document.getElementById("HT014_TRACE_Table_Body");
+      var aRows = HT014_TRACE_Table_Body.rows;  
+      var i     = 1; 
+      for (i = aRows.length - 1; i >= 0; i--) HT014_TRACE_Table_Body.removeChild(aRows[i]);   
+      TraceEvent("C","Trace details cleared");    
+      arrayTabs[0].innerText = "Handler";
+      arrayTabs[1].innerText = "Filter";
+      arrayTabs[2].innerText = "AJAX";
+      arrayTabs[3].innerText = "Internal";
+	  for (i = 0; i < 4; i++) { arrayAreas[i].value = ""; }     
+	  ShowTab(0); 
+   }
+   catch (objError) { alert("Clear failed - " + objError.description); }	     
+}
+/* ========================================================================================= */
+function ShowTab(intTab)
+{
+   for (i = 0; i < 4; i++) 
+   {
+      if (i != intTab)
+	  {
+         arrayTabs[i].style.backgroundColor = "window";      
+         arrayAreas[i].style.display     = "none";
+         arrayAreas[i].style.visibility  = "hidden"; 
+	  }
+   }
+
+   intCurrentTab = intTab; 
+ 
+   arrayTabs[intCurrentTab].style.backgroundColor = "orange";      
+   arrayAreas[intCurrentTab].style.display     = "inline";
+   arrayAreas[intCurrentTab].style.visibility  = "visible"; 
+  
+}
+
+/* ========================================================================================= */
+function Copy()
+{
+   try
+   {
+ 
+	   TempClipBoard.value = "";
+
+	   /* Copy the events */ 
+
+	   var aRows = HT014_TRACE_Table_Body.rows;  
+	   var i     = 1; 
+   
+		for (i = 0; i < aRows.length; i++)
+		{
+		   var objTR  = aRows[i];
+		   var objTD1 = objTR.firstChild;  
+		   var objTD2 = objTD1.nextSibling;
+		  
+		   TempClipBoard.value += objTD1.innerText + " " + objTD2.innerText + "\r";  
+			 
+		} 
+
+		/* Copy the selected HTML page */
+		 
+		TempClipBoard.value += "\r";
+		TempClipBoard.value += (arrayTabs[intCurrentTab].innerText + "\r");
+		TempClipBoard.value += "\r";
+		TempClipBoard.value += (arrayAreas[intCurrentTab].value);
+    
+		/* Perform the copy */
+
+		var Copy = TempClipBoard.createTextRange();
+		Copy.execCommand("Copy");
+    
+		/* Clear up */
+		
+		Copy  = null;
+		aRows = null; 
+
+	}
+    catch (objError) 
+	{ 
+      if ( VF_System.objMainWindow.usingExplorer )
+      {
+	      alert("Attempt to copy to clipboard failed - " + objError.description); 
+      }
+      else
+      {
+         /* Only IE supports writing to the clipboard, for other browsers make the textarea selectable and select its contents */
+         document.getElementById("Text_HTML_INTERNAL").setSelectionRange(0, Text_HTML_INTERNAL.value.length);
+         alert("Your browser doesn't support copying to the clipboard. Please copy the selected text manually."); 
+      }
+
+	}
+
+    return;
+}
+/* ========================================================================================= */
+</script>
+<script language=javascript type="text/javascript">
+
+function onLoad()
+{
+   try 
+   { 
+      arrayTabs[0] = document.getElementById("HT014_HTM_DIV_HANDLER");   
+      arrayTabs[1] = document.getElementById("HT014_HTM_DIV_FILTER");   
+      arrayTabs[2] = document.getElementById("HT014_HTM_DIV_AJAX");   
+      arrayTabs[3] = document.getElementById("HT014_HTM_DIV_INTERNAL");   
+      arrayAreas[0] = document.getElementById("Text_HTML_HANDLER");   
+      arrayAreas[1] = document.getElementById("Text_HTML_FILTER");   
+      arrayAreas[2] = document.getElementById("Text_HTML_AJAX");   
+      arrayAreas[3] = document.getElementById("Text_HTML_INTERNAL");
+      ShowTab(0);   
+      VF_System = parent.opener.VF_System; 
+      document.getElementById("HT014_Button_Clear").value = VF_System.MString(36); 
+      document.getElementById("HT014_Button_Print").value = VF_System.MString(103); 
+      document.getElementById("HT014_Button_Copy").value  = VF_System.MString(112); 
+      document.getElementById("HT014_TRACE_COL1_Title").innerText = VF_System.MString(104);
+      document.getElementById("HT014_TRACE_COL1_Title").innerText = VF_System.MString(105);
+      document.getElementById("Cap_SERV").innerText = " = " + VF_System.MString(38)  + " ";
+      document.getElementById("Cap_CLNT").innerText = " = " + VF_System.MString(37)  + " ";
+      document.getElementById("Cap_MESG").innerText = " = " + VF_System.MString(39)  + " ";
+      document.getElementById("Cap_RAMP").innerText = " = " + VF_System.MString(228) + " ";
+      VF_System.flagUserTraceWindowLoaded = true;
+      VF_System.ReleaseQueuedFunctions("WAIT_TRACE_START");
+   }
+   catch (objError) { alert("Trace setup failed - " + objError.description); }  
+   return;  
+}
+
+function onBeforeUnload()
+{
+   try { Kill(); } catch (objError) { }  
+}
+
+function onUnload()
+{
+   try { Kill(); } catch (objError) { }  
+}
+
+</script>
+
+
+</head>  
+
+<body scroll='no' onload="onLoad()" onbeforeunload="onBeforeUnload()" onunload="onUnload()">
+
+<div id='HT014_TRACE_DIV' style='margin:4px;height:50%;width:100%'>
+<div id='HT014_TRACE_DIV_Title' style='text-align:center;width:100%'>
+<span>APPLICATION TRACE&nbsp;-&nbsp;</span>
+<span id="Box_SERV" style='height:10px;width:10px;background-color:darkred;'></span>
+<span id="Cap_SERV" style='color:darkred;'>&nbsp;= Server&nbsp;</span>
+<span id="Box_CLNT" style='height:10px;width:10px;background-color:mediumblue;'></span>
+<span id="Cap_CLNT" style='color:mediumblue;'>&nbsp;= Client&nbsp;</span>
+<span id="Box_MESG" style='height:10px;width:10px;background-color:forestgreen;'></span>
+<span id="Cap_MESG" style='color:forestgreen;'>&nbsp;= Messages&nbsp;</span>
+<span id="Box_RAMP" style='height:10px;width:10px;background-color:black;'></span>
+<span id="Cap_RAMP" style='color:black;'>&nbsp;= RAMP&nbsp;</span>
+</div>
+<span id='HT014_TRACE_COL1_Title' style='width:75px;'>&nbsp;Time</span>
+<span id='HT014_TRACE_COL2_Title'>&nbsp;Event</span>
+<div id='HT014_TRACE_Table_Container' style='overflow:auto;height:75%;width:100%;border:1px solid inactivecaption;background-color:white;'>
+<table id='HT014_TRACE_Table' style='width:100%;background-color:white;'>
+<tbody id='HT014_TRACE_Table_Body' VALIGN='top'>
+</tbody>
+</table>
+</div>  
+<div style='margin-top:4px;'>
+<input id='HT014_Button_Print' TITLE='Print' style='font:menu' type='Button' Value='Print' onclick='window.print();'>
+<input id='HT014_Button_Clear' TITLE='Clear the current trace details'  style='font:menu'  type='Button' Value='Clear' onclick='Clear();'>
+<input id='HT014_Button_Copy'  TITLE='Copy the current trace details to the clipboard' style='font:menu' type='Button' onclick='Copy();' value='Copy'>
+</div>
+</div>
+
+<div id='HT014_HTML_DIV'  style='margin:4px;border-top:1px solid inactivecaption;height:48%;width:100%'>
+<br/>
+<div style='margin-left:8px;'>
+<span id='HT014_HTM_DIV_HANDLER' onclick='ShowTab(0);' style='background-color:window;border-top:1px solid inactivecaption;border-left:1px solid inactivecaption;border-right:1px solid inactivecaption;padding:4px;'>Handler</span>
+<span id='HT014_HTM_DIV_FILTER' onclick='ShowTab(1);' style='background-color:window;border-top:1px solid inactivecaption;border-left:1px solid inactivecaption;border-right:1px solid inactivecaption;padding:4px;'>Filter</span>
+<span id='HT014_HTM_DIV_AJAX' onclick='ShowTab(2);' style='background-color:window;border-top:1px solid inactivecaption;border-left:1px solid inactivecaption;border-right:1px solid inactivecaption;padding:4px;'>AJAX</span>
+<span id='HT014_HTM_DIV_INTERNAL' onclick='ShowTab(3);' style='background-color:window;border-top:1px solid inactivecaption;border-left:1px solid inactivecaption;border-right:1px solid inactivecaption;padding:4px;'>Internal</span>
+</div>
+<textarea id='Text_HTML_HANDLER'  CONTENTEDITABLE='false' style='visibility:hidden;display:none; margin:4px;border:1px solid inactivecaption;background-color:white;word-wrap:break-word;width:100%;height:80%;' value=''></textarea>
+<textarea id='Text_HTML_FILTER'   CONTENTEDITABLE='false' style='visibility:hidden;display:none; margin:4px;border:1px solid inactivecaption;background-color:white;word-wrap:break-word;width:100%;height:80%;' value=''></textarea>
+<textarea id='Text_HTML_AJAX'     CONTENTEDITABLE='false' style='visibility:hidden;display:none; margin:4px;border:1px solid inactivecaption;background-color:white;word-wrap:break-word;width:100%;height:80%;' value=''></textarea>
+<textarea id='Text_HTML_INTERNAL' CONTENTEDITABLE='false' style='visibility:hidden;display:none; margin:4px;border:1px solid inactivecaption;background-color:white;word-wrap:break-word;width:100%;height:80%;' value=''></textarea>
+</div>
+
+<TEXTAREA ID='TempClipBoard' STYLE='display:none;'></TEXTAREA>
+
+
+</body>
+</html>

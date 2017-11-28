@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<context>Définitions des méthodes
+CommandHandler 
+</context>
+<caption>
+Gestionnaire de commande maintenant une liste
+</caption>
+<preamble>
+FRA_vf_um052_Handler_List.htm
+</preamble>
+<hint>
+Cet assistant génére le code d'un gestionnaire d'action permettant la maintenance d'une liste de données enfant.   
+</hint>
+<sequence>
+000100  
+</sequence>
+<handler>
+VF_UM105
+VF_UM106
+VF_UM108
+VF_UM056   
+</handler>
+<handlertxt>
+Quel fichier physique ressemble le mieux à l'objet métier Parent ?
+Comment voulez-vous lire les données Enfant pour la liste de ce gestionnaire de commande ?  
+Où voulez-vous afficher les zones des données Enfant ?  
+Préciser ce que vous voulez inclure dans le code généré.     
+</handlertxt>
+<code>
+<<include VF_UM052_CommandHandler_Preamble.vfi>>
+FUNCTION OPTIONS(*DIRECT)
+
+BEGIN_COM ROLE(*EXTENDS £VF_AC010) LAYOUTMANAGER(£ATLM_1) WIDTH(775)
+* <<majorsep>>
+* Présentation du panneau de filtre de base et informations de gestion
+* <<majorsep>>
+DEFINE_COM CLASS(£prim_GPBX) NAME(£GPBX_1) DISPLAYPOSITION(1) HEIGHT(308) LAYOUTMANAGER(£SPLM_1) LEFT(2) PARENT(£COM_OWNER) TABPOSITION(1) TOP(2) WIDTH(771)
+DEFINE_COM CLASS(£PRIM_ATLM) NAME(£ATLM_1) MARGINBOTTOM(2) MARGINLEFT(2) MARGINRIGHT(2) MARGINTOP(2)
+DEFINE_COM CLASS(£PRIM_ATLI) NAME(£ATLI_4) ATTACHMENT(Center) MANAGE(£GPBX_1) PARENT(£ATLM_1)
+*
+DEFINE_COM CLASS(£PRIM_SPLM) NAME(£SPLM_1) DIVIDERSTYLE(Line) ORIENTATION(Vertical)
+DEFINE_COM CLASS(£PRIM_PANL) NAME(£Left_Panel) DISPLAYPOSITION(1) HEIGHT(293) LAYOUTMANAGER(£ATLM_3) LEFT(4) PARENT(£GPBX_1) TABPOSITION(1) TABSTOP(False) TOP(11) WIDTH(285)
+DEFINE_COM CLASS(£PRIM_PANL) NAME(£Right_Panel) DISPLAYPOSITION(2) HEIGHT(293) LAYOUTMANAGER(£ATLM_2) LEFT(290) PARENT(£GPBX_1) TABPOSITION(2) TABSTOP(False) TOP(11) WIDTH(477)
+DEFINE_COM CLASS(£PRIM_PANL) NAME(£DATA_PANEL) DISPLAYPOSITION(1) HEIGHT(293) LAYOUTMANAGER(£FWLM_1) LEFT(0) PARENT(£Right_Panel) TABPOSITION(1) TABSTOP(False) TOP(0) WIDTH(477)
+DEFINE_COM CLASS(£PRIM_SPLI) NAME(£SPLI_1) MANAGE(£Left_Panel) PARENT(£SPLM_1) WEIGHT(1)
+DEFINE_COM CLASS(£PRIM_SPLI) NAME(£SPLI_2) MANAGE(£Right_Panel) PARENT(£SPLM_1) WEIGHT(1)
+DEFINE_COM CLASS(£PRIM_ATLM) NAME(£ATLM_3)
+DEFINE_COM CLASS(£PRIM_ATLI) NAME(£ATLI_1) ATTACHMENT(Center) MANAGE(£Data_List) PARENT(£ATLM_3)
+DEFINE_COM CLASS(£PRIM_FWLM) NAME(£FWLM_1) DIRECTION(TopToBottom) MARGINBOTTOM(10) MARGINLEFT(10) MARGINRIGHT(10) MARGINTOP(10)
+DEFINE_COM CLASS(£PRIM_FWLI) NAME(£FWLI_8) MANAGE(£Right_Panel) PARENT(£FWLM_1)
+DEFINE_COM CLASS(£PRIM_ATLM) NAME(£ATLM_2)
+DEFINE_COM CLASS(£PRIM_ATLI) NAME(£ATLI_3) ATTACHMENT(Center) MANAGE(£DATA_PANEL) PARENT(£ATLM_2)
+
+* <<majorsep>>
+* La liste
+* * <<majorsep>>
+
+<<if CA_UM056_UseGrid>>
+<<comment>>La liste (présentée en grille)
+DEFINE_COM CLASS(£PRIM_GRID) NAME(£Data_List) COMPONENTVERSION(2) DISPLAYPOSITION(1) HEIGHT(268) LEFT(0) PARENT(£Left_Panel) SHOWSORTARROW(True) TABPOSITION(1) TOP(0) WIDTH(285)
+<<else>>
+<<comment>>The list (présentée en liste)
+DEFINE_COM CLASS(£PRIM_LTVW) NAME(£Data_List) COMPONENTVERSION(2) DISPLAYPOSITION(1) FULLROWSELECT(True) HEIGHT(268) LEFT(0) PARENT(£Left_Panel) SHOWSORTARROW(True) TABPOSITION(1) TOP(0) WIDTH(285)
+<<endif>>
+
+<<if CA_UM056_UseGrid>>
+<<UM105_Repeat_Field_List>>DEFINE_COM CLASS(£PRIM_GDCL) NAME(£LVCL_<<FIELD_NUMBER>>) Sortonclick(True) DISPLAYPOSITION(<<FIELD_NUMBER>>) PARENT(£Data_List) SOURCE(£<<FIELD>>) 
+<<else>>
+<<UM105_Repeat_Field_List>>DEFINE_COM CLASS(£PRIM_LVCL) NAME(£LVCL_<<FIELD_NUMBER>>) Sortonclick(True) DISPLAYPOSITION(<<FIELD_NUMBER>>) PARENT(£Data_List) SOURCE(£<<FIELD>>) 
+<<endif>>
+
+
+* <<majorsep>>
+* Le manneau d'édition
+* <<majorsep>>
+<<if CA_UM056_SAVEBTN>>
+<<UM105_Repeat_Field_Edit>>DEFINE_COM CLASS(£<<FIELD>>.Visual) NAME(£<<FIELD>>) DISPLAYPOSITION(<<FIELD_NUMBER>>) HEIGHT(19) LEFT(10) PARENT(£DATA_PANEL) TABPOSITION(<<FIELD_NUMBER>>) USEPICKLIST(False) 
+<<else>>
+<<UM105_Repeat_Field_Edit>>DEFINE_COM CLASS(£<<FIELD>>.Visual) NAME(£<<FIELD>>) DISPLAYPOSITION(<<FIELD_NUMBER>>) HEIGHT(19) LEFT(10) PARENT(£DATA_PANEL) TABPOSITION(<<FIELD_NUMBER>>) USEPICKLIST(False) ReadOnly(TRUE) 
+<<endif>>
+
+<<UM105_Repeat_Field_Edit>>DEFINE_COM CLASS(£PRIM_FWLI) NAME(£FWLI_E<<FIELD_NUMBER>>)  MANAGE(£<<FIELD>>) PARENT(£FWLM_1)
+*
+<<if CA_UM056_SAVEBTN>>
+DEFINE_COM CLASS(£PRIM_PHBN) NAME(£Save_Button) CAPTION('Enregistrer')  DISPLAYPOSITION(100)PARENT(£DATA_PANEL) 
+DEFINE_COM CLASS(£PRIM_FWLI) NAME(£FWLI_5) MANAGE(£Save_Button) PARENT(£FWLM_1)
+DEFINE_COM CLASS(£PRIM_PHBN) NAME(£Delete_Button) CAPTION('Supprimer') DISPLAYPOSITION(101) PARENT(£DATA_PANEL) 
+DEFINE_COM CLASS(£PRIM_FWLI) NAME(£FWLI_6) MANAGE(£Delete_Button) PARENT(£FWLM_1)
+DEFINE_COM CLASS(£PRIM_PHBN) NAME(£New_Button) CAPTION('Nouveau') DISPLAYPOSITION(2) LEFT(0) PARENT(£Left_Panel) TABPOSITION(2) TOP(268) WIDTH(285)
+DEFINE_COM CLASS(£PRIM_FWLI) NAME(£FWLI_7) MANAGE(£New_Button) PARENT(£FWLM_1)
+DEFINE_COM CLASS(£PRIM_ATLI) NAME(£ATLI_2) ATTACHMENT(Bottom) MANAGE(£New_Button) PARENT(£ATLM_3)
+<<endif>>
+*
+* <<majorsep>>
+* Définitions des zones de travail
+* <<majorsep>>
+Define £Ret_Code reffld(£STD_BOOL)
+<<if CA_UM056_CHK_CONNECT>>
+define field(£con_rslt) type(*char) length(2)
+Def_Cond Name(*conresult) Cond(£con_rslt = OK)
+<<endif>> 
+* <<majorsep>>
+* Routines de méthode et de gestion d'événement
+* <<majorsep>>
+
+* Gérer la demande uExecute
+
+Mthroutine uExecute Options(*Redefine)
+£Com_Ancestor.uExecute
+<<UM105_GenGetLst>>
+
+<<if CA_UM056_CHK_CONNECT>>
+<<comment>>Vérifier que la connexion est toujours active 
+£avFrameworkManager.avCheckConnection ReturnValue(£con_rslt)
+If Cond(*conresult)
+<<endif>> 
+
+<<comment>>Lire les informations du parent depuis le fichier principal 
+Fetch Fields(*ALL) From_File(<<UM105_BaseFile>>) With_Key(<<UM105_BaseFileKeys>>) 
+
+Execute FillList
+
+<<if CA_UM056_CHK_CONNECT>>
+endif
+<<endif>> 
+
+Endroutine
+<<CommentBlock>>
+<<if CA_UM056_INITIALIZE>>
+* <<minorsep>>
+* Gérer l'initialisation
+* <<minorsep>>
+Mthroutine Name(uInitialize) Options(*REDEFINE)
+<<Comment>>Effectuer les initialisations définies dans l'ancêtre  
+£Com_Ancestor.uInitialize
+<<CommentBlock>>
+* <ici votre logique d'initialisation> 
+* <ici votre logique d'initialisation> 
+* <ici votre logique d'initialisation> 
+<<CommentBlock>>
+Endroutine
+<<endif>>
+<<if CA_UM056_TERMINATE>>
+* <<minorsep>>
+* Gère la fin d'exécution
+* <<minorsep>>
+Mthroutine Name(uTerminate) Options(*REDEFINE)
+<<CommentBlock>>
+* <ici votre logique d'achèvement>
+* <ici votre logique d'achèvement>
+* <ici votre logique d'achèvement>
+<<CommentBlock>>
+<<Comment>>Effectuer toute logique de fin définie dans l'ancêtre
+£Com_Ancestor.uTerminate 
+<<CommentBlock>>
+Endroutine
+<<endif>>
+
+<<if CA_UM056_SAVEBTN>>
+
+* Gérer le bouton Nouveau
+
+EVTROUTINE HANDLING(£New_Button.Click) OPTIONS(*CLEARERRORS *CLEARMESSAGES)
+Execute ShowData (0)
+Endroutine
+
+* Gérer le bouton Enregistrer
+
+EVTROUTINE HANDLING(£Save_Button.Click) OPTIONS(*CLEARERRORS *CLEARMESSAGES)
+
+<<if CA_UM056_CHK_CONNECT>>
+<<comment>>Vérifier que la connexion est toujours active 
+£avFrameworkManager.avCheckConnection ReturnValue(£con_rslt)
+If Cond(*conresult)
+<<endif>> 
+
+If_null £Link_Item
+Insert (*ALL) to_file(<<UM106_ChildUniqueKeyView>>) Val_Error(*next) IO_Error(*Next)
+
+If_status *Okay
+Add_Entry £Data_List
+Execute Subroutine(ShowData) With_Parms(£Data_List.CurrentItem.Entry)
+Endif
+Else
+Update £XG_Data in_file(<<UM106_ChildUniqueKeyView>>) Val_Error(*next) IO_Error(*Next)
+
+If_status *Okay
+Inz_list £SaveList 1
+Get_entry £Link_item £Data_List
+Get_entry 1 £Savelist
+Upd_entry £Data_List
+Execute Subroutine(ShowData) With_Parms(£Data_List.CurrentItem.Entry)
+Endif
+
+Endif
+
+<<if CA_UM056_CHK_CONNECT>>
+endif
+<<endif>> 
+
+ENDROUTINE
+
+
+* Gérer le bouton supprimer
+
+EVTROUTINE HANDLING(£Delete_Button.Click) OPTIONS(*CLEARERRORS *CLEARMESSAGES)
+
+<<if CA_UM056_CHK_CONNECT>>
+<<comment>>Vérifier que la connexion est toujours active 
+£avFrameworkManager.avCheckConnection ReturnValue(£con_rslt)
+If Cond(*conresult)
+<<endif>> 
+
+Delete from_file(<<UM106_ChildUniqueKeyView>>) with_key(<<UM106_ChildUniqueKeys>>) Val_Error(*next) IO_Error(*Next)
+
+If_status *okay
+Dlt_entry £Link_Item £Data_List
+£Data_panel.Visible := False
+Endif
+
+<<if CA_UM056_CHK_CONNECT>>
+endif
+<<endif>> 
+
+ENDROUTINE
+<<endif>> 
+
+
+* Gérer le click sur un élément de la liste
+
+EVTROUTINE HANDLING(£Data_List.ItemGotSelection) OPTIONS(*CLEARERRORS *CLEARMESSAGES)
+
+Execute ShowData (£Data_List.CurrentItem.Entry)
+
+ENDROUTINE
+
+EVTROUTINE HANDLING(£Data_List.ItemLostSelection) OPTIONS(*CLEARERRORS *CLEARMESSAGES)
+
+£Data_panel.Visible := False
+
+ENDROUTINE
+
+* Remplir ou re-remplir la liste de <<UM106_ChildPhysFileDesc>>
+
+Subroutine FillList
+Def_list £SaveList (<<UM108_ListFields>>) Type(*working) Entrys(1)
+
+<<if CA_UM056_CHK_CONNECT>>
+<<comment>>Vérifier que la connexion est toujours active 
+£avFrameworkManager.avCheckConnection ReturnValue(£con_rslt)
+If Cond(*conresult)
+<<endif>> 
+
+Clr_list £Data_List
+
+Select fields(<<UM108_ListFields>>) from_file(<<UM106_ChildView>>) with_Key(<<UM106_ChildViewKeysUsed>>)
+
+Add_entry £Data_List
+Endselect
+
+<<if CA_UM056_CHK_CONNECT>>
+endif
+<<endif>> 
+
+£Data_panel.Visible := False
+Endroutine
+
+* Afficher le panneau de donnée
+
+Subroutine ShowData ((£Link_Item *Received))
+Define £Link_Item Reffld(£Std_num)
+
+Group_by £XG_Data (<<UM108_EditFields>>)
+
+
+<<if CA_UM056_CHK_CONNECT>>
+<<comment>>Vérifier que la connexion est toujours active  
+£avFrameworkManager.avCheckConnection ReturnValue(£con_rslt)
+If Cond(*conresult)
+<<endif>> 
+
+* Null signifie un nouvel enfant : <<UM106_ChildPhysFileDesc>>
+
+If_null £Link_Item
+
+£XG_Data := *Default
+Set <<UM106_ChildUniqueKeys NOTONPARENT>> ReadOnly(False) VisualStyle(*null)
+Set £Data_panel Visible(True) Enabled(True)
+<<if CA_UM056_SAVEBTN>>
+£Delete_Button.Visible := False
+<<endif>>
+
+* sinon réviser un <<UM106_ChildPhysFileDesc>> existant
+Else
+Fetch *ALL from_file(<<UM106_ChildUniqueKeyView>>) with_key(<<UM106_ChildUniqueKeys>>)
+
+If_status is_not(*okay)
+
+Execute FillList
+Use Message_Box_Show (ok ok warn *Component '<<UM106_ChildPhysFileDesc>> non trouvé')
+
+else
+Set <<UM106_ChildUniqueKeys NOTONPARENT>> ReadOnly(True) VisualStyle(£UF_VS005)
+
+£Data_panel.Visible := True
+<<if CA_UM056_SAVEBTN>>
+£Delete_Button.Visible := True
+<<endif>>
+
+Endif
+Endif
+
+<<if CA_UM056_CHK_CONNECT>>
+endif
+<<endif>> 
+
+Endroutine
+END_COM
+</code>

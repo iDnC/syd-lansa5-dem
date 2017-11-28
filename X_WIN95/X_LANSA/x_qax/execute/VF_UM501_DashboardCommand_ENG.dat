@@ -1,0 +1,138 @@
+* ---------------------------------------------------------------------------------
+* This is the "Dashboard" command handler for framework <<FRAMEWORK>>
+* It was created on <<CREATEDDATE>> by <<CREATEDUSER>>
+* ---------------------------------------------------------------------------------
+Begin_Com Role(*EXTENDS #VF_AC010O) Height(337) Width(961)
+
+Define_Com Class(#PRIM_ATLI) Name(#AttachItem1) Manage(#Demonstration_BarChart) Parent(#MainPanelAttachmentManager) Attachment(Center) Marginleft(8) Marginright(8) Margintop(8) Marginbottom(8)
+Define_Com Class(#PRIM_ATLI) Name(#AttachItem2) Manage(#Demonstration_BarChartLabel) Parent(#MainPanelAttachmentManager) Attachment(Top) Marginleft(8) Marginright(8) Margintop(8)
+Define_Com Class(#Prim_Labl) Name(#Demonstration_BarChartLabel) Parent(#COM_OWNER) Displayposition(1) Tabposition(2) Tabstop(False) Left(8) Width(945) Top(8) Style(#SmallText) Height(36)
+Define_Com Class(#DF_T71O_BarChart_Access) Name(#Demonstration_BarChart) Parent(#COM_OWNER) Tabstop(False) Height(277) Top(52) Width(945) Displayposition(2) Left(8)
+
+* ---------------------------------------------------------------------------------------
+Define_Com Class(#Prim_vs.Style) Name(#SmallText) Fontsize(7)
+
+* ---------------------------------------------------------------------------------------
+Define_Com Class(#prim_Timr) Name(#DashBoardRefreshTimer) Interval(15000) /* Refresh the dash board every 15 seconds for visual impact */
+
+* ---------------------------------------------------------------------------------------
+Mthroutine Name(uTerminate) Options(*REDEFINE)
+
+* Stop the refresh timer
+#DashBoardRefreshTimer.Stop
+
+* Clear the bar chart of all content and terminate it
+#Demonstration_BarChart.uClear Terminate(True)
+
+* Do the ancestor thing
+#COM_ANCESTOR.uTerminate
+
+Endroutine
+
+* ---------------------------------------------------------------------------------------
+Mthroutine Name(uExecute) Options(*REDEFINE)
+
+* Do the ancestor thing
+#COM_ANCESTOR.uExecute Gotofreestate(#GotoFreeState) Switchcallerreference(#SwitchCallerReference)
+
+* Update the dashboard display
+#COM_OWNER.avQueueAsyncOperation Operationid(UpdateDashBoard)
+
+* Let the async operation drop the busy state
+#GotoFreeState := False /* Don't go back to a free state until async operations complete */
+
+Endroutine
+
+* ---------------------------------------------------------------------------------------
+Mthroutine Name(uDeActivate) Options(*REDEFINE)
+
+* Do the ancestor thing
+#COM_ANCESTOR.uDeActivate
+
+* Stop the refresh timer
+#DashBoardRefreshTimer.Stop
+
+Endroutine
+
+* ---------------------------------------------------------------------------------------
+Mthroutine Name(uActivate) Options(*REDEFINE)
+
+* Do the ancestor thing
+#COM_ANCESTOR.uActivate
+
+* Stop the refresh timer
+#DashBoardRefreshTimer.Start
+
+Endroutine
+
+* ---------------------------------------------------------------------------------
+Evtroutine Handling(#DashBoardRefreshTimer.Tick) /* Bar chart has loaded an can be used */
+
+#COM_OWNER.avQueueAsyncOperation Operationid(UpdateDashBoard)
+
+Endroutine
+
+* ---------------------------------------------------------------------------------
+Mthroutine Name(avExecuteAsyncOperation) Options(*REDEFINE)
+* Handle the requested async operation
+Case (#OperationID)
+When (= UpdateDashBoard)
+#COM_OWNER.UpdateDashBoardContent
+Endcase
+Endroutine
+
+* ---------------------------------------------------------------------------------------
+Mthroutine Name(UpdateDashBoardContent) Access(*PRIVATE)
+
+Define_Com Class(#Std_Int) Name(#SecondsNow)
+
+If (#Demonstration_BarChart.isInitialized.Not) /* If still waiting for the bar chart to load try again */
+
+* Try again in 30 milliseconds
+#COM_OWNER.avQueueAsyncOperation Operationid(UpdateDashBoard) Delay(30) Busystatetext("Loading dashboard data")
+
+* Otherwise clear and fresh the dashbaord content
+
+Else
+
+* Clear the bar chart of any existing content
+#Demonstration_BarChart.uClear Terminate(False)
+
+* Update the title bar with user and caption
+#COM_OWNER.avTitleBarCaption := *MTXTUF_MSG_0011.Substitute( #AVFRAMEWORKMANAGER.avVisibleUser #DATETIMEX.Now.AsDisplayString.substring( 1 19 ) )
+
+* Set the chart caption
+#Demonstration_BarChartLabel.Caption := "** Demonstration Only** Inventory Turnover is a measure of the number of times inventory is sold and replaced in a time period. This ratio is calculated by dividing Sales by Inventory. The time period is typically a year, but can be shorter."
+
+* Add updated content to the bar chart
+#Demonstration_BarChart.uShowTitle Text("Inventory to Sales") Fontsize(14)
+#Demonstration_BarChart.uSetLegend Text("2015 through 2017 (Quarterly)") Fontsize(8) Fontcolor("black")
+#Demonstration_BarChart.uSetBarStyles Fontsize(10) Fontcolor("blue") Backgroundcolor("blue") Opacity(0.8)
+
+* Add the example data to the bar chart
+#SecondsNow := *TIMEC.Substring( 5 2 ).AsNumber /* Make the data vary for visual effect */
+
+#Demonstration_BarChart.uAddBar Data(62 + #SecondsNow) Label("Q1/15")
+#Demonstration_BarChart.uAddBar Data(45 + #SecondsNow) Label("Q2/15")
+#Demonstration_BarChart.uAddBar Data(55 + #SecondsNow) Label("Q3/15")
+#Demonstration_BarChart.uAddBar Data(79 + #SecondsNow) Label("Q4/15")
+
+#Demonstration_BarChart.uAddBar Data(87 + #SecondsNow) Label("Q1/16")
+#Demonstration_BarChart.uAddBar Data(62 + #SecondsNow) Label("Q2/16")
+#Demonstration_BarChart.uAddBar Data(14 + #SecondsNow) Label("Q3/16")
+#Demonstration_BarChart.uAddBar Data(34 + #SecondsNow) Label("Q4/16")
+
+#Demonstration_BarChart.uAddBar Data(106 + #SecondsNow) Label("Q1/17")
+#Demonstration_BarChart.uAddBar Data(37 + #SecondsNow) Label("Q2/17")
+#Demonstration_BarChart.uAddBar Data(42 + #SecondsNow) Label("Q3/17")
+#Demonstration_BarChart.uAddBar Data(109 + #SecondsNow) Label("Q4/17")
+
+
+* Refresh the display
+#Demonstration_BarChart.uRefresh
+
+Endif
+
+Endroutine
+
+End_Com

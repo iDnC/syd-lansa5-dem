@@ -1,0 +1,37 @@
+#!<studio-project id="20000000-000000" name="lansa">
+#
+# MIME handlers
+#
+# Phaos
+#
+# application/x-pkcs7-mime;; x-java-content-handler=com.phaos.smime.SmimeDataContentHandler
+# application/pkcs7-mime;; x-java-content-handler=com.phaos.smime.SmimeDataContentHandler
+# application/x-pkcs7-signature;; x-java-content-handler=com.phaos.smime.SmimeDataContentHandler
+# application/pkcs7-signature;; x-java-content-handler=com.phaos.smime.SmimeDataContentHandler
+# multipart/signed;; x-java-content-handler=com.phaos.smime.SmimeDataContentHandler
+#
+# Bouncy Castle
+#
+# Note: BC requires JCE Unlimited Strength Policy Files to be installed
+#
+application/x-pkcs7-mime;; x-java-content-handler=org.bouncycastle.mail.smime.handlers.x_pkcs7_mime
+application/pkcs7-mime;; x-java-content-handler=org.bouncycastle.mail.smime.handlers.pkcs7_mime
+application/x-pkcs7-signature;; x-java-content-handler=org.bouncycastle.mail.smime.handlers.x_pkcs7_signature
+application/pkcs7-signature;; x-java-content-handler=org.bouncycastle.mail.smime.handlers.pkcs7_signature
+multipart/signed;; x-java-content-handler=org.bouncycastle.mail.smime.handlers.multipart_signed
+#
+multipart/report;; x-java-content-handler=com.sun.mail.handlers.multipart_mixed
+message/disposition-notification;; x-java-content-handler=com.sun.mail.handlers.text_plain
+#
+text/xml;; x-java-content-handler=com.sun.mail.handlers.text_xml
+text/html;; x-java-content-handler=com.sun.mail.handlers.text_html
+text/plain;; x-java-content-handler=com.sun.mail.handlers.text_plain
+#
+image/*;; x-java-content-handler=com.lansa.jsm.service.POP3MailBinaryDataContentHandler
+#
+multipart/*;; x-java-content-handler=com.sun.mail.handlers.multipart_mixed
+#
+message/rfc822;; x-java-content-handler=com.sun.mail.handlers.message_rfc822
+#
+#!</studio-project>
+#

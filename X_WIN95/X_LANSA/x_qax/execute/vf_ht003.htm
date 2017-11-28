@@ -1,0 +1,188 @@
+﻿<HTML>
+	<HEAD id="VF_HT003_Head">
+		<script type="text/javascript" src="fp_js001.js"></script>
+		<style type="text/css">
+ 
+.datePicker 
+{
+
+	background:	white;
+	width:		170px;
+	padding:	0px;
+	cursor:		default;
+	-moz-user-focus:	normal;
+}
+
+
+.datePicker td 
+{
+	font:			smallcaption;
+	font:			small-caption;
+	text-align:		center;
+	color:			WindowText;
+	cursor:			default;
+	font-weight:	normal !important;
+	-moz-user-select:	none;
+	padding:		0;
+}
+
+.datePicker td.red 
+{
+	color:			red;
+}
+
+.datePicker .header 
+{
+	padding:		3px;
+	border-bottom:	1px solid WindowText;
+}
+
+.datePicker .headerTable 
+{
+	width:			100%;
+}
+
+.datePicker .footer 
+{
+	padding: 3px;
+}
+
+.datePicker .footerTable 
+{
+	width:		100%;
+}
+
+.datePicker .grid 
+{
+	padding:	3px;
+}
+.datePicker .gridTable 
+{
+	width:	100%;
+}
+
+.datePicker .gridTable td 
+{
+	width:	14.3%;
+}
+
+.datePicker .gridTable .daysRow td 
+{
+	font-weight:	bold !important;
+	border-bottom:	1px solid ThreeDDarkShadow;
+}
+
+.datePicker .grid .gridTable .upperLine 
+{
+	width:		100%;
+	height:		2px;
+	overflow:	hidden;
+	background:	transparent;
+}
+
+.datePicker td.today 
+{
+	font-weight:	bold !important; 
+}
+
+.datePicker td.selected 
+{
+	background:		Highlight;
+	color:			HighlightText !important;
+}
+
+.datePicker td.labelContainer 
+{
+	width:	100%;
+}
+
+/* this controls the header with the month */
+.datePicker td .topLabel 
+{
+	color:			ActiveCaption;
+	display:		block;
+	font-weight:	bold !important;
+	width:			100%;
+	text-decoration:	none;
+	
+}
+
+.datePicker td.filler 
+{
+	width:			100%;
+}
+
+.datePicker button 
+{
+	border:	1px solid;
+	font:			Caption;
+	font-weight:	normal !important;
+}
+
+.datePicker .previousButton 
+{
+	font-weight:	bold;
+	font-size:	    6pt;
+	cursor:			hand;
+}
+
+.datePicker .nextButton 
+{
+	font-weight:	bold;
+	font-size:	    6pt;
+	cursor:			hand;
+}
+
+.datePicker .previousButton, .datePicker .nextButton 
+{
+	width:			14px;
+	height:			14px;
+}	
+
+</style>
+		<TITLE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Calendar 
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TITLE>
+		<script language="JavaScript" type="text/javascript">
+
+/* --------------------------------------------------------------------- */
+/* --------------  P R I V A T E   M E T H O D S  ---------------------- */
+/* --------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------- */
+/* ---------------------------SetDialogHTML----------------------------- */
+/* --------------------------------------------------------------------- */
+
+	var objVF_UMnnn        = window.dialogArguments;
+	
+	/* Give VF_UM036 a reference to this dialog */
+	objVF_UMnnn.objVF_HTnnnModalWindow = this;
+	
+	var objDate            = objVF_UMnnn.objDate;
+		 objDate.strPrevMonthSrc = objVF_UMnnn.strPrevMonthSrc;
+		 objDate.strNextMonthSrc = objVF_UMnnn.strNextMonthSrc;
+
+	var objCalendar        = new FP_JS001_Object(objDate); 
+
+	FP_JS001_Object.months = objDate.arrayMStringMonths; 
+	FP_JS001_Object.days   = objDate.arrayMStringDays; 
+
+	var objCurrentDay   = objDate.getDate();
+	var objCurrentMonth = objDate.getMonth() + 1;
+
+function SetDialogHTML()
+{
+	var objDateHTMLElement = objCalendar.create();
+	document.body.appendChild(objDateHTMLElement);
+	document.body.objDate = objCalendar;
+}
+
+function DestroyDialog()
+{
+	objVF_UMnnn.objVF_HTnnnModalWindow = null;
+}
+
+		</script>
+	</HEAD>
+	<BODY class="VF_HT003_BODY" onload="SetDialogHTML()" onunload="DestroyDialog()">
+	</BODY>
+</HTML>

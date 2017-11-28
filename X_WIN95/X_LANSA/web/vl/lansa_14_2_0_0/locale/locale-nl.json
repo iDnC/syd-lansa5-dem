@@ -1,0 +1,35 @@
+﻿{
+ "no":                        "Nee",
+ "ok":                        "OK",
+ "yes":                       "Ja",
+ "today":                     "Vandaag",
+ "retry":                     "Opnieuw",
+ "cancel":                    "Terug",
+ "ignore":                    "Negeer",
+
+ "dayLong":                   ["Maandag","Dinsday","Woensdag","Donderdag","Vrijdag","Zaterdag","Zondag"],
+ "dayShort":                  ["Ma","Din","Woe","Don","Vr","Za","Zon"],
+ "monthLong":                 ["Januari","Februari","Maart","April","Mei","Juni","Juli","Augustus","September","Oktober","November","December"],
+ "monthShort":                ["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+ "dateFormat":                "/d/M/yyyy",
+ "timeFormat":                "h:mm:ss tt",
+ "startOfWeek":               "Zondag",
+
+ "decimalPoint":              ".",
+ "thousandsSep":              ",",
+ "currencySymbol":            "€",
+ 
+ "tabIncreaseDockGroup":      "Verhoog Groep",
+ "tabDecreaseDockGroup":      "Verlaag Groep",
+ "tabLayoutPriority":         "Max Layout",
+ "tabAutoHide":               "Autohide",
+ "tabHide":                   "Sluiten",
+ "tabConfigureButtons":       "Configureren",
+ "tabShowMoreButtons":        "Toon Meer Knoppen",
+ "tabShowFewerButtons":       "Toon minder Knoppen",
+ "tabAddOrRemoveButtons":     "Maak of Wis Bladen",
+ "tabPageCloseButton":        "Sluit Blad",
+ 
+ "cardCaption":               "Primary Text",
+ "cardTertiary":              "Tertiary Text"
+}

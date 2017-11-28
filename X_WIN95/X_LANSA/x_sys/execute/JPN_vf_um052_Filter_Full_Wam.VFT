@@ -1,0 +1,128 @@
+<caption>  
+ﾌｧｲﾙもしくはﾋﾞｭｰを使用した検索を行うﾌｨﾙﾀ
+</caption>
+<context>
+Filter
+</context>
+<preamble>
+JPN_vf_um052_Filter_Full_Wam.htm
+</preamble>
+<mode>
+WAM
+</mode>
+<sequence>
+000100  
+</sequence>
+<handler>
+VF_UM055 
+VF_UM058    
+</handler>
+<handlertxt>
+このﾋﾞｼﾞﾈｽ ｵﾌﾞｼﾞｪｸﾄに使用する識別ﾌﾟﾛﾄｺﾙを指定します。物理ﾌｧｲﾙがこのﾋﾞｼﾞﾈｽ ｵﾌﾞｼﾞｪｸﾄと類似する場合は、その名前を指定すると、ｳｨｻﾞｰﾄﾞが自動的に基本となる識別ﾌﾟﾛﾄｺﾙの推定を試みます。
+このﾌｨﾙﾀで行う検索を支援する物理ﾌｧｲﾙを指定します。次に、必要となるﾋﾞｭｰ、ｷｰ及び検索ｵﾌﾟｼｮﾝを、表示されているものから選択します。
+</handlertxt>
+<hint>
+このｳｨｻﾞｰﾄﾞはｺｰﾄﾞを生成しますが、それは、指定したﾌｧｲﾙやﾋﾞｭｰに基づいた手作業を不要とするか、もしくはほとんどなしで完了させるｳｪﾌﾞﾍﾞｰｽのﾌｨﾙﾀ用のものです。これは、VL ﾌﾚｰﾑﾜｰｸの初心者である開発者向けに設計されています。
+</hint>
+<code>
+<<include VF_UM052_Filter_Preamble.vfi>>
+BEGIN_COM ROLE(*EXTENDS #PRIM_WAM) Layoutweblet('vlf_layout_v2') Sessionstatus(None)
+<<comment>>基準がﾌｨﾙﾀに宣言します。
+Define_Com CLASS(#vf_sw100) NAME(#avFrameworkManager)
+Define_Com Class(#vf_aw007) Name(#ThisFilter) Reference(*Dynamic)
+Define_Com Class(#vf_lw002) Name(#avListManager) Reference(*Dynamic)
+Define_Com Class(#fp_in001) Name(#FastPart) Reference(*Dynamic)
+<<comment>>VL ﾌﾚｰﾑﾜｰｸ ﾏｯﾌﾟ ﾌｨｰﾙﾄﾞです。変更できません。
+Web_Map For(*both) Fields((#VF_FRAMEI *private) (#VF_FRAMEW *private) (#VF_FRAMES *private) (#VF_ELXTOF *private) (#VF_ELXN01 *private) (#VF_ELXN02 *private) (#VF_ELXN03 *private) (#VF_ELXN04 *private) (#VF_ELXN05 *private) (#VF_ELXN06 *private) 
++ (#VF_ELXN07 *private) (#VF_ELXN08 *private) (#VF_ELXN09 *private) (#VF_ELXN10 *private) (#VF_ELXA01 *private) (#VF_ELXA02 *private) (#VF_ELXA03 *private) (#VF_ELXA04 *private) (#VF_ELXA05 *private) (#VF_ELXA06 *private) (#VF_ELXA07 *private) 
++ (#VF_ELXA08 *private) (#VF_ELXA09 *private) (#VF_ELXA10 *private)(#VF_ELMETA *private))
+
+<<comment>>Simple Field, ｸﾞﾙｰﾌﾟ及び Condition Definitions
+Group_By   Name(#XG_Keys)    Fields(<<UM058_KeyList>>)
+Group_By   Name(#XG_Ident)   Fields(<<UM055_GenFldList>>)
+Def_List   Name(#Save_Keys)  Fields(#XG_Keys) Type(*Working) Entrys(1)
+Def_Cond   Name(*SearchOK)   <<UM058_SearchCondition>> 
+
+<<comment>>このﾌｫｰﾑで使用するﾏｯﾌﾟ ﾌｨｰﾙﾄﾞ
+Web_Map For(*both) Fields(#XG_Keys (#UB_SEARCH *Noid))
+<<comment>>すべての VLF WAM ﾌｨﾙﾀに使用する標準ｳｪﾌﾞﾙｰﾁﾝとｺﾏﾝﾄﾞﾊﾝﾄﾞﾗです。ｳｪﾌﾞﾙｰﾁﾝ名は変えないで下さい。このﾙｰﾁﾝで WAM ｲﾍﾞﾝﾄを登録します。
+Webroutine Name(UHandleEvent)
+<<comment>>このﾌｨﾙﾀ内の検索ﾎﾞﾀﾝをｸﾘｯｸした際に実行するｲﾍﾞﾝﾄを、wam ｲﾍﾞﾝﾄ番号1として登録します。
+#avFrameworkManager.avRegisterEvent Named(UB_SEARCH.CLICK) Signalaswamevent(1)
+
+<<comment>>標準 WAM の初期化
+#avFrameworkManager.avInitializeWAM Type(FILTER) Invoker(#com_owner) Listmanager(#avListManager) Filtermanager(#ThisFilter) Fastpartmanager(#FastPart)
+
+#avFrameworkManager.avHandleWAMEvent Anchorblock(#vf_framew) Event(#vf_event) Designmode(#vf_framed) Skin(#VF_Frames) Metatag(#vf_elmeta) Tof(#vf_elxtof) N01(#vf_elxn01) N02(#vf_elxn02) N03(#vf_elxn03) N04(#vf_elxn04) N05(#vf_elxn05) 
++ N06(#vf_elxn06) N07(#vf_elxn07) N08(#vf_elxn08) N09(#vf_elxn09) 
++ N10(#vf_elxn10) A01(#vf_elxA01) A02(#vf_elxA02) A03(#vf_elxA03) A04(#vf_elxA04) A05(#vf_elxA05) A06(#vf_elxA06) A07(#vf_elxA07) A08(#vf_elxA08) A09(#vf_elxA09) A10(#vf_elxA10) Ssiname(#VF_FRAMEI)
+
+Endroutine
+<<Comment>>wam ｲﾍﾞﾝﾄ1として登録された検索ﾎﾞﾀﾝの押下を処理します。
+Evtroutine Handling(#avFrameworkManager.uExecute) Options(*noclearmessages *noclearerrors)
+<<if CA_UM058_REMEMBERKEYS>>
+<<comment>>ﾌｨﾙﾀが過去に実行した際に使用した値を復元します。
+<<UM058_Repeat False Alpha >>#avFrameworkManager.avRestoreValue Withid1(*Component) Withid2('<<field>>') ToAvalue(#<<field>>) Useavaluedefault(*Blanks)
+<<UM058_Repeat False Numeric >>#avFrameworkManager.avRestoreValue Withid1(*Component) Withid2('<<field>>') Usenvaluedefault(0) ToNValue(#VF_ELNUMX)<<split>>#<<field>> := #VF_ELNUMX<<field_intrinsic_to>>
+<<endif>>
+Endroutine
+
+<<Comment>>wam ｲﾍﾞﾝﾄ1として登録された検索ﾎﾞﾀﾝの押下を処理します。
+Evtroutine Handling(#avFrameworkManager.uWAMEvent_1) Options(*noclearmessages *noclearerrors)
+<<comment>>検索ｷｰが有効の場合
+if COND(*SearchOK)   
+<<if CA_UM058_REMEMBERKEYS>>
+<<comment>>後で実行する際のｷｰの値を保存します。
+<<UM058_Repeat False Alpha >>#avFrameworkManager.avSaveValue Withid1(*Component) Withid2('<<field>>') FromAvalue(#<<field>>)
+<<UM058_Repeat False Numeric >>#avFrameworkManager.avSaveValue Withid1(*Component) Withid2('<<field>>') FromNValue(#<<field>><<field_intrinsic_from>>)
+<<endif>>
+<<comment>>現在のｷｰの値を上書きしないようにします。
+Inz_List #Save_Keys 1 
+<<comment>><<businessobject_lang ucaption>>ｲﾝｽﾀﾝｽ ﾘｽﾄの更新開始を示します。
+#avListManager.BeginListUpdate
+
+<<if CA_UM058_CLEARLIST>>
+<<comment>>現在のｲﾝｽﾀﾝｽ ﾘｽﾄをｸﾘｱします。
+#avListManager.ClearList
+
+<<endif>>
+<<Comment>>適切なｲﾝｽﾀﾝｽを選択します。
+<<if CA_UM058_LIMITSEARCH>>
+#ListCount := 0
+<<endif>>
+<<if CA_UM058_ALLOWGENERIC>>
+<<if CA_UM058_FULLKEY>>
+Select Fields(#XG_Ident) From_File(<<UM058_ViewName>>) With_key(#XG_Keys) Generic(*yes) Nbr_keys(*WithKey)  
+<<else>>
+Select Fields(#XG_Ident) From_File(<<UM058_ViewName>>) With_key(#XG_Keys) Generic(*yes) Nbr_Keys(*Compute)  
+<<endif>>  
+<<else>>
+<<if CA_UM058_FULLKEY>>
+Select Fields(#XG_Ident) From_File(<<UM058_ViewName>>) With_key(#XG_Keys) Nbr_keys(*WithKey)  
+<<else>>
+Select Fields(#XG_Ident) From_File(<<UM058_ViewName>>) With_key(#XG_Keys) Nbr_Keys(*Compute)  
+<<endif>>
+<<endif>>
+<<if CA_UM058_LIMITSEARCH>>
+* Stop searching at 200 instances
+#ListCount += 1
+If cond(#ListCount > 200)
+Message 'Search stopped after 200 instances found. Please refine your search criteria.'
+#ThisFilter.avShowMessages := TRUE
+Leave     
+Endif
+<<endif>>
+<<UM055_AddtoList>>  
+EndSelect
+<<comment>>ｲﾝｽﾀﾝｽ ﾘｽﾄの更新は現在完了しています。
+#avListManager.EndListUpdate
+<<comment>>保存したｷｰの値を復元します。
+Get_Entry 1 #Save_Keys 
+else
+<<comment>>或いは、検索ｷｰが無効な場合、ﾒｯｾｰｼﾞを発行します。
+Message 'Search details provided are not valid. Please enter search details'
+#ThisFilter.avShowMessages := TRUE
+Endif
+Endroutine
+End_Com
+</code>

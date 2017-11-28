@@ -1,0 +1,979 @@
+﻿<!-- ================================================================================================= -->
+<!-- =============================== COPYRIGHT NOTICE ================================================ -->
+<!-- ================================================================================================= -->
+<!-- (C) Copyright 2014 LANSA. LANSA is a trade name and registered trademark of LANSA in the          -->
+<!-- United States of America, Australia, the United Kingdom and other countries. All rights reserved. -->
+<!--                                                                                                   -->
+<!-- ------------------------------------------------------------------------------------------------- -->
+<!--                                                                                                   -->
+<!--          #     #       #       ######     #     #    ###    #     #     #####                     -->
+<!--          #  #  #      # #      #     #    ##    #     #     ##    #    #     #                    -->
+<!--          #  #  #     #   #     #     #    # #   #     #     # #   #    #                          -->
+<!--          #  #  #    #     #    ######     #  #  #     #     #  #  #    #  ####                    -->
+<!--          #  #  #    #######    #   #      #   # #     #     #   # #    #     #                    -->
+<!--          #  #  #    #     #    #    #     #    ##     #     #    ##    #     #                    -->
+<!--           ## ##     #     #    #     #    #     #    ###    #     #     #####                     -->
+<!--                                                                                                   -->
+<!-- ------------------------------------------------------------------------------------------------- -->
+<!-- Modification of this shipped HTML file will result one or more of the following:                  -->
+<!-- The introduction of incompatibilities with future versions of this framework.                     -->
+<!-- Voiding or limitation of any maintenance contract you may have in place for this framework.       -->
+<!-- Being charged for problem resolutions that are traced back to any such modifications.             -->
+<!-- ------------------------------------------------------------------------------------------------- -->
+<html>
+
+<head id='HEAD_Tag'>
+<script type="text/javascript" language="javascript" src="vf_xbrowser.js"></script> 
+<link rel='stylesheet' type='text/css' href='vf_vs001.css' />   
+
+<style type="text/css" >
+p
+{
+   font-size:8pt;
+}
+
+p.PtyCheckboxCaption
+{
+   display:inline;
+}
+
+.Main_Pty_DIV_Class
+{  
+   height: 90%;
+   width:  400px;
+   border: 1px solid Highlight;   
+   margin-top: 20px;
+   margin-left:80px;
+   overflow:auto;
+   display:none;
+   visibility:hidden;
+   float: left;
+}
+
+.FrameworkObjs
+{
+   display: inline;
+   border: 1px solid Highlight;   
+   padding: 3px;      
+   margin-top: 20px;
+   margin-left: 10px;   
+   height: 90%;
+   width:  180px;
+   overflow: auto;
+   background: window;      
+   float:left;
+}
+
+.Tree_Entry
+{
+   font-size: 8pt;
+   padding-top: 3px;
+   padding-left: 3px;   
+   height: 20px;
+   display:block;
+   white-space:nowrap;
+}
+
+.Pty_Name
+{
+   display:block;
+   width:30%;
+   height:20px;
+   margin-left: 5px;
+   margin-top: 7px;
+   overflow-x:hidden;
+   text-overflow:ellipsis;
+   white-space:nowrap;
+}
+
+.Pty_Value_Fixed_DIV
+{
+   width:70%;
+   height:20px;
+   background-color:window;
+   cursor:default;   
+   margin-left: 25px;
+   
+}
+
+.Pty_Value_DIV
+{
+   height:20px;
+   margin-left: 25px;
+}
+
+.Pty_Value_INPUT
+{
+   width:70%;
+   font-size: 8pt;
+}
+
+.Pty_Header
+{
+   background: inactivecaption;
+   height:28px;
+   font-size: 11pt;
+}
+
+.SaveButton
+{
+   width :75px;   
+   height:25px;      
+   font:small-caption;   
+   margin-left:10px;   
+   margin-top: 20px;
+}
+
+</style>
+<script type="text/javascript">
+
+   /* GLOBAL VARIABLES */
+
+   var objTreeContainer, objCurrentPtyContainer, objCurrentUser, strCurrentUserIDN, strDecValidator, intBoolTot, intAlphaTot, intNumberTot, objSaveButton;
+   var intDoItWhenInstance = 0;
+
+   var objTreeEntrySelected = null;
+   var strSelBackColor = "cornflowerblue";
+   var strSelFont = "medium";
+   var strSelFontColor = "HighlightText";
+   var arrayUserOvr = new Array();
+   var arrayUserOvrByID = new Array();
+   var arraySelectedRows = new Array();
+   var bInit = false;
+   /* ======================================================================= */
+   /* ======================== Handle Page Initialization ==================== */
+   /* ======================================================================== */
+
+   function VF_AJAX_Initialize() {
+      /* Insert the variable style sheet (ie: XP, WIN, WEB style) into this page */
+      {
+         var objLink = document.createElement("LINK");
+         objLink.rel = "stylesheet"; objLink.type = "text/css";
+         objLink.href = STYLESHEET();
+         document.getElementById("HEAD_Tag").insertAdjacentElement("afterBegin", objLink);
+      }
+
+      /* Create the container for the Framework, Apps and Bobs tree view */
+
+      objTreeContainer = document.createElement("div");
+      objTreeContainer.id = "Tree_DIV";
+      objTreeContainer.className = "FrameworkObjs";
+
+      document.body.appendChild(objTreeContainer);
+
+      var objFramework = VF_System.VF_Framework;
+
+      AddProperties(objFramework);
+
+      var objVF_FP002, objVF_FP018, objVF_FP003, Apps;
+
+      var iFP002ChildLength = objFramework.arrayobjVF_FP002ChildLength();
+      var i, j, iFP018ChildLength, iUBUSINESSOBJECTLength;
+
+      for (i = 0; i < iFP002ChildLength; i++) {
+         objVF_FP002 = objFramework.arrayobjVF_FP002ChildItem(i);
+
+         if (objVF_FP002 == null) continue;
+
+         AddProperties(objVF_FP002);
+
+         if (objVF_FP002.flagHasViews) {
+            iFP018ChildLength = objVF_FP002.arrayobjVF_FP018ChildLength();
+
+            for (j = 0; j < iFP018ChildLength; j++) {
+               objVF_FP018 = objVF_FP002.arrayobjVF_FP018ChildItem(j);
+
+               if (objVF_FP018 == null) continue;
+
+               iUBUSINESSOBJECTLength = objVF_FP018.UBUSINESSOBJECTLength();
+
+               for (p = 0; p < iUBUSINESSOBJECTLength; p++) {
+                  objVF_FP003 = objVF_FP018.UBUSINESSOBJECTChildItem(p);
+                  if (objVF_FP003 != null) AddProperties(objVF_FP003);
+               }
+            }
+         }
+         else {
+            iUBUSINESSOBJECTLength = objVF_FP002.UBUSINESSOBJECTLength();
+            for (j = 0; j < iUBUSINESSOBJECTLength; j++) {
+               objVF_FP003 = objVF_FP002.UBUSINESSOBJECTChildItem(j);
+               if (objVF_FP003 != null) AddProperties(objVF_FP003);
+            }
+         }
+      }
+
+      objSaveButton = document.createElement("input");
+      objSaveButton.type = "button";
+      objSaveButton.id = "UPX_Save";
+      objSaveButton.value = VF_System.MString(252);
+
+      xbrowserAttach(objSaveButton, "click", Btn_Save);
+
+      objSaveButton.style.display = "none";
+      objSaveButton.className = "SaveButton";
+
+      document.body.appendChild(objSaveButton);
+
+      /* Finished */
+      return;
+   }
+
+   function AddProperties(argforObject) {
+      var forObject = argforObject;
+      var intPtys = forObject.arrayVF_FP017Child.length;
+
+      if (intPtys > 0) {
+         AddTreeEntry(forObject);
+
+         var objContainer_Head = newPtyContHeader(forObject.strUniqueID, VF_System.MString(279) + forObject.UCAPTION);
+
+         /* Get the properties and manufacture its container if required */
+
+         var i, PtyRow, objPty;
+
+         for (i = 0; i < intPtys; i++) {
+            objPty = forObject.arrayVF_FP017Child[i];
+
+            PtyRow = newPtyRow(objPty, objContainer_Head);
+         }
+
+         document.body.appendChild(objContainer_Head);
+      }
+   }
+   /* ======================================================================== */
+   /* ======================== HTML objects constructures ==================== */
+   /* ======================================================================== */
+
+   function newPtyContHeader(strContainerId, strCaption) {
+      var newContainer = document.createElement("div");
+      newContainer.id = strContainerId + "PtyContainer";
+      newContainer.className = "Main_Pty_DIV_Class";
+
+      var newHeader = document.createElement("div");
+      newHeader.id = strContainerId + "_header";
+      newHeader.innerText = strCaption;
+      newHeader.className = "Pty_Header";
+      newHeader.align = "center";
+
+      newContainer.appendChild(newHeader);
+
+      return newContainer;
+   }
+
+   function newPtyRow(argPty, argContainer) {
+      var objPty = argPty;
+      var objContainer = argContainer;
+      var intInstances = objPty.UMAXINSTANCE;
+      var i, strCaption;
+
+      newHelpDiv = null;
+
+      for (i = 1; i <= intInstances; i++) {
+         AppendRow(objContainer, objPty, i, intInstances);
+      }
+
+      /* if there is help, append the help div at the end */
+
+      if (newHelpDiv != null) {
+         objContainer.appendChild(newHelpDiv);
+      }
+   }
+
+   function AppendRow(argobjContainer, argPty, argintInstance, argTotInstances) {
+      var objPty = argPty;
+      var strInstance = argintInstance.toString();
+      var strType = objPty.UTYPE;
+      var strMethod = objPty.UMETHOD;
+      var flagNonBooleanFixedList = ((strMethod == "FIXED") && (strType != "BOOLEAN"));
+      var strValue = "";
+      var i, strPtyCompare;
+
+      var flagHints = (objPty.UPROPERTYHINT.length > 0);
+
+      var newCaptionDiv = document.createElement("div");
+      newCaptionDiv.id = objPty.strUniqueID + "Caption_" + strInstance;
+      newCaptionDiv.className = "Pty_Name";
+      newCaptionDiv.noWrap = true;
+
+      if (argintInstance == 1) /* only put the caption in the first instance so it doesn't get repeated */
+      {
+         newCaptionDiv.innerText = objPty.UCAPTION;
+         newCaptionDiv.title = objPty.UCAPTION;
+         newCaptionDiv.marginTop = "5px";
+      }
+      else {
+         newCaptionDiv.style.display = "none";
+      }
+
+      var newValueDiv = document.createElement("div");
+      newValueDiv.id = objPty.strUniqueID + "ValueDiv_" + strInstance;
+
+      var objInput = document.createElement("input");
+
+      switch (strType) {
+         case "ALPHA":
+
+            strValue = objPty.UALPHAINSTANCE[strInstance];
+
+            if (strMethod != "FIXED") {
+               objInput.type = "text";
+               objInput.value = strValue;
+               objInput.SaveValue = strValue;
+               objInput.maxLength = objPty.UMAXLENGTH;
+
+               xbrowserAttach(objInput, "change", PtyChange_Alpha)
+            }
+            else {
+               objInput.type = "hidden";
+            }
+
+            break;
+
+         case "NUMERIC":
+
+            if (strMethod != "FIXED") {
+               objInput.type = "text";
+               SetNumericValue(objInput, objPty.UMAXDECIMAL.toString(), objPty.UNUMERICINSTANCE[strInstance]);
+               objInput.SaveValue = objInput.value;
+               xbrowserAttach(objInput, "change", PtyChange_Number)
+            }
+            else {
+               strValue = objPty.UNUMERICINSTANCE[strInstance];
+               objInput.type = "hidden";
+            }
+
+            break;
+
+         case "BOOLEAN":
+
+            objInput.type = "checkbox";
+            objInput.checked = objPty.UBOOLEANINSTANCE[strInstance];
+            objInput.SaveValue = objPty.UBOOLEANINSTANCE[strInstance];
+            xbrowserAttach(objInput, "click", CheckBoxChg)
+            objInput.style.display = "inline";
+            objInput.style.marginLeft = "0px";
+            break;
+
+         default:
+            break;
+      }
+
+      if (flagNonBooleanFixedList) {
+         objInput.value = strValue;
+         objInput.id = objPty.strUniqueID;
+         objInput.name = objPty.strUniqueID;
+         objInput.ParentDivId = objPty.strUniqueID + "ValueDiv_" + strInstance;
+
+         newValueDiv.className = "Pty_Value_Fixed_DIV";
+         newValueDiv.contentEditable = false;
+         newValueDiv.title = VF_System.MString(282);
+         newValueDiv.PtyId = objPty.strUniqueID;
+         newValueDiv.selected = false;
+         newValueDiv.UserOvr = false;
+         newValueDiv.Method = strMethod;
+         newValueDiv.Multiple = objPty.UMULTIPLESELECT;
+
+         xbrowserAttach(newValueDiv, "click", RowClick)
+
+         newValueDiv.setAttribute("accecptonclick", "true");
+
+         var pText = document.createElement("span");
+         pText.innerText = objPty.UCAPTIONINSTANCE[strInstance];
+         pText.className = "PtyNonBoolist";
+
+         newValueDiv.appendChild(objInput);
+         newValueDiv.appendChild(pText);
+
+         if (strType == "ALPHA") strPtyCompare = objPty.uxAlphaInstance[strInstance];
+         else strPtyCompare = objPty.uxNumericInstance[strInstance];
+
+         /* Select the first one always by default. If there a match arrives later it will get overriden in the else */
+         if (argintInstance == 1) SelectFixed(newValueDiv, true, false);
+         else if (strPtyCompare == strValue) SelectFixed(newValueDiv, true, false);
+
+         newValueDiv.SaveSelection = newValueDiv.selected;
+      }
+      else {
+         newValueDiv.className = "Pty_Value_DIV";
+         objInput.ParentDivId = "";
+         objInput.id = objPty.strUniqueID + "_" + strInstance;
+
+         if (strType == "BOOLEAN") {
+            objInput.PtyId = objPty.strUniqueID;
+
+            var pCheckboxCaption = document.createElement("p");
+            pCheckboxCaption.className = "PtyCheckboxCaption";
+
+            pCheckboxCaption.insertAdjacentElement("afterBegin", objInput);
+
+            newValueDiv.appendChild(pCheckboxCaption);
+
+            if (strMethod != "SINGLE") InsAdjText(pCheckboxCaption, "beforeEnd", objPty.UCAPTIONINSTANCE[strInstance]);
+         }
+         else {
+            newValueDiv.appendChild(objInput);
+
+            objInput.className = "Pty_Value_INPUT";
+            objInput.PtyId = objPty.strUniqueID;
+         }
+      }
+
+      /* Create the html for the help if there is any */
+      if ((argintInstance == 1) && (flagHints)) {
+         var arrayHelpText = objPty.UPROPERTYHINT;
+         for (var intTextLine = 0; intTextLine < arrayHelpText.length; intTextLine++) {
+            newCaptionDiv.title += arrayHelpText[intTextLine];
+         }
+
+         if (argTotInstances > 1) intDoItWhenInstance = 2;
+         else intDoItWhenInstance = 1;
+      }
+
+      if ((intDoItWhenInstance > 0) && (flagHints)) {
+         if (intDoItWhenInstance == argintInstance) {
+            intDoItWhenInstance = 0;
+
+            if (argTotInstances == 1) {
+               argobjContainer.appendChild(newCaptionDiv);
+               argobjContainer.appendChild(newValueDiv);
+            }
+            else {
+               argobjContainer.appendChild(newValueDiv);
+            }
+         }
+         else {
+            argobjContainer.appendChild(newCaptionDiv);
+            argobjContainer.appendChild(newValueDiv);
+         }
+
+      }
+      else {
+         argobjContainer.appendChild(newCaptionDiv);
+         argobjContainer.appendChild(newValueDiv);
+      }
+
+      objInput.Instance = strInstance;
+      objInput.PtyName = objPty.UNAME;
+      objInput.Method = strMethod;
+      objInput.PType = strType;
+      objInput.Decimals = objPty.UMAXDECIMAL.toString();
+      objInput.Upper = objPty.UUPPERCASE;
+
+   }
+
+   function SelectFixed(objRow, flagSelect, flagUserOvr) {
+      objRow.selected = flagSelect;
+
+      if (flagUserOvr != null) objRow.UserOvr = flagUserOvr;
+
+      if (flagSelect) SetBackground(objRow);
+      else RmvBackground(objRow);
+   }
+
+   /* Click event for fixed list rows */
+   function RowClick(e) {
+      /* source element could be the P or the DIV, we want the DIV because it has the selected property */
+      var thisEvent = (typeof event != "undefined") ? event: e;
+
+      var oSrcEle = thisEvent.srcElement;
+      var oSaveSrcEle = oSrcEle;
+      var sStopAtId = "VF_AC006_Main_Container";
+      var sCheckAttribute = "accecptonclick";
+
+      while ((oSrcEle.getAttribute(sCheckAttribute) != "true") && (oSrcEle.id != sStopAtId) && (oSrcEle != VF_System.objMainDocument)) oSrcEle = oSrcEle.parentNode;
+
+      var SelObj = ((oSrcEle.id != sStopAtId) && (oSrcEle != VF_System.objMainDocument)) ? oSrcEle : oSaveSrcEle;
+
+      var flagFound = true;
+
+      /* For single selection, there is always one selected that we have to unselect except if its the same one */
+
+      if (!(SelObj.Multiple)) {
+         var i, objInputPty;
+         flagFound = false;
+         var arrayFixed = document.getElementsByName(SelObj.PtyId);
+         var intFixedLength = arrayFixed.length;
+
+         for (i = 0; i < intFixedLength; i++) {
+            objInputPty = arrayFixed[i];
+            if ((objInputPty.parentElement.selected == true) && (objInputPty.parentElement != SelObj)) {
+               SelectFixed(objInputPty.parentElement, false);
+               flagFound = true;
+               break;
+            }
+         }
+      }
+
+      if (flagFound) {
+         if (SelObj.selected == true) {
+            RmvBackground(SelObj);
+            SelObj.selected = false;
+         }
+         else {
+            SetBackground(SelObj);
+            SelObj.selected = true;
+         }
+
+         ManageDirtyPtys(SelObj.PtyId, SelObj.firstChild.PType);
+      }
+   }
+
+   function SetBackground(srcObject) {
+      srcObject.style.backgroundColor = strSelBackColor;
+      srcObject.style.color = strSelFontColor;
+   }
+
+   function RmvBackground(srcObject) {
+      srcObject.style.backgroundColor = "";
+      srcObject.style.color = "";
+   }
+
+   function MouseEnter(e) {
+
+   var objSrc;
+   
+   try {  objSrc = event.srcElement; }
+   catch (oE) { objSrc = e.srcElement; }
+      
+      if (objSrc.selected != true) {
+         objSrc.style.backgroundColor = "ThreeDFace";
+         objSrc.style.color = "";
+      }
+   }
+
+   function xbrowserAttach(oElement, eventString, func) {
+      try { oElement.addEventListener(eventString, function(event) { func(event); }, false); }
+      catch (oE) { oElement.attachEvent(("on" + eventString), func); }
+   }
+
+   function MouseLeave(e) {
+   
+   var objSrc;
+   
+   try {  objSrc = event.srcElement; }
+   catch (oE) { objSrc = e.srcElement; }
+   
+      if (objSrc.selected != true) {
+         objSrc.style.backgroundColor = "";
+         objSrc.style.color = "";
+      }
+   }
+
+   function SetNumericValue(argobjInput, strDecs, intValue) {
+      var objInput = argobjInput;
+      var strValue = intValue.toString();
+      var intDecs = parseInt(strDecs, 10);
+      var strDecSep = VF_System.strDecimalSeparator;
+      var strMaxLength;
+
+      if (intDecs > 0) {
+         var i = 0;
+         objInput.maxLength = "21";
+         var intDecSepPos = strValue.indexOf(strDecSep);
+         if (intDecSepPos == -1) /* no decimals specified, add the separator plus as many zeroes as decimal positions */
+         {
+            strValue += strDecSep;
+            for (i = 0; i < intDecs; i++) strValue += "0";
+         }
+         else {
+            var strDecPortion = strValue.substr(intDecSepPos);
+            for (i = strDecPortion.length; i <= intDecs; i++) strValue += "0";
+         }
+      }
+      else {
+         objInput.maxLength = "20";
+      }
+
+      objInput.value = strValue;
+
+      return;
+   }
+
+   /* Add an entry in the VLF objects tree */
+   function AddTreeEntry(forObject) {
+      var newentry = document.createElement("div");
+      newentry.id = forObject.strUniqueID;
+      newentry.className = "Tree_Entry";
+      newentry.innerText = forObject.UCAPTION;
+      newentry.noWrap = true;
+      newentry.selected = false;
+
+      xbrowserAttach(newentry, "click", EntrySelect);
+      xbrowserAttach(newentry, "mouseover", MouseEnter);
+      xbrowserAttach(newentry, "mouseout", MouseLeave);
+
+      objTreeContainer.appendChild(newentry);
+   }
+
+   function EntrySelect(e) {
+   
+      var objSrcEntry;
+
+      try {  objSrcEntry = event.srcElement; }
+      catch (oE) { objSrcEntry = e.srcElement; }
+   
+      if (objSrcEntry.selected == true) return;
+
+      if (objTreeEntrySelected != null) {
+         objTreeEntrySelected.selected = false;
+         objTreeEntrySelected.style.backgroundColor = "";
+         objTreeEntrySelected.style.color = "";
+      }
+
+      objSrcEntry.selected = true;
+      objSrcEntry.style.background = strSelBackColor;
+      objSrcEntry.style.color = "HighlightText";
+
+      objTreeEntrySelected = objSrcEntry;
+
+      try { objCurrentPtyContainer.style.display = "none"; objCurrentPtyContainer.style.visibility = "hidden"; } catch (oE) { }
+      objCurrentPtyContainer = document.getElementById(objSrcEntry.id + "PtyContainer");
+      objCurrentPtyContainer.style.visibility = "visible";
+      objCurrentPtyContainer.style.display = "inline";
+
+      objSaveButton.style.display = "inline";
+   }
+
+   /* Restore the initial values for the object (app, bob or framework) */
+   function RestoreDfts() {
+      var i, j, objPtyContainer, arrayInput, objInput, objParentDiv;
+      var intTreeLength = objTreeContainer.children.length;
+      var arrayTreeEntries = objTreeContainer.children;
+
+      for (i = 0; i < intTreeLength; i++) {
+         /* Get the container for the properties for the object represented in the tree */
+         objPtyContainer = document.getElementById(arrayTreeEntries[i].id + "PtyContainer");
+
+         /* get all the input elements in the main div */
+         arrayInput = objPtyContainer.getElementsByTagName("input");
+
+         /* for each one of them, restore the saved value */
+         for (j = 0; j < arrayInput.length; j++) {
+            objInput = arrayInput[j];
+
+            if (objInput.PType == "BOOLEAN") objInput.checked = objInput.SaveValue;
+            else if (objInput.Method != "FIXED") objInput.value = objInput.SaveValue;
+
+            if (objInput.ParentDivId != "") /* if they have this property then it's a value from a fixed list */
+            {
+               objParentDiv = document.getElementById(objInput.ParentDivId);
+               SelectFixed(objParentDiv, objParentDiv.SaveSelection, false);
+            }
+         }
+      }
+   }
+
+   /* See ApplyUserPropertyValues in VF_FP005 */
+   function fCallBack(strType, strPtyId, vValue, intInstance, strMethod) {
+      var objInputPty;
+
+      ManageDirtyPtys(strPtyId, strType);
+
+      /* Get the input element based on the and update its value with the user specific one */
+
+      if (strMethod != "FIXED") {
+         objInputPty = document.getElementById(strPtyId + "_" + intInstance.toString());
+         if (strType == "BOOLEAN") objInputPty.checked = vValue;
+         else objInputPty.value = vValue;
+      }
+      else {
+         /* For fixed lists the returned instance doesn't represent the instance when the input was created. We have to search by value */
+         /* The values for fixed properties are held in hidden input elements whose id is the property id. getElementsByName returns all */
+         /*  elements with name or id equal to the supplied one so this will give us all the input elements that represent a fixed value pty */
+         var arrayFixed = document.getElementsByName(strPtyId);
+         var intFixedLength = arrayFixed.length;
+
+         for (i = 0; i < intFixedLength; i++) {
+            objInputPty = arrayFixed[i];
+
+            if (objInputPty.value == vValue) {
+               SelectFixed(document.getElementById(objInputPty.ParentDivId), true, true);
+               break;
+            }
+         }
+      }
+   }
+
+   function PtyChange_Alpha(e) {
+   
+      var objInput;
+
+      try {  objInput = event.srcElement; }
+      catch (oE) { objInput = e.srcElement; }
+      
+      if (objInput.SaveValue != objInput.value) {
+         ManageDirtyPtys(objInput.PtyId, "ALPHA");
+      }
+   }
+
+   function PtyChange_Number(e) {
+   
+      var objInput;
+
+      try {  objInput = event.srcElement; }
+      catch (oE) { objInput = e.srcElement; }
+
+      if (objInput.SaveValue != objInput.value) {
+         if (objInput.value == "") objInput.value = 0;
+         else if (CheckDecimals(objInput)) {
+            ManageDirtyPtys(objInput.PtyId, "NUMERIC");
+         }
+      }
+   }
+
+   function CheckDecimals(objSrcElement) {
+      var objSrcField = objSrcElement;
+      var intResult = VF_System.ParseFloat(objSrcElement.value, VF_System.strThousandSeparator);
+
+      var flagValidNumber = (intResult != null);
+
+      if (flagValidNumber) {
+         var strDecSep = "\\" + VF_System.strDecimalSeparator;
+
+         var reDecValidator = new RegExp("^\\d+(" + strDecSep + "\\d{0," + parseInt(objSrcField.Decimals, 10) + "})?$");
+
+         flagValidNumber = reDecValidator.test(intResult);
+      }
+
+      if (flagValidNumber) {
+         objSrcField.style.backgroundColor = "";
+         UPX_Save.disabled = false;
+         objSrcField.value = intResult;
+      }
+      else {
+         objSrcField.style.backgroundColor = "pink";
+         alert(VF_System.MString(281) + " " + objSrcField.PtyName);
+         UPX_Save.disabled = true;
+      }
+
+      return flagValidNumber;
+   }
+
+   function CheckBoxChg(e) {
+   
+      var sPropertyID;
+
+      try {  sPropertyID = event.srcElement.PtyId; }
+      catch (oE) { sPropertyID = e.srcElement.PtyId; }
+         
+      ManageDirtyPtys(sPropertyID, "BOOLEAN");
+   }
+
+   function ManageDirtyPtys(strPtyId, strType) {
+      if (arrayUserOvrByID[strPtyId] == null) {
+         arrayUserOvr[arrayUserOvr.length] = strPtyId;
+         arrayUserOvrByID[strPtyId] = strType;
+      }
+   }
+
+   /* ======================================================================== */
+   /* ======================== Handle Page Execution ========================= */
+   /* ======================================================================== */
+
+   function VF_AJAX_Execute(objInstance) {
+      UFUMUPX_SetBusy(false);
+
+      if (objTreeContainer.children.length <= 0) {
+         objTreeContainer.style.display = "none";
+         var objMsgSpan = document.getElementById("MsgNoPtys");
+         if (objMsgSpan == null) {
+            document.body.insertAdjacentHTML("afterBegin", "<span id='MsgNoPtys' style='margin-left:" + (document.body.clientWidth / 3) + "px;margin-top:100px' >" + VF_System.MString(283) + "</span>");
+         }
+      }
+      else {
+         /* Initialize global variables */
+         objCurrentUser = null;
+         strCurrentUserIDN = "";
+
+         InitializeUserPtyVars();
+         InitCounters();
+
+         UFUMUPX_SetBusy(true);
+
+         strCurrentUserIDN = objInstance.arraystrAKeyN[0];
+         GETUSER(strCurrentUserIDN, GETDETAILS_response);
+      }
+
+      /* Finished */
+      return;
+   }
+
+   function InitializeUserPtyVars() {
+      delete arrayUserOvr;
+      delete arrayUserOvrByID;
+      delete arraySelectedRows;
+
+      arrayUserOvr = new Array();
+      arrayUserOvrByID = new Array();
+      arraySelectedRows = new Array();
+
+      intDoItWhenInstance = 0;
+   }
+
+   function InitCounters() {
+      intBoolTot = 0;
+      intAlphaTot = 0;
+      intNumberTot = 0;
+   }
+   function UFUMUPX_SetBusy(flagBusy) {
+      document.body.disabled = flagBusy;
+      SETBUSY(flagBusy);
+
+      return;
+   }
+
+   function GETDETAILS_response(flagOkay, strMessage, objUser, strUserIDN) {
+      if (flagOkay) {
+         var i, j;
+         objCurrentUser = objUser;
+
+         /* Restore all the values to their defaults */
+         RestoreDfts();
+
+         /* Now, ask the selected user to give you back it's own values */
+         objCurrentUser.ApplyUserPropertyValues(fCallBack);
+
+         /* For fixed lists with user overrides, we have to unselect any potential default selected value */
+         var intOvrLength = arrayUserOvr.length;
+         var arrayobjInput, objParentDiv;
+
+         for (i = 0; i < intOvrLength; i++) {
+            strId = arrayUserOvr[i];
+
+            /* this will get the non boolean fixed because all instances are after by the property id */
+            arrayobjInput = document.getElementsByName(strId);
+
+            for (j = 0; j < arrayobjInput.length; j++) {
+               objParentDiv = arrayobjInput[j].parentElement;
+
+               if ((objParentDiv.UserOvr == false) && (objParentDiv.selected == true)) SelectFixed(objParentDiv, false);
+            }
+         }
+
+         UFUMUPX_SetBusy(false);
+      }
+
+      return;
+   }
+
+   function Btn_Save() {
+      if (arrayUserOvr.length <= 0) return;
+
+      /* reset all counters and property arrays for the user */
+      objCurrentUser.ResetPtys();
+      var vValue, objInput, strId, i, j, intFromVal, intToVal, arrayobjInput, objParentDiv;
+
+      /* Traverse the array updating the user property */
+
+      var intOvrLength = arrayUserOvr.length;
+
+      for (i = 0; i < intOvrLength; i++) {
+         strId = arrayUserOvr[i];
+         strType = arrayUserOvrByID[strId];
+
+         if (strType == "BOOLEAN") {
+            intFromVal = intBoolTot + 1;
+            intToVal = intBoolTot;
+         }
+         else if (strType == "ALPHA") {
+            intFromVal = intAlphaTot + 1;
+            intToVal = intAlphaTot;
+         }
+         else {
+            intFromVal = intNumberTot + 1;
+            intToVal = intNumberTot;
+         }
+
+         /* this will get the non boolean fixed because all instances are named by the property id */
+         arrayobjInput = document.getElementsByName(strId);
+
+         /* if none, then try with the id + instance */
+
+         if (arrayobjInput.length <= 0) {
+            j = 1;
+            objInput = document.getElementById(strId + "_" + j.toString());
+            while (objInput != null) {
+               SaveToUser(objInput, strId);
+               intToVal++;
+               j++;
+               objInput = document.getElementById(strId + "_" + j.toString());
+            }
+         }
+         else {
+            for (j = 0; j < arrayobjInput.length; j++) {
+               objParentDiv = arrayobjInput[j].parentElement;
+               if (objParentDiv.selected == true) {
+                  intToVal++;
+                  SaveToUser(arrayobjInput[j], strId);
+               }
+            }
+         }
+
+         objCurrentUser.ResaveProperty(strId, intFromVal, intToVal);
+      }
+
+      UFUMUPX_SetBusy(true);
+      UPDUSER(strCurrentUserIDN, objCurrentUser, Upd_User_Response);
+
+      InitCounters();
+
+      return;
+
+   }
+
+   function SaveToUser(srcObject, srcId) {
+      var objInput = srcObject;
+      var intInstance;
+      var strType = objInput.PType;
+
+      if (strType == "BOOLEAN") {
+         vValue = objInput.checked;
+         intInstance = intBoolTot++ + 1;
+      }
+      else if (strType == "ALPHA") {
+         vValue = objInput.value;
+         if (objInput.Upper) vValue = vValue.toUpperCase();
+         intInstance = intAlphaTot++ + 1;
+      }
+      else {
+         vValue = objInput.value;
+         intInstance = intNumberTot++ + 1;
+      }
+
+      objCurrentUser.SaveUserPropertyValue(vValue, intInstance, strType);
+   }
+
+   function Upd_User_Response(flagOkay, strMessage) {
+      UFUMUPX_SetBusy(false);
+   }
+
+   function VF_AJAX_Terminate() {
+      return;
+   }
+
+   function InsAdjText(obj, where, textToInsert) {
+      var textNodeToInsert = document.createTextNode(textToInsert);
+
+      switch (where) {
+         case "beforeBegin":
+            obj.parentNode.insertBefore(textNodeToInsert, obj);
+            break;
+         case "afterBegin":
+            obj.insertBefore(textNodeToInsert, obj.firstChild);
+            break;
+         case "beforeEnd":
+            obj.appendChild(textNodeToInsert);
+            break;
+         case "afterEnd":
+            obj.parentNode.insertBefore(textNodeToInsert, obj.nextSibling);
+            break;
+      }
+   }
+
+</script>
+</head>
+
+<body id='BODY_Tag' oncontextmenu="return false">
+
+</body>
+</html>   

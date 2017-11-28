@@ -1,0 +1,1385 @@
+File     DC@F03    Z42DTALIB 0YData Dictionary                                                000000000000000
+Field    F03FLD    001R
+Field    F03DES    002R
+Field    F03TYP    003R
+Field    F03LEN    004R
+Field    F03DEC    005R
+Field    F03LBL    006R
+Field    F03CH1    007R
+Field    F03CH2    008R
+Field    F03CH3    009R
+Field    F03REF    010R
+Field    F03IAT    011R
+Field    F03OAT    012R
+Field    F03EDC    013R
+Field    F03EDW    014R
+Field    F03DFT    015R
+Field    F03HLP    016R
+Field    F03ALS    017R
+Field    F03UDT    018R
+Field    F03P#I    019R
+Field    F03LN2    020V
+Field    F03DC2    021V
+Logical  DC@F03V1  Logical view #1 over DC@F03 /EDLO       X000
+Key      F03P#I    001
+Key      F03FLD    002
+Logical  DC@F03V2  Logical view #2 over DC@F03 /NOEDLO     X000
+Key      F03P#I    001
+Key      F03FLD    002
+Logical  DC@F03V3  Logical view #3 over DC@F03 /NOEDLO     X000
+Key      F03P#I    001
+Key      F03REF    002
+Logical  DC@F03V4  Logical view #4 over DC@F03 /NOEDLO     X000
+Key      F03P#I    001
+Key      F03REF    002
+Logical  DC@F03V5  Logical view #5 over DC@F03 /NOEDLO     X000
+Key      F03P#I    001
+Key      F03ALS    002
+Logical  DC@F03V6  Logical view #6 over DC@F03 /NOEDLO     X000
+Key      F03P#I    001
+Key      F03ALS    002
+Logical  DC@F03V7  Field definitions           /NOEDLO     X000
+Key      F03FLD    001
+Key      F03P#I    002
+Logical  DC@F03V8  Field definition file       /NOEDLO     X000
+Key      F03FLD    001
+Key      F03P#I    002
+File     DC@F12    Z42DTALIB 0YTable Definitions File                                         000000000000000
+Field    F12PFL    001R
+Field    F12PLB    002R
+Field    F12AVN    003R
+Field    F12ATD    004R
+Field    F12AUS    005R
+Field    F12UVM    006R
+Field    F12P#I    007R
+Logical  DC@F12V1  Logical view #1 over DC@F12 /EDLO       X000
+Key      F12P#I    001
+Key      F12PFL    002
+Key      F12PLB    003
+Logical  DC@F12V2  Logical view #2 over DC@F12 /NOEDLO     X000
+Key      F12P#I    001
+Key      F12PFL    002
+Key      F12PLB    003
+File     DC@F14    Z42DTALIB 0YTable Lists                                                    000000000000000
+Field    F14PTR    001R
+Field    F14SEQ    002R
+Field    F14TYP    003R
+Field    F14VAL    004R
+Field    F14AKI    005R
+Field    F14PFL    006R
+Field    F14PLB    007R
+Field    F14VER    008R
+Field    F14P#I    009R
+Logical  DC@F14V1  Logical view #1 over DC@F14 /NOEDLO     X000
+Key      F14P#I    001
+Key      F14PTR    002
+Key      F14TYP    003
+Key      F14SEQ    004
+Logical  DC@F14V2  Logical view #2 over DC@F14 /NOEDLO     X000
+Key      F14P#I    001
+Key      F14PTR    002
+Key      F14TYP    003
+Key      F14SEQ    004
+Logical  DC@F14V3  Logical view #3 over DC@F14 /NOEDLO     X000
+Key      F14P#I    001
+Key      F14TYP    002
+Key      F14VAL    003
+Logical  DC@F14V4  Logical view #4 over DC@F14 /NOEDLO     X000
+Key      F14P#I    001
+Key      F14TYP    002
+Key      F14VAL    003
+Logical  DC@F14V5  Logical view #5 over DC@F14 /NOEDLO     X000
+Key      F14P#I    001
+Key      F14PFL    002
+Key      F14PLB    003
+Key      F14VER    004
+Key      F14TYP    005
+Key      F14VAL    006
+Logical  DC@F14V6  Logical view #6 over DC@F14 /NOEDLO     X000
+Key      F14P#I    001
+Key      F14PFL    002
+Key      F14PLB    003
+Key      F14VER    004
+Key      F14TYP    005
+Key      F14VAL    006
+File     DC@F15    Z42DTALIB 0YTable Views                                                    000000000000000
+Field    F15PFL    001R
+Field    F15PLB    002R
+Field    F15VER    003R
+Field    F15VTP    004R
+Field    F15LGL    005R
+Field    F15DES    006R
+Field    F15APM    007R
+Field    F15PTR    008R
+Field    F15AP1    009R
+Field    F15AP2    010R
+Field    F15SP1    011R
+Field    F15SP2    012R
+Field    F15SP3    013R
+Field    F15SP4    014R
+Field    F15SP5    015R
+Field    F15SP6    016R
+Field    F15SP7    017R
+Field    F15P#I    018R
+Logical  DC@F15V1  Logical view #1 over DC@F15 /EDLO       X000
+Key      F15P#I    001
+Key      F15PFL    002
+Key      F15PLB    003
+Key      F15VER    004
+Key      F15LGL    005
+Logical  DC@F15V2  Logical view #2 over DC@F15 /NOEDLO     X000
+Key      F15P#I    001
+Key      F15PFL    002
+Key      F15PLB    003
+Key      F15VER    004
+Key      F15LGL    005
+Logical  DC@F15V3  Logical view #3 over DC@F15 /NOEDLO     X000
+Key      F15P#I    001
+Key      F15VTP    002
+Key      F15LGL    003
+Logical  DC@F15V4  Logical view #4 over DC@F15 /NOEDLO     X000
+Key      F15P#I    001
+Key      F15VTP    002
+Key      F15LGL    003
+Logical  DC@F15V5  Logical view #5 over DC@F15 /NOEDLO     X000
+Key      F15P#I    001
+Key      F15LGL    002
+Logical  DC@F15V6  Logical view #6 over DC@F15 /NOEDLO     X000
+Key      F15P#I    001
+Key      F15LGL    002
+Logical  DC@F15V7  Logical file definitions /EDLO          X000
+Key      F15LGL    001
+Key      F15PLB    002
+Key      F15P#I    003
+Logical  DC@F15V8  Logical file definitions /NOEDLO        X000
+Key      F15LGL    001
+Key      F15PLB    002
+Key      F15P#I    003
+File     DC@F18    Z42DTALIB 0YAccess Routes                                                  000000000000000
+Field    F18PFL    001R
+Field    F18PLB    002R
+Field    F18VER    003R
+Field    F18VTP    004R
+Field    F18ARN    005R
+Field    F18DES    006R
+Field    F18ARF    007R
+Field    F18ARL    008R
+Field    F18MAX    009R
+Field    F18NRA    010R
+Field    F18PTR    011R
+Field    F18P#I    012R
+Logical  DC@F18V1  Logical view #1 over DC@F18 /NOEDLO     X000
+Key      F18P#I    001
+Key      F18PFL    002
+Key      F18PLB    003
+Key      F18VER    004
+Key      F18ARN    005
+Logical  DC@F18V2  Logical view #2 over DC@F18 /NOEDLO     X000
+Key      F18P#I    001
+Key      F18PFL    002
+Key      F18PLB    003
+Key      F18VER    004
+Key      F18ARN    005
+File     DC@F23    Z42MODLIB 0YFunction Definitions                                           000000000000000
+Field    F23MOD    001R
+Field    F23FMT    002R
+Field    F23DES    003R
+Field    F23TYP    004R
+Field    F23STY    005R
+Field    F23HLP    006R
+Field    F23DNF    007R
+Field    F23ANF    008R
+Field    F23FID    009R
+Field    F23APM    010R
+Field    F23SP1    011R
+Field    F23SET    012R
+Field    F23P#I    013R
+Field    F23CRL    014R
+Field    F23CPC    015R
+Field    F23MSQ    016R
+Field    F23SP2    017R
+Field    F23SP3    018R
+Field    F23SP4    019R
+Logical  DC@F23V1  Logical view #1 over DC@F23 /EDLO       X000
+Key      F23P#I    001
+Key      F23MOD    002
+Key      F23FMT    003
+File     DC@F26    Z42MODLIB 0YSystem Variables                                               000000000000000
+Field    F26VAR    001R
+Field    F26DES    002R
+Field    F26TYP    003R
+Field    F26LEN    004R
+Field    F26DEC    005R
+Field    F26PGM    006R
+Field    F26DYN    007R
+Logical  DC@F26V1  Logical view #1 over DC@F26 /NOEDLO     X000
+Key      F26VAR    001
+Logical  DC@F26V2  Logical view #2 over DC@F26 /NOEDLO     X000
+Key      F26VAR    001
+File     DC@F27    Z42DTALIB 0YTable Version Definition                                       000000000000000
+Field    F27PFL    001R
+Field    F27PLB    002R
+Field    F27VER    003R
+Field    F27VTP    004R
+Field    F27DES    005R
+Field    F27PTR    006R
+Field    F27UUS    007R
+Field    F27UTD    008R
+Field    F27EXF    009R
+Field    F27AP1    010R
+Field    F27AP2    011R
+Field    F27SP1    012R
+Field    F27SP2    013R
+Field    F27SP3    014R
+Field    F27SP4    015R
+Field    F27SP5    016R
+Field    F27SP6    017R
+Field    F27SP7    018R
+Field    F27P#I    019R
+Logical  DC@F27V1  Logical view #1 over DC@F27 /EDLO       X000
+Key      F27P#I    001
+Key      F27PFL    002
+Key      F27PLB    003
+Key      F27VER    004
+Logical  DC@F27V2  Logical view #2 over DC@F27 /NOEDLO     X000
+Key      F27P#I    001
+Key      F27PFL    002
+Key      F27PLB    003
+Key      F27VER    004
+Logical  DC@F27V3  Physical file definitions   /NOEDLO     X000
+Key      F27PFL    001
+Key      F27PLB    002
+Key      F27P#I    003
+Logical  DC@F27V4  Physical file definitions   /NOEDLO     X000
+Key      F27PFL    001
+Key      F27PLB    002
+Key      F27P#I    003
+File     DC@F60    Z42MODLIB 0YPartition Languages                                            000000000000000
+Field    F60P#I    001R
+Field    F60PLN    002R
+Field    F60PLD    003R
+Field    F60DBC    004R
+Field    F60RLT    005R
+Field    F60P#D    006R
+Field    F60MSG    007R
+Field    F60CHR    008R
+Logical  DC@F60V1  Logical view #1 over DC@F60 /EDLO       X000
+Key      F60P#I    001
+Key      F60PLN    002
+File     DC@W06    Z42MODLIB 0YL4W3 - Image Data                                              000000000000000
+Field    W06NAM    001R
+Field    W06TYP    002R
+Field    W06VAL    003R
+Logical  DC@W06V1  Logical view #1 over DC@W06     /NOEDLO X000
+Key      W06NAM    001
+Logical  DC@W06V2  Logical view #2 over DC@W06     /NOEDLO X000
+Key      W06NAM    001
+File     DC@W08    Z42MODLIB 0YLANSA for the Web- User information                            000000000000000
+Field    W08NAM    001R
+Field    W08DTA    002R
+Field    W08DT1    003R
+Field    W08DT2    004R
+Field    W08DT3    005R
+Field    W08TIM    006R
+Field    W08TYP    007R
+Field    W08SVL    008R
+Field    W08SP1    009R
+Field    W08SNM    010R
+Field    W08PRT    011R
+Field    W08DTV    012R
+Logical  DC@W08V1  Logical view #1 over DC@W08     /NOEDLO X000
+Key      W08NAM    001
+Key      W08SNM    002
+Key      W08PRT    003
+Logical  DC@W08V2  Logical view #2 over DC@W08     /NOEDLO X000
+Key      W08NAM    001
+Key      W08SNM    002
+Key      W08PRT    003
+File     DC@W09    Z42MODLIB 0YL4W3 - Web Process Information                                 000000000000000
+Field    W09P#I    001R
+Field    W09MOD    002R
+Field    W09SP1    003R
+Logical  DC@W09V1  Logical view #1 over DC@W09     /NOEDLO X000
+Key      W09P#I    001
+Key      W09MOD    002
+Logical  DC@W09V2  Logical view #2 over DC@W09     /NOEDLO X000
+Key      W09P#I    001
+Key      W09MOD    002
+File     DC@W10    Z42MODLIB 0YL4W3 - Banner Header                                           000000000000000
+Field    W10P#I    001R
+Field    W10CMP    002R
+Field    W10DES    003R
+Field    W10SET    004R
+Field    W10SP1    005R
+Logical  DC@W10V1  Logical view #1 over DC@W10     /NOEDLO X000
+Key      W10P#I    001
+Key      W10CMP    002
+Logical  DC@W10V2  Logical view #2 over DC@W10     /NOEDLO X000
+Key      W10P#I    001
+Key      W10CMP    002
+File     DC@W11    Z42MODLIB 0YL4W3 - Banner Details                                          000000000000000
+Field    W11P#I    001R
+Field    W11CMP    002R
+Field    W11SET    003R
+Field    W11IMG    004R
+Field    W11DES    005R
+Field    W11URL    006R
+Field    W11SP1    007R
+Field    W11CLK    008R
+Logical  DC@W11V1  Logical view #1 over DC@W11     /NOEDLO X000
+Key      W11P#I    001
+Key      W11CMP    002
+Key      W11SET    003
+Logical  DC@W11V2  Logical view #2 over DC@W11     /NOEDLO X000
+Key      W11P#I    001
+Key      W11CMP    002
+Key      W11SET    003
+File     DC@W12    Z42MODLIB 0YL4W3 - LANSA system tables                                     000000000000000
+Field    W12PRT    001R
+Field    W12LIB    002R
+Field    W12P#I    003R
+Field    W12RMT    004R
+Field    W12SYM    005R
+Field    W12COM    006R
+Field    W12USR    007R
+Field    W12US1    008R
+Field    W12US2    009R
+Field    W12US3    010R
+Field    W12HLD    011R
+Field    W12MSG    012R
+Field    W12SP1    013R
+Field    W12SNM    014R
+Field    W12EID    015R
+Field    W12APP    016R
+Field    W12DTV    017R
+Logical  DC@W12V1  Logical view #1 over DC@W12     /NOEDLO X000
+Key      W12SNM    001
+Key      W12PRT    002
+Logical  DC@W12V2  Logical view #2 over DC@W12     /NOEDLO X000
+Key      W12SNM    001
+Key      W12PRT    002
+File     DC@W14    Z42MODLIB 0YWeb Event Links                                                000000000000000
+Field    W14P#I    001R
+Field    W14PLN    002R
+Field    W14PRO    003R
+Field    W14FUN    004R
+Field    W14KWD    005R
+Field    W14DES    006R
+Field    W14LPR    007R
+Field    W14LFN    008R
+Logical  DC@W14V1  Logical view #1 over DC@W14     /NOEDLO X000
+Key      W14P#I    001
+Key      W14PLN    002
+Key      W14PRO    003
+Key      W14FUN    004
+Key      W14KWD    005
+Logical  DC@W14V2  Logical view #2 over DC@W14     /NOEDLO X000
+Key      W14P#I    001
+Key      W14PLN    002
+Key      W14PRO    003
+Key      W14FUN    004
+Key      W14KWD    005
+Logical  DC@W14V3  Logical view #3 over DC@W14     /NOEDLO X000
+Key      W14P#I    001
+Key      W14PRO    002
+Key      W14FUN    003
+Key      W14KWD    004
+Key      W14PLN    005
+Logical  DC@W14V4  Logical view #4 over DC@W14     /NOEDLO X000
+Key      W14P#I    001
+Key      W14PRO    002
+Key      W14FUN    003
+Key      W14KWD    004
+Key      W14PLN    005
+Logical  DC@W14V5  Logical view #5 over DC@W14     /NOEDLO X000
+Key      W14P#I    001
+Key      W14LPR    002
+Key      W14LFN    003
+Key      W14KWD    004
+Key      W14PLN    005
+Logical  DC@W14V6  Logical view #6 over DC@W14     /NOEDLO X000
+Key      W14P#I    001
+Key      W14LPR    002
+Key      W14LFN    003
+Key      W14KWD    004
+Key      W14PLN    005
+File     DC@W15    Z42MODLIB 0YWEB: browse lists for a function                               000000000000000
+Field    W15P#I    001R
+Field    W15PRO    002R
+Field    W15FUN    003R
+Field    W15DSQ    004R
+Field    W15BRW    005R
+Logical  DC@W15V1  Logical view #1 over DC@W15      /NOEDLOX000
+Key      W15P#I    001
+Key      W15PRO    002
+Key      W15FUN    003
+Key      W15DSQ    004
+Key      W15BRW    005
+Logical  DC@W15V2  Logical view #2 over DC@W15     /NOEDLO X000
+Key      W15P#I    001
+Key      W15PRO    002
+Key      W15FUN    003
+Key      W15DSQ    004
+Key      W15BRW    005
+File     DC@W16    Z42MODLIB 0YWEB: fields used in a function                                 000000000000000
+Field    W16P#I    001R
+Field    W16PRO    002R
+Field    W16FUN    003R
+Field    W16DSQ    004R
+Field    W16FLD    005R
+Field    W16DES    006R
+Field    W16TYP    007R
+Field    W16LEN    008R
+Field    W16DEC    009R
+Field    W16USG    010R
+Logical  DC@W16V1  Logical #1 on DC@W16             /NOEDLOX000
+Key      W16P#I    001
+Key      W16PRO    002
+Key      W16FUN    003
+Key      W16DSQ    004
+Key      W16FLD    005
+Logical  DC@W16V2  Logical view #2 on DC@W16     /NOEDLO /PX000
+Key      W16P#I    001
+Key      W16PRO    002
+Key      W16FUN    003
+Key      W16DSQ    004
+Key      W16FLD    005
+File     DC@W17    Z42MODLIB 0YWEB : text strings                                             000000000000000
+Field    W17P#I    001R
+Field    W17PRO    002R
+Field    W17FUN    003R
+Field    W17DSQ    004R
+Field    W17FLD    005R
+Field    W17TID    006R
+Field    W17STR    007R
+Field    W17END    008R
+Field    W17TXT    009R
+Logical  DC@W17V1  Logical #1 on DC@W17              /NOEDLX000
+Key      W17P#I    001
+Key      W17PRO    002
+Key      W17FUN    003
+Key      W17DSQ    004
+Key      W17FLD    005
+Key      W17TID    006
+Logical  DC@W17V2  logical #2 on DC@W17              ?NOEDLX000
+Key      W17P#I    001
+Key      W17PRO    002
+Key      W17FUN    003
+Key      W17DSQ    004
+Key      W17FLD    005
+Key      W17TID    006
+File     DC@W20    Z42MODLIB 0YFrontpage Integration - HTML for a field                       000000000000000
+Field    W20P#I    001R
+Field    W20PRO    002R
+Field    W20FUN    003R
+Field    W20DSQ    004R
+Field    W20FLD    005R
+Field    W20TXT    006R
+Logical  DC@W20V1  Logical View #1 on DC@W20         /NOEDLX000
+Key      W20P#I    001
+Key      W20PRO    002
+Key      W20FUN    003
+Key      W20DSQ    004
+Key      W20FLD    005
+Logical  DC@W20V2  Logical view #2 on DC@W20         /NOEDLX000
+Key      W20P#I    001
+Key      W20PRO    002
+Key      W20FUN    003
+Key      W20DSQ    004
+Key      W20FLD    005
+File     DC@W26    Z42MODLIB 0YEvent Logging (Summary)                                        000000000000000
+Field    W26TID    001R
+Field    W26USR    002R
+Field    W26IPA    003R
+Field    W26SNM    004R
+Field    W26PRT    005R
+Field    W26FPO    006R
+Field    W26FFN    007R
+Field    W26FSQ    008R
+Field    W26FDA    009R
+Field    W26FSP    010R
+Field    W26FTI    011R
+Field    W26LPO    012R
+Field    W26LFN    013R
+Field    W26LSQ    014R
+Field    W26LDA    015R
+Field    W26LSP    016R
+Field    W26LTI    017R
+Field    W26NUM    018R
+Field    W26REF    019R
+Logical  DC@W26V1  Logical view #1 over DC@W26         /NOEX000
+Key      W26TID    001
+Logical  DC@W26V2  Logical view #2 over DC@W26         /NOEX000
+Key      W26TID    001
+File     DC@W27    Z42MODLIB 0YEvent Logging (Detailed)                                       000000000000000
+Field    W27TID    001R
+Field    W27SEQ    002R
+Field    W27PRO    003R
+Field    W27FUN    004R
+Field    W27PSQ    005R
+Field    W27DAT    006R
+Field    W27SP1    007R
+Field    W27TIM    008R
+Field    W27FN0    009R
+Field    W27FV0    010R
+Field    W27FN1    011R
+Field    W27FV1    012R
+Field    W27FN2    013R
+Field    W27FV2    014R
+Field    W27FN3    015R
+Field    W27FV3    016R
+Field    W27FN4    017R
+Field    W27FV4    018R
+Field    W27FN5    019R
+Field    W27FV5    020R
+Field    W27FN6    021R
+Field    W27FV6    022R
+Field    W27FN7    023R
+Field    W27FV7    024R
+Field    W27FN8    025R
+Field    W27FV8    026R
+Field    W27FN9    027R
+Field    W27FV9    028R
+Logical  DC@W27V1  Logical view #1 over DC@W27     /NOEDLO X000
+Key      W27TID    001
+Key      W27SEQ    002
+Logical  DC@W27V2  Logical view #2 over DC@W27     /NOEDLO X000
+Key      W27TID    001
+Key      W27SEQ    002
+Logical  DC@W27V3  Logical view #3 over DC@W27     /NOEDLO X000
+Key      W27DAT    001
+Key      W27TIM    002
+Logical  DC@W27V4  Logical view #4 over DC@W27     /NOEDLO X000
+Key      W27DAT    001
+Key      W27TIM    002
+Logical  DC@W27V5  Logical view #5 over DC@W27     /NOEDLO X000
+Key      W27FN0    001
+Key      W27FV0    002
+Key      W27DAT    003
+Key      W27TIM    004
+Logical  DC@W27V6  Logical view #6 over DC@W27     /NOEDLO X000
+Key      W27FN0    001
+Key      W27FV0    002
+Key      W27DAT    003
+Key      W27TIM    004
+File     DC@W28    Z42MODLIB 0YL4W3 - Header Variables Information                            000000000000000
+Field    W28PRT    001R
+Field    W28SYS    002R
+Field    W28FUN    003R
+Field    W28VAR    004R
+Field    W28PAR    005R
+Field    W28VAL    006R
+Logical  DC@W28V1  Logical view #1 over DC@W28     /NOEDLO X000
+Key      W28PRT    001
+Key      W28SYS    002
+Key      W28FUN    003
+Key      W28VAR    004
+Logical  DC@W28V2  Logical view #2 over DC@W28     /NOEDLO X000
+Key      W28PRT    001
+Key      W28SYS    002
+Key      W28FUN    003
+Key      W28VAR    004
+Logical  DC@W28V3  Logical view #3 over DC@W28     /NOEDLO X000
+Key      W28PRT    001
+Key      W28SYS    002
+Key      W28FUN    003
+Logical  DC@W28V4  Logical view #4 over DC@W28     /NOEDLO X000
+Key      W28PRT    001
+Key      W28SYS    002
+Key      W28FUN    003
+File     DC@X01    Z42MODLIB 0YXML Page Header                                                000000000000000
+Field    X01P#I    001R
+Field    X01PEN    002R
+Field    X01SEN    003R
+Field    X01PAG    004R
+Field    X01DES    005R
+Field    X01SP1    006R
+Logical  DC@X01V1  Logical view #1 over DC@X01         /NOEX000
+Key      X01P#I    001
+Key      X01PEN    002
+Key      X01SEN    003
+Key      X01PAG    004
+Logical  DC@X01V2  Logical view #2 over DC@X01         /NOEX000
+Key      X01P#I    001
+Key      X01PEN    002
+Key      X01SEN    003
+Key      X01PAG    004
+Logical  DC@X01V5  Logical view #5 over DC@X01         /NOEX000
+Key      X01P#I    001
+Key      X01PEN    002
+Key      X01PAG    003
+Key      X01SEN    004
+File     DC@X02    Z42MODLIB 0YXML Page Detail                                                000000000000000
+Field    X02P#I    001R
+Field    X02PEN    002R
+Field    X02SEN    003R
+Field    X02PLN    004R
+Field    X02PAG    005R
+Field    X02SET    006R
+Field    X02SEQ    007R
+Field    X02TXT    008R
+Field    X02SP1    009R
+Logical  DC@X02V1  Logical view #1 over DC@x02         /NOEX000
+Key      X02P#I    001
+Key      X02PEN    002
+Key      X02SEN    003
+Key      X02PLN    004
+Key      X02PAG    005
+Key      X02SET    006
+Key      X02SEQ    007
+Logical  DC@X02V2  Logical view #2 over DC@X02         /NOEX000
+Key      X02P#I    001
+Key      X02PEN    002
+Key      X02SEN    003
+Key      X02PLN    004
+Key      X02PAG    005
+Key      X02SET    006
+Key      X02SEQ    007
+File     DC@X03    Z42MODLIB 0YXML Component Registry                                         000000000000000
+Field    X03P#I    001R
+Field    X03PEN    002R
+Field    X03SEN    003R
+Field    X03CMP    004R
+Field    X03TYP    005R
+Field    X03DES    006R
+Field    X03MOD    007R
+Field    X03FMT    008R
+Field    X03PAG    009R
+Field    X03TXT    010R
+Field    X03IOV    011R
+Field    X03SP1    012R
+Logical  DC@X03V1  Logical view #1 over DC@X03         /NOEX000
+Key      X03P#I    001
+Key      X03PEN    002
+Key      X03SEN    003
+Key      X03CMP    004
+Key      X03IOV    005
+Logical  DC@X03V2  Logical view #2 over DC@X03         /NOEX000
+Key      X03P#I    001
+Key      X03PEN    002
+Key      X03SEN    003
+Key      X03CMP    004
+Key      X03IOV    005
+Logical  DC@X03V3  Logical view #3 over DC@X03         /NOEX000
+Key      X03P#I    001
+Key      X03CMP    002
+Key      X03PEN    003
+Key      X03IOV    004
+Key      X03SEN    005
+Logical  DC@X03V4  Logical view #4 over DC@X03         /NOEX000
+Key      X03P#I    001
+Key      X03CMP    002
+Key      X03PEN    003
+Key      X03IOV    004
+Key      X03SEN    005
+Logical  DC@X03V5  Logical view #5 over DC@X03         /NOEX000
+Key      X03P#I    001
+Key      X03PEN    002
+Key      X03CMP    003
+Key      X03IOV    004
+Key      X03SEN    005
+Logical  DC@X03V6  Logical view #6 over DC@X03         /NOEX000
+Key      X03P#I    001
+Key      X03PEN    002
+Key      X03CMP    003
+Key      X03IOV    004
+Key      X03SEN    005
+File     DEPTAB    Z42MODLIB  NDepartment code table                                          171108185133000
+Field    DEPTMENT  001R
+Field    DEPTDESC  002R
+Key      DEPTMENT  001
+File     DF_NOTE_TAZ42MODLIB 1NBusiness Object Note Storage Table                             000000000000013DF_NOTE_Table
+Field    DF_NOTE_G 001R
+Field    DF_NOTE_B 002R
+Field    DF_NOTE_1 003R
+Field    DF_NOTE_S 004R
+Field    DF_NOTE_2 005R
+Field    DF_NOTE_N 006R
+Field    DF_NOTE_C 007R
+Field    DF_NOTE_3 008R
+Field    DF_NOTE_U 009R
+Field    DF_NOTE_4 010R
+Key      DF_NOTE_G 001
+Logical  DF_NOTE_BYNote by Business Object Type            X028DF_NOTE_ByBusinessObjectType
+Key      DF_NOTE_B 001
+Key      DF_NOTE_1 002
+Key      DF_NOTE_C 003
+File     DF_T60MESOZ42MODLIB 1N\OS=Example DF_T60 related messages                            000000000000000
+Field    DF_T60TIM 001R
+Field    DF_T60SEN 002R
+Field    DF_T60TEX 003R
+Key      DF_T60TIM 001
+Key      DF_T60SEN 002
+File     DFDOC     Z42MODLIB 1NDocuments file                                                 000000000000000
+Field    DF_EIDN   001R
+Field    DF_EKEY1  002R
+Field    DF_EKEY2  003R
+Field    DF_EKEY3  004R
+Field    DF_EKEY4  005R
+Field    DF_EKEY5  006R
+Field    DF_EKEYN1 007R
+Field    DF_EKEYN2 008R
+Field    DF_EKEYN3 009R
+Field    DF_EKEYN4 010R
+Field    DF_EKEYN5 011R
+Field    DF_ECODE  012R
+Field    DF_EINST  013R
+Field    DF_EFILN  014R
+Field    DF_ESBLOB 015R
+Field    DF_ELDESC 016R
+Field    DF_ESUPD  017R
+Field    DF_ESCRDT 018R
+Field    DF_EUSRU  019R
+Field    DF_EUSRC  020R
+Key      DF_EIDN   001
+Key      DF_EKEY1  002
+Key      DF_EKEY2  003
+Key      DF_EKEY3  004
+Key      DF_EKEY4  005
+Key      DF_EKEY5  006
+Key      DF_EKEYN1 007
+Key      DF_EKEYN2 008
+Key      DF_EKEYN3 009
+Key      DF_EKEYN4 010
+Key      DF_EKEYN5 011
+Key      DF_ECODE  012
+Key      DF_EINST  013
+Key      DF_EFILN  014
+Logical  DFDOC01   Same as physical file                   X000
+Key      DF_EIDN   001
+Key      DF_EKEY1  002
+Key      DF_EKEY2  003
+Key      DF_EKEY3  004
+Key      DF_EKEY4  005
+Key      DF_EKEY5  006
+Key      DF_EKEYN1 007
+Key      DF_EKEYN2 008
+Key      DF_EKEYN3 009
+Key      DF_EKEYN4 010
+Key      DF_EKEYN5 011
+Key      DF_ECODE  012
+Key      DF_EINST  013
+Key      DF_EFILN  014
+File     DFNOTE    Z42MODLIB 1NNotes file                                                     000000000000000
+Field    DF_EIDN   001R
+Field    DF_EKEY1  002R
+Field    DF_EKEY2  003R
+Field    DF_EKEY3  004R
+Field    DF_EKEY4  005R
+Field    DF_EKEY5  006R
+Field    DF_EKEYN1 007R
+Field    DF_EKEYN2 008R
+Field    DF_EKEYN3 009R
+Field    DF_EKEYN4 010R
+Field    DF_EKEYN5 011R
+Field    DF_EINST  012R
+Field    DF_EDESC  013R
+Field    DF_ENOTP  014R
+Field    DF_ENOTE  015R
+Field    DF_ECAT   016R
+Field    DF_ESSTS  017R
+Field    DF_ESUPD  018R
+Field    DF_ESCRDT 019R
+Field    DF_EUSRU  020R
+Field    DF_EUSRC  021R
+Key      DF_EIDN   001
+Key      DF_EKEY1  002
+Key      DF_EKEY2  003
+Key      DF_EKEY3  004
+Key      DF_EKEY4  005
+Key      DF_EKEY5  006
+Key      DF_EKEYN1 007
+Key      DF_EKEYN2 008
+Key      DF_EKEYN3 009
+Key      DF_EKEYN4 010
+Key      DF_EKEYN5 011
+Key      DF_EINST  012
+File     DFT68BLOB Z42MODLIB 1NBlob Storage                                                   000000000000000
+Field    DF_ELBLOB 001R
+Field    DF_ELURL  002R
+Key      DF_ELURL  001
+File     DXDOCS    Z42MODLIB 1NStore documents command handler                                000000000000000
+Field    DF_ELOID  001R
+Field    DF_ELKEY0 002R
+Field    DF_ELKEY1 003R
+Field    DF_ELKEY2 004R
+Field    DF_ELKEY3 005R
+Field    DF_ELKEY4 006R
+Field    DF_ELKEY5 007R
+Field    DF_ELKEY6 008R
+Field    DF_ELKEY7 009R
+Field    DF_ELKEY8 010R
+Field    DF_ELKEY9 011R
+Field    DF_ELSEQ  012R
+Field    DF_ELFNAM 013R
+Field    DF_ELFSIZ 014R
+Field    DX_ELBLOB 015R
+Field    DF_ELDSTS 016R
+Field    DX_ELEXPD 017R
+Field    DX_ELCRDT 018R
+Field    DF_ELCRUS 019R
+Field    DX_ELUPDT 020R
+Field    DF_ELUPUS 021R
+Key      DF_ELOID  001
+Key      DF_ELKEY0 002
+Key      DF_ELKEY1 003
+Key      DF_ELKEY2 004
+Key      DF_ELKEY3 005
+Key      DF_ELKEY4 006
+Key      DF_ELKEY5 007
+Key      DF_ELKEY6 008
+Key      DF_ELKEY7 009
+Key      DF_ELKEY8 010
+Key      DF_ELKEY9 011
+Key      DF_ELFNAM 012
+File     FPTAB     Z42MODLIB 0NCode Table Data                                                000000000000000
+Field    FP_ETABL  001R
+Field    FP_EKEY1  002R
+Field    FP_EKEY2  003R
+Field    FP_EKEY3  004R
+Field    FP_EKEY4  005R
+Field    FP_EKEY5  006R
+Field    FP_EKEYN1 007R
+Field    FP_EKEYN2 008R
+Field    FP_EKEYN3 009R
+Field    FP_EKEYN4 010R
+Field    FP_EKEYN5 011R
+Field    FP_EPTNAM 012R
+Field    FP_EPTVAL 013R
+Field    FP_EPTNV  014R
+Field    FP_EPVTYP 015R
+Field    FP_ELVL   016R
+Field    FP_EDLTD  017R
+Logical  FPTABKYA  by Table AKey1 NKey1... FName           X000
+Key      FP_ETABL  001
+Key      FP_EKEY1  002
+Key      FP_EKEYN1 003
+Key      FP_EKEY2  004
+Key      FP_EKEYN2 005
+Key      FP_EKEY3  006
+Key      FP_EKEYN3 007
+Key      FP_EKEY4  008
+Key      FP_EKEYN4 009
+Key      FP_EKEY5  010
+Key      FP_EKEYN5 011
+Key      FP_EPTNAM 012
+Logical  FPTABKYN  By Table NKey1 Akey1... FName           X000
+Key      FP_ETABL  001
+Key      FP_EKEYN1 002
+Key      FP_EKEY1  003
+Key      FP_EKEYN2 004
+Key      FP_EKEY2  005
+Key      FP_EKEYN3 006
+Key      FP_EKEY3  007
+Key      FP_EKEYN4 008
+Key      FP_EKEY4  009
+Key      FP_EKEYN5 010
+Key      FP_EKEY5  011
+Key      FP_EPTNAM 012
+Logical  FPTABN2A  by Table FName Akey1 NKey1.... (2)      X000
+Key      FP_ETABL  001
+Key      FP_EPTNAM 002
+Key      FP_EKEY1  003
+Key      FP_EKEYN1 004
+Key      FP_EKEY2  005
+Key      FP_EKEYN2 006
+Key      FP_EKEY3  007
+Key      FP_EKEYN3 008
+Key      FP_EKEY4  009
+Key      FP_EKEYN4 010
+Key      FP_EKEY5  011
+Key      FP_EKEYN5 012
+Logical  FPTABN2N  by Table FName Nkey1 Akey1.... (2)      X000
+Key      FP_ETABL  001
+Key      FP_EPTNAM 002
+Key      FP_EKEYN1 003
+Key      FP_EKEY1  004
+Key      FP_EKEYN2 005
+Key      FP_EKEY2  006
+Key      FP_EKEYN3 007
+Key      FP_EKEY3  008
+Key      FP_EKEYN4 009
+Key      FP_EKEY4  010
+Key      FP_EKEYN5 011
+Key      FP_EKEY5  012
+Logical  FPTABNMA  by Table FName Akey1 NKey1 ...          X000
+Key      FP_ETABL  001
+Key      FP_EPTNAM 002
+Key      FP_EKEY1  003
+Key      FP_EKEYN1 004
+Key      FP_EKEY2  005
+Key      FP_EKEYN2 006
+Key      FP_EKEY3  007
+Key      FP_EKEYN3 008
+Key      FP_EKEY4  009
+Key      FP_EKEYN4 010
+Key      FP_EKEY5  011
+Key      FP_EKEYN5 012
+Logical  FPTABNMN  by Table FName Nkey1 Akey1....          X000
+Key      FP_ETABL  001
+Key      FP_EPTNAM 002
+Key      FP_EKEYN1 003
+Key      FP_EKEY1  004
+Key      FP_EKEYN2 005
+Key      FP_EKEY2  006
+Key      FP_EKEYN3 007
+Key      FP_EKEY3  008
+Key      FP_EKEYN4 009
+Key      FP_EKEY4  010
+Key      FP_EKEYN5 011
+Key      FP_EKEY5  012
+Logical  FPTABVAL  by Table FName NumVal AlphaVal          X000
+Key      FP_ETABL  001
+Key      FP_EPTNAM 002
+Key      FP_EPTNV  003
+Key      FP_EPTVAL 004
+File     FPTABU    Z42MODLIB 1NCode Table Unicode Data                                        000000000000000
+Field    FP_ETABL  001R
+Field    FP_EKEY1  002R
+Field    FP_EKEY2  003R
+Field    FP_EKEY3  004R
+Field    FP_EKEY4  005R
+Field    FP_EKEY5  006R
+Field    FP_EKEYN1 007R
+Field    FP_EKEYN2 008R
+Field    FP_EKEYN3 009R
+Field    FP_EKEYN4 010R
+Field    FP_EKEYN5 011R
+Field    FP_EPTNAM 012R
+Field    FP_EPTUVL 013R
+Logical  FPTABUKYA by Table AKey1 NKey1... FName           X000
+Key      FP_ETABL  001
+Key      FP_EKEY1  002
+Key      FP_EKEYN1 003
+Key      FP_EKEY2  004
+Key      FP_EKEYN2 005
+Key      FP_EKEY3  006
+Key      FP_EKEYN3 007
+Key      FP_EKEY4  008
+Key      FP_EKEYN4 009
+Key      FP_EKEY5  010
+Key      FP_EKEYN5 011
+Key      FP_EPTNAM 012
+Logical  FPTABUKYN By Table NKey1 Akey1... FName           X000
+Key      FP_ETABL  001
+Key      FP_EKEYN1 002
+Key      FP_EKEY1  003
+Key      FP_EKEYN2 004
+Key      FP_EKEY2  005
+Key      FP_EKEYN3 006
+Key      FP_EKEY3  007
+Key      FP_EKEYN4 008
+Key      FP_EKEY4  009
+Key      FP_EKEYN5 010
+Key      FP_EKEY5  011
+Key      FP_EPTNAM 012
+Logical  FPTABUN2A by Table FName Akey1 NKey1.... (2)      X000
+Key      FP_ETABL  001
+Key      FP_EPTNAM 002
+Key      FP_EKEY1  003
+Key      FP_EKEYN1 004
+Key      FP_EKEY2  005
+Key      FP_EKEYN2 006
+Key      FP_EKEY3  007
+Key      FP_EKEYN3 008
+Key      FP_EKEY4  009
+Key      FP_EKEYN4 010
+Key      FP_EKEY5  011
+Key      FP_EKEYN5 012
+Logical  FPTABUN2N by Table FName Nkey1 Akey1.... (2)      X000
+Key      FP_ETABL  001
+Key      FP_EPTNAM 002
+Key      FP_EKEYN1 003
+Key      FP_EKEY1  004
+Key      FP_EKEYN2 005
+Key      FP_EKEY2  006
+Key      FP_EKEYN3 007
+Key      FP_EKEY3  008
+Key      FP_EKEYN4 009
+Key      FP_EKEY4  010
+Key      FP_EKEYN5 011
+Key      FP_EKEY5  012
+Logical  FPTABUNMA by Table FName Akey1 NKey1 ...          X000
+Key      FP_ETABL  001
+Key      FP_EPTNAM 002
+Key      FP_EKEY1  003
+Key      FP_EKEYN1 004
+Key      FP_EKEY2  005
+Key      FP_EKEYN2 006
+Key      FP_EKEY3  007
+Key      FP_EKEYN3 008
+Key      FP_EKEY4  009
+Key      FP_EKEYN4 010
+Key      FP_EKEY5  011
+Key      FP_EKEYN5 012
+Logical  FPTABUNMN by Table FName Nkey1 Akey1....          X000
+Key      FP_ETABL  001
+Key      FP_EPTNAM 002
+Key      FP_EKEYN1 003
+Key      FP_EKEY1  004
+Key      FP_EKEYN2 005
+Key      FP_EKEY2  006
+Key      FP_EKEYN3 007
+Key      FP_EKEY3  008
+Key      FP_EKEYN4 009
+Key      FP_EKEY4  010
+Key      FP_EKEYN5 011
+Key      FP_EKEY5  012
+Logical  FPTABUVAL by Table FName Unicode Val              X000
+Key      FP_ETABL  001
+Key      FP_EPTNAM 002
+Key      FP_EPTUVL 003
+File     LW3FRM05  Z42MODLIB 0NL4Web Frameworks - Proc/Func X-Ref                             000000000000000
+Field    LW3BASEPR 001R
+Field    LW3BASEFN 002R
+Field    LW3BASEDS 003R
+Field    LW3SITEPR 004R
+Field    LW3SITEFN 005R
+Key      LW3BASEFN 001
+File     TDEPTAB   Z42MODLIB  NDepartment code table                                          171108184340007Tdeptab
+Field    DEPTMENT  001R
+Field    DEPTDESC  002R
+Key      DEPTMENT  001
+File     VFBEATC   Z42MODLIB 1NAttachments                                                    000000000000000
+Field    VF_BEGUID 001R
+Field    VF_BEATID 002R
+Field    VF_BEATCP 003R
+Field    VF_BEBLOB 004R
+Key      VF_BEGUID 001
+Key      VF_BEATID 002
+Logical  VFBEATC1  <New Logical>                           X000
+Key      VF_BEGUID 001
+Key      VF_BEATID 002
+File     VFBELOG   Z42MODLIB 1NObject Log                                                     000000000000000
+Field    VF_BEDATE 001R
+Field    VF_BEOWN  002R
+Field    VF_BEGUID 003R
+Field    VF_BEUSRP 004R
+Field    VF_BEUSRA 005R
+Field    VF_BEACTN 006R
+Field    VF_BEMSGT 007R
+File     VFBEOBJ   Z42MODLIB 1NObject Definition                                              000000000000000
+Field    VF_BEGUID 001R
+Field    VF_BEPGUI 002R
+Field    VF_BEAIK  003R
+Field    VF_BEOWN  004R
+Field    VF_BETYPE 005R
+Field    VF_BESTS1 006R
+Field    VF_BESTS2 007R
+Field    VF_BESTS3 008R
+Field    VF_BETEMP 009R
+Field    VF_BEUPDD 010R
+Field    VF_BEUSRA 011R
+Field    VF_BEUSRP 012R
+Key      VF_BEGUID 001
+Logical  VFBEOBJ1  By Type and GUID                        X000
+Key      VF_BEOWN  001
+Key      VF_BETYPE 002
+Key      VF_BEUPDD 003
+File     VFBEPTY   Z42MODLIB 1NProperties                                                     000000000000000
+Field    VF_BEGUID 001R
+Field    VF_BESEQ  002R
+Field    VF_BEPT1  003R
+Field    VF_BEPT2  004R
+Field    VF_BEPT3  005R
+Field    VF_BEPT4  006R
+Field    VF_BEPT5  007R
+Field    VF_BEPT6  008R
+Field    VF_BEPT7  009R
+Field    VF_BEPT8  010R
+Field    VF_BEPT9  011R
+Field    VF_BEPT10 012R
+Field    VF_BEPI1  013R
+Field    VF_BEPI2  014R
+Field    VF_BEPI3  015R
+Field    VF_BEPI4  016R
+Field    VF_BEPI5  017R
+Field    VF_BEPI6  018R
+Field    VF_BEPI7  019R
+Field    VF_BEPI8  020R
+Field    VF_BEPI9  021R
+Field    VF_BEPI10 022R
+Field    VF_BENM1  023R
+Field    VF_BENM2  024R
+Field    VF_BENM3  025R
+Field    VF_BENM4  026R
+Field    VF_BENM5  027R
+Field    VF_BENM6  028R
+Field    VF_BENM7  029R
+Field    VF_BENM8  030R
+Field    VF_BENM9  031R
+Field    VF_BENM10 032R
+Field    VF_BEPL1  033R
+Field    VF_BEPL2  034R
+Field    VF_BEPL3  035R
+Field    VF_BEPL4  036R
+Field    VF_BEPL5  037R
+Field    VF_BEPL6  038R
+Field    VF_BEPL7  039R
+Field    VF_BEPL8  040R
+Field    VF_BEPL9  041R
+Field    VF_BEPL10 042R
+Field    VF_BEVL1  043R
+Field    VF_BEVL2  044R
+Field    VF_BEVL3  045R
+Field    VF_BEVL4  046R
+Field    VF_BEVL5  047R
+Field    VF_BEVL6  048R
+Field    VF_BEVL7  049R
+Field    VF_BEVL8  050R
+Field    VF_BEVL9  051R
+Field    VF_BEVL10 052R
+Key      VF_BEGUID 001
+Key      VF_BESEQ  002
+File     VFBEQUE   Z42MODLIB 1NQueues                                                         000000000000000
+Field    VF_BESYSI 001R
+Field    VF_BESRVI 002R
+Field    VF_BEDATE 003R
+Field    VF_BEGUID 004R
+Field    VF_BEOACT 005R
+Logical  VFBEQUE1  <New Logical>                           X000
+Key      VF_BESYSI 001
+Key      VF_BESRVI 002
+Key      VF_BEDATE 003
+File     VFPPF06   Z42MODLIB 0NUsers                                                          000000000000000
+Field    VF_ELUSET 001R
+Field    VF_ELIDN  002R
+Field    VF_ELUSRL 003R
+Field    VF_ELSXML 004R
+Key      VF_ELUSET 001
+Key      VF_ELIDN  002
+Logical  VFPLF06A  View by User Profile                    X000
+Key      VF_ELUSET 001
+Key      VF_ELUSRL 002
+File     VFPPF07   Z42MODLIB 0NUser properties                                                000000000000000
+Field    VF_ELUSET 001R
+Field    VF_ELIDN  002R
+Field    VF_ELPTYT 003R
+Field    VF_ELPTYN 004R
+Field    VF_ELPTYL 005R
+Field    VF_ELPTYI 006R
+Field    VF_ELPTYE 007R
+Field    VF_ELAVAL 008R
+Field    VF_ELSXML 009R
+Field    VF_ELFRID 010R
+Key      VF_ELUSET 001
+Key      VF_ELIDN  002
+Key      VF_ELPTYT 003
+Key      VF_ELPTYN 004
+Key      VF_ELPTYL 005
+Key      VF_ELPTYI 006
+Key      VF_ELFRID 007
+File     VFXPF04   Z42MODLIB 0NVirtual File - Record format only                              000000000000000
+Field    VF_FRAMEW 001R
+Field    VF_ELXTOF 002R
+Field    VF_ELXN01 003R
+Field    VF_ELXN02 004R
+Field    VF_ELXN03 005R
+Field    VF_ELXN04 006R
+Field    VF_ELXN05 007R
+Field    VF_ELXN06 008R
+Field    VF_ELXN07 009R
+Field    VF_ELXN08 010R
+Field    VF_ELXN09 011R
+Field    VF_ELXN10 012R
+Field    VF_ELXA01 013R
+Field    VF_ELXA02 014R
+Field    VF_ELXA03 015R
+Field    VF_ELXA04 016R
+Field    VF_ELXA05 017R
+Field    VF_ELXA06 018R
+Field    VF_ELXA07 019R
+Field    VF_ELXA08 020R
+Field    VF_ELXA09 021R
+Field    VF_ELXA10 022R
+Key      VF_FRAMEW 001
+Key      VF_ELXTOF 002
+File     VFXPF05   Z42MODLIB 0NVirtual File - Record Format Only                              000000000000000
+Field    VF_ELXA01 001R
+Field    VF_ELXA02 002R
+Field    VF_ELXA03 003R
+Field    VF_ELXA04 004R
+Field    VF_ELXA05 005R
+Field    VF_ELXA06 006R
+Field    VF_ELXA07 007R
+Field    VF_ELXA08 008R
+Field    VF_ELXA09 009R
+Field    VF_ELXA10 010R
+File     XDEPTMENTSZ42MODLIB 1NDepartments                                                    000000000000012xDepartments
+Field    XDEPTMENT 001R
+Field    XDEPTDESC 002R
+Key      XDEPTMENT 001
+File     XDESTINAT Z42MODLIB 1NHoliday Destinations                                           170328132523012xDestination
+Field    XDESTID   001R
+Field    XDESTNAME 002R
+Field    XDESTDESC 003R
+Field    XDESTIMG  004R
+Key      XDESTID   001
+Logical  XDESTINAT1Holiday Destinations By Name            X018xDestinationByName
+Key      XDESTNAME 001
+Key      XDESTID   001
+File     XEMPIMAGE Z42MODLIB 1NEmployee Images                                                000000000000015xEmployeeImages
+Field    XEMPLOYID 001R
+Field    XEMPIMG   002R
+Field    XEMPTHM   003R
+Key      XEMPLOYID 001
+File     XEMPLOYEE Z42MODLIB 1NEmployee                                                       000000000000009xEmployee
+Field    XEMPLOYID 001R
+Field    XEMPTITLE 002R
+Field    XSURNAME  003R
+Field    XGIVENAME 004R
+Field    XEMPDOB   005R
+Field    XGENDER   006R
+Field    XSTREET   007R
+Field    XCITY     008R
+Field    XSTATE    009R
+Field    XPOSTCODE 010R
+Field    XCOUNTRY  011R
+Field    XPHONEHME 012R
+Field    XPHONEBUS 013R
+Field    XPHONEMOB 014R
+Field    XSALARY   015R
+Field    XSTARTDTE 016R
+Field    XTERMDATE 017R
+Field    XDEPTMENT 018R
+Field    XMONTHSAL 019V
+Field    XEMPAGE   020V
+Field    XEMPDEPT  021V
+Key      XEMPLOYID 001
+Logical  XEMPLOYEE1xEmployee by xDepartment and xEmployID  X021xEmployeeByDepartment
+Key      XDEPTMENT 001
+Key      XEMPLOYID 002
+Logical  XEMPLOYEE2xEmployee by xSurname and xGiveName     X018xEmployeeBySurname
+Key      XSURNAME  001
+Key      XGIVENAME 002
+Logical  XEMPLOYEE3xEmployee by xGiveName and xSurname     X019xEmployeeByGivename
+Key      XGIVENAME 001
+Key      XSURNAME  002
+File     XEMPLOYEENZ42MODLIB 1NEmployee Notes                                                 000000000000014xEmployeeNotes
+Field    XEMPGUID  001R
+Field    XEMPLOYID 002R
+Field    XEMPNOTE  003R
+Field    XEMPNTATT 004R
+Field    XEMPNTCRU 005R
+Key      XEMPGUID  001
+Logical  XEMPLYNT1 Notes by Employee                       X024xEmployeeNotesByEmployee
+Key      XEMPLOYID 001
+File     XHOMESALE Z42MODLIB 1NHomes For Sale                                                 000000000000013xHomesForSale
+Field    XHOMEID   001R
+Field    XHOMEDESC 002R
+Field    XHOMEADDR 003R
+Field    XHOMECITY 004R
+Field    XHOMEIMG  005R
+Key      XHOMEID   001
+Logical  XHOMESALE1Homes for Sale by City                  X012xHomesByCity
+Key      XHOMECITY 001
+File     XSCOUNTRY Z42MODLIB 1NCountry                                                        000000000000009XSCountry
+Field    XSCNTRYNM 001R
+Key      XSCNTRYNM 001
+File     XSORDER   Z42MODLIB 1NOrder                                                          000000000000007XSOrder
+Field    XSORDERID 001R
+Field    XSORDDTE  002R
+Field    XSACCID   003R
+Field    XSINVCID  004R
+Field    XSORDEML  005R
+Key      XSORDERID 001
+File     XSPRDCT   Z42MODLIB 1NProduct Category                                               000000000000017XSProductCategory
+Field    XSPRDCTID 001R
+Field    XSPRDCTDS 002R
+Field    XSPRDLNID 003R
+Key      XSPRDCTID 001
+Logical  XSPRDCT1  By Line ID, Category ID                 X019XSProductCategoryV1
+Key      XSPRDLNID 001
+Key      XSPRDCTID 002
+Logical  XSPRDCTV2 by Description                          X019XSProductCategoryV2
+Key      XSPRDCTDS 001
+File     XSPRDLNE  Z42MODLIB 1NProduct Line                                                   000000000000013XSProductLine
+Field    XSPRDLNID 001R
+Field    XSPRDLNDS 002R
+Key      XSPRDLNID 001
+Logical  XSPRDLNEV1by Description                          X015XSProductLineV1
+Key      XSPRDLNDS 001
+File     XSPRODUCT Z42MODLIB 1NProduct                                                        000000000000009XSProduct
+Field    XSPRDID   001R
+Field    XSPRDCTID 002R
+Field    XSPRDLNID 003R
+Field    XSPRDDSC  004R
+Field    XSPRDMDL  005R
+Field    XSPRDPRC  006R
+Field    XSPRDDTL  007R
+Field    XSPRDSHP  008R
+Field    XSPRDSTS  009R
+Field    XSPRODIMG 010R
+Field    XSPRDTAX  011R
+Key      XSPRDID   001
+Logical  XSPRODV1  by Line ID, Category ID, ProductID      X011XSProductV1
+Key      XSPRDLNID 001
+Key      XSPRDCTID 002
+Key      XSPRDID   003
+File     XSSHPCRT  Z42MODLIB 1NShopping Cart                                                  000000000000014XSShoppingCart
+Field    XSCRTID   001R
+Field    XSCRTCRT  002R
+Field    XSCRTLST  003R
+Field    XSCRTEXP  004R
+Field    XSCRTSTS  005R
+Field    XSACCID   006R
+Field    XSCRTPRC  007R
+Field    XSCRTTAX  008R
+Field    XSCRTSHP  009R
+Field    XSCRTQTY  010R
+Field    XSCRTTTL  011V
+Key      XSCRTID   001
+Logical  XSCRTSHPV1By XSAccountID                          X016XSShoppingCartV1
+Key      XSACCID   001
+File     XSSHPITM  Z42MODLIB 1NShopping Cart Item                                             000000000000018XSShoppingCartItem
+Field    XSCRTID   001R
+Field    XSPRDID   002R
+Field    XSCSTPRC  003R
+Field    XSQTY     004R
+Field    XSDSCPCT  005R
+Field    XSPRDPRC  006R
+Field    XSPRDTAX  007R
+Field    XSPRDSHP  008R
+Field    XSITMPRC  009R
+Field    XSITMTAX  010R
+Field    XSITMSHP  011R
+Field    XSITMPRCV 012V
+Field    XSITMTAXV 013V
+Field    XSITMSHPV 014V
+Key      XSCRTID   001
+Key      XSPRDID   002
+File     XSSTATE   Z42MODLIB 1NUS States                                                      000000000000007XSState
+Field    XSSTATEID 001R
+Field    XSSTTDSC  002R
+Key      XSSTATEID 001
+File     XSUSRACC  Z42MODLIB 1NUser Account                                                   000000000000013XSUserAccount
+Field    XSACCID   001R
+Field    XSPASSWRD 002R
+Field    XSACCSTS  003R
+Field    XSACCTTL  004R
+Field    XSACCLSTN 005R
+Field    XSACC1STN 006R
+Field    XSBTHDTE  007R
+Field    XSACCEML  008R
+Field    XSPHNMBL  009R
+Field    XSPHNWRK  010R
+Field    XSPHNHME  011R
+Field    XSACCADR1 012R
+Field    XSACCADR2 013R
+Field    XSACCCITY 014R
+Field    XSACCSTT  015R
+Field    XSACCZIP  016R
+Field    XSACCCNTY 017R
+Field    XSDLVADR1 018R
+Field    XSDLVADR2 019R
+Field    XSDLVCITY 020R
+Field    XSDLVSTT  021R
+Field    XSDLVZIP  022R
+Field    XSDLVCNTY 023R
+Field    XSDLVINS  024R
+Field    XSNWLCNC  025R
+Field    XSNWLSTS  026R
+Field    XSNWLSBS  027R
+Key      XSACCID   001
+Logical  XSUSRACC1 By Email                                X015XSUserAccountV1
+Key      XSACCEML  001

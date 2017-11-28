@@ -1,0 +1,1300 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<OBJECT TYPE="NODE_CONTAINER" CLASS="VF_FP025" ID="RAMP_DEFAULT_NODE">
+<PROPERTY NAME="IP_LAST" VALUE="20170525-152628-VF19PGMLIB"/>
+<PROPERTY NAME="UDECRYPTMETHOD" VALUE="DECRYPT2"/>
+<PROPERTY NAME="UNEXTSCRIPTNUMBER" TYPE="N" INST="99" VALUE="15"/>
+<OBJECT TYPE="NODE_GROUP" CLASS="VF_FP026" ID="RAMP_DEFAULT_SESSION">
+<PROPERTY NAME="IP_LAST" VALUE="20171108-063544-VF19PGMLIB"/>
+<PROPERTY NAME="UBUTTONPANELLOCATION" VALUE="BOTTOM"/>
+<PROPERTY NAME="UBUTTONSPACING" TYPE="N" VALUE="1"/>
+<PROPERTY NAME="UBUTTONWIDTH" TYPE="N" VALUE="80"/>
+<PROPERTY NAME="UCAPTION" LANG="ENG" VALUE="Default Session"/>
+<PROPERTY NAME="UHEIGHT" TYPE="N" VALUE="550"/>
+<PROPERTY NAME="ULAYOUTSTYLE" VALUE="FIXED"/>
+<PROPERTY NAME="ULEFT" TYPE="N" VALUE="0"/>
+<PROPERTY NAME="USPECIALFIELDHANDLER" VALUE=""/>
+<PROPERTY NAME="USPECIALFIELDHANDLER" INST="2" VALUE=""/>
+<PROPERTY NAME="USPECIALFIELDHANDLER" INST="3" VALUE=""/>
+<PROPERTY NAME="USPECIALFIELDHANDLER" INST="4" VALUE=""/>
+<PROPERTY NAME="USPECIALFIELDHANDLER" INST="5" VALUE=""/>
+<PROPERTY NAME="USPECIALFIELDHANDLER" INST="6" VALUE=""/>
+<PROPERTY NAME="USPECIALFIELDHANDLER" INST="7" VALUE=""/>
+<PROPERTY NAME="USPECIALFIELDHANDLERONE" VALUE="DF_PRM08O"/>
+<PROPERTY NAME="USPECIALFIELDHANDLERONE" INST="2" VALUE="DF_PRM08O"/>
+<PROPERTY NAME="USPECIALFIELDHANDLERONE" INST="3" VALUE="DF_PRM08O"/>
+<PROPERTY NAME="USPECIALFIELDHANDLERONE" INST="4" VALUE="DF_PRM08O"/>
+<PROPERTY NAME="USPECIALFIELDHANDLERONE" INST="5" VALUE="DF_PRM08O"/>
+<PROPERTY NAME="USPECIALFIELDHANDLERONE" INST="6" VALUE="DF_PRM08O"/>
+<PROPERTY NAME="USPECIALFIELDHANDLERONE" INST="7" VALUE="DF_PRM09O"/>
+<PROPERTY NAME="USPECIALFIELDKEY" VALUE="F4"/>
+<PROPERTY NAME="USPECIALFIELDKEY" INST="2" VALUE="F4"/>
+<PROPERTY NAME="USPECIALFIELDKEY" INST="3" VALUE="F4"/>
+<PROPERTY NAME="USPECIALFIELDKEY" INST="4" VALUE="F4"/>
+<PROPERTY NAME="USPECIALFIELDKEY" INST="5" VALUE="F4"/>
+<PROPERTY NAME="USPECIALFIELDKEY" INST="6" VALUE="F4"/>
+<PROPERTY NAME="USPECIALFIELDKEY" INST="7" VALUE="F4"/>
+<PROPERTY NAME="USPECIALFIELDNAME" VALUE="PRO_CLASS"/>
+<PROPERTY NAME="USPECIALFIELDNAME" INST="2" VALUE="PRO_GROUP"/>
+<PROPERTY NAME="USPECIALFIELDNAME" INST="3" VALUE="PRO_BUYER"/>
+<PROPERTY NAME="USPECIALFIELDNAME" INST="4" VALUE="PRO_UNIT"/>
+<PROPERTY NAME="USPECIALFIELDNAME" INST="5" VALUE="PRO_HAXMC"/>
+<PROPERTY NAME="USPECIALFIELDNAME" INST="6" VALUE="PRO_SHIPP"/>
+<PROPERTY NAME="USPECIALFIELDNAME" INST="7" VALUE="PRO_NUM*"/>
+<PROPERTY NAME="USPECIALFIELDTOTAL" TYPE="N" VALUE="7"/>
+<PROPERTY NAME="UTOP" TYPE="N" VALUE="0"/>
+<PROPERTY NAME="UWIDTH" TYPE="N" VALUE="680"/>
+<MEMBER CLASS="VF_FP027" ID="D2292D3CE1654ED2919B21A35F187C3B">
+<PROPERTY NAME="IP_LAST" VALUE="20171003-035111-VF19PGMLIB"/>
+<PROPERTY NAME="UCAPTION" LANG="ENG" VALUE="CUS_MAINT"/>
+<PROPERTY NAME="UCAPTIONLONG" LANG="ENG" VALUE=""/>
+<PROPERTY NAME="UHEIGHT" TYPE="N" VALUE="550"/>
+<PROPERTY NAME="UKEYCAPTION" VALUE="Enter"/>
+<PROPERTY NAME="UKEYCAPTION" INST="4" VALUE="Exit"/>
+<PROPERTY NAME="UKEYCAPTION" INST="5" VALUE="Prompt"/>
+<PROPERTY NAME="UKEYCAPTION" INST="13" VALUE="Cancel"/>
+<PROPERTY NAME="UKEYCAPTION" INST="15" VALUE="Msg"/>
+<PROPERTY NAME="UKEYCAPTION" INST="25" VALUE="Align Order"/>
+<PROPERTY NAME="UKEYENABLEDNL" VALUE="TRUE"/>
+<PROPERTY NAME="UKEYENABLEDNL" INST="4" VALUE="TRUE"/>
+<PROPERTY NAME="UKEYENABLEDNL" INST="5" VALUE="TRUE"/>
+<PROPERTY NAME="UKEYENABLEDNL" INST="13" VALUE="TRUE"/>
+<PROPERTY NAME="UKEYENABLEDNL" INST="15" VALUE="TRUE"/>
+<PROPERTY NAME="UKEYENABLEDVLF" INST="25" VALUE="TRUE"/>
+<PROPERTY NAME="UKEYTOTAL" TYPE="N" VALUE="38"/>
+<PROPERTY NAME="URTSSCRIPTIDN" VALUE="606981E775614551AB45B80FB13694ED"/>
+<PROPERTY NAME="USCREENNAME" VALUE="CUS_MAINT"/>
+<PROPERTY NAME="USRCFORMNAME" VALUE="CUS_KEY"/>
+<PROPERTY NAME="USRCFORMNAMETOT" TYPE="N" VALUE="1"/>
+<PROPERTY NAME="UTGTFORMNAME" VALUE="MAIN"/>
+<PROPERTY NAME="UTGTFORMNAMETOT" TYPE="N" VALUE="1"/>
+</MEMBER>
+<MEMBER CLASS="VF_FP027" ID="3A2C6B7ECFE84A0799BDBFBF29F157EF">
+<PROPERTY NAME="IP_LAST" VALUE="20171003-035123-VF19PGMLIB"/>
+<PROPERTY NAME="UCAPTION" LANG="ENG" VALUE="ORD_MAINT"/>
+<PROPERTY NAME="UCAPTIONLONG" LANG="ENG" VALUE=""/>
+<PROPERTY NAME="UHEIGHT" TYPE="N" VALUE="550"/>
+<PROPERTY NAME="UKEYCAPTION" VALUE="Enter"/>
+<PROPERTY NAME="UKEYCAPTION" INST="4" VALUE="Exit"/>
+<PROPERTY NAME="UKEYCAPTION" INST="5" VALUE="Prompt"/>
+<PROPERTY NAME="UKEYCAPTION" INST="13" VALUE="Cancel"/>
+<PROPERTY NAME="UKEYCAPTION" INST="15" VALUE="Msg"/>
+<PROPERTY NAME="UKEYCAPTION" INST="24" VALUE="Show Customer"/>
+<PROPERTY NAME="UKEYCAPTION" INST="25" VALUE="Align Customer"/>
+<PROPERTY NAME="UKEYENABLEDNL" VALUE="TRUE"/>
+<PROPERTY NAME="UKEYENABLEDNL" INST="4" VALUE="TRUE"/>
+<PROPERTY NAME="UKEYENABLEDNL" INST="5" VALUE="TRUE"/>
+<PROPERTY NAME="UKEYENABLEDNL" INST="13" VALUE="TRUE"/>
+<PROPERTY NAME="UKEYENABLEDNL" INST="15" VALUE="TRUE"/>
+<PROPERTY NAME="UKEYENABLEDVLF" INST="24" VALUE="TRUE"/>
+<PROPERTY NAME="UKEYENABLEDVLF" INST="25" VALUE="TRUE"/>
+<PROPERTY NAME="UKEYTOTAL" TYPE="N" VALUE="38"/>
+<PROPERTY NAME="URTSSCRIPTIDN" VALUE="8355C862F0514C8D8B89E4A3DBCA0770"/>
+<PROPERTY NAME="USCREENNAME" VALUE="ORD_MAINT"/>
+<PROPERTY NAME="USRCFORMNAME" VALUE="ORD_KEY"/>
+<PROPERTY NAME="USRCFORMNAMETOT" TYPE="N" VALUE="1"/>
+<PROPERTY NAME="UTGTFORMNAME" VALUE="MAIN"/>
+<PROPERTY NAME="UTGTFORMNAMETOT" TYPE="N" VALUE="1"/>
+</MEMBER>
+<MEMBER CLASS="VF_FP027" ID="02163A65D8004CC8B5015C1F452F1AF3">
+<PROPERTY NAME="IP_LAST" VALUE="20170525-153001-VF19PGMLIB"/>
+<PROPERTY NAME="UCAPTION" LANG="ENG" VALUE="PRO_MAINT"/>
+<PROPERTY NAME="UCAPTIONLONG" LANG="ENG" VALUE=""/>
+<PROPERTY NAME="UKEYCAPTION" VALUE="Enter"/>
+<PROPERTY NAME="UKEYENABLEDNL" VALUE="TRUE"/>
+<PROPERTY NAME="UKEYENABLEDVLF" VALUE="TRUE"/>
+<PROPERTY NAME="UKEYTOTAL" TYPE="N" VALUE="38"/>
+<PROPERTY NAME="URTSSCRIPTIDN" VALUE="B467418407814CC1BC4147B3F9AA767C"/>
+<PROPERTY NAME="USCREENNAME" VALUE="PRO_MAINT"/>
+<PROPERTY NAME="USRCFORMNAME" VALUE="PRO_KEY"/>
+<PROPERTY NAME="USRCFORMNAMETOT" TYPE="N" VALUE="1"/>
+<PROPERTY NAME="UTGTFORMNAME" VALUE="MAIN"/>
+<PROPERTY NAME="UTGTFORMNAMETOT" TYPE="N" VALUE="1"/>
+</MEMBER>
+<MEMBER CLASS="VF_FP028" ID="BFD2069824EB4D80A4776A3CB03FBD07" RUN="N">
+<PROPERTY NAME="IP_LAST" VALUE="20170301-121853-VF19PGMLIB"/>
+<PROPERTY NAME="UCAPTION" LANG="ENG" VALUE="MainLogin"/>
+<PROPERTY NAME="UCAPTIONLONG" LANG="ENG" VALUE="Login Form"/>
+<PROPERTY NAME="URTSSCRIPTIDN" VALUE="6EA2C03B6315441ABA00E6A93ED609E7"/>
+<PROPERTY NAME="USCREENNAME" VALUE="MainLogin"/>
+<PROPERTY NAME="USRCFORMNAME" VALUE="MAIN"/>
+<PROPERTY NAME="USRCFORMNAMETOT" TYPE="N" VALUE="1"/>
+<PROPERTY NAME="UTGTFORMNAME" VALUE="MAIN"/>
+<PROPERTY NAME="UTGTFORMNAMETOT" TYPE="N" VALUE="1"/>
+</MEMBER>
+<MEMBER CLASS="VF_FP028" ID="66570D3F20A049B988A9AB9BC89C9BC3" RUN="N">
+<PROPERTY NAME="IP_LAST" VALUE="20170525-153001-VF19PGMLIB"/>
+<PROPERTY NAME="UCAPTION" LANG="ENG" VALUE="MAIN"/>
+<PROPERTY NAME="UCAPTIONLONG" LANG="ENG" VALUE=""/>
+<PROPERTY NAME="URTSSCRIPTIDN" VALUE="FCC7629CBE8A419C84B44B7E51362F16"/>
+<PROPERTY NAME="USCREENNAME" VALUE="MAIN"/>
+<PROPERTY NAME="USRCFORMNAME" VALUE="MainLogin"/>
+<PROPERTY NAME="USRCFORMNAME" INST="2" VALUE="CUS_MAINT"/>
+<PROPERTY NAME="USRCFORMNAME" INST="3" VALUE="ORD_MAINT"/>
+<PROPERTY NAME="USRCFORMNAME" INST="4" VALUE="PRO_MAINT"/>
+<PROPERTY NAME="USRCFORMNAMETOT" TYPE="N" VALUE="4"/>
+<PROPERTY NAME="UTGTFORMNAME" VALUE="MainLogin"/>
+<PROPERTY NAME="UTGTFORMNAME" INST="2" VALUE="CUS_KEY"/>
+<PROPERTY NAME="UTGTFORMNAME" INST="3" VALUE="ORD_KEY"/>
+<PROPERTY NAME="UTGTFORMNAME" INST="4" VALUE="PRO_KEY"/>
+<PROPERTY NAME="UTGTFORMNAMETOT" TYPE="N" VALUE="4"/>
+</MEMBER>
+<MEMBER CLASS="VF_FP028" ID="30F8256E661240D29DAA182726A47098" RUN="N">
+<PROPERTY NAME="IP_LAST" VALUE="20170525-123334-VF19PGMLIB"/>
+<PROPERTY NAME="UCAPTION" LANG="ENG" VALUE="CUS_KEY"/>
+<PROPERTY NAME="UCAPTIONLONG" LANG="ENG" VALUE=""/>
+<PROPERTY NAME="URTSSCRIPTIDN" VALUE="CC67332E9F4341F5A9795C9C62AE01AC"/>
+<PROPERTY NAME="USCREENNAME" VALUE="CUS_KEY"/>
+<PROPERTY NAME="USRCFORMNAME" VALUE="CUS_MAINT"/>
+<PROPERTY NAME="USRCFORMNAME" INST="2" VALUE="MAIN"/>
+<PROPERTY NAME="USRCFORMNAMETOT" TYPE="N" VALUE="2"/>
+<PROPERTY NAME="UTGTFORMNAME" VALUE="CUS_MAINT"/>
+<PROPERTY NAME="UTGTFORMNAMETOT" TYPE="N" VALUE="1"/>
+</MEMBER>
+<MEMBER CLASS="VF_FP028" ID="7F77509DADC94A0AB4488EB7056FE345" RUN="N">
+<PROPERTY NAME="IP_LAST" VALUE="20170525-123242-VF19PGMLIB"/>
+<PROPERTY NAME="UCAPTION" LANG="ENG" VALUE="ORD_KEY"/>
+<PROPERTY NAME="UCAPTIONLONG" LANG="ENG" VALUE=""/>
+<PROPERTY NAME="URTSSCRIPTIDN" VALUE="2DA0E981309B4277BD3BF869E8BDEFCA"/>
+<PROPERTY NAME="USCREENNAME" VALUE="ORD_KEY"/>
+<PROPERTY NAME="USRCFORMNAME" VALUE="ORD_MAINT"/>
+<PROPERTY NAME="USRCFORMNAME" INST="2" VALUE="MAIN"/>
+<PROPERTY NAME="USRCFORMNAMETOT" TYPE="N" VALUE="2"/>
+<PROPERTY NAME="UTGTFORMNAME" VALUE="ORD_MAINT"/>
+<PROPERTY NAME="UTGTFORMNAMETOT" TYPE="N" VALUE="1"/>
+</MEMBER>
+<MEMBER CLASS="VF_FP028" ID="FDD967E44EDE46628AC64D37B17C2DA1" RUN="N">
+<PROPERTY NAME="IP_LAST" VALUE="20170525-152951-VF19PGMLIB"/>
+<PROPERTY NAME="UCAPTION" LANG="ENG" VALUE="PRO_KEY"/>
+<PROPERTY NAME="UCAPTIONLONG" LANG="ENG" VALUE=""/>
+<PROPERTY NAME="URTSSCRIPTIDN" VALUE="8958FB625D5945189548166542A127D4"/>
+<PROPERTY NAME="USCREENNAME" VALUE="PRO_KEY"/>
+<PROPERTY NAME="USRCFORMNAME" VALUE="MAIN"/>
+<PROPERTY NAME="USRCFORMNAMETOT" TYPE="N" VALUE="1"/>
+<PROPERTY NAME="UTGTFORMNAME" VALUE="PRO_MAINT"/>
+<PROPERTY NAME="UTGTFORMNAMETOT" TYPE="N" VALUE="1"/>
+</MEMBER>
+<MEMBER CLASS="VF_FP029" ID="87C8CC1EE7D2437EB668E210B315084E" RUN="N">
+<PROPERTY NAME="IP_LAST" VALUE="20160908-165325-VF19PGMLIB"/>
+<PROPERTY NAME="UCAPTION" LANG="ENG" VALUE="=UNKNOWN_FORM="/>
+<PROPERTY NAME="UCAPTIONLONG" LANG="ENG" VALUE="The special UNKNOWN form"/>
+<PROPERTY NAME="URTSSCRIPTIDN" VALUE="2276B7EC2C7C41779F228EDC43301E16"/>
+<PROPERTY NAME="USCREENNAME" VALUE="=UNKNOWN_FORM="/>
+</MEMBER>
+<MEMBER CLASS="VF_FP029" ID="1843766E95AC46E0B3986871930A2881" RUN="N">
+<PROPERTY NAME="IP_LAST" VALUE="20160908-165558-VF19PGMLIB"/>
+<PROPERTY NAME="UCAPTION" LANG="ENG" VALUE="MESSAGES"/>
+<PROPERTY NAME="UCAPTIONLONG" LANG="ENG" VALUE=""/>
+<PROPERTY NAME="URTSSCRIPTIDN" VALUE="01295B9F1C2F46B185240DA974B46CD3"/>
+<PROPERTY NAME="USCREENNAME" VALUE="MESSAGES"/>
+<PROPERTY NAME="UTGTFORMNAME" VALUE="MESSAGES"/>
+<PROPERTY NAME="UTGTFORMNAMETOT" TYPE="N" VALUE="1"/>
+</MEMBER>
+<MEMBER CLASS="VF_FP030" ID="2276B7EC2C7C41779F228EDC43301E16" RUN="N">
+<PROPERTY NAME="IP_LAST" VALUE="20160908-165326-VF19PGMLIB"/>
+<PROPERTY NAME="UCAPTION" LANG="ENG" VALUE="New Script"/>
+<PROPERTY NAME="UCAPTIONLONG" LANG="ENG" VALUE="=UNKNOWN_FORM= - Handle an unknown form"/>
+<PROPERTY NAME="UNAVIGATEFROM" VALUE="87C8CC1EE7D2437EB668E210B315084E"/>
+<PROPERTY NAME="UNAVIGATETO" VALUE="=NONE="/>
+<PROPERTY NAME="USCRIPTTYPE" VALUE="FORMSCRIPT"/>
+<PROPERTY NAME="USL" VALUE="// This script was generated from skeleton file vf_fpm030_U.js, which is in your LANSA partition execute folder."/>
+<PROPERTY NAME="USL" INST="2" VALUE="// You may alter this file to change how new scripts are generated. **NOTE** You must backup skeleton file changes."/>
+<PROPERTY NAME="USL" INST="3" VALUE="// Script skeleton files are replaced with the standard shipped versions when reinstalling or upgrading RAMP-TS."/>
+<PROPERTY NAME="USL" INST="4" VALUE=""/>
+<PROPERTY NAME="USL" INST="5" VALUE="{"/>
+<PROPERTY NAME="USL" INST="6" VALUE=""/>
+<PROPERTY NAME="USL" INST="7" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="8" VALUE="   /* ==================  vHandle_ARRIVE  ================== */"/>
+<PROPERTY NAME="USL" INST="9" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="10" VALUE="   /* Handle arrival at an UNKNOWN                           */"/>
+<PROPERTY NAME="USL" INST="11" VALUE="   /* oPayload: The payload supplied by the event initiator  */"/>
+<PROPERTY NAME="USL" INST="12" VALUE="   /* oPreviousForm: Reference to previous object Form       */"/>
+<PROPERTY NAME="USL" INST="13" VALUE=""/>
+<PROPERTY NAME="USL" INST="14" VALUE="   vHandle_ARRIVE: function(oPayload, oPreviousForm)"/>
+<PROPERTY NAME="USL" INST="15" VALUE="   {"/>
+<PROPERTY NAME="USL" INST="16" VALUE="     var bReturn = true;"/>
+<PROPERTY NAME="USL" INST="17" VALUE=""/>
+<PROPERTY NAME="USL" INST="18" VALUE="     SHOW_CURRENT_FORM(false);"/>
+<PROPERTY NAME="USL" INST="19" VALUE="     SHOW_5250_BUTTONS();"/>
+<PROPERTY NAME="USL" INST="20" VALUE="     SETBUSY(false);"/>
+<PROPERTY NAME="USL" INST="21" VALUE=""/>
+<PROPERTY NAME="USL" INST="22" VALUE="     /* &lt;ARRIVE /&gt; - Do not remove or alter this line */"/>
+<PROPERTY NAME="USL" INST="23" VALUE=""/>
+<PROPERTY NAME="USL" INST="24" VALUE="     return(bReturn);"/>
+<PROPERTY NAME="USL" INST="25" VALUE="   },"/>
+<PROPERTY NAME="USL" INST="26" VALUE=""/>
+<PROPERTY NAME="USL" INST="27" VALUE=""/>
+<PROPERTY NAME="USL" INST="28" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="29" VALUE="   /* ===================  NAVIGATETO  ===================== */"/>
+<PROPERTY NAME="USL" INST="30" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="31" VALUE="   /* sToForm:       Name of the Form to navigate to         */"/>
+<PROPERTY NAME="USL" INST="32" VALUE="   /* oPreviousForm: Reference to previous Form object       */"/>
+<PROPERTY NAME="USL" INST="33" VALUE=""/>
+<PROPERTY NAME="USL" INST="34" VALUE="   vHandle_NAVIGATETO: function(sToForm, oPreviousForm)"/>
+<PROPERTY NAME="USL" INST="35" VALUE="   {"/>
+<PROPERTY NAME="USL" INST="36" VALUE="     var bReturn = true;"/>
+<PROPERTY NAME="USL" INST="37" VALUE=""/>
+<PROPERTY NAME="USL" INST="38" VALUE="     switch (sToForm)"/>
+<PROPERTY NAME="USL" INST="39" VALUE="     {"/>
+<PROPERTY NAME="USL" INST="40" VALUE="        /* &lt;NAVIGATESWITCH&gt; - Do not remove or alter this line */"/>
+<PROPERTY NAME="USL" INST="41" VALUE=""/>
+<PROPERTY NAME="USL" INST="42" VALUE="        default:"/>
+<PROPERTY NAME="USL" INST="43" VALUE="              alert(&quot;Form &quot; + this.vName + &quot; cannot navigate to form &quot; + sToForm);"/>
+<PROPERTY NAME="USL" INST="44" VALUE="              bReturn = false;"/>
+<PROPERTY NAME="USL" INST="45" VALUE="              break;"/>
+<PROPERTY NAME="USL" INST="46" VALUE=""/>
+<PROPERTY NAME="USL" INST="47" VALUE="     }"/>
+<PROPERTY NAME="USL" INST="48" VALUE="        /* &lt;/NAVIGATESWITCH&gt; - Do not remove or alter this line */"/>
+<PROPERTY NAME="USL" INST="49" VALUE=""/>
+<PROPERTY NAME="USL" INST="50" VALUE="     return(bReturn);"/>
+<PROPERTY NAME="USL" INST="51" VALUE="   },"/>
+<PROPERTY NAME="USL" INST="52" VALUE=""/>
+<PROPERTY NAME="USL" INST="53" VALUE=""/>
+<PROPERTY NAME="USL" INST="54" VALUE="// Do not alter any script after this line"/>
+<PROPERTY NAME="USL" INST="55" VALUE="//&lt;SYSINFO&gt;"/>
+<PROPERTY NAME="USL" INST="56" VALUE="   vName      :  &quot;=UNKNOWN_FORM=&quot;,"/>
+<PROPERTY NAME="USL" INST="57" VALUE="   vGUID      :  &quot;87C8CC1EE7D2437EB668E210B315084E&quot;,"/>
+<PROPERTY NAME="USL" INST="58" VALUE="   vFKC       :    null,"/>
+<PROPERTY NAME="USL" INST="59" VALUE="   vFKERTS    :    null,"/>
+<PROPERTY NAME="USL" INST="60" VALUE="   vFKEVLF    :    null,"/>
+<PROPERTY NAME="USL" INST="61" VALUE="   vFKSND     :    null,"/>
+<PROPERTY NAME="USL" INST="62" VALUE="   vFKSEQ     :    null,"/>
+<PROPERTY NAME="USL" INST="63" VALUE="   vTYPE      :  &quot;U&quot;"/>
+<PROPERTY NAME="USL" INST="64" VALUE="//&lt;/SYSINFO&gt;"/>
+<PROPERTY NAME="USL" INST="65" VALUE=""/>
+<PROPERTY NAME="USL" INST="66" VALUE="}"/>
+<PROPERTY NAME="USLMAX" TYPE="N" VALUE="66"/>
+<PROPERTY NAME="UUSEROBJECTTYPE" VALUE="FORMSCRIPT_1"/>
+</MEMBER>
+<MEMBER CLASS="VF_FP030" ID="6EA2C03B6315441ABA00E6A93ED609E7" RUN="N">
+<PROPERTY NAME="IP_LAST" VALUE="20160908-165558-VF19PGMLIB"/>
+<PROPERTY NAME="UCAPTION" LANG="ENG" VALUE="New Script"/>
+<PROPERTY NAME="UCAPTIONLONG" LANG="ENG" VALUE="MainLogin - Invoke this form from anywhere"/>
+<PROPERTY NAME="UNAVIGATEFROM" VALUE="BFD2069824EB4D80A4776A3CB03FBD07"/>
+<PROPERTY NAME="UNAVIGATETO" VALUE="BFD2069824EB4D80A4776A3CB03FBD07"/>
+<PROPERTY NAME="USCRIPTTYPE" VALUE="FORMSCRIPT"/>
+<PROPERTY NAME="USL" VALUE="// This script was generated from skeleton file vf_fpm030_J.js, which is in your LANSA partition execute folder."/>
+<PROPERTY NAME="USL" INST="2" VALUE="// You may alter this file to change how new scripts are generated. **NOTE** You must backup skeleton file changes."/>
+<PROPERTY NAME="USL" INST="3" VALUE="// Script skeleton files are replaced with the standard shipped versions when reinstalling or upgrading RAMP-TS."/>
+<PROPERTY NAME="USL" INST="4" VALUE=""/>
+<PROPERTY NAME="USL" INST="5" VALUE="{"/>
+<PROPERTY NAME="USL" INST="6" VALUE=""/>
+<PROPERTY NAME="USL" INST="7" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="8" VALUE="   /* ===================  NAVIGATETO  ===================== */"/>
+<PROPERTY NAME="USL" INST="9" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="10" VALUE="   /* sToForm:       Name of the Form to navigate to         */"/>
+<PROPERTY NAME="USL" INST="11" VALUE="   /* oPreviousForm: Reference to previous form displayed    */"/>
+<PROPERTY NAME="USL" INST="12" VALUE=""/>
+<PROPERTY NAME="USL" INST="13" VALUE="   vHandle_NAVIGATETO: function(sToForm, oPreviousForm)"/>
+<PROPERTY NAME="USL" INST="14" VALUE="   {"/>
+<PROPERTY NAME="USL" INST="15" VALUE="     var bReturn = true;"/>
+<PROPERTY NAME="USL" INST="16" VALUE=""/>
+<PROPERTY NAME="USL" INST="17" VALUE="     HIDE_CURRENT_FORM();"/>
+<PROPERTY NAME="USL" INST="18" VALUE="     SETBUSY(true);"/>
+<PROPERTY NAME="USL" INST="19" VALUE=""/>
+<PROPERTY NAME="USL" INST="20" VALUE="     switch (sToForm)"/>
+<PROPERTY NAME="USL" INST="21" VALUE="     {"/>
+<PROPERTY NAME="USL" INST="22" VALUE="        /* &lt;NAVIGATESWITCH&gt; - Do not remove or alter this line */"/>
+<PROPERTY NAME="USL" INST="23" VALUE="        case &quot;MAIN&quot;:"/>
+<PROPERTY NAME="USL" INST="24" VALUE="        {"/>
+<PROPERTY NAME="USL" INST="25" VALUE="           /* If you need to set up multilingual strings or function key captions, use logic like this  */"/>
+<PROPERTY NAME="USL" INST="26" VALUE="           /* switch (objFramework.Language)                                                            */"/>
+<PROPERTY NAME="USL" INST="27" VALUE="        /* {                                                                                         */"/>
+<PROPERTY NAME="USL" INST="28" VALUE="        /* case &quot;ENG&quot;:                                                                               */"/>
+<PROPERTY NAME="USL" INST="29" VALUE="           /* If you need to set up multilingual strings for use in other RAMP scripts then use this:   */"/>
+<PROPERTY NAME="USL" INST="30" VALUE="           /* ADD_STRING(1,&quot;english string 1&quot;);                                                         */"/>
+<PROPERTY NAME="USL" INST="31" VALUE="           /* ADD_STRING(2,&quot;english string 2&quot;);                                                         */"/>
+<PROPERTY NAME="USL" INST="32" VALUE="           /* then in the other scripts use  var StrText = STRING(1); to get the string value.          */"/>
+<PROPERTY NAME="USL" INST="33" VALUE="           /* If you need to set up multilingual function keys then use this function                   */"/>
+<PROPERTY NAME="USL" INST="34" VALUE="           /* OVERRIDE_KEY_CAPTION_ALL(KeyF1,&quot;english help&quot;);                                           */"/>
+<PROPERTY NAME="USL" INST="35" VALUE="           /* break;                                                                                    */"/>
+<PROPERTY NAME="USL" INST="36" VALUE="        /* case &quot;ESP&quot;:                                                                               */"/>
+<PROPERTY NAME="USL" INST="37" VALUE="           /* Spanish versions of multilingual strings                                                  */"/>
+<PROPERTY NAME="USL" INST="38" VALUE="           /* ADD_STRING(1,&quot;spanish string 1&quot;);                                                         */"/>
+<PROPERTY NAME="USL" INST="39" VALUE="           /* ADD_STRING(2,&quot;spanish string 2&quot;);                                                         */"/>
+<PROPERTY NAME="USL" INST="40" VALUE="           /* Spanish function key captions                                                             */"/>
+<PROPERTY NAME="USL" INST="41" VALUE="           /* OVERRIDE_KEY_CAPTION_ALL(KeyF1,&quot;spanish Help&quot;);                                           */"/>
+<PROPERTY NAME="USL" INST="42" VALUE="           /* break;                                                                                    */"/>
+<PROPERTY NAME="USL" INST="43" VALUE="           /* default:                                                                                  */"/>
+<PROPERTY NAME="USL" INST="44" VALUE="           /* break;                                                                                    */"/>
+<PROPERTY NAME="USL" INST="45" VALUE="        /* }                                                                                         */"/>
+<PROPERTY NAME="USL" INST="46" VALUE=""/>
+<PROPERTY NAME="USL" INST="47" VALUE="           /* If the user tries to leave an undefined screen (e.g. a prompt), specify the key that is   */"/>
+<PROPERTY NAME="USL" INST="48" VALUE="           /* most likely to take them back to a RAMP defined screen.                                   */"/>
+<PROPERTY NAME="USL" INST="49" VALUE="           /* ADD_UNKNOWN_FORM_GUESS(KeyF12);                                                           */"/>
+<PROPERTY NAME="USL" INST="50" VALUE=""/>
+<PROPERTY NAME="USL" INST="51" VALUE="           /* Logon to the server system */"/>
+<PROPERTY NAME="USL" INST="52" VALUE=""/>
+<PROPERTY NAME="USL" INST="53" VALUE="           SETVALUE(&quot;loginUser&quot;,objUser.Name);"/>
+<PROPERTY NAME="USL" INST="54" VALUE="           SETVALUE(&quot;loginPwd&quot;,objUser.Password);"/>
+<PROPERTY NAME="USL" INST="55" VALUE="           SENDKEY(KeyEnter);"/>
+<PROPERTY NAME="USL" INST="56" VALUE=""/>
+<PROPERTY NAME="USL" INST="57" VALUE="           /* *** NOTE *** This is a queued SENDKEY operation */"/>
+<PROPERTY NAME="USL" INST="58" VALUE=""/>
+<PROPERTY NAME="USL" INST="59" VALUE="           Q_SENDKEY(null,KeyEnter);"/>
+<PROPERTY NAME="USL" INST="60" VALUE=""/>
+<PROPERTY NAME="USL" INST="61" VALUE="           /* Check for arrival at MAIN */"/>
+<PROPERTY NAME="USL" INST="62" VALUE=""/>
+<PROPERTY NAME="USL" INST="63" VALUE="           Q_CHECK_CURRENT_FORM(&quot;MAIN&quot;,&quot;Unable to navigate to form MAIN&quot;);"/>
+<PROPERTY NAME="USL" INST="64" VALUE="        }"/>
+<PROPERTY NAME="USL" INST="65" VALUE="           break;"/>
+<PROPERTY NAME="USL" INST="66" VALUE=""/>
+<PROPERTY NAME="USL" INST="67" VALUE="        default:"/>
+<PROPERTY NAME="USL" INST="68" VALUE="              alert(&quot;Form &quot; + this.vName + &quot; cannot navigate to form &quot; + sToForm);"/>
+<PROPERTY NAME="USL" INST="69" VALUE="              bReturn = false;"/>
+<PROPERTY NAME="USL" INST="70" VALUE="              break;"/>
+<PROPERTY NAME="USL" INST="71" VALUE=""/>
+<PROPERTY NAME="USL" INST="72" VALUE="     }"/>
+<PROPERTY NAME="USL" INST="73" VALUE="        /* &lt;/NAVIGATESWITCH&gt; - Do not remove or alter this line */"/>
+<PROPERTY NAME="USL" INST="74" VALUE=""/>
+<PROPERTY NAME="USL" INST="75" VALUE="     return(bReturn);"/>
+<PROPERTY NAME="USL" INST="76" VALUE="   },"/>
+<PROPERTY NAME="USL" INST="77" VALUE=""/>
+<PROPERTY NAME="USL" INST="78" VALUE=""/>
+<PROPERTY NAME="USL" INST="79" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="80" VALUE="   /* ==================  vHandle_ARRIVE  ================== */"/>
+<PROPERTY NAME="USL" INST="81" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="82" VALUE="   /* Handle arrival at this JUNCTION                        */"/>
+<PROPERTY NAME="USL" INST="83" VALUE="   /* oPayload: The payload supplied by the event initiator  */"/>
+<PROPERTY NAME="USL" INST="84" VALUE="   /* oPreviousForm: Reference to previous Form object       */"/>
+<PROPERTY NAME="USL" INST="85" VALUE=""/>
+<PROPERTY NAME="USL" INST="86" VALUE="   vHandle_ARRIVE: function(oPayload, oPreviousForm)"/>
+<PROPERTY NAME="USL" INST="87" VALUE="   {"/>
+<PROPERTY NAME="USL" INST="88" VALUE="     var bReturn = true;"/>
+<PROPERTY NAME="USL" INST="89" VALUE=""/>
+<PROPERTY NAME="USL" INST="90" VALUE="     /* &lt;ARRIVE /&gt; - Do not remove or alter this line */"/>
+<PROPERTY NAME="USL" INST="91" VALUE=""/>
+<PROPERTY NAME="USL" INST="92" VALUE="     return(bReturn);"/>
+<PROPERTY NAME="USL" INST="93" VALUE="   },"/>
+<PROPERTY NAME="USL" INST="94" VALUE=""/>
+<PROPERTY NAME="USL" INST="95" VALUE=""/>
+<PROPERTY NAME="USL" INST="96" VALUE="// Do not alter any script after this line"/>
+<PROPERTY NAME="USL" INST="97" VALUE="//&lt;SYSINFO&gt;"/>
+<PROPERTY NAME="USL" INST="98" VALUE="   vName      :  &quot;MainLogin&quot;,"/>
+<PROPERTY NAME="USL" INST="99" VALUE="   vGUID      :  &quot;BFD2069824EB4D80A4776A3CB03FBD07&quot;,"/>
+<PROPERTY NAME="USL" INST="100" VALUE="   vFKC       :    null,"/>
+<PROPERTY NAME="USL" INST="101" VALUE="   vFKERTS    :    null,"/>
+<PROPERTY NAME="USL" INST="102" VALUE="   vFKEVLF    :    null,"/>
+<PROPERTY NAME="USL" INST="103" VALUE="   vFKSND     :    null,"/>
+<PROPERTY NAME="USL" INST="104" VALUE="   vFKSEQ     :    null,"/>
+<PROPERTY NAME="USL" INST="105" VALUE="   /* Forms that MainLogin can Navigate to */"/>
+<PROPERTY NAME="USL" INST="106" VALUE="   vTargets   :  Array(&quot;MAIN&quot;),"/>
+<PROPERTY NAME="USL" INST="107" VALUE="   vTYPE      :  &quot;J&quot;"/>
+<PROPERTY NAME="USL" INST="108" VALUE="//&lt;/SYSINFO&gt;"/>
+<PROPERTY NAME="USL" INST="109" VALUE=""/>
+<PROPERTY NAME="USL" INST="110" VALUE="}"/>
+<PROPERTY NAME="USLMAX" TYPE="N" VALUE="110"/>
+<PROPERTY NAME="UUSEROBJECTTYPE" VALUE="FORMSCRIPT_2"/>
+</MEMBER>
+<MEMBER CLASS="VF_FP030" ID="01295B9F1C2F46B185240DA974B46CD3" RUN="N">
+<PROPERTY NAME="IP_LAST" VALUE="20160908-174825-VF19PGMLIB"/>
+<PROPERTY NAME="UCAPTION" LANG="ENG" VALUE="New Script"/>
+<PROPERTY NAME="UCAPTIONLONG" LANG="ENG" VALUE="MESSAGES - Automatically eliminate this form"/>
+<PROPERTY NAME="UNAVIGATEFROM" VALUE="1843766E95AC46E0B3986871930A2881"/>
+<PROPERTY NAME="UNAVIGATETO" VALUE="=NONE="/>
+<PROPERTY NAME="USCRIPTTYPE" VALUE="FORMSCRIPT"/>
+<PROPERTY NAME="USL" VALUE="// This script was generated from skeleton file vf_fpm030_S.js, which is in your LANSA partition execute folder."/>
+<PROPERTY NAME="USL" INST="2" VALUE="// You may alter this file to change how new scripts are generated. **NOTE** You must backup skeleton file changes."/>
+<PROPERTY NAME="USL" INST="3" VALUE="// Script skeleton files are replaced with the standard shipped versions when reinstalling or upgrading RAMP-TS."/>
+<PROPERTY NAME="USL" INST="4" VALUE=""/>
+<PROPERTY NAME="USL" INST="5" VALUE="{"/>
+<PROPERTY NAME="USL" INST="6" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="7" VALUE="   /* ==================  vHandle_ARRIVE  ================== */"/>
+<PROPERTY NAME="USL" INST="8" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="9" VALUE="   /* Handle arrival at this SPECIAL                         */"/>
+<PROPERTY NAME="USL" INST="10" VALUE="   /* oPayload: The payload supplied by the event initiator  */"/>
+<PROPERTY NAME="USL" INST="11" VALUE="   /* oPreviousForm: Reference to previous object Form       */"/>
+<PROPERTY NAME="USL" INST="12" VALUE=""/>
+<PROPERTY NAME="USL" INST="13" VALUE="   vHandle_ARRIVE: function(oPayload, oPreviousForm)"/>
+<PROPERTY NAME="USL" INST="14" VALUE="   {"/>
+<PROPERTY NAME="USL" INST="15" VALUE="     var bReturn = true;"/>
+<PROPERTY NAME="USL" INST="16" VALUE=""/>
+<PROPERTY NAME="USL" INST="17" VALUE="     HIDE_CURRENT_FORM();"/>
+<PROPERTY NAME="USL" INST="18" VALUE="     SETBUSY(true);"/>
+<PROPERTY NAME="USL" INST="19" VALUE=""/>
+<PROPERTY NAME="USL" INST="20" VALUE="     /* &lt;ARRIVE /&gt; - Do not remove or alter this line */"/>
+<PROPERTY NAME="USL" INST="21" VALUE="     SENDKEY(KeyEnter);"/>
+<PROPERTY NAME="USL" INST="22" VALUE=""/>
+<PROPERTY NAME="USL" INST="23" VALUE="     return(bReturn);"/>
+<PROPERTY NAME="USL" INST="24" VALUE="   },"/>
+<PROPERTY NAME="USL" INST="25" VALUE=""/>
+<PROPERTY NAME="USL" INST="26" VALUE=""/>
+<PROPERTY NAME="USL" INST="27" VALUE="// Do not alter any script after this line"/>
+<PROPERTY NAME="USL" INST="28" VALUE="//&lt;SYSINFO&gt;"/>
+<PROPERTY NAME="USL" INST="29" VALUE="   vName      :  &quot;MESSAGES&quot;,"/>
+<PROPERTY NAME="USL" INST="30" VALUE="   vGUID      :  &quot;1843766E95AC46E0B3986871930A2881&quot;,"/>
+<PROPERTY NAME="USL" INST="31" VALUE="   vFKC       :    null,"/>
+<PROPERTY NAME="USL" INST="32" VALUE="   vFKERTS    :    null,"/>
+<PROPERTY NAME="USL" INST="33" VALUE="   vFKEVLF    :    null,"/>
+<PROPERTY NAME="USL" INST="34" VALUE="   vFKSND     :    null,"/>
+<PROPERTY NAME="USL" INST="35" VALUE="   vFKSEQ     :    null,"/>
+<PROPERTY NAME="USL" INST="36" VALUE="   /* Forms that MESSAGES can Navigate to */"/>
+<PROPERTY NAME="USL" INST="37" VALUE="   vTargets   :  Array(&quot;MESSAGES&quot;),"/>
+<PROPERTY NAME="USL" INST="38" VALUE="   vTYPE      :  &quot;S&quot;"/>
+<PROPERTY NAME="USL" INST="39" VALUE="//&lt;/SYSINFO&gt;"/>
+<PROPERTY NAME="USL" INST="40" VALUE=""/>
+<PROPERTY NAME="USL" INST="41" VALUE="}"/>
+<PROPERTY NAME="USLMAX" TYPE="N" VALUE="41"/>
+<PROPERTY NAME="UUSEROBJECTTYPE" VALUE="FORMSCRIPT_3"/>
+</MEMBER>
+<MEMBER CLASS="VF_FP030" ID="FCC7629CBE8A419C84B44B7E51362F16" RUN="N">
+<PROPERTY NAME="IP_LAST" VALUE="20170525-123408-VF19PGMLIB"/>
+<PROPERTY NAME="UCAPTION" LANG="ENG" VALUE="New Script"/>
+<PROPERTY NAME="UCAPTIONLONG" LANG="ENG" VALUE="MAIN - Invoke this form from anywhere"/>
+<PROPERTY NAME="UNAVIGATEFROM" VALUE="66570D3F20A049B988A9AB9BC89C9BC3"/>
+<PROPERTY NAME="UNAVIGATETO" VALUE="66570D3F20A049B988A9AB9BC89C9BC3"/>
+<PROPERTY NAME="USCRIPTTYPE" VALUE="FORMSCRIPT"/>
+<PROPERTY NAME="USL" VALUE="// This script was generated from skeleton file vf_fpm030_J.js, which is in your LANSA partition execute folder."/>
+<PROPERTY NAME="USL" INST="2" VALUE="// You may alter this file to change how new scripts are generated. **NOTE** You must backup skeleton file changes."/>
+<PROPERTY NAME="USL" INST="3" VALUE="// Script skeleton files are replaced with the standard shipped versions when reinstalling or upgrading RAMP-TS."/>
+<PROPERTY NAME="USL" INST="4" VALUE=""/>
+<PROPERTY NAME="USL" INST="5" VALUE="{"/>
+<PROPERTY NAME="USL" INST="6" VALUE=""/>
+<PROPERTY NAME="USL" INST="7" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="8" VALUE="   /* ===================  NAVIGATETO  ===================== */"/>
+<PROPERTY NAME="USL" INST="9" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="10" VALUE="   /* sToForm:       Name of the Form to navigate to         */"/>
+<PROPERTY NAME="USL" INST="11" VALUE="   /* oPreviousForm: Reference to previous form displayed    */"/>
+<PROPERTY NAME="USL" INST="12" VALUE=""/>
+<PROPERTY NAME="USL" INST="13" VALUE="   vHandle_NAVIGATETO: function(sToForm, oPreviousForm)"/>
+<PROPERTY NAME="USL" INST="14" VALUE="   {"/>
+<PROPERTY NAME="USL" INST="15" VALUE="     var bReturn = true;"/>
+<PROPERTY NAME="USL" INST="16" VALUE=""/>
+<PROPERTY NAME="USL" INST="17" VALUE="     HIDE_CURRENT_FORM();"/>
+<PROPERTY NAME="USL" INST="18" VALUE="     SETBUSY(true);"/>
+<PROPERTY NAME="USL" INST="19" VALUE=""/>
+<PROPERTY NAME="USL" INST="20" VALUE="     switch (sToForm)"/>
+<PROPERTY NAME="USL" INST="21" VALUE="     {"/>
+<PROPERTY NAME="USL" INST="22" VALUE="        /* &lt;NAVIGATESWITCH&gt; - Do not remove or alter this line */"/>
+<PROPERTY NAME="USL" INST="23" VALUE="        case &quot;PRO_KEY&quot;:"/>
+<PROPERTY NAME="USL" INST="24" VALUE="        {"/>
+<PROPERTY NAME="USL" INST="25" VALUE=""/>
+<PROPERTY NAME="USL" INST="26" VALUE="           /* Set up data fields on form MAIN */"/>
+<PROPERTY NAME="USL" INST="27" VALUE=""/>
+<PROPERTY NAME="USL" INST="28" VALUE="           SETVALUE(&quot;COMMAND&quot;,&quot;lansa run df_ramp dfrprom partition(dem)&quot;);"/>
+<PROPERTY NAME="USL" INST="29" VALUE="           SENDKEY(KeyEnter);"/>
+<PROPERTY NAME="USL" INST="30" VALUE=""/>
+<PROPERTY NAME="USL" INST="31" VALUE="           /* Check for arrival at PRO_KEY */"/>
+<PROPERTY NAME="USL" INST="32" VALUE=""/>
+<PROPERTY NAME="USL" INST="33" VALUE="           Q_CHECK_CURRENT_FORM(&quot;PRO_KEY&quot;,&quot;Unable to navigate to form PRO_KEY&quot;);"/>
+<PROPERTY NAME="USL" INST="34" VALUE="        }"/>
+<PROPERTY NAME="USL" INST="35" VALUE="           break;"/>
+<PROPERTY NAME="USL" INST="36" VALUE="        case &quot;ORD_KEY&quot;:"/>
+<PROPERTY NAME="USL" INST="37" VALUE="        {"/>
+<PROPERTY NAME="USL" INST="38" VALUE=""/>
+<PROPERTY NAME="USL" INST="39" VALUE="           /* Set up data fields on form MAIN */"/>
+<PROPERTY NAME="USL" INST="40" VALUE=""/>
+<PROPERTY NAME="USL" INST="41" VALUE="           SETVALUE(&quot;COMMAND&quot;,&quot;lansa run df_ramp dfrordm partition(dem)&quot;);"/>
+<PROPERTY NAME="USL" INST="42" VALUE="           SENDKEY(KeyEnter);"/>
+<PROPERTY NAME="USL" INST="43" VALUE=""/>
+<PROPERTY NAME="USL" INST="44" VALUE="           /* Check for arrival at ORD_KEY */"/>
+<PROPERTY NAME="USL" INST="45" VALUE=""/>
+<PROPERTY NAME="USL" INST="46" VALUE="           Q_CHECK_CURRENT_FORM(&quot;ORD_KEY&quot;,&quot;Unable to navigate to form ORD_KEY&quot;);"/>
+<PROPERTY NAME="USL" INST="47" VALUE="        }"/>
+<PROPERTY NAME="USL" INST="48" VALUE="           break;"/>
+<PROPERTY NAME="USL" INST="49" VALUE="        case &quot;CUS_KEY&quot;:"/>
+<PROPERTY NAME="USL" INST="50" VALUE="        {"/>
+<PROPERTY NAME="USL" INST="51" VALUE=""/>
+<PROPERTY NAME="USL" INST="52" VALUE="           /* Set up data fields on form MAIN */"/>
+<PROPERTY NAME="USL" INST="53" VALUE=""/>
+<PROPERTY NAME="USL" INST="54" VALUE="           SETVALUE(&quot;COMMAND&quot;,&quot;lansa run df_ramp dfrcusm partition(dem)&quot;);"/>
+<PROPERTY NAME="USL" INST="55" VALUE="           SENDKEY(KeyEnter);"/>
+<PROPERTY NAME="USL" INST="56" VALUE=""/>
+<PROPERTY NAME="USL" INST="57" VALUE="           /* Check for arrival at CUS_KEY */"/>
+<PROPERTY NAME="USL" INST="58" VALUE=""/>
+<PROPERTY NAME="USL" INST="59" VALUE="           Q_CHECK_CURRENT_FORM(&quot;CUS_KEY&quot;,&quot;Unable to navigate to form CUS_KEY&quot;);"/>
+<PROPERTY NAME="USL" INST="60" VALUE="        }"/>
+<PROPERTY NAME="USL" INST="61" VALUE="           break;"/>
+<PROPERTY NAME="USL" INST="62" VALUE="        case &quot;MainLogin&quot;:"/>
+<PROPERTY NAME="USL" INST="63" VALUE="        {"/>
+<PROPERTY NAME="USL" INST="64" VALUE=""/>
+<PROPERTY NAME="USL" INST="65" VALUE="           /* Set up data fields on form MAIN */"/>
+<PROPERTY NAME="USL" INST="66" VALUE=""/>
+<PROPERTY NAME="USL" INST="67" VALUE="           SETVALUE(&quot;COMMAND&quot;,&quot;90&quot;);"/>
+<PROPERTY NAME="USL" INST="68" VALUE="           SENDKEY(KeyEnter);"/>
+<PROPERTY NAME="USL" INST="69" VALUE=""/>
+<PROPERTY NAME="USL" INST="70" VALUE="           /* Check for arrival at MainLogin */"/>
+<PROPERTY NAME="USL" INST="71" VALUE=""/>
+<PROPERTY NAME="USL" INST="72" VALUE="           Q_CHECK_CURRENT_FORM(&quot;MainLogin&quot;,&quot;Unable to navigate to form MainLogin&quot;);"/>
+<PROPERTY NAME="USL" INST="73" VALUE="        }"/>
+<PROPERTY NAME="USL" INST="74" VALUE="           break;"/>
+<PROPERTY NAME="USL" INST="75" VALUE=""/>
+<PROPERTY NAME="USL" INST="76" VALUE="        default:"/>
+<PROPERTY NAME="USL" INST="77" VALUE="              alert(&quot;Form &quot; + this.vName + &quot; cannot navigate to form &quot; + sToForm);"/>
+<PROPERTY NAME="USL" INST="78" VALUE="              bReturn = false;"/>
+<PROPERTY NAME="USL" INST="79" VALUE="              break;"/>
+<PROPERTY NAME="USL" INST="80" VALUE=""/>
+<PROPERTY NAME="USL" INST="81" VALUE="     }"/>
+<PROPERTY NAME="USL" INST="82" VALUE="        /* &lt;/NAVIGATESWITCH&gt; - Do not remove or alter this line */"/>
+<PROPERTY NAME="USL" INST="83" VALUE=""/>
+<PROPERTY NAME="USL" INST="84" VALUE="     return(bReturn);"/>
+<PROPERTY NAME="USL" INST="85" VALUE="   },"/>
+<PROPERTY NAME="USL" INST="86" VALUE=""/>
+<PROPERTY NAME="USL" INST="87" VALUE=""/>
+<PROPERTY NAME="USL" INST="88" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="89" VALUE="   /* ==================  vHandle_ARRIVE  ================== */"/>
+<PROPERTY NAME="USL" INST="90" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="91" VALUE="   /* Handle arrival at this JUNCTION                        */"/>
+<PROPERTY NAME="USL" INST="92" VALUE="   /* oPayload: The payload supplied by the event initiator  */"/>
+<PROPERTY NAME="USL" INST="93" VALUE="   /* oPreviousForm: Reference to previous Form object       */"/>
+<PROPERTY NAME="USL" INST="94" VALUE=""/>
+<PROPERTY NAME="USL" INST="95" VALUE="   vHandle_ARRIVE: function(oPayload, oPreviousForm)"/>
+<PROPERTY NAME="USL" INST="96" VALUE="   {"/>
+<PROPERTY NAME="USL" INST="97" VALUE="     var bReturn = true;"/>
+<PROPERTY NAME="USL" INST="98" VALUE=""/>
+<PROPERTY NAME="USL" INST="99" VALUE="     /* &lt;ARRIVE /&gt; - Do not remove or alter this line */"/>
+<PROPERTY NAME="USL" INST="100" VALUE=""/>
+<PROPERTY NAME="USL" INST="101" VALUE="     return(bReturn);"/>
+<PROPERTY NAME="USL" INST="102" VALUE="   },"/>
+<PROPERTY NAME="USL" INST="103" VALUE=""/>
+<PROPERTY NAME="USL" INST="104" VALUE=""/>
+<PROPERTY NAME="USL" INST="105" VALUE="// Do not alter any script after this line"/>
+<PROPERTY NAME="USL" INST="106" VALUE="//&lt;SYSINFO&gt;"/>
+<PROPERTY NAME="USL" INST="107" VALUE="   vName      :  &quot;MAIN&quot;,"/>
+<PROPERTY NAME="USL" INST="108" VALUE="   vGUID      :  &quot;66570D3F20A049B988A9AB9BC89C9BC3&quot;,"/>
+<PROPERTY NAME="USL" INST="109" VALUE="   vFKC       :    null,"/>
+<PROPERTY NAME="USL" INST="110" VALUE="   vFKERTS    :    null,"/>
+<PROPERTY NAME="USL" INST="111" VALUE="   vFKEVLF    :    null,"/>
+<PROPERTY NAME="USL" INST="112" VALUE="   vFKSND     :    null,"/>
+<PROPERTY NAME="USL" INST="113" VALUE="   vFKSEQ     :    null,"/>
+<PROPERTY NAME="USL" INST="114" VALUE="   /* Forms that MAIN can Navigate to */"/>
+<PROPERTY NAME="USL" INST="115" VALUE="   vTargets   :  Array(&quot;MainLogin&quot;,&quot;CUS_KEY&quot;,&quot;ORD_KEY&quot;,&quot;PRO_KEY&quot;),"/>
+<PROPERTY NAME="USL" INST="116" VALUE="   vTYPE      :  &quot;J&quot;"/>
+<PROPERTY NAME="USL" INST="117" VALUE="//&lt;/SYSINFO&gt;"/>
+<PROPERTY NAME="USL" INST="118" VALUE=""/>
+<PROPERTY NAME="USL" INST="119" VALUE="}"/>
+<PROPERTY NAME="USLMAX" TYPE="N" VALUE="119"/>
+<PROPERTY NAME="UUSEROBJECTTYPE" VALUE="FORMSCRIPT_4"/>
+</MEMBER>
+<MEMBER CLASS="VF_FP030" ID="CC67332E9F4341F5A9795C9C62AE01AC" RUN="N">
+<PROPERTY NAME="IP_LAST" VALUE="20170525-123318-VF19PGMLIB"/>
+<PROPERTY NAME="UCAPTION" LANG="ENG" VALUE="New Script"/>
+<PROPERTY NAME="UCAPTIONLONG" LANG="ENG" VALUE="CUS_KEY - Invoke this form from anywhere"/>
+<PROPERTY NAME="UNAVIGATEFROM" VALUE="30F8256E661240D29DAA182726A47098"/>
+<PROPERTY NAME="UNAVIGATETO" VALUE="30F8256E661240D29DAA182726A47098"/>
+<PROPERTY NAME="USCRIPTTYPE" VALUE="FORMSCRIPT"/>
+<PROPERTY NAME="USL" VALUE="// This script was generated from skeleton file vf_fpm030_J.js, which is in your LANSA partition execute folder."/>
+<PROPERTY NAME="USL" INST="2" VALUE="// You may alter this file to change how new scripts are generated. **NOTE** You must backup skeleton file changes."/>
+<PROPERTY NAME="USL" INST="3" VALUE="// Script skeleton files are replaced with the standard shipped versions when reinstalling or upgrading RAMP-TS."/>
+<PROPERTY NAME="USL" INST="4" VALUE=""/>
+<PROPERTY NAME="USL" INST="5" VALUE="{"/>
+<PROPERTY NAME="USL" INST="6" VALUE=""/>
+<PROPERTY NAME="USL" INST="7" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="8" VALUE="   /* ===================  NAVIGATETO  ===================== */"/>
+<PROPERTY NAME="USL" INST="9" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="10" VALUE="   /* sToForm:       Name of the Form to navigate to         */"/>
+<PROPERTY NAME="USL" INST="11" VALUE="   /* oPreviousForm: Reference to previous form displayed    */"/>
+<PROPERTY NAME="USL" INST="12" VALUE=""/>
+<PROPERTY NAME="USL" INST="13" VALUE="   vHandle_NAVIGATETO: function(sToForm, oPreviousForm)"/>
+<PROPERTY NAME="USL" INST="14" VALUE="   {"/>
+<PROPERTY NAME="USL" INST="15" VALUE="     var bReturn = true;"/>
+<PROPERTY NAME="USL" INST="16" VALUE=""/>
+<PROPERTY NAME="USL" INST="17" VALUE="     HIDE_CURRENT_FORM();"/>
+<PROPERTY NAME="USL" INST="18" VALUE="     SETBUSY(true);"/>
+<PROPERTY NAME="USL" INST="19" VALUE=""/>
+<PROPERTY NAME="USL" INST="20" VALUE="     switch (sToForm)"/>
+<PROPERTY NAME="USL" INST="21" VALUE="     {"/>
+<PROPERTY NAME="USL" INST="22" VALUE="        /* &lt;NAVIGATESWITCH&gt; - Do not remove or alter this line */"/>
+<PROPERTY NAME="USL" INST="23" VALUE="        case &quot;CUS_MAINT&quot;:"/>
+<PROPERTY NAME="USL" INST="24" VALUE="        {"/>
+<PROPERTY NAME="USL" INST="25" VALUE="           SETVALUE(&quot;KEY&quot;,objListManager.NKey1[0]);"/>
+<PROPERTY NAME="USL" INST="26" VALUE="           SENDKEY(KeyEnter);"/>
+<PROPERTY NAME="USL" INST="27" VALUE="           Q_CHECK_CURRENT_FORM(&quot;CUS_MAINT&quot;,&quot;Unable to navigate to form CUS_MAINT&quot;);"/>
+<PROPERTY NAME="USL" INST="28" VALUE="        }"/>
+<PROPERTY NAME="USL" INST="29" VALUE="        break;"/>
+<PROPERTY NAME="USL" INST="30" VALUE="        default:"/>
+<PROPERTY NAME="USL" INST="31" VALUE="              alert(&quot;Form &quot; + this.vName + &quot; cannot navigate to form &quot; + sToForm);"/>
+<PROPERTY NAME="USL" INST="32" VALUE="              bReturn = false;"/>
+<PROPERTY NAME="USL" INST="33" VALUE="              break;"/>
+<PROPERTY NAME="USL" INST="34" VALUE=""/>
+<PROPERTY NAME="USL" INST="35" VALUE="     }"/>
+<PROPERTY NAME="USL" INST="36" VALUE="        /* &lt;/NAVIGATESWITCH&gt; - Do not remove or alter this line */"/>
+<PROPERTY NAME="USL" INST="37" VALUE=""/>
+<PROPERTY NAME="USL" INST="38" VALUE="     return(bReturn);"/>
+<PROPERTY NAME="USL" INST="39" VALUE="   },"/>
+<PROPERTY NAME="USL" INST="40" VALUE=""/>
+<PROPERTY NAME="USL" INST="41" VALUE=""/>
+<PROPERTY NAME="USL" INST="42" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="43" VALUE="   /* ==================  vHandle_ARRIVE  ================== */"/>
+<PROPERTY NAME="USL" INST="44" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="45" VALUE="   /* Handle arrival at this JUNCTION                        */"/>
+<PROPERTY NAME="USL" INST="46" VALUE="   /* oPayload: The payload supplied by the event initiator  */"/>
+<PROPERTY NAME="USL" INST="47" VALUE="   /* oPreviousForm: Reference to previous Form object       */"/>
+<PROPERTY NAME="USL" INST="48" VALUE=""/>
+<PROPERTY NAME="USL" INST="49" VALUE="   vHandle_ARRIVE: function(oPayload, oPreviousForm)"/>
+<PROPERTY NAME="USL" INST="50" VALUE="   {"/>
+<PROPERTY NAME="USL" INST="51" VALUE="     var bReturn = true;"/>
+<PROPERTY NAME="USL" INST="52" VALUE=""/>
+<PROPERTY NAME="USL" INST="53" VALUE="     if (oPayload != null)"/>
+<PROPERTY NAME="USL" INST="54" VALUE="     {"/>
+<PROPERTY NAME="USL" INST="55" VALUE="         SETVALUE(&quot;KEY&quot;,oPayload.N);"/>
+<PROPERTY NAME="USL" INST="56" VALUE="         SENDKEY(KeyEnter,oPayload);"/>
+<PROPERTY NAME="USL" INST="57" VALUE="         Q_CHECK_CURRENT_FORM(&quot;CUS_MAINT&quot;,&quot;Unable to navigate to form CUS_MAINT&quot;);"/>
+<PROPERTY NAME="USL" INST="58" VALUE="     }"/>
+<PROPERTY NAME="USL" INST="59" VALUE=""/>
+<PROPERTY NAME="USL" INST="60" VALUE="     /* &lt;ARRIVE /&gt; - Do not remove or alter this line */"/>
+<PROPERTY NAME="USL" INST="61" VALUE=""/>
+<PROPERTY NAME="USL" INST="62" VALUE="     return(bReturn);"/>
+<PROPERTY NAME="USL" INST="63" VALUE="   },"/>
+<PROPERTY NAME="USL" INST="64" VALUE=""/>
+<PROPERTY NAME="USL" INST="65" VALUE=""/>
+<PROPERTY NAME="USL" INST="66" VALUE="// Do not alter any script after this line"/>
+<PROPERTY NAME="USL" INST="67" VALUE="//&lt;SYSINFO&gt;"/>
+<PROPERTY NAME="USL" INST="68" VALUE="   vName      :  &quot;CUS_KEY&quot;,"/>
+<PROPERTY NAME="USL" INST="69" VALUE="   vGUID      :  &quot;30F8256E661240D29DAA182726A47098&quot;,"/>
+<PROPERTY NAME="USL" INST="70" VALUE="   vFKC       :    null,"/>
+<PROPERTY NAME="USL" INST="71" VALUE="   vFKERTS    :    null,"/>
+<PROPERTY NAME="USL" INST="72" VALUE="   vFKEVLF    :    null,"/>
+<PROPERTY NAME="USL" INST="73" VALUE="   vFKSND     :    null,"/>
+<PROPERTY NAME="USL" INST="74" VALUE="   vFKSEQ     :    null,"/>
+<PROPERTY NAME="USL" INST="75" VALUE="   /* Forms that CUS_KEY can Navigate to */"/>
+<PROPERTY NAME="USL" INST="76" VALUE="   vTargets   :  Array(&quot;CUS_MAINT&quot;),"/>
+<PROPERTY NAME="USL" INST="77" VALUE="   vTYPE      :  &quot;J&quot;"/>
+<PROPERTY NAME="USL" INST="78" VALUE="//&lt;/SYSINFO&gt;"/>
+<PROPERTY NAME="USL" INST="79" VALUE=""/>
+<PROPERTY NAME="USL" INST="80" VALUE="}"/>
+<PROPERTY NAME="USLMAX" TYPE="N" VALUE="80"/>
+<PROPERTY NAME="UUSEROBJECTTYPE" VALUE="FORMSCRIPT_6"/>
+</MEMBER>
+<MEMBER CLASS="VF_FP030" ID="606981E775614551AB45B80FB13694ED" RUN="N">
+<PROPERTY NAME="IP_LAST" VALUE="20170525-134619-VF19PGMLIB"/>
+<PROPERTY NAME="UCAPTION" LANG="ENG" VALUE="New Script"/>
+<PROPERTY NAME="UCAPTIONLONG" LANG="ENG" VALUE="CUS_MAINT - Invoke this form from anywhere"/>
+<PROPERTY NAME="UNAVIGATEFROM" VALUE="D2292D3CE1654ED2919B21A35F187C3B"/>
+<PROPERTY NAME="UNAVIGATETO" VALUE="D2292D3CE1654ED2919B21A35F187C3B"/>
+<PROPERTY NAME="USCRIPTTYPE" VALUE="FORMSCRIPT"/>
+<PROPERTY NAME="USL" VALUE="// This script was generated from skeleton file vf_fpm030_D.js, which is in your LANSA partition execute folder."/>
+<PROPERTY NAME="USL" INST="2" VALUE="// You may alter this file to change how new scripts are generated. **NOTE** You must backup skeleton file changes."/>
+<PROPERTY NAME="USL" INST="3" VALUE="// Script skeleton files are replaced with the standard shipped versions when reinstalling or upgrading RAMP-TS."/>
+<PROPERTY NAME="USL" INST="4" VALUE=""/>
+<PROPERTY NAME="USL" INST="5" VALUE="{"/>
+<PROPERTY NAME="USL" INST="6" VALUE="   vHandle_AVEVENT: function(WithId,Sender,WithAInfo1,WithAInfo2,WithAInfo3,WithAInfo4,WithAInfo5,WithNInfo1,WithNInfo2,WithNInfo3,WithNInfo4,WithNInfo5)"/>
+<PROPERTY NAME="USL" INST="7" VALUE="   {"/>
+<PROPERTY NAME="USL" INST="8" VALUE="      if ((WithId == &quot;CUS_MAINT_SHOW&quot;) || (WithId == &quot;CUS_MAINT_ALIGN&quot;))"/>
+<PROPERTY NAME="USL" INST="9" VALUE="      {"/>
+<PROPERTY NAME="USL" INST="10" VALUE="         SENDKEY(KeyEnter, {ID:WithId,N:WithAInfo1,A:WithAInfo2,C:WithAInfo3,PC:WithAInfo4} );"/>
+<PROPERTY NAME="USL" INST="11" VALUE="      }"/>
+<PROPERTY NAME="USL" INST="12" VALUE="      if (WithId == &quot;CUS_PHONE&quot;)"/>
+<PROPERTY NAME="USL" INST="13" VALUE="      {"/>
+<PROPERTY NAME="USL" INST="14" VALUE="        SETVALUE(&quot;PHONE&quot;,WithAInfo1);"/>
+<PROPERTY NAME="USL" INST="15" VALUE="      }"/>
+<PROPERTY NAME="USL" INST="16" VALUE="      return(true);"/>
+<PROPERTY NAME="USL" INST="17" VALUE="   },"/>
+<PROPERTY NAME="USL" INST="18" VALUE=""/>
+<PROPERTY NAME="USL" INST="19" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="20" VALUE="   /* ==================  vHandle_ARRIVE  ================== */"/>
+<PROPERTY NAME="USL" INST="21" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="22" VALUE="   /* Handle arrival at this Destination                     */"/>
+<PROPERTY NAME="USL" INST="23" VALUE="   /* oPayload: The payload supplied by the event initiator  */"/>
+<PROPERTY NAME="USL" INST="24" VALUE="   /* oPreviousForm: Reference to previous Form object       */"/>
+<PROPERTY NAME="USL" INST="25" VALUE=""/>
+<PROPERTY NAME="USL" INST="26" VALUE="   vHandle_ARRIVE: function(oPayload, oPreviousForm)"/>
+<PROPERTY NAME="USL" INST="27" VALUE="   {"/>
+<PROPERTY NAME="USL" INST="28" VALUE="     var bReturn = true;"/>
+<PROPERTY NAME="USL" INST="29" VALUE=""/>
+<PROPERTY NAME="USL" INST="30" VALUE="     SHOW_CURRENT_FORM(true); /* Show the form in the framework and show VLF buttons */"/>
+<PROPERTY NAME="USL" INST="31" VALUE="     HIDE_5250_BUTTONS();     /* Hide any 5250 style buttons displayed               */"/>
+<PROPERTY NAME="USL" INST="32" VALUE="     GET_FORM_MESSAGE(22);    /* Extract messages and hide the message line          */"/>
+<PROPERTY NAME="USL" INST="33" VALUE="     SETBUSY(false);          /* Last thing done - turn off the busy state           */"/>
+<PROPERTY NAME="USL" INST="34" VALUE=""/>
+<PROPERTY NAME="USL" INST="35" VALUE="     /* If there is a payload update the screen to reflect the alignment request */"/>
+<PROPERTY NAME="USL" INST="36" VALUE="     if ((oPayload != null) &amp;&amp; (oPayload.ID == &quot;CUS_MAINT_ALIGN&quot; ))"/>
+<PROPERTY NAME="USL" INST="37" VALUE="     {"/>
+<PROPERTY NAME="USL" INST="38" VALUE="        SETVALUE(&quot;ADDRESS&quot;,oPayload.A);"/>
+<PROPERTY NAME="USL" INST="39" VALUE="        SETVALUE(&quot;CITY&quot;,oPayload.C);"/>
+<PROPERTY NAME="USL" INST="40" VALUE="        SETVALUE(&quot;POSTALCODE&quot;,oPayload.PC);"/>
+<PROPERTY NAME="USL" INST="41" VALUE="     }"/>
+<PROPERTY NAME="USL" INST="42" VALUE=""/>
+<PROPERTY NAME="USL" INST="43" VALUE="     /* &lt;ARRIVE /&gt; - Do not remove or alter this line */"/>
+<PROPERTY NAME="USL" INST="44" VALUE=""/>
+<PROPERTY NAME="USL" INST="45" VALUE="     return(bReturn);"/>
+<PROPERTY NAME="USL" INST="46" VALUE="   },"/>
+<PROPERTY NAME="USL" INST="47" VALUE=""/>
+<PROPERTY NAME="USL" INST="48" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="49" VALUE="   /* ==================  BUTTONCLICK  ===================== */"/>
+<PROPERTY NAME="USL" INST="50" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="51" VALUE="   /* sButton: The button that was clicked                   */"/>
+<PROPERTY NAME="USL" INST="52" VALUE=""/>
+<PROPERTY NAME="USL" INST="53" VALUE="   vHandle_BUTTONCLICK: function(sButton)"/>
+<PROPERTY NAME="USL" INST="54" VALUE="   {"/>
+<PROPERTY NAME="USL" INST="55" VALUE=""/>
+<PROPERTY NAME="USL" INST="56" VALUE="     var bReturn = true;"/>
+<PROPERTY NAME="USL" INST="57" VALUE=""/>
+<PROPERTY NAME="USL" INST="58" VALUE="     if (HANDLE_PROMPT()) return(bReturn); /* If the focus element is automatically prompted finish now */"/>
+<PROPERTY NAME="USL" INST="59" VALUE=""/>
+<PROPERTY NAME="USL" INST="60" VALUE="     /* &lt;BUTTONCLICK /&gt; - Do not remove or alter this line */"/>
+<PROPERTY NAME="USL" INST="61" VALUE=""/>
+<PROPERTY NAME="USL" INST="62" VALUE="           /* Handle function keys and buttons */"/>
+<PROPERTY NAME="USL" INST="63" VALUE=""/>
+<PROPERTY NAME="USL" INST="64" VALUE="           switch (sButton)"/>
+<PROPERTY NAME="USL" INST="65" VALUE="        {"/>
+<PROPERTY NAME="USL" INST="66" VALUE="           case KeyEnter:"/>
+<PROPERTY NAME="USL" INST="67" VALUE="                 SENDKEY(KeyEnter);"/>
+<PROPERTY NAME="USL" INST="68" VALUE="                 break;"/>
+<PROPERTY NAME="USL" INST="69" VALUE="           case KeyF4:"/>
+<PROPERTY NAME="USL" INST="70" VALUE="                 SENDKEY(KeyF4);"/>
+<PROPERTY NAME="USL" INST="71" VALUE="                 break;"/>
+<PROPERTY NAME="USL" INST="72" VALUE="           case KeyF12:"/>
+<PROPERTY NAME="USL" INST="73" VALUE="                 SENDKEY(KeyF12);"/>
+<PROPERTY NAME="USL" INST="74" VALUE="                 break;"/>
+<PROPERTY NAME="USL" INST="75" VALUE="           case KeyF24:"/>
+<PROPERTY NAME="USL" INST="76" VALUE="                 /* Signal this event and pass additional information  */"/>
+<PROPERTY NAME="USL" INST="77" VALUE="                 AVSIGNALEVENT(&quot;ORD_MAINT_ALIGN&quot;,&quot;FRAMEWORK&quot;,objListManager.NKey2[0],GETVALUE(&quot;ADDRESS&quot;),GETVALUE(&quot;CITY&quot;),GETVALUE(&quot;POSTALCODE&quot;));"/>
+<PROPERTY NAME="USL" INST="78" VALUE="                 break;"/>
+<PROPERTY NAME="USL" INST="79" VALUE="           default:"/>
+<PROPERTY NAME="USL" INST="80" VALUE="                 SENDKEY(sButton);"/>
+<PROPERTY NAME="USL" INST="81" VALUE="                 break;"/>
+<PROPERTY NAME="USL" INST="82" VALUE="        }"/>
+<PROPERTY NAME="USL" INST="83" VALUE=""/>
+<PROPERTY NAME="USL" INST="84" VALUE=""/>
+<PROPERTY NAME="USL" INST="85" VALUE="     return(bReturn);"/>
+<PROPERTY NAME="USL" INST="86" VALUE="   },"/>
+<PROPERTY NAME="USL" INST="87" VALUE=""/>
+<PROPERTY NAME="USL" INST="88" VALUE=""/>
+<PROPERTY NAME="USL" INST="89" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="90" VALUE="   /* ===================  NAVIGATETO  ===================== */"/>
+<PROPERTY NAME="USL" INST="91" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="92" VALUE="   /* sToForm:       Name of the Form to navigate to */"/>
+<PROPERTY NAME="USL" INST="93" VALUE="   /* oPreviousForm: Reference to previous Form object */"/>
+<PROPERTY NAME="USL" INST="94" VALUE=""/>
+<PROPERTY NAME="USL" INST="95" VALUE="   vHandle_NAVIGATETO: function(sToForm, oPreviousForm)"/>
+<PROPERTY NAME="USL" INST="96" VALUE="   {"/>
+<PROPERTY NAME="USL" INST="97" VALUE="     var bReturn = true;"/>
+<PROPERTY NAME="USL" INST="98" VALUE=""/>
+<PROPERTY NAME="USL" INST="99" VALUE="     HIDE_CURRENT_FORM();"/>
+<PROPERTY NAME="USL" INST="100" VALUE="     SETBUSY(true);"/>
+<PROPERTY NAME="USL" INST="101" VALUE=""/>
+<PROPERTY NAME="USL" INST="102" VALUE="     switch (sToForm)"/>
+<PROPERTY NAME="USL" INST="103" VALUE="     {"/>
+<PROPERTY NAME="USL" INST="104" VALUE="        /* &lt;NAVIGATESWITCH&gt; - Do not remove or alter this line */"/>
+<PROPERTY NAME="USL" INST="105" VALUE="        case &quot;MAIN&quot;:"/>
+<PROPERTY NAME="USL" INST="106" VALUE="        {"/>
+<PROPERTY NAME="USL" INST="107" VALUE="           SENDKEY(KeyF12);"/>
+<PROPERTY NAME="USL" INST="108" VALUE=""/>
+<PROPERTY NAME="USL" INST="109" VALUE="           /* Check for arrival at MAIN */"/>
+<PROPERTY NAME="USL" INST="110" VALUE=""/>
+<PROPERTY NAME="USL" INST="111" VALUE="           Q_CHECK_CURRENT_FORM(&quot;MAIN&quot;,&quot;Unable to navigate to form MAIN&quot;);"/>
+<PROPERTY NAME="USL" INST="112" VALUE="        }"/>
+<PROPERTY NAME="USL" INST="113" VALUE="           break;"/>
+<PROPERTY NAME="USL" INST="114" VALUE=""/>
+<PROPERTY NAME="USL" INST="115" VALUE="        default:"/>
+<PROPERTY NAME="USL" INST="116" VALUE="              alert(&quot;Form &quot; + this.vName + &quot; cannot navigate to form &quot; + sToForm);"/>
+<PROPERTY NAME="USL" INST="117" VALUE="              bReturn = false;"/>
+<PROPERTY NAME="USL" INST="118" VALUE="              break;"/>
+<PROPERTY NAME="USL" INST="119" VALUE=""/>
+<PROPERTY NAME="USL" INST="120" VALUE="     }"/>
+<PROPERTY NAME="USL" INST="121" VALUE=""/>
+<PROPERTY NAME="USL" INST="122" VALUE="        /* &lt;/NAVIGATESWITCH&gt; - Do not remove or alter this line */"/>
+<PROPERTY NAME="USL" INST="123" VALUE=""/>
+<PROPERTY NAME="USL" INST="124" VALUE="     return(bReturn);"/>
+<PROPERTY NAME="USL" INST="125" VALUE="   },"/>
+<PROPERTY NAME="USL" INST="126" VALUE=""/>
+<PROPERTY NAME="USL" INST="127" VALUE=""/>
+<PROPERTY NAME="USL" INST="128" VALUE=""/>
+<PROPERTY NAME="USL" INST="129" VALUE="// Do not alter any script after this line"/>
+<PROPERTY NAME="USL" INST="130" VALUE="//&lt;SYSINFO&gt;"/>
+<PROPERTY NAME="USL" INST="131" VALUE="   vName      :  &quot;CUS_MAINT&quot;,"/>
+<PROPERTY NAME="USL" INST="132" VALUE="   vGUID      :  &quot;D2292D3CE1654ED2919B21A35F187C3B&quot;,"/>
+<PROPERTY NAME="USL" INST="133" VALUE="   vOverrideExitJunction : &quot;&quot;, /* You may change this property dynamically */"/>
+<PROPERTY NAME="USL" INST="134" VALUE="   vFKC   :  Array(&quot;Enter&quot;,&quot;F1&quot;,&quot;F2&quot;,&quot;Exit&quot;,&quot;Prompt&quot;,&quot;F5&quot;,"/>
+<PROPERTY NAME="USL" INST="135" VALUE="&quot;F6&quot;,&quot;F7&quot;,&quot;F8&quot;,&quot;F9&quot;,&quot;F10&quot;,&quot;F11&quot;,"/>
+<PROPERTY NAME="USL" INST="136" VALUE="&quot;Cancel&quot;,&quot;F13&quot;,&quot;Msg&quot;,&quot;F15&quot;,&quot;F16&quot;,&quot;F17&quot;,"/>
+<PROPERTY NAME="USL" INST="137" VALUE="&quot;F18&quot;,&quot;F19&quot;,&quot;F20&quot;,&quot;F21&quot;,&quot;F22&quot;,&quot;F23&quot;,"/>
+<PROPERTY NAME="USL" INST="138" VALUE="&quot;Align Order&quot;,&quot;Clear&quot;,&quot;Page Up&quot;,&quot;Page Down&quot;,&quot;Print&quot;,&quot;Help&quot;,"/>
+<PROPERTY NAME="USL" INST="139" VALUE="&quot;Attention&quot;,&quot;PA1&quot;),"/>
+<PROPERTY NAME="USL" INST="140" VALUE="   vFKSEQ : &quot;0102030405060708091011121314151617181920212223242526272829303132333435363738&quot;,"/>
+<PROPERTY NAME="USL" INST="141" VALUE="   vFKERTS : &quot;10011000000010100000000000000000000000&quot;,"/>
+<PROPERTY NAME="USL" INST="142" VALUE="   vFKEVLF : &quot;00000000000000000000000010000000000000&quot;,"/>
+<PROPERTY NAME="USL" INST="143" VALUE="   vFKSND   :     Array(&quot;Enter&quot;,&quot;F1&quot;,&quot;F2&quot;,&quot;F3&quot;,&quot;F4&quot;,&quot;F5&quot;,"/>
+<PROPERTY NAME="USL" INST="144" VALUE="&quot;F6&quot;,&quot;F7&quot;,&quot;F8&quot;,&quot;F9&quot;,&quot;F10&quot;,&quot;F11&quot;,"/>
+<PROPERTY NAME="USL" INST="145" VALUE="&quot;F12&quot;,&quot;F13&quot;,&quot;F14&quot;,&quot;F15&quot;,&quot;F16&quot;,&quot;F17&quot;,"/>
+<PROPERTY NAME="USL" INST="146" VALUE="&quot;F18&quot;,&quot;F19&quot;,&quot;F20&quot;,&quot;F21&quot;,&quot;F22&quot;,&quot;F23&quot;,"/>
+<PROPERTY NAME="USL" INST="147" VALUE="&quot;F24&quot;,&quot;ClearScreen&quot;,&quot;PageUp&quot;,&quot;PageDown&quot;,&quot;Print&quot;,&quot;Help&quot;,"/>
+<PROPERTY NAME="USL" INST="148" VALUE="&quot;Attention&quot;,&quot;PA1&quot;),"/>
+<PROPERTY NAME="USL" INST="149" VALUE="   /* Forms that CUS_MAINT can Navigate to */"/>
+<PROPERTY NAME="USL" INST="150" VALUE="   vTargets   :  Array(&quot;MAIN&quot;),"/>
+<PROPERTY NAME="USL" INST="151" VALUE="   vTYPE      :  &quot;D&quot;"/>
+<PROPERTY NAME="USL" INST="152" VALUE="//&lt;/SYSINFO&gt;"/>
+<PROPERTY NAME="USL" INST="153" VALUE=""/>
+<PROPERTY NAME="USL" INST="154" VALUE="}"/>
+<PROPERTY NAME="USLMAX" TYPE="N" VALUE="154"/>
+<PROPERTY NAME="UUSEROBJECTTYPE" VALUE="FORMSCRIPT_7"/>
+</MEMBER>
+<MEMBER CLASS="VF_FP030" ID="2DA0E981309B4277BD3BF869E8BDEFCA" RUN="N">
+<PROPERTY NAME="IP_LAST" VALUE="20170525-123300-VF19PGMLIB"/>
+<PROPERTY NAME="UCAPTION" LANG="ENG" VALUE="New Script"/>
+<PROPERTY NAME="UCAPTIONLONG" LANG="ENG" VALUE="ORD_KEY - Invoke this form from anywhere"/>
+<PROPERTY NAME="UNAVIGATEFROM" VALUE="7F77509DADC94A0AB4488EB7056FE345"/>
+<PROPERTY NAME="UNAVIGATETO" VALUE="7F77509DADC94A0AB4488EB7056FE345"/>
+<PROPERTY NAME="USCRIPTTYPE" VALUE="FORMSCRIPT"/>
+<PROPERTY NAME="USL" VALUE="// This script was generated from skeleton file vf_fpm030_J.js, which is in your LANSA partition execute folder."/>
+<PROPERTY NAME="USL" INST="2" VALUE="// You may alter this file to change how new scripts are generated. **NOTE** You must backup skeleton file changes."/>
+<PROPERTY NAME="USL" INST="3" VALUE="// Script skeleton files are replaced with the standard shipped versions when reinstalling or upgrading RAMP-TS."/>
+<PROPERTY NAME="USL" INST="4" VALUE=""/>
+<PROPERTY NAME="USL" INST="5" VALUE="{"/>
+<PROPERTY NAME="USL" INST="6" VALUE=""/>
+<PROPERTY NAME="USL" INST="7" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="8" VALUE="   /* ===================  NAVIGATETO  ===================== */"/>
+<PROPERTY NAME="USL" INST="9" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="10" VALUE="   /* sToForm:       Name of the Form to navigate to         */"/>
+<PROPERTY NAME="USL" INST="11" VALUE="   /* oPreviousForm: Reference to previous form displayed    */"/>
+<PROPERTY NAME="USL" INST="12" VALUE=""/>
+<PROPERTY NAME="USL" INST="13" VALUE="   vHandle_NAVIGATETO: function(sToForm, oPreviousForm)"/>
+<PROPERTY NAME="USL" INST="14" VALUE="   {"/>
+<PROPERTY NAME="USL" INST="15" VALUE="     var bReturn = true;"/>
+<PROPERTY NAME="USL" INST="16" VALUE=""/>
+<PROPERTY NAME="USL" INST="17" VALUE="     HIDE_CURRENT_FORM();"/>
+<PROPERTY NAME="USL" INST="18" VALUE="     SETBUSY(true);"/>
+<PROPERTY NAME="USL" INST="19" VALUE=""/>
+<PROPERTY NAME="USL" INST="20" VALUE="     switch (sToForm)"/>
+<PROPERTY NAME="USL" INST="21" VALUE="     {"/>
+<PROPERTY NAME="USL" INST="22" VALUE="        /* &lt;NAVIGATESWITCH&gt; - Do not remove or alter this line */"/>
+<PROPERTY NAME="USL" INST="23" VALUE=""/>
+<PROPERTY NAME="USL" INST="24" VALUE="        case &quot;ORD_MAINT&quot;:"/>
+<PROPERTY NAME="USL" INST="25" VALUE="        {"/>
+<PROPERTY NAME="USL" INST="26" VALUE=""/>
+<PROPERTY NAME="USL" INST="27" VALUE="           /* Set up data fields on form ORD_KEY */"/>
+<PROPERTY NAME="USL" INST="28" VALUE=""/>
+<PROPERTY NAME="USL" INST="29" VALUE="           SETVALUE(&quot;KEY&quot;,objListManager.NKey1[0]);"/>
+<PROPERTY NAME="USL" INST="30" VALUE="           SENDKEY(KeyEnter);"/>
+<PROPERTY NAME="USL" INST="31" VALUE=""/>
+<PROPERTY NAME="USL" INST="32" VALUE="           /* Check for arrival at ORD_MAINT */"/>
+<PROPERTY NAME="USL" INST="33" VALUE=""/>
+<PROPERTY NAME="USL" INST="34" VALUE="           Q_CHECK_CURRENT_FORM(&quot;ORD_MAINT&quot;,&quot;Unable to navigate to form ORD_MAINT&quot;);"/>
+<PROPERTY NAME="USL" INST="35" VALUE="        }"/>
+<PROPERTY NAME="USL" INST="36" VALUE="           break;"/>
+<PROPERTY NAME="USL" INST="37" VALUE=""/>
+<PROPERTY NAME="USL" INST="38" VALUE="        default:"/>
+<PROPERTY NAME="USL" INST="39" VALUE="              alert(&quot;Form &quot; + this.vName + &quot; cannot navigate to form &quot; + sToForm);"/>
+<PROPERTY NAME="USL" INST="40" VALUE="              bReturn = false;"/>
+<PROPERTY NAME="USL" INST="41" VALUE="              break;"/>
+<PROPERTY NAME="USL" INST="42" VALUE=""/>
+<PROPERTY NAME="USL" INST="43" VALUE="     }"/>
+<PROPERTY NAME="USL" INST="44" VALUE="        /* &lt;/NAVIGATESWITCH&gt; - Do not remove or alter this line */"/>
+<PROPERTY NAME="USL" INST="45" VALUE=""/>
+<PROPERTY NAME="USL" INST="46" VALUE="     return(bReturn);"/>
+<PROPERTY NAME="USL" INST="47" VALUE="   },"/>
+<PROPERTY NAME="USL" INST="48" VALUE=""/>
+<PROPERTY NAME="USL" INST="49" VALUE=""/>
+<PROPERTY NAME="USL" INST="50" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="51" VALUE="   /* ==================  vHandle_ARRIVE  ================== */"/>
+<PROPERTY NAME="USL" INST="52" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="53" VALUE="   /* Handle arrival at this JUNCTION                        */"/>
+<PROPERTY NAME="USL" INST="54" VALUE="   /* oPayload: The payload supplied by the event initiator  */"/>
+<PROPERTY NAME="USL" INST="55" VALUE="   /* oPreviousForm: Reference to previous Form object       */"/>
+<PROPERTY NAME="USL" INST="56" VALUE=""/>
+<PROPERTY NAME="USL" INST="57" VALUE="   vHandle_ARRIVE: function(oPayload, oPreviousForm)"/>
+<PROPERTY NAME="USL" INST="58" VALUE="   {"/>
+<PROPERTY NAME="USL" INST="59" VALUE="     var bReturn = true;"/>
+<PROPERTY NAME="USL" INST="60" VALUE=""/>
+<PROPERTY NAME="USL" INST="61" VALUE="     /* &lt;ARRIVE /&gt; - Do not remove or alter this line */"/>
+<PROPERTY NAME="USL" INST="62" VALUE=""/>
+<PROPERTY NAME="USL" INST="63" VALUE="     return(bReturn);"/>
+<PROPERTY NAME="USL" INST="64" VALUE="   },"/>
+<PROPERTY NAME="USL" INST="65" VALUE=""/>
+<PROPERTY NAME="USL" INST="66" VALUE=""/>
+<PROPERTY NAME="USL" INST="67" VALUE="// Do not alter any script after this line"/>
+<PROPERTY NAME="USL" INST="68" VALUE="//&lt;SYSINFO&gt;"/>
+<PROPERTY NAME="USL" INST="69" VALUE="   vName      :  &quot;ORD_KEY&quot;,"/>
+<PROPERTY NAME="USL" INST="70" VALUE="   vGUID      :  &quot;7F77509DADC94A0AB4488EB7056FE345&quot;,"/>
+<PROPERTY NAME="USL" INST="71" VALUE="   vFKC       :    null,"/>
+<PROPERTY NAME="USL" INST="72" VALUE="   vFKERTS    :    null,"/>
+<PROPERTY NAME="USL" INST="73" VALUE="   vFKEVLF    :    null,"/>
+<PROPERTY NAME="USL" INST="74" VALUE="   vFKSND     :    null,"/>
+<PROPERTY NAME="USL" INST="75" VALUE="   vFKSEQ     :    null,"/>
+<PROPERTY NAME="USL" INST="76" VALUE="   /* Forms that ORD_KEY can Navigate to */"/>
+<PROPERTY NAME="USL" INST="77" VALUE="   vTargets   :  Array(&quot;ORD_MAINT&quot;),"/>
+<PROPERTY NAME="USL" INST="78" VALUE="   vTYPE      :  &quot;J&quot;"/>
+<PROPERTY NAME="USL" INST="79" VALUE="//&lt;/SYSINFO&gt;"/>
+<PROPERTY NAME="USL" INST="80" VALUE=""/>
+<PROPERTY NAME="USL" INST="81" VALUE="}"/>
+<PROPERTY NAME="USLMAX" TYPE="N" VALUE="81"/>
+<PROPERTY NAME="UUSEROBJECTTYPE" VALUE="FORMSCRIPT_8"/>
+</MEMBER>
+<MEMBER CLASS="VF_FP030" ID="8355C862F0514C8D8B89E4A3DBCA0770" RUN="N">
+<PROPERTY NAME="IP_LAST" VALUE="20170525-134624-VF19PGMLIB"/>
+<PROPERTY NAME="UCAPTION" LANG="ENG" VALUE="New Script"/>
+<PROPERTY NAME="UCAPTIONLONG" LANG="ENG" VALUE="ORD_MAINT - Invoke this form from anywhere"/>
+<PROPERTY NAME="UNAVIGATEFROM" VALUE="3A2C6B7ECFE84A0799BDBFBF29F157EF"/>
+<PROPERTY NAME="UNAVIGATETO" VALUE="3A2C6B7ECFE84A0799BDBFBF29F157EF"/>
+<PROPERTY NAME="USCRIPTTYPE" VALUE="FORMSCRIPT"/>
+<PROPERTY NAME="USL" VALUE="// This script was generated from skeleton file vf_fpm030_D.js, which is in your LANSA partition execute folder."/>
+<PROPERTY NAME="USL" INST="2" VALUE="// You may alter this file to change how new scripts are generated. **NOTE** You must backup skeleton file changes."/>
+<PROPERTY NAME="USL" INST="3" VALUE="// Script skeleton files are replaced with the standard shipped versions when reinstalling or upgrading RAMP-TS."/>
+<PROPERTY NAME="USL" INST="4" VALUE=""/>
+<PROPERTY NAME="USL" INST="5" VALUE="{"/>
+<PROPERTY NAME="USL" INST="6" VALUE="   vHandle_AVEVENT: function(WithId,Sender,WithAInfo1,WithAInfo2,WithAInfo3,WithAInfo4,WithAInfo5,WithNInfo1,WithNInfo2,WithNInfo3,WithNInfo4,WithNInfo5)"/>
+<PROPERTY NAME="USL" INST="7" VALUE="   {"/>
+<PROPERTY NAME="USL" INST="8" VALUE="      if (WithId == &quot;ORD_MAINT_ALIGN&quot;)"/>
+<PROPERTY NAME="USL" INST="9" VALUE="      {"/>
+<PROPERTY NAME="USL" INST="10" VALUE="        SETVALUE(&quot;ADDRESS&quot;,WithAInfo2);"/>
+<PROPERTY NAME="USL" INST="11" VALUE="        SETVALUE(&quot;CITY&quot;,WithAInfo3);"/>
+<PROPERTY NAME="USL" INST="12" VALUE="        SETVALUE(&quot;POSTALCODE&quot;,WithAInfo4);"/>
+<PROPERTY NAME="USL" INST="13" VALUE="      }"/>
+<PROPERTY NAME="USL" INST="14" VALUE="      if (WithId == &quot;ORD_PHONE&quot;)"/>
+<PROPERTY NAME="USL" INST="15" VALUE="      {"/>
+<PROPERTY NAME="USL" INST="16" VALUE="         SETVALUE(&quot;PHONE&quot;,WithAInfo1);"/>
+<PROPERTY NAME="USL" INST="17" VALUE="      }"/>
+<PROPERTY NAME="USL" INST="18" VALUE="      return(true);"/>
+<PROPERTY NAME="USL" INST="19" VALUE="   },"/>
+<PROPERTY NAME="USL" INST="20" VALUE=""/>
+<PROPERTY NAME="USL" INST="21" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="22" VALUE="   /* ==================  vHandle_ARRIVE  ================== */"/>
+<PROPERTY NAME="USL" INST="23" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="24" VALUE="   /* Handle arrival at this Destination                     */"/>
+<PROPERTY NAME="USL" INST="25" VALUE="   /* oPayload: The payload supplied by the event initiator  */"/>
+<PROPERTY NAME="USL" INST="26" VALUE="   /* oPreviousForm: Reference to previous Form object       */"/>
+<PROPERTY NAME="USL" INST="27" VALUE=""/>
+<PROPERTY NAME="USL" INST="28" VALUE="   vHandle_ARRIVE: function(oPayload, oPreviousForm)"/>
+<PROPERTY NAME="USL" INST="29" VALUE="   {"/>
+<PROPERTY NAME="USL" INST="30" VALUE="     var bReturn = true;"/>
+<PROPERTY NAME="USL" INST="31" VALUE=""/>
+<PROPERTY NAME="USL" INST="32" VALUE="     SHOW_CURRENT_FORM(true); /* Show the form in the framework and show VLF buttons */"/>
+<PROPERTY NAME="USL" INST="33" VALUE="     HIDE_5250_BUTTONS();     /* Hide any 5250 style buttons displayed               */"/>
+<PROPERTY NAME="USL" INST="34" VALUE="     GET_FORM_MESSAGE(22);    /* Extract messages and hide the message line          */"/>
+<PROPERTY NAME="USL" INST="35" VALUE="     SETBUSY(false);          /* Last thing done - turn off the busy state           */"/>
+<PROPERTY NAME="USL" INST="36" VALUE=""/>
+<PROPERTY NAME="USL" INST="37" VALUE="     /* &lt;ARRIVE /&gt; - Do not remove or alter this line */"/>
+<PROPERTY NAME="USL" INST="38" VALUE=""/>
+<PROPERTY NAME="USL" INST="39" VALUE="     return(bReturn);"/>
+<PROPERTY NAME="USL" INST="40" VALUE="   },"/>
+<PROPERTY NAME="USL" INST="41" VALUE=""/>
+<PROPERTY NAME="USL" INST="42" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="43" VALUE="   /* ==================  BUTTONCLICK  ===================== */"/>
+<PROPERTY NAME="USL" INST="44" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="45" VALUE="   /* sButton: The button that was clicked                   */"/>
+<PROPERTY NAME="USL" INST="46" VALUE=""/>
+<PROPERTY NAME="USL" INST="47" VALUE="   vHandle_BUTTONCLICK: function(sButton)"/>
+<PROPERTY NAME="USL" INST="48" VALUE="   {"/>
+<PROPERTY NAME="USL" INST="49" VALUE=""/>
+<PROPERTY NAME="USL" INST="50" VALUE="     var bReturn = true;"/>
+<PROPERTY NAME="USL" INST="51" VALUE=""/>
+<PROPERTY NAME="USL" INST="52" VALUE="     if (HANDLE_PROMPT()) return(bReturn); /* If the focus element is automatically prompted finish now */"/>
+<PROPERTY NAME="USL" INST="53" VALUE=""/>
+<PROPERTY NAME="USL" INST="54" VALUE="     /* &lt;BUTTONCLICK /&gt; - Do not remove or alter this line */"/>
+<PROPERTY NAME="USL" INST="55" VALUE=""/>
+<PROPERTY NAME="USL" INST="56" VALUE="           /* Handle function keys and buttons */"/>
+<PROPERTY NAME="USL" INST="57" VALUE=""/>
+<PROPERTY NAME="USL" INST="58" VALUE="        switch (sButton)"/>
+<PROPERTY NAME="USL" INST="59" VALUE="        {"/>
+<PROPERTY NAME="USL" INST="60" VALUE="           case KeyEnter:"/>
+<PROPERTY NAME="USL" INST="61" VALUE="                 SENDKEY(KeyEnter);"/>
+<PROPERTY NAME="USL" INST="62" VALUE="                 break;"/>
+<PROPERTY NAME="USL" INST="63" VALUE="           case KeyF4:"/>
+<PROPERTY NAME="USL" INST="64" VALUE="                 SENDKEY(KeyF4);"/>
+<PROPERTY NAME="USL" INST="65" VALUE="                 break;"/>
+<PROPERTY NAME="USL" INST="66" VALUE="           case KeyF12:"/>
+<PROPERTY NAME="USL" INST="67" VALUE="                 SENDKEY(KeyF12);"/>
+<PROPERTY NAME="USL" INST="68" VALUE="                 break;"/>
+<PROPERTY NAME="USL" INST="69" VALUE="           case KeyF23:"/>
+<PROPERTY NAME="USL" INST="70" VALUE="                 /* Signal this event and pass additional information  */"/>
+<PROPERTY NAME="USL" INST="71" VALUE="                 AVSIGNALEVENT(&quot;CUS_MAINT_SHOW&quot;,&quot;FRAMEWORK&quot;,objListManager.NKey2[0]);"/>
+<PROPERTY NAME="USL" INST="72" VALUE="                 break;"/>
+<PROPERTY NAME="USL" INST="73" VALUE="           case KeyF24:"/>
+<PROPERTY NAME="USL" INST="74" VALUE="                 /* Signal this event and pass additional information  */"/>
+<PROPERTY NAME="USL" INST="75" VALUE="                 AVSIGNALEVENT(&quot;CUS_MAINT_ALIGN&quot;,&quot;FRAMEWORK&quot;,objListManager.NKey2[0],GETVALUE(&quot;ADDRESS&quot;),GETVALUE(&quot;CITY&quot;),GETVALUE(&quot;POSTALCODE&quot;));"/>
+<PROPERTY NAME="USL" INST="76" VALUE="                 break;"/>
+<PROPERTY NAME="USL" INST="77" VALUE="           default:"/>
+<PROPERTY NAME="USL" INST="78" VALUE="                 SENDKEY(sButton);"/>
+<PROPERTY NAME="USL" INST="79" VALUE="                 break;"/>
+<PROPERTY NAME="USL" INST="80" VALUE="        }"/>
+<PROPERTY NAME="USL" INST="81" VALUE=""/>
+<PROPERTY NAME="USL" INST="82" VALUE=""/>
+<PROPERTY NAME="USL" INST="83" VALUE="     return(bReturn);"/>
+<PROPERTY NAME="USL" INST="84" VALUE="   },"/>
+<PROPERTY NAME="USL" INST="85" VALUE=""/>
+<PROPERTY NAME="USL" INST="86" VALUE=""/>
+<PROPERTY NAME="USL" INST="87" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="88" VALUE="   /* ===================  NAVIGATETO  ===================== */"/>
+<PROPERTY NAME="USL" INST="89" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="90" VALUE="   /* sToForm:       Name of the Form to navigate to */"/>
+<PROPERTY NAME="USL" INST="91" VALUE="   /* oPreviousForm: Reference to previous Form object */"/>
+<PROPERTY NAME="USL" INST="92" VALUE=""/>
+<PROPERTY NAME="USL" INST="93" VALUE="   vHandle_NAVIGATETO: function(sToForm, oPreviousForm)"/>
+<PROPERTY NAME="USL" INST="94" VALUE="   {"/>
+<PROPERTY NAME="USL" INST="95" VALUE="     var bReturn = true;"/>
+<PROPERTY NAME="USL" INST="96" VALUE=""/>
+<PROPERTY NAME="USL" INST="97" VALUE="     HIDE_CURRENT_FORM();"/>
+<PROPERTY NAME="USL" INST="98" VALUE="     SETBUSY(true);"/>
+<PROPERTY NAME="USL" INST="99" VALUE=""/>
+<PROPERTY NAME="USL" INST="100" VALUE="     switch (sToForm)"/>
+<PROPERTY NAME="USL" INST="101" VALUE="     {"/>
+<PROPERTY NAME="USL" INST="102" VALUE="        /* &lt;NAVIGATESWITCH&gt; - Do not remove or alter this line */"/>
+<PROPERTY NAME="USL" INST="103" VALUE="        case &quot;MAIN&quot;:"/>
+<PROPERTY NAME="USL" INST="104" VALUE="        {"/>
+<PROPERTY NAME="USL" INST="105" VALUE="           SENDKEY(KeyF12);"/>
+<PROPERTY NAME="USL" INST="106" VALUE=""/>
+<PROPERTY NAME="USL" INST="107" VALUE="           /* Check for arrival at MAIN */"/>
+<PROPERTY NAME="USL" INST="108" VALUE=""/>
+<PROPERTY NAME="USL" INST="109" VALUE="           Q_CHECK_CURRENT_FORM(&quot;MAIN&quot;,&quot;Unable to navigate to form MAIN&quot;);"/>
+<PROPERTY NAME="USL" INST="110" VALUE="        }"/>
+<PROPERTY NAME="USL" INST="111" VALUE=""/>
+<PROPERTY NAME="USL" INST="112" VALUE="        break;"/>
+<PROPERTY NAME="USL" INST="113" VALUE=""/>
+<PROPERTY NAME="USL" INST="114" VALUE="        default:"/>
+<PROPERTY NAME="USL" INST="115" VALUE="              alert(&quot;Form &quot; + this.vName + &quot; cannot navigate to form &quot; + sToForm);"/>
+<PROPERTY NAME="USL" INST="116" VALUE="              bReturn = false;"/>
+<PROPERTY NAME="USL" INST="117" VALUE="              break;"/>
+<PROPERTY NAME="USL" INST="118" VALUE=""/>
+<PROPERTY NAME="USL" INST="119" VALUE="     }"/>
+<PROPERTY NAME="USL" INST="120" VALUE=""/>
+<PROPERTY NAME="USL" INST="121" VALUE="        /* &lt;/NAVIGATESWITCH&gt; - Do not remove or alter this line */"/>
+<PROPERTY NAME="USL" INST="122" VALUE=""/>
+<PROPERTY NAME="USL" INST="123" VALUE="     return(bReturn);"/>
+<PROPERTY NAME="USL" INST="124" VALUE="   },"/>
+<PROPERTY NAME="USL" INST="125" VALUE=""/>
+<PROPERTY NAME="USL" INST="126" VALUE=""/>
+<PROPERTY NAME="USL" INST="127" VALUE=""/>
+<PROPERTY NAME="USL" INST="128" VALUE="// Do not alter any script after this line"/>
+<PROPERTY NAME="USL" INST="129" VALUE="//&lt;SYSINFO&gt;"/>
+<PROPERTY NAME="USL" INST="130" VALUE="   vName      :  &quot;ORD_MAINT&quot;,"/>
+<PROPERTY NAME="USL" INST="131" VALUE="   vGUID      :  &quot;3A2C6B7ECFE84A0799BDBFBF29F157EF&quot;,"/>
+<PROPERTY NAME="USL" INST="132" VALUE="   vOverrideExitJunction : &quot;&quot;, /* You may change this property dynamically */"/>
+<PROPERTY NAME="USL" INST="133" VALUE="   vFKC   :  Array(&quot;Enter&quot;,&quot;F1&quot;,&quot;F2&quot;,&quot;Exit&quot;,&quot;Prompt&quot;,&quot;F5&quot;,"/>
+<PROPERTY NAME="USL" INST="134" VALUE="&quot;F6&quot;,&quot;F7&quot;,&quot;F8&quot;,&quot;F9&quot;,&quot;F10&quot;,&quot;F11&quot;,"/>
+<PROPERTY NAME="USL" INST="135" VALUE="&quot;Cancel&quot;,&quot;F13&quot;,&quot;Msg&quot;,&quot;F15&quot;,&quot;F16&quot;,&quot;F17&quot;,"/>
+<PROPERTY NAME="USL" INST="136" VALUE="&quot;F18&quot;,&quot;F19&quot;,&quot;F20&quot;,&quot;F21&quot;,&quot;F22&quot;,&quot;Show Customer&quot;,"/>
+<PROPERTY NAME="USL" INST="137" VALUE="&quot;Align Customer&quot;,&quot;Clear&quot;,&quot;Page Up&quot;,&quot;Page Down&quot;,&quot;Print&quot;,&quot;Help&quot;,"/>
+<PROPERTY NAME="USL" INST="138" VALUE="&quot;Attention&quot;,&quot;PA1&quot;),"/>
+<PROPERTY NAME="USL" INST="139" VALUE="   vFKSEQ : &quot;0102030405060708091011121314151617181920212223242526272829303132333435363738&quot;,"/>
+<PROPERTY NAME="USL" INST="140" VALUE="   vFKERTS : &quot;10011000000010100000000000000000000000&quot;,"/>
+<PROPERTY NAME="USL" INST="141" VALUE="   vFKEVLF : &quot;00000000000000000000000110000000000000&quot;,"/>
+<PROPERTY NAME="USL" INST="142" VALUE="   vFKSND   :     Array(&quot;Enter&quot;,&quot;F1&quot;,&quot;F2&quot;,&quot;F3&quot;,&quot;F4&quot;,&quot;F5&quot;,"/>
+<PROPERTY NAME="USL" INST="143" VALUE="&quot;F6&quot;,&quot;F7&quot;,&quot;F8&quot;,&quot;F9&quot;,&quot;F10&quot;,&quot;F11&quot;,"/>
+<PROPERTY NAME="USL" INST="144" VALUE="&quot;F12&quot;,&quot;F13&quot;,&quot;F14&quot;,&quot;F15&quot;,&quot;F16&quot;,&quot;F17&quot;,"/>
+<PROPERTY NAME="USL" INST="145" VALUE="&quot;F18&quot;,&quot;F19&quot;,&quot;F20&quot;,&quot;F21&quot;,&quot;F22&quot;,&quot;F23&quot;,"/>
+<PROPERTY NAME="USL" INST="146" VALUE="&quot;F24&quot;,&quot;ClearScreen&quot;,&quot;PageUp&quot;,&quot;PageDown&quot;,&quot;Print&quot;,&quot;Help&quot;,"/>
+<PROPERTY NAME="USL" INST="147" VALUE="&quot;Attention&quot;,&quot;PA1&quot;),"/>
+<PROPERTY NAME="USL" INST="148" VALUE="   /* Forms that ORD_MAINT can Navigate to */"/>
+<PROPERTY NAME="USL" INST="149" VALUE="   vTargets   :  Array(&quot;MAIN&quot;),"/>
+<PROPERTY NAME="USL" INST="150" VALUE="   vTYPE      :  &quot;D&quot;"/>
+<PROPERTY NAME="USL" INST="151" VALUE="//&lt;/SYSINFO&gt;"/>
+<PROPERTY NAME="USL" INST="152" VALUE=""/>
+<PROPERTY NAME="USL" INST="153" VALUE="}"/>
+<PROPERTY NAME="USLMAX" TYPE="N" VALUE="153"/>
+<PROPERTY NAME="UUSEROBJECTTYPE" VALUE="FORMSCRIPT_9"/>
+</MEMBER>
+<MEMBER CLASS="VF_FP030" ID="8958FB625D5945189548166542A127D4" RUN="N">
+<PROPERTY NAME="IP_LAST" VALUE="20170525-162404-VF19PGMLIB"/>
+<PROPERTY NAME="UCAPTION" LANG="ENG" VALUE="New Script"/>
+<PROPERTY NAME="UCAPTIONLONG" LANG="ENG" VALUE="PRO_KEY - Invoke this form from anywhere"/>
+<PROPERTY NAME="UNAVIGATEFROM" VALUE="FDD967E44EDE46628AC64D37B17C2DA1"/>
+<PROPERTY NAME="UNAVIGATETO" VALUE="FDD967E44EDE46628AC64D37B17C2DA1"/>
+<PROPERTY NAME="USCRIPTTYPE" VALUE="FORMSCRIPT"/>
+<PROPERTY NAME="USL" VALUE="// This script was generated from skeleton file vf_fpm030_J.js, which is in your LANSA partition execute folder."/>
+<PROPERTY NAME="USL" INST="2" VALUE="// You may alter this file to change how new scripts are generated. **NOTE** You must backup skeleton file changes."/>
+<PROPERTY NAME="USL" INST="3" VALUE="// Script skeleton files are replaced with the standard shipped versions when reinstalling or upgrading RAMP-TS."/>
+<PROPERTY NAME="USL" INST="4" VALUE=""/>
+<PROPERTY NAME="USL" INST="5" VALUE="{"/>
+<PROPERTY NAME="USL" INST="6" VALUE=""/>
+<PROPERTY NAME="USL" INST="7" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="8" VALUE="   /* ===================  NAVIGATETO  ===================== */"/>
+<PROPERTY NAME="USL" INST="9" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="10" VALUE="   /* sToForm:       Name of the Form to navigate to         */"/>
+<PROPERTY NAME="USL" INST="11" VALUE="   /* oPreviousForm: Reference to previous form displayed    */"/>
+<PROPERTY NAME="USL" INST="12" VALUE=""/>
+<PROPERTY NAME="USL" INST="13" VALUE="   vHandle_NAVIGATETO: function(sToForm, oPreviousForm)"/>
+<PROPERTY NAME="USL" INST="14" VALUE="   {"/>
+<PROPERTY NAME="USL" INST="15" VALUE="     var bReturn = true;"/>
+<PROPERTY NAME="USL" INST="16" VALUE=""/>
+<PROPERTY NAME="USL" INST="17" VALUE="     HIDE_CURRENT_FORM();"/>
+<PROPERTY NAME="USL" INST="18" VALUE="     SETBUSY(true);"/>
+<PROPERTY NAME="USL" INST="19" VALUE=""/>
+<PROPERTY NAME="USL" INST="20" VALUE="     switch (sToForm)"/>
+<PROPERTY NAME="USL" INST="21" VALUE="     {"/>
+<PROPERTY NAME="USL" INST="22" VALUE="      /* &lt;NAVIGATESWITCH&gt; - Do not remove or alter this line */"/>
+<PROPERTY NAME="USL" INST="23" VALUE=""/>
+<PROPERTY NAME="USL" INST="24" VALUE="        case &quot;PRO_MAINT&quot;:"/>
+<PROPERTY NAME="USL" INST="25" VALUE="        {"/>
+<PROPERTY NAME="USL" INST="26" VALUE=""/>
+<PROPERTY NAME="USL" INST="27" VALUE="           /* Set up data fields on form PRO_KEY */"/>
+<PROPERTY NAME="USL" INST="28" VALUE=""/>
+<PROPERTY NAME="USL" INST="29" VALUE="           SETVALUE(&quot;KEY&quot;,objListManager.NKey1[0]);"/>
+<PROPERTY NAME="USL" INST="30" VALUE="           SENDKEY(KeyEnter);"/>
+<PROPERTY NAME="USL" INST="31" VALUE="           /* Check for arrival at PRO_MAINT */"/>
+<PROPERTY NAME="USL" INST="32" VALUE="           Q_CHECK_CURRENT_FORM(&quot;PRO_MAINT&quot;,&quot;Unable to navigate to form PRO_MAINT&quot;);"/>
+<PROPERTY NAME="USL" INST="33" VALUE="        }"/>
+<PROPERTY NAME="USL" INST="34" VALUE="        break;"/>
+<PROPERTY NAME="USL" INST="35" VALUE=""/>
+<PROPERTY NAME="USL" INST="36" VALUE="        default:"/>
+<PROPERTY NAME="USL" INST="37" VALUE="              alert(&quot;Form &quot; + this.vName + &quot; cannot navigate to form &quot; + sToForm);"/>
+<PROPERTY NAME="USL" INST="38" VALUE="              bReturn = false;"/>
+<PROPERTY NAME="USL" INST="39" VALUE="              break;"/>
+<PROPERTY NAME="USL" INST="40" VALUE=""/>
+<PROPERTY NAME="USL" INST="41" VALUE="     }"/>
+<PROPERTY NAME="USL" INST="42" VALUE="        /* &lt;/NAVIGATESWITCH&gt; - Do not remove or alter this line */"/>
+<PROPERTY NAME="USL" INST="43" VALUE=""/>
+<PROPERTY NAME="USL" INST="44" VALUE="     return(bReturn);"/>
+<PROPERTY NAME="USL" INST="45" VALUE="   },"/>
+<PROPERTY NAME="USL" INST="46" VALUE=""/>
+<PROPERTY NAME="USL" INST="47" VALUE=""/>
+<PROPERTY NAME="USL" INST="48" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="49" VALUE="   /* ==================  vHandle_ARRIVE  ================== */"/>
+<PROPERTY NAME="USL" INST="50" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="51" VALUE="   /* Handle arrival at this JUNCTION                        */"/>
+<PROPERTY NAME="USL" INST="52" VALUE="   /* oPayload: The payload supplied by the event initiator  */"/>
+<PROPERTY NAME="USL" INST="53" VALUE="   /* oPreviousForm: Reference to previous Form object       */"/>
+<PROPERTY NAME="USL" INST="54" VALUE=""/>
+<PROPERTY NAME="USL" INST="55" VALUE="   vHandle_ARRIVE: function(oPayload, oPreviousForm)"/>
+<PROPERTY NAME="USL" INST="56" VALUE="   {"/>
+<PROPERTY NAME="USL" INST="57" VALUE="     var bReturn = true;"/>
+<PROPERTY NAME="USL" INST="58" VALUE=""/>
+<PROPERTY NAME="USL" INST="59" VALUE="     /* &lt;ARRIVE /&gt; - Do not remove or alter this line */"/>
+<PROPERTY NAME="USL" INST="60" VALUE=""/>
+<PROPERTY NAME="USL" INST="61" VALUE="     return(bReturn);"/>
+<PROPERTY NAME="USL" INST="62" VALUE="   },"/>
+<PROPERTY NAME="USL" INST="63" VALUE=""/>
+<PROPERTY NAME="USL" INST="64" VALUE=""/>
+<PROPERTY NAME="USL" INST="65" VALUE="// Do not alter any script after this line"/>
+<PROPERTY NAME="USL" INST="66" VALUE="//&lt;SYSINFO&gt;"/>
+<PROPERTY NAME="USL" INST="67" VALUE="   vName      :  &quot;PRO_KEY&quot;,"/>
+<PROPERTY NAME="USL" INST="68" VALUE="   vGUID      :  &quot;FDD967E44EDE46628AC64D37B17C2DA1&quot;,"/>
+<PROPERTY NAME="USL" INST="69" VALUE="   vFKC       :    null,"/>
+<PROPERTY NAME="USL" INST="70" VALUE="   vFKERTS    :    null,"/>
+<PROPERTY NAME="USL" INST="71" VALUE="   vFKEVLF    :    null,"/>
+<PROPERTY NAME="USL" INST="72" VALUE="   vFKSND     :    null,"/>
+<PROPERTY NAME="USL" INST="73" VALUE="   vFKSEQ     :    null,"/>
+<PROPERTY NAME="USL" INST="74" VALUE="   /* Forms that PRO_KEY can Navigate to */"/>
+<PROPERTY NAME="USL" INST="75" VALUE="   vTargets   :  Array(&quot;PRO_MAINT&quot;),"/>
+<PROPERTY NAME="USL" INST="76" VALUE="   vTYPE      :  &quot;D&quot;"/>
+<PROPERTY NAME="USL" INST="77" VALUE="//&lt;/SYSINFO&gt;"/>
+<PROPERTY NAME="USL" INST="78" VALUE=""/>
+<PROPERTY NAME="USL" INST="79" VALUE="}"/>
+<PROPERTY NAME="USLMAX" TYPE="N" VALUE="79"/>
+<PROPERTY NAME="UUSEROBJECTTYPE" VALUE="FORMSCRIPT_10"/>
+</MEMBER>
+<MEMBER CLASS="VF_FP030" ID="B467418407814CC1BC4147B3F9AA767C" RUN="N">
+<PROPERTY NAME="IP_LAST" VALUE="20170525-153438-VF19PGMLIB"/>
+<PROPERTY NAME="UCAPTION" LANG="ENG" VALUE="New Script"/>
+<PROPERTY NAME="UCAPTIONLONG" LANG="ENG" VALUE="PRO_MAINT - Invoke this form from anywhere"/>
+<PROPERTY NAME="UNAVIGATEFROM" VALUE="02163A65D8004CC8B5015C1F452F1AF3"/>
+<PROPERTY NAME="UNAVIGATETO" VALUE="02163A65D8004CC8B5015C1F452F1AF3"/>
+<PROPERTY NAME="USCRIPTTYPE" VALUE="FORMSCRIPT"/>
+<PROPERTY NAME="USL" VALUE="// This script was generated from skeleton file vf_fpm030_D.js, which is in your LANSA partition execute folder."/>
+<PROPERTY NAME="USL" INST="2" VALUE="// You may alter this file to change how new scripts are generated. **NOTE** You must backup skeleton file changes."/>
+<PROPERTY NAME="USL" INST="3" VALUE="// Script skeleton files are replaced with the standard shipped versions when reinstalling or upgrading RAMP-TS."/>
+<PROPERTY NAME="USL" INST="4" VALUE=""/>
+<PROPERTY NAME="USL" INST="5" VALUE="{"/>
+<PROPERTY NAME="USL" INST="6" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="7" VALUE="   /* ==================  vHandle_ARRIVE  ================== */"/>
+<PROPERTY NAME="USL" INST="8" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="9" VALUE="   /* Handle arrival at this Destination                     */"/>
+<PROPERTY NAME="USL" INST="10" VALUE="   /* oPayload: The payload supplied by the event initiator  */"/>
+<PROPERTY NAME="USL" INST="11" VALUE="   /* oPreviousForm: Reference to previous Form object       */"/>
+<PROPERTY NAME="USL" INST="12" VALUE=""/>
+<PROPERTY NAME="USL" INST="13" VALUE="   vHandle_ARRIVE: function(oPayload, oPreviousForm)"/>
+<PROPERTY NAME="USL" INST="14" VALUE="   {"/>
+<PROPERTY NAME="USL" INST="15" VALUE="     var bReturn = true;"/>
+<PROPERTY NAME="USL" INST="16" VALUE=""/>
+<PROPERTY NAME="USL" INST="17" VALUE="     SHOW_CURRENT_FORM(true); /* Show the form in the framework and show VLF buttons */"/>
+<PROPERTY NAME="USL" INST="18" VALUE="     HIDE_5250_BUTTONS();     /* Hide any 5250 style buttons displayed               */"/>
+<PROPERTY NAME="USL" INST="19" VALUE="     GET_FORM_MESSAGE(22);    /* Extract messages and hide the message line          */"/>
+<PROPERTY NAME="USL" INST="20" VALUE="     SETBUSY(false);          /* Last thing done - turn off the busy state           */"/>
+<PROPERTY NAME="USL" INST="21" VALUE=""/>
+<PROPERTY NAME="USL" INST="22" VALUE="     /* &lt;ARRIVE /&gt; - Do not remove or alter this line */"/>
+<PROPERTY NAME="USL" INST="23" VALUE=""/>
+<PROPERTY NAME="USL" INST="24" VALUE="     return(bReturn);"/>
+<PROPERTY NAME="USL" INST="25" VALUE="   },"/>
+<PROPERTY NAME="USL" INST="26" VALUE=""/>
+<PROPERTY NAME="USL" INST="27" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="28" VALUE="   /* ==================  BUTTONCLICK  ===================== */"/>
+<PROPERTY NAME="USL" INST="29" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="30" VALUE="   /* sButton: The button that was clicked                   */"/>
+<PROPERTY NAME="USL" INST="31" VALUE=""/>
+<PROPERTY NAME="USL" INST="32" VALUE="   vHandle_BUTTONCLICK: function(sButton)"/>
+<PROPERTY NAME="USL" INST="33" VALUE="   {"/>
+<PROPERTY NAME="USL" INST="34" VALUE=""/>
+<PROPERTY NAME="USL" INST="35" VALUE="     var bReturn = true;"/>
+<PROPERTY NAME="USL" INST="36" VALUE=""/>
+<PROPERTY NAME="USL" INST="37" VALUE="     if (HANDLE_PROMPT()) return(bReturn); /* If the focus element is automatically prompted finish now */"/>
+<PROPERTY NAME="USL" INST="38" VALUE=""/>
+<PROPERTY NAME="USL" INST="39" VALUE="     /* &lt;BUTTONCLICK /&gt; - Do not remove or alter this line */"/>
+<PROPERTY NAME="USL" INST="40" VALUE=""/>
+<PROPERTY NAME="USL" INST="41" VALUE="           /* Handle function keys and buttons */"/>
+<PROPERTY NAME="USL" INST="42" VALUE=""/>
+<PROPERTY NAME="USL" INST="43" VALUE="           switch (sButton)"/>
+<PROPERTY NAME="USL" INST="44" VALUE="        {"/>
+<PROPERTY NAME="USL" INST="45" VALUE="           case KeyEnter:"/>
+<PROPERTY NAME="USL" INST="46" VALUE="                 SENDKEY(KeyEnter);"/>
+<PROPERTY NAME="USL" INST="47" VALUE="                 break;"/>
+<PROPERTY NAME="USL" INST="48" VALUE="              default:"/>
+<PROPERTY NAME="USL" INST="49" VALUE="                 SENDKEY(sButton);"/>
+<PROPERTY NAME="USL" INST="50" VALUE="                 break;"/>
+<PROPERTY NAME="USL" INST="51" VALUE="        }"/>
+<PROPERTY NAME="USL" INST="52" VALUE=""/>
+<PROPERTY NAME="USL" INST="53" VALUE=""/>
+<PROPERTY NAME="USL" INST="54" VALUE="     return(bReturn);"/>
+<PROPERTY NAME="USL" INST="55" VALUE="   },"/>
+<PROPERTY NAME="USL" INST="56" VALUE=""/>
+<PROPERTY NAME="USL" INST="57" VALUE=""/>
+<PROPERTY NAME="USL" INST="58" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="59" VALUE="   /* ===================  NAVIGATETO  ===================== */"/>
+<PROPERTY NAME="USL" INST="60" VALUE="   /* ====================================================== */"/>
+<PROPERTY NAME="USL" INST="61" VALUE="   /* sToForm:       Name of the Form to navigate to */"/>
+<PROPERTY NAME="USL" INST="62" VALUE="   /* oPreviousForm: Reference to previous Form object */"/>
+<PROPERTY NAME="USL" INST="63" VALUE=""/>
+<PROPERTY NAME="USL" INST="64" VALUE="   vHandle_NAVIGATETO: function(sToForm, oPreviousForm)"/>
+<PROPERTY NAME="USL" INST="65" VALUE="   {"/>
+<PROPERTY NAME="USL" INST="66" VALUE="     var bReturn = true;"/>
+<PROPERTY NAME="USL" INST="67" VALUE=""/>
+<PROPERTY NAME="USL" INST="68" VALUE="     HIDE_CURRENT_FORM();"/>
+<PROPERTY NAME="USL" INST="69" VALUE="     SETBUSY(true);"/>
+<PROPERTY NAME="USL" INST="70" VALUE=""/>
+<PROPERTY NAME="USL" INST="71" VALUE="     switch (sToForm)"/>
+<PROPERTY NAME="USL" INST="72" VALUE="     {"/>
+<PROPERTY NAME="USL" INST="73" VALUE="        /* &lt;NAVIGATESWITCH&gt; - Do not remove or alter this line */"/>
+<PROPERTY NAME="USL" INST="74" VALUE=""/>
+<PROPERTY NAME="USL" INST="75" VALUE="        case &quot;MAIN&quot;:"/>
+<PROPERTY NAME="USL" INST="76" VALUE="        {"/>
+<PROPERTY NAME="USL" INST="77" VALUE="           SENDKEY(KeyF12);"/>
+<PROPERTY NAME="USL" INST="78" VALUE=""/>
+<PROPERTY NAME="USL" INST="79" VALUE="           /* Check for arrival at MAIN */"/>
+<PROPERTY NAME="USL" INST="80" VALUE=""/>
+<PROPERTY NAME="USL" INST="81" VALUE="           Q_CHECK_CURRENT_FORM(&quot;MAIN&quot;,&quot;Unable to navigate to form MAIN&quot;);"/>
+<PROPERTY NAME="USL" INST="82" VALUE="        }"/>
+<PROPERTY NAME="USL" INST="83" VALUE="           break;"/>
+<PROPERTY NAME="USL" INST="84" VALUE=""/>
+<PROPERTY NAME="USL" INST="85" VALUE="        default:"/>
+<PROPERTY NAME="USL" INST="86" VALUE="              alert(&quot;Form &quot; + this.vName + &quot; cannot navigate to form &quot; + sToForm);"/>
+<PROPERTY NAME="USL" INST="87" VALUE="              bReturn = false;"/>
+<PROPERTY NAME="USL" INST="88" VALUE="              break;"/>
+<PROPERTY NAME="USL" INST="89" VALUE=""/>
+<PROPERTY NAME="USL" INST="90" VALUE="     }"/>
+<PROPERTY NAME="USL" INST="91" VALUE=""/>
+<PROPERTY NAME="USL" INST="92" VALUE="        /* &lt;/NAVIGATESWITCH&gt; - Do not remove or alter this line */"/>
+<PROPERTY NAME="USL" INST="93" VALUE=""/>
+<PROPERTY NAME="USL" INST="94" VALUE="     return(bReturn);"/>
+<PROPERTY NAME="USL" INST="95" VALUE="   },"/>
+<PROPERTY NAME="USL" INST="96" VALUE=""/>
+<PROPERTY NAME="USL" INST="97" VALUE=""/>
+<PROPERTY NAME="USL" INST="98" VALUE=""/>
+<PROPERTY NAME="USL" INST="99" VALUE="// Do not alter any script after this line"/>
+<PROPERTY NAME="USL" INST="100" VALUE="//&lt;SYSINFO&gt;"/>
+<PROPERTY NAME="USL" INST="101" VALUE="   vName      :  &quot;PRO_MAINT&quot;,"/>
+<PROPERTY NAME="USL" INST="102" VALUE="   vGUID      :  &quot;02163A65D8004CC8B5015C1F452F1AF3&quot;,"/>
+<PROPERTY NAME="USL" INST="103" VALUE="   vOverrideExitJunction : &quot;&quot;, /* You may change this property dynamically */"/>
+<PROPERTY NAME="USL" INST="104" VALUE="   vFKC   :  Array(&quot;Enter&quot;,&quot;F1&quot;,&quot;F2&quot;,&quot;F3&quot;,&quot;F4&quot;,&quot;F5&quot;,"/>
+<PROPERTY NAME="USL" INST="105" VALUE="&quot;F6&quot;,&quot;F7&quot;,&quot;F8&quot;,&quot;F9&quot;,&quot;F10&quot;,&quot;F11&quot;,"/>
+<PROPERTY NAME="USL" INST="106" VALUE="&quot;F12&quot;,&quot;F13&quot;,&quot;F14&quot;,&quot;F15&quot;,&quot;F16&quot;,&quot;F17&quot;,"/>
+<PROPERTY NAME="USL" INST="107" VALUE="&quot;F18&quot;,&quot;F19&quot;,&quot;F20&quot;,&quot;F21&quot;,&quot;F22&quot;,&quot;F23&quot;,"/>
+<PROPERTY NAME="USL" INST="108" VALUE="&quot;F24&quot;,&quot;Clear&quot;,&quot;Page Up&quot;,&quot;Page Down&quot;,&quot;Print&quot;,&quot;Help&quot;,"/>
+<PROPERTY NAME="USL" INST="109" VALUE="&quot;Attention&quot;,&quot;PA1&quot;),"/>
+<PROPERTY NAME="USL" INST="110" VALUE="   vFKSEQ : &quot;0102030405060708091011121314151617181920212223242526272829303132333435363738&quot;,"/>
+<PROPERTY NAME="USL" INST="111" VALUE="   vFKERTS : &quot;10000000000000000000000000000000000000&quot;,"/>
+<PROPERTY NAME="USL" INST="112" VALUE="   vFKEVLF : &quot;10000000000000000000000000000000000000&quot;,"/>
+<PROPERTY NAME="USL" INST="113" VALUE="   vFKSND   :     Array(&quot;Enter&quot;,&quot;F1&quot;,&quot;F2&quot;,&quot;F3&quot;,&quot;F4&quot;,&quot;F5&quot;,"/>
+<PROPERTY NAME="USL" INST="114" VALUE="&quot;F6&quot;,&quot;F7&quot;,&quot;F8&quot;,&quot;F9&quot;,&quot;F10&quot;,&quot;F11&quot;,"/>
+<PROPERTY NAME="USL" INST="115" VALUE="&quot;F12&quot;,&quot;F13&quot;,&quot;F14&quot;,&quot;F15&quot;,&quot;F16&quot;,&quot;F17&quot;,"/>
+<PROPERTY NAME="USL" INST="116" VALUE="&quot;F18&quot;,&quot;F19&quot;,&quot;F20&quot;,&quot;F21&quot;,&quot;F22&quot;,&quot;F23&quot;,"/>
+<PROPERTY NAME="USL" INST="117" VALUE="&quot;F24&quot;,&quot;ClearScreen&quot;,&quot;PageUp&quot;,&quot;PageDown&quot;,&quot;Print&quot;,&quot;Help&quot;,"/>
+<PROPERTY NAME="USL" INST="118" VALUE="&quot;Attention&quot;,&quot;PA1&quot;),"/>
+<PROPERTY NAME="USL" INST="119" VALUE="   /* Forms that PRO_MAINT can Navigate to */"/>
+<PROPERTY NAME="USL" INST="120" VALUE="   vTargets   :  Array(&quot;MAIN&quot;),"/>
+<PROPERTY NAME="USL" INST="121" VALUE="   vTYPE      :  &quot;D&quot;"/>
+<PROPERTY NAME="USL" INST="122" VALUE="//&lt;/SYSINFO&gt;"/>
+<PROPERTY NAME="USL" INST="123" VALUE=""/>
+<PROPERTY NAME="USL" INST="124" VALUE="}"/>
+<PROPERTY NAME="USLMAX" TYPE="N" VALUE="124"/>
+<PROPERTY NAME="UUSEROBJECTTYPE" VALUE="FORMSCRIPT_14"/>
+</MEMBER>
+</OBJECT>
+</OBJECT>

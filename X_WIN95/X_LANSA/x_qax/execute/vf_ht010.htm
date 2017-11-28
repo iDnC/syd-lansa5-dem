@@ -1,0 +1,434 @@
+﻿<HTML>
+	<HEAD id="VF_HT010_Head">
+		<META NAME="GENERATOR" Content="Microsoft Developer Studio">
+		<META HTTP-EQUIV="Content-Type" content="text/html; charset=iso-8859-1">
+		<META name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5">
+		<TITLE>Calculator</TITLE>
+		<STYLE type="text/css">
+			.funcBtn
+			{
+				color :		blue;
+				width :		32px; 
+				height:		27px;
+			}
+			.operBtn
+			{
+				color :		red;
+				width :		32px; 
+				height:		27px;
+			}
+			.bigBtn
+			{
+				align :		center;
+				color :		red;
+				width :		56px; 
+				height:		27px;
+			}    
+			.custBtn
+			{
+				color :		red;
+				width :		96px; 
+				height:		27px;
+				visibility: hidden;
+			}    
+		</STYLE>
+<script language='JavaScript' type="text/javascript" src="vf_xbrowser.js"></script>
+<script language="JavaScript">
+		
+/* Global variables */
+var	objFP_RCALC			    = null;
+var VF_Opener			    = null; 
+var VF_System			    = null;
+var objResultsField			= null;
+var flagCustomButton1		= false; 
+var flagCustomButton2		= false; 
+var objCustomButton1		= null;
+var objCustomButton2		= null;
+var strCustomButton1Caption	= ""; 
+var strCustomButton2Caption	= ""; 
+var strDecimalSeparator		= "";
+var flagIgnoreUnload		= false;	
+
+function FP_RCALC_PRIVATE_CloseWindow()
+{ 
+	flagIgnoreUnload = true; 
+	window.close(); 
+	return; 
+}
+
+function FP_RCALC_PRIVATE_SetupCalculator(argobjFP_RXXXX)
+{ 
+	objFP_RCALC	= argobjFP_RXXXX;
+	
+	/* Set values for other global variables */
+	VF_Opener			= objFP_RCALC.VF_Opener; 
+	VF_System			= objFP_RCALC.VF_System; 
+	objResultsField		= document.calculator.VF_HT010_Result;
+	objCustomButton1	= document.calculator.custbtn1;
+	objCustomButton2	= document.calculator.custbtn2;
+	strDecimalSeparator	= VF_System.strDecimalSeparator;
+	
+	/* Set the value of the decimal separator button */
+	document.calculator.caldec.value = strDecimalSeparator;
+	
+	/* Array of button names for setting multi-lingual button values*/
+	var aryButtonNames = new Array("calBack", "calClrent", "calclear", "calSqrt", "calMClr", "calMRd", "calMSve", "calMPls");
+	
+	/* Set button values */
+	for (var i=0; i < aryButtonNames.length; i++)
+	{
+		var strButtonName = aryButtonNames[i];
+		document.calculator.elements[strButtonName].value = VF_System.MString(i+200);
+	}
+
+	/* Determine if custom buttons are required */
+	flagCustomButton1 = VF_System.FP_GetBool(objFP_RCALC,"uCustomButton1",1,"FALSE",1);
+	flagCustomButton2 = VF_System.FP_GetBool(objFP_RCALC,"uCustomButton2",1,"FALSE",1);
+	
+	/* Set up any custom buttons */
+	if(flagCustomButton1)
+	{
+		objCustomButton1.style.visibility = "visible";
+		strCustomButton1Caption = VF_System.FP_Get(objFP_RCALC,"uCustomButton1Text",1,null,false);
+		objCustomButton1.value = strCustomButton1Caption;
+	}
+	
+	if(flagCustomButton2)
+	{
+		objCustomButton2.style.visibility = "visible";
+		strCustomButton2Caption = VF_System.FP_Get(objFP_RCALC,"uCustomButton2Text",1,null,false);
+		objCustomButton2.value = strCustomButton2Caption;
+	}
+
+	VF_HT010_SetStyle();
+
+	/* Let the fast part know that loading has completed */
+	VF_Opener.FP_RCALC_EXTERNAL_EVENT_HANDLER_001(window,objFP_RCALC.intThisObjectID); 
+	
+	return; 
+}
+
+function Calculator_OnClick(keyStr)
+{
+	switch (keyStr)
+	{
+	/* Number keys */
+		case "0":
+		case "1":
+		case "2":
+		case "3":
+		case "4":
+		case "5":
+		case "6":
+		case "7":
+		case "8":
+		case "9":
+		case strDecimalSeparator:
+		
+			if ((this.lastOp==this.opClear) || (this.lastOp==this.opOperator) || (objResultsField.value=="0"))
+			{					
+				objResultsField.value = keyStr;
+			}
+			else
+			{
+				// ignore extra decimals
+				if ((keyStr!=strDecimalSeparator) || (objResultsField.value.indexOf(strDecimalSeparator)<0))
+				{
+					objResultsField.value += keyStr;
+				}
+				
+			}
+
+			this.lastOp = this.opNumber;
+			break;
+		
+	// Maths operators
+		case "*":
+		case "/":
+		case "+":
+		case "-":
+			if (this.lastOp==this.opNumber)
+				this.Calc();
+			this.evalStr += objResultsField.value + keyStr;
+		
+			this.lastOp = this.opOperator;
+			break;
+		
+	// Percent key
+		case "%":
+			if (this.lastOp==this.opNumber)
+			{
+				var subResult = this.evalStr;
+				objResultsField.value = subResult.substring(0, subResult.length -1)*objResultsField.value/100;
+				
+				/* Covert result to the desired number od decimal places */
+				VF_Opener.FP_RCALC_PRIVATE_RoundResult(objFP_RCALC.intThisObjectID); 
+				
+				/* Let the fast part know that the value of the display has changed */
+				VF_Opener.FP_RCALC_EXTERNAL_EVENT_HANDLER_003(objFP_RCALC.intThisObjectID); 
+			}
+			
+			break;
+		
+	// Equals key
+		case "=":
+			this.Calc();
+			this.lastOp = this.opClear;
+			VF_Opener.FP_RCALC_EXTERNAL_EVENT_HANDLER_003(objFP_RCALC.intThisObjectID); 
+			break;
+		
+	// Backspace
+		case "b":
+			if (this.lastOp==this.opNumber)
+			{
+				if (objResultsField.value.length == 1)
+				{
+					objResultsField.value = "0";
+					this.lastOp = this.opClear;
+				}
+				else
+				{
+					objResultsField.value = objResultsField.value.substring(0, objResultsField.value.length -1);
+				}
+			}
+			break;
+			
+	// 'C' key, Clear all
+		case "c":
+			objResultsField.value = "0";
+			this.lastOp = this.opClear;
+			this.evalStr = "";
+			/* Let the fast part know that the value of the display has changed */
+			VF_Opener.FP_RCALC_EXTERNAL_EVENT_HANDLER_003(objFP_RCALC.intThisObjectID); 
+			break;
+			
+	// 'MR' key, memory read
+		case "d":
+			objResultsField.value = this.Memory;
+			break;
+			
+	// 'CE' key, clear displayed number
+		case "e":
+			objResultsField.value = "0";
+			this.lastOp = this.opClear;
+			break;
+			
+	// 'MC' key, clear memory
+		case "l":
+			this.Memory = 0;
+			break;
+			
+	// '+/-' key, change sign
+		case "p":
+			objResultsField.value = objResultsField.value * -1;
+			break;
+			
+	// '1/x' key, give reciprical
+		case "r":
+			objResultsField.value = 1 / objResultsField.value;
+			VF_Opener.FP_RCALC_EXTERNAL_EVENT_HANDLER_003(objFP_RCALC.intThisObjectID); 
+			break;
+			
+	// 'Sqrt' key, give square root
+		case "s":
+			objResultsField.value = Math.sqrt(objResultsField.value);
+			VF_Opener.FP_RCALC_EXTERNAL_EVENT_HANDLER_003(objFP_RCALC.intThisObjectID); 
+			this.lastOp = this.opClear;
+			break;
+			
+	// 'M+' key, add to memory
+		case "u":
+			this.Memory = eval(this.Memory+"+"+objResultsField.value+";");
+			break;
+			
+	// 'MS' key, memory save
+		case "v":
+			this.Memory = objResultsField.value;
+			break;
+			
+	// Custom key 1
+		case "w":
+			VF_Opener.FP_RCALC_EXTERNAL_EVENT_HANDLER_003(objFP_RCALC.intThisObjectID); 
+			/* Let the fast part know that custom button 1 has been clicked */
+			VF_Opener.FP_RCALC_EXTERNAL_EVENT_HANDLER_002(1, objFP_RCALC.intThisObjectID); 
+			break;
+			
+	// Custom key 2
+		case "x":
+			VF_Opener.FP_RCALC_EXTERNAL_EVENT_HANDLER_003(objFP_RCALC.intThisObjectID); 
+			/* Let the fast part know that custom button 2 has been clicked */
+			VF_Opener.FP_RCALC_EXTERNAL_EVENT_HANDLER_002(2, objFP_RCALC.intThisObjectID); 
+			break;
+			
+	// Invalid key
+		default:
+			alert("'" + keyStr + "' not recognized.");
+	}
+
+}
+
+function Calculator_Calc()
+{
+	/* Get the full evaluation string */
+	var strTempEval = this.evalStr + objResultsField.value;
+	
+	/* Try to do the calculation */
+	objResultsField.value = VF_Opener.FP_RCALC_PRIVATE_EvaluateString(strTempEval, objFP_RCALC.intThisObjectID);
+	
+	/* Clear the evaluation string */
+	this.evalStr = "";
+}
+
+function Calculator_OnKeyPress()
+{
+	/* Catch presses of the Enter key */
+	if(event.keyCode == 13) 
+	{
+		objCalculator.OnClick('=');
+		event.cancelBubble = true;
+		event.returnValue  = false;
+	}
+	
+}
+
+function Calculator()
+{
+	this.evalStr = "";
+	this.Memory = 0;
+
+	this.opNumber = 0;
+	this.opOperator = 1;
+	this.opClear = 2;
+	
+	this.lastOp = this.opClear;
+	
+	this.OnClick = Calculator_OnClick;
+	this.Calc = Calculator_Calc;
+	this.OnKeyPress = Calculator_OnKeyPress;
+}
+
+function VF_HT010_SetStyle()
+{
+
+/* insert the appropiate style sheet according to the Style Scheme property */
+/*	var objLink  = document.createElement("LINK"); */
+/*	objLink.rel  = "stylesheet"; */
+/*	objLink.type = "text/css"; */
+/*	objLink.href = VF_System.strL4WebImagesFullPath + "uf_vs001_" + VF_System.strStyleScheme + ".css"; */
+
+/* VF_HT010_Head.insertAdjacentElement("afterBegin", objLink); */
+
+}
+
+objCalculator = new Calculator();
+
+</script>
+<script LANGUAGE='JavaScript'> 
+/* XBrowser changes */
+function VF_HT010_EVENT_HANDLER_Init()
+{
+
+	try
+	{
+            /* XBrowser */
+            VF_Opener = opener ; 
+            VF_System = VF_Opener.VF_System ; 
+
+            if(VF_System.objTempFP_RCALC.flagSeperateWindow) 
+            {
+               window.onbeforeunload  = VF_HT010_EVENT_HANDLER_onBeforeUnload;
+               window.FP_RCALC_PRIVATE_SetupCalculator(VF_System.objTempFP_RCALC);
+            }
+            else
+            {
+               var  VF_HT010_BODY = document.getElementById("VF_HT010_BODY");
+               VF_HT010_BODY.onunload = VF_HT010_EVENT_HANDLER_onBeforeUnload;
+            } 
+ 
+
+	}
+	catch(objError){}
+}   
+
+function VF_HT010_EVENT_HANDLER_onBeforeUnload()
+{
+	/* Clear objects in memory */
+	
+	if ( !(flagIgnoreUnload) ) VF_Opener.FP_RCALC_EXTERNAL_EVENT_HANDLER_004(objFP_RCALC.intThisObjectID);  
+}  
+</script>
+
+
+	</HEAD>
+	<BODY  id="VF_HT010_BODY" onload="VF_HT010_EVENT_HANDLER_Init()">
+		<form name="calculator" id="calculator">
+			<table cellpadding="2" cellspacing="0">
+				<tr>
+					<td>
+						<table border="0" cellpadding="2" cellspacing="0" width="100%">
+							<tr>
+								<td colspan="3">
+									<input type="text" name="VF_HT010_Result" id="VF_HT010_Result" value="0" size="32" style="text-align: right" onkeypress="objCalculator.OnKeyPress()"></td>
+							</tr>
+							<tr>
+								<td align="left"><input class="bigBtn" type="button" name="calBack" onclick="objCalculator.OnClick('b')"></td>
+								<td align="middle"><input class="bigBtn" type="button" name="calClrent" onclick="objCalculator.OnClick('e')"></td>
+								<td align="right"><input class="bigBtn" type="button" name="calclear" onclick="objCalculator.OnClick('c')"></td>
+							</tr>
+						</table>
+						<table border="0" cellpadding="2" cellspacing="0" width="100%" ID="Table2">
+							<tr>
+								<td><input class="operBtn" type="button" name="calMClr" onclick="objCalculator.OnClick('l')" ondblclick="objCalculator.OnClick('l')"></td>
+								<td><input class="funcBtn" type="button" value="7" name="cal7" onclick="objCalculator.OnClick('7')" ondblclick="objCalculator.OnClick('7')"></td>
+								<td><input class="funcBtn" type="button" value="8" name="cal8" onclick="objCalculator.OnClick('8')" ondblclick="objCalculator.OnClick('8')">
+								</td>
+								<td><input class="funcBtn" type="button" value="9" name="cal9" onclick="objCalculator.OnClick('9')" ondblclick="objCalculator.OnClick('9')">
+								</td>
+								<td><input class="operBtn" type="button" value="/" name="caldiv" onclick="objCalculator.OnClick('/')"></td>
+								<td><input class="funcBtn" type="button" name="calSqrt" onclick="objCalculator.OnClick('s')"></td>
+							</tr>
+							<tr>
+								<td><input class="operBtn" type="button" name="calMRd" onclick="objCalculator.OnClick('d')" ondblclick="objCalculator.OnClick('d')" ID="Button3"></td>
+								<td><input class="funcBtn" type="button" value="4" name="cal4" onclick="objCalculator.OnClick('4')" ondblclick="objCalculator.OnClick('4')">
+								</td>
+								<td><input class="funcBtn" type="button" value="5" name="cal5" onclick="objCalculator.OnClick('5')" ondblclick="objCalculator.OnClick('5')">
+								</td>
+								<td><input class="funcBtn" type="button" value="6" name="cal6" onclick="objCalculator.OnClick('6')" ondblclick="objCalculator.OnClick('6')">
+								</td>
+								<td><input class="operBtn" type="button" value="*" name="calmul" onclick="objCalculator.OnClick('*')"></td>
+								<td><input class="funcBtn" type="button" value="%" name="calpcent" onclick="objCalculator.OnClick('%')"></td>
+							</tr>
+							<tr>
+								<td><input class="operBtn" type="button" name="calMSve" onclick="objCalculator.OnClick('v')" ondblclick="objCalculator.OnClick('v')" ID="Button4"></td>
+								<td><input class="funcBtn" type="button" value="1" name="cal1" onclick="objCalculator.OnClick('1')" ondblclick="objCalculator.OnClick('1')">
+								</td>
+								<td><input class="funcBtn" type="button" value="2" name="cal2" onclick="objCalculator.OnClick('2')" ondblclick="objCalculator.OnClick('2')">
+								</td>
+								<td><input class="funcBtn" type="button" value="3" name="cal3" onclick="objCalculator.OnClick('3')" ondblclick="objCalculator.OnClick('3')">
+								</td>
+								<td><input class="operBtn" type="button" value="-" name="calminus" onclick="objCalculator.OnClick('-')"></td>
+								<td><input class="funcBtn" type="button" value="1/x" name="calrcep" onclick="objCalculator.OnClick('r')"></td>
+							</tr>
+							<tr>
+								<td><input class="operBtn" type="button" name="calMPls" onclick="objCalculator.OnClick('u')" ondblclick="objCalculator.OnClick('u')" ID="Button5"></td>
+								<td><input class="funcBtn" type="button" value="0" name="cal0" onclick="objCalculator.OnClick('0')" ondblclick="objCalculator.OnClick('0')" ID="Button1">
+								</td>
+								<td><input class="funcBtn" type="button" value="+/-" name="calplusMinus" onclick="objCalculator.OnClick('p')" ondblclick="">
+								</td>
+								<td><input class="funcBtn" type="button" name="caldec" onclick="objCalculator.OnClick(strDecimalSeparator)"></td>
+								<td><input class="operBtn" type="button" value="+" name="calplus" onclick="objCalculator.OnClick('+')"></td>
+								<td><input class="operBtn" type="button" value="=" name="calequal" onclick="objCalculator.OnClick('=')" ID="Button2"></td>
+							</tr>
+						</table>
+						<table border="0" cellpadding="2" cellspacing="0" width="100%" ID="Table3">
+							<tr>
+								<td align="left"><input class="custBtn" type="button" align="left" name="custbtn1" onclick="objCalculator.OnClick('w')" ID="Button6"></td>
+								<td align="right"><input class="custBtn" type="button" align="right" name="custbtn2" onclick="objCalculator.OnClick('x')" ID="Button7"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</BODY>
+</HTML>

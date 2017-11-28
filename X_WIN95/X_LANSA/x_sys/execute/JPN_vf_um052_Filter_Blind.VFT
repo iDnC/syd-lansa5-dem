@@ -1,0 +1,156 @@
+<caption>
+CRUD フィルターとインスタンス リスト      
+</caption>
+<preamble>
+JPN_vf_um052_Filter_Blind.htm
+</preamble>
+<context>
+Filter 
+</context>
+<sequence>
+000100  
+</sequence>
+<handlertxt>
+ビジネス オブジェクトがベースにする物理ファイルを指定し、インスタンス リストに表示するフィールド、レコードを一意に識別するフィールドを選択します。
+その他必要なオプションを選択します。
+</handlertxt>
+<handler>
+VF_UM128 
+VF_UM109 
+</handler>
+<hint>
+このアシスタントは、指定のファイルまたはビューをベースとし、手作業を全く、またはほとんど必要としないフィルターのコードを作成します。VL フレームワークの初心者である開発者向けに設計されています。
+</hint>
+<code>
+<<include VF_UM052_Filter_Preamble.vfi>>
+Function Options(*DIRECT)
+Begin_Com Role(*EXTENDS #VF_AC007) Height(182) Width(326) LayoutManager(#MAIN_LAYOUT)
+* <<majorsep>>
+* 簡素なフィールドやグループ、および条件の定義
+* <<majorsep>>
+Group_By   Name(#XG_Ident)   Fields(<<UM055_GenFldList>>)
+<<if CA_UM109_CHK_CONNECT>>
+define field(#con_rslt) type(*char) length(2)
+Def_Cond Name(*conresult) Cond(#con_rslt = OK)
+<<endif>> 
+* <<majorsep>>
+* コンポーネント定義
+* <<majorsep>>
+<<Comment>>ボディおよびボタン配置のパネル 
+Define_Com Class(#PRIM_PANL) Name(#BODY_PANEL) Displayposition(1) Height(182) Layoutmanager(#BODY_FLOW) Left(0) Parent(#COM_OWNER) Tabposition(1) Tabstop(False) Top(0) Width(246)
+Define_Com Class(#PRIM_PANL) Name(#BUTTON_PANEL) Displayposition(2) Height(182) Layoutmanager(#BUTTON_FLOW) Left(246) Parent(#COM_OWNER) Tabposition(2) Tabstop(False) Top(0) Width(88)
+<<Comment>>添付およびフロー レイアウト マネージャー
+Define_Com Class(#PRIM_ATLM) Name(#MAIN_LAYOUT)
+Define_Com Class(#PRIM_ATLI) Name(#BODY_ATTACH)   Attachment(Center) Manage(#BODY_PANEL) Parent(#MAIN_LAYOUT)
+Define_Com Class(#PRIM_ATLI) Name(#BUTTON_ATTACH) Attachment(Right)  Manage(#BUTTON_PANEL) Parent(#MAIN_LAYOUT)
+Define_Com Class(#PRIM_FWLM) Name(#BUTTON_FLOW) Direction(TopToBottom) Flowoperation(Center) Marginbottom(4) Marginleft(4) Marginright(4) Margintop(4) Spacing(4) Spacingitems(4)
+Define_Com Class(#PRIM_FWLM) Name(#BODY_FLOW) Direction(TopToBottom) Marginbottom(4) Marginleft(4) Marginright(4) Margintop(4) Spacing(4) Spacingitems(4)
+* <<majorsep>>
+* メソッド定義
+* <<majorsep>>
+<<CommentBlock>>
+Mthroutine Name(uInitialize) Options(*Redefine)
+<<if CA_UM109_CHK_CONNECT>>
+<<comment>>まだ接続状態にあるか確認 
+#avFrameworkManager.avCheckConnection ReturnValue(#con_rslt)
+If Cond(*conresult)
+<<endif>> 
+<<comment>>インスタンス リスト <<businessobject_lang ucaption>> の更新が開始することを示す
+#avListManager.BeginListUpdate
+#avListManager.ClearList
+Select Fields(#XG_Ident) From_File(<<UM055_BaseFile>>)  
+<<UM055_AddtoList>>  
+EndSelect
+<<comment>>インスタンス リスト <<businessobject_lang ucaption>> の更新が完了したことを示す
+#avListManager.EndListUpdate
+<<if CA_UM109_CHK_CONNECT>>
+endif
+<<endif>>
+<<comment>>非表示のフィルターにする
+#Com_Owner.avHiddenFilter := True
+Endroutine
+<<if CA_UM109_TERMINATE>>
+* <<minorsep>>
+* 終了処理
+* <<minorsep>>
+Mthroutine Name(uTerminate) Options(*REDEFINE)
+<<CommentBlock>>
+* <終了ロジックをここに記述>
+* <終了ロジックをここに記述>
+* <終了ロジックをここに記述>
+<<CommentBlock>>
+<<Comment>>祖先に終了定義があるか
+#Com_Ancestor.uTerminate
+<<CommentBlock>>
+Endroutine
+<<endif>>
+<<if CA_UM109_LISTEN>>
+* <<minorsep>>
+* インスタンス リスト更新のための外部要求処理  
+* <<minorsep>>
+EvtRoutine #Com_owner.avEvent WithId(#EventId) WithAInfo1(#AInfo1) WithAInfo2(#AInfo2) WithAInfo3(#AInfo3) WithAInfo4(#AInfo4) WithAInfo5(#AInfo5)  WithNInfo1(#NInfo1) WithNInfo2(#NInfo2) WithNInfo3(#NInfo3) WithNInfo4(#NInfo4) WithNInfo5(#NInfo5)
+
+* 受信した値をフィールドに入れる
+#vf_elIdn := #EventId.Value
+
+* 受け取った AInfo と NInfo 値をキー フィールドにマップ - <<UM055_BaseFileKeys>>
+<<UM055_GenMapKeys>> 
+
+<<if CA_UM109_CHK_CONNECT>>
+<<comment>>まだ接続状態にあるか確認 
+#avFrameworkManager.avCheckConnection ReturnValue(#con_rslt)
+If Cond(*conresult)
+<<endif>> 
+
+Case #vf_elIDN
+
+when value_is(= Refresh_Instance_List)
+* インスタント リストの再ロード
+
+#Com_Owner.uInitialize
+
+when value_is(= Add_List_Entry)
+* エントリーをリスト ビューに追加
+
+fetch FIELDS(#XG_Ident) FROM_FILE(<<UM055_BaseFile>>) WITH_KEY(<<UM055_BaseFileKeys>>)
+if_status *OKAY
+
+* インスタンス リストの更新開始
+#avListManager.BeginListUpdate
+<<UM055_AddtoList>>
+* インスタンス リスト更新完了
+#avListManager.EndListUpdate
+
+endif
+
+when value_is(= Update_List_Entry)
+* インスタンス リストに既に存在するエントリーの更新
+
+fetch FIELDS(#XG_Ident) FROM_FILE(<<UM055_BaseFile>>) WITH_KEY(<<UM055_BaseFileKeys>>)
+if_status *OKAY
+
+* インスタンス リストの更新開始
+#avListManager.BeginListUpdate
+<<UM055_GenSetVids>>
+<<UM055_GenUpdLst>>
+* インスタンス リストの更新完了
+#avListManager.EndListUpdate
+
+endif
+
+when value_is(=  Delete_List_Entry)
+#avListManager.BeginListUpdate
+<<UM055_GenRmvLst>>
+#avListManager.EndListUpdate
+
+endcase
+
+<<if CA_UM109_CHK_CONNECT>>
+endif
+<<endif>>
+
+Endroutine
+<<endif>>
+
+End_Com
+</code>  

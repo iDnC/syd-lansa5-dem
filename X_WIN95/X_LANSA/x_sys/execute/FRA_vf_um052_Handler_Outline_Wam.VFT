@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<context>
+CommandHandler 
+</context>
+<mode>
+WAM 
+</mode>
+<caption>
+Gestionnaire d'action de base
+</caption>
+<preamble>
+FRA_vf_um052_Handler_Outline_WAM.htm
+</preamble>
+<hint>
+Cet assistant génére le code d'un gestionnaire d'action de base.  
+</hint>
+<sequence>
+000100  
+</sequence>
+<handler>
+VF_UM055 
+VF_UM057     
+VF_UM056   
+</handler>
+<handlertxt>
+Préciser le protocole d'identification choisi pour cet objet métier. Si un fichier physique ressemble à cet objet métier préciser son nom et l'assistant essaiera de déduire un protocole d'identification de base pour vous.    
+Préciser les zones que vous voulez afficher dans les zones hautes (entête) ou basses (listes) du panneau du gestionnaire d'action. Votre choix de placer les zones en zone d'entête ou de liste affecte la structure du code généré par l'assistant de code.                  
+Préciser les choses que vous voulez inclure dans le code généré.     
+</handlertxt>
+<code>
+<<include VF_UM052_CommandHandler_Preamble.vfi>>
+BEGIN_COM ROLE(*EXTENDS £PRIM_WAM) Sessionstatus(None) Layoutweblet('vlf_layout_v2')
+Define_Com Class(£vf_sw100) NAME(£avFrameworkManager)
+Define_Com Class(£vf_aw010) Name(£ThisHandler) Reference(*Dynamic)
+Define_Com Class(£vf_lw002) Name(£avListManager) Reference(*Dynamic)
+Define_Com Class(£fp_in001) Name(£FastPart) Reference(*Dynamic)
+<<comment>>Zones de mappage du Framework VL. NE PAS MODIFIER.
+Web_Map For(*both) Fields((£VF_FRAMEI *private) (£VF_FRAMEW *private) (£VF_FRAMES *private) (£VF_ELXTOF *private) (£VF_ELXN01 *private) (£VF_ELXN02 *private) (£VF_ELXN03 *private) (£VF_ELXN04 *private) (£VF_ELXN05 *private) (£VF_ELXN06 *private) 
++ (£VF_ELXN07 *private) (£VF_ELXN08 *private) (£VF_ELXN09 *private) (£VF_ELXN10 *private) (£VF_ELXA01 *private) (£VF_ELXA02 *private) (£VF_ELXA03 *private) (£VF_ELXA04 *private) (£VF_ELXA05 *private) 
++ (£VF_ELXA06 *private) (£VF_ELXA07 *private) (£VF_ELXA08 *private) (£VF_ELXA09 *private) (£VF_ELXA10 *private)(£VF_ELMETA *private))
+<<comment>>Mappage des zones utilisées dans ce formulaire.
+<<if UM057_Has_HEADFields>>
+Group_by Name(£WAM_HEAD) Fields(<<UM057_GenHeadGroupInline>>
+<<endif>>
+<<if UM057_Has_LISTFields>> 
+<<comment>>Définition de la liste à afficher sur le formulaire
+Def_list Name(£WAM_LIST) type(*working) Fields(<<UM057_GenListGroupInline>> 
+<<if CA_UM056_SAVEBTN>>
+Web_Map For(*both) Fields((£UB_SAVE *NOID) £WAM_LIST<<UM057_GenHeadGroupInline>>
+<<else>>
+Web_Map For(*both) Fields(£WAM_LIST<<UM057_GenHeadGroupInline>>
+<<endif>>
+<<else>>
+<<if CA_UM056_SAVEBTN>>
+Web_Map For(*both) Fields((£UB_SAVE *noid) <<UM057_GenHeadGroupInline>>
+<<endif>>
+<<endif>>
+Webroutine Name(UHandleEvent)
+<<if CA_UM056_SAVEBTN>>
+<<comment>>Enregistre l'évènement qui s'exécutera suite à un clic sur le bouton Enregistrer du gestionnaire comme évènement wam numéro 1.
+£avFrameworkManager.avRegisterEvent Named(UB_SAVE.CLICK) Signalaswamevent(1)
+<<endif>>
+<<comment>>Initialisation standard du WAM. 
+£avFrameworkManager.avInitializeWAM Type(COMMAND) Invoker(£com_owner) Listmanager(£avListManager) Handlermanager(£ThisHandler) Fastpartmanager(£FastPart)
+£avFrameworkManager.avHandleWAMEvent Anchorblock(£vf_framew) Event(£vf_event) Designmode(£vf_framed) Skin(£VF_Frames) Metatag(£vf_elmeta) 
++ Tof(£vf_elxtof) N01(£vf_elxn01) N02(£vf_elxn02) N03(£vf_elxn03) N04(£vf_elxn04) N05(£vf_elxn05) N06(£vf_elxn06) N07(£vf_elxn07) N08(£vf_elxn08) 
++ N09(£vf_elxn09) N10(£vf_elxn10) A01(£vf_elxA01) A02(£vf_elxA02) A03(£vf_elxA03) A04(£vf_elxA04) A05(£vf_elxA05) A06(£vf_elxA06) A07(£vf_elxA07) A08(£vf_elxA08) A09(£vf_elxA09) A10(£vf_elxA10) Ssiname(£VF_FRAMEI)
+Endroutine
+<<comment>>Initialisation du gestionnaire d'action
+Evtroutine Handling(£avFrameworkManager.uInitialize) Options(*noclearmessages *noclearerrors)
+<<UM055_GenGetLst>>
+Endroutine
+<<CommentBlock>>
+Evtroutine Handling(£avFrameworkManager.uexecute) Options(*noclearmessages *noclearerrors)
+<<CommentBlock>>
+<<Comment>>Zone de code retour et test de la condition
+Define £Ret_Code REFFLD(£STD_BOOL)
+Def_cond   Name(*RetOkay) Cond((£Ret_Code = OK) *OR (£Ret_Code = TRUE)) 
+<<if UM057_Has_HEADFields>>
+<<comment>>Lire les informations du fichier principal pour alimenter les zones de l'entête du formulaire
+Fetch Fields(£WAM_HEAD) From_File(<<UM055_BaseFile>>) With_Key(<<UM055_BaseFileKeys>>) 
+<<Comment>>??? Ajouter ici la logique complémentaire ???
+<<if UM057_Has_LISTFields>>
+<<comment>>Vider la liste 
+Clr_List £WAM_LIST
+<<comment>>Lire les informations à partir d'un autre fichier lié pour remplir la liste visible 
+Select Fields(£WAM_LIST) From_File(<<tba>>) With_key(<<tba>>)
+<<Comment>>??? Ajouter ici la logique complémentaire ???
+<<Comment>>Ajouter une entrée à la liste visible
+Add_Entry £WAM_LIST
+EndSelect    
+<<endif>>
+<<else>>
+<<if UM057_Has_LISTFields>>
+<<comment>>Vider la liste 
+Clr_List £WAM_LIST   
+<<UM055_GenGetSel FIRST Ret_Code>>
+DoWhile (*RetOkay)
+Fetch Fields(£WAM_LIST) From_File(<<UM055_BaseFile>>) With_Key(<<UM055_BaseFileKeys>>) 
+<<Comment>>??? Ajouter ici la logique complémentaire ???
+<<Comment>>Ajouter une entrée à la liste visible
+Add_Entry £Main_List
+<<UM055_GenGetSel NEXT Ret_Code>>
+EndWhile
+<<endif>>
+<<endif>>
+Endroutine
+<<if CA_UM056_SAVEBTN>>
+<<CommentBlock>>
+* Effectue la logique associée au bouton enregistrer. La routine evénementielle enregistrée par £avFrameworkManager.avRegisterEvent comme évènement 1.
+Evtroutine Handling(£avFrameworkManager.uWAMEvent_1) Options(*noclearmessages *noclearerrors)
+<<CommentBlock>>
+* <votre logique d'enregistrement> 
+* <votre logique d'enregistrement> 
+* <votre logique d'enregistrement> 
+<<CommentBlock>>
+Endroutine
+<<endif>> 
+End_Com
+</code>

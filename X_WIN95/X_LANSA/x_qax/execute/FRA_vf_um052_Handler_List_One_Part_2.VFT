@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<context>
+CommandHandler 
+</context>
+<caption>
+Gestionnaire d'action maintenant une liste (Partie 2)
+</caption>
+<mode>
+ONE
+</mode>
+<preamble>
+FRA_vf_um052_Handler_List_One_Part_2.htm
+</preamble>
+<hint>
+Cet assistant génère le code d'un élément de liste dans un gestionnaire d'action permettant la maintenance d'une liste de données enfant.
+</hint>
+<sequence>
+000100  
+</sequence>
+<handler>
+VF_UM108
+</handler>
+<handlertxt>
+Où voulez-vous afficher les zones de données enfant ?  
+</handlertxt>
+<code>
+Function Options(*DIRECT)
+Begin_Com Role(*EXTENDS £prim_panl *implements £prim_Tree.iTreeDesign *LISTFIELDS £PassList) Height(215) Width(511) Dragstyle(Aggregated) Displayposition(1) Tabposition(1) Layoutmanager(£AttachLayout1)
+
+* Ces zones seront automatiquement mappées dans ce composant quand ajoutées à l'arborescence par le paramètre *Listfields sur le begin_com, aussi longtemps que Add_entry et utilisé pour créer l'entrée de liste
+Def_List Name(£PassList) Fields(<<UM108_ChildViewFields>>) Counter(£ListCount) Type(*Working) Entrys(*Max)
+
+Define_Com Class(£PRIM_ATLM) Name(£AttachLayout1)
+Define_Com Class(£PRIM_ATLI) Name(£AttachItem1) Manage(£Panel_Summary) Parent(£AttachLayout1) Attachment(Top)
+Define_Com Class(£PRIM_ATLI) Name(£AttachItem2) Manage(£Panel_Detail) Parent(£AttachLayout1) Attachment(Center)
+
+Define_Com Class(£PRIM_ATLM) Name(£AttachLayout2)
+Define_Com Class(£PRIM_ATLI) Name(£AttachItem3) Manage(£Label_Summary) Parent(£AttachLayout2) Attachment(Center)
+
+* Gestion de la présentation pour ce panneau
+Define_Com Class(£PRIM_TBLO) Name(£TableLayout_Details)
+Define_Com Class(£PRIM_TBLO.Column) Name(£Column1) Displayposition(1) Parent(£TableLayout_Details) Width(1,68)
+Define_Com Class(£PRIM_TBLO.Column) Name(£Column2) Displayposition(2) Parent(£TableLayout_Details) Width(94) Units(Pixels)
+Define_Com Class(£PRIM_TBLO.Row) Name(£Row1) Displayposition(1) Parent(£TableLayout_Details) Height(1,52)
+
+Define_Com Class(£PRIM_TBLO.Item) Name(£Button1Item1) Manage(£Button_Save) Parent(£TableLayout_Details) Row(£Row1) Sizing(FitToWidth) Column(£Column2) Alignment(TopRight) Flow(Down)
+
+* Panneau Summary
+Define_Com Class(£PRIM_PANL) Name(£Panel_Summary) Displayposition(1) Height(25) Left(0) Parent(£COM_OWNER) Tabposition(1) Tabstop(False) Top(0) Width(511) Layoutmanager(£AttachLayout2)
+Define_Com Class(£PRIM_LABL) Name(£Label_Summary) Caption('Label1') Displayposition(1) Ellipses(Word) Height(25) Left(0) Parent(£Panel_Summary) Tabposition(1) Tabstop(False) Top(0) Verticalalignment(Center) Width(511)
+
+
+* Panneau Détails
+Define_Com Class(£PRIM_GPBX) Name(£Panel_Detail) Displayposition(2) Height(190) Left(0) Parent(£COM_OWNER) Tabposition(2) Tabstop(False) Top(25) Width(511) Visible(False) Layoutmanager(£TableLayout_Details)
+
+<<UM108_Repeat_Field_Edit>>DEFINE_COM CLASS(£<<FIELD>>.Visual) NAME(£<<FIELD>>) DISPLAYPOSITION(<<FIELD_NUMBER>>) HEIGHT(19) LEFT(10) PARENT(£Panel_Detail) TABPOSITION(<<FIELD_NUMBER>>) USEPICKLIST(False)
+<<UM108_Repeat_Field_Edit>>Define_Com Class(£PRIM_TBLO.Item) Name(£<<FIELD>>Item_Edit) Manage(£<<FIELD>>) Parent(£TableLayout_Details) Row(£Row1) Sizing(None) Column(£Column1) Alignment(TopLeft) Flow(Down)
+
+
+Define_Com Class(£PRIM_PHBN) Name(£Button_Save) Caption('Enregistrer') Displayposition(4) Left(417) Parent(£Panel_Detail) Tabposition(4) Top(0) Width(94)
+
+* Définir les propriétés pour toutes les zones que vous voulez utiliser pour trier
+* Define_Pty Name(Empno) Get(*AUTO £EMPNO)
+* Define_Pty Name(Skilcode) Get(*AUTO £SKILCODE)
+* Define_Pty Name(Skildesc) Get(*AUTO £SKILDESC)
+
+Evtroutine Handling(£Com_owner.CreateInstance)
+£Com_Owner.Height := 25
+Endroutine
+
+Mthroutine Name(OnAdd) Options(*REDEFINE)
+* Define_Com Class(£prim_dc.UnicodeString) Name(£CRLF)
+* £CRLF := (13).AsUnicodeString + (10).AsUnicodeString
+
+* Les zones £PassList sont disponibles à partir d'ici
+* Réorganiser le panneau summary comme vous le souhaitez
+£Label_Summary.Caption := *null
+<<UM108_Repeat_Field_List>>£Label_Summary.Caption += ' ' + £<<FIELD>>
+£Label_Summary.Caption.LeftTrim
+
+* Pré-traiter les zones de détail avant affichage, ici
+
+
+Endroutine
+
+Mthroutine Name(OnItemGotReference) Options(*REDEFINE)
+Endroutine
+
+
+* Quand la liste est triée
+
+Mthroutine Name(OnSort) Options(*Redefine)
+
+Define_Com Class(£prim_alph) Name(£ActiveSort)
+
+£ActiveSort := £Key
+
+Case (£ActiveSort)
+
+* Par exemple
+* Si vous voulez trier la liste par la zone Skildesc,
+* Ajouter la propriété au composant Skildesc qui est lu à partir de £SKILDESC
+* Define_Pty Name(Skildesc) Get(*AUTO £SKILDESC)
+* Dé-commenter le code ci-dessous
+* Remplacez £Part2 (ci-dessous) par le nom de ce composant
+
+* When (= SKILDESC)
+* £Result := £SKILDESC.Compare( (£CompareTo.Design *As £Part2).Skildesc )
+
+Endcase
+
+Endroutine
+
+
+Mthroutine Name(OnItemGotFocus) Options(*REDEFINE)
+£TreeItem.Expand
+Endroutine
+
+Mthroutine Name(OnItemLostFocus) Options(*REDEFINE)
+£TreeItem.Collapse
+Endroutine
+
+Mthroutine Name(OnItemExpanding) Options(*REDEFINE)
+
+£Panel_Detail.Visible := True
+£Com_Owner.Height := 25 + 10 + (<<UM108_DetailPanelFieldCount>> * 19)
+
+Endroutine
+
+Mthroutine Name(OnItemCollapsed) Options(*REDEFINE)
+
+£Panel_Detail.Visible := False
+£Com_Owner.Height := 25
+
+Endroutine
+
+Evtroutine Handling(£Button_Save.Cliquer)
+
+* ici votre logique d'enregistrement 
+* ici votre logique d'enregistrement 
+* ici votre logique d'enregistrement 
+
+Endroutine
+End_Com
+</code>

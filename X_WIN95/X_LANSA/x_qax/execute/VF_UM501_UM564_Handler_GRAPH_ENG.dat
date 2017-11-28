@@ -1,0 +1,77 @@
+* ---------------------------------------------------------------------------------
+* This is a command handler in framework <<FRAMEWORK>>.
+* It belongs to business object <<BUSINESS_OBJECT_CAPTION>>.
+* It was created on <<CREATEDDATE>> by <<CREATEDUSER>>.
+* ---------------------------------------------------------------------------------
+Begin_Com Role(*EXTENDS #VF_AC010O) Height(417) Width(665) Layoutmanager(#AttachLayout1)
+
+* Components
+
+Define_Com Class(#DF_T71O_BarChart_Access) Name(#BarChart) Parent(#COM_OWNER) Tabstop(False) Height(417) Width(665)
+
+* Layout
+Define_Com Class(#PRIM_ATLM) Name(#AttachLayout1)
+Define_Com Class(#PRIM_ATLI) Name(#LayoutItem1) Attachment(Center) Parent(#AttachLayout1) Manage(#BarChart)
+
+* Chart has initialized and is able to be used
+Define_Com Class(#Prim_Boln) Name(#BarChart_Initialized)
+
+* Lists for accessing server data
+Def_List Name(#ServerDataItems) Fields(#STD_TextL #Std_num) Type(*Working) Entrys(*MAX)
+
+* -------------------------------------------------------------------
+Mthroutine Name(uInitialize) Options(*Redefine)
+
+* Do any ancestor initialization
+#COM_ANCESTOR.uInitialize
+
+* Shield the chart content when being moved
+#COM_OWNER.avContentNeedsShielding := True
+
+Endroutine
+
+* -------------------------------------------------------------------
+* Chart signalled it has been initialized. We can interact with it.
+Evtroutine Handling(#BarChart.uChartInitialized)
+
+* Get the data for the graph from the server, and base the graph on that.
+#Com_Owner.LoadDataFromTable
+
+Endroutine
+
+* -------------------------------------------------------------------
+Mthroutine Name(uTerminate) Options(*REDEFINE)
+
+#BarChart.uClear Terminate(True)
+
+Endroutine
+
+* -------------------------------------------------------------------
+Mthroutine Name(LoadDataFromTable)
+Define_Com Class(<<SERVER_MODULE>>.GetData) Name(#GetData)
+
+* Ask the server to get the data for the graph
+#GetData.Execute Serverdataitems(#ServerDataItems)
+
+Evtroutine Handling(#GetData.Completed)
+
+* By default it shows no title. Set the title and attributes for the chart if you want to show it.
+#BarChart.uShowTitle Text("Monthly Sales") Fontsize(18)
+* The text to apper in the legend.
+#BarChart.uSetLegend Text(*YYYYC)
+
+* Set attributes to apply as defaults to any added bar thereafter. You can override the backrgound color and opacity of a bar when you add it.
+#BarChart.uSetBarStyles Fontsize(14) Opacity(0.5) Backgroundcolor("red") Fontcolor("black")
+
+
+Selectlist Named(#ServerDataItems)
+#BarChart.uAddBar Data(#STD_NUM) Label(#STD_TEXTL)
+Endselect
+
+* Refresh the chart data
+#BarChart.uRefresh
+
+Endroutine
+
+Endroutine
+End_Com

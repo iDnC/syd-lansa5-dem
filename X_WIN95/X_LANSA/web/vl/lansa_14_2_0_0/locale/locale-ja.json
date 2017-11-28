@@ -1,0 +1,38 @@
+﻿{
+ "no":                        "いいえ",
+ "ok":                        "OK",
+ "yes":                       "はい",
+ "today":                     "今日",
+ "retry":                     "再試行",
+ "cancel":                    "キャンセル",
+ "ignore":                    "無視",
+
+ "dayLong":                   ["月曜日","火曜日","水曜日","木曜日","金曜日","土曜日","日曜日"],
+ "dayShort":                  ["月","火","水","木","金","土","日"],
+ "monthLong":                 ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"],
+ "monthShort":                ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"],
+ "dateFormat":                "yyyy/MM/dd",
+ "timeFormat":                "H:mm:ss",
+ "startOfWeek":               "日曜日",
+
+ "decimalPoint":              ".",
+ "thousandsSep":              ",",
+ "currencySymbol":            "¥",
+
+ "sbcsChars":	               [["\u0000","\u0080"],"\u00a1","\u00a5","\u00a6",["\u00a9","\u00aa"],"\u00ad","\u00ae","\u00b2","\u00b3","\u00b9","\u00ba",["\u00bf","\u00d6"],["\u00d8","\u00f6"],["\u00f8","\u00ff"],["\uff61","\uff9f"] ],
+ "dbcsChars":	               ["\u00a2","\u00a3","\u00a7","\u00a8","\u00ab","\u00ac","\u00af","\u00b1",["\u00b4","\u00b8"],"\u00bb","\u00d7","\u00f7",["\u0391","\u0451"],["\u2010","\u266f"],["\u3000","\u30fe"],["\u3231","\u33cd"],["\u4e00","\u9fa0"],["\ue000","\ue757"],["\uf929","\ufa2d"],["\uff01","\uff9f"],["\uffe0","\uffe5"]],
+
+ "tabIncreaseDockGroup":      "Increase Group",
+ "tabDecreaseDockGroup":      "Decrease Group",
+ "tabLayoutPriority":         "Max Layout",
+ "tabAutoHide":               "Autohide",
+ "tabHide":                   "Close",
+ "tabConfigureButtons":       "Configure Pages",
+ "tabShowMoreButtons":        "Show More Buttons",
+ "tabShowFewerButtons":       "Show Fewer Buttons",
+ "tabAddOrRemoveButtons":     "Add or Remove Pages",
+ "tabPageCloseButton":        "Close Page",
+ 
+ "cardCaption":               "Primary Text",
+ "cardTertiary":              "Tertiary Text"
+}

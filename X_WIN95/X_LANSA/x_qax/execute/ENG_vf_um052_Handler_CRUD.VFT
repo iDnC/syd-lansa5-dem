@@ -1,0 +1,287 @@
+<context>
+CommandHandler 
+</context>
+<caption>
+CRUD Command Handler
+</caption>
+<preamble>
+ENG_vf_um052_Handler_CRUD.htm
+</preamble>
+<hint>
+This assistant produces the code for a CRUD (Create/Read/Update/Delete) command handler.  
+</hint>
+<sequence> 
+000100  
+</sequence>
+<handler>
+VF_UM128 
+VF_UM129  
+VF_UM130   
+</handler>
+<handlertxt>
+If the Instance List fields and Identifier fields are correct, proceed to the next step. 
+Specify the fields that you want to show on your command handler.                  
+Specify the things that you would like to include in the generated code.     
+</handlertxt>
+<code>
+<<include VF_UM052_CommandHandler_Preamble.vfi>>
+*
+* NOTE: This command handler was designed to be invoked by the New, Delete, and other (e.g. Details or Create/Read/Update/Delete) commands
+* It uses the user-object-type of the command to decide how to behave.
+*
+Function Options(*DIRECT) 
+Begin_Com Role(*EXTENDS #VF_AC010) Layoutmanager(#MAIN_LAYOUT) Width(600) Height(240) 
+* <<majorsep>>
+* Simple Field and Group Definitions
+* <<majorsep>>   
+<<if UM057_Has_HEADFields>>
+Group_by Name(#XG_HEAD) <<UM057_GenHeadGroup>>
+<<endif>>
+<<COMMENT>>Work Fields and conditions
+define field(#cmd_type) type(*char) length(32) desc('user object type of the command')
+define field(#vis_reslt) reffld(#std_text)
+define field(#msg_rslt) type(*char) length(132)
+Define #Ret_Code reffld(#STD_BOOL)
+def_cond name(*okay) cond((#ret_code = OK) or (#ret_code = TRUE))
+def_cond name(*notokay) cond((#ret_code *ne OK) and (#ret_code *ne TRUE))
+<<if CA_UM056_CHK_CONNECT>>
+define field(#con_rslt) type(*char) length(2)
+Def_Cond Name(*conresult) Cond(#con_rslt = OK)
+<<endif>> 
+* <<majorsep>>
+* Component definitions
+* <<majorsep>>
+<<Comment>>Body and Button arrangement panels
+Define_Com Class(#PRIM_PANL) Name(#BUTTON_PANEL) Displayposition(2) Height(182) Layoutmanager(#BUTTON_FLOW) Left(246) Parent(#COM_OWNER) Tabposition(2) Tabstop(False) Top(0) Width(128)
+Define_Com Class(#PRIM_PANL) Name(#BODY_HEAD) VerticalScroll(True) Displayposition(1) Layoutmanager(#BODY_HEAD_FLOW)  Left(0) Parent(#COM_OWNER) Tabposition(1) Tabstop(False) Top(0) Width(246)
+DEFINE_COM CLASS(#Prim_ACol<#prim_evp>) NAME(#PanelFields)
+Define_Com Class(#Prim_ACol<#prim_evp>) Name(#KeyFields)
+<<Comment>>Attachment and flow layout managers
+Define_Com Class(#PRIM_ATLM) Name(#MAIN_LAYOUT)
+Define_Com Class(#PRIM_ATLI) Name(#BUTTON_ATTACH) Attachment(Right)  Manage(#BUTTON_PANEL) Parent(#MAIN_LAYOUT)
+Define_Com Class(#PRIM_FWLM) Name(#BUTTON_FLOW)   Direction(TopToBottom) Flowoperation(Center) Marginbottom(4) Marginleft(4) Marginright(4) Margintop(4) Spacing(4) Spacingitems(4)
+Define_Com Class(#PRIM_ATLI) Name(#BODY_ATTACH)   Attachment(Center) Manage(#BODY_HEAD) Parent(#MAIN_LAYOUT)
+Define_Com Class(#PRIM_FWLM) Name(#BODY_HEAD_FLOW) Direction(TopToBottom) Marginbottom(4) Marginleft(4) Marginright(4) Margintop(4) Spacing(4) Spacingitems(4)
+<<Comment>> The new/update/delete button
+<<if CA_UM056_SAVEBTN>>
+DEFINE_COM CLASS(#PRIM_PHBN) NAME(#PUSHB1_BUTTON) BUTTONDEFAULT(True) CAPTION('Undefined') DISPLAYPOSITION(1) LEFT(12) PARENT(#BUTTON_PANEL) TABPOSITION(1) TOP(4) WIDTH(103)
+DEFINE_COM CLASS(#PRIM_FWLI) NAME(#FWLI_PUSHB1_BUTTON) MANAGE(#PUSHB1_BUTTON) PARENT(#BUTTON_FLOW)
+<<else>>
+DEFINE_COM CLASS(#PRIM_PHBN) NAME(#PUSHB1_BUTTON) BUTTONDEFAULT(True) CAPTION('Undefined') DISPLAYPOSITION(1) LEFT(12) PARENT(#BUTTON_PANEL) TABPOSITION(1) TOP(4) WIDTH(1) Visible(False)
+<<endif>>
+<<if UM057_Has_HEADFields>>
+<<comment>>Fields in the head area
+<<UM057_Repeat True ALL HEAD>>Define_Com Class(#<<field>>.Visual) Parent(#BODY_HEAD) LabelType(<<UM056_Identify_With>>) Marginleft(160) 
+<<UM057_Repeat False ALL HEAD>>Define_Com Class(#PRIM_FWLI) Name(#FWLI_<<Field>>) Manage(#<<field>>) Parent(#BODY_HEAD_FLOW)
+<<endif>> 
+<<CommentBlock>>
+* <<majorsep>>
+* Events Definitions
+* <<majorsep>>
+<<CommentBlock>>
+* <<majorsep>>
+* Property Definitions
+* <<majorsep>>
+<<CommentBlock>>
+* <<majorsep>>
+* Method Definitions
+* <<majorsep>>
+* <<minorsep>>
+* Handle Command Execution
+* <<minorsep>>
+<<CommentBlock>>
+Mthroutine Name(uExecute) Options(*REDEFINE)
+<<Comment>>Do any execution logic defined in the ancestor 
+#Com_Ancestor.uExecute
+<<CommentBlock>>
+#PushB1_Button.enabled := false
+<<CommentBlock>>
+* The behaviour of this command handler is modified by the user-object-type of the command that initiated it.
+* (To see the user-object-type of the command, start the framework in design mode and work with commands) 
+<<CommentBlock>>
+#Cmd_type := #Com_Owner.avCommandType
+Case #Cmd_type
+When Value_Is(= NEW, = COMMAND_NEW)
+SET Com(#PanelFields<>) Enabled(true)
+#PUSHB1_Button.caption := 'Save New Details'
+#XG_Head := *null
+When Value_Is(= COPY, = COMMAND_COPY)
+SET Com(#PanelFields<>) Enabled(true)
+#PUSHB1_Button.caption := 'Save New Details'
+execute subroutine(getcurrent) with_parms(true)
+When Value_Is(= DELETE, = COMMAND_DELETE)
+SET Com(#PanelFields<>) Enabled(false)
+set #PushB1_Button enabled(true) caption('Confirm Deletion')
+execute subroutine(getcurrent) with_parms(true)
+otherwise
+SET Com(#PanelFields<>) Enabled(true)
+Set Com(#KeyFields<>) Enabled(False)
+#PUSHB1_Button.caption := 'Save Changes'
+execute subroutine(getcurrent) with_parms(true)
+endcase
+<<CommentBlock>>
+Endroutine
+<<CommentBlock>>
+* <<minorsep>>
+* Handle Initialization
+* <<minorsep>>
+Mthroutine Name(uInitialize) Options(*REDEFINE)
+<<Comment>>Do any initialization defined in the ancestor 
+#Com_Ancestor.uInitialize
+* Build a collection of all the fields in the panel
+Change #std_num 0
+For Each(#Current) In(#Body_Head.ComponentControls)
+IF_REF COM(#Current) IS(*INSTANCE_OF #prim_evp)
+* (prim_evp is the ancestor of prim_evef, prim_evpl, etc)
+#std_num += 1
+SET_REF Com(#PanelFields<#std_num>) To(*dynamic #Current)
+endif
+Endfor 
+* Build collection of Key fields
+<<UM055_RepeatKeys>>#KeyFields.Insert(#<<field>> )
+<<CommentBlock>>
+* <your initialization logic goes here> 
+<<CommentBlock>>
+Endroutine
+* <<minorsep>>
+* Handle Termination
+* <<minorsep>>
+Mthroutine Name(uTerminate) Options(*REDEFINE)
+<<CommentBlock>>
+* <your termination logic goes here>
+<<CommentBlock>>
+#PanelFields.RemoveAll
+<<Comment>>Do any termination defined in the ancestor
+#Com_Ancestor.uTerminate 
+<<CommentBlock>>
+Endroutine
+* <<majorsep>>
+* Subroutines
+* <<majorsep>>
+<<CommentBlock>>
+* <<minorsep>>
+* display the current instance in preparation for an update or delete
+* <<minorsep>>
+subroutine name(getcurrent) parms((#df_fetch *received))
+define field(#df_fetch) reffld(#std_bool)
+<<if CA_UM056_CHK_CONNECT>>
+<<comment>>Check that the connection is still live 
+#avFrameworkManager.avCheckConnection ReturnValue(#con_rslt)
+If Cond(*conresult)
+<<endif>> 
+<<if UM057_Has_HEADFields>>
+<<UM055_GenGetLst>>
+<<comment>>Fetch information from the main file to fill in the header fields on the form 
+IF COND(#DF_FETCH = TRUE)
+Fetch Fields(#XG_HEAD) From_File(<<UM055_BaseFile>>) With_Key(<<UM055_BaseFileKeys>>) IO_STATUS(#RET_CODE)
+ENDIF
+<<CommentBlock>>
+use builtin(clr_messages)
+<<comment>> Handle could not be found
+if cond(*notokay)
+message msgtxt('The requested object was not found. it may have been deleted.')
+#PushB1_Button.enabled := false
+#xg_head := *null
+SET Com(#PanelFields<>) Enabled(false) 
+#pushb1_button.enabled := false
+else
+endif
+<<else>>
+<<endif>>
+<<if CA_UM056_CHK_CONNECT>>
+endif
+<<endif>> 
+endroutine
+<<CommentBlock>>
+* <<majorsep>>
+* Event Handlers
+* <<majorsep>>
+<<CommentBlock>>
+* <<minorsep>>
+* Handle the Create/Update/Delete button 
+* <<minorsep>>
+<<CommentBlock>>
+EvtRoutine Handling(#PUSHB1_BUTTON.Click)
+<<CommentBlock>>
+<<if CA_UM056_CHK_CONNECT>>
+<<comment>>Check that the connection is still live 
+#avFrameworkManager.avCheckConnection ReturnValue(#con_rslt)
+If Cond(*conresult)
+<<endif>> 
+* update data base
+<<comment>>Do different things based on the command
+CASE OF_FIELD(#CMD_TYPE)
+<<CommentBlock>>
+* Handle New
+When Value_Is(= NEW, = COMMAND_NEW, = COPY, = COMMAND_COPY)
+<<CommentBlock>>
+#VIS_RESLT := '(New)'
+#MSG_RSLT := 'New details have been saved'
+INSERT FIELDS(#XG_HEAD) TO_FILE(<<UM055_BaseFile>>) IO_STATUS(#RET_CODE) IO_ERROR(*NEXT) VAL_ERROR(*NEXT) ISSUE_MSG(*YES)
+<<CommentBlock>>
+* Handle delete
+When Value_Is(= DELETE, = COMMAND_DELETE)
+<<CommentBlock>>
+#VIS_RESLT := '(Deleted)'
+#MSG_RSLT := 'Details have been deleted'
+EXECUTE SUBROUTINE(GETCURRENT) WITH_PARMS(TRUE)
+IF COND(*OKAY)
+DELETE FROM_FILE(<<UM055_BaseFile>>) IO_STATUS(#RET_CODE) IO_ERROR(*NEXT) VAL_ERROR(*NEXT) ISSUE_MSG(*YES)
+ENDIF
+<<CommentBlock>>
+* Handle details
+OTHERWISE
+<<CommentBlock>>
+#VIS_RESLT := '(Updated)'
+#MSG_RSLT := 'Changed details have been saved'
+UPDATE FIELDS(#XG_Head) IN_FILE(<<UM055_BaseFile>>) WITH_KEY(<<UM055_BaseFileKeys>>) IO_STATUS(#RET_CODE) IO_ERROR(*NEXT) VAL_ERROR(*NEXT) ISSUE_MSG(*YES)
+<<CommentBlock>>
+ENDCASE
+<<comment>>Handle whether it worked or not
+IF COND(*OKAY)
+<<UM055_GenSetVIDs>> 
+<<comment>>Use the AddToList method for new entries (including copies). Otherwise use the UpdateListEntryData method
+CASE OF_FIELD(#CMD_TYPE)
+When Value_Is(= NEW, = COMMAND_NEW, = COPY, = COMMAND_COPY)
+<<comment>>Indicate that <<businessobject_lang ucaption>> instance list updating is about to start
+#avListManager.BeginListUpdate
+<<UM055_GenAddLst vis_reslt>> 
+<<comment>>Indicate that <<businessobject_lang ucaption>> instance list updating is now complete
+#avListManager.EndListUpdate
+<<CommentBlock>>
+Otherwise
+<<UM055_GenUpdLst vis_reslt>> 
+<<CommentBlock>>
+ENDCASE
+*
+CASE OF_FIELD(#CMD_TYPE)
+When Value_Is(= NEW, = COMMAND_NEW)
+<<CommentBlock>>
+* Prepare for the next entry
+#XG_HEAD := *NULL
+ENDCASE
+<<CommentBlock>>
+* All changes have been saved so disable the button
+#PushB1_Button.enabled := false
+<<CommentBlock>>
+* Issue the requested friendly message
+USE BUILTIN(CLR_MESSAGES)
+MESSAGE MSGID(DCM9899) MSGF(DC@M01) MSGDTA(#MSG_RSLT)	
+<<CommentBlock>>
+ENDIF
+<<if CA_UM056_CHK_CONNECT>>
+endif
+<<endif>> 
+<<CommentBlock>>
+Endroutine
+<<CommentBlock>>
+* <<minorsep>>
+* Handle changes in one of the fields 
+* <<minorsep>>
+<<CommentBlock>>
+EvtRoutine Handling(#PanelFields<>.Changed)
+#PushB1_Button.Enabled := True
+EndRoutine
+<<commentblock>>
+End_Com
+</code>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<context>
+CommandHandler 
+</context>
+<caption>
+Gestionnaire d'action maintenant une liste (Partie 1)
+</caption>
+<mode>
+ONE
+</mode>
+<preamble>
+FRA_vf_um052_Handler_List_One.htm
+</preamble>
+<hint>
+Cet assistant génére le code d'un gestionnaire d'action permettant la maintenance d'une liste de données enfant.
+</hint>
+<sequence>
+000100  
+</sequence>
+<handler>
+VF_UM105
+VF_UM106
+VF_UM056   
+</handler>
+<handlertxt>
+Quel est le fichier physique ressemblant le plus à l'objet métier parent ?
+Comment voulez-vous lire les données enfant pour la liste de ce gestionnaire d'action ?  
+Précisez ce que vous souhaitez inclure dans le code généré.     
+</handlertxt>
+<code>
+<<include VF_UM052_CommandHandler_Preamble.vfi>>
+FUNCTION OPTIONS(*DIRECT)
+
+Begin_Com Role(*EXTENDS £VF_AC010O) Layoutmanager(£TableLayout_Main) Width(600) Height(240)
+
+* Définition de la liste visuelle
+
+* Remplacer £Part_2 par le nom du composant généré avec la partie 2 de cet assistant de code
+Define_Com Class(£PRIM_TREE<  £PART_2  >) Name(£Tree) Displayposition(1) Left(0) Parent(£COM_OWNER) Tabposition(1) Top(0) Height(200) Width(600)
+Define_Com Class(£PRIM_PHBN) Name(£Button_Sort) Caption('Trier') Displayposition(2) Left(0) Parent(£COM_OWNER) Tabposition(2) Top(208)
+
+* Gestion de la présentation
+
+Define_Com Class(£PRIM_TBLO) Name(£TableLayout_Main)
+* Layout Columns and Rows
+Define_Com Class(£PRIM_TBLO.Column) Name(£Column1) Displayposition(1) Parent(£TableLayout_Main)
+Define_Com Class(£PRIM_TBLO.Row) Name(£Row1) Displayposition(1) Parent(£TableLayout_Main) Height(1,72)
+Define_Com Class(£PRIM_TBLO.Row) Name(£Row2) Displayposition(2) Parent(£TableLayout_Main) Height(40) Units(Pixels)
+
+* Eléments de présentation
+Define_Com Class(£PRIM_TBLO.Item) Name(£TreeItem1) Manage(£Tree) Parent(£TableLayout_Main) Row(£Row1) Column(£Column1)
+
+Define_Com Class(£PRIM_TBLO.Item) Name(£Button1Item1) Manage(£Button_Sort) Parent(£TableLayout_Main) Row(£Row2) Sizing(None) Column(£Column1) Alignment(CenterLeft) Flow(Right)
+
+
+Def_List Name(£PassList) Fields(<<UM106_ChildViewFields>>) Counter(£ListCount) Type(*Working) Entrys(*Max)
+Def_List Name(£Save_Keys) Fields(<<UM106_ChildViewKeysUsed ALL>>) Type(*WORKING) Entrys(1)
+
+
+* ===================================================================
+* Routines
+* ===================================================================
+
+* <<minorsep>>
+* Gérer l'exécution de la commande
+* <<minorsep>>
+Mthroutine Name(uExecute) Options(*REDEFINE)
+Define_Com Class(£prim_boln) Name(£Ret_code)
+
+* Clear any previous messages
+£AVFRAMEWORKMANAGER.avClearMessages Requester(£COM_OWNER)
+
+*  Exécuter toute logique d'exécution définie dans l'ancêtre 
+£Com_Ancestor.uExecute GotoFreeState(£GotoFreeState) SwitchCallerReference(£SwitchCallerReference)
+
+
+If_Ref Com(£Com_Owner.avAssociatedInstance) Is_Not(*NULL)
+
+* valoriser à null toutes les clés
+£Save_Keys := *NULL
+
+* Lire le détail de l'instance en cours
+<<UM105_GenGetLst ASSOCIATED>>
+
+* Enregistrer une copie des zones clés pour les restaurer plus tard
+Inz_List Named(£Save_Keys)
+
+
+If (£Ret_code)
+* Lire les données du serveur du serveur par un appel synchrone au module de service de données
+
+* Aller à l'état occupé
+£COM_OWNER.avGotoBusyState Showbusytext('Recherche') Animated(False)
+
+* Demander au module de service de fichier de lire les données sur le serveur
+£Com_Owner.uSelectData 
+Else
+£AVFRAMEWORKMANAGER.avIssueMessage Text('Aucun élément en cours trouvé') Requester(£Com_Owner)
+Endif
+Endif
+
+Endroutine
+
+Mthroutine Name(uSelectData)
+
+* Définir le service de données
+Define_Com Class(£<<UM106_ChildViewWAM>>.FindAll) Name(£Find)
+Define_Com Class(£Prim_tree.TreeItem) Name(£TempListItem) Reference(*DYNAMIC)
+
+
+£Find.ExecuteAsync( <<UM106_ChildViewKeysUsed ALL>> £PassList )
+
+Evtroutine Handling(£Find.Completed)
+
+
+Selectlist Named(£PassList)
+
+* Les zones de la liste £PassList définies dans £PART2 seront automatiquement envoyées à £PART2 si Add_entry est utilisé
+Add_Entry To_List(£Tree)
+Endselect
+
+* Revenir à l'état disponible
+£com_Owner.avGotoFreeState
+
+* Restaurer les valeurs des clés à leurs valeurs précédentes
+Get_Entry Number(1) From_List(£Save_Keys)
+
+Endroutine
+
+
+Endroutine
+
+
+Evtroutine Handling(£Button_Sort.Cliquer)
+
+* Par exemple
+* Si vous voulez trier la liste par la zone Skildesc,
+* Dé-commentez le code ci-dessous et editer la routine OnSort dans £PART_2
+
+*£Tree.Sort Key('SKILDESC')
+
+Endroutine
+
+END_COM
+</code>

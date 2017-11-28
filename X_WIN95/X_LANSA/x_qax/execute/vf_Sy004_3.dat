@@ -1,0 +1,39 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
+using System.Security.Permissions;
+using VF_System; 
+  
+namespace _<<USEROBJECT>>
+{
+[PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
+[System.Runtime.InteropServices.ComVisibleAttribute(true)]
+static class _<<USEROBJECT>>
+{
+[STAThread]
+static void Main(string[] args)
+{  
+   Application.EnableVisualStyles();
+   Application.SetCompatibleTextRenderingDefault(false);
+
+   {
+      VF_SY001 uSystem   = new VF_SY001(); 
+      VF_AC006 uMainForm = new VF_AC006(); 
+
+      uSystem.Initialize(uMainForm,args); 
+ 
+      CreateVF_FPNNNObjects(uSystem);  
+
+      uMainForm.Initialize(uSystem); 
+
+      Application.Run(uMainForm);
+
+   }
+}
+
+static void CreateVF_FPNNNObjects(VF_SY001 uSystem)
+{
+<<UNROLL_A>>            
+} /* static void CreateVF_FPNNNObjects(VF_SY001 uSystem) */
+} /* static class _<<USEROBJECT>> */ 
+} /* namespace _<<USEROBJECT>> */ 

@@ -1,0 +1,40 @@
+<context>
+Filter 
+</context>
+<caption>
+Search button event handling routine (code fragment)  
+</caption>
+<preamble>
+ENG_vf_um052_Filter_Search_Button_Wam.htm
+</preamble>
+<mode>
+WAM
+</mode>
+<hint>
+This assistant creates the code for a typical search button event routine to handle the click of a search button in a filter.   
+</hint>
+<sequence>
+000300    
+</sequence>
+<handler>
+VF_UM055 
+</handler>
+<handlertxt>
+Specify the identification protocol you have decided to use for this business object. If a physical file resembles this business object specify its name and the assistant will attempt to automatically deduce a basic identification protocol for you.    
+</handlertxt>
+<code>
+EvtRoutine Handling(<<TBA>>.Click) Options(*NOCLEARMESSAGES *NOCLEARERRORS)
+<<comment>>Indicate that <<businessobject_lang ucaption>> instance list updating is about to start
+#avListManager.BeginListUpdate
+<<comment>>Clear the current <<businessobject_lang ucaption>> business object instance list (optional)
+#avListManager.ClearList
+<<Comment>> Select appropriate instances of <<businessobject_lang ucaption>> 
+Select Fields(<<UM055_GenFldList>> + <<TBA>>) 
++ From_File(<<TBA>>) With_key(<<TBA>>)   
+<<UM055_AddtoList>>  
+EndSelect
+<<comment>>Indicate that <<businessobject_lang ucaption>> instance list updating is now complete
+#avListManager.EndListUpdate
+<<comment>> 
+Endroutine
+</code>

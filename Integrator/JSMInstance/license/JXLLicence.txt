@@ -1,0 +1,11 @@
+LANSA Integrator uses the jxl classes
+
+http://www.andykhan.com/jexcelapi/
+
+License Agreement
+
+===========================================================================================================================
+
+JExcelApi is licenced under the GNU Lesser General Public License
+
+http://www.gnu.org/copyleft/lesser.html

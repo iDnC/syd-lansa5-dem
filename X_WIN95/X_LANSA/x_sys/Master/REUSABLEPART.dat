@@ -1,0 +1,138 @@
+DF_ONEXA 1\WC=Ancestor for report extraction                             000000000000000
+DF_ONEXB 1\WC=Report Extraction Engine                                   000000000000000
+DF_ONEXC 1\WC=Report Extraction Engine                                   000000000000000
+DF_PRM01O1\OC=5250 Prompter - 1 - Drop down                              000000000000000
+DF_PRM02O1\OC=5250 Prompter - 2 - Radio buttons                          000000000000000
+DF_PRM03O1\OC=5250 Prompter - 3 - List and Search                        000000000000000
+DF_PRM04O1\OC=5250 Prompter - 4 - Tree View                              000000000000000
+DF_PRM05O1\OC=5250 Prompter - 5 - List                                   000000000000000
+DF_PRM06O1\OC=5250 Prompter - 6 - Prompt Info                            000000000000000
+DF_PRM07O1\OC=5250 Prompter - 7 - Date Picker                            000000000000000
+DF_PRM08O1\OC=5250 Prompter for RAMP                                     000000000000000
+DF_PRM09O1\OC=5250 Prompter for RAMP                                     000000000000000
+DF_T3507 1Relationship Builder                                           000000000000000
+DF_T53SSO1\OS=Business Object 103 Server Object                          000000000000000
+DF_WEBCH 1Web Chart Wrapper                                              000000000000000
+DX_DOCS  1Manage user defined documents                                  000000000000000
+FP_IN001 1Fast Part Interface for WAM fast parts                         000000000000000
+FP_IN002 1Fast Part Column object                                        000000000000000
+LH8BACK  1Background Panel                                               171109110345018LH8BackgroundPanel
+LH8DSTITM1Destination Item                                               171109110345018LH8DestinationItem
+LH8DSTLST1Destinations                                                   171109110345015LH8Destinations
+LH8FORE  1Foreground Panel                                               171109110345018LH8ForegroundPanel
+UF_OHEADP1\OC=VLF-ONE example logon header panel                         000000000000000
+UF_OLOGON1\OS=VLF-ONE Shipped IIP for User Logon                         000000000000000
+UF_OMULTI1\OC=VLF-ONE Multilingual Text enroller                         000000000000000
+UF_OSYSTM1\OC=VLF-ONE Imbedded Interface Point                           000000000000000
+UF_OTRALP1\OC=VLF-ONE example logon trailer panel                        000000000000000
+VF_AC001O1\OA=VLF-ONE *** Not for customer use ***                       000000000000000
+VF_AC023 1Relationship Builder Ancestor Class                            000000000000000
+VF_AC024 1Ancestor Class for Table Data Handlers                         000000000000000
+VF_AC027O1\OS=VLF-ONE Server Sign In Validator                           000000000000000
+VF_FP501O1\OA=Framework Configuration Object                             000000000000000
+VF_SY001A1\OA=Ancestor for VF_SY001X internals                           000000000000000
+VF_SY001O1\OC=The System Manager (VLF-ONE)                               000000000000000
+VF_SY001S1\OS=Server version fo VF_SY001A                                000000000000000
+VF_SY001X1\OA=Cross platform Interface                                   000000000000000
+VF_SY002S1\OS=Extended services for VLF-ONE server                       000000000000000
+VF_SY178O1\OA=VLF-ONE usage event object                                 000000000000000
+VF_SY187O1\OA=SetProperty Parameter                                      000000000000000
+VF_SY188O1\OS=Reusable Load Tracking Items                               000000000000000
+XD1ABOUT 1About                                                          000000000000008XD1About
+XD1APP   1Application Object                                             000000000000014XD1Application
+XD1CONT  1Contact                                                        000000000000010XD1Contact
+XD1FOOT  1Footer                                                         000000000000009XD1Footer
+XD1HEAD  1Header                                                         000000000000009XD1Header
+XD1HOME  1Home                                                           000000000000007XD1Home
+XD1HOME011Home Gallery                                                   000000000000014XD1HomeGallery
+XD1HOME021Home Responsive                                                000000000000017XD1HomeResponsive
+XD1HOME031Home Mobile                                                    000000000000013XD1HomeMobile
+XD1HOME041Home Mobile Item                                               000000000000017XD1HomeMobileItem
+XD1HOME051Home Carousel                                                  000000000000015XD1HomeCarousel
+XD1HOME061Home Carousel Item                                             000000000000019XD1HomeCarouselItem
+XD1HOME071Home Desktop                                                   000000000000014XD1HomeDesktop
+XD1HOME081Home Desktop Popup                                             000000000000019XD1HomeDesktopPopup
+XD1HOME091Home Desktop Details                                           000000000000021XD1HomeDesktopDetails
+XD1HOME101Home Gallery Item                                              000000000000018XD1HomeGalleryItem
+XD1HOME111Home Responsive List                                           000000000000021XD1HomeResponsiveList
+XD1HOME121Home Mobile List                                               000000000000017XD1HomeMobileList
+XD1HOME131Home Desktop List                                              000000000000018XD1HomeDesktopList
+XD1HOME141Home Responsive Details                                        000000000000024XD1HomeResponsiveDetails
+XD1HOME151Home Mobile Details                                            000000000000020XD1HomeMobileDetails
+XD1LOGIN 1Login                                                          000000000000008XD1Login
+XD1THMP  1Theme Picker                                                   000000000000014XD1ThemePicker
+XD2ABOUT 1About                                                          000000000000008XD2About
+XD2APP   1Application Object                                             000000000000014XD2Application
+XD2CONT  1Contact                                                        000000000000010XD2Contact
+XD2FOOT  1Footer                                                         000000000000009XD2Footer
+XD2HEAD  1Header                                                         000000000000009XD2Header
+XD2HOME  1Home                                                           000000000000007XD2Home
+XD2HOME011Home Gallery                                                   000000000000014XD2HomeGallery
+XD2HOME021Home Responsive                                                000000000000017XD2HomeResponsive
+XD2HOME031Home Mobile                                                    000000000000013XD2HomeMobile
+XD2HOME041Home Mobile Item                                               000000000000017XD2HomeMobileItem
+XD2HOME051Home Carousel                                                  000000000000015XD2HomeCarousel
+XD2HOME061Home Carousel Item                                             000000000000019XD2HomeCarouselItem
+XD2HOME071Home Desktop                                                   000000000000014XD2HomeDesktop
+XD2HOME081Home Desktop Popup                                             000000000000019XD2HomeDesktopPopup
+XD2HOME091Home Desktop Details                                           000000000000021XD2HomeDesktopDetails
+XD2HOME101Home Gallery Item                                              000000000000018XD2HomeGalleryItem
+XD2HOME111Home Responsive List                                           000000000000021XD2HomeResponsiveList
+XD2HOME121Home Mobile List                                               000000000000017XD2HomeMobileList
+XD2HOME131Home Desktop List                                              000000000000018XD2HomeDesktopList
+XD2HOME141Home Responsive Details                                        000000000000024XD2HomeResponsiveDetails
+XD2HOME151Home Mobile Details                                            000000000000020XD2HomeMobileDetails
+XD2LOGIN 1Login                                                          000000000000008XD2Login
+XD2THMP  1Theme Picker                                                   000000000000014XD2ThemePicker
+XD3ABOUT 1About                                                          000000000000008XD3About
+XD3APP   1Application Object                                             000000000000014XD3Application
+XD3CONT  1Contact                                                        000000000000010XD3Contact
+XD3FOOT  1Footer                                                         000000000000009XD3Footer
+XD3HEAD  1Header                                                         000000000000009XD3Header
+XD3HOME  1Home                                                           000000000000007XD3Home
+XD3HOME011Home Gallery                                                   000000000000014XD3HomeGallery
+XD3HOME021Home Responsive                                                000000000000017XD3HomeResponsive
+XD3HOME031Home Mobile                                                    000000000000013XD3HomeMobile
+XD3HOME041Home Mobile Item                                               000000000000017XD3HomeMobileItem
+XD3HOME051Home Carousel                                                  000000000000015XD3HomeCarousel
+XD3HOME061Home Carousel Item                                             000000000000019XD3HomeCarouselItem
+XD3HOME071Home Desktop                                                   000000000000014XD3HomeDesktop
+XD3HOME081Home Desktop Popup                                             000000000000019XD3HomeDesktopPopup
+XD3HOME091Home Desktop Details                                           000000000000021XD3HomeDesktopDetails
+XD3HOME101Home Gallery Item                                              000000000000018XD3HomeGalleryItem
+XD3HOME111Home Responsive List                                           000000000000021XD3HomeResponsiveList
+XD3HOME121Home Mobile List                                               000000000000017XD3HomeMobileList
+XD3HOME131Home Desktop List                                              000000000000018XD3HomeDesktopList
+XD3HOME141Home Responsive Details                                        000000000000024XD3HomeResponsiveDetails
+XD3HOME151Home Mobile Details                                            000000000000020XD3HomeMobileDetails
+XD3LOGIN 1Login                                                          000000000000008XD3Login
+XD4ABOUT 1About                                                          000000000000008XD4About
+XD4APP   1Application Object                                             000000000000014XD4Application
+XD4CONT  1Contact                                                        000000000000010XD4Contact
+XD4FOOT  1Footer                                                         000000000000009XD4Footer
+XD4HEAD  1Header                                                         000000000000009XD4Header
+XD4HOME  1Home                                                           000000000000007XD4Home
+XD4HOME011Home Gallery                                                   000000000000014XD4HomeGallery
+XD4HOME021Home Responsive                                                000000000000017XD4HomeResponsive
+XD4HOME031Home Mobile                                                    000000000000013XD4HomeMobile
+XD4HOME041Home Mobile Item                                               000000000000017XD4HomeMobileItem
+XD4HOME051Home Carousel                                                  000000000000015XD4HomeCarousel
+XD4HOME061Home Carousel Item                                             000000000000019XD4HomeCarouselItem
+XD4HOME071Home Desktop                                                   000000000000014XD4HomeDesktop
+XD4HOME081Home Desktop Popup                                             000000000000019XD4HomeDesktopPopup
+XD4HOME091Home Desktop Details                                           000000000000021XD4HomeDesktopDetails
+XD4HOME101Home Gallery Item                                              000000000000018XD4HomeGalleryItem
+XD4HOME111Home Responsive List                                           000000000000021XD4HomeResponsiveList
+XD4HOME121Home Mobile List                                               000000000000017XD4HomeMobileList
+XD4HOME131Home Desktop List                                              000000000000018XD4HomeDesktopList
+XD4HOME141Home Responsive Details                                        000000000000024XD4HomeResponsiveDetails
+XD4HOME151Home Mobile Details                                            000000000000020XD4HomeMobileDetails
+XD4LOGIN 1Login                                                          000000000000008XD4Login
+XD4SIDE  1Sidebar                                                        000000000000010XD4Sidebar
+XDEMOBOO 1Sample Book Design                                             000000000000015xDemoBookDesign
+XDEMOCAR 1Sample Carousel Design                                         000000000000019xDemoCarouselDesign
+XDEMOTIL 1Sample Tile Design                                             000000000000015xDemoTileDesign
+XDEMOTRE 1Sample Tree Design                                             000000000000015xDemoTreeDesign
+XDEPPKLT 1Department Code PickList                                       000000000000023xDepartmentCodePicklist
+XEMPGNAC 1GivenNames Auto Complete                                       000000000000031xEmployeeGivenNamesAutoComplete
+XEMPSNAC 1GivenNames Auto Complete                                       000000000000028xEmployeeSurnameAutoComplete

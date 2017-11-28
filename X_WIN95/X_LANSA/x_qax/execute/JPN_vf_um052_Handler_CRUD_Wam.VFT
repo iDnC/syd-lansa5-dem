@@ -1,0 +1,221 @@
+<context>
+CommandHandler
+</context>
+<mode>
+WAM 
+</mode>
+<caption>
+CRUD ｺﾏﾝﾄﾞﾊﾝﾄﾞﾗ 
+</caption>
+<preamble>
+JPN_vf_um052_Handler_CRUD_WAM.htm
+</preamble>
+<hint>
+このｳｨｻﾞｰﾄﾞはCRUD(Create/Read/Update/Delete)のｿｰｽを作成します。  
+</hint>
+<sequence>
+000100  
+</sequence>
+<handler>
+VF_UM055 
+VF_UM057     
+</handler>
+<handlertxt>
+このﾋﾞｼﾞﾈｽ ｵﾌﾞｼﾞｪｸﾄの定義を自動的に生成できるように、ﾋﾞｼﾞﾈｽ ｵﾌﾞｼﾞｪｸﾄに近い物理ﾌｧｲﾙの名前を指定して下さい。
+ｺﾏﾝﾄﾞﾊﾝﾄﾞﾗﾊﾟﾈﾙの上部(ﾍｯﾀﾞｰ)または下部(ﾘｽﾄ/ｸﾞﾘｯﾄﾞ)のﾌｨｰﾙﾄﾞを指定してください。RDMLの構造はその設定によって生成されます。
+</handlertxt>
+<code>
+<<include VF_UM052_CommandHandler_Preamble.vfi>>
+<<CommentBlock>>
+*
+* NOTE: このｺﾏﾝﾄﾞﾊﾝﾄﾞﾗは新規作成、削除とその他(例：明細およびCreate/Read/Update/Delete)ｺﾏﾝﾄﾞによって実行されます。
+* ｺﾏﾝﾄﾞのﾕｰｻﾞｰ-ｵﾌﾞｼﾞｪｸﾄ-ﾀｲﾌﾟが動く方法が決まります。
+*
+<<CommentBlock>>
+BEGIN_COM ROLE(*EXTENDS #PRIM_WAM) Sessionstatus(None) Layoutweblet('vlf_layout_v2')
+Define_Com Class(#vf_sw100) NAME(#avFrameworkManager)
+Define_Com Class(#vf_aw010) Name(#ThisHandler) Reference(*Dynamic)
+Define_Com Class(#vf_lw002) Name(#avListManager) Reference(*Dynamic)
+Define_Com Class(#fp_in001) Name(#FastPart) Reference(*Dynamic)
+<<comment>>VL ﾌﾚｰﾑﾜｰｸ ﾏｯﾌﾟ ﾌｨｰﾙﾄﾞです。変更できません。
+Web_Map For(*both) Fields((#VF_FRAMEI *private) (#VF_FRAMEW *private) (#VF_FRAMES *private) (#VF_ELXTOF *private) (#VF_ELXN01 *private) (#VF_ELXN02 *private) (#VF_ELXN03 *private) (#VF_ELXN04 *private) (#VF_ELXN05 *private) (#VF_ELXN06 *private) 
++ (#VF_ELXN07 *private) (#VF_ELXN08 *private) (#VF_ELXN09 *private) (#VF_ELXN10 *private) (#VF_ELXA01 *private) (#VF_ELXA02 *private) (#VF_ELXA03 *private) (#VF_ELXA04 *private) (#VF_ELXA05 *private) 
++ (#VF_ELXA06 *private) (#VF_ELXA07 *private) (#VF_ELXA08 *private) (#VF_ELXA09 *private) (#VF_ELXA10 *private)(#VF_ELMETA *private))
+<<if UM057_Has_HEADFields>>
+<<comment>>Webﾌｫｰﾑのﾍｯﾀﾞﾌｨｰﾙﾄﾞの定義
+GROUP_BY NAME(#Wam_Data) FIELDS(<<UM057_GenHeadGroupInline>>
+<<if UM057_Has_LISTFields>> 
+<<comment>>Define the list fields of the web form
+GROUP_BY NAME(#XG_LIST) FIELDS(<<UM057_GenListGroupInline>>
+<<comment>>Webﾌｫｰﾑのﾘｽﾄの定義
+Def_list Name(#Wam_List) type(*working) Fields(<<UM057_GenListGroupInline>>
+<<comment>>このﾌｫｰﾑで使用するﾏｯﾌﾟﾌｨｰﾙﾄﾞ
+Web_Map For(*both) Fields((#UB_PUSHB1 *NOID) #WAM_LIST #Wam_Data)
+<<else>>
+<<comment>>このﾌｫｰﾑで使用するﾏｯﾌﾟﾌｨｰﾙﾄﾞ
+Web_Map For(*both) Fields((#UB_PUSHB1 *NOID) #Wam_Data)
+<<endif>>
+<<UM055_GenDclTmpCol>>
+<<else>>
+<<if UM057_Has_LISTFields>> 
+<<comment>>Webﾌｫｰﾑのﾘｽﾄの定義
+Def_list Name(#Wam_List) type(*working) Fields(<<UM057_GenListGroupInline>>
+Web_Map For(*both) Fields((#UB_PUSHB1 *NOID) #WAM_LIST)
+<<endif>>
+<<endif>>
+<<CommentBlock>>
+* ﾜｰｸﾌｨｰﾙﾄﾞ
+DEFINE FIELD(#CMD_TYPE) TYPE(*CHAR) LENGTH(32) DESC('User Object Type of the command')
+DEFINE FIELD(#RET_CODE) reffld(#STD_BOOL)
+DEF_COND NAME(*OKAY) COND((#RET_CODE = OK) or (#RET_CODE = TRUE))
+DEF_COND NAME(*NOTOKAY) COND((#RET_CODE *ne OK) and (#RET_CODE *ne TRUE))
+<<CommentBlock>>
+Webroutine Name(UHandleEvent)
+<<comment>>WAMｲﾍﾞﾝﾄ1でﾌﾟｯｼｭﾎﾞﾀﾝをｸﾘｯｸした時のｲﾍﾞﾝﾄを登録
+#avFrameworkManager.avRegisterEvent Named(UB_PUSHB1.CLICK) Signalaswamevent(1)
+
+<<comment>>標準の WAM 初期化
+#avFrameworkManager.avInitializeWAM Type(COMMAND) Invoker(#com_owner) Listmanager(#avListManager) Handlermanager(#ThisHandler) Fastpartmanager(#FastPart)
+
+#avFrameworkManager.avHandleWAMEvent Anchorblock(#vf_framew) Event(#vf_event) Designmode(#vf_framed) Skin(#VF_Frames) Metatag(#vf_elmeta) 
++ Tof(#vf_elxtof) N01(#vf_elxn01) N02(#vf_elxn02) N03(#vf_elxn03) N04(#vf_elxn04) N05(#vf_elxn05) N06(#vf_elxn06) N07(#vf_elxn07) N08(#vf_elxn08) 
++ N09(#vf_elxn09) N10(#vf_elxn10) A01(#vf_elxA01) A02(#vf_elxA02) A03(#vf_elxA03) A04(#vf_elxA04) A05(#vf_elxA05) A06(#vf_elxA06) A07(#vf_elxA07) A08(#vf_elxA08) A09(#vf_elxA09) A10(#vf_elxA10) Ssiname(#VF_FRAMEI)
+
+Endroutine
+
+<<comment>>ｺﾏﾝﾄﾞﾊﾝﾄﾞﾗｰの初期化
+Evtroutine Handling(#avFrameworkManager.uInitialize) Options(*noclearmessages *noclearerrors)
+* The behaviour of this command handler is modified by the user-object-type of the command that initiated it.
+#Cmd_Type :=  #ThisHandler.avCommandType
+<<CommentBlock>>
+* 省略のﾎﾞﾀﾝを使用可
+#ThisHandler.avSetButton ButtonName(UB_PUSHB1)  Enabled(TRUE)
+
+<<comment>>ここに初期化ﾛｼﾞｯｸを記述
+Endroutine
+<<CommentBlock>>
+Evtroutine Handling(#avFrameworkManager.uexecute) Options(*noclearmessages *noclearerrors)
+Case Of_Field(#Cmd_Type)
+<<CommentBlock>>
+* 新規作成処理
+When Value_is(= New)
+#UB_PUSHB1 := 'Save New Details'
+#Wam_Data := *NULL 
+<<CommentBlock>>
+* ｺﾋﾟｰ処理
+When Value_Is(= Copy)
+#UB_PUSHB1 := 'Save New Details'
+Execute Subroutine(GETCURRENT) with_parms(TRUE)
+<<CommentBlock>>
+* 削除処理
+When Value_Is(= Delete)
+#UB_PUSHB1 := 'Confirm Deletion'
+Execute Subroutine(GETCURRENT) WITH_PARMS(TRUE)
+<<CommentBlock>>
+* 明細処理
+Otherwise
+#UB_PUSHB1 := 'Save Changes'
+Execute Subroutine(GETCURRENT) WITH_PARMS(TRUE)
+EndCase
+EndRoutine
+<<if UM057_Has_HEADFields>>
+<<comment>>ﾎﾞﾀﾝのｸﾘｯｸ処理
+* Perform Push Button1 event logic. Event routine registered using #avFrameworkManager.avRegisterEvent as event 1.
+Evtroutine Handling(#avFrameworkManager.uWAMEvent_1) Options(*noclearmessages *noclearerrors)
+DEFINE FIELD(#VIS_RESLT) REFFLD(#STD_TEXT)
+DEFINE FIELD(#MSG_RSLT) TYPE(*CHAR) LENGTH(132)
+<<comment>>ｺﾏﾝﾄﾞの処理
+CASE OF_FIELD(#Cmd_Type)
+<<CommentBlock>>
+* 新規作成及びｺﾋﾟｰの処理
+when value_is(= New = Copy)
+#UB_PUSHB1 := 'Save New Details'
+#VIS_RESLT :=  'New'
+#MSG_RSLT := 'New details have been saved'
+INSERT FIELDS(#Wam_Data) TO_FILE(<<UM055_BaseFile>>) IO_STATUS(#RET_CODE) IO_ERROR(*NEXT) VAL_ERROR(*NEXT) ISSUE_MSG(*YES)
+<<CommentBlock>>
+* 削除処理
+WHEN VALUE_IS(= Delete)
+#UB_PUSHB1 := 'Confirm Deletion'
+#VIS_RESLT :=  'Deleted'
+#MSG_RSLT := 'Details have been deleted'
+EXECUTE SUBROUTINE(GETCURRENT) WITH_PARMS(TRUE)
+IF COND(*OKAY)
+DELETE FROM_FILE(<<UM055_BaseFile>>) IO_STATUS(#RET_CODE) IO_ERROR(*NEXT) VAL_ERROR(*NEXT) ISSUE_MSG(*YES)
+ENDIF
+<<CommentBlock>>
+* 明細処理
+OTHERWISE
+#UB_PUSHB1 := 'Save Changes'
+#VIS_RESLT :=  'Updated'
+#MSG_RSLT := 'Changed details have been saved'
+EXECUTE SUBROUTINE(GETCURRENT) WITH_PARMS(FALSE)
+IF COND(*OKAY)
+UPDATE FIELDS(#Wam_Data) IN_FILE(<<UM055_BaseFile>>) WITH_KEY(<<UM055_BaseFileKeys>>) IO_STATUS(#RET_CODE) IO_ERROR(*NEXT) VAL_ERROR(*NEXT) ISSUE_MSG(*YES)
+ENDIF
+ENDCASE
+<<comment>>条件に関係の無い処理
+IF COND(*NOTOKAY)
+#ThisHandler.avShowMessages := TRUE
+ELSE
+#avListManager.BeginListUpdate
+
+<<UM055_AddtoList VIS_RESLT>>  
+<<CommentBlock>>
+* ｲﾝｽﾀﾝｽﾘｽﾄの更新
+#avListManager.EndListUpdate
+
+* 
+CASE OF_FIELD(#CMD_TYPE)
+WHEN VALUE_IS(= NEW)
+<<CommentBlock>>
+* 次の入力の準備
+#Wam_Data := *NULL 
+WHEN VALUE_IS(= DELETE)
+<<CommentBlock>>
+* 削除ﾎﾞﾀﾝを使用不可にする
+#ThisHandler.avSetButton ButtonName(UB_PUSHB1)  Enabled(FALSE)
+
+ENDCASE
+<<CommentBlock>>
+* 要求されたﾒｯｾｰｼﾞを表示
+USE BUILTIN(CLR_MESSAGES)
+MESSAGE MSGID(DCM9899) MSGF(DC@M01) MSGDTA(#MSG_RSLT)
+ENDIF
+ENDROUTINE
+<<endif>>
+<<comment>>GetCurrent: 現行ｵﾌﾞｼﾞｪｸﾄ明細の取得
+SUBROUTINE NAME(GETCURRENT) PARMS((#DF_FETCH *RECEIVED))
+DEFINE FIELD(#DF_FETCH) REFFLD(#STD_BOOL)
+<<if UM057_Has_HEADFields>>
+<<UM055_GenGetLst>>
+<<comment>>ﾌｫｰﾑのﾍｯﾀﾞﾌｨｰﾙﾄﾞを満たすために主なﾌｧｲﾙから情報をFetch
+IF COND(#DF_FETCH = TRUE)
+Fetch Fields(#Wam_Data) From_File(<<UM055_BaseFile>>) With_Key(<<UM055_BaseFileKeys>>) IO_STATUS(#RET_CODE)
+<<if UM057_Has_LISTFields>>
+Clr_List #Wam_List
+<<endif>>
+ENDIF
+<<CommentBlock>>
+use builtin(clr_messages)
+<<comment>> 見つからない時の処理
+if cond(*notokay)
+message msgtxt('The requested object was not found. It may have been deleted.')
+#ThisHandler.avShowMessages := TRUE
+#ThisHandler.avSetButton ButtonName(UB_PUSHB1)  Enabled(FALSE)
+
+#Wam_Data := *NULL
+else
+<<if UM057_Has_LISTFields>>
+<<comment>>表示ﾘｽﾄを満たすために関連ﾌｧｲﾙから情報をSelect
+Clr_List #Wam_List
+Select Fields(#XG_LIST) From_File(<<tba>>) With_key(<<tba>>)
+<<Comment>>表示ﾘｽﾄへ項目を追加
+Add_Entry #Wam_List
+EndSelect    
+<<endif>>
+endif
+<<endif>>
+endroutine
+End_Com
+<<code>>

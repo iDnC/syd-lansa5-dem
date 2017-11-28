@@ -1,0 +1,39 @@
+﻿<html>
+<head id='VF_HT052_Head'>
+
+<script language="javascript" type="text/javascript" src="vf_xbrowser.js"></script>
+
+<script language="javascript" type="text/javascript">
+
+var oThisObject = null; 
+var TraceList = null;
+
+function InsertLine(sText,sColor) 
+{ 
+   var oDIV = window.document.createElement("DIV"); 
+   oDIV.style.color = sColor; 
+   oDIV.innerText = sText;
+   TraceList.appendChild(oDIV);
+};  
+
+function Init()
+{
+   TraceList = document.getElementById("TraceList");
+   var oDate = new Date();
+   oThisObject = opener.VF_System.objVF_UM502;
+   opener.VF_UM502_PRIVATE_ExchangeDetails(window,oThisObject); 
+   document.getElementById("TraceTITLE").innerText = "***** SYSTEM TRACE DETAILS - " + oDate.toUTCString() + " *****"; 
+}
+
+</script>
+
+</head>
+<body onload="Init()">
+<input type='button' value='Clear Trace' onclick='TraceList.innerHTML = "";' />
+<div id='TraceDIV' style='font-family:Lucida Console; font-size: 8pt;'>
+<div id='TraceTITLE'></div>
+<div id='TraceList'>
+</div>
+</div>  
+</body>
+</html>  

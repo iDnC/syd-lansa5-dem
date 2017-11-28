@@ -1,0 +1,165 @@
+<caption>
+スナップイン インスタンス リスト ブラウザ 
+</caption>
+<preamble>
+JPN_vf_um052_Instance_List_Browser.htm
+</preamble> 
+<hint>
+このアシスタントは、スナップイン インスタンス リスト ブラウザのコードを生成します。スナップイン インスタンス リスト ブラウザについての詳細は VL フレームワークのドキュメントを参照してください。  
+</hint>
+<context>
+BusinessObject 
+</context>
+<sequence>
+000100  
+</sequence>
+<handler>
+VF_UM055 
+</handler>
+<handlertxt>
+このビジネス オブジェクトに使用する識別プロトコルを指定します。このビジネス オブジェクトに類似する物理ファイルの名前が指定されると、このアシスタントは自動的に基本識別プロトコルの推測を試みます。    
+</handlertxt>
+<code>
+* <<majorsep>>
+* タイプ            : スナップイン インスタンス リスト ブラウザ  
+* 祖先            : VF_AC012  
+* 開発者          : <<ユーザー>> on <<日付>> at <<時刻>>
+* 著作権          : <<copyright>>
+* フレームワーク      : <<framework_lang ucaption>>
+* アプリケーション     : <<application_lang ucaption>>
+* ビジネス オブジェクト : <<businessobject_lang ucaption>>
+* <<majorsep>>
+* 独自のスナップイン インスタンス リスト ブラウザを作成するには以下の手順に従ってください。
+* <<majorsep>>
+*   (1). 新規 Visual LANSA 再利用可能コンポーネント(例: MYBROWSER) を作成します。 
+*   (2). このサンプル ソースコードを新しく作成したコンポーネントにコピーします。
+*   (3). 新規コンポーネントの祖先が VF_AC012 であることを確認します。
+*   (4). コピーしたソースコードを自身のビジネス オブジェクトの要件、
+*        インスタンス リストの識別プロトコルに合うよう修正します。
+*   (5). この新規コンポーネントをコンパイルします。
+*   (6). フレームワークを [デザイナー] モードで開き、
+*        スナップイン ブラウザにする新規コンポーネントのビジネス オブジェクトの
+*        [ビジネス オブジェクトのプロパティ] を表示します。
+*        [インスタンス リストの設定] タブを開き、[スナップイン インスタンス リスト ブラウザ]の値を
+*        コンポーネント名(例: MYBROWSER) に変更します。
+*   (7). フレームワークを終了し再起動します。 
+*        これでスナップイン インスタンス リスト ブラウザが提供のものから独自のものに置換されているはずです。              
+* <<majorsep>>
+Begin_Com Role(*EXTENDS #VF_AC012) Height(218) Layoutmanager(#ATTACHMENT_MANAGER) Width(332)
+<<Comment>>添付レイアウト マネージャーの全体  
+Define_Com Class(#PRIM_ATLM) Name(#ATTACHMENT_MANAGER)
+<<Comment>>表示される <<businessobject_lang ucaption>> グリッド
+Define_Com Class(#PRIM_GRID) Name(#INST_LIST) Columnbuttonheight(50) Displayposition(1) Left(0) Parent(#COM_OWNER) Selectionstyle(Multiple) Showlines(False) Showselection(True) Showsortarrow(True) Tabposition(1) Tabstop(False) Top(0)
+Define_Com Class(#PRIM_ATLI) Name(#GRID_ATTACHMENT_ITEM) Attachment(Center) Manage(#INST_LIST) Parent(#ATTACHMENT_MANAGER)
+<<UM055_GenGrid>> 
+<<Comment>>現在フォーカスのあるグリッド アイテム  
+Define_com #Prim_Objt #FocusGridItem Reference(*dynamic)
+<<Comment>>UI コントロール定義  
+Define Field(#UI_ISDEAF) Reffld(#VF_ELBOOL)
+Def_Cond Name(*UI_LISTEN) Cond(#UI_IsDeaf *ne TRUE)
+* <<majorsep>>
+* メソッド定義
+* <<majorsep>>
+* <<minorsep>>
+* 標準 uClearInstanceList メソッドの再定義
+* <<minorsep>>
+MthRoutine uClearInstanceList Options(*Redefine)
+Clr_List #Inst_List
+<<Comment>>最後にフォーカスされたアイテムの記録をクリア  
+#FocusGridItem <= *null
+EndRoutine
+* <<minorsep>>
+* 標準  uAddListEntry メソッドの再定義
+* <<minorsep>>
+Mthroutine Name(uAddListEntry) Options(*Redefine)
+* ==> Define_Map For(*Input) Class(#VF_ELXVI1) Name(#VisualId1) Desc('Visual Identifier 1') Help('This is the first visual identifier of the business object. Alphanumeric. Maximum length 32')
+* ==> Define_Map For(*Input) Class(#VF_ELXVI2) Name(#VisualId2) Desc('Visual Identifier 2') Help('This is the optional second visual identifier of the business object. Alphanumeric. Maximum length 50')
+* ==> Define_Map For(*Input) Class(#VF_ELXAK1) Name(#AKey1) Desc('Object Instance Identifier 1 - Alpha') Help('This is an optional  programmatic identifier of this business object instance. The identification protocol used for the identifier is at your discretion. Type alphanumeric. Maximum length 32.')
+* ==> Define_Map For(*Input) Class(#VF_ELXAK2) Name(#AKey2) Desc('Object Instance Identifier 2 - Alpha') Help('This is an optional  programmatic identifier of this business object instance. The identification protocol used for the identifier is at your discretion. Type alphanumeric. Maximum length 32.')
+* ==> Define_Map For(*Input) Class(#VF_ELXAK3) Name(#AKey3) Desc('Object Instance Identifier 3 - Alpha') Help('This is an optional  programmatic identifier of this business object instance. The identification protocol used for the identifier is at your discretion. Type alphanumeric. Maximum length 32.')
+* ==> Define_Map For(*Input) Class(#VF_ELXAK4) Name(#AKey4) Desc('Object Instance Identifier 4 - Alpha') Help('This is an optional  programmatic identifier of this business object instance. The identification protocol used for the identifier is at your discretion. Type alphanumeric. Maximum length 32.')
+* ==> Define_Map For(*Input) Class(#VF_ELXAK5) Name(#AKey5) Desc('Object Instance Identifier 5 - Alpha') Help('This is an optional  programmatic identifier of this business object instance. The identification protocol used for the identifier is at your discretion. Type alphanumeric. Maximum length 32.')
+* ==> Define_Map For(*Input) Class(#VF_ELXNK1) Name(#NKey1) Desc('Object Instance Identifier 1 - Numeric') Help('This is an optional programmatic identifier of this business object instance. The identification protocol used for the identifier is at your discretion. Type numeric at maximum (15,0) precision.')
+* ==> Define_Map For(*Input) Class(#VF_ELXNK2) Name(#NKey2) Desc('Object Instance Identifier 2 - Numeric') Help('This is an optional programmatic identifier of this business object instance. The identification protocol used for the identifier is at your discretion. Type numeric at maximum (15,0) precision.')
+* ==> Define_Map For(*Input) Class(#VF_ELXNK3) Name(#NKey3) Desc('Object Instance Identifier 3 - Numeric') Help('This is an optional programmatic identifier of this business object instance. The identification protocol used for the identifier is at your discretion. Type numeric at maximum (15,0) precision.')
+* ==> Define_Map For(*Input) Class(#VF_ELXNK4) Name(#NKey4) Desc('Object Instance Identifier 4 - Numeric') Help('This is an optional programmatic identifier of this business object instance. The identification protocol used for the identifier is at your discretion. Type numeric at maximum (15,0) precision.')
+* ==> Define_Map For(*Input) Class(#VF_ELXNK5) Name(#NKey5) Desc('Object Instance Identifier 5 - Numeric') Help('This is an optional programmatic identifier of this business object instance. The identification protocol used for the identifier is at your discretion. Type numeric at maximum (15,0) precision.')
+* ==> Define_Map For(*input) Class(#vf_elBool) Name(#Selected) Desc('Select this business object instance') Help('This value is set to Y (in uppercase) or N (in uppercase) to indicate whether this business object instance should be visualized as selected.')
+* ==> Define_Map For(*input) Class(#vf_elidn) Name(#BusinessObjectType) Mandatory(' ') Desc('User object name/type') Help('The user object name/type of the business object associated with this instance list entry. If specified this must specify the user object name/type of the current or a defined related business object.')
+* ==> Define_Map For(*input) Class(#vf_elxcoa) Name(#AColumn1) Desc('Optional Alphanumeric Column') Mandatory('<=DFT=>')  Help('This is an optional alphanumeric column associated with the instance list. Type alphanumeric. Maximum length 100.')
+* ==> Define_Map For(*input) Class(#vf_elxcoa) Name(#AColumn2) Desc('Optional Alphanumeric Column') Mandatory('<=DFT=>')  Help('This is an optional alphanumeric column associated with the instance list. Type alphanumeric. Maximum length 100.')
+* ==> Define_Map For(*input) Class(#vf_elxcoa) Name(#AColumn3) Desc('Optional Alphanumeric Column') Mandatory('<=DFT=>')  Help('This is an optional alphanumeric column associated with the instance list. Type alphanumeric. Maximum length 100.')
+* ==> Define_Map For(*input) Class(#vf_elxcoa) Name(#AColumn4) Desc('Optional Alphanumeric Column') Mandatory('<=DFT=>')  Help('This is an optional alphanumeric column associated with the instance list. Type alphanumeric. Maximum length 100.')
+* ==> Define_Map For(*input) Class(#vf_elxcoa) Name(#AColumn5) Desc('Optional Alphanumeric Column') Mandatory('<=DFT=>')  Help('This is an optional alphanumeric column associated with the instance list. Type alphanumeric. Maximum length 100.')
+* ==> Define_Map For(*input) Class(#vf_elxcoa) Name(#AColumn6) Desc('Optional Alphanumeric Column') Mandatory('<=DFT=>')  Help('This is an optional alphanumeric column associated with the instance list. Type alphanumeric. Maximum length 100.')
+* ==> Define_Map For(*input) Class(#vf_elxcoa) Name(#AColumn7) Desc('Optional Alphanumeric Column') Mandatory('<=DFT=>')  Help('This is an optional alphanumeric column associated with the instance list. Type alphanumeric. Maximum length 100.')
+* ==> Define_Map For(*input) Class(#vf_elxcoa) Name(#AColumn8) Desc('Optional Alphanumeric Column') Mandatory('<=DFT=>')  Help('This is an optional alphanumeric column associated with the instance list. Type alphanumeric. Maximum length 100.')
+* ==> Define_Map For(*input) Class(#vf_elxcoa) Name(#AColumn9) Desc('Optional Alphanumeric Column') Mandatory('<=DFT=>')  Help('This is an optional alphanumeric column associated with the instance list. Type alphanumeric. Maximum length 100.')
+* ==> Define_Map For(*input) Class(#vf_elxcoa) Name(#AColumn10) Desc('Optional Alphanumeric Column') Mandatory('<=DFT=>')  Help('This is an optional alphanumeric column associated with the instance list. Type alphanumeric. Maximum length 100.')
+* ==> Define_Map *input #vf_elxcon Name(#NColumn1) Desc('Optional Numeric Column')Help('This is an optional numeric column associated with the instance list. Type numeric. Maximum precision is 30,9.') Mandatory(-9999999)
+* ==> Define_Map *input #vf_elxcon Name(#NColumn2) Desc('Optional Numeric Column')Help('This is an optional numeric column associated with the instance list. Type numeric. Maximum precision is 30,9.') Mandatory(-9999999)
+* ==> Define_Map *input #vf_elxcon Name(#NColumn3) Desc('Optional Numeric Column')Help('This is an optional numeric column associated with the instance list. Type numeric. Maximum precision is 30,9.') Mandatory(-9999999)
+* ==> Define_Map *input #vf_elxcon Name(#NColumn4) Desc('Optional Numeric Column')Help('This is an optional numeric column associated with the instance list. Type numeric. Maximum precision is 30,9.') Mandatory(-9999999)
+* ==> Define_Map *input #vf_elxcon Name(#NColumn5) Desc('Optional Numeric Column')Help('This is an optional numeric column associated with the instance list. Type numeric. Maximum precision is 30,9.') Mandatory(-9999999)
+* ==> Define_Map *input #vf_elxcon Name(#NColumn6) Desc('Optional Numeric Column')Help('This is an optional numeric column associated with the instance list. Type numeric. Maximum precision is 30,9.') Mandatory(-9999999)
+* ==> Define_Map *input #vf_elxcon Name(#NColumn7) Desc('Optional Numeric Column')Help('This is an optional numeric column associated with the instance list. Type numeric. Maximum precision is 30,9.') Mandatory(-9999999)
+* ==> Define_Map *input #vf_elxcon Name(#NColumn8) Desc('Optional Numeric Column')Help('This is an optional numeric column associated with the instance list. Type numeric. Maximum precision is 30,9.') Mandatory(-9999999)
+* ==> Define_Map *input #vf_elxcon Name(#NColumn9) Desc('Optional Numeric Column')Help('This is an optional numeric column associated with the instance list. Type numeric. Maximum precision is 30,9.') Mandatory(-9999999)
+* ==> Define_Map *input #vf_elxcon Name(#NColumn10) Desc('Optional Numeric Column')Help('This is an optional numeric column associated with the instance list. Type numeric. Maximum precision is 30,9.') Mandatory(-9999999)
+<<CommentBlock>>
+<<UM055_GenSnapIAssign>>  
+<<comment>>インスタンス リストに詳細を追加 
+Add_Entry #Inst_List
+<<comment>>終了 
+EndRoutine
+* <<minorsep>>
+* グリッドから新しい <<businessobject_lang ucaption>> の選択を受け入れるかどうか決定
+* <<minorsep>>
+EVTROUTINE HANDLING(#Inst_List.ItemGotFocusAccept #Inst_List.ItemGotSelectionAccept) Accept(#ACCEPT) OPTIONS(*NOCLEARMESSAGES *NOCLEARERRORS)
+<<comment>>フレームワークがロック状態の場合...
+If Cond(#avFrameworkManager.uCurrentLockStatus *EQ TRUE)
+<<comment>>フォーカスを受け入れず
+#ACCEPT.Value := FALSE
+<<comment>>イベントにも反応しない
+#UI_ISDEAF := TRUE
+Else
+<<comment>>フォーカスを受け入れ
+#ACCEPT.Value := TRUE
+<<comment>>イベントにも反応する
+#UI_ISDEAF := FALSE
+Endif
+ENDROUTINE
+* <<minorsep>>
+* グリッドからの <<businessobject_lang ucaption>> の選択処理
+* <<minorsep>>
+EvtRoutine Handling(#Inst_List.ItemGotSelection) OPTIONS(*NOCLEARMESSAGES *NOCLEARERRORS)
+Signal SetSelectedInstance <<UM055_GenANKeys>>
+<<comment>>フォーカスが正しく起動されなかった特殊なケースを処理 
+If_ref #FocusGridItem is(*null)
+#FocusGridItem <= #Inst_List.CurrentItem
+Signal SetCurrentInstance <<UM055_GenANKeys>>
+Endif
+EndRoutine
+* <<minorsep>>
+* グリッドからの <<businessobject_lang ucaption>> の選択が外された場合の処理
+* <<minorsep>>
+EvtRoutine Handling(#Inst_List.ItemLostSelection) OPTIONS(*NOCLEARMESSAGES *NOCLEARERRORS)
+Signal DropSelectedInstance <<UM055_GenANKeys>>
+EndRoutine
+* <<minorsep>>
+* グリッドの <<businessobject_lang ucaption>> のフォーカス処理 
+* <<minorsep>>
+EvtRoutine Handling(#Inst_List.ItemGotFocus) OPTIONS(*NOCLEARMESSAGES *NOCLEARERRORS)
+If Cond(*UI_LISTEN)
+Signal SetCurrentInstance <<UM055_GenANKeys>>
+Endif
+EndRoutine
+* <<minorsep>>
+* グリッドの <<businessobject_lang ucaption>> のフォーカスが失われた場合の処理
+* <<minorsep>>
+EvtRoutine Handling(#Inst_List.ItemLostFocus) OPTIONS(*NOCLEARMESSAGES *NOCLEARERRORS)
+Signal DropCurrentInstance <<UM055_GenANKeys>>
+EndRoutine
+
+End_Com
+</code>

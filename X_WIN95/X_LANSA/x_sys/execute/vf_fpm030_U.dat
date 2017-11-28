@@ -1,0 +1,58 @@
+// This script was generated from skeleton file vf_fpm030_U.js, which is in your LANSA partition execute folder.
+// You may alter this file to change how new scripts are generated. **NOTE** You must backup skeleton file changes. 
+// Script skeleton files are replaced with the standard shipped versions when reinstalling or upgrading RAMP-TS. 
+
+{
+
+   /* ====================================================== */
+   /* ==================  vHandle_ARRIVE  ================== */
+   /* ====================================================== */
+   /* Handle arrival at an UNKNOWN                           */
+   /* oPayload: The payload supplied by the event initiator  */
+   /* oPreviousForm: Reference to previous object Form       */
+
+   vHandle_ARRIVE: function(oPayload, oPreviousForm) 
+   {
+     var bReturn = true;
+
+     SHOW_CURRENT_FORM(false);
+     SHOW_5250_BUTTONS();
+     SETBUSY(false); 
+
+     /* <ARRIVE /> - Do not remove or alter this line */
+
+     return(bReturn);
+   }, 
+
+
+   /* ====================================================== */
+   /* ===================  NAVIGATETO  ===================== */
+   /* ====================================================== */
+   /* sToForm:       Name of the Form to navigate to         */
+   /* oPreviousForm: Reference to previous Form object       */
+
+   vHandle_NAVIGATETO: function(sToForm, oPreviousForm) 
+   {
+     var bReturn = true;
+  
+     switch (sToForm)
+     {
+        /* <NAVIGATESWITCH> - Do not remove or alter this line */
+        
+        default:
+              alert("Form " + this.vName + " cannot navigate to form " + sToForm);  
+              bReturn = false; 
+              break; 
+          
+     }
+        /* </NAVIGATESWITCH> - Do not remove or alter this line */
+
+     return(bReturn);
+   },
+
+ 
+// Do not alter any script after this line 
+//<SYSINFO>
+//</SYSINFO>
+
+}

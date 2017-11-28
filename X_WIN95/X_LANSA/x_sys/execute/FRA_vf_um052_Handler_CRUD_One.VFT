@@ -1,0 +1,287 @@
+<context>
+CommandHandler 
+</context>
+<caption>
+Gestionnaire d'action CRUD
+</caption>
+<preamble>
+FRA_vf_um052_Handler_CRUD_One.htm
+</preamble>
+<hint>
+Cet assistant génère le code d'un gestionnaire d'action CRUD (Création/Lecture/Modification/Suppression).  
+</hint>
+<mode>
+ONE
+</mode>
+<sequence>
+000100  
+</sequence>
+<handler>
+VF_UM128 
+VF_UM129  
+VF_UM130   
+</handler>
+<handlertxt>
+If  the Instance List fields and Identifier fields are correct, proceed to the next step.   
+Specify the fields that you want on your command handler.                   
+Specify the things that you would like to include in the generated code. 
+</handlertxt>
+<code>
+<<include VF_UM052_CommandHandler_Preamble.vfi>>
+*
+* NB: Ce gestionnaire d'action a été conçu pour être appelé par les commandes Nouveau, Supprimer, et autres (Détails ou Create/Read/Update/Delete)
+* Il utilise le type d'objet utilisateur de la commande pour décider comment se comporter.
+*
+Function Options(*DIRECT) 
+Begin_Com Role(*EXTENDS £VF_AC010O) Layoutmanager(£TableLayout_Main) Width(600) Height(240) 
+
+* Présentation de Table
+
+Define_Com Class(£PRIM_TBLO) Name(£TableLayout_Main)
+
+Define_Com Class(£PRIM_TBLO.Column) Name(£Column1) Displayposition(1) Parent(£TableLayout_Main)
+Define_Com Class(£PRIM_TBLO.Row) Name(£Row1) Displayposition(1) Parent(£TableLayout_Main) Height(1,72)
+Define_Com Class(£PRIM_TBLO.Row) Name(£Row2) Displayposition(2) Parent(£TableLayout_Main) Height(25) Units(Pixels)
+
+* Groupes
+
+Group_by Name(£XG_HEAD) <<UM057_GenHeadGroup>>
+Group_By   Name(£XG_Keys)   Fields(<<UM055_BaseFileKeys>>)
+
+* Zones de travail
+
+define field(£cmd_type) type(*char) length(32) desc('Type objet utilisateur de la commande')
+Define_com £prim_boln £Ret_Code
+
+* Collection de zones sur le panneau
+
+DEFINE_COM CLASS(£Prim_ACol<£prim_evp>) NAME(£PanelFields)
+Define_Com Class(£Prim_ACol<£prim_evp>) Name(£KeyFields)
+
+
+<<if CA_UM056_SAVEBTN>>
+* Le bouton nouveau/mise à jour/supprimer
+
+DEFINE_COM CLASS(£PRIM_PHBN) NAME(£Button_All) BUTTONDEFAULT(True) CAPTION('Non défini') DISPLAYPOSITION(1) LEFT(12) PARENT(£Com_Owner) TABPOSITION(1) TOP(4) WIDTH(120)
+Define_Com Class(£PRIM_TBLO.Item) Name(£Button_AllItem1) Manage(£Button_All) Parent(£TableLayout_Main) Row(£Row2) Sizing(FitToHeight) Column(£Column1) Alignment(CenterLeft) Flow(Right)
+<<endif>>
+
+* Zones du panneau
+
+<<UM057_Repeat True ALL HEAD>>Define_Com Class(£<<field>>.Visual) Parent(£Com_Owner) Marginleft(160) LabelType(<<UM056_Identify_With>>)
+<<UM057_Repeat False ALL HEAD>>Define_Com Class(£PRIM_TBLO.Item) Name(£<<Field>>Item1) Manage(£<<Field>>) Parent(£TableLayout_Main) Row(£Row1) Sizing(FitToWidth) Column(£Column1) Alignment(TopLeft) Flow(Down) Marginleft(5) Margintop(5) Marginright(5)
+
+* <<majorsep>>
+* Routines
+* <<majorsep>>
+
+
+* <<minorsep>>
+* Exécution de la commande
+* <<minorsep>>
+Mthroutine Name(uExecute) Options(*REDEFINE)
+
+* Clear any previous messages
+£AVFRAMEWORKMANAGER.avClearMessages Requester(£COM_OWNER)
+  
+<<Comment>>Exécuter toute logique d'exécution définie dans l'ancêtre
+£COM_ANCESTOR.uExecute GotoFreeState(£GotoFreeState) SwitchCallerReference(£SwitchCallerReference)
+<<CommentBlock>>
+£Button_All.enabled := false
+<<CommentBlock>>
+* Le comportement de ce gestionnaire est modifié par le type d'objet utilisateur de la commande qui l'a lancé.
+* (Pour voir le type d'objet utilisateur de la commande, lancer le framework en mode concepteur et regarder ses commandes) 
+<<CommentBlock>>
+£Cmd_type := £Com_Owner.avCommandType
+Case £Cmd_type
+When Value_Is(= NEW, = COMMAND_NEW)
+SET Com(£PanelFields<>) Enabled(true)
+£Button_All.caption := 'Enregistrer'
+£XG_Head := *null
+When Value_Is(= COPY, = COMMAND_COPY)
+SET Com(£PanelFields<>) Enabled(true)
+£Button_All.caption := 'Enregistrer'
+£Com_owner.getAssociated
+When Value_Is(= DELETE, = COMMAND_DELETE)
+SET Com(£PanelFields<>) Enabled(False)
+set £Button_All enabled(true) caption('Confirmer la suppression')
+£Com_owner.getAssociated
+otherwise
+SET Com(£PanelFields<>) Enabled(true)
+SET Com(£KeyFields<>) Enabled(False)
+£Button_All.caption := 'Enregistrer'
+£Com_owner.getAssociated
+endcase
+<<CommentBlock>>
+Endroutine
+
+Mthroutine Name(uInitialize) Options(*REDEFINE)
+Define_Com Class(£prim_evp) Name(£TempField) Reference(*DYNAMIC)
+
+* Exécuter toute logique d'initialisation définie dans l'ancêtre 
+£Com_Ancestor.uInitialize
+
+* <ici votre logique d'initialisation> 
+* <ici votre logique d'initialisation> 
+* <ici votre logique d'initialisation> 
+
+
+* Contruire la collection des zones modifiables
+For Each(£Control) In(£Com_Owner.ComponentControls)
+If_Ref Com(£Control) Is(*INSTANCE_OF £prim_evp)
+£TempField <= £Control *As £prim_evp
+£PanelFields.Insert( £TempField )
+Endif
+Endfor
+
+* Contruire la collection des zones clés
+<<UM055_RepeatKeys>>£KeyFields.Insert(£<<field>> )
+
+
+Endroutine
+
+
+Mthroutine Name(uTerminate) Options(*REDEFINE)
+
+* <ici votre logique de fin> 
+* <ici votre logique de fin> 
+* <ici votre logique de fin> 
+
+£PanelFields.RemoveAll
+£KeyFields.RemoveAll
+
+* Exécuter toute logique de fin définie dans l'ancêtre
+£Com_Ancestor.uTerminate 
+
+Endroutine
+
+
+* <<minorsep>>
+* afficher l'instance en cours en préparation d'une mise à niveau ou suppression
+* <<minorsep>>
+mthroutine name(getAssociated) 
+
+* Définir le service de données
+Define_Com Class(£<<UM055_BaseFileWAM>>.Find) Name(£Find)
+Define_Com Class(£vf_elretc) Name(£uStatus)
+
+Group_By Name(£DataFields) <<UM055_BaseFileFields minusKey>>
+
+If_Ref Com(£Com_Owner.avAssociatedInstance) Is_Not(*NULL)
+
+<<UM055_GenGetLst ASSOCIATED>>
+
+if £Ret_code
+* Lire les données du serveur via un appel synchrone au module de service de données
+
+£Find.Execute(<<UM055_BaseFileKeys>> £DataFields £uStatus )
+
+If (£uStatus *EQ OK)
+
+* Si nécessaire traiter les données affichées ici
+
+Else
+£AVFRAMEWORKMANAGER.avIssueMessage Text('Non trouvé sur le serveur') Requester(£Com_Owner)
+Endif
+Else
+£AVFRAMEWORKMANAGER.avIssueMessage Text('Aucun élément en cours trouvé') Requester(£Com_Owner)
+Endif
+Endif
+
+endroutine
+
+EvtRoutine Handling(£Button_All.Cliquer)
+CASE OF_FIELD(£CMD_TYPE)
+When Value_Is(= DELETE, = COMMAND_DELETE)
+£com_owner.uDelete
+Otherwise
+£com_owner.uSave
+EndCase
+Endroutine
+
+mthroutine uSave
+* Vous pourriez utiliser la srvroutine Save si vous voulez mettre à jour toutes les zones de l'enregistrement
+* Si vous ne voulez pas mettre à jour toutes les zones vous devrez écrire votre propre srvroutine de mise à jour dans <<UM055_BaseFileWAM>> et utiliser plutôt celle-ci au lieu de .Save
+Define_Com Class(£<<UM055_BaseFileWAM>>.Save) Name(£Save)
+Define_Com Class(£vf_elretc) Name(£uStatus)
+
+* Lire la définition de ce groupe de zones à partir du module de service  <<UM055_BaseFileWAM>>
+Group_By Name(£SaveFields) <<UM055_BaseFileFields>>
+
+* Note: Vider les messages dans la barre de statut sinon des anciens messages pourraient créer la confusion
+£AVFRAMEWORKMANAGER.avClearMessages Requester(£COM_OWNER)
+
+* Maintenant lancer la sauvegarde (.Execute synchrone est OK si rapide)
+£Save.Execute( £SaveFields £uStatus )
+
+If (£uStatus = OK)
+* Message indiquant le succès de la mise à jour
+£avFrameworkManager.avIssueMessage Text('Correctement enregistré') Requester(£COM_OWNER)
+
+* Mettre à jour l'entrée de liste d'instance si nécessaire
+
+CASE OF_FIELD(£CMD_TYPE)
+When Value_Is(= NEW, = COMMAND_NEW, = COPY, = COMMAND_COPY)
+<<UM055_AddtoList *NONE APPEND >>  Setascurrent(True) Select(True)
+OTHERWISE
+* Update the associated instance list entry
+<<UM055_GenSetVIDs>>
+£Com_Owner.avAssociatedInstance.avVisualID1 := £UF_VisID1u
+£Com_Owner.avAssociatedInstance.avVisualID2 := £UF_VisID2u
+
+* Update any other Additional Columns here, if required
+* For example
+* £Com_Owner.avAssociatedInstance.avAColumn1  := 'My Value'
+
+£COM_OWNER.avAssociatedInstance.avUpdateDisplay
+ENDCASE
+
+£Button_All.Enabled := False
+Endif
+
+* Récupérer les messages du serveur et les envoyer dans le Framework
+£avFrameworkManager.avReceiveSystemMessageQueue Requester(£Com_owner)
+
+CASE OF_FIELD(£CMD_TYPE)
+When Value_Is(= NEW, = COMMAND_NEW)
+* Préparer pour l'entrée suivante
+£XG_HEAD := *NULL
+ENDCASE
+Endroutine
+
+Mthroutine uDelete
+Define_Com Class(£<<UM055_BaseFileWAM>>.Delete) Name(£Delete)
+Define_Com Class(£vf_elretc) Name(£uStatus)
+
+If_Ref Com(£Com_Owner.avAssociatedInstance) Is_Not(*NULL)
+
+* Note: Vider les messages dans la barre de statut sinon des anciens messages pourraient créer la confusion
+£AVFRAMEWORKMANAGER.avClearMessages Requester(£COM_OWNER)
+
+* Maintenant lancer la sauvegarde (.Execute synchrone est OK si rapide)
+£Delete.Execute( £XG_Keys £uStatus )
+
+If (£uStatus = OK)
+* Message indiquant le succès de la mise à jour
+£avFrameworkManager.avIssueMessage Text('Correctement supprimé') Requester(£COM_OWNER)
+
+* Mettre à jour l'entrée de liste d'instance
+
+£Com_Owner.avAssociatedInstance.avVisualId2 += ' (supprimé)'
+£Com_Owner.avAssociatedInstance.avUpdateDisplay
+
+£Button_All.Enabled := False
+Endif
+
+* Récupérer les messages du serveur et les envoyer dans le Framework
+£avFrameworkManager.avReceiveSystemMessageQueue Requester(£Com_owner)
+Endif
+endroutine
+
+
+EvtRoutine Handling(£PanelFields<>.Changed)
+£Button_All.Enabled := True
+EndRoutine
+<<commentblock>>
+End_Com
+</code>

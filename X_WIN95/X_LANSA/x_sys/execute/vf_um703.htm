@@ -1,0 +1,119 @@
+﻿<!-- ================================================================================================= -->
+<!-- =============================== COPYRIGHT NOTICE ================================================ -->
+<!-- ================================================================================================= -->
+<!-- (C) Copyright 2014 LANSA. LANSA is a trade name and registered trademark of LANSA in the          -->
+<!-- United States of America, Australia, the United Kingdom and other countries. All rights reserved. -->
+<!--                                                                                                   -->
+<!-- ------------------------------------------------------------------------------------------------- -->
+<!--                                                                                                   -->
+<!--          #     #       #       ######     #     #    ###    #     #     #####                     -->
+<!--          #  #  #      # #      #     #    ##    #     #     ##    #    #     #                    -->
+<!--          #  #  #     #   #     #     #    # #   #     #     # #   #    #                          -->
+<!--          #  #  #    #     #    ######     #  #  #     #     #  #  #    #  ####                    -->
+<!--          #  #  #    #######    #   #      #   # #     #     #   # #    #     #                    -->
+<!--          #  #  #    #     #    #    #     #    ##     #     #    ##    #     #                    -->
+<!--           ## ##     #     #    #     #    #     #    ###    #     #     #####                     -->
+<!--                                                                                                   -->
+<!-- ------------------------------------------------------------------------------------------------- -->
+<!-- Modification of this shipped HTML file will result one or more of the following:                  -->
+<!-- The introduction of incompatibilities with future versions of this framework.                     -->
+<!-- Voiding or limitation of any maintenance contract you may have in place for this framework.       -->
+<!-- Being charged for problem resolutions that are traced back to any such modifications.             -->
+<!-- ------------------------------------------------------------------------------------------------- -->
+<!-- saved from url=(0027)http://www.looksoftware.com -->
+<html>
+	<head>
+		<title>Main</title>
+		<style type="text/css">
+  
+body,td,table
+{
+   padding: 0px;
+   margin: 0px;  
+   font:icon;
+}
+      
+div  
+{
+font: icon;
+}      
+
+span
+{
+font: icon;
+}
+
+.JUNCTION
+{
+background-color:#87d5ff;
+color: black; 
+font:icon;
+}
+
+.CHERRY
+{
+background-color:#8bef8b;
+font:icon;
+}
+
+.SPECIAL
+{
+background-color:#ffee86;
+font:icon;
+}
+
+.UNDEFINED
+{  
+background-color:#ffaa7f;
+font:icon;
+}  
+
+.UNKNOWN  
+{ 
+background-color:lightpink;
+font:icon;
+}
+  
+</style>
+<script language="javascript">
+
+   var sUseLicence = GetParamValue("USELICENSE");
+   var sLicParam = "";
+
+   if ( ( sUseLicence != "local") && ( sUseLicence != "smartclient") )
+   {
+      sLicParam = "<param name='license' value='" + sUseLicence + "'>";
+   }
+
+   var sUseIni = GetParamValue("NLINIFILE");
+   
+   if (sUseIni != "") sUseIni = "-i" + sUseIni;
+
+function GetParamValue( sParam )
+{
+  var regexS = "[\\?+]"+sParam+"=([^+#]*)";
+  var regex = new RegExp( regexS );
+  var tmpURL = window.location.search;
+  var results = regex.exec( tmpURL );
+  if( results == null )
+    return "";
+  else
+    return results[1];
+}
+                  
+</script>
+		<script language="javascript" src="vf_um703.js"></script>
+	</head>
+	<body scroll="no" onload="VF_SY703_INITIALIZE();" oncontextmenu="return false" style="background-color:ThreeDFace;">
+		<span id="NewLookSpan" style="height:100%;width:80%;margin:3px;">
+      <script language="JScript" type="text/javascript">VF_UM703_CreateControl("NewLookSpan", sLicParam, sUseIni);</script> 
+		</span>
+		<span id="RoadMapSpan" style="word-wrap:break-word;text-overflow:ellipsis;vertical-align:top;height:99%;width:19%;margin:2px;border:1px solid #7f9db9;overflow-y:auto;overflow-x:auto;background-color:window;text-align:center;">
+			<div>Tracking Info</div>
+			<br />
+		</span>
+		<div id='VFPROP_Exchange1' style='visibility:hidden;display:none'>xxx</div>
+		<div id='VFPROP_Exchange2' style='visibility:hidden;display:none'>xxx</div>
+		<div id='VFPROP_LastTransAct' style='visibility:hidden;display:none'>xxx</div>
+	</body>
+</html>

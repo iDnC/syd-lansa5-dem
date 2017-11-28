@@ -1,0 +1,35 @@
+﻿{
+ "no":                        "Ne",
+ "ok":                        "OK",
+ "yes":                       "Ano",
+ "today":                     "Dnes",
+ "retry":                     "Znovu",
+ "cancel":                    "Storno",
+ "ignore":                    "Ignorovat",
+					               
+ "dayLong":                   ["Pondělí­","Úterý","Středa","Čtvrtek","Pátek","Sobota","Neděle"],
+ "dayShort":                  ["Pon","Úte","Stř","Čtv","Pát","Sob","Ned"],
+ "monthLong":                 ["Leden","Únor","Březen","Duben","Květen","Červen","Červenec","Srpen","Září","Říjen","Listopad","Prosinec"],
+ "monthShort":                ["Led","Úno","Bře","Dub","Kvě","Čer","Červc","Srp","Zář","Říj","Lis","Pro"],
+ "dateFormat":                "d.M.yyyy",
+ "timeFormat":                "h:mm:ss tt",
+ "startOfWeek":               "Pondělí­",
+					               
+ "decimalPoint":              ",",
+ "thousandsSep":              ".",
+ "currencySymbol":            "Kč",
+ 
+ "tabIncreaseDockGroup":      "Zvýšení skupinu",
+ "tabDecreaseDockGroup":      "Snížit skupinu",
+ "tabLayoutPriority":         "Max Layout",
+ "tabAutoHide":               "Autohide",
+ "tabHide":                   "Zavřít",
+ "tabConfigureButtons":       "Nastavení stránek",
+ "tabShowMoreButtons":        "Zobrazit více tlačítek",
+ "tabShowFewerButtons":       "Zobrazit méně tlačítek",
+ "tabAddOrRemoveButtons":     "Přidat nebo odebrat stránky",
+ "tabPageCloseButton":        "Zavřít stránku",
+ 
+ "cardCaption":               "Primary Text",
+ "cardTertiary":              "Tertiary Text"
+}

@@ -1,0 +1,65 @@
+* ---------------------------------------------------------------------------------
+* This is a server module in framework <<FRAMEWORK>>.
+* It belongs to business object <<BUSINESS_OBJECT_CAPTION>>.
+* It was created on <<CREATEDDATE>> by <<CREATEDUSER>>.
+* ---------------------------------------------------------------------------------
+Begin_Com Role(*EXTENDS #PRIM_SRVM) Sessionidentifier('VLFONE')
+
+* ---------------------------------------------------------------------------------
+* Declare the shared server system manager. It must be declared exactly this
+* way in any server modules or reusable parts that want to use it.
+Define_Com Class(#<<SERVER_MANAGER>>) Name(#ServerSystemManager) Scope(*APPLICATION)
+* These strings coming from the logon validator. They allow the logon validator to pass information
+* into your shared server system manager. For example, an IBM i library list to be used, or
+* details about the currently logged on user or other system states.
+Define Field(#Persistent_ApplicationString1) Type(*NVARCHAR)
+Define Field(#Persistent_ApplicationString2) Type(*NVARCHAR)
+Define Field(#Persistent_ApplicationString3) Type(*NVARCHAR)
+Define Field(#Persistent_ApplicationString4) Type(*NVARCHAR)
+Define Field(#Persistent_ApplicationString5) Type(*NVARCHAR)
+* ---------------------------------------------------------------------------------
+
+* Lists for accessing server data
+
+* The list of data returned by this server module
+Def_List Name(#ServerDataItems) Fields(#STD_TextL #Std_num) Type(*Working) Entrys(*MAX)
+
+* ---------------------------------------------------------------------------------
+Srvroutine Name(GetData) Session(*REQUIRED)
+List_Map For(*Output) List(#ServerDataItems)
+
+* Invoke the server manager to set up the execution context for this server routine
+#ServerSystemManager.InitializeServiceRoutine Persistentstring1(#Persistent_ApplicationString1) Persistentstring2(#Persistent_ApplicationString2) Persistentstring3(#Persistent_ApplicationString3) Persistentstring4(#Persistent_ApplicationString4) Persistentstring5(#Persistent_ApplicationString5)
+
+* Process the request
+* Build a list of data to return
+* You would replace this with your own logic
+
+#Com_Owner.uAddListItem Data(33) Label("January")
+#Com_Owner.uAddListItem Data(45) Label("February")
+#Com_Owner.uAddListItem Data(22) Label("March")
+#Com_Owner.uAddListItem Data(88) Label("April")
+#Com_Owner.uAddListItem Data(111) Label("May")
+#Com_Owner.uAddListItem Data(53) Label("June")
+#Com_Owner.uAddListItem Data(69) Label("July")
+#Com_Owner.uAddListItem Data(79) Label("August")
+#Com_Owner.uAddListItem Data(61) Label("September")
+#Com_Owner.uAddListItem Data(88) Label("October")
+#Com_Owner.uAddListItem Data(60) Label("November")
+#Com_Owner.uAddListItem Data(40) Label("December")
+
+* Invoke the server manager to clean up and finalize the execution context for this server routine
+#ServerSystemManager.TerminateServiceRoutine
+
+Endroutine
+
+Mthroutine Name(uAddListItem)
+Define_Map For(*input) Class(#std_int) Name(#Data)
+Define_Map For(*input) Class(#sTD_Textl) Name(#Label)
+
+#STD_NUM := #Data
+#STD_TEXTL := #Label
+Add_Entry To_List(#ServerDataItems)
+
+Endroutine
+End_Com

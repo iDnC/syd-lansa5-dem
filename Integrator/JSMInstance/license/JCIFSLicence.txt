@@ -1,0 +1,13 @@
+LANSA Integrator uses the JCIFS classes
+
+https://jcifs.samba.org/
+
+License Agreement
+
+===========================================================================================================================
+
+JCIFS is licensed under the LGPL licence.
+
+http://www.gnu.org/licenses/lgpl-2.1.txt
+
+===========================================================================================================================

@@ -1,0 +1,199 @@
+<context>
+CommandHandler 
+</context>
+<caption>
+Squelette du gestionnaire d'action
+</caption>
+<mode>
+ONE
+</mode>
+<preamble>
+FRA_vf_um052_Handler_Skeleton_One.htm
+</preamble>
+<hint>
+Cet assistant génère le squelette d'un gestionnaire d'action.   
+</hint>
+<sequence>
+000100  
+</sequence>
+<handler>
+VF_UM055 
+VF_UM056   
+</handler>
+<handlertxt>
+Préciser le protocole d´identification que vous avez choisi d´utiliser pour cet objet métier. Si un fichier physique ressemble à cet objet métier, donner son nom et l´assistant essaiera automatiquement de déduire un protocole d´identification type pour vous.
+Précisez ce que vous souhaitez inclure dans le code généré.    
+</handlertxt>
+<code>
+<<include VF_UM052_CommandHandler_Preamble.vfi>>
+Function Options(*DIRECT) 
+Begin_Com Role(*EXTENDS £VF_AC010O) Layoutmanager(£TableLayout_Main) Width(600) Height(240) 
+
+* Définitions de Groupe
+
+Group_by Name(£XG_HEAD) <<UM055_BaseFileFields>>
+
+* Gestion de présentation
+
+Define_Com Class(£PRIM_TBLO) Name(£TableLayout_Main)
+Define_Com Class(£PRIM_TBLO.Column) Name(£Column1) Displayposition(1) Parent(£TableLayout_Main)
+Define_Com Class(£PRIM_TBLO.Row) Name(£Row1) Displayposition(1) Parent(£TableLayout_Main) Height(1,72)
+Define_Com Class(£PRIM_TBLO.Row) Name(£Row2) Displayposition(2) Parent(£TableLayout_Main) Height(25) Units(Pixels)
+
+* Composants
+
+<<if CA_UM056_SAVEBTN>>
+*   The save button
+Define_Com Class(£PRIM_PHBN) Name(£Button_Save) Buttondefault(True) Caption('Enregistrer') Displayposition(2) Tabposition(1) Left(0) Top(232) Height(24) Parent(£COM_OWNER)
+Define_Com Class(£PRIM_TBLO.Item) Name(£SAVE_BUTTONItem1) Manage(£Button_Save) Parent(£TableLayout_Main) Row(£Row2) Sizing(None) Column(£Column1) Alignment(CenterLeft)
+<<endif>>
+
+<<comment>>Fields
+* (Exemple)
+Define_Com Class(£EMPNO.Visual) Parent(£COM_OWNER) Displayposition(2) Height(21) Tabposition(2) Usepicklist(False) Width(237)
+Define_Com Class(£PRIM_TBLO.Item) Name(£TableItem_Empno) Manage(£EMPNO) Parent(£TableLayout_Main) Row(£Row1) Sizing(None) Column(£Column1) Alignment(TopLeft) Flow(Down)
+
+* Collection de toutes les zones du panneau
+Define_Com Class(£Prim_ACol<£prim_evp>) Name(£PanelFields)
+
+* <<majorsep>>
+* Routines
+* <<majorsep>>
+
+
+Mthroutine Name(uInitialize) Options(*REDEFINE)
+Define_Com Class(£prim_evp) Name(£TempField) Reference(*DYNAMIC)
+
+*  Exécuter toute logique d'initialisation définie dans l´ancêtre
+
+£Com_Ancestor.uInitialize
+
+* <ici votre logique d'initialisation> 
+* <ici votre logique d'initialisation> 
+* <ici votre logique d'initialisation> 
+
+
+* Construire la collection des zones modifiables
+For Each(£Control) In(£Com_Owner.ComponentControls)
+If_Ref Com(£Control) Is(*INSTANCE_OF £prim_evp)
+£TempField <= £Control *As £prim_evp
+£PanelFields.Insert( £TempField )
+Endif
+Endfor
+
+Endroutine
+
+
+Mthroutine Name(uTerminate) Options(*REDEFINE)
+
+* <ici votre logique de fin> 
+* <ici votre logique de fin> 
+* <ici votre logique de fin> 
+
+* Exécuter toute logique de fin définie dans l'ancêtre
+
+£Com_Ancestor.uTerminate
+
+Endroutine
+
+
+* <<minorsep>>
+* Gérer l'exécution de la commande
+* <<minorsep>>
+Mthroutine Name(uExecute) Options(*REDEFINE)
+Define_Com Class(£prim_boln) Name(£Ret_code)
+
+* Définir le service de données
+Define_Com Class(£<<UM055_BaseFileWAM>>.Find) Name(£Find)
+Define_Com Class(£vf_elretc) Name(£uStatus)
+
+* Clear any previous messages
+£AVFRAMEWORKMANAGER.avClearMessages Requester(£COM_OWNER)
+
+<<Comment>>Exécuter toute logique d'exécution définie dans l'ancêtre
+£COM_ANCESTOR.uExecute GotoFreeState(£GotoFreeState) SwitchCallerReference(£SwitchCallerReference)
+
+Group_By Name(£DataFields) <<UM055_BaseFileFields minusKey>>
+
+If_Ref Com(£Com_Owner.avAssociatedInstance) Is_Not(*NULL)
+
+<<UM055_GenGetLst ASSOCIATED>>
+
+if £Ret_code
+* Lire les données du serveur du serveur par un appel synchrone au module de service de données
+
+£Find.Execute(<<UM055_BaseFileKeys>> £DataFields £uStatus )
+
+If (£uStatus *EQ OK)
+
+* Si nécessaire traiter vos données affichées ici
+
+Else
+£AVFRAMEWORKMANAGER.avIssueMessage Text('Non trouvé sur le serveur') Requester(£Com_Owner)
+Endif
+Else
+£AVFRAMEWORKMANAGER.avIssueMessage Text('Aucun élément en cours trouvé') Requester(£Com_Owner)
+Endif
+Endif
+
+<<if CA_UM056_SAVEBTN>>
+* Bouton activé quand une zone est modifiée
+£Button_Save.Enabled := False
+<<endif>>
+
+Endroutine
+
+<<if CA_UM056_SAVEBTN>>
+Evtroutine Handling(£Button_Save.Cliquer)
+£com_owner.Button_Save
+Endroutine
+
+Mthroutine Name(Button_Save)
+* Vous pourriez utiliser la srvroutine Save si vous voulez mettre à jour toutes les zones de l'enregistrement
+* Si vous ne voulez pas mettre à jour toutes les zones vous devrez écrire votre propre srvroutine de mise à jour dans <<UM055_BaseFileWAM>> et utiliser plutôt celle-ci au lieu de .Save
+Define_Com Class(£<<UM055_BaseFileWAM>>.Save) Name(£Save)
+Define_Com Class(£vf_elretc) Name(£uStatus)
+
+* Lire la définition de ce groupe de zones à partir du module de service  <<UM055_BaseFileWAM>>
+Group_By Name(£SaveFields) <<UM055_BaseFileFields>>
+
+If_Ref Com(£Com_Owner.avAssociatedInstance) Is_Not(*NULL)
+
+* Note: Vider les messages dans la barre de statut sinon des anciens messages pourraient créer la confusion
+£AVFRAMEWORKMANAGER.avClearMessages Requester(£COM_OWNER)
+
+* Maintenant lancer la sauvegarde (.Execute synchrone est OK si rapide)
+£Save.Execute( £SaveFields £uStatus )
+
+If (£uStatus = OK)
+* Message indiquant le succès de la mise à jour
+£avFrameworkManager.avIssueMessage Text('Correctement enregistré') Requester(£COM_OWNER)
+
+* Mettre à jour l'entrée de liste d'instance si nécessaire
+
+<<UM055_GenSetVIDs>>
+£Com_Owner.avAssociatedInstance.avVisualID1 := £UF_VisID1u
+£Com_Owner.avAssociatedInstance.avVisualID2 := £UF_VisID2u
+
+* Update any other Additional Columns here, if required
+* For example
+* £Com_Owner.avAssociatedInstance.avAColumn1  := 'My Value'
+
+£COM_OWNER.avAssociatedInstance.avUpdateDisplay
+
+£Button_Save.Enabled := False
+Endif
+
+* Récupérer les messages du serveur et les envoyer dans le Framework
+£avFrameworkManager.avReceiveSystemMessageQueue Requester(£Com_owner)
+Endif
+Endroutine
+<<commentblock>>
+Evtroutine Handling(£PanelFields<>.Changed)
+£Button_Save.Enabled := True
+Endroutine
+<<commentblock>>
+<<endif>>
+
+End_Com
+</code>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<caption>
+Un navigateur intégré de liste d´instances 
+</caption>
+<preamble>
+FRA_vf_um052_Instance_List_Browser.htm
+</preamble> 
+<hint>
+Cet assistant génère le code pour un navigateur intégré de liste d´instances. Consultez la documentation du cadre d´application VL pour plus de détails.  
+</hint>
+<context>
+BusinessObject 
+</context>
+<sequence>
+000100  
+</sequence>
+<handler>
+VF_UM055 
+</handler>
+<handlertxt>
+Préciser le protocole d´identification que vous avez choisi d´utiliser pour cet objet métier. si un fichier physique ressemble à cet objet métier, donner son nom et l´assistant essaiera automatiquement de déduire un protocole d´identification type pour vous.  
+</handlertxt>
+<code>
+* <<majorsep>>
+* Type            : NAVIGATEUR INTEGRE DE LISTE D´INSTANCE			  
+* Ancêtre         : VF_AC012  
+* Créé par        : <<user>> le <<date>> à <<time>>
+* Copyright       : <<copyright>>
+* Framework       : <<framework_lang ucaption>>
+* Application     : <<application_lang ucaption>>
+* Objet métier    : <<businessobject_lang ucaption>>
+* <<majorsep>>
+* Pour créer votre navigateur intégré :
+* <<majorsep>>
+*   (1). Créer un composant visuel réutilisable (par exple: MYBROWSER)
+*   (2). Copier le source de cet exemple dans votre nouveau composant.
+*   (3). Vérifer que votre nouveau composant a comme ancêtre VF_AC012.
+*   (4). Modifier le source copié pour correspondre aux besoins de votre
+*        objet métier et à votre protocole d´identification.
+*   (5). Compiler le nouveau composant.
+*   (6). Ouvrez votre assistant en mode concepteur et afficher les "Propriétés
+*        de l´objet métier" de l´objet métier dont votre nouveau composant
+*        sera le navigateur intégré. Afficher l´onglet des "Paramètres 
+*        instances liste" et modifier la valeur de "navigateur intégré de liste 
+*        d´instances" en donnant le nom de votre composant (exple: MYBROWSER).
+*   (7). Fermer puis relancer l´assistant. Votre navigateur intégré remplace 
+*        maintenant le navigateur par défaut.              
+* <<majorsep>>
+Begin_Com Role(*EXTENDS £VF_AC012) Height(218) Layoutmanager(£ATTACHMENT_MANAGER) Width(332)
+<<Comment>>Gestionnaire de présentation général par liaison		  
+Define_Com Class(£PRIM_ATLM) Name(£ATTACHMENT_MANAGER)
+<<Comment>>La grille visible <<businessobject_lang ucaption>>
+Define_Com Class(£PRIM_GRID) Name(£INST_LIST) Columnbuttonheight(50) Displayposition(1) Left(0) Parent(£COM_OWNER) Selectionstyle(Multiple) Showlines(False) Showselection(True) Showsortarrow(True) Tabposition(1) Tabstop(False) Top(0)
+Define_Com Class(£PRIM_ATLI) Name(£GRID_ATTACHMENT_ITEM) Attachment(Center) Manage(£INST_LIST) Parent(£ATTACHMENT_MANAGER)
+<<UM055_GenGrid>> 
+<<Comment>>élément de grille aillant le focus actuellement  
+Define_com £Prim_Objt £FocusGridItem Reference(*dynamic)
+<<Comment>>Définitions des contrôles de l'interface   
+Define Field(£UI_ISDEAF) Reffld(£VF_ELBOOL)
+Def_Cond Name(*UI_LISTEN) Cond(£UI_IsDeaf *ne TRUE)
+* <<majorsep>>
+* Définitions des méthodes
+* <<majorsep>>
+* <<minorsep>>
+* Redéfinition de la méthode standard uClearInstanceList 
+* <<minorsep>>
+MthRoutine uClearInstanceList Options(*Redefine)
+Clr_List £Inst_List
+<<Comment>>Vider l'enregistrement du dernier élément en focus  
+£FocusGridItem <= *null
+EndRoutine
+* <<minorsep>>
+* Redéfinition de la méthode standard uAddListEntry 
+* <<minorsep>>
+Mthroutine Name(uAddListEntry) Options(*Redefine)
+* ==> Define_Map For(*Input) Class(£VF_ELXVI1) Name(£VisualId1) Desc('ID visuel 1') Help('Ceci est le premier ID visuel de l'objet métier. Alphanumérique. Longueur maximum 32')
+* ==> Define_Map For(*Input) Class(£VF_ELXVI2) Name(£VisualId2) Desc('ID visuel 2') Help('Ceci est le deuxième ID visuel optionnel de l'objet métier. Alphanumérique. Longueur maximum 50')
+* ==> Define_Map For(*Input) Class(£VF_ELXAK1) Name(£AKey1) Desc('Id 1 de l'instance de l'Objet - Alpha') Help('C est un id optionnel de programmation de l instance de cet objet métier. Le protocole d identification utilisé pour l identifiant est à votre discrétion. Type alphanumérique. Longueur maximum 32.')
+* ==> Define_Map For(*Input) Class(£VF_ELXAK2) Name(£AKey2) Desc('Id 2 de l'instance de l'Objet - Alpha') Help('C est un id optionnel de programmation de l instance de cet objet métier. Le protocole d identification utilisé pour l identifiant est à votre discrétion. Type alphanumérique. Longueur maximum 32.')
+* ==> Define_Map For(*Input) Class(£VF_ELXAK3) Name(£AKey3) Desc('Id 3 de l'instance de l'Objet - Alpha') Help('C est un id optionnel de programmation de l instance de cet objet métier. Le protocole d identification utilisé pour l identifiant est à votre discrétion. Type alphanumérique. Longueur maximum 32.')
+* ==> Define_Map For(*Input) Class(£VF_ELXAK4) Name(£AKey4) Desc('Id 4 de l'instance de l'Objet - Alpha') Help('C est un id optionnel de programmation de l instance de cet objet métier. Le protocole d identification utilisé pour l identifiant est à votre discrétion. Type alphanumérique. Longueur maximum 32.')
+* ==> Define_Map For(*Input) Class(£VF_ELXAK5) Name(£AKey5) Desc('Id 5 de l'instance de l'Objet - Alpha') Help('C est un id optionnel de programmation de l instance de cet objet métier. Le protocole d identification utilisé pour l identifiant est à votre discrétion. Type alphanumérique. Longueur maximum 32.')
+* ==> Define_Map For(*Input) Class(£VF_ELXNK1) Name(£NKey1) Desc('Id 1 de l'instance de l'Objet - Numeric') Help('C est un id optionnel de programmation de l instance de cet objet métier. Le protocole d identification utilisé pour l identifiant est à votre discrétion. Type numérique de précision maximum (15,0).')
+* ==> Define_Map For(*Input) Class(£VF_ELXNK2) Name(£NKey2) Desc('Id 2 de l'instance de l'Objet - Numeric') Help('C est un id optionnel de programmation de l instance de cet objet métier. Le protocole d identification utilisé pour l identifiant est à votre discrétion. Type numérique de précision maximum (15,0).')
+* ==> Define_Map For(*Input) Class(£VF_ELXNK3) Name(£NKey3) Desc('Id 3 de l'instance de l'Objet - Numeric') Help('C est un id optionnel de programmation de l instance de cet objet métier. Le protocole d identification utilisé pour l identifiant est à votre discrétion. Type numérique de précision maximum (15,0).')
+* ==> Define_Map For(*Input) Class(£VF_ELXNK4) Name(£NKey4) Desc('Id 4 de l'instance de l'Objet - Numeric') Help('C est un id optionnel de programmation de l instance de cet objet métier. Le protocole d identification utilisé pour l identifiant est à votre discrétion. Type numérique de précision maximum (15,0).')
+* ==> Define_Map For(*Input) Class(£VF_ELXNK5) Name(£NKey5) Desc('Id 5 de l'instance de l'Objet - Numeric') Help('C est un id optionnel de programmation de l instance de cet objet métier. Le protocole d identification utilisé pour l identifiant est à votre discrétion. Type numérique de précision maximum (15,0).')
+* ==> Define_Map For(*input) Class(£vf_elBool) Name(£Selected) Desc('Choisir cette instance de l objet métier') Help('Cette valeur vaut Y (en majuscules) ou N (en majuscules) pour indiquer si l´instance de cet objet métier doit être visualisée sélectionnée.')
+* ==> Define_Map For(*input) Class(£vf_elidn) Name(£BusinessObjectType) Mandatory(' ') Desc('Nom/type objet utilisateur') Help('Le Nom/type objet utilisateur de l objet métier associé à cette entrée de liste d instance. S il est précisé il doit être le nom/type de l objet utilisateur de l objet métier en cours ou lié.')
+* ==> Define_Map For(*input) Class(£vf_elxcoa) Name(£AColumn1) Desc('Colonne alphanumérique optionnelle') Mandatory('<=DFT=>')  Help('C est une colonne alphanumérique optionnelle associée à la liste d instances. Type alphanumérique. Longueur maximum 100.')
+* ==> Define_Map For(*input) Class(£vf_elxcoa) Name(£AColumn2) Desc('Colonne alphanumérique optionnelle') Mandatory('<=DFT=>')  Help('C est une colonne alphanumérique optionnelle associée à la liste d instances. Type alphanumérique. Longueur maximum 100.')
+* ==> Define_Map For(*input) Class(£vf_elxcoa) Name(£AColumn3) Desc('Colonne alphanumérique optionnelle') Mandatory('<=DFT=>')  Help('C est une colonne alphanumérique optionnelle associée à la liste d instances. Type alphanumérique. Longueur maximum 100.')
+* ==> Define_Map For(*input) Class(£vf_elxcoa) Name(£AColumn4) Desc('Colonne alphanumérique optionnelle') Mandatory('<=DFT=>')  Help('C est une colonne alphanumérique optionnelle associée à la liste d instances. Type alphanumérique. Longueur maximum 100.')
+* ==> Define_Map For(*input) Class(£vf_elxcoa) Name(£AColumn5) Desc('Colonne alphanumérique optionnelle') Mandatory('<=DFT=>')  Help('C est une colonne alphanumérique optionnelle associée à la liste d instances. Type alphanumérique. Longueur maximum 100.')
+* ==> Define_Map For(*input) Class(£vf_elxcoa) Name(£AColumn6) Desc('Colonne alphanumérique optionnelle') Mandatory('<=DFT=>')  Help('C est une colonne alphanumérique optionnelle associée à la liste d instances. Type alphanumérique. Longueur maximum 100.')
+* ==> Define_Map For(*input) Class(£vf_elxcoa) Name(£AColumn7) Desc('Colonne alphanumérique optionnelle') Mandatory('<=DFT=>')  Help('C est une colonne alphanumérique optionnelle associée à la liste d instances. Type alphanumérique. Longueur maximum 100.')
+* ==> Define_Map For(*input) Class(£vf_elxcoa) Name(£AColumn8) Desc('Colonne alphanumérique optionnelle') Mandatory('<=DFT=>')  Help('C est une colonne alphanumérique optionnelle associée à la liste d instances. Type alphanumérique. Longueur maximum 100.')
+* ==> Define_Map For(*input) Class(£vf_elxcoa) Name(£AColumn9) Desc('Colonne alphanumérique optionnelle') Mandatory('<=DFT=>')  Help('C est une colonne alphanumérique optionnelle associée à la liste d instances. Type alphanumérique. Longueur maximum 100.')
+* ==> Define_Map For(*input) Class(£vf_elxcoa) Name(£AColumn10) Desc('Colonne alphanumérique optionnelle') Mandatory('<=DFT=>')  Help('C est une colonne alphanumérique optionnelle associée à la liste d instances. Type alphanumérique. Longueur maximum 100.')
+* ==> Define_Map *input £vf_elxcon Name(£NColumn1) Desc('Colonne numérique optionnelle')Help('C est une colonne numérique optionnelle associée à la liste d instances. Type numérique. Précision maximum 30,9.') Mandatory(-9999999)
+* ==> Define_Map *input £vf_elxcon Name(£NColumn2) Desc('Colonne numérique optionnelle')Help('C est une colonne numérique optionnelle associée à la liste d instances. Type numérique. Précision maximum 30,9.') Mandatory(-9999999)
+* ==> Define_Map *input £vf_elxcon Name(£NColumn3) Desc('Colonne numérique optionnelle')Help('C est une colonne numérique optionnelle associée à la liste d instances. Type numérique. Précision maximum 30,9.') Mandatory(-9999999)
+* ==> Define_Map *input £vf_elxcon Name(£NColumn4) Desc('Colonne numérique optionnelle')Help('C est une colonne numérique optionnelle associée à la liste d instances. Type numérique. Précision maximum 30,9.') Mandatory(-9999999)
+* ==> Define_Map *input £vf_elxcon Name(£NColumn5) Desc('Colonne numérique optionnelle')Help('C est une colonne numérique optionnelle associée à la liste d instances. Type numérique. Précision maximum 30,9.') Mandatory(-9999999)
+* ==> Define_Map *input £vf_elxcon Name(£NColumn6) Desc('Colonne numérique optionnelle')Help('C est une colonne numérique optionnelle associée à la liste d instances. Type numérique. Précision maximum 30,9.') Mandatory(-9999999)
+* ==> Define_Map *input £vf_elxcon Name(£NColumn7) Desc('Colonne numérique optionnelle')Help('C est une colonne numérique optionnelle associée à la liste d instances. Type numérique. Précision maximum 30,9.') Mandatory(-9999999)
+* ==> Define_Map *input £vf_elxcon Name(£NColumn8) Desc('Colonne numérique optionnelle')Help('C est une colonne numérique optionnelle associée à la liste d instances. Type numérique. Précision maximum 30,9.') Mandatory(-9999999)
+* ==> Define_Map *input £vf_elxcon Name(£NColumn9) Desc('Colonne numérique optionnelle')Help('C est une colonne numérique optionnelle associée à la liste d instances. Type numérique. Précision maximum 30,9.') Mandatory(-9999999)
+* ==> Define_Map *input £vf_elxcon Name(£NColumn10) Desc('Colonne numérique optionnelle')Help('C est une colonne numérique optionnelle associée à la liste d instances. Type numérique. Précision maximum 30,9.') Mandatory(-9999999)
+<<CommentBlock>>
+<<UM055_GenSnapIAssign>>  
+<<comment>>Ajout des informations à la liste d´instances 
+Add_Entry £Inst_List
+<<comment>>Terminé 
+EndRoutine
+* <<minorsep>>
+* Gestion de la sélection des <<businessobject_lang ucaption>> à partir de la grille
+* <<minorsep>>
+EVTROUTINE HANDLING(£Inst_List.ItemGotFocusAccept £Inst_List.ItemGotSelectionAccept) Accept(£ACCEPT) OPTIONS(*NOCLEARMESSAGES *NOCLEARERRORS)
+<<comment>>Si le Cadre d application est verrouillé...
+If Cond(£avFrameworkManager.uCurrentLockStatus *EQ TRUE)
+<<comment>>n accepte pas le  focus
+£ACCEPT.Value := FALSE
+<<comment>>et ne réagit à aucun évènement
+£UI_ISDEAF := TRUE
+Else
+<<comment>>accepte le focus
+£ACCEPT.Value := TRUE
+<<comment>>et réagit à tout évènement
+£UI_ISDEAF := FALSE
+Endif
+ENDROUTINE
+* <<minorsep>>
+* Gère la sélection dan la grille de(s) <<businessobject_lang ucaption>>
+* <<minorsep>>
+EvtRoutine Handling(£Inst_List.ItemGotSelection) OPTIONS(*NOCLEARMESSAGES *NOCLEARERRORS)
+Signal SetSelectedInstance <<UM055_GenANKeys>>
+<<comment>>Gère le cas particulier où le focus n est pas correctement défini 
+If_ref £FocusGridItem is(*null)
+£FocusGridItem <= £Inst_List.CurrentItem
+Signal SetCurrentInstance <<UM055_GenANKeys>>
+Endif
+EndRoutine
+* <<minorsep>>
+* Gestion de la désélection des <<businessobject_lang ucaption>> dans la grille
+* <<minorsep>>
+EvtRoutine Handling(£Inst_List.ItemLostSelection) OPTIONS(*NOCLEARMESSAGES *NOCLEARERRORS)
+Signal DropSelectedInstance <<UM055_GenANKeys>>
+EndRoutine
+* <<minorsep>>
+* Gérer le focus sur <<businessobject_lang ucaption>> dans la grille 
+* <<minorsep>>
+EvtRoutine Handling(£Inst_List.ItemGotFocus) OPTIONS(*NOCLEARMESSAGES *NOCLEARERRORS)
+If Cond(*UI_LISTEN)
+Signal SetCurrentInstance <<UM055_GenANKeys>>
+Endif
+EndRoutine
+* <<minorsep>>
+* Gestion de la perte de focus sur <<businessobject_lang ucaption>> dans la grille
+* <<minorsep>>
+EvtRoutine Handling(£Inst_List.ItemLostFocus) OPTIONS(*NOCLEARMESSAGES *NOCLEARERRORS)
+Signal DropCurrentInstance <<UM055_GenANKeys>>
+EndRoutine
+
+End_Com
+</code>

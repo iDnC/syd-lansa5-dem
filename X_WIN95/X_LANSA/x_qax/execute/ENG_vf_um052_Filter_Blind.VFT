@@ -1,0 +1,156 @@
+<caption>
+CRUD Filter and Instance List      
+</caption>
+<preamble>
+ENG_vf_um052_Filter_Blind.htm
+</preamble>
+<context>
+Filter 
+</context>
+<sequence>
+000100  
+</sequence>
+<handlertxt>
+Specify the physical file that your business object is to be based on.  Then choose which fields to show on the instance list and which field / fields uniquely identify a record.
+Choose any other options you may want. 
+</handlertxt>
+<handler>
+VF_UM128 
+VF_UM109 
+</handler>
+<hint>
+This assistant produces the code for a filter that requires little or no manual completion based on a specified file or view. It is designed for developers who are new to the VL Framework.
+</hint>
+<code>
+<<include VF_UM052_Filter_Preamble.vfi>>
+Function Options(*DIRECT)
+Begin_Com Role(*EXTENDS #VF_AC007) Height(182) Width(326) LayoutManager(#MAIN_LAYOUT)
+* <<majorsep>>
+* Simple Field, Group and Condition Definitions
+* <<majorsep>>
+Group_By   Name(#XG_Ident)   Fields(<<UM055_GenFldList>>)
+<<if CA_UM109_CHK_CONNECT>>
+define field(#con_rslt) type(*char) length(2)
+Def_Cond Name(*conresult) Cond(#con_rslt = OK)
+<<endif>> 
+* <<majorsep>>
+* Component definitions
+* <<majorsep>>
+<<Comment>>Body and Button arrangement panels 
+Define_Com Class(#PRIM_PANL) Name(#BODY_PANEL) Displayposition(1) Height(182) Layoutmanager(#BODY_FLOW) Left(0) Parent(#COM_OWNER) Tabposition(1) Tabstop(False) Top(0) Width(246)
+Define_Com Class(#PRIM_PANL) Name(#BUTTON_PANEL) Displayposition(2) Height(182) Layoutmanager(#BUTTON_FLOW) Left(246) Parent(#COM_OWNER) Tabposition(2) Tabstop(False) Top(0) Width(88)
+<<Comment>>Attachment and flow layout managers
+Define_Com Class(#PRIM_ATLM) Name(#MAIN_LAYOUT)
+Define_Com Class(#PRIM_ATLI) Name(#BODY_ATTACH)   Attachment(Center) Manage(#BODY_PANEL) Parent(#MAIN_LAYOUT)
+Define_Com Class(#PRIM_ATLI) Name(#BUTTON_ATTACH) Attachment(Right)  Manage(#BUTTON_PANEL) Parent(#MAIN_LAYOUT)
+Define_Com Class(#PRIM_FWLM) Name(#BUTTON_FLOW) Direction(TopToBottom) Flowoperation(Center) Marginbottom(4) Marginleft(4) Marginright(4) Margintop(4) Spacing(4) Spacingitems(4)
+Define_Com Class(#PRIM_FWLM) Name(#BODY_FLOW) Direction(TopToBottom) Marginbottom(4) Marginleft(4) Marginright(4) Margintop(4) Spacing(4) Spacingitems(4)
+* <<majorsep>>
+* Method Definitions
+* <<majorsep>>
+<<CommentBlock>>
+Mthroutine Name(uInitialize) Options(*Redefine)
+<<if CA_UM109_CHK_CONNECT>>
+<<comment>>Check that the connection is still live 
+#avFrameworkManager.avCheckConnection ReturnValue(#con_rslt)
+If Cond(*conresult)
+<<endif>> 
+<<comment>>Indicate that <<businessobject_lang ucaption>> instance list updating is about to start
+#avListManager.BeginListUpdate
+#avListManager.ClearList
+Select Fields(#XG_Ident) From_File(<<UM055_BaseFile>>)  
+<<UM055_AddtoList>>  
+EndSelect
+<<comment>>Indicate that <<businessobject_lang ucaption>> instance list updating is now complete
+#avListManager.EndListUpdate
+<<if CA_UM109_CHK_CONNECT>>
+endif
+<<endif>>
+<<comment>>Make this a hidden filter
+#Com_Owner.avHiddenFilter := True
+Endroutine
+<<if CA_UM109_TERMINATE>>
+* <<minorsep>>
+* Handle Termination
+* <<minorsep>>
+Mthroutine Name(uTerminate) Options(*REDEFINE)
+<<CommentBlock>>
+* <your termination logic goes here>
+* <your termination logic goes here>
+* <your termination logic goes here>
+<<CommentBlock>>
+<<Comment>>Do any termination defined in the ancestor
+#Com_Ancestor.uTerminate
+<<CommentBlock>>
+Endroutine
+<<endif>>
+<<if CA_UM109_LISTEN>>
+* <<minorsep>>
+* Handle any external requests to update the Instance List  
+* <<minorsep>>
+EvtRoutine #Com_owner.avEvent WithId(#EventId) WithAInfo1(#AInfo1) WithAInfo2(#AInfo2) WithAInfo3(#AInfo3) WithAInfo4(#AInfo4) WithAInfo5(#AInfo5)  WithNInfo1(#NInfo1) WithNInfo2(#NInfo2) WithNInfo3(#NInfo3) WithNInfo4(#NInfo4) WithNInfo5(#NInfo5)
+
+* put the received values into fields
+#vf_elIdn := #EventId.Value
+
+* Map the AInfo and NInfo values passed, into the key fields - <<UM055_BaseFileKeys>>
+<<UM055_GenMapKeys>> 
+
+<<if CA_UM109_CHK_CONNECT>>
+<<comment>>Check that the connection is still live 
+#avFrameworkManager.avCheckConnection ReturnValue(#con_rslt)
+If Cond(*conresult)
+<<endif>> 
+
+Case #vf_elIDN
+
+when value_is(= Refresh_Instance_List)
+* Reload the Instance List
+
+#Com_Owner.uInitialize
+
+when value_is(= Add_List_Entry)
+* Add an entry to the list view
+
+fetch FIELDS(#XG_Ident) FROM_FILE(<<UM055_BaseFile>>) WITH_KEY(<<UM055_BaseFileKeys>>)
+if_status *OKAY
+
+* Start an instance list update
+#avListManager.BeginListUpdate
+<<UM055_AddtoList>>
+* Instance list updating has been completed
+#avListManager.EndListUpdate
+
+endif
+
+when value_is(= Update_List_Entry)
+* Update an entry that already exists in the instance list
+
+fetch FIELDS(#XG_Ident) FROM_FILE(<<UM055_BaseFile>>) WITH_KEY(<<UM055_BaseFileKeys>>)
+if_status *OKAY
+
+* Start an instance list update
+#avListManager.BeginListUpdate
+<<UM055_GenSetVids>>
+<<UM055_GenUpdLst>>
+* Instance list updating has been completed
+#avListManager.EndListUpdate
+
+endif
+
+when value_is(=  Delete_List_Entry)
+#avListManager.BeginListUpdate
+<<UM055_GenRmvLst>>
+#avListManager.EndListUpdate
+
+endcase
+
+<<if CA_UM109_CHK_CONNECT>>
+endif
+<<endif>>
+
+Endroutine
+<<endif>>
+
+End_Com
+</code>  

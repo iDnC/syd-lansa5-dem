@@ -1,0 +1,148 @@
+﻿<HTML>
+	<HEAD id="VF_HT004_Head">
+		<TITLE id="VF_HT004_Title">Messages</TITLE>
+
+<script language='JavaScript' type="text/javascript" src="vf_xbrowser.js"></script>
+<script language="JavaScript" type="text/javascript">
+
+/* --------------------------------------------------------------------- */
+/* --------------  P R I V A T E   M E T H O D S  ---------------------- */
+/* --------------------------------------------------------------------- */
+   var oSystem = window.opener.VF_System;
+	var objVF_UMnnn		               = oSystem.currentobjVF_UMnn;
+	    objVF_UMnnn.ModelessDisplayStatus  = "Active";
+	
+	/* alternate colors for message rows */
+	var strAlternateColor1 = "window";
+	var strAlternateColor2 = "infobackground";
+
+/* --------------------------------------------------------------------- */
+/* VF_HT004_PRIVATE_SetDialogHTML - Populate the body of the document    */
+/* --------------------------------------------------------------------- */ 
+
+function VF_HT004_PRIVATE_SetDialogHTML()
+{
+	/* insert the appropiate style sheet according to the Style Scheme property */
+	var objLink  = document.createElement("LINK");
+	objLink.rel  = "stylesheet";
+	objLink.type = "text/css";
+	objLink.href = "vf_vs001_" + objVF_UMnnn.strStyleScheme + ".css";
+	document.getElementById("VF_HT004_Head").appendChild(objLink);
+	
+	/* Set other features of the message box */
+   /* XBROWSER used to set onbefore unload to document.body */
+	window.onbeforeunload   = VF_HT004_EVENT_HANDLER_onBeforeUnload;
+	document.body.scroll		   = "auto";
+	document.body.style.background = strAlternateColor1;
+	
+	VF_HT004_PRIVATE_AddMessages();
+	VF_HT004_PRIVATE_AddOKButton();
+   window.focus();
+}
+
+/* --------------------------------------------------------------------- */
+/* VF_HT004_PRIVATE_AddMessages - Add messages to window                 */
+/* --------------------------------------------------------------------- */ 
+
+function VF_HT004_PRIVATE_AddMessages()
+{
+	var arrayMessages = objVF_UMnnn.arrayMessages;
+	var intMsgsLength = arrayMessages.length;
+	var intLoopIndex  = 0;
+	
+	var objContainerDiv       = document.createElement("DIV");
+		objContainerDiv.id    = "VF_HT004_Container_DIV";
+      objContainerDiv.style.padding = "10px 0 0 10px";
+	var objContainerReference = document.body.appendChild(objContainerDiv);
+
+    if ( intMsgsLength == 0 ) 
+      {
+         VF_HT004_PRIVATE_SetMessageText(objContainerReference, objVF_UMnnn.NoMessageText, " ");
+      }
+	
+	else
+
+      {   
+		 var strBackgroundColor = strAlternateColor2;
+
+		 for ( intLoopIndex = 0; intLoopIndex < intMsgsLength; intLoopIndex++)
+			{
+            strBackgroundColor = (strBackgroundColor == strAlternateColor2) ? strAlternateColor1 : strAlternateColor2;
+            VF_HT004_PRIVATE_SetMessageText( objContainerReference, arrayMessages[intLoopIndex], strBackgroundColor );
+			}
+      }
+}
+
+/* --------------------------------------------------------------------- */
+/* VF_HT004_PRIVATE_SetMessageText - Insert the text messages            */
+/* --------------------------------------------------------------------- */ 
+
+function VF_HT004_PRIVATE_SetMessageText(argobjContainerReference, argstrMsgText, argstrBackgroundColor)
+{
+	var objMessagesDiv     = document.createElement("DIV");
+	var objDivReference    = argobjContainerReference.appendChild(objMessagesDiv);
+	var objLI              = document.createElement("LI");
+	var objLIReference     = objDivReference.appendChild(objLI);
+
+	objLI.innerText = argstrMsgText;
+	objLI.style.background = argstrBackgroundColor;
+}
+
+/* --------------------------------------------------------------------- */
+/* VF_HT004_PRIVATE_AddOKButton - Add OK button to window                */
+/* --------------------------------------------------------------------- */ 
+
+function VF_HT004_PRIVATE_AddOKButton()
+{
+	var objButtonDiv				  = document.createElement("DIV");
+	var objContainerReference	  = document.body.appendChild(objButtonDiv);
+
+	/* Set up button DIV */
+	objButtonDiv.id = "VF_HT004_Button_DIV";
+	objButtonDiv.align = "center";
+	objButtonDiv.style.paddingTop = "11px"; 
+		
+	/* Build up the HTML for the button */
+   strOKButtonHTML = "";
+   strOKButtonHTML += "<button id='VF_HT004_OK_Button' onclick='self.close() '";
+	strOKButtonHTML += "STYLE ='width:50px' ";
+	strOKButtonHTML += objVF_UMnnn.strButtonStyle + ">";
+   strOKButtonHTML += objVF_UMnnn.strClose;
+   strOKButtonHTML += "</button>";
+
+	/* Insert button HTML into DIV */
+	objButtonDiv.innerHTML   = strOKButtonHTML;
+	
+	/* Find the button object and set focus to it */
+	document.getElementById("VF_HT004_OK_Button").focus();
+
+}
+
+/* --------------------------------------------------------------------------------- */
+/* VF_HT004_EVENT_HANDLER_onBeforeUnload - Set the status pty of dialog to Inactive */
+/* -------------------------------------------------------------------------------- */ 
+
+function VF_HT004_EVENT_HANDLER_onBeforeUnload()
+{
+	objVF_UMnnn.ModelessDisplayStatus = "Inactive";
+   objVF_UMnnn = null;
+}
+
+/* --------------------------------------------------------------------------------- */
+/* VF_HT004_PUBLIC_RefreshMessages - Set the status pty of dialog to Inactive */
+/* -------------------------------------------------------------------------------- */ 
+
+function VF_HT004_PUBLIC_RefreshMessages()
+{
+   
+	document.getElementById("VF_HT004_Container_DIV").removeNode(true);
+   document.getElementById("VF_HT004_Button_DIV").removeNode(true);
+	VF_HT004_PRIVATE_AddMessages();
+	VF_HT004_PRIVATE_AddOKButton();	
+}
+
+		</script>
+	</HEAD>
+	<BODY class="VF_HT004_BODY" onload="VF_HT004_PRIVATE_SetDialogHTML()">
+	</BODY>
+</HTML>

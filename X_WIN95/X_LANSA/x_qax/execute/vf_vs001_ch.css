@@ -1,0 +1,514 @@
+.VF_MenuContainer
+{
+	border: 1px solid #a0a0a0; 
+}
+
+TD.VF_MenuTextCell
+{
+	background-color: transparent;
+   border-top: solid 1px transparent;
+   border-bottom: solid 1px transparent;
+}
+
+TD.VF_MenuFirstCell
+{
+   border-top: solid 1px transparent;
+   border-bottom: solid 1px transparent;
+   border-left: solid 1px transparent;
+}
+
+TD.VF_MenuCell_MouseEnter
+{
+	background-color: #e9eff6;
+}
+
+TD.VF_LastCell_MouseEnter
+{
+   border-top: solid 1px #aecff7;
+   border-bottom: solid 1px #aecff7;
+   border-right: solid 1px #aecff7;
+	background-color: #e9eff6;
+}
+
+TD.VF_MenuFirstCell_MouseEnter
+{
+	background-color: #e9eff6;
+   border-left: solid 1px #aecff7;
+   border-top: solid 1px #aecff7;
+   border-bottom: solid 1px #aecff7;
+}
+   BODY
+   {
+   	cursor:			Default;
+   	background:		#f7f7f7;
+      margin:        0px; 
+   	font-family: Tahoma;
+      font-size: 11px;
+   }  
+
+
+   BIG
+   {
+   	font-family: Tahoma;
+      font-size: 15px;
+      color: #000024;
+      font-weight: bold;
+   }
+
+   P
+   {
+     font: messagebox;
+   }
+
+   A { text-decoration: none; }
+
+   A:active  { color: #0000FF }   /* selected link */
+
+   A:visited { color: #339900 }   /* visited link */  
+
+   A:link    { color: darkred; }  /* unvisited link */ 
+
+   A:hover   { color: blue }      /* mouse over link */
+
+/* ------------------------------------------------------- */
+/* ------------ Main Frame Classes ----------------------- */
+/* ------------------------------------------------------- */
+   .VF_UM008_CLASS_MainContainer
+   {
+		padding-top: 2px;
+      border-bottom: 1px solid #b6bac0;     
+   }
+
+   #VF_UM005_VF_UM008_TD
+   {
+      background: -webkit-gradient(linear, left top, left bottom, from(#f7f7f7), to(#dfdfdf));
+   }
+
+   .VF_AC006_Container_TD
+   {
+     background: #dfdfdf;
+   }
+   
+   .VF_AC006_CLASS_MainContainer
+   {
+     border-bottom: 1px solid #b6bac0;
+     width: 100%;
+   }
+
+   .VF_BODY_CLASS_MainContainer
+   {
+		border-top:    1px solid #b6bac0;
+		border-left:   none;
+      border-right:  none;
+      border-bottom: none;
+   }
+
+	.VF_AC006_BarTABLE
+   {
+		border-collapse: collapse;
+		display: inline;
+		background: transparent;
+		color: #000000; 
+		padding-left: 2px;
+   }
+
+	.VF_AC006_BarTABLE_MouseEnter
+	{
+		border: 1px solid #ffd69a;
+		border-collapse: collapse;
+		display: inline;
+		padding-left: 1px;
+		padding-right: 1px;
+	}
+
+	.VF_AC006_CLASS_ArrowImageTD
+	{
+		padding-left: 3px;
+		padding-right: 2px;
+      
+	}
+
+	.VF_AC006_CLASS_ArrowImageTDMouseEnter   
+	{
+		border-left:	1px solid #ffd69a; 
+		padding-left: 1px;
+		padding-right: 2px;
+	}
+
+	.VF_AC006_BarSwitchBtnTABLE
+   {
+      background: transparent;
+		border-collapse: collapse;
+		height:        100%;
+		display: inline;
+		border:none;
+		margin-left: 7px;
+   }
+
+	.VF_AC006_BarSwitchBtnTABLEmouseover
+	{
+      background: transparent;
+		border-collapse: collapse;
+		height:        100%;
+		display: inline;
+		border:none;
+		margin-left: 6px;
+	}
+
+
+   .VF_UM010_CLASS_MainContainer
+   {
+		border:        none; 
+   }
+
+   .VF_UM011_CLASS_MainContainer
+   {
+      border-left: 1px solid ButtonHighlight;
+      border-left: 1px solid ButtonHighlight;
+      border-left: 1px solid ButtonHighlight;
+      border-top: 1px solid #ece9d8;
+      background-color:    Window;
+   }
+
+
+   .VF_UM012_CLASS_MainContainer
+   {
+		border:        none; 
+   }
+
+   .VF_UM006_CLASS_MainContainer
+   {
+		border:      none;
+   }
+
+   .VF_AC006_CLASS_VerticalSplit
+   {
+      cursor:        col-resize; 
+		border-left:   1px outset transparent;
+      border-right:  1px outset transparent; 
+      background-color: #e2e2e2;
+   }
+
+   .VF_AC006_CLASS_HorizontalSplit
+   {
+      cursor:    row-resize; 
+		border:    2px outset transparent;
+      background-color: #dfdfdf;
+    }
+
+   .VF_UM007_CLASS_MainContainer
+   {
+      border-top: 1px solid #736d63;
+   }
+
+/* ------------------------------------------------------- */
+/* ------------ Tabbed Folder Classes -------------------- */
+/* ------------------------------------------------------- */
+
+    .VF_SY503_CLASS_Title  
+	{
+      background: #f7f7f7;      
+  	}
+
+    .VF_SY503_CLASS_TabStrip  
+	{
+      cursor:		   Default;
+      padding-top: 2px;
+  	}
+
+    .VF_SY503_CLASS_SelectedTab
+    {
+      -webkit-border-top-left-radius: 5px;
+      -webkit-border-top-right-radius: 5px;
+		border-bottom: 0px; 
+		padding:       4px; 
+		background: #f4f3ee;
+		z-index: 1; 
+	}  
+
+    .VF_SY503_CLASS_UnSelectedTab
+	{
+      -webkit-border-top-left-radius: 5px;
+      -webkit-border-top-right-radius: 5px;
+      cursor:		   pointer;
+		border-bottom: 0px; 
+		padding:       2px;	 
+      top:0px;
+		background: #dfdfdf;
+	}
+
+   .VF_SY503_CLASS_Folder  
+	{
+      cursor:		   Default;
+		margin:			0px 2px 1px 2px; 
+		border:			1px solid #919b9c;
+		position:		relative;
+      overflow:      hidden;
+	}
+
+
+/* ------------------------------------------------------- */
+/* ---- VF_UM009 TREE AND LIST VIEW CONTAINER DIV     ---- */
+/* ------------------------------------------------------- */
+
+   .VF_UM009_DIV_Container
+   {
+      font-family: Tahoma;
+      background-color: #ffffff;
+   }
+
+/* ------------------------------------------------------- */
+/* -------------------- Bar Classes -------------------- */
+/* ------------------------------------------------------- */
+	 .VF_UM009_Bar_Table
+   {
+   	background-color: #ffffff;
+      border:      1px solid #aca899;
+		padding: 3px;
+   }
+
+   .VF_UM009_HorizontalSplit
+   {
+		background: #ece9d8;
+   }
+
+	.VF_UM009_AppButton
+	{
+		background: #ecebe7;
+		width:100%;
+		height:100%;
+	}
+
+/* ------------------------------------------------------- */
+/* ------------ Tree View Classes -------------------- */
+/* ------------------------------------------------------- */
+
+   .VF_UM009_CaptionSelected
+   {
+      background-color: Highlight;
+      color:            HighlightText;
+   }
+
+/* ------------------------------------------------------- */
+/* ------------ Application List View Classes -------------------- */
+/* ------------------------------------------------------- */
+
+   /* DIV Container for Business Objects */
+
+   .VF_UM009_DIVList 
+   {
+      background-color: #ffffff;
+   } 
+
+   .VF_UM009_DIVList_OU
+   {
+      background-color: #ffffff;
+   } 
+
+   /* Table Container for Applications and Business Objects */
+
+   .VF_UM009_ListView_Table
+   {
+      
+   }
+
+   .VF_UM009_Node_L1
+   {
+      white-space:   nowrap;  
+      padding-left: 2px;
+   }
+
+   .VF_UM009_AppBobCaption
+   {
+      color:          black; 
+   }
+
+	.VF_UM009_ViewBtnImg
+	{
+		background: #fcfcfe; 
+	}
+		
+	.VF_UM009_AppViewButtonDIV
+	{
+      border-right:	1px solid #6982ee; 
+      border-top:    1px solid #6982ee; 
+      border-bottom:	1px solid #003c74; 
+      border-left:   1px solid #003c74; 
+	}
+
+	.VF_UM009_AppViewBtnDIVMouseEnter
+	{
+      border-right:	1px solid #fdd889; 
+      border-top:    1px solid #fdd889; 
+      border-bottom:	1px solid #e59700; 
+      border-left:   1px solid #e59700; 
+	}
+/* ------------------------------------------------------- */
+/* -------------------- Status Bar Classes -------------------- */
+/* ------------------------------------------------------- */
+
+   .VF_UM007_StatusBarMessages
+   {
+      cursor:           Default; 
+   }
+
+   .VF_UM007_StatusBarDatTim
+   {
+      cursor:           Default; 
+      
+   }
+
+   .VF_UM007_TDButtonContainer
+   {
+      height: 100%;
+      border: none;
+      padding: 0px;
+   }
+
+   .VF_UM007_CLASS_ToolBarSpacer  
+	{
+      display: inline;
+      border-left: 1px solid #c6c3b5;
+      border-right: 1px solid threedhighlight;
+		width: 2px;
+		height: 16px;
+	}
+
+   .VF_UM007_StatusText_Ready
+   {
+      letter-spacing:   1px;
+      
+		margin-left: 4px;
+		border:none;
+   }
+   
+   .VF_UM007_StatusText_Busy
+   {
+      background-color: Highlight;
+      color:            HighlightText;
+   }
+   
+/* ------------------------------------------------------- */
+/* ---- VF_UM036 CLasses                               ---- */
+/* ------------------------------------------------------- */
+
+   .VF_UM036_AboutMemo
+   {
+      overflow:            auto;
+      padding:             5px;
+      height:              100%;
+      position:            relative;
+      top:                 0px;
+      border:	            1px solid Highlight;
+      background:          #ffffff;
+   }
+
+/* -------------------- Help About Modal Dialog Classes -------------------- */
+   .VF_HT001_BODY
+   {
+      border:        0px;
+   }
+/* -------------------- Sign On Modal Dialog Classes -------------------- */
+   .VF_HT002_BODY
+   {
+      border:        0px;
+   }
+/* ------------------------------------------------------- */
+/* -------------------- Menu  Classes -------------------- */
+/* ------------------------------------------------------- */
+   
+   .VF_UM005_GroupCellExpand
+   {
+      background : #e3efff;
+      border : solid 1px #c6c6c6;
+      padding: 1px 4px 1px 4px;
+      -webkit-border-radius: 5px;
+   }
+
+   .VF_UM005_GroupCellCollapse
+   {
+      background : #f2f4f7;
+      border : solid 1px #c6c6c6;
+      -webkit-border-radius: 5px;
+      padding : 1px 4px 1px 4px;
+   }
+
+   .VF_UM005_GroupCellMouseOut
+   {
+      border : solid 1px transparent;     
+      padding: 1px 4px 1px 4px;
+      color: #062d75;
+   }
+/* ------------------------------------------------------- */
+/* --------------- Tool Bar Classes ---------------------- */
+/* ------------------------------------------------------- */
+
+    .VF_UM008_CLASS_ToolBarButton  
+	{
+      padding: 4px 5px 1px 5px;
+		border:  0px;
+   	background:	      	transparent;
+      color: #062D75;
+   }
+
+    .VF_UM008_CLASS_ToolBarButton_MouseOver  
+	{
+      padding: 1px 3px 0px 3px; /* top right bottom left */
+      color: #062D75;
+   }
+
+	.VF_UM008_CLASS_ToolBarSpacerX  
+	{
+   	background:	      	transparent;
+      border-left: 1px solid #c6c3b5;
+      border-right: 1px solid threedhighlight;
+      width: 2px;
+      height: 19px;
+      display: inline;
+	} 
+/* ------------------------------------------------------- */
+/* ------------ Instance List Classes -------------------- */
+/* ------------------------------------------------------- */
+    .VF_UM011_CLASS_InstanceList_Table  
+	{
+      border:              none; 
+      background:          #f8f7f5;
+      }
+
+    .VF_UM011_CLASS_InstanceList_Header  
+	{
+      border-bottom:       2px groove ButtonHighlight;
+	   border-right:        2px groove ButtonHighlight;
+      background:          #dfdfdf;
+    }
+ 
+    .VF_UM011_CLASS_InstanceList_Body  
+	{
+      background-color:    window;
+      border:              none; 
+      }
+
+    .VF_UM011_CLASS_InstanceList_BodySel 
+      { 
+      color:               HighlightText;
+      background:          Highlight;
+      }
+
+    .VF_UM011_CLASS_InstanceList_BodyOver  
+	{
+      background-color:    ButtonFace;
+      }
+
+    .VF_UM011_CLASS_InstanceList_BodyAlt  
+	{
+      background-color:    window;
+   }
+
+/* ------------------------------------------------------- */
+/* ------------ Mini Filter Classes -------------------- */
+/* ------------------------------------------------------- */
+    .VF_UM076_MiniFilterLabel  
+	{
+      color:         #000000;
+      padding-left:	3px; 
+   }

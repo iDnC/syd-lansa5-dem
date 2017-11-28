@@ -1,0 +1,214 @@
+<context>
+CommandHandler 
+</context>
+<mode>
+WAM 
+</mode>
+<caption>
+CRUD Command Handler 
+</caption>
+<preamble>
+ENG_vf_um052_Handler_CRUD_WAM.htm
+</preamble>
+<hint>
+This assistant produces the code for a CRUD (Create/Read/Update/Delete) command handler.  
+</hint>
+<sequence>
+000100  
+</sequence>
+<handler>
+VF_UM055 
+VF_UM057     
+</handler>
+<handlertxt>
+Specify the identification protocol you have decided to use for this business object. If a physical file resembles this business object specify its name and the assistant will attempt to automatically deduce a basic identification protocol for you.    
+Specify fields that you want onto the top (header) area and/or bottom (list) area of your command handler panel. Your choice to put fields onto the header and/or list areas will affect the way that code assistant structures your command execution logic.                  
+</handlertxt>
+<code>
+<<include VF_UM052_CommandHandler_Preamble.vfi>>
+<<CommentBlock>>
+* NOTE: This command handler was designed to be
+* invoked by the New, Delete, and other (e.g. Details
+* or Create/Read/Update/Delete) commands
+* It uses the user-object-type of the command to decide
+* how to behave.
+<<CommentBlock>>
+BEGIN_COM ROLE(*EXTENDS #PRIM_WAM) Sessionstatus(None) Layoutweblet('vlf_layout_v2')
+Define_Com Class(#vf_sw100) NAME(#avFrameworkManager)
+Define_Com Class(#vf_aw010) Name(#ThisHandler) Reference(*Dynamic)
+Define_Com Class(#vf_lw002) Name(#avListManager) Reference(*Dynamic)
+Define_Com Class(#fp_in001) Name(#FastPart) Reference(*Dynamic)
+<<comment>>VL Framework map fields. DO NOT CHANGE.
+Web_Map For(*both) Fields((#VF_FRAMEI *private) (#VF_FRAMEW *private) (#VF_FRAMES *private) (#VF_ELXTOF *private) (#VF_ELXN01 *private) (#VF_ELXN02 *private) (#VF_ELXN03 *private) (#VF_ELXN04 *private) (#VF_ELXN05 *private) (#VF_ELXN06 *private) 
++ (#VF_ELXN07 *private) (#VF_ELXN08 *private) (#VF_ELXN09 *private) (#VF_ELXN10 *private) (#VF_ELXA01 *private) (#VF_ELXA02 *private) (#VF_ELXA03 *private) (#VF_ELXA04 *private) (#VF_ELXA05 *private) 
++ (#VF_ELXA06 *private) (#VF_ELXA07 *private) (#VF_ELXA08 *private) (#VF_ELXA09 *private) (#VF_ELXA10 *private)(#VF_ELMETA *private))
+<<if UM057_Has_HEADFields>>
+<<comment>>Define the header fields of the web form
+GROUP_BY NAME(#Wam_Data) FIELDS(<<UM057_GenHeadGroupInline>>
+<<if UM057_Has_LISTFields>> 
+<<comment>>Define the list fields of the web form
+GROUP_BY NAME(#XG_LIST) FIELDS(<<UM057_GenListGroupInline>>
+<<comment>>Define the list to appear on the web form
+Def_list Name(#Wam_List) type(*working) Fields(<<UM057_GenListGroupInline>>
+<<comment>>Map fields used in this form.
+Web_Map For(*both) Fields((#UB_PUSHB1 *NOID) #WAM_LIST #Wam_Data)
+<<else>>
+<<comment>>Map fields used in this form.
+Web_Map For(*both) Fields((#UB_PUSHB1 *NOID) #Wam_Data)
+<<endif>>
+<<else>>
+<<if UM057_Has_LISTFields>> 
+<<comment>>Define the list to appear on the web form
+Def_list Name(#Wam_List) type(*working) Fields(<<UM057_GenListGroupInline>>
+Web_Map For(*both) Fields((#UB_PUSHB1 *NOID) #WAM_LIST)
+<<endif>>
+<<endif>>
+<<CommentBlock>>
+* Work Fields
+DEFINE FIELD(#CMD_TYPE) TYPE(*CHAR) LENGTH(32) DESC('User Object Type of the command')
+Define #Ret_Code reffld(#STD_BOOL)
+DEF_COND NAME(*OKAY) COND((#RET_CODE = OK) or (#RET_CODE = TRUE))
+DEF_COND NAME(*NOTOKAY) COND((#RET_CODE *ne OK) and (#RET_CODE *ne TRUE))
+<<CommentBlock>>
+Webroutine Name(UHandleEvent)
+<<comment>>Register the event that will execute when clicking on the Push button as wam event number 1.
+#avFrameworkManager.avRegisterEvent Named(UB_PUSHB1.CLICK) Signalaswamevent(1)
+<<comment>>Standard WAM initialisation. 
+#avFrameworkManager.avInitializeWAM Type(COMMAND) Invoker(#com_owner) Listmanager(#avListManager) Handlermanager(#ThisHandler) Fastpartmanager(#FastPart)
+#avFrameworkManager.avHandleWAMEvent Anchorblock(#vf_framew) Event(#vf_event) Designmode(#vf_framed) Skin(#VF_Frames) Metatag(#vf_elmeta) 
++ Tof(#vf_elxtof) N01(#vf_elxn01) N02(#vf_elxn02) N03(#vf_elxn03) N04(#vf_elxn04) N05(#vf_elxn05) N06(#vf_elxn06) N07(#vf_elxn07) N08(#vf_elxn08) 
++ N09(#vf_elxn09) N10(#vf_elxn10) A01(#vf_elxA01) A02(#vf_elxA02) A03(#vf_elxA03) A04(#vf_elxA04) A05(#vf_elxA05) A06(#vf_elxA06) A07(#vf_elxA07) A08(#vf_elxA08) A09(#vf_elxA09) A10(#vf_elxA10) Ssiname(#VF_FRAMEI)
+Endroutine
+
+<<comment>>Initialize the command handler
+Evtroutine Handling(#avFrameworkManager.uInitialize) Options(*noclearmessages *noclearerrors)
+* The behaviour of this command handler is modified by the user-object-type of the command that initiated it.
+#Cmd_Type :=  #ThisHandler.avCommandType
+<<CommentBlock>>
+* Default the push button to enabled
+#ThisHandler.avSetButton ButtonName(UB_PUSHB1)  Enabled(TRUE)
+<<comment>>Add your initialization logic here
+Endroutine
+<<CommentBlock>>
+Evtroutine Handling(#avFrameworkManager.uexecute) Options(*noclearmessages *noclearerrors)
+Case Of_Field(#Cmd_Type)
+<<CommentBlock>>
+* Handle New
+When Value_is('= New')
+#UB_PUSHB1 := 'Save New Details'
+#Wam_Data := *NULL 
+<<CommentBlock>>
+* Handle Copy
+When Value_Is('= Copy')
+#UB_PUSHB1 := 'Save New Details'
+Execute Subroutine(GETCURRENT) with_parms(TRUE)
+<<CommentBlock>>
+* Handle delete
+When Value_Is('= Delete')
+#UB_PUSHB1 := 'Confirm Deletion'
+Execute Subroutine(GETCURRENT) WITH_PARMS(TRUE)
+<<CommentBlock>>
+* Handle details
+Otherwise
+#UB_PUSHB1 := 'Save Changes'
+Execute Subroutine(GETCURRENT) WITH_PARMS(TRUE)
+EndCase
+EndRoutine
+<<if UM057_Has_HEADFields>>
+<<comment>>Handle click of the button
+* Perform Push Button1 event logic. Event routine registered using #avFrameworkManager.avRegisterEvent as event 1.
+Evtroutine Handling(#avFrameworkManager.uWAMEvent_1) Options(*noclearmessages *noclearerrors)
+DEFINE FIELD(#VIS_RESLT) REFFLD(#STD_TEXT)
+DEFINE FIELD(#MSG_RSLT) TYPE(*CHAR) LENGTH(132)
+<<comment>>Do different things based on the command
+CASE OF_FIELD(#Cmd_Type)
+<<CommentBlock>>
+* Handle New or Copy
+when value_is('= New' '= Copy')
+<<CommentBlock>>
+#UB_PUSHB1 := 'Save New Details'
+#VIS_RESLT :=  '(New)'
+#MSG_RSLT := 'New details have been saved'
+INSERT FIELDS(#Wam_Data) TO_FILE(<<UM055_BaseFile>>) IO_STATUS(#RET_CODE) IO_ERROR(*NEXT) VAL_ERROR(*NEXT) ISSUE_MSG(*YES)
+<<CommentBlock>>
+* Handle delete
+WHEN VALUE_IS('= Delete')
+<<CommentBlock>>
+#UB_PUSHB1 := 'Confirm Deletion'
+#VIS_RESLT :=  '(Deleted)'
+#MSG_RSLT := 'Details have been deleted'
+EXECUTE SUBROUTINE(GETCURRENT) WITH_PARMS(TRUE)
+IF (*OKAY)
+DELETE FROM_FILE(<<UM055_BaseFile>>) IO_STATUS(#RET_CODE) IO_ERROR(*NEXT) VAL_ERROR(*NEXT) ISSUE_MSG(*YES)
+ENDIF
+<<CommentBlock>>
+* Handle details
+OTHERWISE
+<<CommentBlock>>
+#UB_PUSHB1 := 'Save Changes'
+#VIS_RESLT :=  '(Updated)'
+#MSG_RSLT := 'Changed details have been saved'
+UPDATE FIELDS(#Wam_Data) IN_FILE(<<UM055_BaseFile>>) WITH_KEY(<<UM055_BaseFileKeys>>) IO_STATUS(#RET_CODE) IO_ERROR(*NEXT) VAL_ERROR(*NEXT) ISSUE_MSG(*YES)
+<<CommentBlock>>
+ENDCASE
+<<comment>>Handle whether it worked or not
+IF (*NOTOKAY)
+Set #ThisHandler avShowMessages(TRUE)
+ELSE
+#avListManager.BeginListUpdate
+<<UM055_AddtoList VIS_RESLT>>  
+<<CommentBlock>>
+* Update the instance list
+#avListManager.EndListUpdate
+* 
+CASE OF_FIELD(#CMD_TYPE)
+WHEN VALUE_IS('= NEW')
+<<CommentBlock>>
+* Prepare for the next entry
+#Wam_Data := *NULL 
+WHEN VALUE_IS('= DELETE')
+<<CommentBlock>>
+* Disable the delete button
+#ThisHandler.avSetButton ButtonName(UB_PUSHB1)  Enabled(FALSE)
+ENDCASE
+<<CommentBlock>>
+* Issue the requested friendly message
+USE BUILTIN(CLR_MESSAGES)
+MESSAGE MSGID(DCM9899) MSGF(DC@M01) MSGDTA(#MSG_RSLT)
+ENDIF
+ENDROUTINE
+<<endif>>
+<<comment>>GetCurrent: Get current object details
+SUBROUTINE NAME(GETCURRENT) PARMS((#DF_FETCH *RECEIVED))
+DEFINE FIELD(#DF_FETCH) REFFLD(#STD_BOOL)
+<<if UM057_Has_HEADFields>>
+<<UM055_GenGetLst>>
+<<comment>>Fetch information from the main file to fill in the header fields on the form 
+IF (#DF_FETCH = TRUE)
+Fetch Fields(#Wam_Data) From_File(<<UM055_BaseFile>>) With_Key(<<UM055_BaseFileKeys>>) IO_STATUS(#RET_CODE)
+<<if UM057_Has_LISTFields>>
+Clr_List #Wam_List
+<<endif>>
+ENDIF
+<<CommentBlock>>
+use builtin(clr_messages)
+<<comment>> Handle could not be found
+if (*notokay)
+message msgtxt('The requested object was not found. It may have been deleted.')
+#ThisHandler.avShowMessages := TRUE
+#ThisHandler.avSetButton ButtonName(UB_PUSHB1)  Enabled(FALSE)
+#Wam_Data := *NULL
+else
+<<if UM057_Has_LISTFields>>
+<<comment>>Select information from any other associated file(s) to fill the visible list 
+Clr_List #Wam_List
+Select Fields(#XG_LIST) From_File(<<tba>>) With_key(<<tba>>)
+<<Comment>>Add an entry to the visible list
+Add_Entry #Wam_List
+EndSelect    
+<<endif>>
+endif
+<<endif>>
+endroutine
+End_Com
+<<code>>

@@ -1,0 +1,25 @@
+* -----------------------------------------------------------------------------------------------
+* This is the bottom pane slider for framework <<FRAMEWORK>>
+* It was created on <<CREATEDDATE>> by <<CREATEDUSER>>
+* -----------------------------------------------------------------------------------------------
+Begin_Com Role(*EXTENDS #VF_AC028O) Height(200) Width(865)
+* -----------------------------------------------------------------------------------------------
+Define_Com Class(*ANCESTOR) Name(#CloseImage) Left(833)
+Define_Com Class(*ANCESTOR) Name(#CustomPanelBody) Height(182) Width(865)
+Define_Com Class(*ANCESTOR) Name(#DockImage) Left(849)
+Define_Com Class(*ANCESTOR) Name(#HeaderPanel) Width(865)
+* -----------------------------------------------------------------------------------------------
+Define_Com Class(#PRIM_ATLI) Name(#AttachItem1) Manage(#TemporaryMessage) Parent(#CustomPanelBodyLayoutManager) Attachment(Center) Marginbottom(8) Marginleft(8) Marginright(8) Margintop(8)
+
+Define_Com Class(#Prim_Labl) Name(#TemporaryMessage) Displayposition(1) Tabstop(False) Parent(#CustomPanelBody) Tabposition(1) Height(166) Left(8) Top(8) Width(849) Style(#BigText) Alignment(Center) Verticalalignment(Center) Caption('This is your custom bottom pane slider <<OBJECT_NAME>>. Delete this label and add your own content.')
+* -----------------------------------------------------------------------------------------------
+Define_Com Class(#Prim_vs.Style) Name(#BigText) Fontsize(14) Fontunits(Point) Textcolor(18:69:114)
+* -----------------------------------------------------------------------------------------------
+Mthroutine Name(uInitialize) Options(*REDEFINE)
+
+Endroutine
+* -------------------------------------------------------------------------
+Mthroutine Name(uTerminate) Options(*REDEFINE)
+
+Endroutine
+End_Com

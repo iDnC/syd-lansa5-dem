@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<caption>
+Filtre et liste d'instances CRUD      
+</caption>
+<preamble>
+FRA_vf_um052_Filter_Blind.htm
+</preamble>
+<context>
+Filter 
+</context>
+<sequence>
+000100  
+</sequence>
+<handlertxt>
+Préciser le fichier physique sur lequel s'appuie votre objet métier.  Puis choisissez quelles zones seront affichées sur la liste d'instances et quel(les) zone(s) identifient un enregistrement de manière unique.
+Choisir toutes les autres options nécessaires.
+</handlertxt>
+<handler>
+VF_UM128 
+VF_UM109 
+</handler>
+<hint>
+Cet assistant produit le code d'un filtre qui ne nécessite que peu ou pas de modifications manuelles basé sur un fichier ou une vue spécifiques. Il est conçu pour les développeurs qui sont de nouveaux utilisateurs du VL Framework.
+</hint>
+<code>
+<<include VF_UM052_Filter_Preamble.vfi>>
+Function Options(*DIRECT)
+Begin_Com Role(*EXTENDS £VF_AC007) Height(182) Width(326) LayoutManager(£MAIN_LAYOUT)
+* <<majorsep>>
+* Définitions de zones simples et groupes
+* <<majorsep>>
+Group_By   Name(£XG_Ident)   Fields(<<UM055_GenFldList>>)
+<<if CA_UM109_CHK_CONNECT>>
+define field(£con_rslt) type(*char) length(2)
+Def_Cond Name(*conresult) Cond(£con_rslt = OK)
+<<endif>> 
+* <<majorsep>>
+* Définitions de composants
+* <<majorsep>>
+<<Comment>>Panneaux de présentation du corps et des boutons 
+Define_Com Class(£PRIM_PANL) Name(£BODY_PANEL) Displayposition(1) Height(182) Layoutmanager(£BODY_FLOW) Left(0) Parent(£COM_OWNER) Tabposition(1) Tabstop(False) Top(0) Width(246)
+Define_Com Class(£PRIM_PANL) Name(£BUTTON_PANEL) Displayposition(2) Height(182) Layoutmanager(£BUTTON_FLOW) Left(246) Parent(£COM_OWNER) Tabposition(2) Tabstop(False) Top(0) Width(88)
+<<Comment>>Gestionnaires de présentation par liaison et centrage
+Define_Com Class(£PRIM_ATLM) Name(£MAIN_LAYOUT)
+Define_Com Class(£PRIM_ATLI) Name(£BODY_ATTACH)   Attachment(Center) Manage(£BODY_PANEL) Parent(£MAIN_LAYOUT)
+Define_Com Class(£PRIM_ATLI) Name(£BUTTON_ATTACH) Attachment(Right)  Manage(£BUTTON_PANEL) Parent(£MAIN_LAYOUT)
+Define_Com Class(£PRIM_FWLM) Name(£BUTTON_FLOW) Direction(TopToBottom) Flowoperation(Center) Marginbottom(4) Marginleft(4) Marginright(4) Margintop(4) Spacing(4) Spacingitems(4)
+Define_Com Class(£PRIM_FWLM) Name(£BODY_FLOW) Direction(TopToBottom) Marginbottom(4) Marginleft(4) Marginright(4) Margintop(4) Spacing(4) Spacingitems(4)
+* <<majorsep>>
+* Définitions des méthodes
+* <<majorsep>>
+<<CommentBlock>>
+Mthroutine Name(uInitialize) Options(*Redefine)
+<<if CA_UM109_CHK_CONNECT>>
+<<comment>>Vérifier que la connexion est toujours active 
+£avFrameworkManager.avCheckConnection ReturnValue(£con_rslt)
+If Cond(*conresult)
+<<endif>> 
+<<comment>>Indique que la mise à jour de la liste d'instances de(s) <<businessobject_lang ucaption>> va commencer
+£avListManager.BeginListUpdate
+£avListManager.ClearList
+Select Fields(£XG_Ident) From_File(<<UM055_BaseFile>>)  
+<<UM055_AddtoList>>  
+EndSelect
+<<comment>>Indique que la mise à jour de la liste d'instances de(s) <<businessobject_lang ucaption>> est terminée
+£avListManager.EndListUpdate
+<<if CA_UM109_CHK_CONNECT>>
+endif
+<<endif>>
+<<comment>>Masque le critère de recherche
+£Com_Owner.avHiddenFilter := True
+Endroutine
+<<if CA_UM109_TERMINATE>>
+* <<minorsep>>
+* Gère la fin d'exécution
+* <<minorsep>>
+Mthroutine Name(uTerminate) Options(*REDEFINE)
+<<CommentBlock>>
+* <ici votre logique de fin> 
+* <ici votre logique de fin> 
+* <ici votre logique de fin>
+<<CommentBlock>>
+<<Comment>>Effectuer toute logique de fin définie dans l'ancêtre
+£Com_Ancestor.uTerminate
+<<CommentBlock>>
+Endroutine
+<<endif>>
+<<if CA_UM109_LISTEN>>
+* <<minorsep>>
+* Gérer les requêtes externes pour mettre à jour la liste d'instances   
+* <<minorsep>>
+EvtRoutine £Com_owner.avEvent WithId(£EventId) WithAInfo1(£AInfo1) WithAInfo2(£AInfo2) WithAInfo3(£AInfo3) WithAInfo4(£AInfo4) WithAInfo5(£AInfo5)  WithNInfo1(£NInfo1) WithNInfo2(£NInfo2) WithNInfo3(£NInfo3) WithNInfo4(£NInfo4) WithNInfo5(£NInfo5)
+
+* placer les valeurs reçues dans des zones
+£vf_elIdn := £EventId.Value
+
+* Mappage de des valeurs AInfo et NInfo passées, dans les zones clés - <<UM055_BaseFileKeys>> 
+<<UM055_GenMapKeys>> 
+
+<<if CA_UM109_CHK_CONNECT>>
+<<comment>>Vérifier que la connexion est toujours active 
+£avFrameworkManager.avCheckConnection ReturnValue(£con_rslt)
+If Cond(*conresult)
+<<endif>> 
+
+Case £vf_elIDN
+
+when value_is(= Refresh_Instance_List)
+* Recharger la liste d'instances 
+
+£Com_Owner.uInitialize
+
+when value_is(= Add_List_Entry)
+* Ajouter une entrée à la liste d'instances 
+
+fetch FIELDS(£XG_Ident) FROM_FILE(<<UM055_BaseFile>>) WITH_KEY(<<UM055_BaseFileKeys>>)
+if_status *OKAY
+
+* Début de la mise à jour de la liste d'instances
+£avListManager.BeginListUpdate
+<<UM055_AddtoList>>
+* Mise à jour de la liste d'instances terminée 
+£avListManager.EndListUpdate
+
+endif
+
+when value_is(= Update_List_Entry)
+* Mise à jour d'une entrée existante de la liste d'instances 
+
+fetch FIELDS(£XG_Ident) FROM_FILE(<<UM055_BaseFile>>) WITH_KEY(<<UM055_BaseFileKeys>>)
+if_status *OKAY
+
+* Début d'une mise à jour de la liste d'instances 
+£avListManager.BeginListUpdate
+<<UM055_GenSetVids>>
+<<UM055_GenUpdLst>>
+* Mise à jour de la liste d'instances terminée 
+£avListManager.EndListUpdate
+
+endif
+
+when value_is(=  Delete_List_Entry)
+£avListManager.BeginListUpdate
+<<UM055_GenRmvLst>>
+£avListManager.EndListUpdate
+
+endcase
+
+<<if CA_UM109_CHK_CONNECT>>
+endif
+<<endif>>
+
+Endroutine
+<<endif>>
+
+End_Com
+</code>  

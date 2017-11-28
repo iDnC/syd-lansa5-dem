@@ -1,0 +1,82 @@
+<context>
+CommandHandler 
+</context>
+<mode>
+WAM
+</mode>
+<preamble>
+ENG_vf_um052_Handler_Skeleton_Wam.htm
+</preamble>
+<caption>
+Skeleton Command Handler      
+</caption>
+<hint>
+This assistant produces a skeleton for a wam based command handler. It is designed for experienced developers who intend to add most of the code to the command handler themselves.
+</hint>
+<sequence>
+000150  
+</sequence>
+<handler>
+VF_UM056   
+</handler>
+<handlertxt>
+Specify the things that you would like to include in the generated code.     
+</handlertxt>
+<code>
+<<include VF_UM052_CommandHandler_Preamble.vfi>>
+BEGIN_COM ROLE(*EXTENDS #PRIM_WAM) Sessionstatus(None) Layoutweblet('vlf_layout_v2')
+Define_Com Class(#vf_sw100) NAME(#avFrameworkManager)
+Define_Com Class(#vf_aw010) Name(#ThisHandler) Reference(*Dynamic)
+Define_Com Class(#vf_lw002) Name(#avListManager) Reference(*Dynamic)
+Define_Com Class(#fp_in001) Name(#FastPart) Reference(*Dynamic)
+<<comment>>VL Framework map fields. DO NOT CHANGE.
+Web_Map For(*both) Fields((#VF_FRAMEI *private) (#VF_FRAMEW *private) (#VF_FRAMES *private) (#VF_ELXTOF *private) (#VF_ELXN01 *private) (#VF_ELXN02 *private) (#VF_ELXN03 *private) (#VF_ELXN04 *private) (#VF_ELXN05 *private) (#VF_ELXN06 *private) 
++ (#VF_ELXN07 *private) (#VF_ELXN08 *private) (#VF_ELXN09 *private) (#VF_ELXN10 *private) (#VF_ELXA01 *private) (#VF_ELXA02 *private) (#VF_ELXA03 *private) (#VF_ELXA04 *private) (#VF_ELXA05 *private) 
++ (#VF_ELXA06 *private) (#VF_ELXA07 *private) (#VF_ELXA08 *private) (#VF_ELXA09 *private) (#VF_ELXA10 *private)(#VF_ELMETA *private))
+<<comment>>Map fields used in this form.
+Override Field(#UB_PUSHB1) Default('Button 1')
+Override Field(#UB_PUSHB2) Default('Button 2')
+<<if CA_UM056_SAVEBTN>>
+Web_Map For(*both) Fields((#UB_SAVE *NOID)(#UB_PUSHB1 *NOID)(#UB_PUSHB2 *NOID))
+<<else>>
+Web_Map For(*both) Fields((#UB_PUSHB1 *NOID)(#UB_PUSHB2 *NOID))
+<<endif>>
+Webroutine Name(UHandleEvent)
+<<comment>>Register the event that will execute when clicking on the Push button 1 in this filter as wam event number 1.
+#avFrameworkManager.avRegisterEvent Named(UB_PUSHB1.CLICK) Signalaswamevent(1)
+<<comment>>Register the event that will execute when clicking on the Push button 2 in this filter as wam event number 2.
+#avFrameworkManager.avRegisterEvent Named(UB_PUSHB2.CLICK) Signalaswamevent(2)
+<<if CA_UM056_SAVEBTN>>
+<<comment>>Register the event that will execute when clicking on the Save button in this filter as wam event number 3.
+#avFrameworkManager.avRegisterEvent Named(UB_SAVE.CLICK) Signalaswamevent(3)
+<<endif>>
+<<comment>>Standard WAM initialisation. 
+#avFrameworkManager.avInitializeWAM Type(COMMAND) Invoker(#com_owner) Listmanager(#avListManager) Handlermanager(#ThisHandler) Fastpartmanager(#FastPart)
+#avFrameworkManager.avHandleWAMEvent Anchorblock(#vf_framew) Event(#vf_event) Designmode(#vf_framed) Skin(#VF_Frames) Metatag(#vf_elmeta) 
++ Tof(#vf_elxtof) N01(#vf_elxn01) N02(#vf_elxn02) N03(#vf_elxn03) N04(#vf_elxn04) N05(#vf_elxn05) N06(#vf_elxn06) N07(#vf_elxn07) N08(#vf_elxn08) 
++ N09(#vf_elxn09) N10(#vf_elxn10) A01(#vf_elxA01) A02(#vf_elxA02) A03(#vf_elxA03) A04(#vf_elxA04) A05(#vf_elxA05) A06(#vf_elxA06) A07(#vf_elxA07) A08(#vf_elxA08) A09(#vf_elxA09) A10(#vf_elxA10) Ssiname(#VF_FRAMEI)
+Endroutine
+<<comment>>Initialize the command handler
+Evtroutine Handling(#avFrameworkManager.uInitialize) Options(*noclearmessages *noclearerrors)
+<<Comment>>Your initialization logic goes here 
+Endroutine
+<<Comment>>Handle execution of the command handler
+Evtroutine Handling(#avFrameworkManager.uexecute) Options(*noclearmessages *noclearerrors)
+<<Comment>>Your execution logic goes here 
+Endroutine
+<<comment>>Handle click of push button 1 registered as wam event 1
+Evtroutine Handling(#avFrameworkManager.uWAMEvent_1) Options(*noclearmessages *noclearerrors)
+<<comment>>Your search button handling logic goes here
+Endroutine
+<<Comment>>Handle click of push button 2 registered as wam event 2
+Evtroutine Handling(#avFrameworkManager.uWAMEvent_2) Options(*noclearmessages *noclearerrors)
+<<comment>>Your handling logic goes here
+Endroutine
+<<if CA_UM056_SAVEBTN>>
+<<Comment>>Handle click of the save button
+Evtroutine Handling(#avFrameworkManager.uWAMEvent_3) Options(*noclearmessages *noclearerrors)
+<<comment>>Your handling logic goes here
+Endroutine
+<<endif>> 
+End_Com
+</code>

@@ -1,0 +1,2 @@
+﻿LANSA.addComponent({id:"XDTOOLSP",nm:"xDToolsPanel",ot:"rp",tp:"Reusable Part",de:"Base Panel",tl:14020000},function(l,oI,u){var cO=l.rC(oI,{an:"PRIM_PANL",co:function(){cO.aN.call(this);var C0=this.cA("GAPPLICATION","XDTOOLSA");var C1=this.cA("GDATAMODEL","XDTOOL_4");if((C0!=null)&&(C0.iI()==false)){C0.iC();}if((C1!=null)&&(C1.iI()==false)){C1.iC();}this.setDisplayPosition(1);this.setLeft(0);this.setTabPosition(1);this.setTop(0);this.setWidth(500);this.setTabStop(false);this.setHeight(185);}});},
+{rc:["XDTOOLSA","XDTOOL_4"],rp:["PRIM_PANL"]});

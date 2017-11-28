@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head id="VF_RADPAD_Head">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+<script type="text/javascript">
+
+   function onLoadHandler() {
+      var qstring = location.search;
+      var isVLFONE = (qstring.search("VLFONE=TRUE") >= 0);
+      var isVLFWIN = (qstring.search("VLFWIN=TRUE") >= 0);
+      var eBODY = document.body;
+
+      if (isVLFONE || isVLFWIN) {
+         eBODY.style.backgroundColor = "#" + qstring.substr(qstring.indexOf("&BC=") + 4, 6);
+         eBODY.style.color = "#" + qstring.substr(qstring.indexOf("&TC=") + 4, 6);
+      }
+      else {
+         if ((parent != null) && (parent.VF_UseBackGroundColor != null))
+            eBODY.style.backgroundColor = parent.VF_UseBackGroundColor;
+         else
+            eBODY.style.backgroundColor = "#f4f3ee";
+      }
+   }
+ 
+</script>
+</head>
+</script>
+</head>
+<body id="VF_RADPAD_Body" style="margin:8px 8px 8px 8px; font-family:Verdana,Arial,Helvetica,sans-serif; font-size:9pt;" onload="onLoadHandler()">
+<P>Ceci est un filtre RAD-PAD émulé.</P>
+<P>L'objectif de ce filtre émulé est de vous aider à prototyper rapidement et visualiser comment sera votre application.</P> 
+<P>Vous pourrez le remplacer par un filtre réel ultérieurement.</P>
+<P>Pour apprendre tout ce que vous pouvez faire avec le bloc-notes RAD, utilisez l'assistant d'aide.</P>
+</body>
+</html>

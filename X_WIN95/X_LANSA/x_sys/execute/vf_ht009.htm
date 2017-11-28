@@ -1,0 +1,137 @@
+﻿<HTML>
+<head id="VF_HT009_Head">
+<title>Server Check</title>
+<link id='VF_HT009_Common_StyleSheet' rel='stylesheet' type='text/css' href='vf_vs001.css'>
+<link id='VF_HT009_StyleSheet'        rel='stylesheet' type='text/css' href='vf_vs001_win.css'>
+<script language="JavaScript" type="text/javascript">
+/* =============================================================================== */
+/* =============================================================================== */
+/* =============================================================================== */
+var VF_System   = null; 
+var objVF_SY503 = null;
+/* =============================================================================== */
+/* =============================================================================== */
+/* =============================================================================== */
+function VF_HT009_PRIVATE_CloseWindow()
+{
+   try { window.close(); } 
+   catch (objError) {  }  
+
+   return; 
+}
+/* =============================================================================== */
+/* =============================================================================== */
+/* =============================================================================== */
+function VF_HT009_PRIVATE_Continue()
+{
+   window.returnValue = "CONTINUE"; 
+   VF_HT009_PRIVATE_CloseWindow();
+   return; 
+}
+
+/* =============================================================================== */
+/* =============================================================================== */
+/* =============================================================================== */
+function VF_HT009_PRIVATE_Shutdown()
+{
+   window.returnValue = "SHUTDOWN"; 
+   VF_HT009_PRIVATE_CloseWindow();
+   return; 
+}
+
+/* =============================================================================== */
+/* =============================================================================== */
+/* =============================================================================== */
+function VF_HT009_PRIVATE_LookforErrors()
+{
+  if (VF_System != null)
+  {
+     var strServer_JOBNAME = VF_System._GetAlpha_501("=SERVER_JOBNAME=","","",1,"");
+     var strServer_USER    = VF_System._GetAlpha_501("=SERVER_USER=",   "","",1,"");
+     var strServer_WEBUSER = VF_System._GetAlpha_501("=SERVER_WEBUSER=","","",1,"");
+     var strServer_JOBNBR  = VF_System._GetAlpha_501("=SERVER_JOBNBR=", "","",1,"");
+     var strLaunchURL      = VF_System.strL4WebAddress ;
+         strLaunchURL     += "?PROCFUN+VF_PR004+VFU0408+";
+         strLaunchURL     += VF_System.strPartition ;
+         strLaunchURL     += "+FUNCPARMS"
+		 strLaunchURL     += "+J_JOBNAME(A0100):" + strServer_JOBNAME;
+		 strLaunchURL     += "+J_USER(A0100):"    + strServer_USER;
+		 strLaunchURL     += "+J_WEBUSER(A0100):" + strServer_WEBUSER;
+		 strLaunchURL     += "+J_JOBNBR(A0100):"  + strServer_JOBNBR;
+        
+
+      window.open(strLaunchURL,"servercheck","");
+   }  
+   return; 
+}
+
+function Init()
+{
+   /* Cross reference the objects */
+   VF_System = window.opener.VF_System;
+   objVF_SY503 = VF_System.currentobjVF_UMnn;    
+
+   /* Default return value */
+   
+   window.returnValue = "RETURN"; 
+   
+   /* Initialize some details on the form */
+   {
+      var intTimeOut = VF_System.VF_Framework.UDEVELOPERTIMEOUT;
+	   var strTimeOut = "";   
+
+      if (intTimeOut < 1) intTimeOut = 1; 
+      if (intTimeOut > 3600) intTimeOut = 3600; 
+	   strTimeOut = intTimeOut.toString(); 
+
+      var sText = VF_System.MString(181) + objVF_SY503.strCurrentTabRoutine + VF_System.MString(182) + strTimeOut + VF_System.MString(218); 
+      var Text_001 = document.getElementById("Text_001");
+      
+      Text_001.innerHTML = sText;
+ 
+      var Button_001 = document.getElementById("Button_001");
+      var Button_002 = document.getElementById("Button_002");
+      var Button_003 = document.getElementById("Button_003");
+
+      Button_001.value = VF_System.MString(183); 
+      Button_002.value = VF_System.MString(184);
+      Button_003.value = VF_System.MString(185);
+      Button_001_Caption.innerHTML = strTimeOut + VF_System.MString(186); 
+      Button_002_Caption.innerHTML = VF_System.MString(187); 
+      Button_003_Caption.innerHTML = VF_System.MString(188);
+   } 	   
+
+   /* Finished */
+         
+   return;  
+}
+/* =============================================================================== */
+/* =============================================================================== */
+/* =============================================================================== */
+</script>
+  
+ 
+</head>  
+
+<body onload="Init()">
+
+<div id='Text_001' style='margin:4px;'>
+</div>
+<table border='0' style='margin:4px;' >
+   <tr>
+   <td><div><input id='Button_001' type='button' value='Wait' onclick='VF_HT009_PRIVATE_Continue();'></div></td>
+   <td><div id='Button_001_Caption'>20 seconds more for a response.</div></td>
+   </tr>
+   <tr>
+   <td><div><input id='Button_003' type='button' value='Check' onclick='VF_HT009_PRIVATE_LookforErrors();'></div></td>
+   <td><div id='Button_003_Caption'>for error information on the Web Server.</div></td>
+   </tr>
+   <tr>
+   <td><div><input id='Button_002' type='button' value='Shutdown' onclick='VF_HT009_PRIVATE_Shutdown();'></div></td>
+   <td><div id='Button_002_Caption'>and signoff from the framework.</div></td>
+   </tr>
+</table> 
+
+</body>
+
+</html>

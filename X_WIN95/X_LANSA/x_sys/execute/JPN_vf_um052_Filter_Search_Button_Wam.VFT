@@ -1,0 +1,42 @@
+<context>
+Filter
+</context>
+<caption>
+検索のｲﾍﾞﾝﾄﾙｰﾁﾝ (ｿｰｽの一部分)  
+</caption>
+<preamble>
+JPN_vf_um052_Filter_Search_Button_Wam.htm
+</preamble>
+<mode>
+WAM
+</mode>
+<hint>
+このｳｨｻﾞｰﾄﾞはﾌｨﾙﾀｰの検索ﾎﾞﾀﾝの処理をする典型的なｲﾍﾞﾝﾄ ﾙｰﾁﾝのｿｰｽを作成します。 
+</hint>
+<sequence>
+000300    
+</sequence>
+<handler>
+VF_UM055 
+</handler>
+<handlertxt>
+このﾋﾞｼﾞﾈｽ ｵﾌﾞｼﾞｪｸﾄの定義を自動的に生成できるように、ﾋﾞｼﾞﾈｽ ｵﾌﾞｼﾞｪｸﾄに近い物理ﾌｧｲﾙの名前を指定して下さい。
+</handlertxt>
+<code>
+EvtRoutine Handling(<<TBA>>.Click) Options(*NOCLEARMESSAGES *NOCLEARERRORS)
+<<comment>> <<businessobject_lang ucaption>> のｲﾝｽﾀﾝｽ ﾘｽﾄの更新を開始することをｱﾌﾟﾘｹｰｼｮﾝに知らせます。
+#avListManager.BeginListUpdate
+
+<<comment>> <<businessobject_lang ucaption>> のｲﾝｽﾀﾝｽ ﾘｽﾄをｸﾘｱします。(ｵﾌﾟｼｮﾝ)
+#avListManager.ClearList
+
+<<Comment>> <<businessobject_lang ucaption>> の適切なｲﾝｽﾀﾝｽを選択します。
+Select Fields(<<UM055_GenFldList>> + <<TBA>>) 
++ From_File(<<TBA>>) With_key(<<TBA>>)   
+<<UM055_AddtoList>>  
+EndSelect
+<<comment>> <<businessobject_lang ucaption>> のｲﾝｽﾀﾝｽ ﾘｽﾄの更新を完了したことをｱﾌﾟﾘｹｰｼｮﾝに知らせます。
+#avListManager.EndListUpdate
+<<comment>> 
+Endroutine
+</code>

@@ -1,0 +1,42 @@
+<context>
+CommandHandler 
+</context>
+<caption>
+Multiple Instance uExecute Routine (code fragment)  
+</caption>
+<preamble>
+ENG_vf_um052_Handler_uExecute_Multiple.htm
+</preamble>
+<hint>
+This assistant creates the code for a typical uExecute routine for use in a command handler that works with multiple instances of a business object.    
+</hint>
+<sequence>
+000400   
+</sequence>
+<handler>
+VF_UM055 
+</handler>
+<handlertxt>
+Specify the identification protocol you have decided to use for this business object. If a physical file resembles this business object specify its name and the assistant will attempt to automatically deduce a basic identification protocol for you.    
+</handlertxt>
+<code>
+* <<minorsep>>
+* Handle Command Execution
+* <<minorsep>>
+<<CommentBlock>>
+Mthroutine Name(uExecute) Options(*REDEFINE)
+<<Comment>>The return code field and testing condition
+Define #Ret_Code reffld(#STD_BOOL)
+Def_cond Name(*RetOkay) Cond((#Ret_Code = OK) *OR (#Ret_Code = TRUE))
+<<Comment>>Do any execution logic defined in the ancestor 
+#Com_Ancestor.uExecute
+<<UM055_GenGetSel FIRST Ret_Code>>
+DoWhile *RetOkay
+Fetch Fields(<<TBA>>) From_File(<<UM055_BaseFile>>) With_Key(<<UM055_BaseFileKeys>>) 
+<<CommentBlock>>
+<<CommentBlock>>
+<<UM055_GenGetSel NEXT Ret_Code>>
+EndWhile
+<<CommentBlock>>
+Endroutine
+</code>   

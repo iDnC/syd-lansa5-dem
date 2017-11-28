@@ -1,0 +1,123 @@
+<caption>  
+Filter that searches using a file or view      
+</caption>
+<context>
+Filter 
+</context>
+<preamble>
+ENG_vf_um052_Filter_Full_Wam.htm
+</preamble>
+<mode>
+WAM
+</mode>
+<sequence>
+000100  
+</sequence>
+<handler>
+VF_UM055 
+VF_UM058    
+</handler>
+<handlertxt>
+Specify the identification protocol you have decided to use for this business object. If a physical file resembles this business object specify its name and the assistant will attempt to automatically deduce a basic identification protocol for you.    
+Specify the physical file that will underpin the search made by this web based filter. Then select the required view, keys and search options as they appear.
+</handlertxt>
+<hint>
+This assistant produces the code for a web based filter that requires little or no manual completion based on a specified file or view. It is designed for developers who are new to the VL Framework.
+</hint>
+<code>
+<<include VF_UM052_Filter_Preamble.vfi>>
+BEGIN_COM ROLE(*EXTENDS #PRIM_WAM) Layoutweblet('vlf_layout_v2') Sessionstatus(None)
+<<comment>>Standard declares for a filter
+Define_Com CLASS(#vf_sw100) NAME(#avFrameworkManager)
+Define_Com Class(#vf_aw007) Name(#ThisFilter) Reference(*Dynamic)
+Define_Com Class(#vf_lw002) Name(#avListManager) Reference(*Dynamic)
+Define_Com Class(#fp_in001) Name(#FastPart) Reference(*Dynamic)
+<<comment>>VL Framework map fields. DO NOT CHANGE.
+Web_Map For(*both) Fields((#VF_FRAMEI *private) (#VF_FRAMEW *private) (#VF_FRAMES *private) (#VF_ELXTOF *private) (#VF_ELXN01 *private) (#VF_ELXN02 *private) (#VF_ELXN03 *private) (#VF_ELXN04 *private) (#VF_ELXN05 *private) (#VF_ELXN06 *private) 
++ (#VF_ELXN07 *private) (#VF_ELXN08 *private) (#VF_ELXN09 *private) (#VF_ELXN10 *private) (#VF_ELXA01 *private) (#VF_ELXA02 *private) (#VF_ELXA03 *private) (#VF_ELXA04 *private) (#VF_ELXA05 *private) (#VF_ELXA06 *private) (#VF_ELXA07 *private) 
++ (#VF_ELXA08 *private) (#VF_ELXA09 *private) (#VF_ELXA10 *private)(#VF_ELMETA *private))
+
+<<comment>>Simple Field, Group and Condition Definitions
+Group_By   Name(#XG_Keys)    Fields(<<UM058_KeyList>>)
+Group_By   Name(#XG_Ident)   Fields(<<UM055_GenFldList>>)
+Def_List   Name(#Save_Keys)  Fields(#XG_Keys) Type(*Working) Entrys(1)
+Def_Cond   Name(*SearchOK)   <<UM058_SearchCondition>> 
+
+<<comment>>Map fields used in this form.
+Web_Map For(*both) Fields(#XG_Keys (#UB_SEARCH *Noid))
+<<comment>>Standard webroutine used by all VLF WAM filters and command handlers. DO NOT CHANGE the Web routine name. Use this routine to register WAM events.
+Webroutine Name(UHandleEvent)
+<<comment>>Register the event that will execute when clicking on the Search button in this filter as wam event number 1.
+#avFrameworkManager.avRegisterEvent Named(UB_SEARCH.CLICK) Signalaswamevent(1)
+<<comment>>Standard WAM initialisation. 
+#avFrameworkManager.avInitializeWAM Type(FILTER) Invoker(#com_owner) Listmanager(#avListManager) Filtermanager(#ThisFilter) Fastpartmanager(#FastPart)
+#avFrameworkManager.avHandleWAMEvent Anchorblock(#vf_framew) Event(#vf_event) Designmode(#vf_framed) Skin(#VF_Frames) Metatag(#vf_elmeta) Tof(#vf_elxtof) N01(#vf_elxn01) N02(#vf_elxn02) N03(#vf_elxn03) N04(#vf_elxn04) N05(#vf_elxn05) 
++ N06(#vf_elxn06) N07(#vf_elxn07) N08(#vf_elxn08) N09(#vf_elxn09) 
++ N10(#vf_elxn10) A01(#vf_elxA01) A02(#vf_elxA02) A03(#vf_elxA03) A04(#vf_elxA04) A05(#vf_elxA05) A06(#vf_elxA06) A07(#vf_elxA07) A08(#vf_elxA08) A09(#vf_elxA09) A10(#vf_elxA10) Ssiname(#VF_FRAMEI)
+Endroutine
+<<Comment>>Handle push of the search button registered as wam event 1
+Evtroutine Handling(#avFrameworkManager.uExecute) Options(*noclearmessages *noclearerrors)
+<<if CA_UM058_REMEMBERKEYS>>
+<<comment>>Restore values used in previous executions of filter
+<<UM058_Repeat False Alpha >>#avFrameworkManager.avRestoreValue Withid1(*Component) Withid2('<<field>>') ToAvalue(#<<field>>) Useavaluedefault(*Blanks)
+<<UM058_Repeat False Numeric >>#avFrameworkManager.avRestoreValue Withid1(*Component) Withid2('<<field>>') Usenvaluedefault(0) ToNValue(#VF_ELNUMX)<<split>>#<<field>> := #VF_ELNUMX<<field_intrinsic_to>>
+<<endif>>
+Endroutine
+
+<<Comment>>Handle push of the search button registered as wam event 1
+Evtroutine Handling(#avFrameworkManager.uWAMEvent_1) Options(*noclearmessages *noclearerrors)
+<<comment>> If the search key(s) are valid  
+if (*SearchOK)   
+<<if CA_UM058_REMEMBERKEYS>>
+<<comment>>Save key values for later executions
+<<UM058_Repeat False Alpha >>#avFrameworkManager.avSaveValue Withid1(*Component) Withid2('<<field>>') FromAvalue(#<<field>>)
+<<UM058_Repeat False Numeric >>#avFrameworkManager.avSaveValue Withid1(*Component) Withid2('<<field>>') FromNValue(#<<field>><<field_intrinsic_from>>)
+<<endif>>
+<<comment>>Save the current key values from overwrites 
+Inz_List #Save_Keys 1 
+<<comment>>Indicate that <<businessobject_lang ucaption>> instance list updating is about to start
+#avListManager.BeginListUpdate
+<<if CA_UM058_CLEARLIST>>
+<<comment>>Clear the current instance list contents
+#avListManager.ClearList
+<<endif>>
+<<Comment>> Select appropriate instances
+<<if CA_UM058_LIMITSEARCH>>
+#ListCount := 0
+<<endif>>
+<<if CA_UM058_ALLOWGENERIC>>
+<<if CA_UM058_FULLKEY>>
+Select Fields(#XG_Ident) From_File(<<UM058_ViewName>>) With_key(#XG_Keys) Generic(*yes) Nbr_keys(*WithKey)  
+<<else>>
+Select Fields(#XG_Ident) From_File(<<UM058_ViewName>>) With_key(#XG_Keys) Generic(*yes) Nbr_Keys(*Compute)  
+<<endif>>  
+<<else>>
+<<if CA_UM058_FULLKEY>>
+Select Fields(#XG_Ident) From_File(<<UM058_ViewName>>) With_key(#XG_Keys) Nbr_keys(*WithKey)  
+<<else>>
+Select Fields(#XG_Ident) From_File(<<UM058_ViewName>>) With_key(#XG_Keys) Nbr_Keys(*Compute)  
+<<endif>>
+<<endif>>
+<<if CA_UM058_LIMITSEARCH>>
+* Stop searching at 200 instances
+#ListCount += 1
+If (#ListCount > 200)
+Message 'Search stopped after 200 instances found. Please refine your search criteria.'
+#ThisFilter.avShowMessages := TRUE
+Leave     
+Endif
+<<endif>>
+<<UM055_AddtoList>>  
+EndSelect
+<<comment>>Instance list updating is now complete
+#avListManager.EndListUpdate
+<<comment>>Restore the saved key values 
+Get_Entry 1 #Save_Keys 
+else
+<<comment>> else if the search key is invalid issue a message
+Message 'Search details provided are not valid. Please enter search details'
+#ThisFilter.avShowMessages := TRUE
+Endif
+Endroutine
+End_Com
+</code>

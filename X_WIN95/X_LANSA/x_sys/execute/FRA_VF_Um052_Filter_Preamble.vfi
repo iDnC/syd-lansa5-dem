@@ -1,0 +1,25 @@
+* <<majorsep>>
+* Type            : FILTRE D´OBJET METIER
+<<if WEB_MODE>>
+* Platform        : WEB (LANSA for the WEB)
+<<else>>
+<<if WAM_MODE>>
+* Platform        : MS-WINDOWS (Web Access Module)
+<<else>>
+<<if ONE_MODE>>
+* Plateforme      : Navigateur Web (Visual LANSA)
+* Ancêtre         : VF_AC007O  
+<<else>> 
+* Plateforme      : MS-WINDOWS (Visual LANSA)
+* Ancêtre         : VF_AC007  
+<<endif>>    
+<<endif>>
+<<endif>>
+* Créé par        : <<user>> 
+* Le              : <<date>> à <<time>>
+* Copyright       : <<copyright>>
+* Framework       : <<framework_lang ucaption>>
+* Application     : <<application_lang ucaption>>
+* Objet métier    : <<businessobject_lang ucaption>>
+* Filtre          : <<filter_lang ucaption>>
+* <<majorsep>>

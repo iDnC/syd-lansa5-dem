@@ -1,0 +1,24 @@
+* <<majorsep>> 
+* Type            : GESTIONNAIRE D´ACTION
+<<if WEB_MODE>>
+* Plateforme      : WEB (LANSA for the WEB)
+<<else>>
+<<if WAM_MODE>>
+* Plateforme      : MS-WINDOWS (Web Access Module)
+<<else>>
+<<if ONE_MODE>>
+* Plateforme      : Navigateur Web (Visual LANSA)
+* Ancêtre         : VF_AC010O  
+<<else>> 
+* Plateforme      : MS-WINDOWS (Visual LANSA)
+* Ancêtre         : VF_AC010  
+<<endif>>  
+<<endif>>  
+* Créé par              : <<user>> 
+* Le                    : <<date>> à <<time>>
+* Copyright             : <<copyright>>
+* Framework             : <<framework_lang ucaption>>
+* Application           : <<application_lang ucaption>>
+* Objet métier          : <<businessobject_lang ucaption>>
+* Gestionnaire d´action : <<command_lang ucaption>>
+* <<majorsep>>

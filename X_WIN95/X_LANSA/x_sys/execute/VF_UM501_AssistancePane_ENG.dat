@@ -1,0 +1,94 @@
+* ---------------------------------------------------------------------------------
+* This is the assistance pane for framework <<FRAMEWORK>>
+* It was created on <<CREATEDDATE>> by <<CREATEDUSER>>
+* It has some example appearance and behaviour which you can change as you see fit.
+* ---------------------------------------------------------------------------------
+Begin_Com Role(*EXTENDS #VF_AC031O) Width(281)
+
+* ---------------------------------------------------------------------------------
+Define_Com Class(#Prim_acol<#Prim_labl>) Name(#CollectLabels)
+Define_Com Class(#Prim_acol<#Prim_atli>) Name(#CollectAttachments)
+
+* ---------------------------------------------------------------------------------
+Define_Com Class(#Prim_Vs.Style) Name(#LikeURLStyle) Textcolor(Blue) Fontsize(10) Fontunits(Point)
+Define_Com Class(#Prim_Vs.Style) Name(#LikeURLOverStyle) Underline(True) Cursor(Hand)
+
+* ---------------------------------------------------------------------------------
+* Change the hint that displays for this component
+Ptyroutine Name(Get_uHint) Options(*REDEFINE)
+#ReturnHint := #COM_ANCESTOR.uHint
+Endroutine
+
+* ---------------------------------------------------------------------------------
+* Change the image that represents this component
+Ptyroutine Name(Get_uImageName) Options(*REDEFINE)
+#ReturnImageName := #COM_ANCESTOR.uImageName
+Endroutine
+
+* ---------------------------------------------------------------------------------
+* Standard initialization
+Mthroutine Name(uInitialize) Options(*REDEFINE)
+* Do any ancestor processing
+#COM_ANCESTOR.uInitialize
+* Add a few samples of where you might go for assistance.
+* In a real application these would not be appropriate for your end users of course.
+#Com_Owner.AddClickableURL Caption("Open IBM Web Site") Url("http://www.ibm.com/")
+#Com_Owner.AddClickableURL Caption("Open Apple Web Site") Url("http://www.apple.com/")
+#Com_Owner.AddClickableURL Caption("Open Microsoft Web Site") Url("http://www.microsoft.com/")
+#Com_Owner.AddClickableURL Caption("Open LANSA Web Site") Url("http://www.lansa.com/")
+#Com_Owner.AddClickableURL Caption("Open LANSA Documentation Site") Url("http://docs.lansa.com/")
+
+Endroutine
+
+* ---------------------------------------------------------------------------------
+* Standard termination
+Mthroutine Name(uTerminate) Options(*REDEFINE)
+* Your logic goes here ....
+#CollectAttachments.RemoveAll
+#CollectLabels.RemoveAll
+* Do any ancestor processing
+#COM_ANCESTOR.uTerminate
+Endroutine
+
+* ---------------------------------------------------------------------------------
+* Request to display this pane
+Mthroutine Name(uDisplayRequested) Options(*REDEFINE)
+* Do any ancestor processing
+#COM_ANCESTOR.uDisplayRequested Additionalrequestdetails(#AdditionalRequestdetails)
+* Your logic goes here ....
+Endroutine
+
+* ---------------------------------------------------------------------------------
+* Add a URL to the display
+Mthroutine Name(AddClickableURL)
+Define_Map For(*input) Class(#Prim_DC.UnicodeString) Name(#Caption)
+Define_Map For(*input) Class(#PRIM_ALPH) Name(#URL)
+
+Define_Com Class(#Prim_labl) Name(#NewLabel) Parent(#COM_OWNER) Style(#LikeURLStyle) Mouseoverstyle(#LikeURLOverStyle) Height(24)
+
+Define_Com Class(#Prim_atli) Name(#NewAttachmentItem) Parent(#MAINPANELATTACHMENTMANAGER) Manage(#NewLabel) Attachment(Top) Marginleft(16) Marginright(16) Margintop(4) Marginbottom(4)
+
+* Make sure the label and attachment item are tracked
+#CollectLabels.Insert Item(#NewLabel)
+#CollectAttachments.Insert Item(#NewAttachmentItem)
+
+If (#CollectAttachments.ItemCount = 1)
+#NewAttachmentItem.MarginTop := 16
+Endif
+
+#COM_OWNER.Height := ((#NewLabel.Height + #NewAttachmentItem.MarginTop + #NewAttachmentItem.MarginBottom) * #CollectLabels.ItemCount) + 16
+
+* Set up the label
+Set Com(#NewLabel) Caption(#Caption) Componenttag(#URL)
+
+Endroutine
+
+* ---------------------------------------------------------------------------------
+* Handle clicking on a label by opening the URL
+Evtroutine Handling(#CollectLabels<>.Click) Com_Sender(#Sender)
+
+#SYS_WEB.Navigate Url(#Sender.ComponentTag) Target(New)
+
+Endroutine
+
+End_Com

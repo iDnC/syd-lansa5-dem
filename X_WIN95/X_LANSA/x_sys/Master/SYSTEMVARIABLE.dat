@@ -1,0 +1,135 @@
+*AT_CHAR            @ Char                                  A1  0                       000000000000
+*AUTOALP15LW3TRCID  Next event logging trace identifier     A15 0                       000000000000
+*BIF_ARGCOUNT       BIF Function - Number of Arguments      N7  0                       000000000000
+*BIF_RETCOUNT       BIF Function - Number of Return Values  N7  0                       000000000000
+*BIF_SHUTDOWN       BIF Function - Shutdown Call (Y/N)      A1  0                       000000000000
+*BLANK              Blank / blanks variable                 A1  0                       000000000000
+*BLANKS             Blank / blanks variable                 A1  0                       000000000000
+*CENTURY_GREATER    Century when date greater than switch   A2  0                       000000000000
+*CENTURY_LESSEQUAL  Century when date less / equal to switchA2  0                       000000000000
+*CENTURY_SWITCH     Century compare date                    A2  0                       000000000000
+*CHECKBOXSELECTED   Check Box Selected                      A1  0                       000000000000
+*COMPANY            Name of current company / organisation  A30 0                       000000000000
+*COMPILECPU         The CPU that the runtime is compiled forA6  0                       000000000000
+*COMPONENT          Component Name                          A10 0                       000000000000
+*COMPONENT_DESC     Component Description                   A40 0                       000000000000
+*CPFREL             Current CPF release level               N3  1                       000000000000
+*CPU_NUMBER         CPU Serial Number                       N7  0                       000000000000
+*CPUTYPE            CPU Type (AS400 or S38)                 A5  0                       000000000000
+*DATE               Numeric date in installation format     N6  0                       000000000000
+*DATEC              Character date in installation format   A6  0                       000000000000
+*DATETIME           Current date and time (numeric)         N14 0                       000000000000
+*DATETIMEC          Current date and time (character)       A14 0                       000000000000
+*DATE8              Numeric 8 digit date in system format   N8  0                       000000000000
+*DATE8C             Character 8 digit date in system format A8  0                       000000000000
+*DAY                Current day (numeric)                   N2  0                       000000000000
+*DAYC               Current day (character)                 A2  0                       000000000000
+*DBMS_RECORD_LOCKED I/O error status RECORD LOCKED - Y/N    A1  0                       000000000000
+*DDMMYY             Numeric date in format DDMMYY           N6  0                       000000000000
+*DDMMYYC            Character date in format DDMMYY         A6  0                       000000000000
+*DDMMYYYY           Date in format ddmmyyyy                 N8  0                       000000000000
+*DDMMYYYYC          Character date in format DDMMYYYY       A8  0                       000000000000
+*DEVELOPMENTLANGUAGEDevelopment Language                    A4  0                       000000000000
+*DOLLAR_CHAR        £ Char                                  A1  0                       000000000000
+*FIELD_PREFIX       Field Prefix                            A1  0                       000000000000
+*FUNCTION           Current LANSA function name             A7  0                       000000000000
+*FUNCTION_DESC      Function description (Function use only)A40 0                       000000000000
+*GROUP_AUTHORITY    Group profile authority                 A7  0                       000000000000
+*GROUP_OWNER        Group profile owner                     A10 0                       000000000000
+*GROUP_PROFILE      Group profile                           A10 0                       000000000000
+*GUID               Globally Unique Identifier              A32 0                       000000000000
+*GUID_DB            Database Globally Unique Identifier     A36 0                       000000000000
+*GUIDEVICE          GUI Device in Use (Y=GUI, N=NPT)        A1  0                       000000000000
+*JOBMODE            Current job mode (batch or interactive) A1  0                       000000000000
+*JOBNAME            Current AS/400 or S/38 job name         A10 0                       000000000000
+*JOBNBR             Current AS/400 or S/38 job number       A6  0                       000000000000
+*JULIAN             Numeric date in Julian format           N5  0                       000000000000
+*JULIANC            Character date in Julian format         A5  0                       000000000000
+*LANGUAGE           Current language code                   A4  0                       000000000000
+*LANGUAGE_DESC      Current language description            A40 0                       000000000000
+*LANGUAGE_IGC       Current language is IGC / DBCS (Y/N)    A1  0                       000000000000
+*LANGUAGE_LRTB      Current language is Left to Right (Y/N) A1  0                       000000000000
+*LANGUAGE_RLTB      Current language is Right to Left (Y/N) A1  0                       000000000000
+*LANSACOMLIB        LANSA communication library             A10 0                       000000000000
+*LANSADTALIB        LANSA system data/file library          A10 0                       000000000000
+*LANSAPGMLIB        LANSA system program library            A10 0                       000000000000
+*LASTFUNCTION       Last LANSA function name                A7  0                       000000000000
+*MESSAGE_FILE       Message File                            A10 0                       000000000000
+*MMDDYY             Numeric date in format MMDDYY           N6  0                       000000000000
+*MMDDYYC            Character date in format MMDDYY         A6  0                       000000000000
+*MMDDYYYY           Numeric date in format MMDDYYYY         N8  0                       000000000000
+*MMDDYYYYC          Character date in format MMDDYYYY       A8  0                       000000000000
+*MONTH              Current month (numeric)                 N2  0                       000000000000
+*MONTHC             Current month (character)               A2  0                       000000000000
+*MSGQLIB            Current message queue library           A10 0                       000000000000
+*MSGQNAME           Current message queue                   A10 0                       000000000000
+*NEXTFUNCTION       Default next LANSA function name        A7  0                       000000000000
+*ON_CLIENT_SYSTEM   Y = Executing on Client System          A1  0                       000000000000
+*ON_SERVER_SYSTEM   Y = Executing on Server System          A1  0                       000000000000
+*ORGANISATION       Name of current company / organisation  A30 0                       000000000000
+*OSAPI              Operating System API Name               A5  0                       000000000000
+*OSBITNESS          Operating System Bitness                N3  0                       000000000000
+*OUTQLIB            Current output queue library name       A10 0                       000000000000
+*OUTQNAME           Current output queue name               A10 0                       000000000000
+*PART_DIR           Partition Directory                     A2560                       000000000000
+*PART_DIR_EXECUTE   Partition EXECUTE Directory             A2560                       000000000000
+*PART_DIR_OBJECT    Partition OBJECT Directory              A2560                       000000000000
+*PART_DIR_SOURCE    Partition SOURCE Directory              A2560                       000000000000
+*PART_DRIV          Partition Drive                         A3  0                       000000000000
+*PART_RDMLX         Partition RDMLX (Y=RDMLX)               A1  0                       000000000000
+*PARTDTALIB         Current partition's data/file library   A10 0                       000000000000
+*PARTITION          Current partition                       A3  0                       000000000000
+*PARTITION_DESC     Current partition description           A40 0                       000000000000
+*PARTPGMLIB         Current partition's 4GL program library A10 0                       000000000000
+*PATHDELIM          Path Delimiter                          A1  0                       000000000000
+*PROCESS            Current LANSA process name              A10 0                       000000000000
+*PROCESS_DESC       Process description (Function use only) A40 0                       000000000000
+*PRODREL            Current LANSA release level             N3  1                       000000000000
+*PRODUCT            Product Name (ie: LANSA)                A5  0                       000000000000
+*QUOTE              Single quote (ie ')                     A1  0                       000000000000
+*RADBUTTONSELECTED  Radio Button Selected                   A1  0                       000000000000
+*ROOT_DIR           LANSA root directory                    A2560                       000000000000
+*SSERVER_CONNECTED  Currently Connected                     A1  0                       000000000000
+*SSERVER_SSN        Super-Server SSN                        A10 0                       000000000000
+*SSERVER_TYPE       Type                                    A10 0                       000000000000
+*SYS_DIR            System Directory                        A2560                       000000000000
+*SYS_DIR_EXECUTE    System EXECUTE Directory                A2560                       000000000000
+*SYS_DIR_OBJECT     System OBJECT Directory                 A2560                       000000000000
+*SYS_DIR_SOURCE     System SOURCE Directory                 A2560                       000000000000
+*SYS_DRIV           System Drive                            A3  0                       000000000000
+*TEMP_DIR           Temporary Directory                     A2560                       000000000000
+*TEMP_DRIV          Temporary Drive                         A3  0                       000000000000
+*TIME               Current time (numeric)                  N6  0                       000000000000
+*TIMEC              Current time (character)                A6  0                       000000000000
+*TIMEDATE           Current time and date (numeric)         N12 0                       000000000000
+*TIMEDATEC          Current time and date (character)       A12 0                       000000000000
+*TIMEDATE8          Current time and 8 digit date (numeric) N14 0                       000000000000
+*TIMEDATE8C         Current time and 8 digit date(character)A14 0                       000000000000
+*TIMESTAMP_DFT      Timestamp default value                 A26 0                       000000000000
+*TIMESTAMP_HIVAL    Timestamp high value                    A26 0                       000000000000
+*TIMESTAMP_LOVAL    Timestamp low value                     A26 0                       000000000000
+*USER               Current AS/400 or S/38 user identity    A10 0                       000000000000
+*USER_AUDIT         Current Audit user identity             A2560                       000000000000
+*USER_AUTHENTICATED Current authenticated user name         A2560                       000000000000
+*VF_BUILD_DATE      VL Framework  Build Date                A20 0                       000000000000
+*VF_BUILD_NUMBER    VL Framework  Build Number              A6  0                       000000000000
+*VISUAL_LANSA       Visual LANSA System ?                   A1  0                       000000000000
+*VL_ISERIES_INST    Visual LANSA for iSeries installed      A1  0                       000000000000
+*WEBIPADDR          Web IP address                          A50 0                       000000000000
+*WEBMODE            Web Browser in Use (Y=Browser N=Not brw)A1  0                       000000000000
+*WEBPATHINFO        Path information for WEB                A2550                       000000000000
+*WEBREFERRER        HTTP_REFERER                            A2550                       000000000000
+*WEBSCRIPTNAME      Script Name for WEB                     A2550                       000000000000
+*WEBUSER            Current Web Server User ID              A10 0                       000000000000
+*XMLMODE            XML/Java Thin Client in use (Y/N)       A1  0                       000000000000
+*YEAR               Current year (numeric)                  N2  0                       000000000000
+*YEARC              Current year (character)                A2  0                       000000000000
+*YYMMDD             Numeric date in format YYMMDD           N6  0                       000000000000
+*YYMMDDC            Character date in format YYMMDD         A6  0                       000000000000
+*YYYY               Numeric Year in format YYYY             N4  0                       000000000000
+*YYYYC              Character Year in format YYYY           A4  0                       000000000000
+*YYYYMMDD           Numeric date in format YYYYMMDD         N8  0                       000000000000
+*YYYYMMDDC          Character date in format YYYYMMDD       A8  0                       000000000000
+*ZERO               Zero (0) variable                       N1  0                       000000000000
+*ZEROES             Zero (0) variable                       N1  0                       000000000000
+*ZEROS              Zero (0) variable                       N1  0                       000000000000

@@ -1,0 +1,36 @@
+﻿{
+ "no":                        "Nein",
+ "ok":                        "OK",
+ "yes":                       "Ja",
+ "today":                     "Heute",
+ "retry":                     "Retry",
+ "cancel":                    "Stornieren",
+ "ignore":                    "Ignorieren",
+
+ "dayLong":	                  ["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"],
+ "dayShort":                  ["Son","Mon","Dien","Mitt","Don","Frei","Sam"],
+ "monthLong":                 ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","December"],
+ "monthShort":                ["Jän","Feb","März","Apr","Mai","Juni","Juli","Aug","Sept","Okt","Nov","Dez"],
+ 
+ "dateFormat":                "dd.MM.yy",
+ "timeFormat":                "HH:mm:ss",
+ "startOfWeek":               "Montag",
+
+ "decimalPoint":              ",",
+ "thousandsSep":              ".",
+ "currencySymbol":            "€",
+
+ "tabIncreaseDockGroup":      "Gruppe vergrössern",
+ "tabDecreaseDockGroup":      "Gruppe verkleinen",
+ "tabLayoutPriority":         "Max Layout",
+ "tabAutoHide":               "Autohide",
+ "tabHide":                   "Schliessen",
+ "tabConfigureButtons":       "Configuriere Buttons ",
+ "tabShowMoreButtons":        "Mehr Buttons anzeigen",
+ "tabShowFewerButtons":       "Weniger Buttons anzeigen",
+ "tabAddOrRemoveButtons":     "Buttons hinzufügen/löschen",
+ "tabPageCloseButton":        "Blatt schliessen",
+ 
+ "cardCaption":               "Primary Text",
+ "cardTertiary":              "Tertiary Text"
+}

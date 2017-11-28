@@ -1,0 +1,292 @@
+#
+# JSMProxy & JSM Direct message file
+# ERR               => Error messages written to log
+# JSM2000 - JSM2999 => JSMProxy
+# JSM3000 - JSM3999 => JSMDirect
+# JSM4000 - JSM4999 => JSMAdmin
+# JSM5000 - JSM5999 => JSMAdministrator as Service
+#
+ERR2000 Service does not exist in database
+ERR2001 Service argument is too long
+ERR2002 No method access specified for service
+ERR2003 No remote host specified for service
+ERR2004 No SERVER_NAME environment variable
+ERR2005 No SERVER_PORT environment variable
+ERR2006 Server and port concatenation exceeds limit
+ERR2007 Cannot create socket
+ERR2008 Cannot get host name
+ERR2009 Cannot connect to remote host
+ERR2010 Cannot send request line
+ERR2011 Cannot send host protocol line
+ERR2012 Cannot send content type protocol line
+ERR2013 Cannot send accept protocol line
+ERR2014 Cannot send content length protocol line
+ERR2015 Cannot send cookie protocol line
+ERR2016 Cannot send user agent protocol line
+ERR2017 Cannot send soap action protocol line
+ERR2018 Cannot send proxy version protocol line
+ERR2019 Cannot send proxy server name protocol line
+ERR2020 Cannot send proxy server port protocol line
+ERR2021 Cannot send proxy remote address protocol line
+ERR2022 Cannot send proxy remote user protocol line
+ERR2023 Cannot send end of protocol line
+ERR2024 Cannot send content
+ERR2025 Remote host has closed socket connection
+ERR2026 Received protocol line has exceeded limit
+ERR2027 Content length less than zero
+ERR2028 Calculated byte amount less than zero
+ERR2029 Incomplete read of socket
+ERR2030 Incomplete write to standard output
+ERR2031 Cannot send referer protocol line
+ERR2032 Received request line is missing HTTP keyword
+ERR2033 Received request line is missing status component
+ERR2034 Missing CGI_MODE environment variable
+ERR2035 -- NOT USED --
+ERR2036 CGI mode is incorrect
+ERR2037 Missing CGI_ASCII_CCSID environment variable
+ERR2038 Missing CGI_EBCDIC_CCSID environment variable
+ERR2039 Missing IBM_CCSID_VALUE environment variable
+ERR2040 Missing REQUEST_METHOD environment variable
+ERR2041 Invalid request method
+ERR2042 Invalid request method
+ERR2043 Invalid request method
+ERR2044 Missing QUERY_STRING environment variable
+ERR2045 Query string exceeds limit
+ERR2046 Access denied, invalid content length
+ERR2047 Access denied, invalid method
+ERR2048 Invalid content length limit specified
+ERR2049 Invalid content length value
+ERR2050 Content length is greater than limit
+ERR2051 No control method has been specified
+ERR2052 Missing REQUEST_METHOD environment variable
+ERR2053 No request method
+ERR2054 Request method no found in method control
+ERR2055 Query string exceeds limit
+ERR2056 Invalid request method
+ERR2057 Protocol variable value exceeds limit
+ERR2058 Concatenation of protocol name and value exceeds limit
+ERR2059 Calculated byte amount less than zero
+ERR2060 Incomplete read of standard input
+ERR2061 Cannot send content to remote host
+ERR2062 Protocol line exceeds limit
+ERR2063 Cannot send line to remote host
+ERR2064 Cannot open logical file DC@W30V1
+ERR2065 Cannot create conversion descriptions
+ERR2066 Cannot send user agent file protocol line
+ERR2067 Cannot send user agent path protocol line
+ERR2068 Cannot send user agent locale protocol line
+ERR2069 Cannot send user agent identity protocol line
+ERR2070 Cannot send AS2 to protocol line
+ERR2071 Cannot send AS2 from protocol line
+ERR2072 Cannot send AS2 version protocol line
+ERR2073 Cannot send from protocol line
+ERR2074 Cannot send date protocol line
+ERR2075 Cannot send subject protocol line
+ERR2076 Cannot send message id protcol line
+ERR2077 Cannot send notification to protocol line
+ERR2078 Cannot send notification option protocol line
+ERR2079 Cannot send receipt delivery protocol line
+ERR2080 Cannot send content encoding protocol line
+ERR2081 Cannot send accept encoding protocol line 
+ERR2082 Chunked Transfer Encoding not supported for IIS
+ERR2083 Cannot create temporary input file
+ERR3000 Service does not exist in database
+ERR3001 Service argument is too long
+ERR3002 Missing CGI_MODE environment variable
+ERR3003 JSMDirect is not licensed
+ERR3004 Content length exceeds storage limit
+ERR3005 Cannot find logical file DC@W29V1
+ERR3006 Cannot access logical file DC@W29V1
+ERR3007 Cannot find program LANSA
+ERR3008 Cannot access program LANSA
+ERR3009 Cannot write user space storage header
+ERR3010 Calculated byte amount less than zero
+ERR3011 Incomplete read of standard input
+ERR3012 Cannot write to user space storage
+ERR3013 Cannot read user space storage header
+ERR3014 No data returned from service
+ERR3015 Calculated byte amount less than zero
+ERR3016 Cannot read user space storage
+ERR3017 Incomplete write to standard output
+ERR3018 Write user space exception has occured
+ERR3019 Read user space exception has occured
+ERR3020 Create user space exception has occured
+ERR3021 Delete user space exception has occured
+ERR3022 No SERVER_NAME environment variable
+ERR3023 No SERVER_PORT environment variable
+ERR3024 Server and port concatenation exceeds limit
+ERR3025 Cannot open logical file DC@W29V1
+ERR3026 Cannot create conversion descriptions
+ERR3027 ICS instance needs to be in %%BINARY%% mode
+ERR3028 Missing CGI_ASCII_CCSID environment variable
+ERR3029 Missing CGI_EBCDIC_CCSID environment variable
+ERR3030 User agent is not licensed
+ERR3031 Incorrect client user agent version
+ERR3032 Cannot create new process for X_RUN
+ERR3033 X_RUN failed. Check x_err.log
+ERR3034 Cannot locate LANSA configuration
+ERR3035 Missing database name (ORACLE_SID) in jsmdirect.cfg
+ERR3036 Missing database user name (DBUS) in jsmdirect.cfg
+ERR3037 Missing database password (PSWD) in jsmdirect.cfg
+ERR4001 Service argument is too long
+ERR4002 Unsupported service
+ERR4003 Cannot open database file
+ERR4004 Cannot insert database record
+ERR4005 Database record does not exist
+ERR4006 Cannot delete database record
+ERR4007 Cannot update database record
+ERR4008 Database field SERVICE is too long
+ERR4009 Database field LOCALHOST is too long
+ERR4010 Database field PROCESS is too long
+ERR4011 Database field FUNCTION is too long
+ERR4012 Database field PARTITION is too long
+ERR4013 Database field LANGUAGE is too long
+ERR4014 Database field PROGRAM is too long
+ERR4015 Missing CONTENT_LENGTH environment variable
+ERR4016 No content was received
+ERR4017 Content exceeds maximum amount
+ERR4018 Cannot read standard input
+ERR4019 Field count is greater than expected
+ERR4020 Field count is less than expected
+ERR4021 Database field METHOD is too long
+ERR4022 Database field LIMIT is too long
+ERR4023 Database field REMOTEHOST is too long
+ERR4024 Database field REMOTEPGM is too long
+ERR4025 Missing SERVER_NAME environment variable
+ERR4026 Missing SERVER_PORT environment variable
+ERR4027 Server and port concatenation exceeds limit
+ERR4028 Missing CGI_MODE environment variable
+ERR4029 CGI input mode is not MIXED
+ERR4030 Missing CGI_OUTPUT_MODE environment variable
+ERR4031 CGI output mode is not MIXED
+#
+JSM0001 JSM Client is not licensed
+JSM0002 Cannot get job attributes
+JSM0003 Cannot create socket
+JSM0004 Cannot find server
+JSM0005 Cannot connect to server
+JSM0006 Service closed
+JSM0007 Service not opened
+JSM0008 Cannot send command, connection closed
+JSM0009 Cannot send command, connection closed
+JSM0010 Cannot send byte array, connection closed
+JSM0011 Cannot read protocol properties
+JSM0012 Cannot send keyword list, connection closed
+JSM0013 Bytearray size exceeds stdout storage limit
+JSM0014 Cannot send working list, connection closed
+JSM0015 Cannot send client information, connection closed
+JSM0016 Cannot send field list, connection closed
+JSM0017 Cannot send field data, connection closed
+JSM0018 Cannot allocate storage for field array
+JSM0019 Cannot allocate storage for field data
+JSM0020 Received status value is too long
+JSM0021 Received message value is too long
+JSM0022 Cannot read status value
+JSM0023 Cannot read message value
+JSM0024 Cannot allocate storage for byte array
+JSM0025 Cannot read byte array
+JSM0026 Cannot allocate storage for working list
+JSM0027 Cannot read working list
+JSM0028 Cannot alloacte storage for field list
+JSM0029 Cannot read field list
+JSM0030 Cannot allocate storage for running checks
+JSM0031 Inbound field list check failure
+JSM0032 Cannot update working list
+JSM0033 Cannot update field data
+JSM0034 Cannot create conversion descriptions
+JSM1000 Optimising JSM jar files
+JSM1001 Optimising JSM endorsed files
+JSM1002 Optimising JSM class files
+JSM1003 JSM instance has failed check process
+JSM1004 Starting Java Service Manager
+JSM1005 Instance directory does not exist
+JSM1006 Cannot create classpath
+JSM1007 JSM instance has been prepared
+JSM1008 Specified instance path is not valid
+JSM1009 JSM instance has been checked
+JSM1010 Instance has been cleared
+JSM1011 Cannot clear specified instance
+JSM1012 Cannot prepare JSM instance
+JSM1013 JSMMGRDTA data area is not in library list
+JSM1014 Owner is not a valid user profile
+JSM1015 Cannot change instance owner
+JSM1016 JSM instance owner has been changed
+JSM1017 Cannot change instance authority
+JSM1018 JSM instance authority has been changed
+JSM1019 User is not a valid user profile
+JSM1020 Invalid object authority parameter count
+JSM1021 Missing JSM components, is JSM library in library list
+JSM1022 Missing LANSA components, is LANSA libraries in library list
+JSM2000 JSMProxy transaction did not complete
+#
+JSM3000 JSMDirect transaction did not complete
+#
+JSM4000 JSMAdmin transaction did not complete
+#
+JSM5001 The following options are discard:
+JSM5002 %s Version %s
+JSM5003 The service is currently installed
+JSM5004 The service is not installed
+JSM5005 The service is not installed
+JSM5006 %s removed. (You must delete the file (%s) yourself.)
+JSM5007 Could not remove the service. Error %d
+JSM5008 The service is already installed
+JSM5009 The service is removed. re-install...
+JSM5010 Could not remove the service. Error %d
+JSM5011 The service failed to install. Maximum Listener services reached.
+JSM5012 The service is installed
+JSM5013 The service is not installed
+JSM5014 The service is not installed
+JSM5015 Service not in stop state
+JSM5016 Service not in running state
+JSM5017 No standard arguments
+JSM5018 ExitCode: %ld
+JSM5020 Error 1: No Instance
+JSM5021 Error 2: <%s> is not recognized as an Instance
+JSM5022 Error 3: Cannot clear temp folder in <%s>
+JSM5023 Error 6: Cannot change to <%s>
+JSM5024 Error 7: Cannot create output handles
+JSM5025 Error 8: Cannot build environment variables
+JSM5026 Error 9: Cannot set environment variables
+JSM5027 Error 4: Cannot build JSM command
+JSM5028 Error 5: Cannot build Class Path
+JSM5029 Error 10: Cannot build Endorsed Path
+JSM5030 Error 11: Cannot build full command line
+JSM5031 Error 12: Failed to start JSM: JVM:[%s]
+JSM5032 Service has started. JSM Process Id: <%ld> Instance is: <%s>
+JSM5033 Waiting for STOP
+JSM5034 Restarting JSM
+JSM5035 JSM terminated prematurely. Please check JSM Trace/Output files
+JSM5036 STOP Received
+JSM5037 Service has stopped
+JSM5038 Current Working Directory: <%s>
+JSM5039 Starting JSM
+JSM5040 Cannot clear Trace folder
+JSM5041 Cannot clear Temp folder
+JSM5042 Cleared Trace folder
+JSM5043 Cleared Temp folder
+JSM5044 Clear Instance
+JSM5045 Rebooting JSM
+JSM5046 Upgrade operation to follow
+JSM5047 Pending operation to follow
+JSM5048 Error 13: Cannot build User Home Path
+#
+JSM5445 STRJSM - LANSA Integrator JSM Administrator Service
+JSM5446 Syntax: STRJSM [options]
+JSM5447 Example : STRJSM -iauto
+JSM5448 Options:
+JSM5449   -h Display this text and exit
+JSM5450   -? Display this text and exit
+JSM5451   -v Display version number
+JSM5452   -i Install service
+JSM5453      startup
+JSM5454        auto - the service will start automatically on re-boot (default for Windows Server). 
+JSM5455        manual - the service will need to be started manually (default for Windows Workstation). 
+JSM5456        disable - disable the service (but it is left installed)
+JSM5457   -u Uninstall service
+JSM5466   -s Set service status
+JSM5467      status
+JSM5468        start - start service (default)
+JSM5469        stop - stop service
+JSM5475 Invalid command line parameter "%s".
+#

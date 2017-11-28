@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head id="VF_RADPAD_Head">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta http-equiv='content-type' content='text/html; charset=UTF-8' />
+<script type="text/javascript">
+
+   function onLoadHandler() {
+      var qstring = location.search;
+      var isVLFONE = (qstring.search("VLFONE=TRUE") >= 0);
+      var isVLFWIN = (qstring.search("VLFWIN=TRUE") >= 0);
+      var eBODY = document.body;
+
+      if (isVLFONE || isVLFWIN) {
+         eBODY.style.backgroundColor = "#" + qstring.substr(qstring.indexOf("&BC=") + 4, 6);
+         eBODY.style.color = "#" + qstring.substr(qstring.indexOf("&TC=") + 4, 6);
+      }
+      else {
+         if ((parent != null) && (parent.VF_UseBackGroundColor != null))
+            eBODY.style.backgroundColor = parent.VF_UseBackGroundColor;
+         else
+            eBODY.style.backgroundColor = "#f4f3ee";
+      }
+   }
+ 
+</script>
+</head>
+<body style="margin:8px 8px 8px 8px; font-family:Verdana,Arial,Helvetica,sans-serif; font-size:9pt;" onload="onLoadHandler()" id="VF_RADPAD_Body">
+    <p>Ceci est une maquette de gestionnaire de commande RAD-PAD.</p>
+    <p>Entrez votre texte ici.</p>
+    <p>L'objectif de cette maquette de gestionnaire de commande est de vous aider à prototyper rapidement et visualiser comment sera votre application.</p>
+    <p>Vous pourrez le remplacer par un gestionnaire réel ultérieurement.</p>
+    <p>Pour apprendre tout ce que vous pouvez faire avec le bloc-notes RAD, utilisez l'assistant d'aide.</p>
+</body>
+</html>

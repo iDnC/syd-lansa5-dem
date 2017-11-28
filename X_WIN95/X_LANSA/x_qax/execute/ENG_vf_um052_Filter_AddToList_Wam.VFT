@@ -1,0 +1,28 @@
+<context>
+Filter 
+</context>
+<mode>
+WAM
+</mode>
+<preamble>
+ENG_vf_um052_Filter_AddToList_Wam.htm
+</preamble>
+<caption>
+Invoke #avListManager.AddtoList (code fragment)   
+</caption>
+<sequence>
+000400   
+</sequence>
+<handler>
+VF_UM055 
+</handler>
+<handlertxt>
+Specify the identification protocol you have decided to use for this business object. If a physical file resembles this business object specify its name and the assistant will attempt to automatically deduce a basic identification protocol for you.    
+</handlertxt>
+<hint>
+<hint>
+This assistant creates a typical code fragment that uses #avListManager.AddtoList to add an entry to the business object instance list.   
+</hint>
+<code> 
+<<UM055_AddtoList>>  
+</code>  

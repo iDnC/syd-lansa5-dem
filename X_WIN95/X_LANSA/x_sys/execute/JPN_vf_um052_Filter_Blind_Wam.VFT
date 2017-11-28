@@ -1,0 +1,67 @@
+<caption>  
+CRUD ﾌｨﾙﾀ
+</caption>
+<context>
+Filter
+</context>
+<preamble>
+JPN_vf_um052_Filter_Blind_Wam.htm
+</preamble>
+<mode>
+WAM
+</mode>
+<sequence>
+000100  
+</sequence>
+<handler>
+VF_UM055 
+</handler>
+<handlertxt>
+このﾋﾞｼﾞﾈｽ ｵﾌﾞｼﾞｪｸﾄに使用する識別ﾌﾟﾛﾄｺﾙを指定します。物理ﾌｧｲﾙがこのﾋﾞｼﾞﾈｽ ｵﾌﾞｼﾞｪｸﾄと類似する場合は、その名前を指定すると、ｳｨｻﾞｰﾄﾞが自動的に基本となる識別ﾌﾟﾛﾄｺﾙの推定を試みます。
+ｳｪﾌﾞﾍﾞｰｽのﾌｨﾙﾀによってｲﾝｽﾀﾝｽ ﾘｽﾄに表示される物理ﾌｧｲﾙを指定します。
+</handlertxt>
+<hint>
+このｳｨｻﾞｰﾄﾞはｺｰﾄﾞを生成しますが、それは、指定したﾌｧｲﾙに基づいた手作業を不要とするか、もしくはほとんどなしで完了させるｳｪﾌﾞﾍﾞｰｽのﾌｨﾙﾀ用のものです。これは、VL ﾌﾚｰﾑﾜｰｸの初心者である開発者向けに設計されています。
+</hint>
+<code>
+<<include VF_UM052_Filter_Preamble.vfi>>
+Function Options(*DIRECT)
+BEGIN_COM ROLE(*EXTENDS #PRIM_WAM) Sessionstatus(None) Layoutweblet('vlf_layout_v2')
+<<comment>>基準がﾌｨﾙﾀに宣言します。
+Define_Com CLASS(#vf_sw100) NAME(#avFrameworkManager)
+Define_Com Class(#vf_aw007) Name(#ThisFilter) Reference(*Dynamic)
+Define_Com Class(#vf_lw002) Name(#avListManager) Reference(*Dynamic)
+Define_Com Class(#fp_in001) Name(#FastPart) Reference(*Dynamic)
+<<comment>>VL ﾌﾚｰﾑﾜｰｸ ﾏｯﾌﾟ ﾌｨｰﾙﾄﾞです。変更できません。
+Web_Map For(*both) Fields((#VF_FRAMEI *private) (#VF_FRAMEW *private) (#VF_FRAMES *private) (#VF_ELXTOF *private) (#VF_ELXN01 *private) (#VF_ELXN02 *private) (#VF_ELXN03 *private) (#VF_ELXN04 *private) (#VF_ELXN05 *private) (#VF_ELXN06 *private) 
++ (#VF_ELXN07 *private) (#VF_ELXN08 *private) (#VF_ELXN09 *private) (#VF_ELXN10 *private) (#VF_ELXA01 *private) (#VF_ELXA02 *private) (#VF_ELXA03 *private) (#VF_ELXA04 *private) (#VF_ELXA05 *private) (#VF_ELXA06 *private) (#VF_ELXA07 *private) 
++ (#VF_ELXA08 *private) (#VF_ELXA09 *private) (#VF_ELXA10 *private)(#VF_ELMETA *private))
+<<comment>>Simple Field, ｸﾞﾙｰﾌﾟ及び Condition Definitions
+Group_By   Name(#XG_Ident)   Fields(<<UM055_GenFldList>>)
+<<comment>>すべての VLF WAM ﾌｨﾙﾀに使用する標準ｳｪﾌﾞﾙｰﾁﾝとｺﾏﾝﾄﾞﾊﾝﾄﾞﾗです。ｳｪﾌﾞﾙｰﾁﾝ名は変えないで下さい。このﾙｰﾁﾝで WAM ｲﾍﾞﾝﾄを登録します。
+Webroutine Name(UHandleEvent)
+<<comment>>標準 WAM の初期化
+#avFrameworkManager.avInitializeWAM Type(FILTER) Invoker(#com_owner) Listmanager(#avListManager) Filtermanager(#ThisFilter) Fastpartmanager(#FastPart)
+
+#avFrameworkManager.avHandleWAMEvent Anchorblock(#vf_framew) Event(#vf_event) Designmode(#vf_framed) Skin(#VF_Frames) Metatag(#vf_elmeta) Tof(#vf_elxtof) N01(#vf_elxn01) N02(#vf_elxn02) N03(#vf_elxn03) N04(#vf_elxn04) N05(#vf_elxn05) 
++ N06(#vf_elxn06) N07(#vf_elxn07) N08(#vf_elxn08) N09(#vf_elxn09)
++ N10(#vf_elxn10) A01(#vf_elxA01) A02(#vf_elxA02) A03(#vf_elxA03) A04(#vf_elxA04) A05(#vf_elxA05) A06(#vf_elxA06) A07(#vf_elxA07) A08(#vf_elxA08) A09(#vf_elxA09) A10(#vf_elxA10) Ssiname(#VF_FRAMEI)
+
+Endroutine
+<<comment>>ﾌｨﾙﾀの初期化を行います。
+Evtroutine Handling(#avFrameworkManager.uexecute) Options(*noclearmessages *noclearerrors)
+<<Comment>>これは非表示ﾌｨﾙﾀであることを示します。
+#ThisFilter.avHiddenFilter := TRUE
+<<comment>>ｲﾝｽﾀﾝｽ ﾘｽﾄ更新の開始を示します。
+#avListManager.BeginListUpdate
+
+<<comment>>ﾌｧｲﾙ内のすべてのﾚｺｰﾄﾞを選択します。
+Select Fields(#XG_Ident) From_File(<<UM055_BaseFile>>) 
+<<UM055_AddtoList>>  
+endselect 
+<<comment>>ｲﾝｽﾀﾝｽ ﾘｽﾄ更新の開始を示します。
+#avListManager.EndListUpdate
+
+Endroutine
+End_Com
+</code>

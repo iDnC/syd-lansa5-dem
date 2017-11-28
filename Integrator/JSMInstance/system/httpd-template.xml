@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+    <instance name="WebServer" active="true" root="www/instance/htdocs" index="index.html">
+        <!--
+            LI        - 4563, 4564
+            aXes      - 5563, 5564
+            LongReach - 6563, 6564
+            Inspector - 7563, 7564
+
+            INSTALL_LIB     - "library"
+            INSTALL_ROOT    - "" or unix "/opt" folder
+            INSTALL_PORT    - "port"
+            INSTALL_SSLPORT - "port"
+        -->
+
+        <errorlog  enabled="true" file="www/instance/logs/error.log"/>
+        <accesslog enabled="true" file="www/instance/logs/access.log"/>
+
+        <listen port="4563" sslport="4564" interface="*ALL" backlog="256"
+                secure="false" store="pki/wwwssl.jks" password="password" sslprotocol="TLSV1.2"
+                buffersend="-1" bufferreceive="-1" nodelay="false" timeout="5"/>
+
+        <access>
+            <!--
+                Once a true condition occurs no more evaluations are done.
+
+                <deny address="*"/>
+                <deny address="10.2.1.45"/>
+
+                <allow address="*"/>
+                <allow address="10.2.1.45"/>
+            -->
+        </access>
+
+        <mimetype>
+            <!--
+                These are the default values.
+            -->
+            <map extension="png"      type="image/png"/>
+            <map extension="gif"      type="image/gif"/>
+            <map extension="jpg"      type="image/jpeg"/>
+            <map extension="jpeg"     type="image/jpeg"/>
+            <map extension="tiff"     type="image/tiff"/>
+            <map extension="ico"      type="image/x-icon"/>
+            <map extension="svg"      type="image/svg+xml"/>
+            <map extension="wav"      type="audio/wav"/>
+            <map extension="mpa"      type="audio/x-mp4"/>
+            <map extension="mp4"      type="video/mp4"/>
+            <map extension="mov"      type="video/quicktime"/>
+            <map extension="ts"       type="video/MP2T"/>
+            <map extension="m3u8"     type="application/x-mpegURL"/>
+            <map extension="css"      type="text/css; charset=utf-8"/>
+            <map extension="xsl"      type="text/xsl; charset=utf-8"/>
+            <map extension="xml"      type="text/xml; charset=utf-8"/>
+            <map extension="htm"      type="text/html; charset=utf-8"/>
+            <map extension="html"     type="text/html; charset=utf-8"/>
+            <map extension="js"       type="application/x-javascript; charset=utf-8"/>
+            <map extension="appcache" type="text/cache-manifest; charset=utf-8"/>
+            <map extension="manifest" type="text/cache-manifest; charset=utf-8"/>
+            <map extension="crl"      type="application/x-pkcs7-crl"/>
+            <map extension="crt"      type="application/x-x509-ca-cert"/>
+            <map extension="zip"      type="application/zip"/>
+            <map extension="zipx"     type="application/zip"/>
+            <map extension="pdf"      type="application/pdf"/>
+            <map extension="txt"      type="text/plain; charset=utf-8"/>
+            <map extension="doc"      type="application/msword"/>
+            <map extension="dot"      type="application/msword"/>
+            <map extension="docx"     type="application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
+            <map extension="dotx"     type="application/vnd.openxmlformats-officedocument.wordprocessingml.template"/>
+            <map extension="docm"     type="application/vnd.ms-word.document.macroEnabled.12"/>
+            <map extension="dotm"     type="application/vnd.ms-word.template.macroEnabled.12"/>
+            <map extension="xls"      type="application/vnd.ms-excel"/>
+            <map extension="xlt"      type="application/vnd.ms-excel"/>
+            <map extension="xla"      type="application/vnd.ms-excel"/>
+            <map extension="xlsx"     type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>
+            <map extension="xltx"     type="application/vnd.openxmlformats-officedocument.spreadsheetml.template"/>
+            <map extension="xlsm"     type="application/vnd.ms-excel.sheet.macroEnabled.12"/>
+            <map extension="xltm"     type="application/vnd.ms-excel.template.macroEnabled.12"/>
+            <map extension="xlam"     type="application/vnd.ms-excel.addin.macroEnabled.12"/>
+            <map extension="xlsb"     type="application/vnd.ms-excel.sheet.binary.macroEnabled.12"/>
+            <map extension="ppt"      type="application/vnd.ms-powerpoint"/>
+            <map extension="pot"      type="application/vnd.ms-powerpoint"/>
+            <map extension="pps"      type="application/vnd.ms-powerpoint"/>
+            <map extension="ppa"      type="application/vnd.ms-powerpoint"/>
+            <map extension="pptx"     type="application/vnd.openxmlformats-officedocument.presentationml.presentation"/>
+            <map extension="potx"     type="application/vnd.openxmlformats-officedocument.presentationml.template"/>
+            <map extension="ppsx"     type="application/vnd.openxmlformats-officedocument.presentationml.slideshow"/>
+            <map extension="ppam"     type="application/vnd.ms-powerpoint.addin.macroEnabled.12"/>
+            <map extension="pptm"     type="application/vnd.ms-powerpoint.presentation.macroEnabled.12"/>
+            <map extension="potm"     type="application/vnd.ms-powerpoint.template.macroEnabled.12"/>
+            <map extension="ppsm"     type="application/vnd.ms-powerpoint.slideshow.macroEnabled.12"/>
+            <map extension="key"      type="application/vnd.apple.keynote"/>
+            <map extension="pages"    type="application/vnd.apple.pages"/>
+            <map extension="numbers"  type="application/vnd.apple.numbers"/>
+        </mimetype>
+
+        <virtual host="*" active="true">
+            <access>
+                <!--
+                    Once a true condition occurs no more evaluations are done.
+
+                    <deny address="*"/>
+                    <deny address="10.2.1"/>
+                    <deny address="10.2.1.45"/>
+
+                    <allow address="*"/>
+                    <allow address="10.2.1"/>
+                    <allow address="10.2.1.45"/>
+
+                    <deny useragent="*"/>
+                    <deny useragent="?"/>
+                    <deny useragent="edge"/>
+                    <deny useragent="opera"/>
+                    <deny useragent="chrome"/>
+                    <deny useragent="safari"/>
+                    <deny useragent="android"/>
+                    <deny useragent="firefox"/>
+                    <deny useragent="explorer"/>
+                    <deny useragent="imac"/>
+                    <deny useragent="ipad"/>
+                    <deny useragent="ipod"/>
+                    <deny useragent="iphone"/>
+                    <deny useragent="iwork"/>
+                    <deny useragent="msnbot"/>
+                    <deny useragent="lansaua"/>
+                    <deny useragent="yahoobot"/>
+                    <deny useragent="googlebot"/>
+                    <deny useragent="longreach"/>
+                    <deny useragent="webdavnav"/>
+
+                    <allow useragent="*"/>
+                    <allow useragent="?"/>
+                    <allow useragent="edge"/>
+                    <allow useragent="opera"/>
+                    <allow useragent="chrome"/>
+                    <allow useragent="safari"/>
+                    <allow useragent="android"/>
+                    <allow useragent="firefox"/>
+                    <allow useragent="explorer"/>
+                    <allow useragent="imac"/>
+                    <allow useragent="ipad"/>
+                    <allow useragent="ipod"/>
+                    <allow useragent="iphone"/>
+                    <allow useragent="iwork"/>
+                    <allow useragent="msnbot"/>
+                    <allow useragent="lansaua"/>
+                    <allow useragent="yahoobot"/>
+                    <allow useragent="googlebot"/>
+                    <allow useragent="longreach"/>
+                    <allow useragent="webdavnav"/>
+
+                    <deny contentlength="4096"/>     Deny access if content length is greater than value
+                    <allow contentlength="4096"/>    Allow access if content length less than or equal to value
+
+                    Zero content length from the browser is a special case and access is allowed for no content connections
+                -->
+
+                <!--
+                    The default is to allow access for all addresses, useragents and content lengths
+                -->
+
+            </access>
+            <protect>
+                <realm name="Area 51">
+                    <!-- access is a hash of user, password and realm -->
+                    <user name="user" access="bb644a9819425bfd8586b408896a1031"/>
+                </realm>
+                <match uri="/restricted" rewrite="" realm="Area 51" authentication="basic,digest"/>
+            </protect>
+
+            <script>
+                <!--
+                      Database Manager
+                -->
+                <match uri="/axes/dbmservice.jsp" rewrite="" class="com.lansa.mobile.service.HTTPServiceQuery" trace="false" clienttrace="false">
+                    <parameter name="service.default.host"      value="LOCAL"/>
+                    <parameter name="service.remote.activation" value=""/>
+                    <host name="LOCAL" system="LOCALHOST">
+                        <parameter name="service.access.log" value="www/instance/logs/dbm.log"/>
+                        <parameter name="service.user.allow" value="*USER"/>
+                        <parameter name="autoregister"       value="true"/>
+                        <parameter name="database.host"      value="LOCALHOST"/>
+                        <parameter name="database.library"   value="JSMLIB"/>
+                    </host>
+                </match>
+
+                <!--
+                      Spooled File Manager
+                -->
+                <match uri="/axes/sfmservice.jsp" rewrite="" class="com.lansa.mobile.service.HTTPServiceSpool" trace="false" clienttrace="false">
+                    <parameter name="service.default.host"      value="LOCAL"/>
+                    <parameter name="service.remote.activation" value=""/>
+                    <parameter name="service.origin"            value="*"/>
+                    <host name="LOCAL" system="LOCALHOST">
+                        <parameter name="service.access.log" value="www/instance/logs/sfm.log"/>
+                        <parameter name="service.user.allow" value="*USER"/>
+                        <parameter name="autoregister"       value="true"/>
+                        <parameter name="database.host"      value="LOCALHOST"/>
+                        <parameter name="database.library"   value="JSMLIB"/>
+                    </host>
+                </match>
+
+                <!--
+                      aXes SSO
+                -->
+                <!--
+                <match uri="/axes/ssoservice.jsp" class="com.lansa.mobile.service.HTTPServiceSSO" trace="false" clienttrace="false">
+                    <parameter name="service.origin"        value="*"/>
+                    <parameter name="service.host"          value="lansa01.syd.lansa.com.au"/>
+                    <parameter name="service.realm"         value="SYD.LANSA.COM.AU"/>
+                </match>
+                -->
+
+                <!--
+                      LongReach
+                -->
+                <match uri="/service/longreach.jsp" rewrite="" class="com.lansa.mobile.service.HTTPServiceLongReach" trace="false" clienttrace="false">
+                    <parameter name="service.default.host"      value="LOCAL"/>
+                    <parameter name="service.remote.activation" value=""/>
+                    <host name="LOCAL" system="LOCALHOST">
+                        <parameter name="service.access.log" value="www/instance/logs/longreach.log"/>
+                        <parameter name="service.user.allow" value="*USER"/>
+
+                        <!--
+                            Public users
+                        -->
+
+                        <!--
+                        <parameter name="service.user.public.*public"      value="USER:PASSWORD"/>
+                        <parameter name="service.user.public.*document"    value="USER:PASSWORD"/>
+                        <parameter name="service.user.public.*XXXX"        value="USER:PASSWORD"/>
+
+                        <parameter name="service.folder.public.base"       value="/longreachdata-public/user/{NAME}"/>
+                        <parameter name="service.folder.public.shared"     value="/longreachdata-public/shared"/>
+                        <parameter name="service.folder.public.inspector"  value="/longreachdata-public/inspector/{NAME}"/>
+
+                        <parameter name="service.folder.public.get.allow"  value="{BASE}"/>
+                        <parameter name="service.folder.public.get.allow"  value="{BASE}/*"/>
+                        -->
+
+                        <!--
+                            All non-public users
+                        -->
+                        <parameter name="service.folder.base"         value="/longreachdata/user/{NAME}"/>
+                        <parameter name="service.folder.shared"       value="/longreachdata/shared"/>
+                        <parameter name="service.folder.inspector"    value="/longreachdata/inspector/{NAME}"/>
+
+                        <parameter name="service.folder.get.allow"    value="{BASE}"/>
+                        <parameter name="service.folder.get.allow"    value="{BASE}/*"/>
+                        <parameter name="service.folder.get.allow"    value="{SHARED}"/>
+                        <parameter name="service.folder.get.allow"    value="{SHARED}/*"/>
+                        <parameter name="service.folder.get.allow"    value="{INSPECTOR}"/>
+                        <parameter name="service.folder.get.allow"    value="{INSPECTOR}/*"/>
+
+                        <parameter name="service.folder.put.allow"    value="{BASE}"/>
+                        <parameter name="service.folder.put.allow"    value="{BASE}/*"/>
+                        <parameter name="service.folder.put.allow"    value="{SHARED}"/>
+                        <parameter name="service.folder.put.allow"    value="{SHARED}/*"/>
+                        <parameter name="service.folder.put.allow"    value="{INSPECTOR}"/>
+                        <parameter name="service.folder.put.allow"    value="{INSPECTOR}/*"/>
+
+                        <parameter name="service.folder.delete.allow" value="{BASE}"/>
+                        <parameter name="service.folder.delete.allow" value="{BASE}/*"/>
+                        <parameter name="service.folder.delete.allow" value="{SHARED}"/>
+                        <parameter name="service.folder.delete.allow" value="{SHARED}/*"/>
+                        <parameter name="service.folder.delete.allow" value="{INSPECTOR}"/>
+                        <parameter name="service.folder.delete.allow" value="{INSPECTOR}/*"/>
+
+                        <!--
+                            Builtin notify id
+
+                                send
+                                getfile
+                                putfile
+                                getfolder
+                                putfolder
+                                deletefile
+                                deletefolder
+
+                            Note: DBUSER and DBPASSWORD can be blank
+                        -->
+
+                        <!--
+                        <notify id="send" queue="/QSYS.LIB/TSTLIB.LIB/NOTIFY1.DTAQ" ccsid="0" data="{ID},{NAME},{FOLDER}/{FILE}"/>
+                        <notify id="send" queue="/QSYS.LIB/TSTLIB.LIB/NOTIFY2.DTAQ" ccsid="0" key="{ID},{NAME}" padkey="true" data="{ID},{NAME},{FOLDER}/{FILE}"/>
+                        <notify id='send'
+                                driver='com.ibm.as400.access.AS400JDBCDriver'
+                                url='jdbc:as400://HOST/LIBRARY;naming=sql;errors=full;date format=iso;translate binary=true'
+                                statement='INSERT INTO NOTIFY(NOTIFYTIME,NOTIFYID,NOTIFYUSER,NOTIFYFOLDER,NOTIFYFILE) VALUES(?,?,?,?,?)'
+                                isolation='none'
+                                user='DBUSER'
+                                password='DBPASSWORD'/>
+
+                        <notify id='getfile'
+                                driver='com.ibm.as400.access.AS400JDBCDriver'
+                                url='jdbc:as400://LANSA01/JSMJDBC;naming=sql;errors=full;date format=iso;translate binary=true'
+                                statement='INSERT INTO NOTIFY(NOTIFYTIME,NOTIFYID,NOTIFYUSER,NOTIFYFOLDER,NOTIFYFILE) VALUES(?,?,?,?,?)'
+                                isolation='none'
+                                user=''
+                                password=''/>
+
+                        <notify id='getfolder'
+                                driver='com.ibm.as400.access.AS400JDBCDriver'
+                                url='jdbc:as400://LANSA01/JSMJDBC;naming=sql;errors=full;date format=iso;translate binary=true'
+                                statement='INSERT INTO NOTIFY(NOTIFYTIME,NOTIFYID,NOTIFYUSER,NOTIFYFOLDER,NOTIFYFILE) VALUES(?,?,?,?,?)'
+                                isolation='none'
+                                user=''
+                                password=''/>
+
+                        <notify id='putfile'
+                                driver='com.ibm.as400.access.AS400JDBCDriver'
+                                url='jdbc:as400://LANSA01/JSMJDBC;naming=sql;errors=full;date format=iso;translate binary=true'
+                                statement='INSERT INTO NOTIFY(NOTIFYTIME,NOTIFYID,NOTIFYUSER,NOTIFYFOLDER,NOTIFYFILE) VALUES(?,?,?,?,?)'
+                                isolation='none'
+                                user=''
+                                password=''/>
+
+                        <notify id='putfolder'
+                                driver='com.ibm.as400.access.AS400JDBCDriver'
+                                url='jdbc:as400://LANSA01/JSMJDBC;naming=sql;errors=full;date format=iso;translate binary=true'
+                                statement='INSERT INTO NOTIFY(NOTIFYTIME,NOTIFYID,NOTIFYUSER,NOTIFYFOLDER,NOTIFYFILE) VALUES(?,?,?,?,?)'
+                                isolation='none'
+                                user=''
+                                password=''/>
+
+                        <notify id='deletefile'
+                                driver='com.ibm.as400.access.AS400JDBCDriver'
+                                url='jdbc:as400://LANSA01/JSMJDBC;naming=sql;errors=full;date format=iso;translate binary=true'
+                                statement='INSERT INTO NOTIFY(NOTIFYTIME,NOTIFYID,NOTIFYUSER,NOTIFYFOLDER,NOTIFYFILE) VALUES(?,?,?,?,?)'
+                                isolation='none'
+                                user=''
+                                password=''/>
+
+                        <notify id='deletefolder'
+                                driver='com.ibm.as400.access.AS400JDBCDriver'
+                                url='jdbc:as400://LANSA01/JSMJDBC;naming=sql;errors=full;date format=iso;translate binary=true'
+                                statement='INSERT INTO NOTIFY(NOTIFYTIME,NOTIFYID,NOTIFYUSER,NOTIFYFOLDER,NOTIFYFILE) VALUES(?,?,?,?,?)'
+                                isolation='none'
+                                user=''
+                             password=''/>
+                        -->
+
+                        <!--
+                            LongReach App Notify Action file messages
+                        -->
+
+                        <!--
+                        <notify id="task" queue="/QSYS.LIB/TSTLIB.LIB/NOTIFY3.DTAQ" ccsid="0" data="{ID},{NAME},{MESSAGE}"/>
+                        <notify id="task" queue="/QSYS.LIB/TSTLIB.LIB/NOTIFY4.DTAQ" ccsid="0" key="{ID},{NAME}" padkey="true" data="{ID},{NAME},{MESSAGE}"/>
+                        <notify id='task'
+                                driver='com.ibm.as400.access.AS400JDBCDriver'
+                                url='jdbc:as400://HOST/LIBRARY;naming=sql;errors=full;date format=iso;translate binary=true'
+                                statement='INSERT INTO NOTIFY(NOTIFYTIME,NOTIFYID,NOTIFYUSER,NOTIFYMSG) VALUES(?,?,?,?)'
+                                isolation='none'
+                                user='DBUSER'
+                                password='DBPASSWORD'/>
+                        -->
+                    </host>
+                </match>
+
+                <!--
+                      Connector
+                -->
+                <match uri="/service/connector.jsp" rewrite="" class="com.lansa.mobile.service.HTTPServiceConnector" trace="false" clienttrace="false">
+                    <parameter name="service.default.host"      value="LOCAL"/>
+                    <parameter name="service.remote.activation" value=""/>
+                    <parameter name="service.origin"            value="*"/>
+
+                    <host name="LOCAL" system="LOCALHOST">
+                        <parameter name="service.access.log" value="www/instance/logs/connector.log"/>
+                        <parameter name="service.user.allow" value="*USER"/>
+
+                        <connector name="dataarea" class="com.lansa.mobile.service.HTTPServiceConnectorDataArea">
+                            <parameter name="object.read.TSTDTA"  value="{dataarea:'TSTLIB/TSTDTA',offset:1,length:3}"/>
+                            <parameter name="object.write.TSTDTA" value="{dataarea:'TSTLIB/TSTDTA',offset:1,length:3}"/>
+                            <parameter name="object.user.deny.TSTDTA"  value="BRUCE"/>
+                            <parameter name="object.user.allow.TSTDTA" value="ALICK"/>
+                        </connector>
+
+                        <connector name="dataqueue" class="com.lansa.mobile.service.HTTPServiceConnectorDataQueue">
+                            <parameter name="object.read.TSTDTQ"   value="{dataqueue:'TSTLIB/TSTDTQ'}"/>
+                            <parameter name="object.write.TSTDTQ"  value="{dataqueue:'TSTLIB/TSTDTQ'}"/>
+                            <parameter name="object.read.TSTDTQK"  value="{dataqueue:'TSTLIB/TSTDTQK',keyed:true,padkey:true}"/>
+                            <parameter name="object.write.TSTDTQK" value="{dataqueue:'TSTLIB/TSTDTQK',keyed:true,padkey:true}"/>
+                        </connector>
+
+                        <connector name="objectlist" class="com.lansa.mobile.service.HTTPServiceConnectorObjectList">
+                            <parameter name="object.list.TSTLST" value="{library:'TSTLIB',object:'*ALL',type:'*PGM'}"/>
+                        </connector>
+
+                        <connector name="systemvalue" class="com.lansa.mobile.service.HTTPServiceConnectorSystemValue">
+                            <parameter name="object.read.TSTDTE"  value="{systemvalue:'QDATE'}"/>
+                        </connector>
+
+                        <connector name="changepassword" class="com.lansa.mobile.service.HTTPServiceConnectorChangePassword"/>
+
+                        <connector name="commandcall" class="com.lansa.mobile.service.HTTPServiceConnectorCommandCall">
+                            <parameter name="object.call.TSTCMD" value="{command:'QSYS/DSPSYSVAL',keywords:[{name:'OUTPUT',value:'*PRINT'}]}"/>
+                        </connector>
+
+                        <connector name="programcall" class="com.lansa.mobile.service.HTTPServiceConnectorProgramCall">
+                            <parameter name="object.call.TSTPGM2"  value="{program:'TSTLIB/TSTPGM2', parameters:[{name:'CODE',length:10},   {name:'PRICE',type:'O',datatype:'P',length:8,decimal:2},{name:'DESC',type:'O',datatype:'A',length:20}]}"/>
+                            <parameter name="object.call.TSTPGM3"  value="{program:'TSTLIB/TSTPGM3', parameters:[{name:'OPCODE',length:1},  {name:'AMOUNT1',datatype:'S',length:15,decimal:5},{name:'AMOUNT2',datatype:'S',length:15,decimal:5},{name:'AMOUNT3',type:'O',datatype:'S',length:30,decimal:9}]}"/>
+                            <parameter name="object.call.TSTPGM4"  value="{program:'TSTLIB/TSTPGM4', parameters:[{name:'FLD1',length:32767},{name:'FLD2',type:'O',length:32767}]}"/>
+                        </connector>
+
+                        <connector name="email" class="com.lansa.mobile.service.HTTPServiceConnectorSMTP">
+                            <parameter name="object.send.ANY"  value="{}"/>
+                            <parameter name="object.send.TST1" value="{server:'10.2.0.240',cc:['alick.buckley@lansa.com.au'],subject:'A Subject',from:'smtpservice@lansa.com.au'}"/>
+                            <parameter name="object.send.TST2" value="{server:'10.2.0.240',to:['alick.buckley@lansa.com.au'],subject:'aXes Notify',from:'smtpservice@lansa.com.au'}"/>
+                        </connector>
+
+                        <connector name="messagequeue" class="com.lansa.mobile.service.HTTPServiceConnectorMessageQueue">
+                            <parameter name="object.write.TSTMQ" value="{vendor:'WEBSPHEREMQ',host:'LANSA01',channel:'USERAGENT.CHANNEL',queuemanager:'USERAGENT.QUEUE.MANAGER',queue:'USERAGENT.QUEUE'}"/>
+                            <parameter name="object.read.TSTMQ"  value="{vendor:'WEBSPHEREMQ',host:'LANSA01',channel:'USERAGENT.CHANNEL',queuemanager:'USERAGENT.QUEUE.MANAGER',queue:'USERAGENT.QUEUE',selector:'NewsType &lt;&gt; \'X\''}"/>
+                        </connector>
+
+                        <connector name="dbmquery" class="com.lansa.mobile.service.HTTPServiceConnectorDBMQuery">
+                            <parameter name="database.host"      value="LOCALHOST"/>
+                            <parameter name="database.library"   value="JSMLIB"/>
+                            <parameter name="object.run.EMPLOYEELIST"  value="{filter:'DBMQUERY-EMPLOYEELIST', parameters:[{name:'DEPT',value:'ACC'},{name:'SAL',value:0.0}]}"/>
+                        </connector>
+                    </host>
+                </match>
+
+                <!--
+                      Connector Spooled File data
+                -->
+                <match uri="/service/connectorsf.jsp" rewrite="" class="com.lansa.mobile.service.HTTPServiceConnectorSpooledFile" trace="false" clienttrace="false">
+                    <parameter name="service.default.host"      value="LOCAL"/>
+                    <parameter name="service.remote.activation" value=""/>
+                    <parameter name="service.origin"            value="*"/>
+                    <!--
+                    <host name="LOCAL" system="LANSA01">
+                        <parameter name="service.access.log" value="www/instance/logs/connectorsf.log"/>
+                        <parameter name="service.user.allow" value="*USER"/>
+                        <parameter name="service.object.list.ANY" value="{}"/>
+                        <parameter name="service.object.read.ANY" value="{}"/>
+                        <parameter name="service.object.read.REPORT" value="{filename:'QPJOBLOG',jobname:'JSMLSAEXT',userdata:'JSMLSAEXT',jobuser:'ALICK',pages:'2',encoding:'Cp037'}"/>
+                    </host>
+                    -->
+                </match>
+
+                <!--
+                    Web IFS
+                -->
+                <match uri="/service/webifs.jsp" rewrite="" class="com.lansa.mobile.service.HTTPServiceWebIFS" trace="false" clienttrace="false">
+                    <!--
+                        Note: WebIFS requires HTTP Basic Authentication use SSL for user/password protection
+
+                        Builtin notify id
+
+                            getfile
+                            putfile
+                            getfolder
+                            putfolder
+                            deletefile
+                            deletefolder
+                            renamefile
+                    -->
+                    <parameter name="service.default.host"      value="LOCAL"/>
+                    <parameter name="service.remote.activation" value=""/>
+
+                    <!--
+                    <host name="LOCAL" system="LOCALHOST">
+                        <parameter name="service.access.log"          value="www/instance/logs/webifs.log"/>
+                        <parameter name="service.user.allow"          value="*USER"/>
+                        <parameter name="service.content.inline"      value="image/gif,image/jpeg,image/png,application/pdf"/>
+
+                        <parameter name="service.folder.base"         value="/longreachdata/user/{NAME}"/>
+                        <parameter name="service.folder.shared"       value="/longreachdata/shared"/>
+                        <parameter name="service.folder.inspector"    value="/longreachdata/inspector/{NAME}"/>
+
+                        <parameter name="service.folder.get.allow"    value="{BASE}"/>
+                        <parameter name="service.folder.get.allow"    value="{BASE}/*"/>
+                        <parameter name="service.folder.get.allow"    value="{SHARED}"/>
+                        <parameter name="service.folder.get.allow"    value="{SHARED}/*"/>
+                        <parameter name="service.folder.get.allow"    value="{INSPECTOR}"/>
+                        <parameter name="service.folder.get.allow"    value="{INSPECTOR}/*"/>
+
+                        <parameter name="service.folder.put.allow"    value="{BASE}"/>
+                        <parameter name="service.folder.put.allow"    value="{BASE}/*"/>
+                        <parameter name="service.folder.put.allow"    value="{SHARED}"/>
+                        <parameter name="service.folder.put.allow"    value="{SHARED}/*"/>
+                        <parameter name="service.folder.put.allow"    value="{INSPECTOR}"/>
+                        <parameter name="service.folder.put.allow"    value="{INSPECTOR}/*"/>
+
+                        <parameter name="service.folder.delete.allow" value="{BASE}"/>
+                        <parameter name="service.folder.delete.allow" value="{BASE}/*"/>
+                        <parameter name="service.folder.delete.allow" value="{SHARED}"/>
+                        <parameter name="service.folder.delete.allow" value="{SHARED}/*"/>
+                        <parameter name="service.folder.delete.allow" value="{INSPECTOR}"/>
+                        <parameter name="service.folder.delete.allow" value="{INSPECTOR}/*"/>
+                    </host>
+                    -->
+                </match>
+
+                <!--
+                      DAV IFS
+                -->
+                <match uri="/service/davifs.jsp" rewrite="" class="com.lansa.mobile.service.HTTPServiceDAVIFS" trace="false" clienttrace="false">
+                    <!--
+                        Note: DAVIFS requires HTTP Basic Authentication use SSL for user/password protection
+
+                        Builtin notify id
+
+                            getfile
+                            putfile
+                            getfolder
+                            putfolder
+                            deletefile
+                            deletefolder
+                            renamefile
+                    -->
+                    <parameter name="service.default.host"      value="LOCAL"/>
+                    <parameter name="service.remote.activation" value=""/>
+
+                    <!--
+                    <host name="LOCAL" system="LOCALHOST">
+                        <parameter name="service.access.log"          value="www/instance/logs/davifs.log"/>
+                        <parameter name="service.user.allow"          value="*USER"/>
+
+                        <parameter name="service.folder.base"         value="/longreachdata/user/{NAME}"/>
+                        <parameter name="service.folder.shared"       value="/longreachdata/shared"/>
+                        <parameter name="service.folder.inspector"    value="/longreachdata/inspector/{NAME}"/>
+
+                        <parameter name="service.folder.get.allow"    value="{BASE}"/>
+                        <parameter name="service.folder.get.allow"    value="{BASE}/*"/>
+                        <parameter name="service.folder.get.allow"    value="{SHARED}"/>
+                        <parameter name="service.folder.get.allow"    value="{SHARED}/*"/>
+                        <parameter name="service.folder.get.allow"    value="{INSPECTOR}"/>
+                        <parameter name="service.folder.get.allow"    value="{INSPECTOR}/*"/>
+
+                        <parameter name="service.folder.put.allow"    value="{BASE}"/>
+                        <parameter name="service.folder.put.allow"    value="{BASE}/*"/>
+                        <parameter name="service.folder.put.allow"    value="{SHARED}"/>
+                        <parameter name="service.folder.put.allow"    value="{SHARED}/*"/>
+                        <parameter name="service.folder.put.allow"    value="{INSPECTOR}"/>
+                        <parameter name="service.folder.put.allow"    value="{INSPECTOR}/*"/>
+
+                        <parameter name="service.folder.delete.allow" value="{BASE}"/>
+                        <parameter name="service.folder.delete.allow" value="{BASE}/*"/>
+                        <parameter name="service.folder.delete.allow" value="{SHARED}"/>
+                        <parameter name="service.folder.delete.allow" value="{SHARED}/*"/>
+                        <parameter name="service.folder.delete.allow" value="{INSPECTOR}"/>
+                        <parameter name="service.folder.delete.allow" value="{INSPECTOR}/*"/>
+                    </host>
+                    -->
+                </match>
+
+                <!--
+                      WebQuery
+                -->
+                <match uri="/axes/webquery.jsp" rewrite="" class="com.lansa.mobile.service.HTTPServiceWebQuery" trace="false" clienttrace="false">
+                    <!--
+                        Note: WebQuery requires HTTP Basic Authentication use SSL for user/password protection
+                    -->
+                    <parameter name="service.default.host"      value="LOCAL"/>
+                    <parameter name="service.remote.activation" value=""/>
+
+                    <!--
+                    <host name="LOCAL" system="LOCALHOST">
+                        <parameter name="service.access.log" value="www/instance/logs/webquery.log"/>
+                        <parameter name="service.user.allow" value="*USER"/>
+
+                        <parameter name="database.host"      value="LOCALHOST"/>
+                        <parameter name="database.library"   value="AXES"/>
+
+                        <parameter name="service.object.EMPLOYEELIST" value="{filter:'DBMQUERY-EMPLOYEELIST', parameters:[{name:'DEPT',value:'ACC'},{name:'SAL',value:0.0}]}"/>
+                    </host>
+                    -->
+                </match>
+
+                <!--
+                      WebQueue
+                -->
+                <match uri="/service/webqueue.jsp" rewrite="" class="com.lansa.mobile.service.HTTPServiceWebQueue" trace="false" clienttrace="false">
+                    <parameter name="service.default.host" value="LOCAL"/>
+                    <parameter name="service.remote.activation" value=""/>
+                    <parameter name="service.origin"            value="*"/>
+
+                    <!--
+                    <host name="LOCAL" system="LOCALHOST">
+                        <parameter name="service.access.log" value="www/instance/logs/webqueue.log"/>
+                        <parameter name="service.user.allow" value="*USER"/>
+
+                        <parameter name="service.user.public.*public"  value="USER:PASSWORD"/>
+                        <parameter name="service.user.public.*reports" value="USER:PASSWORD"/>
+                        <parameter name="service.queue.REPORTS" value="{ limit:2147483647,
+                                                                        read:
+                                                                        {
+                                                                            object:'WEBQWRK/RPT{QUEUEID}R',
+                                                                            length:1024,
+                                                                            size:'*MAX2GB',
+                                                                            ccsid:0,
+                                                                            wait:1800,
+                                                                            fifo:true,
+                                                                            ssi:true,
+                                                                            fas:false,
+                                                                            reclaim:true,
+                                                                            authority='*LIBCRTAUT',
+                                                                            description:'Send messages to browser'
+                                                                        },
+                                                                        write:
+                                                                        {
+                                                                            object:'WEBQWRK/RPT{QUEUEID}W',
+                                                                            length:1024,
+                                                                            reclaim:true,
+                                                                            description:'Receive messages from browser'
+                                                                        },
+                                                                        upload:
+                                                                        {
+                                                                            folder:'/webq/upload/reports/{QUEUEID}'
+                                                                        },
+                                                                        connect:
+                                                                        {
+                                                                            program:'WEBQLIB/CONNECT',
+                                                                            parameters:[{name:'QUEUE',      length:32},
+                                                                                        {name:'QUEUEID',    length:6},
+                                                                                        {name:'QUEUEUSER',  length:10},
+                                                                                        {name:'QUEUERLIB',  length:10},
+                                                                                        {name:'QUEUERNME',  length:10},
+                                                                                        {name:'QUEUEWLIB',  length:10},
+                                                                                        {name:'QUEUEWNME',  length:10},
+                                                                                        {name:'USERPARAM1', length:20}]
+                                                                        }
+                                                                    }"/>
+
+                        <parameter name="service.queue.MONITOR" value="{ limit:2147483647,
+                                                                        read:
+                                                                        {
+                                                                            object:'WEBQWRK/MON{QUEUEID}R',
+                                                                            length:1024,
+                                                                            reclaim:true,
+                                                                            description:'Send messages to browser'
+                                                                        },
+                                                                        write:
+                                                                        {
+                                                                            object:'WEBQWRK/MON{QUEUEID}W',
+                                                                            length:1024,
+                                                                            reclaim:true,
+                                                                            description:'Receive messages from browser'
+                                                                        },
+                                                                        upload:
+                                                                        {
+                                                                            folder:'/webq/upload/monitor/{QUEUEID}'
+                                                                        },
+                                                                        connect:
+                                                                        {
+                                                                            program:'WEBQLIB/CONNECT',
+                                                                            parameters:[{name:'QUEUE',      length:32},
+                                                                                        {name:'QUEUEID',    length:6},
+                                                                                        {name:'QUEUEUSER',  length:10},
+                                                                                        {name:'QUEUERLIB',  length:10},
+                                                                                        {name:'QUEUERNME',  length:10},
+                                                                                        {name:'QUEUEWLIB',  length:10},
+                                                                                        {name:'QUEUEWNME',  length:10},
+                                                                                        {name:'USERPARAM1', length:20}]
+                                                                        }
+                                                                    }"/>
+                    </host>
+                    -->
+                </match>
+
+                <!--
+                      Ping
+                -->
+                <match uri="/ping.jsp" rewrite="" class="com.lansa.jsm.JSMHTTPServicePing" trace="false" clienttrace="false">
+                    <parameter name="service.origin" value="*"/>
+                </match>
+
+                <!--
+                      Get file
+                -->
+                <match uri="/" class="com.lansa.jsm.JSMHTTPServiceFile" trace="false" clienttrace="false">
+                    <parameter name="cache.maxage"       value="28800"/>
+                    <parameter name="cache.maxage.pdf"   value="28800"/>
+                    <parameter name="cache.maxage.image" value="28800"/>
+                </match>
+
+            </script>
+            <mimetype>
+                <map extension="pdf" type="application/pdf"/>
+                <!-- Defaults to instance mimetype -->
+            </mimetype>
+        </virtual>
+
+    </instance>
+</configuration>

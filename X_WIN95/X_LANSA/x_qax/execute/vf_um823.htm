@@ -1,0 +1,377 @@
+﻿<!-- ================================================================================================= -->
+<!-- =============================== COPYRIGHT NOTICE ================================================ -->
+<!-- ================================================================================================= -->
+<!-- (C) Copyright 2017 LANSA. LANSA is a trade name and registered trademark of LANSA in the          -->
+<!-- United States of America, Australia, the United Kingdom and other countries. All rights reserved. -->
+<!--                                                                                                   -->
+<!-- ------------------------------------------------------------------------------------------------- -->
+<!--                                                                                                   -->
+<!--          #     #       #       ######     #     #    ###    #     #     #####                     -->
+<!--          #  #  #      # #      #     #    ##    #     #     ##    #    #     #                    -->
+<!--          #  #  #     #   #     #     #    # #   #     #     # #   #    #                          -->
+<!--          #  #  #    #     #    ######     #  #  #     #     #  #  #    #  ####                    -->
+<!--          #  #  #    #######    #   #      #   # #     #     #   # #    #     #                    -->
+<!--          #  #  #    #     #    #    #     #    ##     #     #    ##    #     #                    -->
+<!--           ## ##     #     #    #     #    #     #    ###    #     #     #####                     -->
+<!--                                                                                                   -->
+<!-- ------------------------------------------------------------------------------------------------- -->
+<!-- Modification of this shipped HTML file will result one or more of the following:                  -->
+<!-- The introduction of incompatibilities with future versions of this framework.                     -->
+<!-- Voiding or limitation of any maintenance contract you may have in place for this framework.       -->
+<!-- Being charged for problem resolutions that are traced back to any such modifications.             -->
+<!-- ------------------------------------------------------------------------------------------------- -->
+<!DOCTYPE html>
+<html>  
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<title>VF_UM823</title>
+
+<style type="text/css" >
+
+html, body { height:100%; }
+
+</style>
+
+<script type="text/javascript">
+   var VF_UseBackGroundColor = "#F4F3EE";
+   var arrayVFPROP = new Array();
+   var objVFPROP_Exchange1 = null;
+   var objVFPROP_Exchange2 = null;
+   var objVFPROP_LastTransact = null;
+   var intVFPROP_LastTransact = 0;
+   var GLOBAL_objStartSignalQueue = null;
+   var GLOBAL_objEndSignalQueue = null;
+   var GLOBAL_objIFRAME = null;
+   var GLOBAL_objIFRAMELoadCounter = 0;
+   var GLOBAL_objIFRAMEWindow = null;
+   var GLOBAL_FileName = "";
+   var GLOBAL_FileParms = "";
+   var GLOBAL_Directory = "";
+   var GLOBAL_AllowEdit = false;
+   var GLOBAL_LastSaveInnerHTML = "";
+   var GLOBAL_TimerID = null;
+   var GLOBAL_TimerPeriod = 1000;
+   var GLOBAL_TraceLineNumber = 0;
+   var GLOBAL_Partition = "";
+   
+   /* ------------------------------------------------------------------------- */
+   function VFPROP_Initialize() {
+      if (objVFPROP_Exchange1 == null) {
+         objVFPROP_Exchange1 = document.getElementById("VFPROP_Exchange1");
+         objVFPROP_Exchange2 = document.getElementById("VFPROP_Exchange2");
+         objVFPROP_LastTransact = document.getElementById("VFPROP_LastTransAct");
+         if (objVFPROP_Exchange1 == null) alert("Failed to load elements correctly");
+      }
+      return;
+   }
+   /* ------------------------------------------------------------------------- */
+   function VFPROP_Get(strId, intInstance) {
+      VFPROP_Initialize();
+      {
+         var strKey = strId.toUpperCase() + "." + intInstance.toString();
+         var strValue = arrayVFPROP[strKey];
+         if (strValue == null) return ("");
+         else return (strValue);
+      }
+   }
+   /* ------------------------------------------------------------------------- */
+   function VFPROP_Onload() {
+      VFPROP_Initialize();
+      VFPROP_Signal("BASELOADED", "");
+   }
+   /* ------------------------------------------------------------------------- */
+   function VFPROP_Set(strId, intInstance, strValue) {
+      VFPROP_Initialize();
+      {
+         var strKey = strId.toUpperCase() + "." + intInstance.toString();
+         arrayVFPROP[strKey] = strValue;
+      }
+      return;
+   }
+   /* ------------------------------------------------------------------------- */
+   function VFPROP_Get_VL(strId, intInstance) {
+      objVFPROP_Exchange1.innerText = VFPROP_Get(strId, intInstance);
+      return;
+   }
+   /* ------------------------------------------------------------------------- */
+   function VFPROP_Set_VL(strId, intInstance) {
+      VFPROP_Initialize();
+      VFPROP_Set(strId, intInstance, objVFPROP_Exchange1.innerText);
+      return;
+   }
+   /* ------------------------------------------------------------------------- */
+   /* VFPROP_Next_Signal - Get the next signal                                  */
+   /* ------------------------------------------------------------------------- */
+   function VFPROP_Next_Signal()
+   {
+      if (GLOBAL_objStartSignalQueue == null)
+      {
+         VFPROP_Set("Signal.Id", 1, "");
+         VFPROP_Set("Signal.PayLoad", 1, "");
+      }
+      else
+      {
+         var objSignal = GLOBAL_objStartSignalQueue;
+
+         GLOBAL_objStartSignalQueue = objSignal.objNextSignal;
+
+         if (GLOBAL_objEndSignalQueue == objSignal) GLOBAL_objEndSignalQueue = null;
+
+         VFPROP_Set("Signal.Id", 1, objSignal.strId);
+         VFPROP_Set("Signal.PayLoad", 1, objSignal.strPayLoad);
+
+         objSignal.objNextSignal = null;
+         delete (objSignal);
+      }
+
+      return;
+   }
+
+   /* ------------------------------------------------------------------------- */
+
+   function VFPROP_Signal(strEventId, strEventPayLoad)
+   {
+      var objSignal = new Object();
+
+      /* Initialize */
+      VFPROP_Initialize();
+
+      /* Queue the signal object cleanly */
+      objSignal.strId = strEventId;
+      objSignal.strPayLoad = strEventPayLoad;
+      objSignal.objNextSignal = null;
+       
+      /* Create a virtual queue */
+      if (GLOBAL_objStartSignalQueue == null) GLOBAL_objStartSignalQueue = objSignal;
+      if (GLOBAL_objEndSignalQueue != null) GLOBAL_objEndSignalQueue.objNextSignal = objSignal;
+      GLOBAL_objEndSignalQueue = objSignal;
+
+      /* Fire the signalling event */
+      intVFPROP_LastTransact++;
+      objVFPROP_LastTransact.innerText = intVFPROP_LastTransact.toString();
+       
+      /* Fire the signal to the HTML form container */
+      window.document.title = "<<SIGNAL>>";
+
+      /* Finished */
+      return;
+   }
+   /* ------------------------------------------------------------------------- */
+   function VF_UM823_Trace(event)
+   {
+      if (event == null) event = "No event";
+      GLOBAL_TraceLineNumber++; 
+      if (GLOBAL_objIFRAMEWindow != null) VFPROP_Signal("TRACE", event + " " + GLOBAL_TraceLineNumber.toString());
+   }
+   /* ------------------------------------------------------------------------- */
+   function VF_UM823_IFrameFocusChange()
+   {
+      if (GLOBAL_objIFRAMEWindow != null) VFPROP_Signal("FOCUSCHANGE", "");
+   }
+   /* ------------------------------------------------------------------------- */
+   function VF_UM823_IFrameLoaded()
+   {
+      if (GLOBAL_objIFRAME.contentWindow.document.readyState != "complete") return;
+   
+      GLOBAL_objIFRAMELoadCounter++; 
+
+      if (GLOBAL_objIFRAMELoadCounter > 1) return; 
+
+      VF_UM823_Trace("VF_UM823_IFrameLoaded logically executed");
+
+      if (GLOBAL_TimerID != null)
+      {
+          VF_UM823_Trace("VF_UM823_IFrameLoaded stopped GLOBAL_TimerID");
+          window.clearInterval(GLOBAL_TimerID);
+          GLOBAL_TimerID = null;
+      }
+      else
+      {
+          VF_UM823_Trace("VF_UM823_IFrameLoaded timer already stopped.");
+      }
+             
+      GLOBAL_objIFRAMEWindow = GLOBAL_objIFRAME.contentWindow;
+
+      if (GLOBAL_AllowEdit) GLOBAL_objIFRAMEWindow.document.body.contentEditable = "true"; 
+      
+      VFPROP_Signal("FRAMELOADED", "");
+
+      if (GLOBAL_AllowEdit)
+      {
+          GLOBAL_LastSaveInnerHTML = GLOBAL_objIFRAMEWindow.document.body.innerHTML;
+          VF_UM823_Trace("Setting GLOBAL_LastSaveInnerHTML at point A=" + GLOBAL_LastSaveInnerHTML);
+          GLOBAL_objIFRAMEWindow.document.body.addEventListener("focusin", VF_UM823_IFrameFocusChange, false);
+          GLOBAL_objIFRAMEWindow.document.body.addEventListener("focusout", VF_UM823_IFrameFocusChange, false);
+      }
+   }
+
+   /* ------------------------------------------------------------------------- */
+   function VF_UM823_ClearContent()
+   {
+       try
+       {
+           GLOBAL_objIFRAMEWindow.document.body.innerHTML = "<p>Cleared</p>";
+           GLOBAL_objIFRAMEWindow.document.body.contentEditable = "true";
+       }
+       catch (oE) { window.alert("VF_UM823_ClearContent encountered error - " + oE.description); }
+   }
+    
+   /* ------------------------------------------------------------------------- */
+   function VF_UM823_GetModifiedHTML(reset,forcemodified)
+   {
+
+      if (forcemodified == null) forcemodified = false;
+      VF_UM823_Trace("VF_UM823_GetModifiedHTML started. forcemodified=" + forcemodified.toString());
+
+      VFPROP_Set("HTML.MODIFIED", 1, "FALSE");
+      VFPROP_Set("HTML.IMAGEFILECOUNT", 1, "0");
+
+      /* No modifications to be handled */
+
+      if (GLOBAL_objIFRAME == null) return;
+      if (GLOBAL_objIFRAMEWindow == null) return;
+      if (!(GLOBAL_AllowEdit))
+      {
+          VF_UM823_Trace("VF_UM823_GetModifiedHTML ended. Edit mode is off.");
+          return;
+      }
+
+      if ((!forcemodified) && (GLOBAL_LastSaveInnerHTML == GLOBAL_objIFRAMEWindow.document.body.innerHTML))
+      {
+         VF_UM823_Trace("GLOBAL_LastSaveInnerHTML=" + GLOBAL_LastSaveInnerHTML);
+         VF_UM823_Trace("GLOBAL_objIFRAMEWindow.document.body.innerHTML=" + GLOBAL_objIFRAMEWindow.document.body.innerHTML);
+         VF_UM823_Trace("VF_UM823_GetModifiedHTML ended. No change to HTML detected.");
+         return;
+      }
+
+      {
+         var length = GLOBAL_objIFRAMEWindow.document.documentElement.outerHTML.length;
+         if (length > 64000)
+         {
+             alert("HTML document " + GLOBAL_FileName + " has a length of " + length.toString() + ". This is too long to be saved correctly. Save request has been ignored.");
+             return;
+         }
+      }
+
+      /* Has been modified */
+
+      VFPROP_Set("HTML.MODIFIED", 1, "TRUE");
+      arrayobjIMG = GLOBAL_objIFRAMEWindow.document.getElementsByTagName("IMG");
+
+      if ((arrayobjIMG != null) && (arrayobjIMG.length > 0))
+      {
+          var i = 0;
+          var imagefilecount = 0;
+          var sourcefolderA = "/X_WIN95/X_LANSA/X_" + GLOBAL_Partition + "/EXECUTE"
+          var sourcefolderB = "/X_WIN95/X_LANSA/X_" + GLOBAL_Partition + "/WEB/VL"
+
+          for (i = 0; i < arrayobjIMG.length; i++)
+          {
+            try
+            {
+                var strImageFile = "";
+                var strLocation = "";
+                var strPrefix = "";
+                var objIMG = arrayobjIMG[i];
+                var intPos = objIMG.src.lastIndexOf("/");
+
+                if (intPos < 0)
+                {
+                    strImageFile = objIMG.src;
+                }
+                else
+                {
+                    strLocation = objIMG.src.substring(0, intPos);
+                    strImageFile = objIMG.src.substring((intPos + 1)); 
+                }
+                intPos = strImageFile.indexOf("?");
+                if (intPos >= 0) strImageFile = strImageFile.substring(0, intPos);
+
+                VF_UM823_Trace("Found image with source=" + strImageFile + ", Location=" + strLocation);
+
+                if (strLocation.substr(0,8).toUpperCase() == "FILE:///")
+                {
+                    var strupperLocation = strLocation.toUpperCase();
+                    var sourceA = (strupperLocation.indexOf(sourcefolderA) >= 0);
+                    var sourceB = (strupperLocation.indexOf(sourcefolderB) >= 0);
+                    if (sourceA || sourceB)
+                    {
+                        imagefilecount++;
+                        VFPROP_Set("HTML.IMAGEFILE", imagefilecount, strImageFile);
+                        if (sourceA) VFPROP_Set("HTML.IMAGEFILEFOLDER", imagefilecount, "WIN");
+                        else         VFPROP_Set("HTML.IMAGEFILEFOLDER", imagefilecount, "WEB");
+                        objIMG.src = strImageFile;
+                    }
+                }
+            }
+            catch (oE) { window.alert("VF_UM823_GetModifiedHTML encountered error - " + oE.description); }
+          }
+
+          VFPROP_Set("HTML.IMAGEFILECOUNT", 1, imagefilecount.toString());
+      }
+
+      GLOBAL_LastSaveInnerHTML = GLOBAL_objIFRAMEWindow.document.body.innerHTML;
+      VF_UM823_Trace("Setting GLOBAL_LastSaveInnerHTML at point B=" + GLOBAL_LastSaveInnerHTML);
+      VFPROP_Set("HTML.HTML", 1, GLOBAL_objIFRAMEWindow.document.documentElement.outerHTML);
+      GLOBAL_objIFRAMEWindow.document.body.contentEditable = "true";  
+        
+   }
+
+   /* ------------------------------------------------------------------------- */
+   function VF_UM823_LoadIFrame() 
+   {
+      var strFileName = VFPROP_Get("CURRENT.FILENAME", 1)
+
+      VF_UM823_Trace("VF_UM823_LoadIFrame executed");
+
+      GLOBAL_FileName = VFPROP_Get("CURRENT.FILENAME", 1);
+      GLOBAL_FileParms = VFPROP_Get("CURRENT.FILEPARMS", 1);
+      GLOBAL_Directory = VFPROP_Get("CURRENT.DIRECTORY", 1);
+      GLOBAL_AllowEdit = (VFPROP_Get("CURRENT.ALLOWEDIT", 1) == "TRUE");
+      GLOBAL_Partition = VFPROP_Get("CURRENT.PARTITION", 1);
+
+      if (GLOBAL_objIFRAME == null)
+      {
+          GLOBAL_objIFRAME = document.createElement("iframe");
+          GLOBAL_objIFRAME.id = 'VF_UM823_IFrame';
+          GLOBAL_objIFRAME.style.border = '0px';
+          GLOBAL_objIFRAME.style.backgroundColor = 'threedface';
+          GLOBAL_objIFRAME.style.font = 'Menu';
+          GLOBAL_objIFRAME.style.color = 'MenuText';
+          GLOBAL_objIFRAME.style.height = '100%';
+          GLOBAL_objIFRAME.style.width = '100%';
+          GLOBAL_objIFRAME.style.margin = '0px';
+          GLOBAL_objIFRAME.style.padding = '0px';
+          document.body.appendChild(GLOBAL_objIFRAME);
+      }
+
+      if ((GLOBAL_AllowEdit) && (GLOBAL_objIFRAMEWindow != null))
+      {
+          GLOBAL_objIFRAMEWindow.document.body.addEventListener("focusin", VF_UM823_IFrameFocusChange);
+          GLOBAL_objIFRAMEWindow.document.body.addEventListener("focusout", VF_UM823_IFrameFocusChange);
+      }
+
+      GLOBAL_objIFRAMELoadCounter = 0;
+
+      if (GLOBAL_Directory == "") GLOBAL_objIFRAME.src = GLOBAL_FileName + GLOBAL_FileParms;
+      else GLOBAL_objIFRAME.src = GLOBAL_Directory + GLOBAL_FileName + GLOBAL_FileParms;
+
+      VF_UM823_Trace("VF_UM823_LoadIFrame executed for " + GLOBAL_objIFRAME.src);
+
+      GLOBAL_TimerID = window.setInterval(VF_UM823_IFrameLoaded, GLOBAL_TimerPeriod);
+      
+      return;
+   }
+
+  
+   /* ------------------------------------------------------------------------- */
+</script>
+</head>
+<body scroll='no' onload='VFPROP_Onload()' oncontextmenu='return(false)' leftmargin='0' rightmargin='0' topmargin='0' bottommargin='0'>
+<div id='VFPROP_Exchange1' style='visibility:hidden;display:none'>xxx</div>
+<div id='VFPROP_Exchange2' style='visibility:hidden;display:none'>xxx</div>
+<div id='VFPROP_LastTransAct' style='visibility:hidden;display:none'>xxx</div>
+</body>
+</html>
+
+

@@ -1,0 +1,217 @@
+PictureFileExtension=.bmp,.tif,.ico,.cur
+Free1=1
+Free2=2
+Free3=3
+StrFindErr=Chaîne introuvable
+MaxLineLengthErr=L'opération dépasserait la longueur maximum admise:
+MaxLineCountErr=L'opération dépasserait le nombre maximum de lignes admis:
+OperationAborted=Opération annulée
+DriverMissing=Le(s) driver(s) suivant(s) sont introuvables dans le chemin système :
+Label=<texte>
+HtmlContainer=Conteneur HTML
+WebEmbeddedPage=Page Web
+WebEmbeddedControl=Contrôle Web
+
+********************************************************************
+*** Image List Specific Strings ************************************
+********************************************************************
+MaxImagesErr=L'opération dépasse le nombre maximum d'images, &1 .
+
+********************************************************************
+*** LpVoGraph Specific Strings *************************************
+********************************************************************
+GraphTitle=Titre
+GraphTitleX=Titre X
+GraphTitleY=Titre Y
+Directories=Répertoires
+InvalidGraphType=Type de graphe ( exple Pie Chart ) incorrect.
+Graph.Unsupported=Aucun graphe supporté
+
+Status.Memo.ReplaceAll=&1 occurrence(s) de &2 remplacées
+
+
+**
+MenuAction.CutValue=Couper
+MenuAction.CopyValue=Copier
+MenuAction.PasteValue=Coller
+MenuAction.PrintValue=Imprimer
+MenuAction.ShowHelp=Afficher l'aide
+MenuAction.PasteDefault=Coller valeur par défaut
+MenuAction.ShowProperties=Afficher les propriétés
+MenuAction.PasteCurrentDate=Coller la date
+MenuAction.PasteCurrentTime=Coller l'heure
+MenuAction.PasteCurrentUser=Coller l'utilisateur
+
+Goto.OK=OK
+Goto.Cancel=Annuler
+Goto.Text=Aller à la ligne numéro :
+Goto.Title=Aller à la ligne
+
+Explorer.DeskTop=Bureau
+Explorer.Network=Voisinage réseau
+Explorer.GlobalNetwork=Tout le réseau
+Explorer.MyComputer=Poste de travail
+Explorer.OnString=sur
+Explorer.PathFailure=Chemin introuvable
+
+Memo.CollapsedItems=&1 éléments réduits.
+*** @TRANS NEW
+Memo.URLHint=CTRL + click to follow link
+*** @TRANS END
+
+Prop.NotAvailableCaption=Non disponible
+
+HelpContext.NoHelpFile=Le composant n'a pas de fichier d'aide associé.
+
+ComControlContainer.ErrorSavingPersistProps=Erreur lors de la sauvegarde de l'état persistant des contrôles ActiveX.\nEtat non enregistré.
+
+*
+FloatDockTabMenu.TabLocation=Emplacement des onglets
+FloatDockTabMenu.TabLocationTop=Haut
+FloatDockTabMenu.TabLocationBottom=Bas
+FloatDockTabMenu.TabLocationLeft=Gauche
+FloatDockTabMenu.TabLocationRight=Droite
+*
+FloatDockTabMenu.TabLocation.Tip=Modifie l'emplacement des onglets
+
+********************************************************************
+*** LpVocalendar Specific Strings **********************************
+********************************************************************
+
+Calendar.TodayCaption=Aujourd'hui
+Calendar.PrevMonth.Hint=Mois préc. 
+Calendar.PrevYear.Hint=Année préc. 
+Calendar.NextMonth.Hint=Mois suiv. 
+Calendar.NextYear.Hint=Année suiv. 
+
+********************************************************************
+*** LpVoException Specific Messages ********************************
+********************************************************************
+
+Exception.TreeSetParentInvalidParent=L'élément d'arborescence passé à SetParentItem n'appartient pas à la même arborescence que la cible du SetParentItem.
+Exception.TreeSetParentInvalidParent.Id=1
+Exception.TreeSetParentNotUnlevelled=SetParentItem incorrect pour le style d'affichage par niveau 
+Exception.TreeSetParentNotUnlevelled.Id=2
+Exception.TreeSetParentSelfInvalid=L'élément d'arborescence passé à SetParentItem ne peut pas être identique à la cible du SetParentItem.
+Exception.TreeSetParentSelfInvalid.Id=3
+Exception.TreeAssignRowColValueInvalid=Assign ne peut pas être utilisé pour le style d'affichage arborescence multi-niveaux
+Exception.TreeAssignRowColValueInvalid.Id=4
+Exception.TreeDesignInterfaceNotSupported=La présentation arborescence ne supporte pas l'interface PRIM_TREE.ITreeDesign
+Exception.TreeDesignInterfaceNotSupported.Id=9
+Exception.TileDesignInterfaceNotSupported=La présentation mosaïque ne supporte pas l'interface PRIM_TILE.ITileDesign
+Exception.TileDesignInterfaceNotSupported.Id=17
+Exception.CarouselDesignInterfaceNotSupported=La présentation carrousel ne supporte pas l'interface PRIM_CARO.ICarouselDesign
+Exception.CarouselDesignInterfaceNotSupported.Id=16
+Exception.BookDesignInterfaceNotSupported=La présentation livre ne supporte pas l'interface PRIM_BOOK.IBookDesign
+Exception.BookDesignInterfaceNotSupported.Id=5
+Exception.DashboardDesignInterfaceNotSupported=La présentation tableau de bord ne supporte pas l'interface  PRIM_DASH.IDashboardDesign
+Exception.DashboardDesignInterfaceNotSupported.Id=18
+Exception.AnimationBeginInvalidParent=Une animation parente incorrecte pour l'élément d'animation
+Exception.AnimationBeginInvalidParent.Id=10
+Exception.AnimationBeginInvalidComponent=Un composant incorrect pour l'élément d'animation
+Exception.AnimationBeginInvalidComponent.Id=11
+Exception.AnimationBeginInvalidSibling=Composants source et cible pour l'élément d'animation de transition n'appartient pas au même composant parent.
+Exception.AnimationBeginInvalidSibling.Id=12
+Exception.AnimationBeginInvalidOperation=Erreur de lancement d'opération d'animation. Cette animation peut être en conflit avec une animation en cours d'exécution.
+Exception.AnimationBeginInvalidOperation.Id=13
+Exception.TileITableItemNotSupported=L'élément TileItem ne supporte pas l'interface PRIM_TILE.ITileItem
+Exception.TileITableItemNotSupported.Id=14
+Exception.TileNameNotFound=Le composant &1 est introuvable.
+Exception.TileNameNotFound.Id=15
+Exception.DropDownDesignInterfaceNotSupported.Id=19
+Exception.DropDownDesignInterfaceNotSupported=La présentation DropDown ne supporte pas l'interface PRIM_DROP.IDropDownDesign
+
+********************************************************************
+*** Tab Specific Strings		  **********************************
+********************************************************************
+
+Tab.IncreaseDockGroup.Caption=Augmenter le groupe
+Tab.DecreaseDockGroup.Caption=Diminuer le groupe
+Tab.LayoutPriority.Caption=Présentation maximum
+Tab.AutoHide.Caption=Masquer automatiquement
+Tab.Hide.Caption=Fermer
+Tab.ConfigureButtons.Hint=Configurer les pages
+Tab.ShowMoreButtons.Caption=Afficher plus de boutons
+Tab.ShowFewerButtons.Caption=Afficher moins de boutons
+Tab.AddOrRemoveButtons.Caption=Ajouter ou enlever des pages
+Tab.PageCloseButton.Hint=Fermer la page
+
+********************************************************************
+*** Message Box Specific Strings ***********************************
+********************************************************************
+
+MessageBox.Yes=&Oui
+MessageBox.No=&Non
+MessageBox.YesToAll=Oui pour &tous
+MessageBox.NoToAll=Non pour tou&s
+MessageBox.Cancel=&Annuler
+
+Win32.ControlNotAvailable=Primitive &1 non disponible pour Win32
+
+Udc.Carousel.DesignRequired=PRIM_CARO nécessite un élément réutilisable implémentant PRIM_CARO.ICarouselDesign pour son contenu
+Udc.Tree.DesignRequired=PRIM_TREE nécessite un élément réutilisable implémentant PRIM_TREE.ITreeDesign pour son contenu
+Udc.Book.DesignRequired=PRIM_BOOK nécessite un élément réutilisable implémentant PRIM_TREE.IBookDesign pour son contenu
+Udc.Tile.DesignRequired=PRIM_TILE nécessite un élément réutilisable implémentant PRIM_TILE.ITileDesign pour son contenu
+Udc.Dashboard.DesignRequired=PRIM_DASH nécessite un élément réutilisable implémentant PRIM_DASH.IDashboardDesign pour son contenu
+Udc.DropDown.DesignRequired=PRIM_DROP nécessite un élément réutilisable implémentant PRIM_DROP.IDropDesign pour son contenu
+
+********************************************************************
+*** Ribbon Strings               ***********************************
+********************************************************************
+
+Ribbon.Minimize=Minimiser le ruban
+Ribbon.ShowBelow=Afficher la barre d'accès rapide sous le ruban
+Ribbon.ShowAbove=Afficher la barre d'accès rapide au dessus du ruban
+
+********************************************************************
+*** Theme Strings                ***********************************
+********************************************************************
+
+Theme.LightTitle=Titre thème clair
+Theme.MediumTitle=Titre thème moyen
+Theme.DarkTitle=Titre thème sombre
+Theme.MouseOver=Survol souris du thème
+Theme.MouseOverDark=Survol souris du thème sombre
+Theme.Selected=Thème sélectionné
+Theme.50=50
+Theme.100=100
+Theme.200=200
+Theme.300=300
+Theme.400=400
+Theme.500=500
+Theme.600=600
+Theme.700=700
+Theme.800=800
+Theme.900=900
+Theme.A100=A100
+Theme.A200=A200
+Theme.A400=A400
+Theme.A700=A700
+Theme.Button=Bouton
+Theme.Column=Colonne
+Theme.Inactive=Inactif
+Theme.Disabled=Désactivé
+Theme.Text=Texte
+Theme.Border=Bordure
+Theme.Line=Ligne
+Transparent=Transparent
+*** @TRANS NEW
+Theme.AccentLight=Accent Light
+Theme.AccentMedium=Accent Medium
+Theme.AccentDark=Accent Dark
+Theme.SuccessLight=Success Light
+Theme.SuccessMedium=Success Medium
+Theme.SuccessDark=Success Dark
+Theme.ErrorLight=Error Light
+Theme.ErrorMedium=Error Medium
+Theme.ErrorDark=Error Dark
+Theme.SecondaryText=Secondary Text
+*** @TRANS END
+
+*** @TRANS NEW
+Card.Caption=Primary Text
+Card.Secondary=Secondary Text
+Card.Tertiary=Tertiary Text
+
+Navigation.Help=Add View
+*** @TRANS END

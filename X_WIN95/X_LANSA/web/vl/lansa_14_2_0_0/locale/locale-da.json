@@ -1,0 +1,35 @@
+﻿{
+ "no":                        "Nej",
+ "ok":                        "Ok",
+ "yes":                       "Ja",
+ "today":                     "I dag",
+ "retry":                     "Prøv igen",
+ "cancel":                    "Annuller",
+ "ignore":                    "Ignore",
+					               
+ "dayLong":                   ["Mandag","Tirsdag","Onsdag","Torsdag","Fredag","Lørdag","Søndag"],
+ "dayShort":                  ["Man","Tir","Ons","Tor","Fre","Lør","Søn"],
+ "monthLong":                 ["Januar","Februar","Marts","April","Maj","Juni","Juli","August","September","Oktober","November","December"],
+ "monthShort":                ["Jan","Feb","Mar","Apr","Maj","Jun","Jul","Aug","Sep","Okt","Nov","Dec"],
+ "dateFormat":                "dd/mm/yyyy",
+ "timeFormat":                "h:mm:ss tt",
+ "startOfWeek":               "Mandag",
+					               
+ "decimalPoint":              ",",
+ "thousandsSep":              ".",
+ "currencySymbol":            "€",
+
+ "tabIncreaseDockGroup":      "Increase Group",
+ "tabDecreaseDockGroup":      "Decrease Group",
+ "tabLayoutPriority":         "Max Layout",
+ "tabAutoHide":               "Autohide",
+ "tabHide":                   "Close",
+ "tabConfigureButtons":       "Configure Pages",
+ "tabShowMoreButtons":        "Show More Buttons",
+ "tabShowFewerButtons":       "Show Fewer Buttons",
+ "tabAddOrRemoveButtons":     "Add or Remove Pages",
+ "tabPageCloseButton":        "Close Page",
+ 
+ "cardCaption":               "Primary Text",
+ "cardTertiary":              "Tertiary Text"
+}

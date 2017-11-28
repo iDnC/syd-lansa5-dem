@@ -1,0 +1,21 @@
+* ------------------------------------------------------------------------------
+* This is the custom manager for framework <<FRAMEWORK>>
+* It was created on <<CREATEDDATE>> by <<CREATEDUSER>>
+* ------------------------------------------------------------------------------
+Begin_Com Role(*EXTENDS #VF_AC036O)
+* -----------------------------------------------------------------------------
+* Standard initialization
+* -----------------------------------------------------------------------------
+Mthroutine Name(uInitialize) Options(*REDEFINE)
+* Do the ancestor default behaviour
+#COM_ANCESTOR.uInitialize
+Endroutine
+* -----------------------------------------------------------------------------
+* Standard termination
+* -----------------------------------------------------------------------------
+Mthroutine Name(uTerminate) Options(*REDEFINE)
+* Do the ancestor default behaviour
+#COM_ANCESTOR.uTerminate
+Endroutine
+* -----------------------------------------------------------------------------
+End_Com

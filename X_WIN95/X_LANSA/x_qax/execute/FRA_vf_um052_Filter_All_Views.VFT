@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<caption>
+Critère de recherche à partir de toutes les vues logiques d'un fichier     
+</caption>
+<context>
+Filter 
+</context>
+<preamble>
+FRA_vf_um052_Filter_All_Views.htm
+</preamble>
+<sequence>
+000100  
+</sequence>
+<handler>
+VF_UM055 
+VF_UM043  
+VF_UM109  
+</handler>
+<handlertxt>
+Préciser le protocole d´identification que vous avez choisi d´utiliser pour cet objet métier. Si un fichier physique ressemble à cet objet métier, donner son nom et l´assistant essaiera automatiquement de déduire un protocole d´identification type pour vous.    
+Préciser le fichier physique qui supportera la recherche effectuée par ce critère de recherche. Puis choisissez les vues que vous voulez utiliser pour la recherche.
+Choisissez toutes les autres options nécessaires. 
+</handlertxt>
+<hint>
+Cet assistant génère le code d´un filtre avec peu ou pas de modifications manuelles, basé sur les vues logiques d'un fichier physique. Il est destiné aux développeurs découvrant le cadre d´applications VL.
+</hint>
+<code>
+<<include VF_UM052_Filter_Preamble.vfi>>
+BEGIN_COM ROLE(*EXTENDS £VF_AC007) HEIGHT(173) LAYOUTMANAGER(£SPLM_1) WIDTH(423)
+* <<majorsep>>
+* Présensation du panneau de base du filtre et éléments de gestion
+* <<majorsep>>
+DEFINE_COM CLASS(£PRIM_SPLM) NAME(£SPLM_1) DIVIDERSTYLE(Gap)
+DEFINE_COM CLASS(£PRIM_PANL) NAME(£Main_Panel) DISPLAYPOSITION(1) HEIGHT(142) LAYOUTMANAGER(£ATLM_1) LEFT(0) PARENT(£COM_OWNER) TABPOSITION(1) TABSTOP(False) TOP(0) WIDTH(423)
+DEFINE_COM CLASS(£PRIM_PANL) NAME(£Button_Panel) DISPLAYPOSITION(2) HEIGHT(27) LAYOUTMANAGER(£FWLM_1) LEFT(0) PARENT(£COM_OWNER) TABPOSITION(2) TABSTOP(False) TOP(146) WIDTH(423)
+DEFINE_COM CLASS(£PRIM_SPLI) NAME(£SPLI_1) MANAGE(£Main_Panel) PARENT(£SPLM_1) WEIGHT(1)
+DEFINE_COM CLASS(£PRIM_SPLI) NAME(£SPLI_2) MANAGE(£Button_Panel) PARENT(£SPLM_1)
+DEFINE_COM CLASS(£PRIM_FWLM) NAME(£FWLM_1) DIRECTION(RightToLeft) MARGINLEFT(2) MARGINRIGHT(2) SPACING(4) SPACINGITEMS(4)
+DEFINE_COM CLASS(£PRIM_PHBN) NAME(£Search_Button) BUTTONDEFAULT(True) CAPTION('Rechercher') DISPLAYPOSITION(1) LEFT(341) PARENT(£Button_Panel) TABPOSITION(1) TOP(0)
+DEFINE_COM CLASS(£PRIM_FWLI) NAME(£FWLI_1) MANAGE(£Search_Button) PARENT(£FWLM_1)
+DEFINE_COM CLASS(£PRIM_ATLM) NAME(£ATLM_1) MARGINBOTTOM(4) MARGINLEFT(4) MARGINRIGHT(4) MARGINTOP(4)
+* <<majorsep>>
+* Liste déroulante de toutes les vues disponibles
+* <<majorsep>>
+DEFINE_COM CLASS(£PRIM_CMBX) NAME(£View_LIst) COMPONENTVERSION(1) DISPLAYPOSITION(1) HEIGHT(18) LEFT(4) PARENT(£Main_Panel) SHOWSELECTION(False) SHOWSELECTIONHILIGHT(False) TABPOSITION(1) TOP(4) WIDTH(415)
+DEFINE_COM CLASS(£PRIM_CBCL) NAME(£CBCL_1) DISPLAYPOSITION(1) PARENT(£View_LIst) SOURCE(£STD_TEXT) WIDTHTYPE(Remainder)
+DEFINE_COM CLASS(£PRIM_CBCL) NAME(£CBCL_2) PARENT(£View_LIst) SOURCE(£STD_OBJ) VISIBLE(False)
+* <<majorsep>>
+DEFINE_COM CLASS(£PRIM_ATLI) NAME(£ATLI_1) ATTACHMENT(Top) MANAGE(£View_LIst) PARENT(£ATLM_1)
+DEFINE_COM CLASS(£PRIM_PANL) NAME(£Field_panel) DISPLAYPOSITION(2) HEIGHT(116) LAYOUTMANAGER(£FWLM_2) LEFT(4) PARENT(£Main_Panel) TABPOSITION(2) TABSTOP(False) TOP(22) VERTICALSCROLL(True) WIDTH(415)
+DEFINE_COM CLASS(£PRIM_ATLI) NAME(£ATLI_2) ATTACHMENT(Center) MANAGE(£Field_panel) PARENT(£ATLM_1)
+DEFINE_COM CLASS(£PRIM_FWLM) NAME(£FWLM_2) MARGINTOP(4) SPACING(4) SPACINGITEMS(4)
+* <<majorsep>>
+* Définit chaque zone clé pour chaque vue sur le panneau £Field_Panel
+* <<majorsep>>
+<<Comment>>Définit les zones et composants présents sur le formulaire du filtre - ceci sera étendu pour utiliser toutes les zones de toutes les vues logiques
+<<UM043_Repeat_Field True>>Define_Com Class(£<<field>>.Visual) Parent(£FIELD_PANEL)
+<<UM043_Repeat_Field False>>Define_Com Class(£PRIM_FWLI) Name(£FWLI_<<Field>>) Manage(£<<field>>) Parent(£FWLM_2)
+* <<majorsep>>
+* Collection de toutes les zones sur £Field_Panel
+* <<majorsep>>
+DEFINE_COM CLASS(£Prim_acol<£Prim_EVEF>) NAME(£Collect_Fields)
+* <<majorsep>>
+* Simple Field, Group and Condition Definitions
+* <<majorsep>>
+<<if CA_UM109_CHK_CONNECT>>
+define field(£con_rslt) type(*char) length(2)
+Def_Cond Name(*conresult) Cond(£con_rslt = OK)
+<<endif>> 
+
+* La vue utilisée actuellement
+
+DEFINE £Curr_View Reffld(£Std_Obj)
+
+* <<majorsep>>
+* Sous-programmes dépendant de chaque vue
+* <<majorsep>>
+
+* Logique standard uInitialize
+
+Mthroutine uInitialize Options(*Redefine)
+
+Define_com £Prim_EVEF £Temp_Field Reference(*Dynamic)
+* Invoquer la logique héritée de l'ancêtre
+£Com_Ancestor.uInitialize
+* Placer toutes les zones du panneau des zones dans la collection des zones
+For £Control in(£Field_Panel.ComponentControls)
+
+If_ref £Control is(*Instance_of £Prim_EVEF)
+
+Set_ref £Temp_Field (*Dynamic £Control)
+
+£Collect_Fields.Insert Item(£Temp_Field)
+
+Endif
+
+Endfor
+
+* Ajouter nom et description de chaque vue à la liste déroulante
+
+<<UM043_Repeat_File>>Execute AddView (<<VIEW>> '<<VIEWDESC>>'  <<FIRSTTRUE>>)
+
+* Restaurer les valeurs des clés et la vue utilisée la fois précédente
+Execute RestKeys
+
+if cond(£Curr_View *eq *blanks)
+* s'il n'y a pas de vue enregstrée, choisir la première vue comme vue par défaut à afficher initiallement
+<<UM043_Repeat_File FIRSTONLY>>Execute ShowView (<<VIEW>>)
+else
+* Afficher la vue enregistrée
+Execute ShowView (£Curr_View)
+endif
+
+Endroutine
+
+* Sous-programmes pour gérer l'enregistrement et la restauration des clés entre deux sessions
+
+Subroutine SaveKeys
+<<UM043_Repeat_Field False Alpha  >>£avFrameworkManager.avSaveValue WithID1(*Component) WithID2(£<<field>>.Name) FromAValue(£<<field>>)    
+<<UM043_Repeat_Field False Numeric>>£avFrameworkManager.avSaveValue WithID1(*Component) WithID2(£<<field>>.Name) FromNValue(£<<field>><<field_intrinsic_from>>)   
+£avFrameworkManager.avSaveValue WithID1(*Component) WithID2(Curr_View) FromAValue(£Curr_View) 
+Endroutine
+
+Subroutine RestKeys
+<<UM043_Repeat_Field False Alpha  >>£avFrameworkManager.avRestoreValue WithID1(*Component) WithID2(£<<field>>.Name) ToAValue(£<<field>>)    
+<<UM043_Repeat_Field False Numeric>>£avFrameworkManager.avRestoreValue WithID1(*Component) WithID2(£<<field>>.Name) ToNValue(£VF_ELNUMX)<<split>>£<<field>> := £VF_ELNUMX<<field_intrinsic_to>>  
+£avFrameworkManager.avRestoreValue WithID1(*Component) WithID2(Curr_View) ToAValue(£Curr_View)   
+Endroutine
+
+* Sous-programmes pour gérer l'affichage de chaque vue
+
+Subroutine ShowView ((£Use_View *Received))
+Define £Use_View Reffld(£Std_Obj)
+
+* Suivre la vue en cours
+£Curr_View := £Use_View
+
+* Rendre chaque contrôle du panneau des zones invisible
+Set £Field_Panel.ComponentControls<> Visible(False)
+
+* Puis rendre visibles les zones nécessaires et les ordonner suivant la vue en cours
+
+Case £Curr_View
+<<UM043_Keys_Visible_Block>>
+EndCase
+
+* Activer/désactiver le bouton recherche suivant les valeurs des zones
+
+Execute SetSearch
+
+Endroutine
+
+* Sous-programmes de gestion de la recherche via chaque vue
+
+Subroutine SelectView
+* Le groupe des zones qui doient être sélectionnées pour former une entrée de la liste d'instances
+Group_by Name(£Sel_Group) Fields(<<UM055_GenFldList>>)
+
+* Enregistrer la valeur des clés en cours
+Execute SaveKeys
+
+<<if CA_UM109_CHK_CONNECT>>
+<<comment>>Vérifier que la connexion est toujours active 
+£avFrameworkManager.avCheckConnection ReturnValue(£con_rslt)
+If Cond(*conresult)
+<<endif>> 
+
+* Début de la mise à jour de la liste d'instances
+£avListManager.BeginListUpdate
+£avListManager.ClearList
+
+* Lecture suivant la vue  actuelle
+
+Case £Curr_View
+
+<<UM043_Repeat_File>>When value_is(= <<View>>)<<split>>SELECT FIELDS(£Sel_Group) FROM_FILE(<<View>>) WITH_KEY(<<KeyFieldList>>) NBR_KEYS(*COMPUTE) GENERIC(*YES)<<split>>Execute Subroutine(AddtoList)<<split>>Endselect
+
+Endcase
+
+* Fin de la mise à jour de la liste d'instances
+£avListManager.EndListUpdate
+
+<<if CA_UM109_CHK_CONNECT>>
+endif
+<<endif>> 
+
+* Restorer les valeurs des clés
+Execute RestKeys
+
+Endroutine
+
+* Sous-programme pour ajouter une entrée à la liste d'instances (utilisée par toutes les sélections)
+
+Subroutine Name(AddtoList)
+<<UM055_AddtoList>>  
+Endroutine
+
+* <<majorsep>>
+* Sous-programmes communs
+* <<majorsep>>
+
+* Ajouter une vue à la liste déroulante
+
+Subroutine AddView ((£Std_Obj *Received)(£Std_text *Received)(£Std_Bool *Received))
+Add_entry £View_List
+If cond(£Std_Bool = True)
+Set £View_List.CurrentItem Selected(True) Focus(True)
+Endif
+Endroutine
+
+* Gérer l'activation/la désactivation du bouton de recherche
+
+Subroutine SetSearch
+For £Field in(£Collect_Fields)
+If cond((£Field.Visible = True) and (£Field.Text *ne *Blanks))
+£Search_Button.Enabled := True
+Return
+Endif
+EndFor
+£Search_Button.Enabled := False
+Endroutine
+
+* Gérer le bouton de recherche 
+
+EVTROUTINE HANDLING(£Search_Button.Click) OPTIONS(*NOCLEARMESSAGES *NOCLEARERRORS)
+Execute SelectView
+Endroutine
+
+* Gère la modification de zone visible déclenchant l'activation du bouton de recherche
+
+EVTROUTINE HANDLING(£Collect_Fields<>.Changed) OPTIONS(*NOCLEARMESSAGES *NOCLEARERRORS)
+Execute SetSearch
+Endroutine
+
+* Gérer la sélection d'une vue dans la liste déroulante
+
+EVTROUTINE HANDLING(£View_LIst.ItemGotFocus) OPTIONS(*NOCLEARMESSAGES *NOCLEARERRORS)
+Execute ShowView (£Std_Obj)
+ENDROUTINE
+
+<<if CA_UM109_TERMINATE>>
+* <<minorsep>>
+* Gérer la fin
+* <<minorsep>>
+Mthroutine Name(uTerminate) Options(*REDEFINE)
+<<CommentBlock>>
+* <ici votre logique de fin>
+* <ici votre logique de fin>
+* <ici votre logique de fin>
+<<CommentBlock>>
+<<Comment>>Effectuer toute logique de fin définie dans l'ancêtre
+£Com_Ancestor.uTerminate
+<<CommentBlock>>
+Endroutine
+<<endif>>
+<<if CA_UM109_LISTEN>>
+* <<minorsep>>
+* Gérer les requêtes externes pour mettre à jour la liste d'instances 
+* <<minorsep>>
+EvtRoutine £Com_owner.avEvent WithId(£EventId) WithAInfo1(£AInfo1) WithAInfo2(£AInfo2) WithAInfo3(£AInfo3) WithAInfo4(£AInfo4) WithAInfo5(£AInfo5)  WithNInfo1(£NInfo1) WithNInfo2(£NInfo2) WithNInfo3(£NInfo3) WithNInfo4(£NInfo4) WithNInfo5(£NInfo5)
+
+* Enregistrer les valeurs de clés de recherche en cours
+Execute SaveKeys
+
+* placer les valeurs recues dans des zones
+£vf_elIdn := £EventId.Value
+
+* Mappage de des valeurs AInfo et NInfo passées, dans les zones clés - <<UM055_BaseFileKeys>>
+<<UM055_GenMapKeys>> 
+
+<<if CA_UM109_CHK_CONNECT>>
+<<comment>>Vérifier que la connexion est toujours active 
+£avFrameworkManager.avCheckConnection ReturnValue(£con_rslt)
+If Cond(*conresult)
+<<endif>> 
+
+Case £vf_elIDN
+
+when value_is(= Refresh_Instance_List)
+* Recharger la liste d'instances
+
+Execute SelectView
+
+when value_is(= Add_List_Entry)
+* Ajouter une entrée à la liste 
+
+fetch FIELDS(£Sel_Group) FROM_FILE(<<UM055_BaseFile>>) WITH_KEY(<<UM055_BaseFileKeys>>)
+if_status *OKAY
+
+* Début de la mise à jour de la liste d'instance
+£avListManager.BeginListUpdate
+<<UM055_AddtoList>>
+* Mise à jour de la liste d'instances terminée
+£avListManager.EndListUpdate
+
+endif
+
+when value_is(= Update_List_Entry)
+* Mise à jour d'une entrée existante de la liste d'instances
+
+fetch FIELDS(£Sel_Group) FROM_FILE(<<UM055_BaseFile>>) WITH_KEY(<<UM055_BaseFileKeys>>)
+if_status *OKAY
+
+* Début d'une mise à jour de la liste d'instances
+£avListManager.BeginListUpdate
+<<UM055_GenSetVids>>
+<<UM055_GenUpdLst>>
+* Mise à jour de la liste d'instances terminée
+£avListManager.EndListUpdate
+
+endif
+
+when value_is(=  Delete_List_Entry)
+£avListManager.BeginListUpdate
+<<UM055_GenRmvLst>>
+£avListManager.EndListUpdate
+
+endcase
+
+<<if CA_UM109_CHK_CONNECT>>
+endif
+<<endif>> 
+
+* Restaure les valeurs de clés sauvegardées
+Execute RestKeys
+
+Endroutine
+<<endif>>
+
+End_Com

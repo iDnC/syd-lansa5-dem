@@ -1,0 +1,664 @@
+*MTXTDF_ADD_FIVE    Add 5%                                                                        78                       000000000000
+*MTXTDF_ADD_TEN     Add 10%                                                                       78                       000000000000
+*MTXTDF_ALL_EMPS    All the employees in the list are...                                          78                       000000000000
+*MTXTDF_BACK        Back                                                                          30                       000000000000
+*MTXTDF_BAD_DEPT    Invalid or blank department code entered                                      78                       000000000000
+*MTXTDF_BAD_SALARY  Invalid salary entered                                                        78                       000000000000
+*MTXTDF_BIRTHD_MSG  Birthday Msg                                                                  30                       000000000000
+*MTXTDF_CALCULATE   Calculate                                                                     20                       000000000000
+*MTXTDF_CAN_BE_OPEN Can be left open while working with other business objects                    70                       000000000000
+*MTXTDF_CHOOSE_OTHERChoose search method then enter a value.                                      78                       000000000000
+*MTXTDF_CHOOSEMONTH Choose a month                                                                40                       000000000000
+*MTXTDF_CLICK_FFO   Click for further options                                                     78                       000000000000
+*MTXTDF_CLOSE       Close                                                                         10                       000000000000
+*MTXTDF_CLR_EMP_LST Clear the current list of employees                                           50                       000000000000
+*MTXTDF_CODE        Code                                                                          20                       000000000000
+*MTXTDF_CONF_MSG    Confirm Msg                                                                   30                       000000000000
+*MTXTDF_CONFIRMDELETDelete selected entries?                                                      78                       000000000000
+*MTXTDF_COPY_ALL    Copy all employee details                                                     40                       000000000000
+*MTXTDF_CRTEXINSTLSTCreate Example Instance List                                                  50                       000000000000
+*MTXTDF_CURR_SEL    All the SELECTED employees are...                                             70                       000000000000
+*MTXTDF_DELETE      Delete                                                                        10                       000000000000
+*MTXTDF_DEPARTMENT  Department                                                                    15                       000000000000
+*MTXTDF_DEPARTMENTS Departments                                                                   78                       000000000000
+*MTXTDF_DEPT_CURR   Current Department                                                            20                       000000000000
+*MTXTDF_DEPT_DLT    Department successfully deleted                                               70                       000000000000
+*MTXTDF_DEPT_INS    Department added to the databse                                               70                       000000000000
+*MTXTDF_DEPT_STATS  Departmental Statistics for                                                   50                       000000000000
+*MTXTDF_DEPT_UPD    Department details successfully updated                                       70                       000000000000
+*MTXTDF_DETAILS     Show Details                                                                  30                       000000000000
+*MTXTDF_DET1        See component DF_DET1 (or function DWDET1 (web)) for how it works             70                       000000000000
+*MTXTDF_DET10       See component DF_DET10 (or function DWDET10 (web)) for how it works           70                       000000000000
+*MTXTDF_DET11       See component DF_DET11 (or function DWDET11 (web)) for how it works           70                       000000000000
+*MTXTDF_DET12       See component DF_DET12 (or function DWDET12 (web)) for how it works           70                       000000000000
+*MTXTDF_DET13       See component DF_DET13 (or function DWDET13 (web)) for how it works           70                       000000000000
+*MTXTDF_DET15       See component DF_DET15 (or function DWDET15 (web)) for how it works           70                       000000000000
+*MTXTDF_DET16       See component DF_DET16 (or function DWDET16 (web)) for how it works           78                       000000000000
+*MTXTDF_DET16_TITLE Examples of using the "avSwitch" method for programmatic application control: 78                       000000000000
+*MTXTDF_DET17       See component DF_DET17 (or function DWDET17 (web)) for how it works           78                       000000000000
+*MTXTDF_DET2        See component DF_DET2 (or function DWDET2 (web)) for how it works             70                       000000000000
+*MTXTDF_DET20       See component DF_DET20 (or function DWDET20 (web)) for how it works           78                       000000000000
+*MTXTDF_DET21       See component DF_DET21 (or function DWT0014 (web)) for how it works           78                       000000000000
+*MTXTDF_DET25_LINE01This is the document folder for employee                                      78                       000000000000
+*MTXTDF_DET25_LINE02You may add documents to this folder by dragging them from other folders      78                       000000000000
+*MTXTDF_DET25_LINE03(e.g. My Documents) and dropping them into the folder below.                  78                       000000000000
+*MTXTDF_DET25_LINE04You can copy documents from this folder by dragging them from the folder below78                       000000000000
+*MTXTDF_DET25_LINE05and dropping them into other folders.                                         78                       000000000000
+*MTXTDF_DET25_LINE06To view or updatea document double click on it                                78                       000000000000
+*MTXTDF_DET25_LINE07just like you would in any other folder on your system.                       78                       000000000000
+*MTXTDF_DET3        See component DF_DET3 (or function DWDET3 (web)) for how it works             70                       000000000000
+*MTXTDF_DET33       See component DF_DET33 (or function DWDET33 (web)) for how it works           78                       000000000000
+*MTXTDF_DET33_01    Changes made to the current employee details have not been saved.             78                       000000000000
+*MTXTDF_DET33_02    Do you want to save them before continuing?                                   78                       000000000000
+*MTXTDF_DET4        See component DF_DET4 (or function DWDET4 (web)) for how it works             70                       000000000000
+*MTXTDF_DET5        See component DF_DET5 for how it works                                        70                       000000000000
+*MTXTDF_DET6        See component DF_DET6 (or function DWDET6 (web)) for how it works             70                       000000000000
+*MTXTDF_DET7        See component DF_DET7 (or function DWDET7 (web)) for how it works             70                       000000000000
+*MTXTDF_DET8        See component DF_DET8 (or function DWDET8 (web)) for how it works             70                       000000000000
+*MTXTDF_DET9        See component DF_DET9 (or function DWDET9 (web)) for how it works             70                       000000000000
+*MTXTDF_DOCS_FILENM1File name                                                                     30                       000000000000
+*MTXTDF_DOCS_FILENM2File name must not exceed 65 bytes including extension.                       78                       000000000000
+*MTXTDF_DOCSDOPEND  Save Pending Changes                                                          78                       000000000000
+*MTXTDF_DOCSERRENV01A problem occurred when creating folder                                       78                       000000000000
+*MTXTDF_DOCSERRENV02A problem occurred when clearing folder                                       78                       000000000000
+*MTXTDF_DOCSFILENM3 may be too long.                                                              78                       000000000000
+*MTXTDF_DOCSFOLDERNOOnly files can be saved. Please delete this folder.                           78                       000000000000
+*MTXTDF_DOCSLOADED  document(s) loaded.                                                           50                       000000000000
+*MTXTDF_DOCSUSERDOCSDocuments                                                                     20                       000000000000
+*MTXTDF_DSPFIXFONT  Display with Fixed Font                                                       50                       000000000000
+*MTXTDF_EMAIL       Specify a from and to email address, and a message                            70                       000000000000
+*MTXTDF_EMP_DEL     Employee has been deleted from the database                                   78                       000000000000
+*MTXTDF_EMP_DETAILS Specify employee details and choose a department/section                      70                       000000000000
+*MTXTDF_EMP_DOCS    Employee Documents                                                            78                       000000000000
+*MTXTDF_EMP_INS     Employee successfully added to the database                                   70                       000000000000
+*MTXTDF_EMP_NOT_FOUNEmployee not found                                                            40                       000000000000
+*MTXTDF_EMP_SAL     Employee Salary                                                               78                       000000000000
+*MTXTDF_EMP_TRANSFEREmployee successfully transfered                                              70                       000000000000
+*MTXTDF_EMP_UPD     Employee details updated successfully                                         70                       000000000000
+*MTXTDF_EMPL_SHOW   Show details of selected Employee(s)                                          78                       000000000000
+*MTXTDF_ENTRIESDELETSelected entries have been deleted                                            78                       000000000000
+*MTXTDF_EXIT        Exit                                                                          20                       000000000000
+*MTXTDF_FILT1       See component DF_FILT1 (or wam DM_T0015(web)) for how it works                78                       000000000000
+*MTXTDF_FILT2       See component DF_FILT2 (or function DWFILT2 (web)) for how it works           70                       000000000000
+*MTXTDF_FILT3       See component DF_FILT3 (or function DWFILT3 (web)) for how it works           70                       000000000000
+*MTXTDF_FILT4       See component DF_FILT4 (or function DWFILT4 (web)) for how it works           70                       000000000000
+*MTXTDF_FILT5       See component DF_FILT5 (or function DWFILT5 (web)) for how it works           70                       000000000000
+*MTXTDF_FILT6       See component DF_FILT6 (or function DWFILT6 (web)) for how it works           78                       000000000000
+*MTXTDF_FILT7       See component DF_FILT7 (or function DWFILT7 (web)) for how it works           78                       000000000000
+*MTXTDF_FIRST_GROUP First Group                                                                   78                       000000000000
+*MTXTDF_FORWARD     Forward                                                                       30                       000000000000
+*MTXTDF_GEN_REPORT  Generate Report                                                               40                       000000000000
+*MTXTDF_GET_CALC    Get Salary from the Standard Calculator                                       50                       000000000000
+*MTXTDF_GET_NET     Get Net Salary from the Tax Calculator                                        50                       000000000000
+*MTXTDF_GETALLDOCS  Download All pending                                                          60                       000000000000
+*MTXTDF_GO          Go                                                                            10                       000000000000
+*MTXTDF_GROSS_SALARYGross Salary                                                                  20                       000000000000
+*MTXTDF_GROUP       Group                                                                         78                       000000000000
+*MTXTDF_HELP_ABOUT  Help About                                                                    78                       000000000000
+*MTXTDF_IBM_WEBSITE IBM Web Site                                                                  78                       000000000000
+*MTXTDF_INFOCUS     The CURRENT employee is                                                       70                       000000000000
+*MTXTDF_INST1       See component DF_INST1 for an example of a snap in instance list              78                       000000000000
+*MTXTDF_ISERIES_CONNYou must be connected to an IBM i to use this example                         78                       000000000000
+*MTXTDF_MSGTOSEND   Message to Send                                                               30                       000000000000
+*MTXTDF_NEW_EMP     New Employee                                                                  78                       000000000000
+*MTXTDF_NEW_MESSAGE New Message                                                                   20                       000000000000
+*MTXTDF_NEW_SECTION New Section                                                                   78                       000000000000
+*MTXTDF_NO_EXAMPLE  No windows example available                                                  78                       000000000000
+*MTXTDF_NO_IN_FOCUS There is no CURRENT employee at this time                                     70                       000000000000
+*MTXTDF_NO_SAVE     There are no changes to save.                                                 78                       000000000000
+*MTXTDF_NONE_SELECTDNone Selected                                                                 20                       000000000000
+*MTXTDF_NOT_A_REAL  Warning: This is not a real tax calculator                                    70                       000000000000
+*MTXTDF_OPTION1     Option 1                                                                      78                       000000000000
+*MTXTDF_OPTION2     Option 2                                                                      78                       000000000000
+*MTXTDF_OPTION3     Option 3                                                                      78                       000000000000
+*MTXTDF_OPTION4     Option 4                                                                      78                       000000000000
+*MTXTDF_ORIGINALORDROriginal Order                                                                78                       000000000000
+*MTXTDF_PASTE_ALL   Paste all employee detail                                                     40                       000000000000
+*MTXTDF_PHONE       Phone                                                                         20                       000000000000
+*MTXTDF_PICTURE     Commencement Picture                                                          30                       000000000000
+*MTXTDF_PRINT       Print                                                                         10                       000000000000
+*MTXTDF_PRINT_FORM  Print Form                                                                    25                       000000000000
+*MTXTDF_PRINT_PANEL Print Panel                                                                   25                       000000000000
+*MTXTDF_READFASTPARTRead Fast Part                                                                40                       000000000000
+*MTXTDF_RECIPIENTS  Recipients                                                                    30                       000000000000
+*MTXTDF_REMOVEINST  Remove instance details from the instance list                                78                       000000000000
+*MTXTDF_REMOVESELECTRemove Selected                                                               78                       000000000000
+*MTXTDF_REPORT_DEPT Departmental Reports                                                          78                       000000000000
+*MTXTDF_REPORT_EMP  Employee Information Reports                                                  78                       000000000000
+*MTXTDF_REPORT_SELECReport Content Selection Criteria                                             78                       000000000000
+*MTXTDF_SALARY_PROJ Salary Projections for                                                        50                       000000000000
+*MTXTDF_SAME_PICTUREFor demonstration purposes the same picture is used for all employees         78                       000000000000
+*MTXTDF_SAME_VIDEO  For demonstration purposes the same video is used for all employees           78                       000000000000
+*MTXTDF_SAVE        Save                                                                          20                       000000000000
+*MTXTDF_SEARCH      Search                                                                        10                       000000000000
+*MTXTDF_SEARCH2     Search Method                                                                 78                       000000000000
+*MTXTDF_SECOND_GROUPSecond Group                                                                  78                       000000000000
+*MTXTDF_SECT_CURR   Current Section                                                               20                       000000000000
+*MTXTDF_SECT_INS    Section successfully added to the database                                    70                       000000000000
+*MTXTDF_SECT_UPD    Section details successfuly updated                                           70                       000000000000
+*MTXTDF_SECTION     Section                                                                       15                       000000000000
+*MTXTDF_SECTION_SHOWShow details of selected Section(s)                                           78                       000000000000
+*MTXTDF_SECTS       Sections                                                                      30                       000000000000
+*MTXTDF_SEL_ALL     Select all Employees                                                          78                       000000000000
+*MTXTDF_SEL_DEPT    Select a department                                                           50                       000000000000
+*MTXTDF_SEL_DEPT_SECSelect a department or section                                                40                       000000000000
+*MTXTDF_SEL_DEPT1   Select Department                                                             30                       000000000000
+*MTXTDF_SEL_DEPT2   Select by Department Code                                                     78                       000000000000
+*MTXTDF_SEL_NAME    Select by Full or Partial Last Name                                           78                       000000000000
+*MTXTDF_SEL_SAL     Select where Employee Salary is greater than Selection Value                  78                       000000000000
+*MTXTDF_SEL_SECT_TFRSelect a section to transfer the employee to                                  70                       000000000000
+*MTXTDF_SEL_SKILL   Select Skill                                                                  30                       000000000000
+*MTXTDF_SEL_SKL_DEPTSelect a skill and optionally a department                                    50                       000000000000
+*MTXTDF_SEL_VAL     Selection Value                                                               78                       000000000000
+*MTXTDF_SEL_ZIP     Select by Zip Code                                                            78                       000000000000
+*MTXTDF_SELECT      Select                                                                        78                       000000000000
+*MTXTDF_SEND        Send                                                                          10                       000000000000
+*MTXTDF_SKILLS      Skills                                                                        20                       000000000000
+*MTXTDF_SORTBYEMPID Sort by Employee ID                                                           78                       000000000000
+*MTXTDF_SORTBYFNAME Sort by Full Name                                                             78                       000000000000
+*MTXTDF_SORTBYPCODE Sort by Post Code                                                             78                       000000000000
+*MTXTDF_SORTOPTIONS Sort Options                                                                  78                       000000000000
+*MTXTDF_SPEC_EITHER Specify either of the following - fully or partially                          60                       000000000000
+*MTXTDF_START_MONTH Choose a start month                                                          60                       000000000000
+*MTXTDF_STRT_DAT    Commencement Date                                                             30                       000000000000
+*MTXTDF_SURNAME     Specify a full or partial employee name.                                      78                       000000000000
+*MTXTDF_TAX_CALC    Tax Calculator                                                                78                       000000000000
+*MTXTDF_TO          To                                                                            78                       000000000000
+*MTXTDF_TOTAL_EMPS  Total Employees that work in this Section :                                   78                       000000000000
+*MTXTDF_TRANSFER    Transfer                                                                      10                       000000000000
+*MTXTDF_T0001       See component DF_T0001 (or function DWT0001 (web)) for how it works           78                       000000000000
+*MTXTDF_T0001_INSTR1Enter some values and press save.                                             78                       000000000000
+*MTXTDF_T0001_INSTR2These values will be remembered when you next use this command handler.       78                       000000000000
+*MTXTDF_T0002       See component DF_T0002 (or function DWT0002 (web)) for how it works           78                       000000000000
+*MTXTDF_T0002_SEND  Enter some values, press send, and then use the receive example.              78                       000000000000
+*MTXTDF_T0003       See component DF_T0003 (or function DWT0003 (web)) for how it works           78                       000000000000
+*MTXTDF_T0003_RECEIVThis component receives the values send by DF_T0002                           78                       000000000000
+*MTXTDF_T0004       See component DF_T0004 (or function DWT0004 (web)) for how it works           78                       000000000000
+*MTXTDF_T0004_INSTR Right mouse click on a department in the instance list and delete it.         78                       000000000000
+*MTXTDF_T0004_INSTR2This is how command handlers handle a department that has been deleted        78                       000000000000
+*MTXTDF_T0005       See component DF_T0005 (or function DWT0005 (web)) for how it works           78                       000000000000
+*MTXTDF_T0007_INSTR Any command handler can be made to be displayed as a whole page.              78                       000000000000
+*MTXTDF_T0007_INSTR2In the business object properties, ensure that the command is object level    78                       000000000000
+*MTXTDF_T0007_INSTR3On the command display tab, set "Object command presentation" to all of window78                       000000000000
+*MTXTDF_T0007_INSTR4See properties of the "Using the whole page" business object for an example   78                       000000000000
+*MTXTDF_T0022       See component DF_T0022 for how it works                                       78                       000000000000
+*MTXTDF_T0023       See component DF_T0023 (or wam DM_T0016 (wam)) for how it works               78                       000000000000
+*MTXTDF_T0101       See component DF_T0101 (or function DWT0101 (web)) for how it works           78                       000000000000
+*MTXTDF_T0101_INSTR Edit the displayed time in the time fast part.                                78                       000000000000
+*MTXTDF_T0101_INSTR2Then press the Read from Fast Part button to read the value into field #TIME. 78                       000000000000
+*MTXTDF_T0201       See component DF_T0201 (or function DWT0201 (web)) for how it works           78                       000000000000
+*MTXTDF_T0201_INSTR Edit the displayed date in the date fast part.                                78                       000000000000
+*MTXTDF_T0201_INSTR2Then press the Read from Fast Part button to read the value into field #DATE. 78                       000000000000
+*MTXTDF_T0401       See component DF_T0401 (or function DWT0401 (web)) for how it works           78                       000000000000
+*MTXTDF_T0401_BUTTONRead into Field                                                               40                       000000000000
+*MTXTDF_T0401_INSTR Select a new department from the combo fast part.                             78                       000000000000
+*MTXTDF_T0401_INSTR2Then press the Read from Fast Part button to put the value into #DEPTMENT     78                       000000000000
+*MTXTDF_T1901       See component DF_T1901 (or function DWT1901 (web)) for how it works           78                       000000000000
+*MTXTDF_T1901_INSTR This combo was loaded simply by setting its uTableName property to VF_DEPTAB. 78                       000000000000
+*MTXTDF_T1901_INSTR2Press the Read from Fast Part button to put values into the fields            78                       000000000000
+*MTXTDF_T1902       See component DF_T1902 (or function DWT1902 (web)) for how it works           78                       000000000000
+*MTXTDF_T1902_INSTR These radio buttons were loaded simply by setting the uTableName property.    78                       000000000000
+*MTXTDF_T1902_INSTR2Press the Read from Fast Part button to put values into the fields.           78                       000000000000
+*MTXTDF_T2301       See component DF_T2301 (or function DWT2301 (web)) for how it works           78                       000000000000
+*MTXTDF_T2301_INSTR Filter DF_T2301 has switched on the framework minifilter.                     78                       000000000000
+*MTXTDF_T2301_INSTR2The framework minifilter is displayed in the framework identification bar,    78                       000000000000
+*MTXTDF_T2301_INSTR3below the framework toolbar.                                                  78                       000000000000
+*MTXTDF_T2301_INSTR4When the user presses the search button, DF_T2301 fills the instance list.    78                       000000000000
+*MTXTDF_T2302       See component DF_T2302 (or function DWT2302 (web)) for how it works           78                       000000000000
+*MTXTDF_T2302_INSTR Filter DF_T2302 has switched on the framework minifilter.                     78                       000000000000
+*MTXTDF_T2302_INSTR2The framework minifilter is displayed in the framework identification bar,    78                       000000000000
+*MTXTDF_T2302_INSTR3below the framework toolbar.                                                  78                       000000000000
+*MTXTDF_T2302_INSTR4When the user presses any search button, DF_T2302 fills the instance list.    78                       000000000000
+*MTXTDF_T2303       See component DF_T2303 (or function DWT2303 (web)) for how it works           78                       000000000000
+*MTXTDF_T2303_INSTR Filter DF_T2303 has switched on the framework minifilter.                     78                       000000000000
+*MTXTDF_T2303_INSTR2The framework minifilter is displayed in the framework identification bar,    78                       000000000000
+*MTXTDF_T2303_INSTR3below the framework toolbar.                                                  78                       000000000000
+*MTXTDF_T2303_INSTR4When the user presses any search button, DF_T2303 fills the instance list.    78                       000000000000
+*MTXTDF_T2901_001   Click on the LANSA Weblet button to run a VLF event handler.                  78                       000000000000
+*MTXTDF_T2901_002   The LANSA Weblet button has been clicked.                                     78                       000000000000
+*MTXTDF_T2902_002   Select an item from the LANSA Drop Down Weblet to run a VLF event handler.    78                       000000000000
+*MTXTDF_T2903_001   Click on the LANSA Anchor Weblet text to run a VLF event handler.             78                       000000000000
+*MTXTDF_T2903_002   The LANSA Anchor Weblet text has been clicked on.                             78                       000000000000
+*MTXTDF_T2903_003   Click here to fire an event to the VLF                                        78                       000000000000
+*MTXTDF_T3401       See component DF_T3401 for how it works                                       78                       000000000000
+*MTXTDF_T3501       See component DF_T3501 for how it works                                       78                       000000000000
+*MTXTDF_T3502       See component DF_T3502 for how it works                                       78                       000000000000
+*MTXTDF_T3503       See component DF_T3503 for how it works                                       78                       000000000000
+*MTXTDF_T3504       See component DF_T3504 for how it works                                       78                       000000000000
+*MTXTDF_T3505       See component DF_T3505 for how it works                                       78                       000000000000
+*MTXTDF_WEBBR       See component DF_WEBBR for how it works                                       70                       000000000000
+*MTXTDF_ZIP         Zip                                                                           20                       000000000000
+*MTXTUF_ABOUT       About                                                                         20                       000000000000
+*MTXTUF_AC006O_001  Browser window size exceeded.                                                 78                       000000000000
+*MTXTUF_AC006O_002  Use F11 for full screen mode.                                                 78                       000000000000
+*MTXTUF_AC029O_01   Change Password valid only on IBMi servers                                    78                       000000000000
+*MTXTUF_ADMIN       Administration                                                                78                       000000000000
+*MTXTUF_AMBER       Amber                                                                         78                       000000000000
+*MTXTUF_APPLICATIONSApplications                                                                  78                       000000000000
+*MTXTUF_ARRANGE_CASCArrange in Cascade                                                            78                       000000000000
+*MTXTUF_ARRANGE_GCOLUse Attachment Columns                                                        78                       000000000000
+*MTXTUF_ARRANGE_GROWUse Attachment Rows                                                           78                       000000000000
+*MTXTUF_ARRANGE_HORZArrange Horizontally                                                          78                       000000000000
+*MTXTUF_ARRANGE_TILEArrange in Tiles                                                              78                       000000000000
+*MTXTUF_ARRANGE_VERTArrange Vertically                                                            78                       000000000000
+*MTXTUF_ASCEND_ORDERSort Ascending                                                                78                       000000000000
+*MTXTUF_ASSIST      Assistance                                                                    78                       000000000000
+*MTXTUF_ASSISTANCE  Click or touch for assistance.                                                78                       000000000000
+*MTXTUF_AUTHUPDATED authorizations updated.                                                       78                       000000000000
+*MTXTUF_AUTO_TILE   Automatic Tiling                                                              78                       000000000000
+*MTXTUF_BADIBMRET1  Unknown return from Web IIP.                                                  78                       000000000000
+*MTXTUF_BADIBMRET2  Verfify CHECK_IBMI_SIGNON code.                                               78                       000000000000
+*MTXTUF_BLUE        Blue                                                                          78                       000000000000
+*MTXTUF_BLUEGRAY    Blue Gray                                                                     78                       000000000000
+*MTXTUF_BO_NAVIGATORBusiness Object Navigator                                                     78                       000000000000
+*MTXTUF_BOTTOM      Bottom                                                                        20                       000000000000
+*MTXTUF_BROWN       Brown                                                                         78                       000000000000
+*MTXTUF_BUSY        Busy                                                                          20                       000000000000
+*MTXTUF_CANCEL      &Cancel                                                                       10                       000000000000
+*MTXTUF_CANCEL_TIMEOCancelled by timeout                                                          78                       000000000000
+*MTXTUF_CANCELLED   Cancelled by user request                                                     78                       000000000000
+*MTXTUF_CANCEL1     Cancel                                                                        10                       000000000000
+*MTXTUF_CAPSLOCK    Is caps lock on ?                                                             78                       000000000000
+*MTXTUF_CASEPASSWORDUpper and Lower Case Password                                                 78                       000000000000
+*MTXTUF_CHANGETHEME Change the current theme                                                      78                       000000000000
+*MTXTUF_CHECK_LOCK  Check Lock                                                                    78                       000000000000
+*MTXTUF_CHG_ORDER   Change Order                                                                  78                       000000000000
+*MTXTUF_CHGIBMIPSW  Change IBM i Password                                                         78                       000000000000
+*MTXTUF_CHGPSWIGN1  Request to change password ignored.                                           78                       000000000000
+*MTXTUF_CHGPSWIGN2  Check your Change Password IIP function.                                      78                       000000000000
+*MTXTUF_CHGTHEME    Themes ...                                                                    78                       000000000000
+*MTXTUF_CHKPSWCAPTIOPassword expiry check                                                         78                       000000000000
+*MTXTUF_CHKPSWERROR Error checking password expiry:                                               78                       000000000000
+*MTXTUF_CH011O_01   Invalid request.                                                              78                       000000000000
+*MTXTUF_CH014O_01   Properties were saved.                                                        78                       000000000000
+*MTXTUF_CLEAR_LIST  Clear List                                                                    20                       000000000000
+*MTXTUF_CLEAR_TRACE Clear Trace                                                                   50                       000000000000
+*MTXTUF_CLEARMESSAGEClear                                                                         78                       000000000000
+*MTXTUF_CLICKTOSTARTClick here to get started                                                     78                       000000000000
+*MTXTUF_CLOSE       Close                                                                         78                       000000000000
+*MTXTUF_CLR_SEL     Clear Selection                                                               78                       000000000000
+*MTXTUF_CONFAIL     Attempt to connect to the server failed                                       78                       000000000000
+*MTXTUF_CONFDELUSER Click OK to delete profile                                                    78                       000000000000
+*MTXTUF_CONFIRMNEWPWConfirm New Password                                                          78                       000000000000
+*MTXTUF_CONNECTFAIL The server is not available, has failed, or has an expired licence.           78                       000000000000
+*MTXTUF_CONNECTION  &Connection                                                                   20                       000000000000
+*MTXTUF_CONTACTSERVEContacting server - please wait.                                              78                       000000000000
+*MTXTUF_CONVERT_CSV Convert to CSV                                                                78                       000000000000
+*MTXTUF_CORNERS     Corners                                                                       78                       000000000000
+*MTXTUF_CREATEMORE  Create Another                                                                78                       000000000000
+*MTXTUF_CYAN        Cyan                                                                          78                       000000000000
+*MTXTUF_DARKBLUE    Pure Blue                                                                     78                       000000000000
+*MTXTUF_DARKGRAY    Pure Dark                                                                     78                       000000000000
+*MTXTUF_DATE        &Date                                                                         20                       000000000000
+*MTXTUF_DATE1       Date                                                                          20                       000000000000
+*MTXTUF_DEEPORANGE  Deep Orange                                                                   78                       000000000000
+*MTXTUF_DEEPPURPLE  Deep Purple                                                                   78                       000000000000
+*MTXTUF_DELETE      Delete                                                                        30                       000000000000
+*MTXTUF_DELETE_FAV  Delete Favorite                                                               78                       000000000000
+*MTXTUF_DELETE_USER Delete User                                                                   78                       000000000000
+*MTXTUF_DESCEND_ORDESort Descending                                                               78                       000000000000
+*MTXTUF_DETAILS     Details                                                                       78                       000000000000
+*MTXTUF_DIS_USERNAMEUser name is disabled                                                         78                       000000000000
+*MTXTUF_DISABLPOPUPSDisable Pop Ups                                                               78                       000000000000
+*MTXTUF_DOT_SERVERS Servers...                                                                    78                       000000000000
+*MTXTUF_DOT_TABLES  Maintain Code Tables...                                                       78                       000000000000
+*MTXTUF_DOT_USER    Users...                                                                      78                       000000000000
+*MTXTUF_EDITSTATUS  Alter Development Status ...                                                  78                       000000000000
+*MTXTUF_EMAIL       Email Address                                                                 78                       000000000000
+*MTXTUF_ENABLEPOPUPSEnable Pop Ups                                                                78                       000000000000
+*MTXTUF_ENCRERROR   Local Encryption error                                                        78                       000000000000
+*MTXTUF_ERRORNOTE1  It is recommended that you read the log backwards.                            78                       000000000000
+*MTXTUF_ERRORNOTE2  You can use File Save As to save this page if you want to keep it.            78                       000000000000
+*MTXTUF_EXPAND      Expand                                                                        78                       000000000000
+*MTXTUF_FAILED      Failed                                                                        78                       000000000000
+*MTXTUF_FAILEDTOLOADfailed to load. The framework will now close.                                 78                       000000000000
+*MTXTUF_FIELDCHOOSERChoose Fields / Columns                                                       78                       000000000000
+*MTXTUF_FILT_BOTTOM Filter on Bottom                                                              78                       000000000000
+*MTXTUF_FILT_LEFT   Filter on Left                                                                78                       000000000000
+*MTXTUF_FILT_RIGHT  Filter on Right                                                               78                       000000000000
+*MTXTUF_FILT_TOP    Filter on Top                                                                 78                       000000000000
+*MTXTUF_FILTERTRACE Filter by                                                                     78                       000000000000
+*MTXTUF_FIRST       First                                                                         78                       000000000000
+*MTXTUF_FLOAT       Float                                                                         20                       000000000000
+*MTXTUF_FULLHEIGHT  Use Full Height                                                               78                       000000000000
+*MTXTUF_FULLWIDTH   Use Full Width                                                                78                       000000000000
+*MTXTUF_GOBACK      Go back to previous screen                                                    78                       000000000000
+*MTXTUF_GOFORWARD   Go forward to previous screen                                                 78                       000000000000
+*MTXTUF_GRAY        Gray                                                                          78                       000000000000
+*MTXTUF_GREEN       Green                                                                         78                       000000000000
+*MTXTUF_HIDE        Hide                                                                          78                       000000000000
+*MTXTUF_HOSTPORT    Port                                                                          78                       000000000000
+*MTXTUF_HTTPS       Use HTTPS                                                                     78                       000000000000
+*MTXTUF_IBMIPORT    IBMi Port                                                                     78                       000000000000
+*MTXTUF_IBMIPSWERR  Error changing IBM i password:                                                78                       000000000000
+*MTXTUF_IBMIPSWEXMSGPassword has expired by days:                                                 78                       000000000000
+*MTXTUF_IBMISRVPSW  IBM i Host Server Mapper                                                      78                       000000000000
+*MTXTUF_IBMPSWMSG   Days until password expires:                                                  78                       000000000000
+*MTXTUF_ICON_VIEW   List View                                                                     20                       000000000000
+*MTXTUF_IDENT_HINT  Use the Identifier (the short name)                                           78                       000000000000
+*MTXTUF_INACTIVITY  Inactivity Timeout Settings (minutes)                                         78                       000000000000
+*MTXTUF_INDIGO      Indigo                                                                        78                       000000000000
+*MTXTUF_INVALID_USERUser profile or password details are invalid                                  70                       000000000000
+*MTXTUF_IPADDRESS   IP address                                                                    78                       000000000000
+*MTXTUF_JOBDETCAPNOKLog could not be retrieved.                                                   78                       000000000000
+*MTXTUF_JOBDETCAPOK Log Details                                                                   78                       000000000000
+*MTXTUF_LANGUAGE    Language                                                                      20                       000000000000
+*MTXTUF_LARGE_ICONS Large Icons                                                                   20                       000000000000
+*MTXTUF_LAST        Last                                                                          78                       000000000000
+*MTXTUF_LEFT        Left                                                                          20                       000000000000
+*MTXTUF_LIGHTBLUE   Light Blue                                                                    78                       000000000000
+*MTXTUF_LIGHTGREEN  Light Green                                                                   78                       000000000000
+*MTXTUF_LIME        Lime                                                                          78                       000000000000
+*MTXTUF_LIMIT       Limit                                                                         78                       000000000000
+*MTXTUF_LIST        List                                                                          20                       000000000000
+*MTXTUF_LIST_OF     List of                                                                       78                       000000000000
+*MTXTUF_LISTVIEW    Change the navigation pane to a display as list(s)                            78                       000000000000
+*MTXTUF_LOADING     Loading                                                                       78                       000000000000
+*MTXTUF_LOADPATH    Load Path                                                                     78                       000000000000
+*MTXTUF_LOCAL       Local                                                                         10                       000000000000
+*MTXTUF_LOGGEDON    Successfully logged on as &1                                                  78                       000000000000
+*MTXTUF_LOGONFAILED Sign in failed. User is not authorized to framework or has been disabled.     78                       000000000000
+*MTXTUF_LOGONTIMEOUTSign in wait period timed out. Restart the application.                       78                       000000000000
+*MTXTUF_LOGON1      Log On                                                                        20                       000000000000
+*MTXTUF_LOGON2      Sign In                                                                       20                       000000000000
+*MTXTUF_LONGPSW     Password is too long                                                          78                       000000000000
+*MTXTUF_LXP         Export List                                                                   78                       000000000000
+*MTXTUF_LXP_CSV     CSV                                                                           78                       000000000000
+*MTXTUF_LXP_GENTEMPLGenerate an Initial Template                                                  78                       000000000000
+*MTXTUF_LXP_HTML    HTML                                                                          78                       000000000000
+*MTXTUF_LXP_LANDSCP Landscape                                                                     78                       000000000000
+*MTXTUF_LXP_MYTEMPL My Templates                                                                  78                       000000000000
+*MTXTUF_LXP_NOTEMPL Don't use any template                                                        78                       000000000000
+*MTXTUF_LXP_OUTPUT  Output Format                                                                 78                       000000000000
+*MTXTUF_LXP_PBTMPPKGCreate a Shared Templates Package                                             78                       000000000000
+*MTXTUF_LXP_PDF     PDF                                                                           78                       000000000000
+*MTXTUF_LXP_PORTRAITPortrait                                                                      78                       000000000000
+*MTXTUF_LXP_PUBTEMPLShared Templates                                                              78                       000000000000
+*MTXTUF_LXP_SETTINGSExport Settings & Tools                                                       78                       000000000000
+*MTXTUF_LXP_TMPLFLD Open My Templates Folder                                                      78                       000000000000
+*MTXTUF_LXP_XLS     Microsoft Excel                                                               78                       000000000000
+*MTXTUF_MAXIMIZE    Maximize                                                                      78                       000000000000
+*MTXTUF_MAXLISTLINESLimit of 9999 lines for a list reached, output truncated.                     78                       000000000000
+*MTXTUF_MAXOPENCHILDChanges the maximum of associated panels allowed to be concurrently open      78                       000000000000
+*MTXTUF_MESSAGES    Messages                                                                      30                       000000000000
+*MTXTUF_MINIMIZE    Minimize                                                                      78                       000000000000
+*MTXTUF_MONITOR1    Show in primary monitor                                                       78                       000000000000
+*MTXTUF_MONITOR2    Show in secondary monitor                                                     78                       000000000000
+*MTXTUF_MORE        More...                                                                       78                       000000000000
+*MTXTUF_MOREOPTIONS More options                                                                  78                       000000000000
+*MTXTUF_MOVEBOTTOM  Move to Bottom                                                                78                       000000000000
+*MTXTUF_MOVEFILTER  Change the position of the filter panel to top, left, bottom or right         78                       000000000000
+*MTXTUF_MOVELEFT    Move to Left                                                                  78                       000000000000
+*MTXTUF_MOVERIGHT   Move to Right                                                                 78                       000000000000
+*MTXTUF_MOVETOP     Move to Top                                                                   78                       000000000000
+*MTXTUF_MSG_BEGIN   Beginning of messages                                                         78                       000000000000
+*MTXTUF_MSG_END     End of Messages                                                               78                       000000000000
+*MTXTUF_MSG_0001    Found &1 &2.                                                                  78                       000000000000
+*MTXTUF_MSG_0002    Unexpected error when reading &1.                                             78                       000000000000
+*MTXTUF_MSG_0003    Could not find &1 with identification &2.                                     78                       000000000000
+*MTXTUF_MSG_0004    Unexpected error occurred when looking for &1 with identification &2.         78                       000000000000
+*MTXTUF_MSG_0005    Saved details of &1 with identification &2.                                   78                       000000000000
+*MTXTUF_MSG_0006    Validation error(s) occurred when processing &1 with identification &2.       78                       000000000000
+*MTXTUF_MSG_0007    Fatal error(s) when processing &1 with identification &2. Return code &3.     78                       000000000000
+*MTXTUF_MSG_0008    Deleted details of &1 with identification &2.                                 78                       000000000000
+*MTXTUF_MSG_0009    Changes made to &1 have not been saved. Do you want to save them?             78                       000000000000
+*MTXTUF_MSG_0010    Confirm &1 identified as &2 - &3 is to be deleted by clicking OK.             78                       000000000000
+*MTXTUF_MSG_0011    User: &1 DateTime &2                                                          78                       000000000000
+*MTXTUF_NAME        Name                                                                          78                       000000000000
+*MTXTUF_NAVIGATION  Navigation Pane                                                               78                       000000000000
+*MTXTUF_NAVMENU     Nav Menu                                                                      78                       000000000000
+*MTXTUF_NEW         New                                                                           50                       000000000000
+*MTXTUF_NEW_USER    New User                                                                      78                       000000000000
+*MTXTUF_NEW_USER_GRPNew Group                                                                     78                       000000000000
+*MTXTUF_NEWNOTE     Click to add a note                                                           78                       000000000000
+*MTXTUF_NEWPASSWORD New Password                                                                  50                       000000000000
+*MTXTUF_NEWPSWERROR New password error                                                            78                       000000000000
+*MTXTUF_NEXT        Next >>                                                                       30                       000000000000
+*MTXTUF_NEXT1       Next                                                                          30                       000000000000
+*MTXTUF_NO          No                                                                            20                       000000000000
+*MTXTUF_NO_MESSAGES There are no messages available                                               78                       000000000000
+*MTXTUF_NO_USERNAME User name does not exist                                                      78                       000000000000
+*MTXTUF_NOHELP      No Help Available                                                             78                       000000000000
+*MTXTUF_NORMAL      Normal                                                                        78                       000000000000
+*MTXTUF_NOSERVERERR No error message received from server. The return code was                    78                       000000000000
+*MTXTUF_NOTESAVAIL  Available notes.                                                              78                       000000000000
+*MTXTUF_OBJSWITHPROPObjects with properties                                                       78                       000000000000
+*MTXTUF_OFFLINE1    Work Offline                                                                  15                       000000000000
+*MTXTUF_OK          OK                                                                            20                       000000000000
+*MTXTUF_OLDPASSWORD Old Password                                                                  50                       000000000000
+*MTXTUF_OLOGON_001  User profile is invalid or unknown.                                           78                       000000000000
+*MTXTUF_OLOGON_002  User profile is invalid or unknown                                            78                       000000000000
+*MTXTUF_OLOGON_003  Call to example validation program UF_3GCHKPW                                 78                       000000000000
+*MTXTUF_OPEN        Open                                                                          20                       000000000000
+*MTXTUF_ORANGE      Orange                                                                        78                       000000000000
+*MTXTUF_OUMAUT001   Authority information successfully updated.                                   78                       000000000000
+*MTXTUF_OUMAUT002   ERROR when updating authorities.                                              78                       000000000000
+*MTXTUF_OUMAUT003   You should investigate this problem.                                          78                       000000000000
+*MTXTUF_OUMPTY001   Get user property overrides failed.                                           78                       000000000000
+*MTXTUF_OUMPTY002   Save user property overrides failed.                                          78                       000000000000
+*MTXTUF_OVERUNDER   Over / Under                                                                  50                       000000000000
+*MTXTUF_PAGINATION  Page &1. Showing items &2 (&3) to &4 (&5) of &6 &7.                           78                       000000000000
+*MTXTUF_PANELIMIT   You need to close some viewing panels and then try that again.                78                       000000000000
+*MTXTUF_PASSWORD    Password                                                                      20                       000000000000
+*MTXTUF_PIN         Pin / Dock this Panel in Place                                                78                       000000000000
+*MTXTUF_PINK        Pink                                                                          78                       000000000000
+*MTXTUF_PLEASEWAIT  Please Wait                                                                   78                       000000000000
+*MTXTUF_POSITION    Position                                                                      50                       000000000000
+*MTXTUF_PREVIOUS    << Back                                                                       30                       000000000000
+*MTXTUF_PREVIOUS1   Back                                                                          30                       000000000000
+*MTXTUF_PSW_AGAIN   The two entries of the new password are not the same                          78                       000000000000
+*MTXTUF_PSW_CHANGE  Change Password                                                               30                       000000000000
+*MTXTUF_PSW_CHANGE2 Change &Password                                                              30                       000000000000
+*MTXTUF_PSW_CHGD    Password changed successfully                                                 40                       000000000000
+*MTXTUF_PSW_RULE    This password breaks site standards for passwords                             78                       000000000000
+*MTXTUF_PURPLE      Purple                                                                        78                       000000000000
+*MTXTUF_QUICKSEARCH Quick Search                                                                  78                       000000000000
+*MTXTUF_RAMP_TS     RAMP-TS (Terminal Server)                                                     78                       000000000000
+*MTXTUF_RAMP_TS2    RAMP-TS (Terminal Server)                                                     78                       000000000000
+*MTXTUF_READY       Ready                                                                         20                       000000000000
+*MTXTUF_RECEIVED    received from the server.                                                     78                       000000000000
+*MTXTUF_RECENT      Recently Used :                                                               78                       000000000000
+*MTXTUF_RED         Red                                                                           78                       000000000000
+*MTXTUF_REFRESH_LISTRefresh List                                                                  78                       000000000000
+*MTXTUF_REORDER_TABSReorder Tabs                                                                  78                       000000000000
+*MTXTUF_RESTORE     Restore to last normal size                                                   78                       000000000000
+*MTXTUF_RESTOREALL  Restore All                                                                   78                       000000000000
+*MTXTUF_RESUME1     &Resume                                                                       78                       000000000000
+*MTXTUF_RETURNCODE  Return Code                                                                   30                       000000000000
+*MTXTUF_RIGHT       Right                                                                         20                       000000000000
+*MTXTUF_ROUNDCORNERSRounded Corners                                                               78                       000000000000
+*MTXTUF_RTS_PRIVATE aXes Project Folder                                                           78                       000000000000
+*MTXTUF_SAVE        Save                                                                          50                       000000000000
+*MTXTUF_SAVEPASSWORDSave password                                                                 78                       000000000000
+*MTXTUF_SAVING      Saving                                                                        78                       000000000000
+*MTXTUF_SEARCH      Quick Find ...                                                                78                       000000000000
+*MTXTUF_SEARCH_FILT Search filter for                                                             78                       000000000000
+*MTXTUF_SEARCH_LIMITSearch limited to                                                             78                       000000000000
+*MTXTUF_SEARCH_RES  Your Search Found                                                             78                       000000000000
+*MTXTUF_SEARCHFOR   Search for &1                                                                 78                       000000000000
+*MTXTUF_SEARCHING   Searching - Please Wait                                                       78                       000000000000
+*MTXTUF_SEARCHUSERS Search                                                                        78                       000000000000
+*MTXTUF_SELECTAPP   Click to select Application                                                   50                       000000000000
+*MTXTUF_SELECTAPPL  Click or touch to select what you want to work with.                          78                       000000000000
+*MTXTUF_SELECTED    Selected                                                                      50                       000000000000
+*MTXTUF_SENDTOCSVPRFSpreadsheet_                                                                  78                       000000000000
+*MTXTUF_SENDXL      Send to Excel                                                                 78                       000000000000
+*MTXTUF_SERVER_ERRORServer error                                                                  78                       000000000000
+*MTXTUF_SERVERCONFIGServer Configuration                                                          78                       000000000000
+*MTXTUF_SERVERNAVAILThe RAMP server does not appear to be available at this time.                 78                       000000000000
+*MTXTUF_SESSIONENDEDYour session has ended.                                                       78                       000000000000
+*MTXTUF_SETTING     Settings                                                                      78                       000000000000
+*MTXTUF_SETTINGS    Change settings                                                               78                       000000000000
+*MTXTUF_SETTINGS2   Click or touch to view or change system settings.                             78                       000000000000
+*MTXTUF_SHAREDOBJECTContains SHARED Object                                                        78                       000000000000
+*MTXTUF_SHOW        Show                                                                          78                       000000000000
+*MTXTUF_SHOWACTIVE  Show Active                                                                   78                       000000000000
+*MTXTUF_SHOWONDIAL  Show on Connect Dialog                                                        78                       000000000000
+*MTXTUF_SHRINK      Shrink                                                                        78                       000000000000
+*MTXTUF_SIDEBYSIDE  Side by Side                                                                  50                       000000000000
+*MTXTUF_SIGNOFFMSG1 Inactivity timeout has elapsed.                                               78                       000000000000
+*MTXTUF_SIGNOFFMSG2 This application has been closed.                                             78                       000000000000
+*MTXTUF_SIGNOFFTIME Log off if inactive for                                                       78                       000000000000
+*MTXTUF_SIGNON      Log On                                                                        50                       000000000000
+*MTXTUF_SIGNONAGAIN Please sign in again                                                          78                       000000000000
+*MTXTUF_SIGNONTIME  Log on if inactive for                                                        78                       000000000000
+*MTXTUF_SIZETOCONT  Size to content                                                               78                       000000000000
+*MTXTUF_SMALL_ICONS Small Icons                                                                   20                       000000000000
+*MTXTUF_SORT        Change how this list is sorted                                                78                       000000000000
+*MTXTUF_SQLWARNING  Search was not performed - The search data was not acceptable                 78                       000000000000
+*MTXTUF_SRV_CON_FAILConnection to server has been lost                                            78                       000000000000
+*MTXTUF_SRV_RECON_FLAttempt to reconnect failed                                                   78                       000000000000
+*MTXTUF_SRV_RECON_REAttempt to reconnect failed - Do you want to try again?                       78                       000000000000
+*MTXTUF_START_SEARCHDescribe the thing you want to use                                            78                       000000000000
+*MTXTUF_START_SRCH_2Search for                                                                    20                       000000000000
+*MTXTUF_STARTED     is being started.                                                             78                       000000000000
+*MTXTUF_STATUSBAR   Launch applications from the status bar                                       78                       000000000000
+*MTXTUF_STOP_TRACE  Stop trace                                                                    78                       000000000000
+*MTXTUF_STORAGE_UNAVUnable to store your preferences on your device                               78                       000000000000
+*MTXTUF_STORAGE_UN2 Check your device / browser settings.                                         78                       000000000000
+*MTXTUF_STYLE_BLULGEBlue Background (Large Font) - UF_VS002                                       40                       000000000000
+*MTXTUF_STYLE_BLUSMABlue Background (Small Font) - UF_VS001                                       40                       000000000000
+*MTXTUF_STYLE_EMPH  VL Shipped style - VS_EMPH                                                    40                       000000000000
+*MTXTUF_STYLE_GROUP VL Shipped style - VS_GROUP                                                   40                       000000000000
+*MTXTUF_STYLE_NL    RAMP background color                                                         78                       000000000000
+*MTXTUF_STYLE_NORM  VL Shipped style - VS_NORM                                                    40                       000000000000
+*MTXTUF_STYLE_PALLGEPale Background (Large Font) - UF_VS004                                       40                       000000000000
+*MTXTUF_STYLE_PALSMAPale Background (Small Font) - UF_VS003                                       40                       000000000000
+*MTXTUF_STYLE_PANEL VL Shipped style - VS_PANEL                                                   40                       000000000000
+*MTXTUF_STYLE_SCRLGEScript Editing - Large font                                                   78                       000000000000
+*MTXTUF_STYLE_SCRMEDScript Editing - Medium font                                                  78                       000000000000
+*MTXTUF_STYLE_SCRSMAScript Editing - Small font                                                   78                       000000000000
+*MTXTUF_SW100O_001  Configuration details saved.                                                  78                       000000000000
+*MTXTUF_SW100O_002  Attempt to execute a service routine failed.                                  78                       000000000000
+*MTXTUF_SW100O_003  The session is not signed in.                                                 78                       000000000000
+*MTXTUF_SW100O_004  Configuration details NOT saved.                                              78                       000000000000
+*MTXTUF_SW100O_005  Call to change password IIP failed.                                           78                       000000000000
+*MTXTUF_SW100O_006  Please check server logs.                                                     78                       000000000000
+*MTXTUF_SW100O_007  Call to User IIP failed.                                                      78                       000000000000
+*MTXTUF_SW100O_008  Attempt to list Framework definitions failed.                                 78                       000000000000
+*MTXTUF_SW100O_009  Error Number                                                                  78                       000000000000
+*MTXTUF_SW100O_010  Attempt to load details failed.                                               78                       000000000000
+*MTXTUF_SYSINFO     System Info...                                                                20                       000000000000
+*MTXTUF_SY001O_ER001The application will now shut down.                                           78                       000000000000
+*MTXTUF_SY001O_ER002The reason was:                                                               78                       000000000000
+*MTXTUF_SY001O_ER003The call that failed was to:                                                  78                       000000000000
+*MTXTUF_SY001O_ER004The module called was:                                                        78                       000000000000
+*MTXTUF_SY001O_ER005The webroutine called was:                                                    78                       000000000000
+*MTXTUF_SY001O_ER006Messages Issued:                                                              78                       000000000000
+*MTXTUF_SY001O_ER007Message to Application administrator: My application named                    78                       000000000000
+*MTXTUF_SY001O_ER008failed with an error                                                          78                       000000000000
+*MTXTUF_SY001O_ER009Send this message to advise the administrator of the application of the crash 78                       000000000000
+*MTXTUF_SY001O_ER010The details of the crash are:                                                 78                       000000000000
+*MTXTUF_SY120_001   Logging off from server system                                                78                       000000000000
+*MTXTUF_SY120_002   Not connected to server system                                                78                       000000000000
+*MTXTUF_SY120_003   Failed to load file VF_SY120.htm/VF_SY120_RTS.htm from                        78                       000000000000
+*MTXTUF_SY120_004   Verify the Load Path in the Server definition                                 78                       000000000000
+*MTXTUF_SY120_005   and that the file exists in the specified location                            78                       000000000000
+*MTXTUF_SY120_007   Unable to continue. Missing session script file                               78                       000000000000
+*MTXTUF_SY120_008   Command execution stopped.                                                    60                       000000000000
+*MTXTUF_SY120_015   A Fatal error has occured                                                     78                       000000000000
+*MTXTUF_SY120_016   Server logon cancelled                                                        78                       000000000000
+*MTXTUF_SY120_017   Logging on to server system. Please wait.                                     78                       000000000000
+*MTXTUF_SY120_018   Logon to server failed. User profile or password provided may not be valid.   78                       000000000000
+*MTXTUF_SY120_019   Logged off from server                                                        78                       000000000000
+*MTXTUF_SY120_020   Waiting for shared session information to load.                               78                       000000000000
+*MTXTUF_SY120_023   Shared session information failed to load.                                    78                       000000000000
+*MTXTUF_SY120LOCK_08An IBM i screen or tab that may prevent proper application navigation         78                       000000000000
+*MTXTUF_SY120LOCK_09is currently being displayed. Click OK, then close or cancel                  78                       000000000000
+*MTXTUF_SY120LOCK_10the IBM i screen. Then attempt this navigation operation again.               78                       000000000000
+*MTXTUF_SY153_001   Theme cannot be changed while the framework is locked.                        78                       000000000000
+*MTXTUF_SY153_002   Deactivate force floating and dock any floated panels before changing theme.  78                       000000000000
+*MTXTUF_SY153_003   Theme cannot be changed while panels are floated or secondary windows are open78                       000000000000
+*MTXTUF_SY169O_001  Loading. Please Wait.                                                         78                       000000000000
+*MTXTUF_TEAL        Teal                                                                          78                       000000000000
+*MTXTUF_TECHSUP     Technical Support...                                                          20                       000000000000
+*MTXTUF_TEMPDIR     Temp Directory (PC)                                                           78                       000000000000
+*MTXTUF_TESTSUBS    1=&1, 2=&2, 3=&3, 4=&4                                                        78                       000000000000
+*MTXTUF_THEME       Overall theme                                                                 78                       000000000000
+*MTXTUF_THEME_CHANGETheme changed to                                                              78                       000000000000
+*MTXTUF_THNONE      None                                                                          78                       000000000000
+*MTXTUF_THSHELL     Current windows theme                                                         78                       000000000000
+*MTXTUF_TH2003BLUE  2003 Blue                                                                     78                       000000000000
+*MTXTUF_TH2003COLOR 2003 Color                                                                    78                       000000000000
+*MTXTUF_TH2003OLIVE 2003 Olive                                                                    78                       000000000000
+*MTXTUF_TH2003SILVER2003 Silver                                                                   78                       000000000000
+*MTXTUF_TH2007BLUE  2007 Blue                                                                     78                       000000000000
+*MTXTUF_TH2007GRAPH 2007 Graphite                                                                 78                       000000000000
+*MTXTUF_TH2007OLIVE 2007 Olive                                                                    78                       000000000000
+*MTXTUF_TH2007SILVER2007 Silver                                                                   78                       000000000000
+*MTXTUF_TIME        &Time                                                                         20                       000000000000
+*MTXTUF_TIME1       Time                                                                          20                       000000000000
+*MTXTUF_TOOLBAR     Move the navigation bar up onto the tool bar as a push button                 78                       000000000000
+*MTXTUF_TOOLBAR_VIEWOn Tool Bar                                                                   78                       000000000000
+*MTXTUF_TOP         Top                                                                           20                       000000000000
+*MTXTUF_TREE_VIEW   Tree View                                                                     20                       000000000000
+*MTXTUF_TREEVIEW    Change the navigation pane to a display as a tree                             78                       000000000000
+*MTXTUF_TYPE_SEARCH Type search string                                                            78                       000000000000
+*MTXTUF_TYPETOSTART Or type here what you want to do or to use                                    78                       000000000000
+*MTXTUF_UI002O_1    Arrangement request was ignored because there are no visible items.           78                       000000000000
+*MTXTUF_UI002O_2    Request ignored - too many items to arrange automatically.                    78                       000000000000
+*MTXTUF_UM069_001   The application is in use and has been locked. Only                           78                       000000000000
+*MTXTUF_UM069_002   can unlock this application. If you are user                                  78                       000000000000
+*MTXTUF_UM069_003   re-enter your password and click Resume to continue using the application.    78                       000000000000
+*MTXTUF_UM069_004   Click Cancel to terminate this application.                                   78                       000000000000
+*MTXTUF_UNKNOWNERRORUnknown return code from change password BIF                                  78                       000000000000
+*MTXTUF_USER        User                                                                          20                       000000000000
+*MTXTUF_USER_MSG1   This is the placeholder for the Web Browser interface to User Management.     78                       000000000000
+*MTXTUF_USER_MSG2   It is visible in Windows because you are working as an Application Designer.  78                       000000000000
+*MTXTUF_USER_MSG3   You cannot use this interface when executing this framework in Windows.       78                       000000000000
+*MTXTUF_USER_MSG4   You can use this interface when executing this interface on the Web.          78                       000000000000
+*MTXTUF_USER_MSG5   To maintain users in Windows use the (Administration) -> (Users) menu options.78                       000000000000
+*MTXTUF_USERDISABLEDDisabled                                                                      78                       000000000000
+*MTXTUF_USERGROUPS  User Groups                                                                   78                       000000000000
+*MTXTUF_USERPTYTITLEUser property settings for                                                    78                       000000000000
+*MTXTUF_USR_ADMIN   Administrative User                                                           78                       000000000000
+*MTXTUF_USR_DISABLE2This user profile has been disabled - see administrator                       70                       000000000000
+*MTXTUF_USR_DISABLE3This user has been disabled or is not authorised to the framework             70                       000000000000
+*MTXTUF_USR_IS_GRP  Cannot sign on as a group profile                                             78                       000000000000
+*MTXTUF_USR_NOT_ADMNThis user profile is not an administrator                                     70                       000000000000
+*MTXTUF_USR_NOT_LOC This user cannot be found or is not accessible. See your administrator.       78                       000000000000
+*MTXTUF_USR_PROF    User Name                                                                     50                       000000000000
+*MTXTUF_USR_PSW_EXP Password has expired                                                          78                       000000000000
+*MTXTUF_USR_PSW_NO  You cannot sign on with this user profile - It has no password                78                       000000000000
+*MTXTUF_USR_SERVER  User is not authorised to this server                                         70                       000000000000
+*MTXTUF_USR_UNEXPECTUnexpected error when validating profile / password                           78                       000000000000
+*MTXTUF_USRNAUTH    User not authorized to the Framework                                          50                       000000000000
+*MTXTUF_USRPASSW    Password specified is not valid                                               78                       000000000000
+*MTXTUF_VF_FL002O_01Framework authority is disabled for your user profile.                        78                       000000000000
+*MTXTUF_VF_FL002O_02Things you do here will only apply to users                                   78                       000000000000
+*MTXTUF_VF_FL002O_03for whom framework authority is enabled.                                      78                       000000000000
+*MTXTUF_VF_FL002O_04Refer to the topic Activate Framework Authority                               78                       000000000000
+*MTXTUF_VF_FL002O_05 in the product documentation.                                                78                       000000000000
+*MTXTUF_VF_FL002O_06users matching search for                                                     78                       000000000000
+*MTXTUF_VFUM048_001 No action taken.                                                              78                       000000000000
+*MTXTUF_VFUM048_002 Verify your Change Password IIP function.                                     78                       000000000000
+*MTXTUF_VIEW_COLUMN Select Columns                                                                78                       000000000000
+*MTXTUF_VS_ALTBACKG Base Style with Alternate Background Color                                    78                       000000000000
+*MTXTUF_WINDOW_001  &Windows                                                                      78                       000000000000
+*MTXTUF_WINDOW_002  (Main Window)                                                                 78                       000000000000
+*MTXTUF_WINDOW_003  Open Application                                                              78                       000000000000
+*MTXTUF_WINDOW_004  Open View                                                                     78                       000000000000
+*MTXTUF_WINDOW_005  Open                                                                          78                       000000000000
+*MTXTUF_WINDOW_006  Open a New Window ...                                                         78                       000000000000
+*MTXTUF_WINDOW_007  Horizontally Arrange                                                          78                       000000000000
+*MTXTUF_WINDOW_008  Vertically Arrange                                                            78                       000000000000
+*MTXTUF_WINDOW_009  Tile Arrangement                                                              78                       000000000000
+*MTXTUF_WINDOW_010  Cascade Arrangement                                                           78                       000000000000
+*MTXTUF_WINDOW_011  Convert Windows to Tabs                                                       78                       000000000000
+*MTXTUF_WINDOW_012  Convert Tabs to Windows                                                       78                       000000000000
+*MTXTUF_WINDOW_014  Previous Window                                                               78                       000000000000
+*MTXTUF_WINDOW_015  Next Window                                                                   78                       000000000000
+*MTXTUF_WINDOW_016  Close All Windows                                                             78                       000000000000
+*MTXTUF_WINDOW_017  Close All Windows - Except Main                                               78                       000000000000
+*MTXTUF_WINDOW_018  Other Windows -                                                               78                       000000000000
+*MTXTUF_WINDOW_019  in a new Window                                                               78                       000000000000
+*MTXTUF_WINDOWSCREDSUse Windows Credentials                                                       78                       000000000000
+*MTXTUF_WINUSERVALFNServer IIP func to validate sign on (Id)                                      78                       000000000000
+*MTXTUF_WRONGPSW    Wrong password                                                                78                       000000000000
+*MTXTUF_YELLOW      Yellow                                                                        78                       000000000000
+*MTXTUF_YES         Yes                                                                           78                       000000000000
+*MTXTUF_ZOOM        Zoom                                                                          78                       000000000000
+*MTXTUFUMF1_001     You are not signed on as a user that has authority to administer users        78                       000000000000
+*MTXTUFUMF1_002     Framework security is not enabled                                             78                       000000000000
+*MTXTUFUMF1_003     You must store security information in the DBMS.                              78                       000000000000
+*MTXTUFUMF1_004     Specify a full or partial User Profile                                        78                       000000000000

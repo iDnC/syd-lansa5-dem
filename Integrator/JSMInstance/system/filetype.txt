@@ -1,0 +1,14 @@
+#!<studio-project id="20000000-000000" name="lansa">
+#
+# File types
+#
+text/html  htm HTM html HTML
+text/plain txt text TXT
+image/gif  gif GIF
+image/png  png PNG
+image/jpeg jpg JPG jpeg JPEG
+application/pdf pdf PDF
+application/json json JSON
+#
+#!</studio-project>
+#

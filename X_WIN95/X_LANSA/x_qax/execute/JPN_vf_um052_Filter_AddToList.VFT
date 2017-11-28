@@ -1,0 +1,25 @@
+<context>
+Filter
+</context>
+<caption>
+#avListManager.AddtoList の実行(ｿｰｽの一部分)   
+</caption>
+<preamble>
+JPN_vf_um052_Filter_AddToList.htm
+</preamble>
+<sequence>
+000400   
+</sequence>
+<handler>
+VF_UM055 
+</handler>
+<handlertxt>
+このﾋﾞｼﾞﾈｽ ｵﾌﾞｼﾞｪｸﾄの定義を自動的に生成できるように、ﾋﾞｼﾞﾈｽ ｵﾌﾞｼﾞｪｸﾄに近い物理ﾌｧｲﾙの名前を指定して下さい。
+</handlertxt>
+<hint>
+<hint>
+このｳｨｻﾞｰﾄﾞはｲﾝｽﾀﾝｽ ﾘｽﾄにﾋﾞｼﾞﾈｽ ｵﾌﾞｼﾞｪｸﾄを追加する(#avListManager.AddtoListを利用して)ためのｿｰｽを生成します。
+</hint>
+<code> 
+<<UM055_AddtoList>>  
+</code>  

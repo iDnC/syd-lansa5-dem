@@ -1,0 +1,30 @@
+// This script was generated from skeleton file vf_fpm030_S.js, which is in your LANSA partition execute folder.
+// You may alter this file to change how new scripts are generated. **NOTE** You must backup skeleton file changes. 
+// Script skeleton files are replaced with the standard shipped versions when reinstalling or upgrading RAMP-TS. 
+
+{
+   /* ====================================================== */
+   /* ==================  vHandle_ARRIVE  ================== */
+   /* ====================================================== */
+   /* Handle arrival at this SPECIAL                         */
+   /* oPayload: The payload supplied by the event initiator  */
+   /* oPreviousForm: Reference to previous object Form       */
+
+   vHandle_ARRIVE: function(oPayload, oPreviousForm) 
+   {
+     var bReturn = true;
+
+     HIDE_CURRENT_FORM();
+     SETBUSY(true);  
+
+     /* <ARRIVE /> - Do not remove or alter this line */
+
+     return(bReturn);
+   }, 
+
+
+// Do not alter any script after this line 
+//<SYSINFO>
+//</SYSINFO>
+
+}

@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<context>
+CommandHandler 
+</context>
+<caption>
+Gestionnaire d'action CRUD
+</caption>
+<preamble>
+FRA_vf_um052_Handler_CRUD.htm
+</preamble>
+<hint>
+Cet assistant génére le code d'un gestionnaire d'action Création/Lecture/Modification/Suppression .  
+</hint>
+<sequence>
+000100  
+</sequence>
+<handler>
+VF_UM128 
+VF_UM129 
+VF_UM130    
+</handler>
+<handlertxt>
+Si les zones de la liste d'instances et les identifiants sont corrects, passer à l'étape suivante.   
+Préciser les zones que vous voulez sur le gestionnaire de commande.                   
+Préciser les éléments que vous voulez inclure dans le code généré.     
+</handlertxt>
+<code>
+<<include VF_UM052_CommandHandler_Preamble.vfi>>
+*
+* NOTE: Ce gestionnaire d'action a été conçu pour être appellé par les actions Nouveau, Supprimer, et autre * (exple. Détails ou Création/Lecture/Modification/Suppression)  
+* Il utilise le type d'objet utilisateur de l'action pour décider comment se comporter.
+*
+Function Options(*DIRECT) 
+Begin_Com Role(*EXTENDS £VF_AC010) Layoutmanager(£MAIN_LAYOUT) Width(600) Height(240) 
+* <<majorsep>>
+* Définitions de zones simples et groupes
+* <<majorsep>>   
+<<if UM057_Has_HEADFields>>
+Group_by Name(£XG_HEAD) <<UM057_GenHeadGroup>>
+<<endif>>
+<<COMMENT>>Zones de travail et conditions
+define field(£cmd_type) type(*char) length(32) desc('Type objet utilisateur de l action')
+define field(£vis_reslt) reffld(£std_text)
+define field(£msg_rslt) type(*char) length(132)
+define field(£ret_code) reffld(£STD_BOOL)
+def_cond name(*okay) cond((£ret_code = OK) or (£ret_code = TRUE))
+def_cond name(*notokay) cond((£ret_code *ne OK) and (£ret_code *ne TRUE))
+<<if CA_UM056_CHK_CONNECT>>
+define field(£con_rslt) type(*char) length(2)
+Def_Cond Name(*conresult) Cond(£con_rslt = OK)
+<<endif>> 
+* <<majorsep>>
+* Définitions de composants
+* <<majorsep>>
+<<Comment>>Panneaux de présentation du corps et des boutons
+Define_Com Class(£PRIM_PANL) Name(£BUTTON_PANEL) Displayposition(2) Height(182) Layoutmanager(£BUTTON_FLOW) Left(246) Parent(£COM_OWNER) Tabposition(2) Tabstop(False) Top(0) Width(128)
+Define_Com Class(£PRIM_PANL) Name(£BODY_HEAD) VerticalScroll(True) Displayposition(1) Layoutmanager(£BODY_HEAD_FLOW)  Left(0) Parent(£COM_OWNER) Tabposition(1) Tabstop(False) Top(0) Width(246)
+DEFINE_COM CLASS(£Prim_ACol<£prim_evp>) NAME(£PanelFields)
+Define_Com Class(£Prim_ACol<£prim_evp>) Name(£KeyFields)
+<<Comment>>Gestionnaires de présentation par liaison et centrage
+Define_Com Class(£PRIM_ATLM) Name(£MAIN_LAYOUT)
+Define_Com Class(£PRIM_ATLI) Name(£BUTTON_ATTACH) Attachment(Right)  Manage(£BUTTON_PANEL) Parent(£MAIN_LAYOUT)
+Define_Com Class(£PRIM_FWLM) Name(£BUTTON_FLOW)   Direction(TopToBottom) Flowoperation(Center) Marginbottom(4) Marginleft(4) Marginright(4) Margintop(4) Spacing(4) Spacingitems(4)
+Define_Com Class(£PRIM_ATLI) Name(£BODY_ATTACH)   Attachment(Center) Manage(£BODY_HEAD) Parent(£MAIN_LAYOUT)
+Define_Com Class(£PRIM_FWLM) Name(£BODY_HEAD_FLOW) Direction(TopToBottom) Marginbottom(4) Marginleft(4) Marginright(4) Margintop(4) Spacing(4) Spacingitems(4)
+<<Comment>> Le bouton nouveau/mise à jour/supprimer
+<<if CA_UM056_SAVEBTN>>
+DEFINE_COM CLASS(£PRIM_PHBN) NAME(£PUSHB1_BUTTON) BUTTONDEFAULT(True) CAPTION('Non défini') DISPLAYPOSITION(1) LEFT(12) PARENT(£BUTTON_PANEL) TABPOSITION(1) TOP(4) WIDTH(103)
+DEFINE_COM CLASS(£PRIM_FWLI) NAME(£FWLI_PUSHB1_BUTTON) MANAGE(£PUSHB1_BUTTON) PARENT(£BUTTON_FLOW)
+<<else>>
+DEFINE_COM CLASS(£PRIM_PHBN) NAME(£PUSHB1_BUTTON) BUTTONDEFAULT(True) CAPTION('Undefined') DISPLAYPOSITION(1) LEFT(12) PARENT(£BUTTON_PANEL) TABPOSITION(1) TOP(4) WIDTH(1) Visible(False)
+<<endif>>
+<<if UM057_Has_HEADFields>>
+<<comment>>Définition des zones de l'entête du formulaire
+<<UM057_Repeat True ALL HEAD>>Define_Com Class(£<<field>>.Visual) Parent(£BODY_HEAD) LabelType(<<UM056_Identify_With>>) Marginleft(160)
+<<UM057_Repeat False ALL HEAD>>Define_Com Class(£PRIM_FWLI) Name(£FWLI_<<Field>>) Manage(£<<field>>) Parent(£BODY_HEAD_FLOW)
+<<endif>> 
+<<CommentBlock>>
+* <<majorsep>>
+* Définitions d'événements
+* <<majorsep>>
+<<CommentBlock>>
+* <<majorsep>>
+* Définitions de propriétés
+* <<majorsep>>
+<<CommentBlock>>
+* <<majorsep>>
+* Définitions de méthodes
+* <<majorsep>>
+* <<minorsep>>
+* Gére la méthode d'exécution
+* <<minorsep>>
+<<CommentBlock>>
+Mthroutine Name(uExecute) Options(*REDEFINE)
+<<Comment>>Effectue la logique d'exécution de l'ancêtre 
+£Com_Ancestor.uExecute
+<<CommentBlock>>
+£PushB1_Button.enabled := false
+<<CommentBlock>>
+* Le comportement de ce gestionnaire d'action est modifié par le type d'objet utilisateur
+* d'action qui l'a initialisé. (Pour voir le type d'objet utilisateur de la commande,
+* lancer le framework en mode conception et gérer les actions) 
+<<CommentBlock>>
+£Cmd_type := £Com_Owner.avCommandType
+Case £Cmd_type
+When Value_Is(= NEW, = COMMAND_NEW)
+set (£PanelFields<>) enabled(true)
+£PUSHB1_Button.caption := 'Enregistrer'
+£XG_Head := *null
+When Value_Is(= COPY, = COMMAND_COPY)
+set (£PanelFields<>) enabled(true)
+£PUSHB1_Button.caption := 'Enregistrer'
+execute subroutine(getcurrent) with_parms(true)
+When Value_Is(= DELETE, = COMMAND_DELETE)
+set (£PanelFields<>) enabled(false)
+set £PushB1_Button enabled(true) caption('Confirmer la suppression')
+execute subroutine(getcurrent) with_parms(true)
+otherwise
+set (£PanelFields<>) enabled(true)
+Set Com(£KeyFields<>) Enabled(False)
+£PUSHB1_Button.caption := 'Enregistrer les modifications'
+execute subroutine(getcurrent) with_parms(true)
+endcase
+<<CommentBlock>>
+Endroutine
+<<CommentBlock>>
+* <<minorsep>>
+* Gérer l'initialization
+* <<minorsep>>
+Mthroutine Name(uInitialize) Options(*REDEFINE)
+<<Comment>>Effectuer les initialisation définies dans l'ancêtre 
+£Com_Ancestor.uInitialize
+* Génére une collection de toutes les zones du panneau
+£std_num := 0
+For Each(£Current) In(£Body_Head.ComponentControls)
+IF_REF COM(£Current) IS(*INSTANCE_OF £prim_evp)
+* (prim_evp est l'ancêtre de prim_evef, prim_evpl, etc)
+£std_num += 1
+Set_ref Com(£PanelFields<£std_num>) to(*dynamic £Current)
+endif
+Endfor 
+* Contruire la collection des zones clés
+<<UM055_RepeatKeys>>£KeyFields.Insert(£<<field>> )
+<<CommentBlock>>
+* <ici votre logique d'initialisation> 
+<<CommentBlock>>
+Endroutine
+* <<minorsep>>
+* Gère l achèvement
+* <<minorsep>>
+Mthroutine Name(uTerminate) Options(*REDEFINE)
+<<CommentBlock>>
+* <ici votre logique d'achèvement>
+<<CommentBlock>>
+£PanelFields.RemoveAll
+<<Comment>>Effectuer les logiques d'achèvement de l'ancêtre
+£Com_Ancestor.uTerminate 
+<<CommentBlock>>
+Endroutine
+* <<majorsep>>
+* Sous-programmes
+* <<majorsep>>
+<<CommentBlock>>
+* <<minorsep>>
+* Afficher l'instance en cours en préparation de maj ou suppression
+* <<minorsep>>
+subroutine name(getcurrent) parms((£df_fetch *received))
+define field(£df_fetch) reffld(£std_bool)
+<<if CA_UM056_CHK_CONNECT>>
+<<comment>>Vérifier que la connexion est toujours active 
+£avFrameworkManager.avCheckConnection ReturnValue(£con_rslt)
+If Cond(*conresult)
+<<endif>> 
+<<if UM057_Has_HEADFields>>
+<<UM055_GenGetLst>>
+<<comment>>Lire l'information dans le fichier principal pour alimenter les zones d'entête du formulaire 
+IF COND(£DF_FETCH = TRUE)
+Fetch Fields(£XG_HEAD) From_File(<<UM055_BaseFile>>) With_Key(<<UM055_BaseFileKeys>>) IO_STATUS(£RET_CODE)
+ENDIF
+<<CommentBlock>>
+use builtin(clr_messages)
+<<comment>> Gérer les données non trouvées
+if cond(*notokay)
+message msgtxt('L´objet demandé est introuvable. Il a peut-être été supprimé.')
+£PushB1_Button.enabled := false
+£xg_head := *null
+set (£panelfields<> £pushb1_button) enabled(false)
+else
+endif
+<<else>>
+<<endif>>
+<<if CA_UM056_CHK_CONNECT>>
+endif
+<<endif>> 
+endroutine
+<<CommentBlock>>
+* <<majorsep>>
+* Gestionnaires d'évènements
+* <<majorsep>>
+<<CommentBlock>>
+* <<minorsep>>
+* Gére le bouton créer/modifier/supprimer 
+* <<minorsep>>
+<<CommentBlock>>
+EvtRoutine Handling(£PUSHB1_BUTTON.Click)
+<<CommentBlock>>
+<<if CA_UM056_CHK_CONNECT>>
+<<comment>>Vérifier que la connexion est toujours active 
+£avFrameworkManager.avCheckConnection ReturnValue(£con_rslt)
+If Cond(*conresult)
+<<endif>> 
+* Mise à jour de la base de données
+<<comment>>En fonction de l action
+CASE OF_FIELD(£CMD_TYPE)
+<<CommentBlock>>
+* Gérer Nouveau
+When Value_Is(= NEW, = COMMAND_NEW, = COPY, = COMMAND_COPY)
+<<CommentBlock>>
+£VIS_RESLT := '(Nouveau)'
+£MSG_RSLT := 'Informations enregistrées'
+INSERT FIELDS(£XG_HEAD) TO_FILE(<<UM055_BaseFile>>) IO_STATUS(£RET_CODE) IO_ERROR(*NEXT) VAL_ERROR(*NEXT) ISSUE_MSG(*YES)
+<<CommentBlock>>
+* Gérer la suppression
+When Value_Is(= DELETE, = COMMAND_DELETE)
+<<CommentBlock>>
+£VIS_RESLT := '(Supprimé)'
+£MSG_RSLT := 'Informations supprimées'
+EXECUTE SUBROUTINE(GETCURRENT) WITH_PARMS(TRUE)
+IF COND(*OKAY)
+DELETE FROM_FILE(<<UM055_BaseFile>>) IO_STATUS(£RET_CODE) IO_ERROR(*NEXT) VAL_ERROR(*NEXT) ISSUE_MSG(*YES)
+ENDIF
+<<CommentBlock>>
+* Gérer le détail
+OTHERWISE
+<<CommentBlock>>
+£VIS_RESLT := '(Mis à Jour)'
+£MSG_RSLT := 'Informations mises à jour enregistrées'
+UPDATE FIELDS(£XG_Head) IN_FILE(<<UM055_BaseFile>>) WITH_KEY(<<UM055_BaseFileKeys>>) IO_STATUS(£RET_CODE) IO_ERROR(*NEXT) VAL_ERROR(*NEXT) ISSUE_MSG(*YES)
+<<CommentBlock>>
+ENDCASE
+<<comment>>Gérer le résultat
+IF COND(*OKAY)
+<<UM055_GenSetVIDs>> 
+<<comment>>Utiliser la méthode AddToList pour les nouvelles entrées. Sinon utiliser la méthode UpdateListEntryData 
+CASE OF_FIELD(£CMD_TYPE)
+When Value_Is(= NEW, = COMMAND_NEW, = COPY, = COMMAND_COPY)
+<<comment>>Indique que la mise à jour de la liste d'instance <<businessobject_lang ucaption>> va commencer
+£avListManager.BeginListUpdate
+<<UM055_GenAddLst vis_reslt>> 
+<<comment>>Indique la fin de la mise à jour de liste
+£avListManager.EndListUpdate
+<<CommentBlock>>
+Otherwise
+<<UM055_GenUpdLst vis_reslt>> 
+<<CommentBlock>>
+ENDCASE
+*
+CASE OF_FIELD(£CMD_TYPE)
+When Value_Is(= NEW, = COMMAND_NEW)
+<<CommentBlock>>
+* Préparer à l'entrée suivante
+£XG_HEAD := *NULL
+ENDCASE
+<<CommentBlock>>
+* Toutes les modifications ont été enregistrées, désactiver le bouton
+£PushB1_Button.enabled := false
+<<CommentBlock>>
+* Envoyer le message demandé
+USE BUILTIN(CLR_MESSAGES)
+MESSAGE MSGID(DCM9899) MSGF(DCàM01) MSGDTA(£MSG_RSLT)
+<<CommentBlock>>
+ENDIF
+<<if CA_UM056_CHK_CONNECT>>
+endif
+<<endif>> 
+<<CommentBlock>>
+Endroutine
+<<CommentBlock>>
+* <<minorsep>>
+* Gére les modifications dans une des zones 
+* <<minorsep>>
+<<CommentBlock>>
+EvtRoutine Handling(£PanelFields<>.Changed)
+£PushB1_Button.Enabled := True
+EndRoutine
+<<commentblock>>
+End_Com
+</code>

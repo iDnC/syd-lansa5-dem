@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<caption>
+Filtre et liste d'instances   
+</caption>
+<context>
+Filter 
+</context>
+<preamble>
+FRA_vf_um052_Filter_Full.htm
+</preamble>
+<sequence>
+000100  
+</sequence>
+<handlertxt>
+Préciser le fichier physique sur lequel s'appuie votre objet métier.  Puis choisissez quelles zones seront affichées sur la liste d'instanceset quel(les) zone(s) identifient un enregistrement de manière unique.
+Préciser le fichier physique sur lequel s'appuie la recherche faite par ce filtre. Puis choisir la vue, les clés et les options de recherche nécessaires come elles apparaissent.
+Choisir toutes les autres options nécessaires.
+</handlertxt>
+<handler>
+VF_UM128 
+VF_UM058    
+VF_UM109 
+</handler>
+<hint>
+Cet assistant produit le code d'un filtre qui ne nécessite que peu ou pas de modifications manuelles basé sur un fichier ou une vue spécifiques. Il est conçu pour les développeurs qui sont de nouveaux utilisateurs du VL Framework.
+</hint>
+<code>
+<<include VF_UM052_Filter_Preamble.vfi>>
+Function Options(*DIRECT)
+Begin_Com Role(*EXTENDS £VF_AC007) Height(182) Width(326) LayoutManager(£MAIN_LAYOUT)
+* <<majorsep>>
+* Définitions de zones simples, groupes et conditions
+* <<majorsep>>
+Group_By   Name(£XG_Keys)    Fields(<<UM058_KeyList>>)
+Group_By   Name(£XG_Ident)   Fields(<<UM055_GenFldList>>)
+Def_List   Name(£Save_Keys)   Fields(£XG_Keys) Type(*Working) Entrys(1)
+Def_Cond   Name(*SearchOK)   <<UM058_SearchCondition>> 
+<<if CA_UM109_CHK_CONNECT>>
+define field(£con_rslt) type(*char) length(2)
+Def_Cond Name(*conresult) Cond(£con_rslt = OK)
+<<endif>> 
+* <<majorsep>>
+* Définitions de composants
+* <<majorsep>>
+<<Comment>>Panneaux de présentation du corps et des boutons 
+Define_Com Class(£PRIM_PANL) Name(£BODY_PANEL) Displayposition(1) Height(182) Layoutmanager(£BODY_FLOW) Left(0) Parent(£COM_OWNER) Tabposition(1) Tabstop(False) Top(0) Width(246) Horizontalscroll(True) Verticalscroll(True)
+Define_Com Class(£PRIM_PANL) Name(£BUTTON_PANEL) Displayposition(2) Height(182) Layoutmanager(£BUTTON_FLOW) Left(246) Parent(£COM_OWNER) Tabposition(2) Tabstop(False) Top(0) Width(88)
+<<Comment>>Gestionnaires de présentation par liaison et centrage
+Define_Com Class(£PRIM_ATLM) Name(£MAIN_LAYOUT)
+Define_Com Class(£PRIM_ATLI) Name(£BODY_ATTACH)   Attachment(Center) Manage(£BODY_PANEL) Parent(£MAIN_LAYOUT)  
+Define_Com Class(£PRIM_ATLI) Name(£BUTTON_ATTACH) Attachment(Right)  Manage(£BUTTON_PANEL) Parent(£MAIN_LAYOUT)
+Define_Com Class(£PRIM_FWLM) Name(£BUTTON_FLOW) Direction(TopToBottom) Flowoperation(Center) Marginbottom(4) Marginleft(4) Marginright(4) Margintop(4) Spacing(4) Spacingitems(4)
+Define_Com Class(£PRIM_FWLM) Name(£BODY_FLOW) Direction(TopToBottom) Marginbottom(4) Marginleft(4) Marginright(4) Margintop(4) Spacing(4) Spacingitems(4)  Sizingrulehor(Maximize)
+Define_Com class(£PRIM_PHBN) Name(£Search_Button) Buttondefault(True) Caption('Chercher') Parent(£BUTTON_PANEL)
+Define_Com Class(£PRIM_FWLI) Name(£FWLI_Search_Button) Manage(£Search_Button) Parent(£BUTTON_FLOW)
+<<Comment>>Définition des zones et composants du formulaire filtre
+<<UM058_Repeat True>>Define_Com Class(£<<field>>.Visual) Parent(£BODY_PANEL)
+<<UM058_Repeat False>>Define_Com Class(£PRIM_FWLI) Name(£FWLI_<<Field>>) Manage(£<<field>>) Parent(£BODY_FLOW)
+<<if CA_UM058_CLEARLIST>>
+Define_Com Class(£PRIM_CKBX) Name(£CLEAR_LIST) Caption('Vider la liste') Parent(£BODY_PANEL) DisplayPosition(1)
+Define_Com Class(£PRIM_FWLI) Name(£FWLI_CLEAR_LIST) Manage(£CLEAR_LIST) Parent(£BODY_FLOW)
+<<endif>>
+* <<majorsep>>
+* Définition des méthodes
+* <<majorsep>>
+<<CommentBlock>>
+Mthroutine Name(uInitialize) Options(*Redefine) 
+<<if CA_UM058_REMEMBERKEYS>>
+<<comment>>Restaurer les valeurs utilisées précédemment pour ce filtre
+<<UM058_Repeat False Alpha_NU  >>£avFrameworkManager.avRestoreValue WithID1(*Component) WithID2(£<<field>>.Name) ToAValue(£<<field>>)    
+<<UM058_Repeat False Alpha_U  >>£avFrameworkManager.avRestoreValue WithID1(*Component) WithID2(£<<field>>.Name) ToAValueU(£<<field>>)   
+<<UM058_Repeat False Numeric>>£avFrameworkManager.avRestoreValue WithID1(*Component) WithID2(£<<field>>.Name) ToNValue(£VF_ELNUMX)<<split>>£<<field>> := £VF_ELNUMX<<field_intrinsic_to>>    
+<<if CA_UM058_CLEARLIST>>
+£avFrameworkManager.avRestoreValue WithID1(*Component) WithID2(£CLEAR_LIST.Name) ToAValue(£CLEAR_LIST.ButtonState) UseAValueDefault(Checked)
+<<endif>>
+<<endif>>
+<<comment>>Activer/désactiver le bouton de recherche suivant les besoins
+Set £Search_Button Enabled(*SearchOK)
+<<CommentBlock>>
+Endroutine
+
+
+<<CommentBlock>>
+Mthroutine Name(uSelectData)  
+
+<<if CA_UM058_REMEMBERKEYS>>
+<<comment>>Enregistrer les valeurs pour utilisation ultérieure de ce filtre
+<<UM058_Repeat False Alpha_NU  >>£avFrameworkManager.avSaveValue WithID1(*Component) WithID2(£<<field>>.Name) FromAValue(£<<field>>)
+<<UM058_Repeat False Alpha_U  >>£avFrameworkManager.avSaveValue WithID1(*Component) WithID2(£<<field>>.Name) FromAValueU(£<<field>>)
+<<UM058_Repeat False Numeric>>£avFrameworkManager.avSaveValue WithID1(*Component) WithID2(£<<field>>.Name) FromNValue(£<<field>><<field_intrinsic_from>>)   
+<<if CA_UM058_CLEARLIST>>
+£avFrameworkManager.avSaveValue WithID1(*Component) WithID2(£CLEAR_LIST.Name) FromAValue(£CLEAR_LIST.ButtonState)
+<<endif>>
+<<endif>>
+<<comment>>Enregistrement des valeurs courantes des clés à partir des substitutions effectuées dans la boucle select  
+Inz_List £Save_Keys 1 
+<<if CA_UM109_CHK_CONNECT>>
+<<comment>>Vérifier que la connexion est toujours active 
+£avFrameworkManager.avCheckConnection ReturnValue(£con_rslt)
+If Cond(*conresult)
+<<endif>> 
+<<comment>>Indique que la mise à jour de la liste d´instance <<businessobject_lang ucaption>> va commencer
+£avListManager.BeginListUpdate
+<<if CA_UM058_CLEARLIST>>
+<<comment>>Vide la liste d´instance de l´objet métier actuel <<businessobject_lang ucaption>> 
+If cond(£Clear_List.ButtonState = Checked)
+£avListManager.ClearList
+Endif 
+<<else>>
+<<comment>>Vide la liste d´instance de l´objet métier actuel <<businessobject_lang ucaption>> 
+£avListManager.ClearList
+<<endif>>
+<<Comment>> Choisir les instances appropriées de <<businessobject_lang ucaption>> 
+<<if CA_UM058_ALLOWGENERIC>>
+<<if CA_UM058_FULLKEY>>
+Select Fields(£XG_Ident) From_File(<<UM058_ViewName>>) With_key(£XG_Keys) Generic(*yes) Nbr_keys(*WithKey)  
+<<else>>
+Select Fields(£XG_Ident) From_File(<<UM058_ViewName>>) With_key(£XG_Keys) Generic(*yes) Nbr_Keys(*Compute)  
+<<endif>>  
+<<else>>
+<<if CA_UM058_FULLKEY>>
+Select Fields(£XG_Ident) From_File(<<UM058_ViewName>>) With_key(£XG_Keys) Nbr_keys(*WithKey)  
+<<else>>
+Select Fields(£XG_Ident) From_File(<<UM058_ViewName>>) With_key(£XG_Keys) Nbr_Keys(*Compute)  
+<<endif>>
+<<endif>>
+<<UM055_AddtoList>>  
+
+EndSelect
+<<comment>>Indique que la mise à jour de la liste d´instance <<businessobject_lang ucaption>> est maintenant terminée
+£avListManager.EndListUpdate
+<<if CA_UM109_CHK_CONNECT>>
+endif
+<<endif>> 
+<<comment>>Restaure les valeurs de clés sauvegardées 
+Get_Entry 1 £Save_Keys 
+<<comment>> 
+
+
+endroutine
+
+<<CommentBlock>>
+* <<majorsep>>
+
+* Sous-programmes
+* <<majorsep>>
+<<CommentBlock>>
+* <<majorsep>>
+* Gestion des événements
+* <<majorsep>>
+<<CommentBlock>>
+* <<minorsep>>
+* Gestion des modifications dans une des zones clés 
+* <<minorsep>>
+<<CommentBlock>>
+<<UM058_Repeat False ALL>><<split>>EvtRoutine Handling(£<<field>>.Changed) Options(*NOCLEARMESSAGES *NOCLEARERRORS)<<split>>Set £Search_Button Enabled(*SearchOK)<<split>>EndRoutine<<split>><<CommentBlock>>
+* <<minorsep>>
+* Gestion du bouton de recherche 
+* <<minorsep>>
+<<CommentBlock>>
+EvtRoutine Handling(£Search_Button.Click) Options(*NOCLEARMESSAGES *NOCLEARERRORS)
+£Com_Owner.uSelectData
+Endroutine
+<<commentblock>>
+<<if CA_UM109_TERMINATE>>
+* <<minorsep>>
+* Gère la fin du traitement
+* <<minorsep>>
+Mthroutine Name(uTerminate) Options(*REDEFINE)
+<<CommentBlock>>
+* <ici votre logique de fin>
+* <ici votre logique de fin>
+* <ici votre logique de fin>
+<<CommentBlock>>
+<<Comment>>Effectuer toute logique de fin définie dans l'ancêtre
+£Com_Ancestor.uTerminate
+<<CommentBlock>>
+Endroutine
+<<endif>>
+<<if CA_UM109_LISTEN>>
+* <<minorsep>>
+* Gérer les requêtes externes pour mettre à jour la liste d'instances   
+* <<minorsep>>
+EvtRoutine £Com_owner.avEvent WithId(£EventId) WithAInfo1(£AInfo1) WithAInfo2(£AInfo2) WithAInfo3(£AInfo3) WithAInfo4(£AInfo4) WithAInfo5(£AInfo5)  WithNInfo1(£NInfo1) WithNInfo2(£NInfo2) WithNInfo3(£NInfo3) WithNInfo4(£NInfo4) WithNInfo5(£NInfo5)
+
+* Placer les valeurs recues dans des zones
+£vf_elIdn := £EventId.Value
+
+* Mappage de des valeurs AInfo et NInfo passées, dans les zones clés - <<UM055_BaseFileKeys>>
+<<UM055_GenMapKeys>> 
+<<if CA_UM109_CHK_CONNECT>>
+<<comment>>Vérifier que la connexion est toujours active 
+£avFrameworkManager.avCheckConnection ReturnValue(£con_rslt)
+If Cond(*conresult)
+<<endif>> 
+Case £vf_elIDN
+
+when value_is(= Refresh_Instance_List)
+*  Recharger la liste d'instance
+
+Invoke £Com_Owner.uSelectData
+
+when value_is(= Add_List_Entry)
+* Ajouter une entrée à la liste 
+
+fetch FIELDS(£XG_Ident) FROM_FILE(<<UM055_BaseFile>>) WITH_KEY(<<UM055_BaseFileKeys>>)
+if_status *OKAY
+
+* Début de la mise à jour de la liste d'instance
+£avListManager.BeginListUpdate
+<<UM055_AddtoList>>
+* Mise à jour de la liste d'instances terminée
+£avListManager.EndListUpdate
+
+endif
+
+when value_is(= Update_List_Entry)
+* Mise à jour d'une entrée existante de la liste d'instance
+
+fetch FIELDS(£XG_Ident) FROM_FILE(<<UM055_BaseFile>>) WITH_KEY(<<UM055_BaseFileKeys>>)
+if_status *OKAY
+
+* Début d'une mise à jour de la liste d'instance
+£avListManager.BeginListUpdate
+<<UM055_GenSetVids>>
+<<UM055_GenUpdLst>>
+* Mise à jour de la liste d'instances terminée
+£avListManager.EndListUpdate
+
+endif
+
+when value_is(=  Delete_List_Entry)
+£avListManager.BeginListUpdate
+<<UM055_GenRmvLst>>
+£avListManager.EndListUpdate
+
+endcase
+<<if CA_UM109_CHK_CONNECT>>
+endif
+<<endif>> 
+Endroutine
+<<endif>>
+
+End_Com
+</code>  

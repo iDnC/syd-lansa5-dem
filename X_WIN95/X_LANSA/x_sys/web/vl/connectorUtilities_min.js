@@ -1,0 +1,1 @@
+function CollateErrorMessage(e){var s=e.message;if(null!=e.messages)for(var a=0;a<e.messages.length;a++)s+=" ["+e.messages[a].text+"]";return s}

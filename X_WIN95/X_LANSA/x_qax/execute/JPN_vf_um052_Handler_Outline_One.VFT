@@ -1,0 +1,204 @@
+<context>
+CommandHandler 
+</context>
+<caption>
+基本コマンド ハンドラー
+</caption>
+<mode>
+ONE
+</mode>
+<preamble>
+JPN_vf_um052_Handler_Outline_One.htm
+</preamble>
+<hint>
+このアシスタントは、基本コマンド ハンドラーのコードを生成します。  
+</hint>
+<sequence>
+000100  
+</sequence>
+<handler>
+VF_UM128 
+VF_UM129     
+VF_UM130   
+</handler>
+<handlertxt>
+インスタンス リストのフィールドと識別フィールドが正しい場合、次のステップに進みます。    
+コマンド ハンドラーに必要なフィールドを指定します。                  
+生成コードに含むものも指定します。    
+</handlertxt>
+<code>
+<<include VF_UM052_CommandHandler_Preamble.vfi>>
+Function Options(*DIRECT) 
+Begin_Com Role(*EXTENDS #VF_AC010O) Layoutmanager(#TableLayout_Main) Width(600) Height(240)  Verticalscroll(True)
+
+* グループ定義
+
+Group_by Name(#XG_HEAD) <<UM057_GenHeadGroup>>
+
+* レイアウト管理
+
+Define_Com Class(#PRIM_TBLO) Name(#TableLayout_Main)
+Define_Com Class(#PRIM_TBLO.Column) Name(#Column1) Displayposition(1) Parent(#TableLayout_Main)
+Define_Com Class(#PRIM_TBLO.Row) Name(#Row1) Displayposition(1) Parent(#TableLayout_Main) Height(1.72)
+Define_Com Class(#PRIM_TBLO.Row) Name(#Row2) Displayposition(2) Parent(#TableLayout_Main) Height(25) Units(Pixels)
+
+* コンポーネント
+
+<<if CA_UM056_SAVEBTN>>
+*   保存ボタン
+Define_Com Class(#PRIM_PHBN) Name(#Button_Save) Buttondefault(True) Caption('Save') Displayposition(2) Tabposition(1) Left(0) Top(232) Height(24) Parent(#COM_OWNER)
+Define_Com Class(#PRIM_TBLO.Item) Name(#SAVE_BUTTONItem1) Manage(#Button_Save) Parent(#TableLayout_Main) Row(#Row2) Sizing(None) Column(#Column1) Alignment(CenterLeft)
+<<endif>>
+
+<<comment>>フィールド
+<<UM057_Repeat True ALL HEAD>>Define_Com Class(#<<field>>.Visual) Parent(#COM_OWNER) LabelType(<<UM056_Identify_With>>) Marginleft(175)
+
+
+<<UM057_Repeat False ALL HEAD>>Define_Com Class(#PRIM_TBLO.Item) Name(#TableItem_<<Field>>) Manage(#<<field>>) Parent(#TableLayout_Main) Row(#Row1) Column(#Column1) Alignment(TopLeft) Flow(Down)  Sizing(FitToWidth) Marginleft(5) Margintop(5) Marginright(5)
+
+* パネル上のすべてのフィールドのコレクション
+Define_Com Class(#Prim_ACol<#prim_evp>) Name(#PanelFields)
+
+* <<majorsep>>
+* ルーチン
+* <<majorsep>>
+
+
+Mthroutine Name(uInitialize) Options(*REDEFINE)
+Define_Com Class(#prim_evp) Name(#TempField) Reference(*DYNAMIC)
+
+*  祖先に初期化処理が定義されているか
+
+#Com_Ancestor.uInitialize
+
+* <初期化ロジックをここに記述>
+* <初期化ロジックをここに記述>
+* <初期化ロジックをここに記述>
+
+
+* 編集可能フィールドのコレクション作成
+For Each(#Control) In(#Com_Owner.ComponentControls)
+If_Ref Com(#Control) Is(*INSTANCE_OF #prim_evp)
+#TempField <= #Control *As #prim_evp
+#PanelFields.Insert( #TempField )
+Endif
+Endfor
+
+Endroutine
+
+
+Mthroutine Name(uTerminate) Options(*REDEFINE)
+
+* <終了ロジックをここに記述>
+* <終了ロジックをここに記述>
+* <終了ロジックをここに記述>
+
+*  祖先に終了処理が定義されているか
+
+#Com_Ancestor.uTerminate
+
+Endroutine
+
+
+* <<minorsep>>
+* コマンド実行処理
+* <<minorsep>>
+Mthroutine Name(uExecute) Options(*REDEFINE)
+Define_Com Class(#prim_boln) Name(#Ret_code)
+
+* データ サービスの定義
+Define_Com Class(#<<UM055_BaseFileWAM>>.Find) Name(#Find)
+Define_Com Class(#vf_elretc) Name(#uStatus)
+
+* これまでのメッセージをすべてクリア
+#AVFRAMEWORKMANAGER.avClearMessages Requester(#COM_OWNER)
+
+
+<<Comment>>祖先に実行処理が定義されているか
+#COM_ANCESTOR.uExecute GotoFreeState(#GotoFreeState) SwitchCallerReference(#SwitchCallerReference)
+
+Group_By Name(#DataFields) <<UM055_BaseFileFields minusKey>>
+
+
+If_Ref Com(#Com_Owner.avAssociatedInstance) Is_Not(*NULL)
+
+<<UM055_GenGetLst ASSOCIATED>>
+
+if #Ret_code
+* データ サービス サーバー モジュールへの同期呼び出しをすることで、サーバーからデータを取得
+
+#Find.Execute(<<UM055_BaseFileKeys>> #DataFields #uStatus )
+
+If (#uStatus *EQ OK)
+
+* 必要であれば、表示データ処理をここに記述
+
+Else
+#AVFRAMEWORKMANAGER.avIssueMessage Text('Not found on Server') Requester(#Com_Owner)
+Endif
+Else
+#AVFRAMEWORKMANAGER.avIssueMessage Text('No current item found') Requester(#Com_Owner)
+Endif
+Endif
+
+<<if CA_UM056_SAVEBTN>>
+* フィールドが変更されるとボタンが有効に
+#Button_Save.Enabled := False
+<<endif>>
+
+Endroutine
+
+<<if CA_UM056_SAVEBTN>>
+Evtroutine Handling(#Button_Save.Click)
+#com_owner.Button_Save
+Endroutine
+
+Mthroutine Name(Button_Save)
+* レコードの全フィールドを更新する場合は、Save srvroutine を使用。
+* レコードの全フィールドを更新しない場合は、.Save の代わりに独自の Update srvroutine を <<UM055_BaseFileWAM>> に記述し、これを使用する必要があります。
+Define_Com Class(#<<UM055_BaseFileWAM>>.Save) Name(#Save)
+Define_Com Class(#vf_elretc) Name(#uStatus)
+
+* サーバー モジュール <<UM055_BaseFileWAM>> からこのフィールド グループの定義を取得
+Group_By Name(#SaveFields) <<UM055_BaseFileFields>>
+
+
+If_Ref Com(#Com_Owner.avAssociatedInstance) Is_Not(*NULL)
+
+* 注: 古いメッセージは紛らわしいため、ステータス バーのメッセージをクリア
+#AVFRAMEWORKMANAGER.avClearMessages Requester(#COM_OWNER)
+
+* Save の起動 (同期的な .Execute の方が早ければ、それでも可)
+#Save.Execute( #SaveFields #uStatus )
+
+If (#uStatus = OK)
+* 正常に更新されたことを示すメッセージ
+#avFrameworkManager.avIssueMessage Text('Update was successful') Requester(#COM_OWNER)
+
+* 関連するインスタンス リストのエントリーを更新 
+
+<<UM055_GenSetVIDs>>
+#Com_Owner.avAssociatedInstance.avVisualID1 := #UF_VisID1u
+#Com_Owner.avAssociatedInstance.avVisualID2 := #UF_VisID2u
+
+* 必要であれば、その他の追加列をここで更新
+* 例:
+* #Com_Owner.avAssociatedInstance.avAColumn1  := 'My Value'
+
+#COM_OWNER.avAssociatedInstance.avUpdateDisplay
+
+#Button_Save.Enabled := False
+Endif
+
+* サーバー メッセージを取得し、フレームワークで発行
+#avFrameworkManager.avReceiveSystemMessageQueue Requester(#Com_owner)
+Endif
+Endroutine
+
+Evtroutine Handling(#PanelFields<>.Changed)
+#Button_Save.Enabled := True
+Endroutine
+<<endif>>
+
+End_Com
+</code>

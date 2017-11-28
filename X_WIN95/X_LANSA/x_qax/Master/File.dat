@@ -1,0 +1,8 @@
+File     XDESTINAT Z42QAXLIB 1NHoliday Destinations                                           170328132523012xDestination
+Field    XDESTID   001R
+Field    XDESTNAME 002R
+Field    XDESTDESC 003R
+Field    XDESTIMG  004R
+Key      XDESTID   001
+Logical  XDESTINAT1Holiday Destinations By Name            X018xDestinationByName
+Key      XDESTID   001

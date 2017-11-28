@@ -1,0 +1,149 @@
+DF_PROC   DFDAT011Supply events data for DM_Det31                                000000000000000
+DF_PROC   DFMSGQ 0Message Queue Demo Function                                    000000000000000
+DF_PROC   DFOUTQS0Get list of all OUTQs                                          000000000000000
+DF_PROC   DFSPLF 0Get Spool File content as List                                 000000000000000
+DF_PROC   DFSPLF20Return Temporary File data as a list                           000000000000000
+DF_PROC   DFSPLFS0Get all Spool Files on an OUTQ                                 000000000000000
+DF_PROC   DFSPOOL0Copy a Spool File into a MEMO                                  000000000000000
+DF_RAMP   DFRCUSC0\OS=Create Customer Data                                       000000000000000
+DF_RAMP   DFRCUSM0Customer Maintenance                                           000000000000000
+DF_RAMP   DFRINCL0\OS=Main Include File                                          000000000000000
+DF_RAMP   DFRORDC0\OS=Create Order Data                                          000000000000000
+DF_RAMP   DFRORDM0Order Maintenance                                              000000000000000
+DF_RAMP   DFRPROC0\OS=Create Product Data                                        000000000000000
+DF_RAMP   DFRPROM0Product Maintenance                                            000000000000000
+DF_RAMP   DFRRAND1\OS=Get random number                                          000000000000000
+DFXPROC   DFXSPL 1Copy a Spool File into a MEMO (for WAM)                        000000000000000
+PTEST8    FTESTF  v14sp2test 0811                                                171108183803006Ftestf
+STDFORM   STDFORM0'Standard form' dummy function                                 000000000000000
+STDTRIG   STDGUD 0STD_GUID Field Level Trigger                                   000000000000000
+UF_PR01   UFU01011Execute i5 commands                                            000000000000000
+UF_PR01   UFU01020Get list of Outqs                                              000000000000000
+UF_PR01   UFU01031Convert a spool file to a PDF document                         000000000000000
+UF_PR01   UFU01041Return a Spool File for processing                             000000000000000
+UF_PR01   UFU01050Return list of Spool Files                                     000000000000000
+UF_SYSBR  UFU00031MTXT Enroller                                                  000000000000000
+UF_SYSBR  UFU00040Test server connection is still active                         000000000000000
+UF_SYSBR  UFU00050Shipped Win IIP for User Signon                                000000000000000
+UF_SYSBR  UFU00061Change Password IIP                                            000000000000000
+UF_SYSBR  UFU00100Default table data handler                                     000000000000000
+UF_SYSBR  UFU00111Deptab table data handler                                      000000000000000
+UF_SYSBR  UFU00120Sex table data handler                                         000000000000000
+UF_SYSBR  UFU00130Country Codes table data handler                               000000000000000
+UF_SYSBR  UFU00140Currency Codes table data handler                              000000000000000
+UF_SYSBR  UFU00150USA States table data handler                                  000000000000000
+VF_PR001  VFU00000Standard RDML include for function                             000000000000000
+VF_PR001  VFU00010Server Get/Set Manager                                         000000000000000
+VF_PR001  VFU00020Main JSM Get/Set Controller                                    000000000000000
+VF_PR001  VFU00030Manage BO properties for BIFs                                  000000000000000
+VF_PR001  VFU00040VF BIF                                                         000000000000000
+VF_PR001  VFU00050VF_Set BIF                                                     000000000000000
+VF_PR001  VFU00060VF_SetNum BIF                                                  000000000000000
+VF_PR001  VFU00070VF_GET BIF                                                     000000000000000
+VF_PR001  VFU00080VF_GetNum                                                      000000000000000
+VF_PR001  VFU00090Validate User and Password                                     000000000000000
+VF_PR001  VFU00100Change IBM i password                                          000000000000000
+VF_PR001  VFU00111Standard Unicode Functions                                     000000000000008VFU0000U
+VF_PR001  VFU00120Set VLF Build No and Date system variabl                       000000000000000
+VF_PR001  VFU00140VF_TraceAValue                                                 000000000000000
+VF_PR001  VFU00150VF_TraceNValue                                                 000000000000000
+VF_PR001  VFU00160VF_Switch                                                      000000000000000
+VF_PR001  VFU00170VF_SaveAValue BIF                                              000000000000000
+VF_PR001  VFU00180VF_SaveNValue BIF                                              000000000000000
+VF_PR001  VFU00190VF_RestoreAValue                                               000000000000000
+VF_PR001  VFU00200VF_RestoreNValue BIF                                           000000000000000
+VF_PR001  VFU00210FP_Set Builtin Function                                        000000000000000
+VF_PR001  VFU00220FP_SetNum Builtin Function                                     000000000000000
+VF_PR001  VFU00230FP_Get Builtin Function                                        000000000000000
+VF_PR001  VFU00240FP_GetNum Builtin Function                                     000000000000000
+VF_PR001  VFU00300Remove state data                                              000000000000000
+VF_PR001  VFU00310Handle Short Course data                                       000000000000000
+VF_PR001  VFU00330System Variable and Property Management                        000000000000000
+VF_PR001  VFU00340Alphanumeric System Variable Evaluation                        000000000000000
+VF_PR001  VFU00350Numeric System Variable Evaluation                             000000000000000
+VF_PR001  VFU00380I/O for user details                                           000000000000000
+VF_PR001  VFU00390Add process skeleton                                           000000000000000
+VF_PR001  VFU00400Table Interface Manager                                        000000000000000
+VF_PR001  VFU00410Call MTXT Loader                                               000000000000000
+VF_PR001  VFU00420Load Tables to named space model                               000000000000000
+VF_PR001  VFU00440VF Builtin function main logic                                 000000000000000
+VF_PR001  VFU00450Handle a prompt                                                000000000000000
+VF_PR001  VFU00460Build Bsiness Object List                                      000000000000000
+VF_PR001  VFU00470Uppercase/lowercase name checking                              000000000000000
+VF_PR001  VFU00480Access                                                         000000000000000
+VF_PR001  VFU00490Wrapper for Relationship Handlers                              000000000000000
+VF_PR001  VFU00500Manage call to avCheckAuth Web version                         000000000000000
+VF_PR001  VFU00770VF_Get_Instance                                                000000000000000
+VF_PR001  VFU00880VF_GetNum_instance                                             000000000000000
+VF_PR001  VFU009A0Interface between web IIP and VFU009                           000000000000000
+VF_PR004  VFU04010Verify VL Framework is operational                             000000000000000
+VF_PR004  VFU04020VL Framework Administrators Console                            000000000000000
+VF_PR004  VFU04030VL Framework Developers Console                                000000000000000
+VF_PR004  VFU04040Convert DC@X02 records to NAT                                  000000000000000
+VF_PR004  VFU04050HTML Page Language converter                                   000000000000000
+VF_PR004  VFU04060Initiate VFU0405 from Win Import                               000000000000000
+VF_PR004  VFU04070Field Help                                                     000000000000000
+VF_PR004  VFU04080Show server side errors                                        000000000000000
+VF_PR004  VFU04090Insert Code Table data                                         000000000000000
+VF_PR004  VFU04100EPC Logging                                                    000000000000000
+VF_PR004  VFU04111Get web configuration details                                  000000000000000
+VF_PR004  VFU04121Create Project Subdirectory if required                        000000000000000
+VF_PR004  VFU04130VLF Check Web Enablement                                       000000000000000
+VF_PR005  VFBE0011Data Exchanger                                                 000000000000000
+VF_PR005  VFBE0021BEMS queue manager                                             000000000000000
+VF_PR005  VFBE0031Queue Initialization                                           000000000000000
+VF_PR005  VFBE0041Queue Termination                                              000000000000000
+VF_PR005  VFBE0051Server Manager                                                 000000000000000
+VF_PR005  VFBE0061Start BEMS Service                                             000000000000000
+VF_PR005  VFBE0071Shutdown BEM Services                                          000000000000000
+VF_PR005  VFBE0081Allocate queues                                                000000000000000
+VF_PR005  VFBE0091Deallocate a Queue                                             000000000000000
+VF_PR005  VFBE0101Register User Process                                          000000000000000
+VF_PR005  VFBE0111Look for input data                                            000000000000000
+VF_PR005  VFBETS20Test Data Queue Sends                                          000000000000000
+VF_PR005  VFBETST0RDML Test Interface                                            000000000000000
+VF_PR0X1  VFUX0011LL2 version of VFU0001                                         000000000000000
+VF_PR0X1  VFUX0031Manage BO properties for BIFs                                  000000000000000
+VF_PR0X1  VFUX0041VFX builtin                                                    000000000000000
+VF_PR0X1  VFUX0051VFX_SET Builtin function                                       000000000000000
+VF_PR0X1  VFUX0061VFX_SETNUM Builtin function                                    000000000000000
+VF_PR0X1  VFUX0071VFX_GET Builtin function                                       000000000000000
+VF_PR0X1  VFUX0081VFX_GETNUM Builtin function                                    000000000000000
+VF_PR0X1  VFUX0141VFX version of VFU0014                                         000000000000000
+VF_PR0X1  VFUX0151VFX version fo VFU0015                                         000000000000000
+VF_PR0X1  VFUX0161VFX version fo VFU0016                                         000000000000000
+VF_PR0X1  VFUX0171VFX version of VFU0017                                         000000000000000
+VF_PR0X1  VFUX0181VFX version of VFU0018                                         000000000000000
+VF_PR0X1  VFUX0191VFX version fo VFU0019                                         000000000000000
+VF_PR0X1  VFUX0201VFX version of VFU0020                                         000000000000000
+VF_PR0X1  VFUX0211VFX version of VFU0021                                         000000000000000
+VF_PR0X1  VFUX0221VFX version fo VFU0022                                         000000000000000
+VF_PR0X1  VFUX0231VFX version of VFU0023                                         000000000000000
+VF_PR0X1  VFUX0241VFX version of VFU0024                                         000000000000000
+VF_PR0X1  VFUX0301VFX version of VFU0030                                         000000000000000
+VF_PR0X1  VFUX0311VFX version fo VFU0031                                         000000000000000
+VF_PR0X1  VFUX0331VFX version of VFU0033                                         000000000000000
+VF_PR0X1  VFUX0341VFX version of VFU0034                                         000000000000000
+VF_PR0X1  VFUX0351VFX version of VFU0035                                         000000000000000
+VF_PR0X1  VFUX0381VFX version of VFU0038                                         000000000000000
+VF_PR0X1  VFUX0391VFX version of VFU0039                                         000000000000000
+VF_PR0X1  VFUX0401VFX version of VFU0040                                         000000000000000
+VF_PR0X1  VFUX0411VFX version fo VFU0041                                         000000000000000
+VF_PR0X1  VFUX0421VFX version of VFU0042                                         000000000000000
+VF_PR0X1  VFUX0441VFX Builtin function Main Logic                                000000000000000
+VF_PR0X1  VFUX0451VFX version of VFU0045                                         000000000000000
+VF_PR0X1  VFUX0461Build business object list                                     000000000000000
+VF_PR0X1  VFUX0471Check uppercase/lowercase names                                000000000000000
+VF_PR0X1  VFUX0491Wrapper for Relationship Handlers                              000000000000000
+VF_PR0X1  VFUX0511VFX_SETU Builtin function                                      000000000000000
+VF_PR0X1  VFUX0521VFX_GETU Builtin function                                      000000000000000
+VF_PR0X1  VFUX0771VFX_GET_INSTANCE Builtin function                              000000000000000
+VF_PR0X1  VFUX0881VFX_GETNUM_INSTANC Builtin function                            000000000000000
+VF_PRINC  VFAUT010avCheckAuth Include 1                                          000000000000000
+VF_PRINC  VFAUT020avCheckAuth Include 2                                          000000000000000
+VF_PRINC  VFEND  0End Filter or Command Handler                                  000000000000000
+VF_PRINC  VFREL1 0Relationship builder include 1                                 000000000000000
+VF_PRINC  VFREL2 0Relationship Builder Include 2                                 000000000000000
+VF_PRINC  VFSTART0Start Filter or command Handler                                000000000000000
+VF_PRINC  VFUIN010Code Table Start logic                                         000000000000000
+VF_PRINC  VFUIN020Code Table Subroutines                                         000000000000000

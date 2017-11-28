@@ -1,0 +1,150 @@
+* ---------------------------------------------------------------------------------
+* This is a command handler in framework <<FRAMEWORK>>.
+* It belongs to business object <<BUSINESS_OBJECT_CAPTION>>.
+* It was created on <<CREATEDDATE>> by <<CREATEDUSER>>.
+* ---------------------------------------------------------------------------------
+Begin_Com Role(*EXTENDS #vf_ac010O) Height(270) Width(500)  
+
+Group_By Name(#XG_EditableDataItems) Fields(<<EXPAND_ALLREAL>>)
+Group_By Name(#XG_ReadOnlyDataItems) Fields(<<EXPAND_ALLVIRTUAL>>)
+Group_By Name(#XG_AllDataItems) Fields(#XG_EditableDataItems #XG_ReadOnlyDataItems)
+
+* ---------------------------------------------------------------------------------
+Def_List Name(#AllDataItems) Fields(#XG_AllDataItems) Type(*Working) Entrys(*MAX)
+Def_List Name(#EditableDataItems) Fields(#XG_EditableDataItems) Type(*Working) Entrys(*MAX)
+Define_Com Class(#Prim_Boln) Name(#ServerModuleResult) 
+
+* ---------------------------------------------------------------------------------
+Define_Com Class(#Prim_panl) Name(#DataItemPanel) Parent(#COM_OWNER) Displayposition(1) Tabposition(1) Height(238) Left(0) Top(0) Width(500) Horizontalscroll(True) Verticalscroll(True) Tabstop(False)
+Define_Com Class(#Prim_panl) Name(#ButtonPanel) Parent(#COM_OWNER) Displayposition(2) Tabposition(2) Left(0) Top(238) Width(500) Layoutmanager(#ButtonPanelAttachmenthManager) Height(32) Tabstop(False)
+Define_Com Class(#PRIM_ATLI) Name(#AttachDataItemPanel) Manage(#DataItemPanel) Parent(#MainPanelAttachmentManager) Attachment(Center)
+Define_Com Class(#PRIM_ATLI) Name(#AttachButtonPanel) Manage(#ButtonPanel) Parent(#MainPanelAttachmentManager) Attachment(Bottom)
+* ---------------------------------------------------------------------------------
+Define_Com Class(#Prim_atlm) Name(#ButtonPanelAttachmenthManager)
+Define_Com Class(#Prim_atli) Name(#ButtonPanelAttachmentSave) Parent(#ButtonPanelAttachmenthManager) Manage(#Save_Button) Attachment(Right) Marginright(4) Margintop(4) Marginbottom(4)
+Define_Com Class(#Prim_atli) Name(#ButtonPanelAttachmentAnother) Parent(#ButtonPanelAttachmenthManager) Manage(#Another_Button) Attachment(Right) Marginright(4) Margintop(4) Marginbottom(4)
+* ---------------------------------------------------------------------------------
+Define_Com Class(#Prim_phbn) Name(#Save_Button) Parent(#ButtonPanel) Caption(*MTXTUF_SAVE) Displayposition(1) Tabposition(1) Height(24) Left(416) Top(4) Buttondefault(True) 
+Define_Com Class(#Prim_phbn) Name(#Another_Button) Parent(#ButtonPanel) Caption(*MTXTUF_CREATEMORE) Displayposition(3) Tabposition(3) Height(24) Left(332) Top(4) Buttondefault(True) Width(100) 
+* ---------------------------------------------------------------------------------
+<<EXPAND_PANEL_LAYOUT>> <<INDEX1=1:1>> <<INDEX2=4:24>> <<INDEX3=22:0>> <<PARM1=Define_Com Class(%NAME%.Visual) Parent(#DataItemPanel) Displayposition(%INDEX1%) Labeltype(<<IDENTIFICATION>>) Tabposition(%INDEX1%) Top(%INDEX2%) Left(4) MarginLeft(150) Height(22) Width(400)>> <<PARM2=Define_Com Class(%NAME%.Visual) Parent(#DataItemPanel) Displayposition(%INDEX1%) Labeltype(<<IDENTIFICATION>>) Tabposition(%INDEX1%) Top(%INDEX2%) Left(4) MarginLeft(150) Height(22) Width(400) ReadOnly(True)>> 
+* ---------------------------------------------------------------------------------
+Mthroutine Name(uInitialize) Options(*REDEFINE)
+* Do the ancestor thing
+#COM_ANCESTOR.uInitialize
+* Track changes to visual controls
+#COM_SELF.avTrackControlChanges Incontainer(#COM_Self)
+* Auto arrange items on the main data panel
+#COM_SELF.avStartAutoArrangingControls Onpanel(#DataItemPanel)
+* Initialize some visibility
+Set Com(#Save_Button #Another_Button) Visible(False)
+Endroutine
+
+* ---------------------------------------------------------------------------------
+Mthroutine Name(uTerminate) Options(*REDEFINE)
+* Stop tracking changes to visual controls
+#COM_SELF.avStopTrackingControlChanges
+* Stop auto arranging the data panel
+#Com_Self.avStopAutoArrangingControls
+* Do the ancestor thing
+#COM_ANCESTOR.uTerminate
+Endroutine
+
+* ---------------------------------------------------------------------------------
+Mthroutine Name(uExecute) Options(*REDEFINE)
+* Do the ancestor thing
+#COM_ANCESTOR.uExecute Gotofreestate(#GotoFreeState) Switchcallerreference(#SwitchCallerReference)
+* Asynchronously start a LoadNew
+If (#COM_OWNER.CheckForUnsavedChanges( False ))
+#COM_OWNER.avQueueAsyncOperation Operationid(LoadNew)
+#GotoFreeState := False /* Don't go back to a free state until async operations complete */
+Endif
+Endroutine
+
+* ---------------------------------------------------------------------------------
+Mthroutine Name(avExecuteAsyncOperation) Options(*REDEFINE)
+* Handle the requested async operation
+Case (#OperationID)
+When (= LoadNew)    /* Create new <<BUSINESS_OBJECT_CAPTION_SINGULAR>>            */ 
+#COM_OWNER.LoadNew
+When (= SaveNew)    /* Save new <<BUSINESS_OBJECT_CAPTION_SINGULAR>>              */
+#COM_OWNER.SaveNew
+Endcase
+Endroutine
+
+* ---------------------------------------------------------------------------------
+Mthroutine Name(LoadNew) Access(*PRIVATE)
+Define_Com Class(<<SERVER_MODULE>>.InitializeNewData) Name(#InitializeNewData)
+* Ask the server to insitaizle all fields to create a new data item
+#InitializeNewData.Execute Alldataitems(#AllDataItems)
+* Get those intial values into this program
+Get_Entry Number(1) From_List(#AllDataItems)
+* Set the buttons to their initial state 
+Set Com(#Save_Button #Another_Button) Visible(False)
+* Set the keys fields to be input capable
+Set Com(<<EXPAND_KEYS>>) ReadOnly(False)
+Set Com(<<EXPAND_VIRTUAL>>) Visible(False)
+#Save_Button.ComponentTag := SaveNew
+#DataItemPanel.Enabled := True
+Endroutine
+
+* ------------------------------------------------------------------------------
+Mthroutine Name(avHandleTrackedControlChange) Options(*REDEFINE)
+#Save_Button.Visible := #DataItemPanel.Enabled 
+Endroutine
+
+* ---------------------------------------------------------------------------------
+Mthroutine Name(Save) Access(*PRIVATE)
+Define_Com Class(<<SERVER_MODULE>>.PutData) Name(#PutData)
+* Ask the server save the editable data items
+Inz_List Named(#EditableDataItems)
+#PutData.Execute Editabledataitems(#EditableDataItems) Servermoduleresult(#ServerModuleResult)
+If (#ServerModuleResult)
+#AVLISTMANAGER.AddtoList <<EXPAND_ADDTOLIST>>
+Set Com(#Save_Button) Visible(False)
+Endif
+Endroutine
+
+* ---------------------------------------------------------------------------------
+Mthroutine Name(SaveNew) Access(*PRIVATE)
+Define_Com Class(<<SERVER_MODULE>>.PutData) Name(#PutData)
+* Ask the server save the editable data items
+Inz_List Named(#EditableDataItems)
+#PutData.Execute Editabledataitems(#EditableDataItems) Servermoduleresult(#ServerModuleResult)
+If (#ServerModuleResult)
+#AVLISTMANAGER.AddtoList <<EXPAND_ADDTOLIST>>
+#Save_Button.Visible := False
+#Another_Button.Visible := True
+#DataItemPanel.Enabled := False
+Endif
+Endroutine
+* ---------------------------------------------------------------------------------
+Evtroutine Handling(#Save_Button.Click)
+#COM_OWNER.avQueueAsyncOperation Operationid(SaveNew) Busystatetext(*MTXTUF_Saving)
+Endroutine
+
+* ---------------------------------------------------------------------------------
+Evtroutine Handling(#Another_Button.Click)
+#COM_OWNER.avQueueAsyncOperation Operationid(LoadNew) Busystatetext(*MTXTUF_Loading)
+Endroutine
+
+* ------------------------------------------------------------------------------
+* Indicate back to framework whether a close operation is currently allowed
+Mthroutine Name(uQueryCanClose) Options(*REDEFINE)
+#COM_OWNER.CheckForUnsavedChanges Timeoutinprogress(#TimeOutinProgress) Allowtoproceed(#Allow)
+Endroutine
+
+* --------------------------------------------------------------------------
+* Returns True (Go ahead) or False (there are changes AND the user wants to save them)
+Mthroutine Name(CheckForUnsavedChanges)
+Define_Map For(*INPUT) Class(#prim_boln) Name(#TimeOutinProgress)
+Define_Map For(*result) Class(#prim_boln) Name(#AllowtoProceed)
+* If a save operation is pending and not timed out
+If (#Save_Button.Visible And #TimeOutinProgress.Not)
+#AllowtoProceed := (#SYS_WEB.Confirm( (*MTXTUF_MSG_0009.Substitute((<<EXPAND_KEYSASVALUES>>)))) = Cancel)
+Else
+#AllowtoProceed := True /* Default */
+Endif
+Endroutine
+
+End_Com

@@ -1,0 +1,30 @@
+* -------------------------------------------------------------------------------------------------------------
+* This is the customized VLF-ONE entry point (or launch point) form for framework <<FRAMEWORK>>
+* It was created on <<CREATEDDATE>> by <<CREATEDUSER>>
+* On the integration tab (above) the script named VLFONE_Engine.js should be specified to maximize performance.
+* -------------------------------------------------------------------------------------------------------------
+
+Begin_Com Role(*EXTENDS #PRIM_WEB) Layoutmanager(#WebFormLayoutManager)
+
+Define_Com Class(#PRIM_ATLM) Name(#WebFormLayoutManager)
+Define_Com Class(#PRIM_ATLI) Name(#VLF_One_AttachItem) Parent(#WebFormLayoutManager) Attachment(Center) Manage(#VLF_ONE)
+Define_Com Class(#VF_AC006O) Name(#VLF_ONE) Parent(#COM_OWNER) Height(800) Width(1200)
+
+* -------------------------------------------------------------------------------------
+Evtroutine Handling(#COM_OWNER.CreateInstance)
+
+* Start VLF-ONE for your framework
+#VLF_ONE.uInitialize Frameworkidentifer("<<IDENTIFIER>>") Logonexpiry(90) Logonheaderpanelid("<<HEADER>>") Logontrailerpanelid("<<TRAILER>>") Logonhandlerid("VF_AC026O") Passwordchangerid("") Mtxtloaderid(UF_OMULTI) Themecustomizerid("") 
+
+Endroutine
+
+* -------------------------------------------------------------------------------------
+Evtroutine Handling(#SYS_WEB.CloseQuery)
+
+If (#VLF_ONE *IsNot *null)
+#VLF_ONE.uTerminate Possibletocancel(False) Browserisclosing(True)
+Endif
+
+Endroutine
+
+End_Com

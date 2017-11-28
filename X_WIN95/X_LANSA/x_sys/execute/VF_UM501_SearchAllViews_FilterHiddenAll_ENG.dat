@@ -1,0 +1,46 @@
+* ---------------------------------------------------------------------------------
+* This is a hidden filter in framework <<FRAMEWORK>>.
+* It belongs to business object <<BUSINESS_OBJECT_CAPTION>>.
+* It was created on <<CREATEDDATE>> by <<CREATEDUSER>>.
+* ---------------------------------------------------------------------------------
+Begin_Com Role(*EXTENDS #vf_ac007O) Height(270) Width(500)
+* The columns returned from the server to include into the instance list
+Group_By Name(#XG_InstanceListColumns) Fields(<<EXPAND_INSTANCELISTNAMES>>)
+* ---------------------------------------------------------------------------------
+Mthroutine Name(uInitialize) Options(*REDEFINE)
+* Do the ancestor thing
+#COM_ANCESTOR.uInitialize
+* Make this a hidden filter and change the clear list button caption to show "Refresh" instead
+#COM_Self.avFilterLocation := NONE
+#COM_Self.avChangeClearListButtonCaption To(*MTXTUF_REFRESH_LIST)
+* Initiate an async Operation to load all data
+#Com_Owner.avQueueAsyncOperation Operationid(LoadAllData) Busystatetext("Loading all <<BUSINESS_OBJECT_CAPTION>>")
+Endroutine
+* ---------------------------------------------------------------------------------
+Evtroutine Handling(#AVLISTMANAGER.ListCleared)
+* Queue a reload Operation unless something is already queued for processing
+#Com_Owner.avQueueAsyncOperation Operationid(LoadAllData) Busystatetext("Reloading all <<BUSINESS_OBJECT_CAPTION>>") Onlyifnothingelsepending(True)
+Endroutine
+* ---------------------------------------------------------------------------------
+Mthroutine Name(avExecuteAsyncOperation) Options(*REDEFINE)
+* Definitions
+Define_Com Class(#prim_boln) Name(#ServerModuleResult)
+Def_List Name(#InstanceList_Columns) Fields(#XG_InstanceListColumns) Type(*Working) Entrys(*MAX)
+Define_Com Class(<<SERVER_MODULE>>.Find) Name(#FindAll)
+* Handle the various async Operations that this program
+Case (#OperationID)
+* -----------
+* LoadAllData
+When (= LoadAllData)
+* Load all details from the server
+#FindAll.Execute Instancelist_Columns(#InstanceList_Columns) Servermoduleresult(#ServerModuleResult)
+* Clear and (re)load the client side instance list returned from from the server
+#AVLISTMANAGER.ClearList
+Selectlist Named(#InstanceList_Columns)
+#AVLISTMANAGER.AddtoList <<EXPAND_ADDTOLIST>>
+Endselect
+* Clear the instance list that was returned as it is no longer required
+Clr_List Named(#InstanceList_Columns)
+Endcase
+Endroutine
+End_Com

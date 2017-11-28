@@ -1,0 +1,103 @@
+* ---------------------------------------------------------------------------------
+* This is a server module in framework <<FRAMEWORK>>.
+* It belongs to business object <<BUSINESS_OBJECT_CAPTION>>.
+* It was created on <<CREATEDDATE>> by <<CREATEDUSER>>.
+* ---------------------------------------------------------------------------------
+Begin_Com Role(*EXTENDS #PRIM_SRVM) Sessionidentifier('VLFONE') 
+
+* ---------------------------------------------------------------------------------
+* Declare the shared server system manager. It must be declared exactly this
+* way in any server modules or reusable parts that want to use it.
+Define_Com Class(#<<SERVER_MANAGER>>) Name(#ServerSystemManager) Scope(*APPLICATION)
+* These strings coming from the logon validator. They allow the logon validator to pass information
+* into your shared server system manager. For example, an IBM i library list to be used, or
+* details about the currently logged on user or other system states.
+Define Field(#Persistent_ApplicationString1) Type(*NVARCHAR)
+Define Field(#Persistent_ApplicationString2) Type(*NVARCHAR)
+Define Field(#Persistent_ApplicationString3) Type(*NVARCHAR)
+Define Field(#Persistent_ApplicationString4) Type(*NVARCHAR)
+Define Field(#Persistent_ApplicationString5) Type(*NVARCHAR)
+* ---------------------------------------------------------------------------------
+
+* Use expandable groups to accomodate easier maintenance 
+Group_By Name(#XG_AccessKeys) Fields(<<EXPAND_KEYS>>)
+Group_By Name(#XG_EditableDataItems) Fields(<<EXPAND_ALLREAL>>)
+Group_By Name(#XG_ReadOnlyDataItems) Fields(<<EXPAND_ALLVIRTUAL>>)
+Group_By Name(#XG_AllDataItems) Fields(#XG_EditableDataItems #XG_ReadOnlyDataItems)
+
+* ---------------------------------------------------------------------------------
+Def_List Name(#AllDataItems) Fields(#XG_AllDataItems) Type(*Working) Entrys(*MAX)
+Def_List Name(#EditableDataItems) Fields(#XG_EditableDataItems) Type(*Working) Entrys(*MAX)
+Define Field(#ServerModuleResult) Type(*BOOLEAN)
+
+* ---------------------------------------------------------------------------------
+Define_Com Class(#Prim_dc.UnicodeString) Name(#SingularName)   Value('<<BUSINESS_OBJECT_CAPTION_SINGULAR>>')
+Define_Com Class(#Prim_dc.UnicodeString) Name(#PluralName)     Value('<<BUSINESS_OBJECT_CAPTION>>')
+
+* ---------------------------------------------------------------------------------
+Srvroutine Name(InitializeNewData) Session(*REQUIRED)
+List_Map For(*OUTPUT) List(#AllDataItems)
+Field_Map For(*OUTPUT) Field(#ServerModuleResult)
+
+* Invoke the server manager to set up the execution context for this server routine
+#ServerSystemManager.InitializeServiceRoutine Persistentstring1(#Persistent_ApplicationString1) Persistentstring2(#Persistent_ApplicationString2) Persistentstring3(#Persistent_ApplicationString3) Persistentstring4(#Persistent_ApplicationString4) Persistentstring5(#Persistent_ApplicationString5)
+
+* Process the request 
+Change Field(#AllDataItems) To(*null)
+
+Add_Entry To_List(#AllDataItems)
+
+#ServerModuleResult := True
+
+* Invoke the server manager to clean up and finalize the execution context for this server routine
+#ServerSystemManager.TerminateServiceRoutine
+
+Endroutine
+
+* ---------------------------------------------------------------------------------
+Srvroutine Name(PutData) Session(*REQUIRED)
+List_Map For(*input) List(#EditableDataItems)
+Field_Map For(*OUTPUT) Field(#ServerModuleResult)
+
+Define_Com Class(#vf_elretc) Name(#Io_Status)
+Define_Com Class(#Prim_dc.UnicodeString) Name(#ResultMessage)
+
+* Invoke the server manager to set up the execution context for this server routine
+#ServerSystemManager.InitializeServiceRoutine Persistentstring1(#Persistent_ApplicationString1) Persistentstring2(#Persistent_ApplicationString2) Persistentstring3(#Persistent_ApplicationString3) Persistentstring4(#Persistent_ApplicationString4) Persistentstring5(#Persistent_ApplicationString5)
+
+* Now process the client's request 
+Get_Entry Number(1) From_List(#EditableDataItems)
+
+Check_For In_File(<<EXPAND_FIRSTVIEW>>) With_Key(#XG_AccessKeys) Io_Status(#Io_Status) Io_Error(*NEXT)
+
+Case (#Io_Status)
+When (= EQ)
+Update Fields(#EditableDataItems) In_File(<<EXPAND_FIRSTVIEW>>) With_Key(#XG_AccessKeys) Io_Status(#Io_Status) Io_Error(*NEXT)
+When (= NE)
+Insert Fields(#EditableDataItems) To_File(<<EXPAND_FIRSTVIEW>>) Io_Status(#Io_Status) Io_Error(*NEXT)
+Endcase
+
+Case (#Io_Status)
+When (= OK)
+#ResultMessage := *MTXTUF_MSG_0005.Substitute(#SingularName #Com_Self.VisibleIdentification)
+#ServerModuleResult := True
+When (= VE)
+#ResultMessage := *MTXTUF_MSG_0006.Substitute(#SingularName #Com_Self.VisibleIdentification) 
+Otherwise
+#ResultMessage := *MTXTUF_MSG_0007.Substitute(#SingularName #Com_Self.VisibleIdentification #Io_Status)
+Endcase
+
+Message Msgtxt(#ResultMessage)
+
+* Invoke the server manager to clean up and finalize the execution context for this server routine
+#ServerSystemManager.TerminateServiceRoutine
+
+Endroutine
+
+* ---------------------------------------------------------------------------------
+Mthroutine Name(VisibleIdentification) Access(*PRIVATE)
+Define_Map For(*RESULT) Class(#Prim_dc.UnicodeString) Name(#Result)
+#Result := <<EXPAND_KEYSASVALUES>>
+Endroutine
+
+End_Com

@@ -1,0 +1,72 @@
+BBALPSYS  Alphanumeric System Variable Evaluation                        000000000000
+BBALPVAL  Alphanumeric Field Validation                                  000000000000
+BBCASE    Build block : CASE / ENDCASE Construct                         000000000000
+BBDOU     Build block : DOUNTIL/ENDUNTIL Construct                       000000000000
+BBDOW     Build block : DOWHILE/ENDWHILE Construct                       000000000000
+BBFILTRIG File Level Trigger Function                                    000000000000
+BBFLDTRIG Field Level Trigger Function                                   000000000000
+BBIF      Build Block : IF/ENDIF Construct                               000000000000
+BBIFELSE  Build Block : IF/ELSE/ENDIF Construct                          000000000000
+BBJSMCMD  Building Block: build a JSM command                            000000000000
+BBJSMXCMD BBJSMXCMD - Building Block: Build a JSMX                       000000000000
+BBLOOP    Build Block : BEGIN/END_LOOP Construct                         000000000000
+BBNUMSYS  Numeric System Variable Evaluation                             000000000000
+BBNUMVAL  Numeric Field Validation                                       000000000000
+BBPAGE    Build Block : Page at a time browse list                       000000000000
+BBPGM     Build block : Online program layout                            000000000000
+BBPGMBCH  Build block : Batch program layout                             000000000000
+BBRDMLBIF RDML Built-In Function                                         000000000000
+BBSUB     Build Block : Basic subroutine layout                          000000000000
+FLDTEST   Test Fields on Display                                         000000000000
+FRABMNT01 Action Bar "Object" - Basic Maintenance                        000000000000
+FRADD01   Flat Screen Data Entry                                         000000000000
+FRADD02   Flat Screen Data Entry (with Confirm)                          000000000000
+FRENQ01   Flat Screen Enquiry                                            000000000000
+FRENQ02   Header/Detail Enquiry                                          000000000000
+FRMNT01   Flat Screen Maintenance                                        000000000000
+FRMNT02   Browse / Enquire / Maintain Style                              000000000000
+FRMNT03   Header/Detail Maintenance (S/36 Style)                         000000000000
+FRMNT04   Header/Detail Maintenance (S/38 style)                         000000000000
+FRMNT05   Header/Detail Maintenance (POP_UP style)                       000000000000
+FRPOP01   Pop Up Prompter (Full File Displayed)                          000000000000
+FRPOP02   Pop Up Prompter (Requests Search Values)                       000000000000
+FRPOP03   Pop Up Prompter (with Full Maintenance)                        000000000000
+FRPOP04   Pop Up Prompter (from Fixed Value List)                        000000000000
+FRPROTO   ProtoTyping Template                                           000000000000
+FRPRT01   List Style Report with Generic Selection                       000000000000
+FRPRT03   Header/Detail Style Report                                     000000000000
+FRPRT04   List Style Report with Sort/Select/Total                       000000000000
+FRPRT04EX1List Style Report - routine EXP£LST                            000000000000
+FRPRT05   Drill Down Style Summary Reports                               000000000000
+FRUTIL01  File Transfer Utility (for Length<=256)                        000000000000
+FRUTIL02  File Transfer Utility - Generic                                000000000000
+FRUTIL03  Super Server Generic Connect/Disconnect                        000000000000
+FRWEBADD01Data entry for *WEBEVENT                                       000000000000
+FRWEBENQ01Page at a time with detail display                             000000000000
+FRWRK01   AS/400 Work with Object - Basic                                000000000000
+FRWRK02   AS/400 Work With Object - Advanced                             000000000000
+JSMSKEL   Creates a basic JSM skeleton RDML                              000000000000
+JSMXSKEL  JSMXSKEL - Creates a basic JSMX Skeleton                       000000000000
+VL_BASEBOBVisual LANSA Business Object Browser                           000000000000
+VL_BASEBODVisual LANSA Business Object Detailer                          000000000000
+VL_BASEBOFVisual LANSA Business Object Filter                            000000000000
+VL_BASEBR1Visual LANSA advanced parent browser                           000000000000
+VL_BASEBR2Visual LANSA advanced tabbed detail                            000000000000
+VL_BASEMNTVisual LANSA flat file maintenance                             000000000000
+VL_BASETABVisual LANSA tab folder with four sheets                       000000000000
+VL_BASETREVisual LANSA simple tree list                                  000000000000
+VL_BASEWRKVisual LANSA work with object                                  000000000000
+VL_BBMNUBRVisual LANSA: Menu bar building block                          000000000000
+VL_BBSTSBRVisual LANSA: Status bar building block                        000000000000
+VL_BBWEBRTVisual LANSA: Webroutine Building Block                        000000000000
+VL_FBASBOBVisual LANSA Business Object Browser                           000000000000
+VL_FBASBODVisual LANSA Business Object Detailer                          000000000000
+VL_FBASBOFVisual LANSA Business Object Filter                            000000000000
+VL_FBASBR1Visual LANSA advanced parent browser                           000000000000
+VL_FBASBR2Visual LANSA advanced tabbed detail                            000000000000
+VL_FBASMNTVisual LANSA flat file maintenance                             000000000000
+VL_FBASTABVisual LANSA tab folder with four sheets                       000000000000
+VL_FBASTREVisual LANSA simple tree list                                  000000000000
+VL_FBASWRKVisual LANSA work with object                                  000000000000
+VL_FBBMNUBVisual LANSA: Menu bar building block                          000000000000
+VL_FBBSTSBVisual LANSA: Status bar building block                        000000000000

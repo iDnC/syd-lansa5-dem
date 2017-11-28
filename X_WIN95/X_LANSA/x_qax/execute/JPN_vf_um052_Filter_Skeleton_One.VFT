@@ -1,0 +1,142 @@
+<caption>
+スケルトン フィルター       
+</caption>
+<preamble>
+ENG_vf_um052_Filter_Skeleton_One.htm
+</preamble>
+<context>
+Filter 
+</context> 
+<mode>
+ONE
+</mode>
+<sequence>
+000200   
+</sequence>
+<handler>
+VF_UM055 
+VF_UM054  
+</handler>
+<handlertxt>
+このビジネス・オブジェクトに使用する識別プロトコルを指定します。物理ファイルがこのビジネス オブジェクトと類似している場合、その名前を指定すると、ウィザードが自動的に基本となる識別プロトコルを推測します。    
+生成されるコードに含める内容を指定します。     
+</handlertxt>
+<hint>
+このウィザードにより、フィルターの基本的なスケルトン コードが生成され、これを完成させるには手作業が必要となります。これは、フィルターに独自の特化されたコードを追加して、大部分を自分でコーディングすることを希望する、フィルターの使用経験が豊富な開発者のために設計されたものです。  
+</hint>
+<code>
+<<include VF_UM052_Filter_Preamble.vfi>>
+Function Options(*DIRECT)
+Begin_Com Role(*EXTENDS #VF_AC007O) Height(182) Width(326) Layoutmanager(#TableLayout_Main)
+
+* テーブル レイアウト
+
+Define_Com Class(#PRIM_TBLO) Name(#TableLayout_Main)
+
+Define_Com Class(#PRIM_TBLO.Column) Name(#Column1) Displayposition(1) Parent(#TableLayout_Main)
+Define_Com Class(#PRIM_TBLO.Row) Name(#Row1) Displayposition(1) Parent(#TableLayout_Main) Height(1.72)
+Define_Com Class(#PRIM_TBLO.Row) Name(#Row2) Displayposition(2) Parent(#TableLayout_Main) Height(25) Units(Pixels)
+
+* レイアウト項目
+
+Define_Com Class(#PRIM_TBLO.Item) Name(#EXAMPLE_LABL_2Item1) Manage(#EXAMPLE_LABL_2) Parent(#TableLayout_Main) Row(#Row1) Sizing(None) Column(#Column1) Alignment(TopLeft) Flow(Down)
+Define_Com Class(#PRIM_TBLO.Item) Name(#CLEARLIST_CKBXItem1) Manage(#CLEARLIST_CKBX) Parent(#TableLayout_Main) Row(#Row1) Sizing(None) Column(#Column1) Alignment(TopLeft) Flow(Down)
+Define_Com Class(#PRIM_TBLO.Item) Name(#EXAMPLE_USERItem1) Manage(#EXAMPLE_USER) Parent(#TableLayout_Main) Row(#Row1) Sizing(None) Column(#Column1) Alignment(TopLeft) Flow(Down)
+Define_Com Class(#PRIM_TBLO.Item) Name(#EXAMPLE_DATEItem1) Manage(#EXAMPLE_DATE) Parent(#TableLayout_Main) Row(#Row1) Sizing(None) Column(#Column1) Alignment(TopLeft) Flow(Down)
+Define_Com Class(#PRIM_TBLO.Item) Name(#SEARCH_BUTTON_1Item1) Manage(#SEARCH_BUTTON_1) Parent(#TableLayout_Main) Row(#Row2) Sizing(FitToHeight) Column(#Column1) Alignment(CenterLeft) Flow(Right)
+
+* コンポーネント定義
+
+* 動作指示のテキスト (不要であれば、このブロックを削除)
+
+Define_Com Class(#PRIM_LABL) Name(#EXAMPLE_LABL_2) Caption('Put Fields on this Panel') Displayposition(1) Height(20) Left(0) Parent(#COM_OWNER) Tabposition(3) Tabstop(False) Top(0) Verticalalignment(Center) Visible(False) Width(326)
+
+* リストのクリア チェックボックス
+
+Define_Com Class(#PRIM_CKBX) Name(#CLEARLIST_CKBX) Buttonstate(Checked) Caption('Clear List') Displayposition(2) Height(22) Parent(#COM_OWNER) Tabposition(1) Top(20) Width(326) Left(0)
+
+* サンプル フィールド (不要であれば、このブロックを削除)
+
+Define_Com Class(#USER.Visual) Name(#EXAMPLE_USER) Caption('User') Displayposition(3) Height(19) Labeltype(Caption) Marginleft(30) Parent(#COM_OWNER) Tabposition(2) Top(42) Width(326) Usepicklist(False)
+Define_Com Class(#DATE.Visual) Name(#EXAMPLE_DATE) Caption('Date') Displayposition(4) Height(19) Labeltype(Caption) Marginleft(30) Parent(#COM_OWNER) Tabposition(4) Top(61) Width(326) Usepicklist(False)
+
+* サンプル検索ボタン
+
+Define_Com Class(#PRIM_PHBN) Name(#SEARCH_BUTTON_1) Buttondefault(True) Caption('Search ') Displayposition(1) Left(237) Parent(#Com_Owner) Tabposition(1) Top(0) Width(89) Height(30)
+
+*  サービス モジュール、IO モジュールとの通信に使用するリスト
+Def_List Name(#<<UM055_BaseFile>>List) Counter(#ListCount) Type(*Working) Entrys(*Max) <<UM055_BaseFileFields>> 
+
+* <<majorsep>>
+* ルーチン
+* <<majorsep>>
+
+<<if CA_UM054_INITIALIZE>>
+Mthroutine Name(uInitialize) Options(*REDEFINE)
+<<Comment>>先祖で定義された初期化処理を行う 
+#Com_Ancestor.uInitialize
+<<CommentBlock>>
+#COM_OWNER.avFilterLocation := LEFT /* フィルターは左側 */
+#COM_OWNER.avAllowLocationChange := True /* ユーザーにフィルター移動を許可 */
+<<CommentBlock>>
+* <独自の初期化ロジックをここに記述> 
+* <独自の初期化ロジックをここに記述> 
+* <独自の初期化ロジックをここに記述> 
+<<CommentBlock>>
+Endroutine
+<<endif>>
+
+<<if CA_UM054_TERMINATE>>
+Mthroutine Name(uTerminate) Options(*REDEFINE)
+<<CommentBlock>>
+* <独自の終了ロジックをここに記述>
+* <独自の終了ロジックをここに記述>
+* <独自の終了ロジックをここに記述>
+<<CommentBlock>>
+<<Comment>>先祖で定義された終了処理を行う
+#Com_Ancestor.uTerminate
+<<CommentBlock>>
+Endroutine
+<<endif>>
+
+<<if CA_UM054_SEARCHBTN>>
+Evtroutine Handling(#SEARCH_BUTTON_1.Click)
+#Com_Owner.Search
+Endroutine
+
+Mthroutine Search
+* データを提供するサービス モジュールの mthroutine を定義  - データ サービス
+* 新規サービス モジュールを IDE で作成し、ファイル名を指定することで、このようなサービス モジュールを作成できます。
+Define_Com Class(#<<UM055_BaseFileWAM>>.FindAll) Name(#FindAll)
+
+<<CommentBlock>>
+* この検索のビジータイマー開始
+* avGotoBusyState (あるいは、その他の進行中を示すビジュアル インジケータ) 使用時は、サービス モジュールは非同期に実行する必要があることに注意してください。
+#com_Owner.avGotoBusyState Showbusytext('Performing search') Animated(False)
+<<CommentBlock>>
+*   サービス モジュールにキーを引き渡し、データをリストとして取得
+#FindAll.ExecuteAsync(<<UM055_BaseFileKeys>> #<<UM055_BaseFile>>List )
+<<CommentBlock>>
+Evtroutine Handling(#FindAll.Completed)
+
+If Cond(#CLEARLIST_CKBX.ButtonState *EQ Checked)
+#AVLISTMANAGER.ClearList
+Endif
+
+* データを読み込み、インスタンス リストに書き込む
+Selectlist Named(#<<UM055_BaseFile>>List)
+
+<<UM055_AddtoList>>  
+
+Endselect
+Clr_List Named(#<<UM055_BaseFile>>List)
+
+* フリー状態の表示に戻る
+#com_Owner.avGotoFreeState
+<<CommentBlock>>
+Endroutine
+Endroutine
+<<endif>>
+
+End_Com
+</code>  

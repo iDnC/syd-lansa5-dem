@@ -1,0 +1,162 @@
+﻿<HTML>
+<head id="VF_HT005_Head">
+<title>Window</title>
+<script language='JavaScript' type="text/javascript" src="vf_xbrowser.js"></script>
+<link rel="Stylesheet" type="text/css" href="vf_vs001.css" />
+<script language="JavaScript" type="text/javascript">
+var flagIgnoreUnload    = false;  
+var VF_Opener           = null; 
+var VF_System           = null; 
+var objCurrentVF_FP010  = null; 
+var objSizeTimer        = null; 
+var VF_UserTraceMode    = null;
+window.__strContainerWindowType  = "SECONDARY";    
+window.__objContextMenuContainer = null;  
+window.__objContextMenuVisible   = false;  
+window.__objContextMenuCurrentVF_FPNNN         = null;  
+window.__objContextMenuCurrentReferenceLevel   = 0;  
+window.__objContextMenuCurrentMenuEntries      = 0; 
+window.__objContextMenuCurrentMaxCaptionLength = 0; 
+
+var iVF_UM012ThisObjectID = -1;
+
+function Init()
+{
+   VF_Opener   = opener; 
+   VF_System   = VF_Opener.VF_System; 
+   iVF_UM012ThisObjectID = VF_System.iCurrentVF_UM012ID ;
+
+   var objLink = document.createElement("LINK");
+   objLink.id  = "VF_HT005_Head_StyleSheet";
+   objLink.rel  = "stylesheet";
+   objLink.type = "text/css";
+   objLink.href = "vf_vs001_" + VF_System.strStyleScheme + ".css";
+
+   /* XBROWSER - used to be insertAdjacent */
+   document.getElementById("VF_HT005_Head").appendChild(objLink);
+
+   objSizeTimer = window.setInterval(VF_SY503_PRIVATE_SizeTimerTick,2000);
+   VF_Opener.VF_UM012_EXTERNAL_EVENT_HANDLER_003(window,iVF_UM012ThisObjectID);  
+   return;
+}
+
+function VF_UM012_PRIVATE_CloseWindow( )
+{ 
+   iVF_UM012ThisObjectID = -1;
+   flagIgnoreUnload = true;   
+   window.close(); 
+   return; 
+}
+ 
+function VF_SY503_PRIVATE_MakeFrameHTML(argintWebRoutineType)
+{ 
+   return( VF_Opener.VF_SY503_PRIVATE_MakeFrameHTML(argintWebRoutineType) ); 
+}
+function VF_SY503_PRIVATE_MakeEmptyFrame()
+{ 
+   return( VF_Opener.VF_SY503_PRIVATE_MakeEmptyFrame() ); 
+}
+function VF_SY503_PRIVATE_HTMLfromXMLTransform(argintId)
+{ 
+   return( VF_Opener.VF_SY503_PRIVATE_HTMLfromXMLTransform(argintId) ); 
+}
+function VF_SY503_PRIVATE_SetCurrentVF_FP010(argobjCurrentVF_FP010)
+{ 
+   if ((argobjCurrentVF_FP010 != null) && (argobjCurrentVF_FP010 != objCurrentVF_FP010))
+   {
+      if (argobjCurrentVF_FP010.objParentVF_FPNNN != null) 
+      {
+         document.title = argobjCurrentVF_FP010.objParentVF_FPNNN.UCAPTION + " - " + argobjCurrentVF_FP010.OBJVF_FP009REFERENCE.UCAPTION;   
+      }   
+   }
+   objCurrentVF_FP010 = argobjCurrentVF_FP010; 
+   return; 
+}
+
+function VF_SY503_PRIVATE_SizeTimerTick( )
+{ 
+   if (objCurrentVF_FP010 != null)
+   {
+      if (VF_System.usingExplorer)
+      {
+         objCurrentVF_FP010.intCurrentWindowHeight = document.documentElement.offsetHeight; 
+         objCurrentVF_FP010.intCurrentWindowWidth  = document.documentElement.offsetWidth; 
+      }
+      else
+      {
+         objCurrentVF_FP010.intCurrentWindowHeight = window.outerHeight; 
+         objCurrentVF_FP010.intCurrentWindowWidth  = window.outerWidth; 
+      }
+   }
+   return; 
+}
+
+function VF_FP010_EVENT_HANDLER_CherryClick(argstrEventType, argobjSrcElement)
+{
+   return VF_Opener.VF_FP010_EVENT_HANDLER_CherryClick(argstrEventType, argobjSrcElement)
+}
+
+function VF_SY001_EVENT_HANDLER_MenuItemMouseEnter(argobjEvent)
+{
+   return(VF_Opener.VF_SY001_EVENT_HANDLER_MenuItemMouseEnter(argobjEvent));
+}
+
+function VF_SY001_EVENT_HANDLER_MenuItemMouseLeave(argobjEvent)
+{
+   return(VF_Opener.VF_SY001_EVENT_HANDLER_MenuItemMouseLeave(argobjEvent));
+}
+
+function VF_SY001_EVENT_HANDLER_MenuItemMouseClick(argobjEvent)
+{
+   return(VF_Opener.VF_SY001_EVENT_HANDLER_MenuItemMouseClick(argobjEvent));
+}
+
+function VF_SY503_PRIVATE_MakeDummyContent()
+{
+   return VF_Opener.VF_SY503_PRIVATE_MakeDummyContent();
+}
+
+function VF_SY503_PRIVATE_MakeCover()
+{
+   return VF_Opener.VF_SY503_PRIVATE_MakeCover();
+}
+
+function VF_SY503_RampBtnClick(strId, strInst, strValue, int503AssignedNum, argobjSessWindow, argHowToGet)
+{
+   return VF_Opener.VF_SY503_RampBtnClick(strId, strInst, strValue, int503AssignedNum, argobjSessWindow, argHowToGet);
+}
+
+function VF_HT005_EVENT_HANDLER_onmousedown(argobjEvent)
+{  
+   if (argobjEvent.button == 1)
+   {
+      opener.VF_SY001_PUBLIC_SetEventXY (argobjEvent.clientX, argobjEvent.clientY, window.document);
+   }
+}
+
+function VF_HT005_BeforeUnload()
+{
+   objCurrentVF_FP010 = null; 
+   if (objSizeTimer != null) window.clearInterval(objSizeTimer);
+   objSizeTimer = null;  
+
+   if ( !(flagIgnoreUnload) && (VF_Opener != null) ) 
+   {
+      if (typeof (VF_Opener.VF_UM012_EXTERNAL_EVENT_HANDLER_004) != "undefined") VF_Opener.VF_UM012_EXTERNAL_EVENT_HANDLER_004(window,iVF_UM012ThisObjectID);
+   }   
+} 
+
+</script>
+
+
+<!-- XBROWSER not supported by non IE <script FOR='window' EVENT='onbeforeunload' LANGUAGE='JavaScript'></script> -->
+<!-- XBROWSER not supported by non IE <script FOR='window' EVENT='onload' LANGUAGE='JavaScript'></script> -->
+
+</head>  
+
+<body onload="Init()" onbeforeunload="VF_HT005_BeforeUnload()" class="VF_HT005_BODY" scroll="no" style="height:100%; width:100%; padding:0px;">
+<div  id='VF_UM012_Division'>
+</div> 
+</body>
+
+</html>

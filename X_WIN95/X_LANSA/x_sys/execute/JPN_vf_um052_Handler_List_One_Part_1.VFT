@@ -1,0 +1,143 @@
+<context>
+CommandHandler 
+</context>
+<caption>
+リスト管理のコマンド ハンドラー (パート1)
+</caption>
+<mode>
+ONE
+</mode>
+<preamble>
+ENG_vf_um052_Handler_List_One.htm
+</preamble>
+<hint>
+このウィザードは、子データのリストを管理するコマンド ハンドラーのコードを生成します。   
+</hint>
+<sequence>
+000100  
+</sequence>
+<handler>
+VF_UM105
+VF_UM106
+VF_UM056   
+</handler>
+<handlertxt>
+親ビジネス オブジェクトに最も近い物理ファイルを選定し、
+このコマンド ハンドラーのリスト用の子データの取得方法を検討  
+生成されるコードに含みたいものを指定してください。     
+</handlertxt>
+<code>
+<<include VF_UM052_CommandHandler_Preamble.vfi>>
+FUNCTION OPTIONS(*DIRECT)
+
+Begin_Com Role(*EXTENDS #VF_AC010O) Layoutmanager(#TableLayout_Main) Width(600) Height(240)
+
+* ビジュアル リスト定義
+
+* #Part_2 をこのウィザードのパート 2 を使って生成したコンポーネント名に置き換えてください。
+Define_Com Class(#PRIM_TREE<  #PART_2  >) Name(#Tree) Displayposition(1) Left(0) Parent(#COM_OWNER) Tabposition(1) Top(0) Height(200) Width(600)
+Define_Com Class(#PRIM_PHBN) Name(#Button_Sort) Caption('Sort') Displayposition(2) Left(0) Parent(#COM_OWNER) Tabposition(2) Top(208)
+
+* レイアウト管理
+
+Define_Com Class(#PRIM_TBLO) Name(#TableLayout_Main)
+* 行と列のレイアウト
+Define_Com Class(#PRIM_TBLO.Column) Name(#Column1) Displayposition(1) Parent(#TableLayout_Main)
+Define_Com Class(#PRIM_TBLO.Row) Name(#Row1) Displayposition(1) Parent(#TableLayout_Main) Height(1.72)
+Define_Com Class(#PRIM_TBLO.Row) Name(#Row2) Displayposition(2) Parent(#TableLayout_Main) Height(40) Units(Pixels)
+
+* レイアウト項目
+Define_Com Class(#PRIM_TBLO.Item) Name(#TreeItem1) Manage(#Tree) Parent(#TableLayout_Main) Row(#Row1) Column(#Column1)
+
+Define_Com Class(#PRIM_TBLO.Item) Name(#Button1Item1) Manage(#Button_Sort) Parent(#TableLayout_Main) Row(#Row2) Sizing(None) Column(#Column1) Alignment(CenterLeft) Flow(Right)
+
+
+Def_List Name(#PassList) Fields(<<UM106_ChildViewFields>>) Counter(#ListCount) Type(*Working) Entrys(*Max)
+Def_List Name(#Save_Keys) Fields(<<UM106_ChildViewKeysUsed ALL>>) Type(*WORKING) Entrys(1)
+
+
+* ===================================================================
+* ルーチン
+* ===================================================================
+
+* <<minorsep>>
+* コマンド実行処理
+* <<minorsep>>
+Mthroutine Name(uExecute) Options(*REDEFINE)
+Define_Com Class(#prim_boln) Name(#Ret_code)
+
+* Clear any previous messages
+#AVFRAMEWORKMANAGER.avClearMessages Requester(#COM_OWNER)
+
+*  先祖で定義された実行ロジックを行う
+#Com_Ancestor.uExecute GotoFreeState(#GotoFreeState) SwitchCallerReference(#SwitchCallerReference)
+
+If_Ref Com(#Com_Owner.avAssociatedInstance) Is_Not(*NULL)
+
+* すべてのビュー キーに NULL を設定
+#Save_Keys := *NULL
+
+* 現インスタンスの詳細を取得
+<<UM105_GenGetLst ASSOCIATED>>
+
+* Save a copy of the key fields for restoring later
+Inz_List Named(#Save_Keys)
+
+
+If (#Ret_code)
+* データ サービスのサービス モジュールへの非同期呼び出しの実行により、サーバーからのデータを取得
+
+* ビジー状態に移行
+#COM_OWNER.avGotoBusyState Showbusytext('Searching') Animated(False)
+
+* ファイルのサービス モジュールにサーバーからのデータ取得を指示
+#Com_Owner.uSelectData 
+Else
+#AVFRAMEWORKMANAGER.avIssueMessage Text('No associated item found') Requester(#Com_Owner)
+Endif
+Endif
+
+Endroutine
+
+Mthroutine Name(uSelectData)
+
+* データ サービスの定義
+Define_Com Class(#<<UM106_ChildViewWAM>>.FindAll) Name(#Find)
+Define_Com Class(#Prim_tree.TreeItem) Name(#TempListItem) Reference(*DYNAMIC)
+
+
+#Find.ExecuteAsync( <<UM106_ChildViewKeysUsed ALL>> #PassList )
+
+Evtroutine Handling(#Find.Completed)
+
+
+Selectlist Named(#PassList)
+
+* Add_entry を使用した場合、#PART2 で定義されるリスト #PassList のフィールドは、自動的に #PART2 に送信されます。
+Add_Entry To_List(#Tree)
+Endselect
+
+* フリー状態の表示に戻る
+#com_Owner.avGotoFreeState
+
+* キー フィールドを元の状態に復元
+Get_Entry Number(1) From_List(#Save_Keys)
+
+Endroutine
+
+
+Endroutine
+
+
+Evtroutine Handling(#Button_Sort.Click)
+
+* 例えば、
+* フィールド Skildesc でリストをソートする場合、
+* 次のコードのコメントを外し、#PART_2 で OnSort ルーチンを編集します。
+
+*#Tree.Sort Key('SKILDESC')
+
+Endroutine
+
+END_COM
+</code>

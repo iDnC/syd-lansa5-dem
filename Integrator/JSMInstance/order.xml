@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE Orders SYSTEM "order.dtd"  >
+
+<Orders>
+
+      <SalesOrder SONumber="12345">
+
+         <Customer CustNumber="543">
+            <CustName>ABC Industries</CustName>
+            <Street>123 Main St.</Street>
+            <City>Chicago</City>
+            <State>IL</State>
+            <PostCode>60609</PostCode>
+         </Customer>
+
+         <OrderDate>981215</OrderDate>
+
+         <Line LineNumber="1">
+            <Part PartNumber="123">
+               <Description>Gasket Paper</Description>
+               <Price>9.95</Price>
+            </Part>
+            <Quantity>10</Quantity>
+         </Line>
+
+         <Line LineNumber="2">
+            <Part PartNumber="456">
+               <Description><![CDATA[Gasket <Polymer> Glue]]></Description>
+               <Price>13.27</Price>
+            </Part>
+            <Quantity>5</Quantity>
+         </Line>
+
+      </SalesOrder>
+
+</Orders>

@@ -1,0 +1,142 @@
+<caption>
+A skeleton filter       
+</caption>
+<preamble>
+ENG_vf_um052_Filter_Skeleton_One.htm
+</preamble>
+<context>
+Filter 
+</context> 
+<mode>
+ONE
+</mode>
+<sequence>
+000200   
+</sequence>
+<handler>
+VF_UM055 
+VF_UM054  
+</handler>
+<handlertxt>
+Specify the identification protocol you have decided to use for this business object. If a physical file resembles this business object specify its name and the assistant will attempt to automatically deduce a basic identification protocol for you.    
+Specify the things that you would like to include in the generated code.     
+</handlertxt>
+<hint>
+This assistant produces the code for a basic filter skeleton that requires manual completion. It is designed for developers who have used filters many times and want to mostly manually add their own specialized code to the filter.  
+</hint>
+<code>
+<<include VF_UM052_Filter_Preamble.vfi>>
+Function Options(*DIRECT)
+Begin_Com Role(*EXTENDS #VF_AC007O) Height(182) Width(326) Layoutmanager(#TableLayout_Main)
+
+* Table Layout
+
+Define_Com Class(#PRIM_TBLO) Name(#TableLayout_Main)
+
+Define_Com Class(#PRIM_TBLO.Column) Name(#Column1) Displayposition(1) Parent(#TableLayout_Main)
+Define_Com Class(#PRIM_TBLO.Row) Name(#Row1) Displayposition(1) Parent(#TableLayout_Main) Height(1.72)
+Define_Com Class(#PRIM_TBLO.Row) Name(#Row2) Displayposition(2) Parent(#TableLayout_Main) Height(25) Units(Pixels)
+
+* Layout Items
+
+Define_Com Class(#PRIM_TBLO.Item) Name(#EXAMPLE_LABL_2Item1) Manage(#EXAMPLE_LABL_2) Parent(#TableLayout_Main) Row(#Row1) Sizing(None) Column(#Column1) Alignment(TopLeft) Flow(Down)
+Define_Com Class(#PRIM_TBLO.Item) Name(#CLEARLIST_CKBXItem1) Manage(#CLEARLIST_CKBX) Parent(#TableLayout_Main) Row(#Row1) Sizing(None) Column(#Column1) Alignment(TopLeft) Flow(Down)
+Define_Com Class(#PRIM_TBLO.Item) Name(#EXAMPLE_USERItem1) Manage(#EXAMPLE_USER) Parent(#TableLayout_Main) Row(#Row1) Sizing(None) Column(#Column1) Alignment(TopLeft) Flow(Down)
+Define_Com Class(#PRIM_TBLO.Item) Name(#EXAMPLE_DATEItem1) Manage(#EXAMPLE_DATE) Parent(#TableLayout_Main) Row(#Row1) Sizing(None) Column(#Column1) Alignment(TopLeft) Flow(Down)
+Define_Com Class(#PRIM_TBLO.Item) Name(#SEARCH_BUTTON_1Item1) Manage(#SEARCH_BUTTON_1) Parent(#TableLayout_Main) Row(#Row2) Sizing(FitToHeight) Column(#Column1) Alignment(CenterLeft) Flow(Right)
+
+* Component Definitions
+
+* Instructive text (may be block deleted if not required)
+
+Define_Com Class(#PRIM_LABL) Name(#EXAMPLE_LABL_2) Caption('Put Fields on this Panel') Displayposition(1) Height(20) Left(0) Parent(#COM_OWNER) Tabposition(3) Tabstop(False) Top(0) Verticalalignment(Center) Visible(False) Width(326)
+
+* Clear list checkbox
+
+Define_Com Class(#PRIM_CKBX) Name(#CLEARLIST_CKBX) Buttonstate(Checked) Caption('Clear List') Displayposition(2) Height(22) Parent(#COM_OWNER) Tabposition(1) Top(20) Width(326) Left(0)
+
+* Example fields (may be block deleted if not required)
+
+Define_Com Class(#USER.Visual) Name(#EXAMPLE_USER) Caption('User') Displayposition(3) Height(19) Labeltype(Caption) Marginleft(30) Parent(#COM_OWNER) Tabposition(2) Top(42) Width(326) Usepicklist(False)
+Define_Com Class(#DATE.Visual) Name(#EXAMPLE_DATE) Caption('Date') Displayposition(4) Height(19) Labeltype(Caption) Marginleft(30) Parent(#COM_OWNER) Tabposition(4) Top(61) Width(326) Usepicklist(False)
+
+* The example search button
+
+Define_Com Class(#PRIM_PHBN) Name(#SEARCH_BUTTON_1) Buttondefault(True) Caption('Search ') Displayposition(1) Left(237) Parent(#Com_Owner) Tabposition(1) Top(0) Width(89) Height(30)
+
+*  The list used to communicate with the Server Module IO module
+Def_List Name(#<<UM055_BaseFile>>List) Counter(#ListCount) Type(*Working) Entrys(*Max) <<UM055_BaseFileFields>> 
+
+* <<majorsep>>
+* Routines
+* <<majorsep>>
+
+<<if CA_UM054_INITIALIZE>>
+Mthroutine Name(uInitialize) Options(*REDEFINE)
+<<Comment>>Do any initialization defined in the ancestor 
+#Com_Ancestor.uInitialize
+<<CommentBlock>>
+#COM_OWNER.avFilterLocation := LEFT /* This filter is on the left */
+#COM_OWNER.avAllowLocationChange := True /* Allow user to move filter */
+<<CommentBlock>>
+* <your initialization logic goes here> 
+* <your initialization logic goes here> 
+* <your initialization logic goes here> 
+<<CommentBlock>>
+Endroutine
+<<endif>>
+
+<<if CA_UM054_TERMINATE>>
+Mthroutine Name(uTerminate) Options(*REDEFINE)
+<<CommentBlock>>
+* <your termination logic goes here>
+* <your termination logic goes here>
+* <your termination logic goes here>
+<<CommentBlock>>
+<<Comment>>Do any termination defined in the ancestor
+#Com_Ancestor.uTerminate
+<<CommentBlock>>
+Endroutine
+<<endif>>
+
+<<if CA_UM054_SEARCHBTN>>
+Evtroutine Handling(#SEARCH_BUTTON_1.Click)
+#Com_Owner.Search
+Endroutine
+
+Mthroutine Search
+* Define the Server Module mthroutine that is going to supply the data  - the data service
+* You can create a Server Module like this by creating a new Server Module in the IDE and specifying the file name.
+Define_Com Class(#<<UM055_BaseFileWAM>>.FindAll) Name(#FindAll)
+
+<<CommentBlock>>
+* Start the busy timer for this search
+* Note if using avGotoBusyState( or any visual in-progress indicator) , the Server Module should be executed asynchronously
+#com_Owner.avGotoBusyState Showbusytext('Performing search') Animated(False)
+<<CommentBlock>>
+*   Pass the keys to the Server Module and get the data back as a List
+#FindAll.ExecuteAsync(<<UM055_BaseFileKeys>> #<<UM055_BaseFile>>List )
+<<CommentBlock>>
+Evtroutine Handling(#FindAll.Completed)
+
+If Cond(#CLEARLIST_CKBX.ButtonState *EQ Checked)
+#AVLISTMANAGER.ClearList
+Endif
+
+* Read the data and write it to the instance list
+Selectlist Named(#<<UM055_BaseFile>>List)
+
+<<UM055_AddtoList>>  
+
+Endselect
+Clr_List Named(#<<UM055_BaseFile>>List)
+
+* Go back to display free state
+#com_Owner.avGotoFreeState
+<<CommentBlock>>
+Endroutine
+Endroutine
+<<endif>>
+
+End_Com
+</code>  

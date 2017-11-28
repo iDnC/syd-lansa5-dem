@@ -1,0 +1,45 @@
+* -----------------------------------------------------------------------------------------------
+* This is the custom settings pane for framework <<FRAMEWORK>>
+* It was created on <<CREATEDDATE>> by <<CREATEDUSER>>
+* -----------------------------------------------------------------------------------------------
+Begin_Com Role(*EXTENDS #VF_AC030O) Width(327)
+
+* -----------------------------------------------------------------------------------------------
+Define_Com Class(#PRIM_ATLI) Name(#AttachItem1) Manage(#TemporaryMessage) Parent(#MainPanelAttachmentManager) Attachment(Center)
+Define_Com Class(#Prim_Labl) Name(#TemporaryMessage) Displayposition(1) Tabstop(False) Parent(#COM_OWNER) Tabposition(1) Height(439) Left(0) Top(0) Width(327) Style(#BigText) Alignment(Center) Verticalalignment(Center) Caption('This is your custom settings pane. Delete this label and add your own content.')
+* -----------------------------------------------------------------------------------------------
+Define_Com Class(#Prim_vs.Style) Name(#BigText) Fontsize(14) Fontunits(Point) Textcolor(18:69:114)
+
+* ---------------------------------------------------------------------------------
+* Change the hint that displays for this component
+Ptyroutine Name(Get_uHint) Options(*REDEFINE)
+#ReturnHint := #COM_ANCESTOR.uHint
+Endroutine
+
+* ---------------------------------------------------------------------------------
+* Change the image that represents this component
+Ptyroutine Name(Get_uImageName) Options(*REDEFINE)
+#ReturnImageName := #COM_ANCESTOR.uImageName
+Endroutine
+
+* ---------------------------------------------------------------------------------
+* Standard initialization
+Mthroutine Name(uInitialize) Options(*REDEFINE)
+#COM_ANCESTOR.uInitialize
+Endroutine
+
+* ---------------------------------------------------------------------------------
+* Standard termination
+Mthroutine Name(uTerminate) Options(*REDEFINE)
+#COM_ANCESTOR.uTerminate
+Endroutine
+
+* ---------------------------------------------------------------------------------
+* Request to display me
+Mthroutine Name(uDisplayRequested) Options(*REDEFINE)
+* Do any ancestor processing
+#COM_ANCESTOR.uDisplayRequested Additionalrequestdetails(#AdditionalRequestdetails)
+* Add your custom logic here
+Endroutine
+
+End_Com

@@ -1,0 +1,333 @@
+<caption>
+ﾌｧｲﾙの全論理ﾋﾞｭｰで検索するﾌｨﾙﾀ
+</caption>
+<context>
+Filter
+</context>
+<preamble>
+JPN_vf_um052_Filter_All_Views.htm
+</preamble>
+<sequence>
+000100  
+</sequence>
+<handler>
+VF_UM055 
+VF_UM043  
+VF_UM109  
+</handler>
+<handlertxt>
+このﾋﾞｼﾞﾈｽｵﾌﾞｼﾞｪｸﾄに使用する識別ﾌﾟﾛﾄｺﾙを指定します。物理ﾌｧｲﾙがﾋﾞｼﾞﾈｽｵﾌﾞｼﾞｪｸﾄに類似している場合、その名前を指定するとｱｼｽﾀﾝﾄは自動的に基本の識別ﾌﾟﾛﾄｺﾙを推定します。
+このﾌｨﾙﾀｰでの検索の元となる物理ﾌｧｲﾙを指定します。次にﾌｨﾙﾀｰ検索で使用するﾋﾞｭｰを選択します。
+他に必要なｵﾌﾟｼｮﾝを選択します。
+</handlertxt>
+<hint>
+このｱｼｽﾀﾝﾄは物理ﾌｧｲﾙの論理ﾋﾞｭｰをﾍﾞｰｽに、ﾏﾆｭｱﾙでの完成をほとんど、または全く必要としないﾌｨﾙﾀｰのｺｰﾄﾞを作成します。VLﾌﾚｰﾑﾜｰｸに慣れていない開発者のために設計されています。
+
+</hint>
+<code>
+<<include VF_UM052_Filter_Preamble.vfi>>
+BEGIN_COM ROLE(*EXTENDS #VF_AC007) HEIGHT(173) LAYOUTMANAGER(#SPLM_1) WIDTH(423)
+* <<majorsep>>
+* Basic filter panel layout and management details
+* <<majorsep>>
+DEFINE_COM CLASS(#PRIM_SPLM) NAME(#SPLM_1) DIVIDERSTYLE(Gap)
+DEFINE_COM CLASS(#PRIM_PANL) NAME(#Main_Panel) DISPLAYPOSITION(1) HEIGHT(142) LAYOUTMANAGER(#ATLM_1) LEFT(0) PARENT(#COM_OWNER) TABPOSITION(1) TABSTOP(False) TOP(0) WIDTH(423)
+DEFINE_COM CLASS(#PRIM_PANL) NAME(#Button_Panel) DISPLAYPOSITION(2) HEIGHT(27) LAYOUTMANAGER(#FWLM_1) LEFT(0) PARENT(#COM_OWNER) TABPOSITION(2) TABSTOP(False) TOP(146) WIDTH(423)
+DEFINE_COM CLASS(#PRIM_SPLI) NAME(#SPLI_1) MANAGE(#Main_Panel) PARENT(#SPLM_1) WEIGHT(1)
+DEFINE_COM CLASS(#PRIM_SPLI) NAME(#SPLI_2) MANAGE(#Button_Panel) PARENT(#SPLM_1)
+DEFINE_COM CLASS(#PRIM_FWLM) NAME(#FWLM_1) DIRECTION(RightToLeft) MARGINLEFT(2) MARGINRIGHT(2) SPACING(4) SPACINGITEMS(4)
+DEFINE_COM CLASS(#PRIM_PHBN) NAME(#Search_Button) BUTTONDEFAULT(True) CAPTION('Search') DISPLAYPOSITION(1) LEFT(341) PARENT(#Button_Panel) TABPOSITION(1) TOP(0)
+DEFINE_COM CLASS(#PRIM_FWLI) NAME(#FWLI_1) MANAGE(#Search_Button) PARENT(#FWLM_1)
+DEFINE_COM CLASS(#PRIM_ATLM) NAME(#ATLM_1) MARGINBOTTOM(4) MARGINLEFT(4) MARGINRIGHT(4) MARGINTOP(4)
+* <<majorsep>>
+* The combo box of all available views
+* <<majorsep>>
+DEFINE_COM CLASS(#PRIM_CMBX) NAME(#View_LIst) COMPONENTVERSION(1) DISPLAYPOSITION(1) HEIGHT(18) LEFT(4) PARENT(#Main_Panel) SHOWSELECTION(False) SHOWSELECTIONHILIGHT(False) TABPOSITION(1) TOP(4) WIDTH(415)
+DEFINE_COM CLASS(#PRIM_CBCL) NAME(#CBCL_1) DISPLAYPOSITION(1) PARENT(#View_LIst) SOURCE(#STD_TEXT) WIDTHTYPE(Remainder)
+DEFINE_COM CLASS(#PRIM_CBCL) NAME(#CBCL_2) PARENT(#View_LIst) SOURCE(#STD_OBJ) VISIBLE(False)
+* <<majorsep>>
+DEFINE_COM CLASS(#PRIM_ATLI) NAME(#ATLI_1) ATTACHMENT(Top) MANAGE(#View_LIst) PARENT(#ATLM_1)
+DEFINE_COM CLASS(#PRIM_PANL) NAME(#Field_panel) DISPLAYPOSITION(2) HEIGHT(116) LAYOUTMANAGER(#FWLM_2) LEFT(4) PARENT(#Main_Panel) TABPOSITION(2) TABSTOP(False) TOP(22) VERTICALSCROLL(True) WIDTH(415)
+DEFINE_COM CLASS(#PRIM_ATLI) NAME(#ATLI_2) ATTACHMENT(Center) MANAGE(#Field_panel) PARENT(#ATLM_1)
+DEFINE_COM CLASS(#PRIM_FWLM) NAME(#FWLM_2) MARGINTOP(4) SPACING(4) SPACINGITEMS(4)
+* <<majorsep>>
+* Defines every key field from every view onto the #Field_Panel panel
+* <<majorsep>>
+<<Comment>>Define the fields and components that are on the filter form - this will have to be extended to use all the fields from all logical views
+<<UM043_Repeat_Field True>>Define_Com Class(#<<field>>.Visual) Parent(#FIELD_PANEL)
+<<UM043_Repeat_Field False>>Define_Com Class(#PRIM_FWLI) Name(#FWLI_<<Field>>) Manage(#<<field>>) Parent(#FWLM_2)
+* <<majorsep>>
+* Collection of all fields on #Field_Panel
+* <<majorsep>>
+DEFINE_COM CLASS(#Prim_acol<#Prim_EVEF>) NAME(#Collect_Fields)
+
+* <<majorsep>>
+* Simple Field, Group and Condition Definitions
+* <<majorsep>>
+<<if CA_UM109_CHK_CONNECT>>
+define field(#con_rslt) type(*char) length(2)
+Def_Cond Name(*conresult) Cond(#con_rslt = OK)
+<<endif>> 
+
+* The current view in use
+
+DEFINE #Curr_View Reffld(#Std_Obj)
+
+* <<majorsep>>
+* Routines that vary for each view
+* <<majorsep>>
+
+* Standard uInitialize logic
+
+Mthroutine uInitialize Options(*Redefine)
+
+Define_com #Prim_EVEF #Temp_Field Reference(*Dynamic)
+* Invoke the inherited ancestor logic
+#Com_Ancestor.uInitialize
+
+* Put all the fields on the fields panel into the field collection
+For #Control in(#Field_Panel.ComponentControls)
+
+If_ref #Control is(*Instance_of #Prim_EVEF)
+
+Set_ref #Temp_Field (*Dynamic #Control)
+
+#Collect_Fields.Insert Item(#Temp_Field)
+
+Endif
+
+Endfor
+
+* Add the name and description of each view to the combo box
+
+<<UM043_Repeat_File>>Execute AddView (<<VIEW>> '<<VIEWDESC>>'  <<FIRSTTRUE>>)
+
+* Restore the key values and view from last time
+Execute RestKeys
+
+if cond(#Curr_View *eq *blanks)
+* If there is no remembered view, choose the first view as the default to be shown initially
+<<UM043_Repeat_File FIRSTONLY>>Execute ShowView (<<VIEW>>)
+else
+* Show the remembered view
+Execute ShowView (#Curr_View)
+endif
+
+Endroutine
+
+* Routine to handle the save and restore of each key field bwteen sessions
+
+Subroutine SaveKeys
+<<UM043_Repeat_Field False Alpha  >>#avFrameworkManager.avSaveValue WithID1(*Component) WithID2(#<<field>>.Name) FromAValue(#<<field>>)    
+<<UM043_Repeat_Field False Numeric>>#avFrameworkManager.avSaveValue WithID1(*Component) WithID2(#<<field>>.Name) FromNValue(#<<field>><<field_intrinsic_from>>)   
+#avFrameworkManager.avSaveValue WithID1(*Component) WithID2(Curr_View) FromAValue(#Curr_View) 
+Endroutine
+
+Subroutine RestKeys
+<<UM043_Repeat_Field False Alpha  >>#avFrameworkManager.avRestoreValue WithID1(*Component) WithID2(#<<field>>.Name) ToAValue(#<<field>>)    
+<<UM043_Repeat_Field False Numeric>>#avFrameworkManager.avRestoreValue WithID1(*Component) WithID2(#<<field>>.Name) ToNValue(#VF_ELNUMX)<<split>>#<<field>> := #VF_ELNUMX<<field_intrinsic_to>>  
+#avFrameworkManager.avRestoreValue WithID1(*Component) WithID2(Curr_View) ToAValue(#Curr_View)   
+Endroutine
+
+* Routine to handle the display of each view
+
+Subroutine ShowView ((#Use_View *Received))
+Define #Use_View Reffld(#Std_Obj)
+
+* Track the current view
+#Curr_View := #Use_View
+
+* Make every control on the field panel invisible
+Set #Field_Panel.ComponentControls<> Visible(False)
+
+* Now make specific fields visible and ordered according to the current view
+
+Case #Curr_View
+<<UM043_Keys_Visible_Block>>
+EndCase
+
+* Enable/disable the search button according to values in fields
+
+Execute SetSearch
+
+Endroutine
+
+* Routine to handle searching via each view
+
+Subroutine SelectView
+* The group of fields that must be selected to form an instance list entry
+Group_by Name(#Sel_Group) Fields(<<UM055_GenFldList>>)
+
+* Save the current key values
+Execute SaveKeys
+
+<<if CA_UM109_CHK_CONNECT>>
+<<comment>>Check that the connection is still live 
+#avFrameworkManager.avCheckConnection ReturnValue(#con_rslt)
+If Cond(*conresult)
+<<endif>> 
+
+* Start an instance list update
+#avListManager.BeginListUpdate
+#avListManager.ClearList
+
+* Select according to the currently selected view
+
+Case #Curr_View
+
+<<UM043_Repeat_File>>When value_is(= <<View>>)<<split>>SELECT FIELDS(#Sel_Group) FROM_FILE(<<View>>) WITH_KEY(<<KeyFieldList>>) NBR_KEYS(*COMPUTE) GENERIC(*YES)<<split>>Execute Subroutine(AddtoList)<<split>>Endselect
+
+Endcase
+
+* Instance list updating has been completed
+#avListManager.EndListUpdate
+
+<<if CA_UM109_CHK_CONNECT>>
+endif
+<<endif>> 
+
+* Restore the key values
+Execute RestKeys
+
+Endroutine
+
+* Subroutine to add an entry to the instance list (used by all selections)
+
+Subroutine Name(AddtoList)
+<<UM055_AddtoList>>  
+Endroutine
+
+* <<majorsep>>
+* Common Routines
+* <<majorsep>>
+
+* Add a view to the combo box
+
+Subroutine AddView ((#Std_Obj *Received)(#Std_text *Received)(#Std_Bool *Received))
+Add_entry #View_List
+If cond(#Std_Bool = True)
+Set #View_List.CurrentItem Selected(True) Focus(True)
+Endif
+Endroutine
+
+* Handle enable/disable of the search button
+
+Subroutine SetSearch
+For #Field in(#Collect_Fields)
+If cond((#Field.Visible = True) and (#Field.Text *ne *Blanks))
+Set #Search_Button Enabled(True)
+Return
+Endif
+EndFor
+#Search_Button.Enabled := False
+Endroutine
+
+* Handle the search list button
+
+EVTROUTINE HANDLING(#Search_Button.Click) OPTIONS(*NOCLEARMESSAGES *NOCLEARERRORS)
+Execute SelectView
+Endroutine
+
+* Handle change of visible field causing enablement of the search button
+
+EVTROUTINE HANDLING(#Collect_Fields<>.Changed) OPTIONS(*NOCLEARMESSAGES *NOCLEARERRORS)
+Execute SetSearch
+Endroutine
+
+* Handle selection of a view from the combo box
+
+EVTROUTINE HANDLING(#View_LIst.ItemGotFocus) OPTIONS(*NOCLEARMESSAGES *NOCLEARERRORS)
+Execute ShowView (#Std_Obj)
+ENDROUTINE
+
+<<if CA_UM109_TERMINATE>>
+* <<minorsep>>
+* Handle Termination
+* <<minorsep>>
+Mthroutine Name(uTerminate) Options(*REDEFINE)
+<<CommentBlock>>
+* <your termination logic goes here>
+* <your termination logic goes here>
+* <your termination logic goes here>
+<<CommentBlock>>
+<<Comment>>Do any termination defined in the ancestor
+#Com_Ancestor.uTerminate
+<<CommentBlock>>
+Endroutine
+<<endif>>
+<<if CA_UM109_LISTEN>>
+* <<minorsep>>
+* Handle any external requests to update the Instance List  
+* <<minorsep>>
+EvtRoutine #Com_owner.avEvent WithId(#EventId) WithAInfo1(#AInfo1) WithAInfo2(#AInfo2) WithAInfo3(#AInfo3) WithAInfo4(#AInfo4) WithAInfo5(#AInfo5)  WithNInfo1(#NInfo1) WithNInfo2(#NInfo2) WithNInfo3(#NInfo3) WithNInfo4(#NInfo4) WithNInfo5(#NInfo5)
+
+* Save the current search key values
+Execute SaveKeys
+
+* put the received values into fields
+#vf_elIdn := #EventId.Value
+
+* Map the AInfo and NInfo values passed, into the key fields - <<UM055_BaseFileKeys>>
+<<UM055_GenMapKeys>> 
+
+<<if CA_UM109_CHK_CONNECT>>
+<<comment>>Check that the connection is still live 
+#avFrameworkManager.avCheckConnection ReturnValue(#con_rslt)
+If Cond(*conresult)
+<<endif>> 
+
+Case #vf_elIDN
+
+when value_is(= Refresh_Instance_List)
+* Reload the Instance List
+
+Execute SelectView
+
+when '= Add_List_Entry'
+* Add an entry to the list view
+
+fetch FIELDS(#Sel_Group) FROM_FILE(<<UM055_BaseFile>>) WITH_KEY(<<UM055_BaseFileKeys>>)
+if_status *OKAY
+
+* Start an instance list update
+#avListManager.BeginListUpdate
+<<UM055_AddtoList>>
+* Instance list updating has been completed
+#avListManager.EndListUpdate
+
+endif
+
+when value_is(= Update_List_Entry)
+* Update an entry that already exists in the instance list
+
+fetch FIELDS(#Sel_Group) FROM_FILE(<<UM055_BaseFile>>) WITH_KEY(<<UM055_BaseFileKeys>>)
+if_status *OKAY
+
+* Start an instance list update
+#avListManager.BeginListUpdate
+<<UM055_GenSetVids>>
+<<UM055_GenUpdLst>>
+* Instance list updating has been completed
+#avListManager.EndListUpdate
+
+endif
+
+when value_is(=  Delete_List_Entry)
+#avListManager.BeginListUpdate
+<<UM055_GenRmvLst>>
+#avListManager.EndListUpdate
+
+endcase
+
+<<if CA_UM109_CHK_CONNECT>>
+endif
+<<endif>> 
+
+
+* Restore the key values
+Execute RestKeys
+
+Endroutine
+<<endif>>
+
+End_Com

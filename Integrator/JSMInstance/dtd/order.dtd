@@ -1,0 +1,26 @@
+<!ELEMENT Orders (SalesOrder)>
+
+<!ELEMENT SalesOrder (Customer,OrderDate,Line*)>
+<!ATTLIST SalesOrder SONumber CDATA #REQUIRED>
+
+<!ELEMENT Customer (CustName,Street,City,State,PostCode)>
+<!ATTLIST Customer CustNumber CDATA #REQUIRED>
+
+<!ELEMENT CustName (#PCDATA)>
+<!ELEMENT Street (#PCDATA)>
+<!ELEMENT City (#PCDATA)>
+<!ELEMENT State (#PCDATA)>
+<!ELEMENT PostCode (#PCDATA)>
+
+<!ELEMENT OrderDate (#PCDATA)>
+
+<!ELEMENT Line (Part,Quantity)>
+<!ATTLIST Line LineNumber CDATA #REQUIRED>
+
+<!ELEMENT Part (Description,Price)>
+<!ATTLIST Part PartNumber CDATA #REQUIRED>
+
+<!ELEMENT Quantity (#PCDATA)>
+
+<!ELEMENT Description (#PCDATA)>
+<!ELEMENT Price (#PCDATA)>

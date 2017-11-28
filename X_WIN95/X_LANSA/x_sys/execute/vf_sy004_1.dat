@@ -1,0 +1,262 @@
+﻿<<T1>><!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<<N1>><!DOCTYPE html>
+<html> 
+<head>
+<<T1>><meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<<N1>><meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="robots" content="noindex, nofollow">   
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+>>TITLE<<
+<script language="JavaScript" type="text/javascript" src="vf_xbrowser.js"></script>
+<script language="JavaScript" type="text/javascript" src="uf_ht002.js"></script>
+<link id="VF_Common_StyleSheet" rel="stylesheet" type="text/css" href="vf_vs001.css" />
+<<OT>><link id="VF_AC006_StyleSheet"  rel="stylesheet" type="text/css" />
+<script language="JavaScript">
+/* Extract and verify the browser version */
+<<OT>>var __StyleScheme__ = "<<STYLE>>"; /* You must not change this option */ 
+<<OT>>switch (BrowserDetect.browser)
+<<OT>>{
+<<OT>>case "Firefox":
+<<OT>>document.getElementById("VF_AC006_StyleSheet").href = "vf_vs001_FF.css";
+<<OT>>__StyleScheme__ = "FF";
+<<OT>>break;
+<<OT>>case "Chrome":
+<<OT>>document.getElementById("VF_AC006_StyleSheet").href = "vf_vs001_CH.css";
+<<OT>>__StyleScheme__ = "CH";
+<<OT>>break;
+<<OT>>case "Safari":
+<<OT>>document.getElementById("VF_AC006_StyleSheet").href = "vf_vs001_SA.css";
+<<OT>>__StyleScheme__ = "SA";
+<<OT>>break;
+<<OT>>case "Explorer":
+<<OT>>document.getElementById("VF_AC006_StyleSheet").href = "vf_vs001_IE.css";
+<<OT>>__StyleScheme__ = "IE";
+<<OT>>break;
+<<OT>>case "IE10":
+<<OT>>document.getElementById("VF_AC006_StyleSheet").href = "vf_vs001_IE.css";
+<<OT>>__StyleScheme__ = "IE";
+<<OT>>break;
+<<OT>>case "IE11":
+<<OT>>document.getElementById("VF_AC006_StyleSheet").href = "vf_vs001_IE.css";
+<<OT>>__StyleScheme__ = "IE";
+<<OT>>break;
+<<OT>>default:
+<<OT>>__StyleScheme__ = "CH";
+<<OT>>document.getElementById("VF_AC006_StyleSheet").href = "vf_vs001_CH.css";
+<<OT>>if (BrowserDetect != null) alert(BrowserDetect.browser + " browser is not supported. The Framework will start using the default Chrome style. The result is unpredictable.");
+<<OT>>else alert("vf_xbrowser.js not included. Browser used unknown. The Framework will start using the default Chrome style. The result is unpredictable and likely to fail.");
+<<OT>>break;
+<<OT>>}
+var __objVLFSystem__           = null;
+var __flagSystemAvailable__    = false;
+var __objXMLasJavaScript__     = null;
+var __flagBrowserSupported__   = false;
+var __capturing__   = false;
+   
+function __CreateFramework__()
+{
+   var __objVLFSystem__    = null;
+   var __Partition         = "<<PARTITION>>"; /* Use ?Partition=xxx on the URL to alter this default */    
+   var __Language          = "<<LANGUAGE>>";  /* You must NOT change this language here              */  
+   var __Trace             = false;           /* Use ?Trace=Y on the URL to alter this default       */ 
+   var __isDBCS            = <<DBCS>>;        /* You must NOT change this option here                */
+   __objVLFSystem__        = new VF_SY001_Object(__Partition,__Language,__Trace,"","","","",__isDBCS,document.getElementById("VF_AC006_StyleSheet").href,__StyleScheme__);
+   __flagSystemAvailable__ = true;
+   return;
+}
+
+var __arrayScript__ = new Array(); 
+
+if (typeof JSON !== "object") {
+ __arrayScript__[__arrayScript__.length] = "vf_json02.js";
+ }
+__arrayScript__[__arrayScript__.length] = "<<JSCRIPT_FILE>>"; 
+__arrayScript__[__arrayScript__.length] = "vf_multi_<<OTHER_LANGUAGE>>.js"; 
+<<TC>>__arrayScript__[__arrayScript__.length] = "vf_xxnnn.js";  
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_ac001.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_ac009.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_ac006.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_ac501.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_fp001.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_fp002.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_fp003.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_fp004.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_fp005.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_fp006.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_fp007.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_fp008.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_fp009.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_fp010.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_fp012.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_fp014.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_fp016.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_fp017.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_fp018.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_fp020.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_fp021.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_fp022.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_fp023.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_fp024.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_gd001.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_sy001.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_sy501.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_sy503.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_sy504.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_sy505.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_sy506.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_sy507.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_sy508.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_um005.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_um006.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_um007.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_um008.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_um009.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_um010.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_um011.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_um012.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_um036.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_um076.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_um502.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_um503.js";
+<<FC>>__arrayScript__[__arrayScript__.length] = "vf_multi_eng.js";
+__arrayScript__[__arrayScript__.length] = "vf_json01.js";
+
+function __ScriptLoaded__(argobjEvent)
+{
+   var objScript = argobjEvent.srcElement;
+   var intIndex = 0;
+
+   var bScriptLoaded = true;
+   if (BrowserDetect.browser != "Explorer") objScript.detachEvent("onload",__ScriptLoaded__);
+   else bScriptLoaded = ((objScript.readyState == "loaded") || (objScript.readyState == "complete"));
+
+   if (bScriptLoaded)
+   {
+     if (BrowserDetect.browser != "Explorer") objScript.detachEvent("onreadystatechange", __ScriptLoaded__);   
+   __arrayScript__[objScript.__intIndex] = "";
+     for (intIndex in __arrayScript__)
+     {
+        if (__arrayScript__[intIndex] != "") return;
+     }
+     __arrayScript__ = null;
+     window.setTimeout(__CreateFramework__,1);
+   }
+
+   return;
+}
+
+function __InitializeFramework__()
+{
+   var intIndex = 0;
+   for (intIndex in __arrayScript__)
+   {
+      var objScript        = window.document.createElement("SCRIPT");
+      if (intIndex == 0) __objXMLasJavaScript__ = objScript;
+      BrowserDetect.browser == "Explorer" ? objScript.attachEvent("onreadystatechange", __ScriptLoaded__) : objScript.attachEvent("onload", __ScriptLoaded__);
+      objScript.__intIndex = intIndex;
+      objScript.type       = "text/javascript";
+      objScript.src        = __arrayScript__[intIndex];
+      window.document.body.appendChild(objScript);
+   }
+   return;
+}
+</script>
+</head>
+<body scroll="no" unselectable="on" marginleft="0" marginright="0" margintop="0" marginbottom="0" onload="__InitializeFramework__();">
+<div id="CoverForResize" style="background-color: #eee;height:100%; width:100%;z-index:99;display:none;position:absolute;top:0px;left:0px;opacity:0.5;-moz-opacity:0.5; filter:alpha(opacity=50);"></div>
+<div id="VF_AC006_Images_Container" unselectable="on" style="display:none">
+</div>
+<table unselectable="on" border="0" id="VF_AC006_Main_Container" height="100%" width="100%" cellpadding="0" cellspacing="0">
+<<OS>><tr align="left" valign="top" height=22 id="VF_UM005_Container_TR"><td unselectable="on">
+<<OS>><div  unselectable="on" id="VF_UM005_Container" Class="VF_UM005_CLASS_MainContainer"></div>
+<<OS>></td></tr>
+
+<<OS>><tr align="left" valign="top" height="27px" id="VF_UM008_Container_TR"><td  unselectable="on">
+<<OS>><div unselectable="on" id="VF_UM008_Container" Class="VF_UM008_CLASS_MainContainer"></div>
+<<OS>></td></tr>
+
+<<XS>><tr align="left" valign="top" height=49 id="VF_UM005_VF_UM008_TR">
+<<XS>><td id="VF_UM005_VF_UM008_TD" unselectable="on">
+<<XS>><div  unselectable="on" id="VF_UM005_Container" Class="VF_UM005_CLASS_MainContainer"></div>
+<<XS>><span unselectable="on" id="VF_UM008_Container" Class="VF_UM008_CLASS_MainContainer"></span>
+<<XS>></td></tr>
+
+<tr style="padding:0px;" align="left"  height=25 valign="top" id="VF_AC006_Container_TR"><td class="VF_AC006_Container_TD" unselectable="on">
+<div style="padding:0px;" unselectable="on"  id="VF_AC006_Container" Class="VF_AC006_CLASS_MainContainer"></div>
+</td></tr>
+
+<tr align="left" valign="top" height="auto"><td unselectable="on">
+<div unselectable="on" id="VF_BODY_Container" Class="VF_BODY_CLASS_MainContainer">
+<table unselectable="on" border="0" id="VF_BODY_Table" height="100%" width="100%" cellpadding="0" cellspacing="0">
+<tr align="left" valign="top" height="auto">
+
+
+<td unselectable="on" id="VF_UM009_TD_Container" width="<<WIDTH_PERCENT_A>>%" class="VF_AC006_CLASS_TD_Container" >   
+<div unselectable="on" id="VF_UM009_Container" Class="VF_UM009_CLASS_MainContainer"></div>  
+</td>
+
+<td unselectable="on" width="2px" height="100%">     
+<div unselectable="on" id="VF_AC006_VerticalSplit" Class="VF_AC006_CLASS_VerticalSplit" unselectable="on" onmousedown="if (__flagSystemAvailable__) VF_SY001_PRIVATE_StartSplitMove(this,document.getElementById('VF_UM009_TD_Container'),event, 'V');"></div>
+</td>
+
+<td unselectable="on" id="VF_RIGHT_TD_Container" width="auto">   
+<div unselectable="on" id="VF_RIGHT_Container" Class="VF_RIGHT_CLASS_MainContainer">
+<table unselectable="on" border="0" id="VF_RIGHT_Table" height="100%" width="100%" cellpadding="0" cellspacing="0">
+
+<tr id="VF_TOP_RIGHT_Container_TR" align="left" valign="top" height="<<HEIGHT_PERCENT_C>>%">  
+<td unselectable="on" id="VF_TOP_RIGHT_TD_Container">
+<div unselectable="on"  id="VF_TOP_RIGHT_Container" Class="VF_TOP_RIGHT_CLASS_MainContainer">
+<table unselectable="on" border="0" id="VF_TOP_RIGHT_Table" height="100%" width="100%" cellpadding="0" cellspacing="0">
+
+<tr align="left" valign="top">
+
+<td unselectable="on" id="VF_UM010_TD_Container" width="<<WIDTH_PERCENT_B>>%">
+<div unselectable="on"  id="VF_UM010_Container" Class="VF_UM010_CLASS_MainContainer"></div>
+</td>    
+
+<td unselectable="on" id="VF_AC006_TD_VerticalSplit_2" width="2px" height="100%">     
+<div unselectable="on" id="VF_AC006_VerticalSplit_2" Class="VF_AC006_CLASS_VerticalSplit" unselectable="on" onmousedown="if (__flagSystemAvailable__) VF_SY001_PRIVATE_StartSplitMove(this,document.getElementById('VF_UM010_TD_Container'),event, 'V');"></div>
+</td>
+
+<td unselectable="on" id="VF_UM011_TD_Container">
+<div unselectable="on" id="VF_UM011_Container" Class="VF_UM011_CLASS_MainContainer"></div>
+</td>
+
+</tr>
+
+</table>
+</div>
+</td>
+</tr>
+
+<tr id="VF_AC006_HorizontalSplit_TR" align="left" valign="top" height="2px" width="100%"><td unselectable="on">
+<div unselectable="on" id="VF_AC006_HorizontalSplit" Class="VF_AC006_CLASS_HorizontalSplit" unselectable="on" onmousedown="if (__flagSystemAvailable__) VF_SY001_PRIVATE_StartSplitMove(this,document.getElementById('VF_TOP_RIGHT_Container_TR'),event, 'H');">
+</div></td></tr>
+
+<tr id="VF_UM012_Container_TR" align="left" valign="top" height="auto"><td unselectable="on">
+<div unselectable="on"  id="VF_UM012_Container" Class="VF_UM012_CLASS_MainContainer"></div>
+</td></tr>
+
+<tr id="VF_UM006_Container_TR" align="left" valign="top" height="1%"><td unselectable="on">
+<div unselectable="on" id="VF_UM006_Container" Class="VF_UM006_CLASS_MainContainer"></div>
+</td></tr>
+</table>
+
+</div>
+</td> 
+
+</tr>  
+</table>
+</div>
+</td></tr>
+
+<tr align="left" height="25px" id="VF_UM007_Container_TR">
+<td unselectable="on">
+<div unselectable="on" id="VF_UM007_Container" Class="VF_UM007_CLASS_MainContainer"></div>
+</td>
+</tr>
+</table>
+<div unselectable="on" id="VF_SY504_Container" class="VF_SY504_CLASS_MainContainer"></div>
+</body>
+</html>   
+

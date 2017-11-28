@@ -1,0 +1,113 @@
+﻿<HTML>
+
+<HEAD id="VF_HT002_Head">
+	<LINK rel=stylesheet type="text/css" href="vf_vs001.css" >
+<TITLE>Sign On</TITLE>
+<script language='JavaScript' type="text/javascript" src="vf_xbrowser.js"></script>
+<script language="JavaScript" type="text/javascript">
+
+/* --------------------------------------------------------------------- */
+/* --------------  P R I V A T E   M E T H O D S  ---------------------- */
+/* --------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------- */
+/* ---------------------------SetDialogHTML----------------------------- */
+/* --------------------------------------------------------------------- */
+var VF_System;
+
+function SetDialogHTML()
+{
+	var objVF_UMnnn    = window.dialogArguments;
+
+	var objLink  = document.createElement("LINK");
+	objLink.rel  = "stylesheet";
+	objLink.type = "text/css";
+	objLink.href = "vf_vs001_" + objVF_UMnnn.strStyleScheme + ".css";
+
+	document.getElementById("VF_HT002_Head").insertAdjacentElement("afterBegin", objLink);
+
+	document.body.innerHTML = objVF_UMnnn.strHTML;
+
+   document.body.attachEvent("onkeydown", VF_HT002_EVENT_HANDLER_onkeydown);	
+
+   VF_System = objVF_UMnnn.VF_System;
+	
+	window.focus(); 
+        /* XBROWSER */
+        var VF_UM036_User = document.getElementById("VF_UM036_User")
+        var VF_UM036_Password = document.getElementById("VF_UM036_Password")
+
+	if (VF_UM036_User.value != "") VF_UM036_Password.focus();
+	else                           VF_UM036_User.focus();
+
+}
+
+function VF_HT002_PRIVATE_SET_VALUES(argstrOkCancel)
+{
+       /* XBROWSER */
+        var VF_UM036_User = document.getElementById("VF_UM036_User")
+        var VF_UM036_Password = document.getElementById("VF_UM036_Password")
+	
+	var objVF_UMnnn    = window.dialogArguments;
+	objVF_UMnnn.flagCancel  = true;
+
+	if (argstrOkCancel == "OK") 
+
+		{
+			objVF_UMnnn.flagCancel  = false;
+			objVF_UMnnn.strUser     = VF_UM036_User.value;
+			objVF_UMnnn.strPassword = VF_UM036_Password.value;
+		}
+
+	window.close();
+}
+
+
+function VF_HT002_PRIVATE_SHOWURL(argstrURL)
+{
+	
+      try
+      {
+         window.open(argstrURL); 
+      }
+      catch(objError)
+      { 
+         var sErrorNumber = (typeof objError.number != "undefined") ? objError.number.toString() : "";
+         var strFailureReason = objError.description + " (" + sErrorNumber + ")";  
+         window.alert(strFailureReason);       
+         return(false);
+      } 
+}
+
+
+
+function VF_HT002_EVENT_HANDLER_onkeydown(argobjEvent)
+{
+
+   /* The keyCode property of the onkeydown event tells you what key was */
+   /* press. When the enter key is pressed it returns the integer 13     */
+
+	if ( argobjEvent.keyCode == 13 )
+   {
+	   if ( argobjEvent.srcElement.id != "VF_HT002_cancel_button" ) 
+   	{
+		   try { VF_HT002_dft_button.click(); }
+		   catch (oE) { VF_HT002_dft_button.fireEvent("onclick") }
+		}
+      else
+      {
+		   try { VF_HT002_cancel_button.click(); }
+		   catch (oE) { VF_HT002_cancel_button.fireEvent("onclick"); }
+      }
+   }
+}
+
+</script>
+
+</HEAD>
+
+<BODY class="VF_HT002_BODY" onload="SetDialogHTML()">
+
+</BODY>
+
+</HTML>

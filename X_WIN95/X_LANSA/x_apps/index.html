@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>%{lansa_appdesc}%</title>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  </head>
+  <body onload="change_location()" >
+  <script>
+    function change_location() { window.document.location = "/%{lansa_webalias}%/%{lansa_partition}%/xvlwebtst.html"; }
+  </script>
+  <noscript>
+    <h1>Welcome to %{lansa_appdesc}%</h1>
+    <p>
+    <a href="/%{lansa_webalias}%/%{lansa_partition}%/xvlwebtst.html">%{lansa_appdesc}%</a><br />
+    </p>
+  </noscript>
+  </body>
+</html>

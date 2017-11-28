@@ -1,0 +1,201 @@
+<context>
+CommandHandler 
+</context>
+<caption>
+A Skeleton for a Command Handler
+</caption>
+<mode>
+ONE
+</mode>
+<preamble>
+ENG_vf_um052_Handler_Skeleton_One.htm
+</preamble>
+<hint>
+This assistant produces a code skeleton for a command handler.   
+</hint>
+<sequence>
+000100  
+</sequence>
+<handler>
+VF_UM055 
+VF_UM056   
+</handler>
+<handlertxt>
+Specify the identification protocol you have decided to use for this business object. If a physical file resembles this business object specify its name and the assistant will attempt to automatically deduce a basic identification protocol for you.    
+Specify the things that you would like to include in the generated code.     
+</handlertxt>
+<code>
+<<include VF_UM052_CommandHandler_Preamble.vfi>>
+Function Options(*DIRECT) 
+Begin_Com Role(*EXTENDS #VF_AC010O) Layoutmanager(#TableLayout_Main) Width(600) Height(240) 
+
+* Group Definitions
+
+Group_by Name(#XG_HEAD) <<UM055_BaseFileFields>>
+
+* Layout Management
+
+Define_Com Class(#PRIM_TBLO) Name(#TableLayout_Main)
+Define_Com Class(#PRIM_TBLO.Column) Name(#Column1) Displayposition(1) Parent(#TableLayout_Main)
+Define_Com Class(#PRIM_TBLO.Row) Name(#Row1) Displayposition(1) Parent(#TableLayout_Main) Height(1.72)
+Define_Com Class(#PRIM_TBLO.Row) Name(#Row2) Displayposition(2) Parent(#TableLayout_Main) Height(25) Units(Pixels)
+
+* Components
+
+<<if CA_UM056_SAVEBTN>>
+*   The save button
+Define_Com Class(#PRIM_PHBN) Name(#Button_Save) Buttondefault(True) Caption('Save') Displayposition(2) Tabposition(1) Left(0) Top(232) Height(24) Parent(#COM_OWNER)
+Define_Com Class(#PRIM_TBLO.Item) Name(#SAVE_BUTTONItem1) Manage(#Button_Save) Parent(#TableLayout_Main) Row(#Row2) Sizing(None) Column(#Column1) Alignment(CenterLeft)
+<<endif>>
+
+<<comment>>Fields
+* (Example)
+Define_Com Class(#EMPNO.Visual) Parent(#COM_OWNER) Displayposition(2) Height(21) Tabposition(2) Usepicklist(False) Width(237)
+Define_Com Class(#PRIM_TBLO.Item) Name(#TableItem_Empno) Manage(#EMPNO) Parent(#TableLayout_Main) Row(#Row1) Sizing(None) Column(#Column1) Alignment(TopLeft) Flow(Down)
+
+* Collection of all fields on the panel
+Define_Com Class(#Prim_ACol<#prim_evp>) Name(#PanelFields)
+
+* <<majorsep>>
+* Routines
+* <<majorsep>>
+
+
+Mthroutine Name(uInitialize) Options(*REDEFINE)
+Define_Com Class(#prim_evp) Name(#TempField) Reference(*DYNAMIC)
+
+*  Do any initialization defined in the ancestor
+
+#Com_Ancestor.uInitialize
+
+* <your initialization logic goes here>
+* <your initialization logic goes here>
+* <your initialization logic goes here>
+
+
+* Build collection of Editable fields
+For Each(#Control) In(#Com_Owner.ComponentControls)
+If_Ref Com(#Control) Is(*INSTANCE_OF #prim_evp)
+#TempField <= #Control *As #prim_evp
+#PanelFields.Insert( #TempField )
+Endif
+Endfor
+
+Endroutine
+
+
+Mthroutine Name(uTerminate) Options(*REDEFINE)
+
+* <your termination logic goes here>
+* <your termination logic goes here>
+* <your termination logic goes here>
+
+*  Do any termination defined in the ancestor
+
+#Com_Ancestor.uTerminate
+
+Endroutine
+
+
+
+* <<minorsep>>
+* Handle Command Execution
+* <<minorsep>>
+Mthroutine Name(uExecute) Options(*REDEFINE)
+Define_Com Class(#prim_boln) Name(#Ret_code)
+
+* Define the data service
+Define_Com Class(#<<UM055_BaseFileWAM>>.Find) Name(#Find)
+Define_Com Class(#vf_elretc) Name(#uStatus)
+
+* Clear any previous messages
+#AVFRAMEWORKMANAGER.avClearMessages Requester(#COM_OWNER)
+
+<<Comment>>Do any execution logic defined in the ancestor
+#COM_ANCESTOR.uExecute GotoFreeState(#GotoFreeState) SwitchCallerReference(#SwitchCallerReference)
+
+Group_By Name(#DataFields) <<UM055_BaseFileFields minusKey>>
+
+If_Ref Com(#Com_Owner.avAssociatedInstance) Is_Not(*NULL)
+
+<<UM055_GenGetLst ASSOCIATED>>
+
+if #Ret_code
+* Get the data from the server by doing a synchronous call to the Data service Server Module
+
+#Find.Execute(<<UM055_BaseFileKeys>> #DataFields #uStatus )
+
+If (#uStatus *EQ OK)
+
+* If required process your displayed data here
+
+Else
+#AVFRAMEWORKMANAGER.avIssueMessage Text('Not found on Server') Requester(#Com_Owner)
+Endif
+Else
+#AVFRAMEWORKMANAGER.avIssueMessage Text('No current item found') Requester(#Com_Owner)
+Endif
+Endif
+
+<<if CA_UM056_SAVEBTN>>
+* Button will be enabled when a field is changed
+#Button_Save.Enabled := False
+<<endif>>
+
+Endroutine
+
+<<if CA_UM056_SAVEBTN>>
+Evtroutine Handling(#Button_Save.Click)
+#com_owner.Button_Save
+Endroutine
+
+Mthroutine Name(Button_Save)
+* Note you may use the Save srvroutine if you want to update all the fields on the record
+* If you don't want to update all fields on the record you will need to write your own Update srvroutine in <<UM055_BaseFileWAM>> and use that instead of .Save
+Define_Com Class(#<<UM055_BaseFileWAM>>.Save) Name(#Save)
+Define_Com Class(#vf_elretc) Name(#uStatus)
+
+* Get the definition of this group of fields from Server Module  <<UM055_BaseFileWAM>>
+Group_By Name(#SaveFields) <<UM055_BaseFileFields>>
+
+If_Ref Com(#Com_Owner.avAssociatedInstance) Is_Not(*NULL)
+
+* Note: Clear messages in status bar otherwise old messages are too confusing
+#AVFRAMEWORKMANAGER.avClearMessages Requester(#COM_OWNER)
+
+* Now initiate the save (the synchronous .Execute is ok if quick)
+#Save.Execute( #SaveFields #uStatus )
+
+If (#uStatus = OK)
+* Message indicating successful update
+#avFrameworkManager.avIssueMessage Text('Update was successful') Requester(#COM_OWNER)
+
+* Update the associated instance list entry 
+
+<<UM055_GenSetVIDs>>
+#Com_Owner.avAssociatedInstance.avVisualID1 := #UF_VisID1u
+#Com_Owner.avAssociatedInstance.avVisualID2 := #UF_VisID2u
+
+* Update any other Additional Columns here, if required
+* For example
+* #Com_Owner.avAssociatedInstance.avAColumn1  := 'My Value'
+
+#COM_OWNER.avAssociatedInstance.avUpdateDisplay
+
+
+#Button_Save.Enabled := False
+Endif
+
+* Get server messages and issue them in the Framework
+#avFrameworkManager.avReceiveSystemMessageQueue Requester(#Com_owner)
+Endif
+Endroutine
+<<commentblock>>
+Evtroutine Handling(#PanelFields<>.Changed)
+#Button_Save.Enabled := True
+Endroutine
+<<commentblock>>
+<<endif>>
+
+End_Com
+</code>

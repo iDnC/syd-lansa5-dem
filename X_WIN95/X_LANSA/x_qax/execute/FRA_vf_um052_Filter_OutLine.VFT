@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<caption>
+Nouveau schéma ou squelette de filtre       
+</caption>
+<preamble>
+FRA_vf_um052_Filter_OutLine.htm
+</preamble>
+<context>
+Filter
+</context>
+<sequence>
+000200   
+</sequence>
+<handler>
+VF_UM055 
+VF_UM054  
+</handler>
+<handlertxt>
+Préciser le protocole d´identification que vous avez choisi d´utiliser pour cet objet métier. si un fichier physique ressemble à cet objet métier, donner son nom et l´assistant essaiera automatiquement de déduire un protocole d´identification type pour vous.     
+Préciser les éléments que vous souhaitez inclure dans le code généré.   
+</handlertxt>
+<hint>
+Cet assistant génère le code type d´un filtre devant être modifié manuellement. Il est destiné aux développeurs ayant souvent utilisé les filtres et souhaitant coder manuellement leur propre filtre.  
+</hint>
+<code>
+<<include VF_UM052_Filter_Preamble.vfi>>
+Function Options(*DIRECT)
+<<if CA_UM054_LAYMANAGED>>
+Begin_Com Role(*EXTENDS £VF_AC007) Height(182) Width(326) LayoutManager(£MAIN_LAYOUT)
+<<else>>
+Begin_Com Role(*EXTENDS £VF_AC007) Height(182) Width(326) 
+<<endif>>
+* <<majorsep>>
+* Définitions de zones simples
+* <<majorsep>>
+<<if CA_UM054_CHK_CONNECT>>
+define field(£con_rslt) type(*char) length(2)
+Def_Cond Name(*conresult) Cond(£con_rslt = OK)
+<<endif>> 
+* <<majorsep>>
+* Définitions de composants
+* <<majorsep>>
+<<if CA_UM054_LAYMANAGED>>
+<<Comment>>Panneaux de présentation du corps et des boutons
+Define_Com Class(£PRIM_PANL) Name(£BODY_PANEL) Displayposition(1) Height(182) Layoutmanager(£BODY_FLOW) Left(0) Parent(£COM_OWNER) Tabposition(1) Tabstop(False) Top(0) Width(246) Horizontalscroll(True) Verticalscroll(True)
+Define_Com Class(£PRIM_PANL) Name(£BUTTON_PANEL) Displayposition(2) Height(182) Layoutmanager(£BUTTON_FLOW) Left(246) Parent(£COM_OWNER) Tabposition(2) Tabstop(False) Top(0) Width(80)
+<<Comment>>Gestionnaires de présentation par liaison et centrage
+Define_Com Class(£PRIM_ATLM) Name(£MAIN_LAYOUT)
+Define_Com Class(£PRIM_ATLI) Name(£BODY_ATTACH)   Attachment(Center) Manage(£BODY_PANEL) Parent(£MAIN_LAYOUT)
+Define_Com Class(£PRIM_ATLI) Name(£BUTTON_ATTACH) Attachment(Right)  Manage(£BUTTON_PANEL) Parent(£MAIN_LAYOUT)
+Define_Com Class(£PRIM_FWLM) Name(£BUTTON_FLOW) Direction(TopToBottom) Flowoperation(Center) Marginbottom(4) Marginleft(4) Marginright(4) Margintop(4) Spacing(4) Spacingitems(4)
+Define_Com Class(£PRIM_FWLM) Name(£BODY_FLOW) Direction(TopToBottom) Marginbottom(4) Marginleft(4) Marginright(4) Margintop(4) Spacing(4) Spacingitems(4)
+<<Comment>>Exemple sous forme de texte (à supprimer en bloc si non nécessaire)
+Define_Com Class(£PRIM_LABL) Name(£EXAMPLE_LABL_1) Caption('Placer les boutons sur ce panneau ...') Displayposition(1) Height(45) Left(0) Parent(£BUTTON_PANEL) Tabposition(2) Tabstop(False) Top(4) Visible(False) Width(80)
+Define_Com Class(£PRIM_FWLI) Name(£FWLI_2) Manage(£EXAMPLE_LABL_1) Parent(£BUTTON_FLOW)
+Define_Com Class(£PRIM_LABL) Name(£EXAMPLE_LABL_2) Caption('Placer les zones sur ce panneau comme ces exemples ... ') Displayposition(1) Height(29) Left(4) Parent(£BODY_PANEL) Tabposition(3) Tabstop(False) Top(4) Verticalalignment(Center) Visible(False) 
++Width(237)
+Define_Com Class(£PRIM_FWLI) Name(£FWLI_3) Manage(£EXAMPLE_LABL_2) Parent(£BODY_FLOW)
+<<Comment>>Zones exemples (à supprimer en bloc si non nécessaire)
+Define_Com Class(£USER.Visual) Name(£EXAMPLE_USER) Caption('Utilisateur') Displayposition(2) Height(19) Labeltype(Caption) Left(4) Marginleft(50) Parent(£BODY_PANEL) Tabposition(1) Top(28) Width(129)
+Define_Com Class(£PRIM_FWLI) Name(£FWLI_4) Manage(£EXAMPLE_USER) Parent(£BODY_FLOW)
+Define_Com Class(£DATE.Visual) Name(£EXAMPLE_DATE) Caption('Date') Displayposition(3) Height(19) Labeltype(Caption) Left(4) Marginleft(50) Parent(£BODY_PANEL) Tabposition(2) Top(51) Width(129)
+Define_Com Class(£PRIM_FWLI) Name(£FWLI_5) Manage(£EXAMPLE_DATE) Parent(£BODY_FLOW)
+<<endif>>
+<<if CA_UM054_SEARCHBTN>>
+<<Comment>> Exemple de bouton de recherche
+<<if CA_UM054_LAYMANAGED>>
+Define_Com class(£PRIM_PHBN) Name(£SEARCH_BUTTON_1) Buttondefault(True) Caption('Recherche 1') Displayposition(2) Left(0) Parent(£BUTTON_PANEL) Tabposition(1) Top(37)
+Define_Com Class(£PRIM_FWLI) Name(£FWLI_1) Manage(£SEARCH_BUTTON_1) Parent(£BUTTON_FLOW)
+<<else>>
+Define_Com Class(£PRIM_PHBN) Name(£SEARCH_BUTTON_1) Buttondefault(True) Caption('Recherche 1') Displayposition(1) Left(232) Parent(£COM_OWNER) Tabposition(1) Top(16)
+<<endif>>
+<<endif>>
+* <<majorsep>>
+* Définitions des événements
+* <<majorsep>>
+<<CommentBlock>>
+* <<majorsep>>
+* Définitions des propriétés
+* <<majorsep>>
+<<CommentBlock>>
+* <<majorsep>>
+* Définitions des méthodes
+* <<majorsep>>
+<<CommentBlock>>
+<<if CA_UM054_INITIALIZE>>
+* <<minorsep>>
+* Gestion de l´initialisation
+* <<minorsep>>
+Mthroutine Name(uInitialize) Options(*REDEFINE)
+<<Comment>>Effectuer toute initialisation définie dans l´ancêtre 
+£Com_Ancestor.uInitialize
+<<CommentBlock>>
+* <ici votre logique d´initialisation> 
+* <ici votre logique d´initialisation> 
+* <ici votre logique d´initialisation> 
+<<CommentBlock>>
+Endroutine
+<<endif>>
+<<if CA_UM054_TERMINATE>>
+* <<minorsep>>
+* Gestion de la fin
+* <<minorsep>>
+Mthroutine Name(uTerminate) Options(*REDEFINE)
+<<CommentBlock>>
+* <ici votre logique de fin>
+* <ici votre logique de fin>
+* <ici votre logique de fin>
+<<CommentBlock>>
+<<Comment>>Effectuer toute logique de fin définie dans l´ancêtre
+£Com_Ancestor.uTerminate
+<<CommentBlock>>
+Endroutine
+<<endif>>
+* <<majorsep>>
+* Sous-programmes
+* <<majorsep>>
+<<CommentBlock>>
+* <<majorsep>>
+* Gestion des événements
+* <<majorsep>>
+<<CommentBlock>>
+<<if CA_UM054_SEARCHBTN>>
+* <<minorsep>>
+* Gestion du bouton de recherche 
+* <<minorsep>>
+<<CommentBlock>>
+EvtRoutine Handling(£SEARCH_BUTTON_1.Click) Options(*NOCLEARMESSAGES *NOCLEARERRORS)
+<<if CA_UM054_CHK_CONNECT>>
+<<comment>>Vérifier que la connexion est toujours active 
+invoke £avFrameworkManager.avCheckConnection ReturnValue(£con_rslt)
+If Cond(*conresult)
+<<endif>> 
+<<comment>>Indique que la mise à jour de la liste d´instance <<businessobject_lang ucaption>> va commencer
+£avListManager.BeginListUpdate
+<<comment>>Vider la liste d´instance de l´objet métier actuel <<businessobject_lang ucaption>> (optionnel)
+£avListManager.ClearList
+<<Comment>> Choisir les instances appropriées de <<businessobject_lang ucaption>> 
+Select Fields(<<UM055_GenFldList>> + <<TBA>>) 
++ From_File(<<TBA>>) With_key(<<TBA>>)   
+<<UM055_AddtoList>>  
+EndSelect
+<<comment>>Indique que la mise à jour de la liste d´instance <<businessobject_lang ucaption>> est maintenant terminée
+£avListManager.EndListUpdate
+<<if CA_UM054_CHK_CONNECT>>
+endif
+<<endif>>
+<<comment>> 
+Endroutine
+<<endif>>
+<<commentblock>>
+End_Com
+</code>  

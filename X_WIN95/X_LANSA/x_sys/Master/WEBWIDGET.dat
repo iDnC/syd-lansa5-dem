@@ -1,0 +1,23 @@
+XCONNEC011Get a system value                                             000000000000021xConnectorSystemValue
+XCONNEC021Read/Write to a data area                                      000000000000018xConnectorDataArea
+XCONNEC031Send email                                                     000000000000015xConnectorEmail
+XCONNEC041Call a program                                                 000000000000021xConnectorProgramCall
+XCONNEC051Retrieve an object list                                        000000000000020xConnectorObjectList
+XCONNEC061Read/Write to a data queue                                     000000000000019xConnectorDataQueue
+XCONNEC071Change a profiles password                                     000000000000024xConnectorChangePassword
+XCONNEC081Call a command                                                 000000000000021xConnectorCommandCall
+XCONNEC091Read/Write to a message queue                                  000000000000022xConnectorMessageQueue
+XCONNEC101Perform web queue transactions                                 000000000000018xConnectorWebQueue
+XDEVICE011Control audio recording on mobile device                       000000000000018xDeviceAudioRecord
+XDEVICE021Control audio playback on mobile devices                       000000000000020xDeviceAudioPlayback
+XDEVICE031Scan barcodes on mobile devices                                000000000000021xDeviceBarcodeScanner
+XDEVICE041Control camera on mobile devices                               000000000000013xDeviceCamera
+XDEVICE051Write to a local file                                          000000000000016xDeviceFileWrite
+XDEVICE061Read the contents of a local file                              000000000000015xDeviceFileRead
+XDEVICE071Copy local files                                               000000000000015xDeviceFileCopy
+XDEVICE081Delete a local file                                            000000000000017xDeviceFileDelete
+XDEVICE091Transfer a file from/to a remote server                        000000000000019xDeviceFileTransfer
+XGOOGLE011Google Pie Chart                                               000000000000015xGooglePieChart
+XGOOGLE021Google Gauge                                                   000000000000012xGoogleGauge
+XGOOGLE031Google Map                                                     000000000000010xGoogleMap
+XGOOGLE041Google Column Chart                                            000000000000018xGoogleColumnChart

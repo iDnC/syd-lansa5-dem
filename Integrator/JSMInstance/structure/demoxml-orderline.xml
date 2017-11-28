@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<rdml:structure xmlns:rdml="http://www.lansa.com/2000/XML/Function">
+
+   <rdml:field name="LINENUM" type="S" length="3" />
+   <rdml:field name="PARTNUM" type="S" length="3" />
+   <rdml:field name="PARTDSC" type="A" length="50" />
+   <rdml:field name="PARTAMT" type="P" length="10" decimal="2" />
+   <rdml:field name="PARTQTY" type="P" length="3"  decimal="0" />
+
+</rdml:structure>

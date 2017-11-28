@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     
+    <style>
+        i.material-icons {
+            text-rendering: optimizeLegibility;
+            font-feature-settings: 'liga';
+        }
+
+ 
+.tooltip {
+    position: relative;
+    display: inline-block;
+    padding: 5px ;
+    /*border-bottom: 1px dotted black; */
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 200px; 
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity 1s;
+    
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 50%;
+    margin-left: -60px;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tooltip:hover {
+        background-color: #999;
+}
+
+</style>
+
+<script>
+/* ------------------------------------------------------------------------- */
+function iconClicked(argstrIcon) {
+      /* alert('Signals here. Icon is ' + argstrIcon); */
+      setSelectedIcon(argstrIcon)
+      window.document.title = "SIGNAL_" + argstrIcon ;  
+}
+/* ------------------------------------------------------------------------- */
+function VF_onLoad() {
+      window.document.title = "SIGNAL_BASEFILELOADED" ;  
+}
+/* ------------------------------------------------------------------------- */
+function setSelectedIcon(strId)  
+{
+   var objSelectThisDIV  = document.getElementById(strId.trim());
+   var objDisplaySelection  = document.getElementById("VF_IconSelected");
+
+   if ((objSelectThisDIV != null) && (objDisplaySelection != null))
+   {
+      objDisplaySelection.innerHTML = objSelectThisDIV.innerHTML ;
+   }
+    return;  
+}  
+/* ------------------------------------------------------------------------- */
+function showMatchingIcons(argstrSearchId)  
+{
+   var arrAllDIVs = document.getElementsByTagName("div");
+   var strDIVid = "" ;
+   
+   argstrSearchId = argstrSearchId.toUpperCase() ; 
+   
+   for (var i=0, max=arrAllDIVs.length; i < max; i++) 
+   {
+     /* Leave non-image divs alone */  
+     if ( (arrAllDIVs[i].id != "") && (arrAllDIVs[i].id.substr(0, 3) != 'VF_') )
+     {
+         
+         strDIVid = arrAllDIVs[i].id.toUpperCase() ; 
+
+         if ((argstrSearchId.trim() == "") || (strDIVid.search(argstrSearchId) > -1))
+         {
+            arrAllDIVs[i].style.display = "inline-block"; ;
+         }
+         else
+         {
+            arrAllDIVs[i].style.display = "none"; ;
+         }
+     }
+   }
+   return;  
+}  
+</script>
+
+</head>
+<body onload='VF_onLoad()'>
+    <div id="VF_IconSelected" class="tooltip"><i></i>
+        <span class="tooltiptext">The selected icon</span>
+    </div>
+<BR>
+<div id="*NONE" class="tooltip" onclick="iconClicked('*NONE')" style="border-color: black; border-style: solid;" ><i class="*NONE">*NONE</i><span class="tooltiptext">*NONE</span></div>
+<BR><BR><div>brand</div><BR>
+<div id="fa fa-500px" class="tooltip" onclick="iconClicked('fa fa-500px')"><i class="fa fa-500px"></i><span class="tooltiptext">500px</span></div>
+<div id="fa fa-amazon" class="tooltip" onclick="iconClicked('fa fa-amazon')"><i class="fa fa-amazon"></i><span class="tooltiptext">amazon</span></div>
+<div id="fa fa-adn" class="tooltip" onclick="iconClicked('fa fa-adn')"><i class="fa fa-adn"></i><span class="tooltiptext">adn</span></div>
+<div id="fa fa-android" class="tooltip" onclick="iconClicked('fa fa-android')"><i class="fa fa-android"></i><span class="tooltiptext">android</span></div>
+<div id="fa fa-angellist" class="tooltip" onclick="iconClicked('fa fa-angellist')"><i class="fa fa-angellist"></i><span class="tooltiptext">angellist</span></div>
+<div id="fa fa-apple" class="tooltip" onclick="iconClicked('fa fa-apple')"><i class="fa fa-apple"></i><span class="tooltiptext">apple</span></div>
+<div id="fa fa-bandcamp" class="tooltip" onclick="iconClicked('fa fa-bandcamp')"><i class="fa fa-bandcamp"></i><span class="tooltiptext">bandcamp</span></div>
+<div id="fa fa-behance" class="tooltip" onclick="iconClicked('fa fa-behance')"><i class="fa fa-behance"></i><span class="tooltiptext">behance</span></div>
+<div id="fa fa-behance-square" class="tooltip" onclick="iconClicked('fa fa-behance-square')"><i class="fa fa-behance-square"></i><span class="tooltiptext">behance-square</span></div>
+<div id="fa fa-bitbucket" class="tooltip" onclick="iconClicked('fa fa-bitbucket')"><i class="fa fa-bitbucket"></i><span class="tooltiptext">bitbucket</span></div>
+<div id="fa fa-bitbucket-square" class="tooltip" onclick="iconClicked('fa fa-bitbucket-square')"><i class="fa fa-bitbucket-square"></i><span class="tooltiptext">bitbucket-square</span></div>
+<div id="fa fa-bitcoin" class="tooltip" onclick="iconClicked('fa fa-bitcoin')"><i class="fa fa-bitcoin"></i><span class="tooltiptext">bitcoin</span></div>
+<div id="fa fa-black-tie" class="tooltip" onclick="iconClicked('fa fa-black-tie')"><i class="fa fa-black-tie"></i><span class="tooltiptext">black-tie</span></div>
+<div id="fa fa-bluetooth" class="tooltip" onclick="iconClicked('fa fa-bluetooth')"><i class="fa fa-bluetooth"></i><span class="tooltiptext">bluetooth</span></div>
+<div id="fa fa-bluetooth-b" class="tooltip" onclick="iconClicked('fa fa-bluetooth-b')"><i class="fa fa-bluetooth-b"></i><span class="tooltiptext">bluetooth-b</span></div>
+<div id="fa fa-btc" class="tooltip" onclick="iconClicked('fa fa-btc')"><i class="fa fa-btc"></i><span class="tooltiptext">btc</span></div>
+<div id="fa fa-buysellads" class="tooltip" onclick="iconClicked('fa fa-buysellads')"><i class="fa fa-buysellads"></i><span class="tooltiptext">buysellads</span></div>
+<div id="fa fa-cc-amex" class="tooltip" onclick="iconClicked('fa fa-cc-amex')"><i class="fa fa-cc-amex"></i><span class="tooltiptext">cc-amex</span></div>
+<div id="fa fa-cc-diners-club" class="tooltip" onclick="iconClicked('fa fa-cc-diners-club')"><i class="fa fa-cc-diners-club"></i><span class="tooltiptext">cc-diners-club</span></div>
+<div id="fa fa-cc-mastercard" class="tooltip" onclick="iconClicked('fa fa-cc-mastercard')"><i class="fa fa-cc-mastercard"></i><span class="tooltiptext">cc-mastercard</span></div>
+<div id="fa fa-cc-paypal" class="tooltip" onclick="iconClicked('fa fa-cc-paypal')"><i class="fa fa-cc-paypal"></i><span class="tooltiptext">cc-paypal</span></div>
+<div id="fa fa-cc-stripe" class="tooltip" onclick="iconClicked('fa fa-cc-stripe')"><i class="fa fa-cc-stripe"></i><span class="tooltiptext">cc-stripe</span></div>
+<div id="fa fa-cc-visa" class="tooltip" onclick="iconClicked('fa fa-cc-visa')"><i class="fa fa-cc-visa"></i><span class="tooltiptext">cc-visa</span></div>
+<div id="fa fa-chrome" class="tooltip" onclick="iconClicked('fa fa-chrome')"><i class="fa fa-chrome"></i><span class="tooltiptext">chrome</span></div>
+<div id="fa fa-codepen" class="tooltip" onclick="iconClicked('fa fa-codepen')"><i class="fa fa-codepen"></i><span class="tooltiptext">codepen</span></div>
+<div id="fa fa-codiepie" class="tooltip" onclick="iconClicked('fa fa-codiepie')"><i class="fa fa-codiepie"></i><span class="tooltiptext">codiepie</span></div>
+<div id="fa fa-connectdevelop" class="tooltip" onclick="iconClicked('fa fa-connectdevelop')"><i class="fa fa-connectdevelop"></i><span class="tooltiptext">connectdevelop</span></div>
+<div id="fa fa-contao" class="tooltip" onclick="iconClicked('fa fa-contao')"><i class="fa fa-contao"></i><span class="tooltiptext">contao</span></div>
+<div id="fa fa-css3" class="tooltip" onclick="iconClicked('fa fa-css3')"><i class="fa fa-css3"></i><span class="tooltiptext">css3</span></div>
+<div id="fa fa-dashcube" class="tooltip" onclick="iconClicked('fa fa-dashcube')"><i class="fa fa-dashcube"></i><span class="tooltiptext">dashcube</span></div>
+<div id="fa fa-delicious" class="tooltip" onclick="iconClicked('fa fa-delicious')"><i class="fa fa-delicious"></i><span class="tooltiptext">delicious</span></div>
+<div id="fa fa-deviantart" class="tooltip" onclick="iconClicked('fa fa-deviantart')"><i class="fa fa-deviantart"></i><span class="tooltiptext">deviantart</span></div>
+<div id="fa fa-digg" class="tooltip" onclick="iconClicked('fa fa-digg')"><i class="fa fa-digg"></i><span class="tooltiptext">digg</span></div>
+<div id="fa fa-dribbble" class="tooltip" onclick="iconClicked('fa fa-dribbble')"><i class="fa fa-dribbble"></i><span class="tooltiptext">dribbble</span></div>
+<div id="fa fa-dropbox" class="tooltip" onclick="iconClicked('fa fa-dropbox')"><i class="fa fa-dropbox"></i><span class="tooltiptext">dropbox</span></div>
+<div id="fa fa-drupal" class="tooltip" onclick="iconClicked('fa fa-drupal')"><i class="fa fa-drupal"></i><span class="tooltiptext">drupal</span></div>
+<div id="fa fa-edge" class="tooltip" onclick="iconClicked('fa fa-edge')"><i class="fa fa-edge"></i><span class="tooltiptext">edge</span></div>
+<div id="fa fa-eercast" class="tooltip" onclick="iconClicked('fa fa-eercast')"><i class="fa fa-eercast"></i><span class="tooltiptext">eercast</span></div>
+<div id="fa fa-empire" class="tooltip" onclick="iconClicked('fa fa-empire')"><i class="fa fa-empire"></i><span class="tooltiptext">empire</span></div>
+<div id="fa fa-envira" class="tooltip" onclick="iconClicked('fa fa-envira')"><i class="fa fa-envira"></i><span class="tooltiptext">envira</span></div>
+<div id="fa fa-etsy" class="tooltip" onclick="iconClicked('fa fa-etsy')"><i class="fa fa-etsy"></i><span class="tooltiptext">etsy</span></div>
+<div id="fa fa-expeditedssl" class="tooltip" onclick="iconClicked('fa fa-expeditedssl')"><i class="fa fa-expeditedssl"></i><span class="tooltiptext">expeditedssl</span></div>
+<div id="fa fa-fa" class="tooltip" onclick="iconClicked('fa fa-fa')"><i class="fa fa-fa"></i><span class="tooltiptext">fa</span></div>
+<div id="fa fa-facebook" class="tooltip" onclick="iconClicked('fa fa-facebook')"><i class="fa fa-facebook"></i><span class="tooltiptext">facebook</span></div>
+<div id="fa fa-facebook-f" class="tooltip" onclick="iconClicked('fa fa-facebook-f')"><i class="fa fa-facebook-f"></i><span class="tooltiptext">facebook-f</span></div>
+<div id="fa fa-facebook-official" class="tooltip" onclick="iconClicked('fa fa-facebook-official')"><i class="fa fa-facebook-official"></i><span class="tooltiptext">facebook-official</span></div>
+<div id="fa fa-facebook-square" class="tooltip" onclick="iconClicked('fa fa-facebook-square')"><i class="fa fa-facebook-square"></i><span class="tooltiptext">facebook-square</span></div>
+<div id="fa fa-firefox" class="tooltip" onclick="iconClicked('fa fa-firefox')"><i class="fa fa-firefox"></i><span class="tooltiptext">firefox</span></div>
+<div id="fa fa-first-order" class="tooltip" onclick="iconClicked('fa fa-first-order')"><i class="fa fa-first-order"></i><span class="tooltiptext">first-order</span></div>
+<div id="fa fa-flickr" class="tooltip" onclick="iconClicked('fa fa-flickr')"><i class="fa fa-flickr"></i><span class="tooltiptext">flickr</span></div>
+<div id="fa fa-fonticons" class="tooltip" onclick="iconClicked('fa fa-fonticons')"><i class="fa fa-fonticons"></i><span class="tooltiptext">fonticons</span></div>
+<div id="fa fa-font-awesome" class="tooltip" onclick="iconClicked('fa fa-font-awesome')"><i class="fa fa-font-awesome"></i><span class="tooltiptext">font-awesome</span></div>
+<div id="fa fa-fort-awesome" class="tooltip" onclick="iconClicked('fa fa-fort-awesome')"><i class="fa fa-fort-awesome"></i><span class="tooltiptext">fort-awesome</span></div>
+<div id="fa fa-forumbee" class="tooltip" onclick="iconClicked('fa fa-forumbee')"><i class="fa fa-forumbee"></i><span class="tooltiptext">forumbee</span></div>
+<div id="fa fa-foursquare" class="tooltip" onclick="iconClicked('fa fa-foursquare')"><i class="fa fa-foursquare"></i><span class="tooltiptext">foursquare</span></div>
+<div id="fa fa-free-code-camp" class="tooltip" onclick="iconClicked('fa fa-free-code-camp')"><i class="fa fa-free-code-camp"></i><span class="tooltiptext">free-code-camp</span></div>
+<div id="fa fa-ge" class="tooltip" onclick="iconClicked('fa fa-ge')"><i class="fa fa-ge"></i><span class="tooltiptext">ge</span></div>
+<div id="fa fa-get-pocket" class="tooltip" onclick="iconClicked('fa fa-get-pocket')"><i class="fa fa-get-pocket"></i><span class="tooltiptext">get-pocket</span></div>
+<div id="fa fa-gg" class="tooltip" onclick="iconClicked('fa fa-gg')"><i class="fa fa-gg"></i><span class="tooltiptext">gg</span></div>
+<div id="fa fa-gg-circle" class="tooltip" onclick="iconClicked('fa fa-gg-circle')"><i class="fa fa-gg-circle"></i><span class="tooltiptext">gg-circle</span></div>
+<div id="fa fa-git" class="tooltip" onclick="iconClicked('fa fa-git')"><i class="fa fa-git"></i><span class="tooltiptext">git</span></div>
+<div id="fa fa-git-square" class="tooltip" onclick="iconClicked('fa fa-git-square')"><i class="fa fa-git-square"></i><span class="tooltiptext">git-square</span></div>
+<div id="fa fa-github" class="tooltip" onclick="iconClicked('fa fa-github')"><i class="fa fa-github"></i><span class="tooltiptext">github</span></div>
+<div id="fa fa-github-alt" class="tooltip" onclick="iconClicked('fa fa-github-alt')"><i class="fa fa-github-alt"></i><span class="tooltiptext">github-alt</span></div>
+<div id="fa fa-github-square" class="tooltip" onclick="iconClicked('fa fa-github-square')"><i class="fa fa-github-square"></i><span class="tooltiptext">github-square</span></div>
+<div id="fa fa-gitlab" class="tooltip" onclick="iconClicked('fa fa-gitlab')"><i class="fa fa-gitlab"></i><span class="tooltiptext">gitlab</span></div>
+<div id="fa fa-gittip" class="tooltip" onclick="iconClicked('fa fa-gittip')"><i class="fa fa-gittip"></i><span class="tooltiptext">gittip</span></div>
+<div id="fa fa-glide" class="tooltip" onclick="iconClicked('fa fa-glide')"><i class="fa fa-glide"></i><span class="tooltiptext">glide</span></div>
+<div id="fa fa-glide-g" class="tooltip" onclick="iconClicked('fa fa-glide-g')"><i class="fa fa-glide-g"></i><span class="tooltiptext">glide-g</span></div>
+<div id="fa fa-google" class="tooltip" onclick="iconClicked('fa fa-google')"><i class="fa fa-google"></i><span class="tooltiptext">google</span></div>
+<div id="fa fa-google-plus" class="tooltip" onclick="iconClicked('fa fa-google-plus')"><i class="fa fa-google-plus"></i><span class="tooltiptext">google-plus</span></div>
+<div id="fa fa-google-plus-circle" class="tooltip" onclick="iconClicked('fa fa-google-plus-circle')"><i class="fa fa-google-plus-circle"></i><span class="tooltiptext">google-plus-circle</span></div>
+<div id="fa fa-google-plus-official" class="tooltip" onclick="iconClicked('fa fa-google-plus-official')"><i class="fa fa-google-plus-official"></i><span class="tooltiptext">google-plus-official</span></div>
+<div id="fa fa-google-plus-square" class="tooltip" onclick="iconClicked('fa fa-google-plus-square')"><i class="fa fa-google-plus-square"></i><span class="tooltiptext">google-plus-square</span></div>
+<div id="fa fa-google-wallet" class="tooltip" onclick="iconClicked('fa fa-google-wallet')"><i class="fa fa-google-wallet"></i><span class="tooltiptext">google-wallet</span></div>
+<div id="fa fa-gratipay" class="tooltip" onclick="iconClicked('fa fa-gratipay')"><i class="fa fa-gratipay"></i><span class="tooltiptext">gratipay</span></div>
+<div id="fa fa-grav" class="tooltip" onclick="iconClicked('fa fa-grav')"><i class="fa fa-grav"></i><span class="tooltiptext">grav</span></div>
+<div id="fa fa-hacker-news" class="tooltip" onclick="iconClicked('fa fa-hacker-news')"><i class="fa fa-hacker-news"></i><span class="tooltiptext">hacker-news</span></div>
+<div id="fa fa-houzz" class="tooltip" onclick="iconClicked('fa fa-houzz')"><i class="fa fa-houzz"></i><span class="tooltiptext">houzz</span></div>
+<div id="fa fa-html5" class="tooltip" onclick="iconClicked('fa fa-html5')"><i class="fa fa-html5"></i><span class="tooltiptext">html5</span></div>
+<div id="fa fa-imdb" class="tooltip" onclick="iconClicked('fa fa-imdb')"><i class="fa fa-imdb"></i><span class="tooltiptext">imdb</span></div>
+<div id="fa fa-instagram" class="tooltip" onclick="iconClicked('fa fa-instagram')"><i class="fa fa-instagram"></i><span class="tooltiptext">instagram</span></div>
+<div id="fa fa-internet-explorer" class="tooltip" onclick="iconClicked('fa fa-internet-explorer')"><i class="fa fa-internet-explorer"></i><span class="tooltiptext">internet-explorer</span></div>
+<div id="fa fa-ioxhost" class="tooltip" onclick="iconClicked('fa fa-ioxhost')"><i class="fa fa-ioxhost"></i><span class="tooltiptext">ioxhost</span></div>
+<div id="fa fa-joomla" class="tooltip" onclick="iconClicked('fa fa-joomla')"><i class="fa fa-joomla"></i><span class="tooltiptext">joomla</span></div>
+<div id="fa fa-jsfiddle" class="tooltip" onclick="iconClicked('fa fa-jsfiddle')"><i class="fa fa-jsfiddle"></i><span class="tooltiptext">jsfiddle</span></div>
+<div id="fa fa-lastfm" class="tooltip" onclick="iconClicked('fa fa-lastfm')"><i class="fa fa-lastfm"></i><span class="tooltiptext">lastfm</span></div>
+<div id="fa fa-lastfm-square" class="tooltip" onclick="iconClicked('fa fa-lastfm-square')"><i class="fa fa-lastfm-square"></i><span class="tooltiptext">lastfm-square</span></div>
+<div id="fa fa-leanpub" class="tooltip" onclick="iconClicked('fa fa-leanpub')"><i class="fa fa-leanpub"></i><span class="tooltiptext">leanpub</span></div>
+<div id="fa fa-linkedin" class="tooltip" onclick="iconClicked('fa fa-linkedin')"><i class="fa fa-linkedin"></i><span class="tooltiptext">linkedin</span></div>
+<div id="fa fa-linkedin-square" class="tooltip" onclick="iconClicked('fa fa-linkedin-square')"><i class="fa fa-linkedin-square"></i><span class="tooltiptext">linkedin-square</span></div>
+<div id="fa fa-linode" class="tooltip" onclick="iconClicked('fa fa-linode')"><i class="fa fa-linode"></i><span class="tooltiptext">linode</span></div>
+<div id="fa fa-linux" class="tooltip" onclick="iconClicked('fa fa-linux')"><i class="fa fa-linux"></i><span class="tooltiptext">linux</span></div>
+<div id="fa fa-maxcdn" class="tooltip" onclick="iconClicked('fa fa-maxcdn')"><i class="fa fa-maxcdn"></i><span class="tooltiptext">maxcdn</span></div>
+<div id="fa fa-meanpath" class="tooltip" onclick="iconClicked('fa fa-meanpath')"><i class="fa fa-meanpath"></i><span class="tooltiptext">meanpath</span></div>
+<div id="fa fa-medium" class="tooltip" onclick="iconClicked('fa fa-medium')"><i class="fa fa-medium"></i><span class="tooltiptext">medium</span></div>
+<div id="fa fa-meetup" class="tooltip" onclick="iconClicked('fa fa-meetup')"><i class="fa fa-meetup"></i><span class="tooltiptext">meetup</span></div>
+<div id="fa fa-mixcloud" class="tooltip" onclick="iconClicked('fa fa-mixcloud')"><i class="fa fa-mixcloud"></i><span class="tooltiptext">mixcloud</span></div>
+<div id="fa fa-modx" class="tooltip" onclick="iconClicked('fa fa-modx')"><i class="fa fa-modx"></i><span class="tooltiptext">modx</span></div>
+<div id="fa fa-odnoklassniki" class="tooltip" onclick="iconClicked('fa fa-odnoklassniki')"><i class="fa fa-odnoklassniki"></i><span class="tooltiptext">odnoklassniki</span></div>
+<div id="fa fa-odnoklassniki-square" class="tooltip" onclick="iconClicked('fa fa-odnoklassniki-square')"><i class="fa fa-odnoklassniki-square"></i><span class="tooltiptext">odnoklassniki-square</span></div>
+<div id="fa fa-opencart" class="tooltip" onclick="iconClicked('fa fa-opencart')"><i class="fa fa-opencart"></i><span class="tooltiptext">opencart</span></div>
+<div id="fa fa-openid" class="tooltip" onclick="iconClicked('fa fa-openid')"><i class="fa fa-openid"></i><span class="tooltiptext">openid</span></div>
+<div id="fa fa-opera" class="tooltip" onclick="iconClicked('fa fa-opera')"><i class="fa fa-opera"></i><span class="tooltiptext">opera</span></div>
+<div id="fa fa-optin-monster" class="tooltip" onclick="iconClicked('fa fa-optin-monster')"><i class="fa fa-optin-monster"></i><span class="tooltiptext">optin-monster</span></div>
+<div id="fa fa-pagelines" class="tooltip" onclick="iconClicked('fa fa-pagelines')"><i class="fa fa-pagelines"></i><span class="tooltiptext">pagelines</span></div>
+<div id="fa fa-paypal" class="tooltip" onclick="iconClicked('fa fa-paypal')"><i class="fa fa-paypal"></i><span class="tooltiptext">paypal</span></div>
+<div id="fa fa-pied-piper" class="tooltip" onclick="iconClicked('fa fa-pied-piper')"><i class="fa fa-pied-piper"></i><span class="tooltiptext">pied-piper</span></div>
+<div id="fa fa-pied-piper-alt" class="tooltip" onclick="iconClicked('fa fa-pied-piper-alt')"><i class="fa fa-pied-piper-alt"></i><span class="tooltiptext">pied-piper-alt</span></div>
+<div id="fa fa-pinterest" class="tooltip" onclick="iconClicked('fa fa-pinterest')"><i class="fa fa-pinterest"></i><span class="tooltiptext">pinterest</span></div>
+<div id="fa fa-pinterest-p" class="tooltip" onclick="iconClicked('fa fa-pinterest-p')"><i class="fa fa-pinterest-p"></i><span class="tooltiptext">pinterest-p</span></div>
+<div id="fa fa-pinterest-square" class="tooltip" onclick="iconClicked('fa fa-pinterest-square')"><i class="fa fa-pinterest-square"></i><span class="tooltiptext">pinterest-square</span></div>
+<div id="fa fa-product-hunt" class="tooltip" onclick="iconClicked('fa fa-product-hunt')"><i class="fa fa-product-hunt"></i><span class="tooltiptext">product-hunt</span></div>
+<div id="fa fa-qq" class="tooltip" onclick="iconClicked('fa fa-qq')"><i class="fa fa-qq"></i><span class="tooltiptext">qq</span></div>
+<div id="fa fa-quora" class="tooltip" onclick="iconClicked('fa fa-quora')"><i class="fa fa-quora"></i><span class="tooltiptext">quora</span></div>
+<div id="fa fa-ra" class="tooltip" onclick="iconClicked('fa fa-ra')"><i class="fa fa-ra"></i><span class="tooltiptext">ra</span></div>
+<div id="fa fa-ravelry" class="tooltip" onclick="iconClicked('fa fa-ravelry')"><i class="fa fa-ravelry"></i><span class="tooltiptext">ravelry</span></div>
+<div id="fa fa-rebel" class="tooltip" onclick="iconClicked('fa fa-rebel')"><i class="fa fa-rebel"></i><span class="tooltiptext">rebel</span></div>
+<div id="fa fa-reddit" class="tooltip" onclick="iconClicked('fa fa-reddit')"><i class="fa fa-reddit"></i><span class="tooltiptext">reddit</span></div>
+<div id="fa fa-reddit-alien" class="tooltip" onclick="iconClicked('fa fa-reddit-alien')"><i class="fa fa-reddit-alien"></i><span class="tooltiptext">reddit-alien</span></div>
+<div id="fa fa-reddit-square" class="tooltip" onclick="iconClicked('fa fa-reddit-square')"><i class="fa fa-reddit-square"></i><span class="tooltiptext">reddit-square</span></div>
+<div id="fa fa-renren" class="tooltip" onclick="iconClicked('fa fa-renren')"><i class="fa fa-renren"></i><span class="tooltiptext">renren</span></div>
+<div id="fa fa-safari" class="tooltip" onclick="iconClicked('fa fa-safari')"><i class="fa fa-safari"></i><span class="tooltiptext">safari</span></div>
+<div id="fa fa-scribd" class="tooltip" onclick="iconClicked('fa fa-scribd')"><i class="fa fa-scribd"></i><span class="tooltiptext">scribd</span></div>
+<div id="fa fa-sellsy" class="tooltip" onclick="iconClicked('fa fa-sellsy')"><i class="fa fa-sellsy"></i><span class="tooltiptext">sellsy</span></div>
+<div id="fa fa-share-alt" class="tooltip" onclick="iconClicked('fa fa-share-alt')"><i class="fa fa-share-alt"></i><span class="tooltiptext">share-alt</span></div>
+<div id="fa fa-share-alt-square" class="tooltip" onclick="iconClicked('fa fa-share-alt-square')"><i class="fa fa-share-alt-square"></i><span class="tooltiptext">share-alt-square</span></div>
+<div id="fa fa-shirtsinbulk" class="tooltip" onclick="iconClicked('fa fa-shirtsinbulk')"><i class="fa fa-shirtsinbulk"></i><span class="tooltiptext">shirtsinbulk</span></div>
+<div id="fa fa-snapchat" class="tooltip" onclick="iconClicked('fa fa-snapchat')"><i class="fa fa-snapchat"></i><span class="tooltiptext">snapchat</span></div>
+<div id="fa fa-snapchat-square" class="tooltip" onclick="iconClicked('fa fa-snapchat-square')"><i class="fa fa-snapchat-square"></i><span class="tooltiptext">snapchat-square</span></div>
+<div id="fa fa-simplybuilt" class="tooltip" onclick="iconClicked('fa fa-simplybuilt')"><i class="fa fa-simplybuilt"></i><span class="tooltiptext">simplybuilt</span></div>
+<div id="fa fa-skyatlas" class="tooltip" onclick="iconClicked('fa fa-skyatlas')"><i class="fa fa-skyatlas"></i><span class="tooltiptext">skyatlas</span></div>
+<div id="fa fa-skype" class="tooltip" onclick="iconClicked('fa fa-skype')"><i class="fa fa-skype"></i><span class="tooltiptext">skype</span></div>
+<div id="fa fa-slack" class="tooltip" onclick="iconClicked('fa fa-slack')"><i class="fa fa-slack"></i><span class="tooltiptext">slack</span></div>
+<div id="fa fa-slideshare" class="tooltip" onclick="iconClicked('fa fa-slideshare')"><i class="fa fa-slideshare"></i><span class="tooltiptext">slideshare</span></div>
+<div id="fa fa-soundcloud" class="tooltip" onclick="iconClicked('fa fa-soundcloud')"><i class="fa fa-soundcloud"></i><span class="tooltiptext">soundcloud</span></div>
+<div id="fa fa-spotify" class="tooltip" onclick="iconClicked('fa fa-spotify')"><i class="fa fa-spotify"></i><span class="tooltiptext">spotify</span></div>
+<div id="fa fa-stack-exchange" class="tooltip" onclick="iconClicked('fa fa-stack-exchange')"><i class="fa fa-stack-exchange"></i><span class="tooltiptext">stack-exchange</span></div>
+<div id="fa fa-stack-overflow" class="tooltip" onclick="iconClicked('fa fa-stack-overflow')"><i class="fa fa-stack-overflow"></i><span class="tooltiptext">stack-overflow</span></div>
+<div id="fa fa-steam" class="tooltip" onclick="iconClicked('fa fa-steam')"><i class="fa fa-steam"></i><span class="tooltiptext">steam</span></div>
+<div id="fa fa-steam-square" class="tooltip" onclick="iconClicked('fa fa-steam-square')"><i class="fa fa-steam-square"></i><span class="tooltiptext">steam-square</span></div>
+<div id="fa fa-stumbleupon" class="tooltip" onclick="iconClicked('fa fa-stumbleupon')"><i class="fa fa-stumbleupon"></i><span class="tooltiptext">stumbleupon</span></div>
+<div id="fa fa-stumbleupon-circle" class="tooltip" onclick="iconClicked('fa fa-stumbleupon-circle')"><i class="fa fa-stumbleupon-circle"></i><span class="tooltiptext">stumbleupon-circle</span></div>
+<div id="fa fa-superpowers" class="tooltip" onclick="iconClicked('fa fa-superpowers')"><i class="fa fa-superpowers"></i><span class="tooltiptext">superpowers</span></div>
+<div id="fa fa-telegram" class="tooltip" onclick="iconClicked('fa fa-telegram')"><i class="fa fa-telegram"></i><span class="tooltiptext">telegram</span></div>
+<div id="fa fa-tencent-weibo" class="tooltip" onclick="iconClicked('fa fa-tencent-weibo')"><i class="fa fa-tencent-weibo"></i><span class="tooltiptext">tencent-weibo</span></div>
+<div id="fa fa-themeisle" class="tooltip" onclick="iconClicked('fa fa-themeisle')"><i class="fa fa-themeisle"></i><span class="tooltiptext">themeisle</span></div>
+<div id="fa fa-trello" class="tooltip" onclick="iconClicked('fa fa-trello')"><i class="fa fa-trello"></i><span class="tooltiptext">trello</span></div>
+<div id="fa fa-tripadvisor" class="tooltip" onclick="iconClicked('fa fa-tripadvisor')"><i class="fa fa-tripadvisor"></i><span class="tooltiptext">tripadvisor</span></div>
+<div id="fa fa-tumblr" class="tooltip" onclick="iconClicked('fa fa-tumblr')"><i class="fa fa-tumblr"></i><span class="tooltiptext">tumblr</span></div>
+<div id="fa fa-tumblr-square" class="tooltip" onclick="iconClicked('fa fa-tumblr-square')"><i class="fa fa-tumblr-square"></i><span class="tooltiptext">tumblr-square</span></div>
+<div id="fa fa-twitch" class="tooltip" onclick="iconClicked('fa fa-twitch')"><i class="fa fa-twitch"></i><span class="tooltiptext">twitch</span></div>
+<div id="fa fa-twitter" class="tooltip" onclick="iconClicked('fa fa-twitter')"><i class="fa fa-twitter"></i><span class="tooltiptext">twitter</span></div>
+<div id="fa fa-twitter-square" class="tooltip" onclick="iconClicked('fa fa-twitter-square')"><i class="fa fa-twitter-square"></i><span class="tooltiptext">twitter-square</span></div>
+<div id="fa fa-usb" class="tooltip" onclick="iconClicked('fa fa-usb')"><i class="fa fa-usb"></i><span class="tooltiptext">usb</span></div>
+<div id="fa fa-viacoin" class="tooltip" onclick="iconClicked('fa fa-viacoin')"><i class="fa fa-viacoin"></i><span class="tooltiptext">viacoin</span></div>
+<div id="fa fa-viadeo" class="tooltip" onclick="iconClicked('fa fa-viadeo')"><i class="fa fa-viadeo"></i><span class="tooltiptext">viadeo</span></div>
+<div id="fa fa-viadeo-square" class="tooltip" onclick="iconClicked('fa fa-viadeo-square')"><i class="fa fa-viadeo-square"></i><span class="tooltiptext">viadeo-square</span></div>
+<div id="fa fa-vimeo" class="tooltip" onclick="iconClicked('fa fa-vimeo')"><i class="fa fa-vimeo"></i><span class="tooltiptext">vimeo</span></div>
+<div id="fa fa-vimeo-square" class="tooltip" onclick="iconClicked('fa fa-vimeo-square')"><i class="fa fa-vimeo-square"></i><span class="tooltiptext">vimeo-square</span></div>
+<div id="fa fa-vine" class="tooltip" onclick="iconClicked('fa fa-vine')"><i class="fa fa-vine"></i><span class="tooltiptext">vine</span></div>
+<div id="fa fa-vk" class="tooltip" onclick="iconClicked('fa fa-vk')"><i class="fa fa-vk"></i><span class="tooltiptext">vk</span></div>
+<div id="fa fa-wechat" class="tooltip" onclick="iconClicked('fa fa-wechat')"><i class="fa fa-wechat"></i><span class="tooltiptext">wechat</span></div>
+<div id="fa fa-weibo" class="tooltip" onclick="iconClicked('fa fa-weibo')"><i class="fa fa-weibo"></i><span class="tooltiptext">weibo</span></div>
+<div id="fa fa-weixin" class="tooltip" onclick="iconClicked('fa fa-weixin')"><i class="fa fa-weixin"></i><span class="tooltiptext">weixin</span></div>
+<div id="fa fa-whatsapp" class="tooltip" onclick="iconClicked('fa fa-whatsapp')"><i class="fa fa-whatsapp"></i><span class="tooltiptext">whatsapp</span></div>
+<div id="fa fa-wikipedia-w" class="tooltip" onclick="iconClicked('fa fa-wikipedia-w')"><i class="fa fa-wikipedia-w"></i><span class="tooltiptext">wikipedia-w</span></div>
+<div id="fa fa-windows" class="tooltip" onclick="iconClicked('fa fa-windows')"><i class="fa fa-windows"></i><span class="tooltiptext">windows</span></div>
+<div id="fa fa-wordpress" class="tooltip" onclick="iconClicked('fa fa-wordpress')"><i class="fa fa-wordpress"></i><span class="tooltiptext">wordpress</span></div>
+<div id="fa fa-wpbeginner" class="tooltip" onclick="iconClicked('fa fa-wpbeginner')"><i class="fa fa-wpbeginner"></i><span class="tooltiptext">wpbeginner</span></div>
+<div id="fa fa-wpexplorer" class="tooltip" onclick="iconClicked('fa fa-wpexplorer')"><i class="fa fa-wpexplorer"></i><span class="tooltiptext">wpexplorer</span></div>
+<div id="fa fa-wpforms" class="tooltip" onclick="iconClicked('fa fa-wpforms')"><i class="fa fa-wpforms"></i><span class="tooltiptext">wpforms</span></div>
+<div id="fa fa-xing" class="tooltip" onclick="iconClicked('fa fa-xing')"><i class="fa fa-xing"></i><span class="tooltiptext">xing</span></div>
+<div id="fa fa-xing-square" class="tooltip" onclick="iconClicked('fa fa-xing-square')"><i class="fa fa-xing-square"></i><span class="tooltiptext">xing-square</span></div>
+<div id="fa fa-y-combinator" class="tooltip" onclick="iconClicked('fa fa-y-combinator')"><i class="fa fa-y-combinator"></i><span class="tooltiptext">y-combinator</span></div>
+<div id="fa fa-yahoo" class="tooltip" onclick="iconClicked('fa fa-yahoo')"><i class="fa fa-yahoo"></i><span class="tooltiptext">yahoo</span></div>
+<div id="fa fa-yelp" class="tooltip" onclick="iconClicked('fa fa-yelp')"><i class="fa fa-yelp"></i><span class="tooltiptext">yelp</span></div>
+<div id="fa fa-yc" class="tooltip" onclick="iconClicked('fa fa-yc')"><i class="fa fa-yc"></i><span class="tooltiptext">yc</span></div>
+<div id="fa fa-yoast" class="tooltip" onclick="iconClicked('fa fa-yoast')"><i class="fa fa-yoast"></i><span class="tooltiptext">yoast</span></div>
+<div id="fa fa-youtube" class="tooltip" onclick="iconClicked('fa fa-youtube')"><i class="fa fa-youtube"></i><span class="tooltiptext">youtube</span></div>
+<div id="fa fa-youtube-play" class="tooltip" onclick="iconClicked('fa fa-youtube-play')"><i class="fa fa-youtube-play"></i><span class="tooltiptext">youtube-play</span></div>
+<div id="fa fa-youtube-square" class="tooltip" onclick="iconClicked('fa fa-youtube-square')"><i class="fa fa-youtube-square"></i><span class="tooltiptext">youtube-square</span></div>
+<BR><BR><div>chart</div><BR>
+<div id="fa fa-area-chart" class="tooltip" onclick="iconClicked('fa fa-area-chart')"><i class="fa fa-area-chart"></i><span class="tooltiptext">area-chart</span></div>
+<div id="fa fa-bar-chart" class="tooltip" onclick="iconClicked('fa fa-bar-chart')"><i class="fa fa-bar-chart"></i><span class="tooltiptext">bar-chart</span></div>
+<div id="fa fa-line-chart" class="tooltip" onclick="iconClicked('fa fa-line-chart')"><i class="fa fa-line-chart"></i><span class="tooltiptext">line-chart</span></div>
+<div id="fa fa-pie-chart" class="tooltip" onclick="iconClicked('fa fa-pie-chart')"><i class="fa fa-pie-chart"></i><span class="tooltiptext">pie-chart</span></div>
+<BR><BR><div>currency</div><BR>
+<div id="fa fa-bitcoin" class="tooltip" onclick="iconClicked('fa fa-bitcoin')"><i class="fa fa-bitcoin"></i><span class="tooltiptext">bitcoin</span></div>
+<div id="fa fa-btc" class="tooltip" onclick="iconClicked('fa fa-btc')"><i class="fa fa-btc"></i><span class="tooltiptext">btc</span></div>
+<div id="fa fa-cny" class="tooltip" onclick="iconClicked('fa fa-cny')"><i class="fa fa-cny"></i><span class="tooltiptext">cny</span></div>
+<div id="fa fa-dollar" class="tooltip" onclick="iconClicked('fa fa-dollar')"><i class="fa fa-dollar"></i><span class="tooltiptext">dollar</span></div>
+<div id="fa fa-eur" class="tooltip" onclick="iconClicked('fa fa-eur')"><i class="fa fa-eur"></i><span class="tooltiptext">eur</span></div>
+<div id="fa fa-euro" class="tooltip" onclick="iconClicked('fa fa-euro')"><i class="fa fa-euro"></i><span class="tooltiptext">euro</span></div>
+<div id="fa fa-gbp" class="tooltip" onclick="iconClicked('fa fa-gbp')"><i class="fa fa-gbp"></i><span class="tooltiptext">gbp</span></div>
+<div id="fa fa-ils" class="tooltip" onclick="iconClicked('fa fa-ils')"><i class="fa fa-ils"></i><span class="tooltiptext">ils</span></div>
+<BR><BR><div>directional</div><BR>
+<div id="fa fa-angle-double-down" class="tooltip" onclick="iconClicked('fa fa-angle-double-down')"><i class="fa fa-angle-double-down"></i><span class="tooltiptext">angle-double-down</span></div>
+<div id="fa fa-angle-double-left" class="tooltip" onclick="iconClicked('fa fa-angle-double-left')"><i class="fa fa-angle-double-left"></i><span class="tooltiptext">angle-double-left</span></div>
+<div id="fa fa-angle-double-right" class="tooltip" onclick="iconClicked('fa fa-angle-double-right')"><i class="fa fa-angle-double-right"></i><span class="tooltiptext">angle-double-right</span></div>
+<div id="fa fa-angle-double-up" class="tooltip" onclick="iconClicked('fa fa-angle-double-up')"><i class="fa fa-angle-double-up"></i><span class="tooltiptext">angle-double-up</span></div>
+<div id="fa fa-angle-down" class="tooltip" onclick="iconClicked('fa fa-angle-down')"><i class="fa fa-angle-down"></i><span class="tooltiptext">angle-down</span></div>
+<div id="fa fa-angle-left" class="tooltip" onclick="iconClicked('fa fa-angle-left')"><i class="fa fa-angle-left"></i><span class="tooltiptext">angle-left</span></div>
+<div id="fa fa-angle-right" class="tooltip" onclick="iconClicked('fa fa-angle-right')"><i class="fa fa-angle-right"></i><span class="tooltiptext">angle-right</span></div>
+<div id="fa fa-angle-up" class="tooltip" onclick="iconClicked('fa fa-angle-up')"><i class="fa fa-angle-up"></i><span class="tooltiptext">angle-up</span></div>
+<div id="fa fa-arrow-circle-down" class="tooltip" onclick="iconClicked('fa fa-arrow-circle-down')"><i class="fa fa-arrow-circle-down"></i><span class="tooltiptext">arrow-circle-down</span></div>
+<div id="fa fa-arrow-circle-left" class="tooltip" onclick="iconClicked('fa fa-arrow-circle-left')"><i class="fa fa-arrow-circle-left"></i><span class="tooltiptext">arrow-circle-left</span></div>
+<div id="fa fa-arrow-circle-right" class="tooltip" onclick="iconClicked('fa fa-arrow-circle-right')"><i class="fa fa-arrow-circle-right"></i><span class="tooltiptext">arrow-circle-right</span></div>
+<div id="fa fa-arrow-circle-up" class="tooltip" onclick="iconClicked('fa fa-arrow-circle-up')"><i class="fa fa-arrow-circle-up"></i><span class="tooltiptext">arrow-circle-up</span></div>
+<div id="fa fa-arrow-circle-o-down" class="tooltip" onclick="iconClicked('fa fa-arrow-circle-o-down')"><i class="fa fa-arrow-circle-o-down"></i><span class="tooltiptext">arrow-circle-o-down</span></div>
+<div id="fa fa-arrow-circle-o-left" class="tooltip" onclick="iconClicked('fa fa-arrow-circle-o-left')"><i class="fa fa-arrow-circle-o-left"></i><span class="tooltiptext">arrow-circle-o-left</span></div>
+<div id="fa fa-arrow-circle-o-right" class="tooltip" onclick="iconClicked('fa fa-arrow-circle-o-right')"><i class="fa fa-arrow-circle-o-right"></i><span class="tooltiptext">arrow-circle-o-right</span></div>
+<div id="fa fa-arrow-circle-o-up" class="tooltip" onclick="iconClicked('fa fa-arrow-circle-o-up')"><i class="fa fa-arrow-circle-o-up"></i><span class="tooltiptext">arrow-circle-o-up</span></div>
+<div id="fa fa-arrow-down" class="tooltip" onclick="iconClicked('fa fa-arrow-down')"><i class="fa fa-arrow-down"></i><span class="tooltiptext">arrow-down</span></div>
+<div id="fa fa-arrow-left" class="tooltip" onclick="iconClicked('fa fa-arrow-left')"><i class="fa fa-arrow-left"></i><span class="tooltiptext">arrow-left</span></div>
+<div id="fa fa-arrow-right" class="tooltip" onclick="iconClicked('fa fa-arrow-right')"><i class="fa fa-arrow-right"></i><span class="tooltiptext">arrow-right</span></div>
+<div id="fa fa-arrow-up" class="tooltip" onclick="iconClicked('fa fa-arrow-up')"><i class="fa fa-arrow-up"></i><span class="tooltiptext">arrow-up</span></div>
+<div id="fa fa-arrows" class="tooltip" onclick="iconClicked('fa fa-arrows')"><i class="fa fa-arrows"></i><span class="tooltiptext">arrows</span></div>
+<div id="fa fa-arrows-alt" class="tooltip" onclick="iconClicked('fa fa-arrows-alt')"><i class="fa fa-arrows-alt"></i><span class="tooltiptext">arrows-alt</span></div>
+<div id="fa fa-arrows-h" class="tooltip" onclick="iconClicked('fa fa-arrows-h')"><i class="fa fa-arrows-h"></i><span class="tooltiptext">arrows-h</span></div>
+<div id="fa fa-arrows-v" class="tooltip" onclick="iconClicked('fa fa-arrows-v')"><i class="fa fa-arrows-v"></i><span class="tooltiptext">arrows-v</span></div>
+<div id="fa fa-caret-down" class="tooltip" onclick="iconClicked('fa fa-caret-down')"><i class="fa fa-caret-down"></i><span class="tooltiptext">caret-down</span></div>
+<div id="fa fa-caret-left" class="tooltip" onclick="iconClicked('fa fa-caret-left')"><i class="fa fa-caret-left"></i><span class="tooltiptext">caret-left</span></div>
+<div id="fa fa-caret-right" class="tooltip" onclick="iconClicked('fa fa-caret-right')"><i class="fa fa-caret-right"></i><span class="tooltiptext">caret-right</span></div>
+<div id="fa fa-caret-up" class="tooltip" onclick="iconClicked('fa fa-caret-up')"><i class="fa fa-caret-up"></i><span class="tooltiptext">caret-up</span></div>
+<div id="fa fa-caret-square-o-down" class="tooltip" onclick="iconClicked('fa fa-caret-square-o-down')"><i class="fa fa-caret-square-o-down"></i><span class="tooltiptext">caret-square-o-down</span></div>
+<div id="fa fa-caret-square-o-left" class="tooltip" onclick="iconClicked('fa fa-caret-square-o-left')"><i class="fa fa-caret-square-o-left"></i><span class="tooltiptext">caret-square-o-left</span></div>
+<div id="fa fa-caret-square-o-right" class="tooltip" onclick="iconClicked('fa fa-caret-square-o-right')"><i class="fa fa-caret-square-o-right"></i><span class="tooltiptext">caret-square-o-right</span></div>
+<div id="fa fa-caret-square-o-up" class="tooltip" onclick="iconClicked('fa fa-caret-square-o-up')"><i class="fa fa-caret-square-o-up"></i><span class="tooltiptext">caret-square-o-up</span></div>
+<div id="fa fa-chevron-circle-down" class="tooltip" onclick="iconClicked('fa fa-chevron-circle-down')"><i class="fa fa-chevron-circle-down"></i><span class="tooltiptext">chevron-circle-down</span></div>
+<div id="fa fa-chevron-circle-left" class="tooltip" onclick="iconClicked('fa fa-chevron-circle-left')"><i class="fa fa-chevron-circle-left"></i><span class="tooltiptext">chevron-circle-left</span></div>
+<div id="fa fa-chevron-circle-right" class="tooltip" onclick="iconClicked('fa fa-chevron-circle-right')"><i class="fa fa-chevron-circle-right"></i><span class="tooltiptext">chevron-circle-right</span></div>
+<div id="fa fa-chevron-circle-up" class="tooltip" onclick="iconClicked('fa fa-chevron-circle-up')"><i class="fa fa-chevron-circle-up"></i><span class="tooltiptext">chevron-circle-up</span></div>
+<div id="fa fa-chevron-down" class="tooltip" onclick="iconClicked('fa fa-chevron-down')"><i class="fa fa-chevron-down"></i><span class="tooltiptext">chevron-down</span></div>
+<div id="fa fa-chevron-left" class="tooltip" onclick="iconClicked('fa fa-chevron-left')"><i class="fa fa-chevron-left"></i><span class="tooltiptext">chevron-left</span></div>
+<div id="fa fa-chevron-right" class="tooltip" onclick="iconClicked('fa fa-chevron-right')"><i class="fa fa-chevron-right"></i><span class="tooltiptext">chevron-right</span></div>
+<div id="fa fa-chevron-up" class="tooltip" onclick="iconClicked('fa fa-chevron-up')"><i class="fa fa-chevron-up"></i><span class="tooltiptext">chevron-up</span></div>
+<div id="fa fa-hand-o-down" class="tooltip" onclick="iconClicked('fa fa-hand-o-down')"><i class="fa fa-hand-o-down"></i><span class="tooltiptext">hand-o-down</span></div>
+<div id="fa fa-hand-o-left" class="tooltip" onclick="iconClicked('fa fa-hand-o-left')"><i class="fa fa-hand-o-left"></i><span class="tooltiptext">hand-o-left</span></div>
+<div id="fa fa-hand-o-right" class="tooltip" onclick="iconClicked('fa fa-hand-o-right')"><i class="fa fa-hand-o-right"></i><span class="tooltiptext">hand-o-right</span></div>
+<div id="fa fa-hand-o-up" class="tooltip" onclick="iconClicked('fa fa-hand-o-up')"><i class="fa fa-hand-o-up"></i><span class="tooltiptext">hand-o-up</span></div>
+<div id="fa fa-long-arrow-down" class="tooltip" onclick="iconClicked('fa fa-long-arrow-down')"><i class="fa fa-long-arrow-down"></i><span class="tooltiptext">long-arrow-down</span></div>
+<div id="fa fa-long-arrow-left" class="tooltip" onclick="iconClicked('fa fa-long-arrow-left')"><i class="fa fa-long-arrow-left"></i><span class="tooltiptext">long-arrow-left</span></div>
+<div id="fa fa-long-arrow-right" class="tooltip" onclick="iconClicked('fa fa-long-arrow-right')"><i class="fa fa-long-arrow-right"></i><span class="tooltiptext">long-arrow-right</span></div>
+<div id="fa fa-long-arrow-up" class="tooltip" onclick="iconClicked('fa fa-long-arrow-up')"><i class="fa fa-long-arrow-up"></i><span class="tooltiptext">long-arrow-up</span></div>
+<div id="fa fa-toggle-down" class="tooltip" onclick="iconClicked('fa fa-toggle-down')"><i class="fa fa-toggle-down"></i><span class="tooltiptext">toggle-down</span></div>
+<div id="fa fa-toggle-left" class="tooltip" onclick="iconClicked('fa fa-toggle-left')"><i class="fa fa-toggle-left"></i><span class="tooltiptext">toggle-left</span></div>
+<div id="fa fa-toggle-right" class="tooltip" onclick="iconClicked('fa fa-toggle-right')"><i class="fa fa-toggle-right"></i><span class="tooltiptext">toggle-right</span></div>
+<div id="fa fa-toggle-up" class="tooltip" onclick="iconClicked('fa fa-toggle-up')"><i class="fa fa-toggle-up"></i><span class="tooltiptext">toggle-up</span></div>
+<BR><BR><div>file type</div><BR>
+<div id="fa fa-file" class="tooltip" onclick="iconClicked('fa fa-file')"><i class="fa fa-file"></i><span class="tooltiptext">file</span></div>
+<div id="fa fa-file-archive-o" class="tooltip" onclick="iconClicked('fa fa-file-archive-o')"><i class="fa fa-file-archive-o"></i><span class="tooltiptext">file-archive-o</span></div>
+<div id="fa fa-file-audio-o" class="tooltip" onclick="iconClicked('fa fa-file-audio-o')"><i class="fa fa-file-audio-o"></i><span class="tooltiptext">file-audio-o</span></div>
+<div id="fa fa-file-code-o" class="tooltip" onclick="iconClicked('fa fa-file-code-o')"><i class="fa fa-file-code-o"></i><span class="tooltiptext">file-code-o</span></div>
+<div id="fa fa-file-excel-o" class="tooltip" onclick="iconClicked('fa fa-file-excel-o')"><i class="fa fa-file-excel-o"></i><span class="tooltiptext">file-excel-o</span></div>
+<div id="fa fa-file-image-o" class="tooltip" onclick="iconClicked('fa fa-file-image-o')"><i class="fa fa-file-image-o"></i><span class="tooltiptext">file-image-o</span></div>
+<div id="fa fa-file-movie-o" class="tooltip" onclick="iconClicked('fa fa-file-movie-o')"><i class="fa fa-file-movie-o"></i><span class="tooltiptext">file-movie-o</span></div>
+<div id="fa fa-file-o" class="tooltip" onclick="iconClicked('fa fa-file-o')"><i class="fa fa-file-o"></i><span class="tooltiptext">file-o</span></div>
+<div id="fa fa-file-pdf-o" class="tooltip" onclick="iconClicked('fa fa-file-pdf-o')"><i class="fa fa-file-pdf-o"></i><span class="tooltiptext">file-pdf-o</span></div>
+<div id="fa fa-file-photo-o" class="tooltip" onclick="iconClicked('fa fa-file-photo-o')"><i class="fa fa-file-photo-o"></i><span class="tooltiptext">file-photo-o</span></div>
+<div id="fa fa-file-picture-o" class="tooltip" onclick="iconClicked('fa fa-file-picture-o')"><i class="fa fa-file-picture-o"></i><span class="tooltiptext">file-picture-o</span></div>
+<div id="fa fa-file-powerpoint-o" class="tooltip" onclick="iconClicked('fa fa-file-powerpoint-o')"><i class="fa fa-file-powerpoint-o"></i><span class="tooltiptext">file-powerpoint-o</span></div>
+<div id="fa fa-file-text" class="tooltip" onclick="iconClicked('fa fa-file-text')"><i class="fa fa-file-text"></i><span class="tooltiptext">file-text</span></div>
+<div id="fa fa-file-text-o" class="tooltip" onclick="iconClicked('fa fa-file-text-o')"><i class="fa fa-file-text-o"></i><span class="tooltiptext">file-text-o</span></div>
+<div id="fa fa-file-video-o" class="tooltip" onclick="iconClicked('fa fa-file-video-o')"><i class="fa fa-file-video-o"></i><span class="tooltiptext">file-video-o</span></div>
+<div id="fa fa-file-word-o" class="tooltip" onclick="iconClicked('fa fa-file-word-o')"><i class="fa fa-file-word-o"></i><span class="tooltiptext">file-word-o</span></div>
+<div id="fa fa-file-zip-o" class="tooltip" onclick="iconClicked('fa fa-file-zip-o')"><i class="fa fa-file-zip-o"></i><span class="tooltiptext">file-zip-o</span></div>
+<BR><BR><div>form</div><BR>
+<div id="fa fa-check-square" class="tooltip" onclick="iconClicked('fa fa-check-square')"><i class="fa fa-check-square"></i><span class="tooltiptext">check-square</span></div>
+<div id="fa fa-check-square-o" class="tooltip" onclick="iconClicked('fa fa-check-square-o')"><i class="fa fa-check-square-o"></i><span class="tooltiptext">check-square-o</span></div>
+<div id="fa fa-circle" class="tooltip" onclick="iconClicked('fa fa-circle')"><i class="fa fa-circle"></i><span class="tooltiptext">circle</span></div>
+<div id="fa fa-circle-o" class="tooltip" onclick="iconClicked('fa fa-circle-o')"><i class="fa fa-circle-o"></i><span class="tooltiptext">circle-o</span></div>
+<div id="fa fa-dot-circle-o" class="tooltip" onclick="iconClicked('fa fa-dot-circle-o')"><i class="fa fa-dot-circle-o"></i><span class="tooltiptext">dot-circle-o</span></div>
+<div id="fa fa-minus-square" class="tooltip" onclick="iconClicked('fa fa-minus-square')"><i class="fa fa-minus-square"></i><span class="tooltiptext">minus-square</span></div>
+<div id="fa fa-minus-square-o" class="tooltip" onclick="iconClicked('fa fa-minus-square-o')"><i class="fa fa-minus-square-o"></i><span class="tooltiptext">minus-square-o</span></div>
+<div id="fa fa-plus-square" class="tooltip" onclick="iconClicked('fa fa-plus-square')"><i class="fa fa-plus-square"></i><span class="tooltiptext">plus-square</span></div>
+<div id="fa fa-plus-square-o" class="tooltip" onclick="iconClicked('fa fa-plus-square-o')"><i class="fa fa-plus-square-o"></i><span class="tooltiptext">plus-square-o</span></div>
+<div id="fa fa-square" class="tooltip" onclick="iconClicked('fa fa-square')"><i class="fa fa-square"></i><span class="tooltiptext">square</span></div>
+<div id="fa fa-square-o" class="tooltip" onclick="iconClicked('fa fa-square-o')"><i class="fa fa-square-o"></i><span class="tooltiptext">square-o</span></div>
+<BR><BR><div>gender</div><BR>
+<div id="fa fa-genderless" class="tooltip" onclick="iconClicked('fa fa-genderless')"><i class="fa fa-genderless"></i><span class="tooltiptext">genderless</span></div>
+<div id="fa fa-intersex" class="tooltip" onclick="iconClicked('fa fa-intersex')"><i class="fa fa-intersex"></i><span class="tooltiptext">intersex</span></div>
+<div id="fa fa-mars" class="tooltip" onclick="iconClicked('fa fa-mars')"><i class="fa fa-mars"></i><span class="tooltiptext">mars</span></div>
+<div id="fa fa-mars-double" class="tooltip" onclick="iconClicked('fa fa-mars-double')"><i class="fa fa-mars-double"></i><span class="tooltiptext">mars-double</span></div>
+<div id="fa fa-mars-stroke" class="tooltip" onclick="iconClicked('fa fa-mars-stroke')"><i class="fa fa-mars-stroke"></i><span class="tooltiptext">mars-stroke</span></div>
+<div id="fa fa-mars-stroke-h" class="tooltip" onclick="iconClicked('fa fa-mars-stroke-h')"><i class="fa fa-mars-stroke-h"></i><span class="tooltiptext">mars-stroke-h</span></div>
+<div id="fa fa-mars-stroke-v" class="tooltip" onclick="iconClicked('fa fa-mars-stroke-v')"><i class="fa fa-mars-stroke-v"></i><span class="tooltiptext">mars-stroke-v</span></div>
+<div id="fa fa-mercury" class="tooltip" onclick="iconClicked('fa fa-mercury')"><i class="fa fa-mercury"></i><span class="tooltiptext">mercury</span></div>
+<div id="fa fa-neuter" class="tooltip" onclick="iconClicked('fa fa-neuter')"><i class="fa fa-neuter"></i><span class="tooltiptext">neuter</span></div>
+<div id="fa fa-transgender" class="tooltip" onclick="iconClicked('fa fa-transgender')"><i class="fa fa-transgender"></i><span class="tooltiptext">transgender</span></div>
+<div id="fa fa-transgender-alt" class="tooltip" onclick="iconClicked('fa fa-transgender-alt')"><i class="fa fa-transgender-alt"></i><span class="tooltiptext">transgender-alt</span></div>
+<div id="fa fa-venus" class="tooltip" onclick="iconClicked('fa fa-venus')"><i class="fa fa-venus"></i><span class="tooltiptext">venus</span></div>
+<div id="fa fa-venus-double" class="tooltip" onclick="iconClicked('fa fa-venus-double')"><i class="fa fa-venus-double"></i><span class="tooltiptext">venus-double</span></div>
+<div id="fa fa-venus-mars" class="tooltip" onclick="iconClicked('fa fa-venus-mars')"><i class="fa fa-venus-mars"></i><span class="tooltiptext">venus-mars</span></div>
+<BR><BR><div>hand</div><BR>
+<div id="fa fa-hand-grab-o" class="tooltip" onclick="iconClicked('fa fa-hand-grab-o')"><i class="fa fa-hand-grab-o"></i><span class="tooltiptext">hand-grab-o</span></div>
+<div id="fa fa-hand-lizard-o" class="tooltip" onclick="iconClicked('fa fa-hand-lizard-o')"><i class="fa fa-hand-lizard-o"></i><span class="tooltiptext">hand-lizard-o</span></div>
+<div id="fa fa-hand-o-down" class="tooltip" onclick="iconClicked('fa fa-hand-o-down')"><i class="fa fa-hand-o-down"></i><span class="tooltiptext">hand-o-down</span></div>
+<div id="fa fa-hand-o-left" class="tooltip" onclick="iconClicked('fa fa-hand-o-left')"><i class="fa fa-hand-o-left"></i><span class="tooltiptext">hand-o-left</span></div>
+<div id="fa fa-hand-o-right" class="tooltip" onclick="iconClicked('fa fa-hand-o-right')"><i class="fa fa-hand-o-right"></i><span class="tooltiptext">hand-o-right</span></div>
+<div id="fa fa-hand-o-up" class="tooltip" onclick="iconClicked('fa fa-hand-o-up')"><i class="fa fa-hand-o-up"></i><span class="tooltiptext">hand-o-up</span></div>
+<div id="fa fa-hand-paper-o" class="tooltip" onclick="iconClicked('fa fa-hand-paper-o')"><i class="fa fa-hand-paper-o"></i><span class="tooltiptext">hand-paper-o</span></div>
+<div id="fa fa-hand-peace-o" class="tooltip" onclick="iconClicked('fa fa-hand-peace-o')"><i class="fa fa-hand-peace-o"></i><span class="tooltiptext">hand-peace-o</span></div>
+<div id="fa fa-hand-pointer-o" class="tooltip" onclick="iconClicked('fa fa-hand-pointer-o')"><i class="fa fa-hand-pointer-o"></i><span class="tooltiptext">hand-pointer-o</span></div>
+<div id="fa fa-rocket" class="tooltip" onclick="iconClicked('fa fa-rocket')"><i class="fa fa-rocket"></i><span class="tooltiptext">rocket</span></div>
+<div id="fa fa-hand-scissors-o" class="tooltip" onclick="iconClicked('fa fa-hand-scissors-o')"><i class="fa fa-hand-scissors-o"></i><span class="tooltiptext">hand-scissors-o</span></div>
+<div id="fa fa-hand-spock-o" class="tooltip" onclick="iconClicked('fa fa-hand-spock-o')"><i class="fa fa-hand-spock-o"></i><span class="tooltiptext">hand-spock-o</span></div>
+<div id="fa fa-hand-stop-o" class="tooltip" onclick="iconClicked('fa fa-hand-stop-o')"><i class="fa fa-hand-stop-o"></i><span class="tooltiptext">hand-stop-o</span></div>
+<div id="fa fa-thumbs-down" class="tooltip" onclick="iconClicked('fa fa-thumbs-down')"><i class="fa fa-thumbs-down"></i><span class="tooltiptext">thumbs-down</span></div>
+<div id="fa fa-thumbs-o-down" class="tooltip" onclick="iconClicked('fa fa-thumbs-o-down')"><i class="fa fa-thumbs-o-down"></i><span class="tooltiptext">thumbs-o-down</span></div>
+<div id="fa fa-thumbs-o-up" class="tooltip" onclick="iconClicked('fa fa-thumbs-o-up')"><i class="fa fa-thumbs-o-up"></i><span class="tooltiptext">thumbs-o-up</span></div>
+<div id="fa fa-thumbs-up" class="tooltip" onclick="iconClicked('fa fa-thumbs-up')"><i class="fa fa-thumbs-up"></i><span class="tooltiptext">thumbs-up</span></div>
+<BR><BR><div>medical</div><BR>
+<div id="fa fa-ambulance" class="tooltip" onclick="iconClicked('fa fa-ambulance')"><i class="fa fa-ambulance"></i><span class="tooltiptext">ambulance</span></div>
+<div id="fa fa-h-square" class="tooltip" onclick="iconClicked('fa fa-h-square')"><i class="fa fa-h-square"></i><span class="tooltiptext">h-square</span></div>
+<div id="fa fa-heart" class="tooltip" onclick="iconClicked('fa fa-heart')"><i class="fa fa-heart"></i><span class="tooltiptext">heart</span></div>
+<div id="fa fa-heart-o" class="tooltip" onclick="iconClicked('fa fa-heart-o')"><i class="fa fa-heart-o"></i><span class="tooltiptext">heart-o</span></div>
+<div id="fa fa-heartbeat" class="tooltip" onclick="iconClicked('fa fa-heartbeat')"><i class="fa fa-heartbeat"></i><span class="tooltiptext">heartbeat</span></div>
+<div id="fa fa-hospital-o" class="tooltip" onclick="iconClicked('fa fa-hospital-o')"><i class="fa fa-hospital-o"></i><span class="tooltiptext">hospital-o</span></div>
+<div id="fa fa-medkit" class="tooltip" onclick="iconClicked('fa fa-medkit')"><i class="fa fa-medkit"></i><span class="tooltiptext">medkit</span></div>
+<div id="fa fa-plus-square" class="tooltip" onclick="iconClicked('fa fa-plus-square')"><i class="fa fa-plus-square"></i><span class="tooltiptext">plus-square</span></div>
+<div id="fa fa-stethoscope" class="tooltip" onclick="iconClicked('fa fa-stethoscope')"><i class="fa fa-stethoscope"></i><span class="tooltiptext">stethoscope</span></div>
+<div id="fa fa-user-md" class="tooltip" onclick="iconClicked('fa fa-user-md')"><i class="fa fa-user-md"></i><span class="tooltiptext">user-md</span></div>
+<div id="fa fa-wheelchair" class="tooltip" onclick="iconClicked('fa fa-wheelchair')"><i class="fa fa-wheelchair"></i><span class="tooltiptext">wheelchair</span></div>
+<BR><BR><div>payment</div><BR>
+<div id="fa fa-cc-amex" class="tooltip" onclick="iconClicked('fa fa-cc-amex')"><i class="fa fa-cc-amex"></i><span class="tooltiptext">cc-amex</span></div>
+<div id="fa fa-cc-diners-club" class="tooltip" onclick="iconClicked('fa fa-cc-diners-club')"><i class="fa fa-cc-diners-club"></i><span class="tooltiptext">cc-diners-club</span></div>
+<div id="fa fa-cc-discover" class="tooltip" onclick="iconClicked('fa fa-cc-discover')"><i class="fa fa-cc-discover"></i><span class="tooltiptext">cc-discover</span></div>
+<div id="fa fa-cc-jcb" class="tooltip" onclick="iconClicked('fa fa-cc-jcb')"><i class="fa fa-cc-jcb"></i><span class="tooltiptext">cc-jcb</span></div>
+<div id="fa fa-cc-mastercard" class="tooltip" onclick="iconClicked('fa fa-cc-mastercard')"><i class="fa fa-cc-mastercard"></i><span class="tooltiptext">cc-mastercard</span></div>
+<div id="fa fa-cc-paypal" class="tooltip" onclick="iconClicked('fa fa-cc-paypal')"><i class="fa fa-cc-paypal"></i><span class="tooltiptext">cc-paypal</span></div>
+<div id="fa fa-cc-stripe" class="tooltip" onclick="iconClicked('fa fa-cc-stripe')"><i class="fa fa-cc-stripe"></i><span class="tooltiptext">cc-stripe</span></div>
+<div id="fa fa-cc-visa" class="tooltip" onclick="iconClicked('fa fa-cc-visa')"><i class="fa fa-cc-visa"></i><span class="tooltiptext">cc-visa</span></div>
+<div id="fa fa-credit-card" class="tooltip" onclick="iconClicked('fa fa-credit-card')"><i class="fa fa-credit-card"></i><span class="tooltiptext">credit-card</span></div>
+<div id="fa fa-google-wallet" class="tooltip" onclick="iconClicked('fa fa-google-wallet')"><i class="fa fa-google-wallet"></i><span class="tooltiptext">google-wallet</span></div>
+<div id="fa fa-paypal" class="tooltip" onclick="iconClicked('fa fa-paypal')"><i class="fa fa-paypal"></i><span class="tooltiptext">paypal</span></div>
+<BR><BR><div>spinner</div><BR>
+<div id="fa fa-circle-o-notch" class="tooltip" onclick="iconClicked('fa fa-circle-o-notch')"><i class="fa fa-circle-o-notch"></i><span class="tooltiptext">circle-o-notch</span></div>
+<div id="fa fa-cog" class="tooltip" onclick="iconClicked('fa fa-cog')"><i class="fa fa-cog"></i><span class="tooltiptext">cog</span></div>
+<div id="fa fa-gear" class="tooltip" onclick="iconClicked('fa fa-gear')"><i class="fa fa-gear"></i><span class="tooltiptext">gear</span></div>
+<div id="fa fa-refresh" class="tooltip" onclick="iconClicked('fa fa-refresh')"><i class="fa fa-refresh"></i><span class="tooltiptext">refresh</span></div>
+<div id="fa fa-spinner" class="tooltip" onclick="iconClicked('fa fa-spinner')"><i class="fa fa-spinner"></i><span class="tooltiptext">spinner</span></div>
+<BR><BR><div>text</div><BR>
+<div id="fa fa-align-center" class="tooltip" onclick="iconClicked('fa fa-align-center')"><i class="fa fa-align-center"></i><span class="tooltiptext">align-center</span></div>
+<div id="fa fa-align-justify" class="tooltip" onclick="iconClicked('fa fa-align-justify')"><i class="fa fa-align-justify"></i><span class="tooltiptext">align-justify</span></div>
+<div id="fa fa-align-left" class="tooltip" onclick="iconClicked('fa fa-align-left')"><i class="fa fa-align-left"></i><span class="tooltiptext">align-left</span></div>
+<div id="fa fa-align-right" class="tooltip" onclick="iconClicked('fa fa-align-right')"><i class="fa fa-align-right"></i><span class="tooltiptext">align-right</span></div>
+<div id="fa fa-bold" class="tooltip" onclick="iconClicked('fa fa-bold')"><i class="fa fa-bold"></i><span class="tooltiptext">bold</span></div>
+<div id="fa fa-chain" class="tooltip" onclick="iconClicked('fa fa-chain')"><i class="fa fa-chain"></i><span class="tooltiptext">chain</span></div>
+<div id="fa fa-chain-broken" class="tooltip" onclick="iconClicked('fa fa-chain-broken')"><i class="fa fa-chain-broken"></i><span class="tooltiptext">chain-broken</span></div>
+<div id="fa fa-clipboard" class="tooltip" onclick="iconClicked('fa fa-clipboard')"><i class="fa fa-clipboard"></i><span class="tooltiptext">clipboard</span></div>
+<div id="fa fa-columns" class="tooltip" onclick="iconClicked('fa fa-columns')"><i class="fa fa-columns"></i><span class="tooltiptext">columns</span></div>
+<div id="fa fa-copy" class="tooltip" onclick="iconClicked('fa fa-copy')"><i class="fa fa-copy"></i><span class="tooltiptext">copy</span></div>
+<div id="fa fa-cut" class="tooltip" onclick="iconClicked('fa fa-cut')"><i class="fa fa-cut"></i><span class="tooltiptext">cut</span></div>
+<div id="fa fa-dedent" class="tooltip" onclick="iconClicked('fa fa-dedent')"><i class="fa fa-dedent"></i><span class="tooltiptext">dedent</span></div>
+<div id="fa fa-eraser" class="tooltip" onclick="iconClicked('fa fa-eraser')"><i class="fa fa-eraser"></i><span class="tooltiptext">eraser</span></div>
+<div id="fa fa-file" class="tooltip" onclick="iconClicked('fa fa-file')"><i class="fa fa-file"></i><span class="tooltiptext">file</span></div>
+<div id="fa fa-file-o" class="tooltip" onclick="iconClicked('fa fa-file-o')"><i class="fa fa-file-o"></i><span class="tooltiptext">file-o</span></div>
+<div id="fa fa-file-text" class="tooltip" onclick="iconClicked('fa fa-file-text')"><i class="fa fa-file-text"></i><span class="tooltiptext">file-text</span></div>
+<div id="fa fa-file-text-o" class="tooltip" onclick="iconClicked('fa fa-file-text-o')"><i class="fa fa-file-text-o"></i><span class="tooltiptext">file-text-o</span></div>
+<div id="fa fa-files-o" class="tooltip" onclick="iconClicked('fa fa-files-o')"><i class="fa fa-files-o"></i><span class="tooltiptext">files-o</span></div>
+<div id="fa fa-floppy-o" class="tooltip" onclick="iconClicked('fa fa-floppy-o')"><i class="fa fa-floppy-o"></i><span class="tooltiptext">floppy-o</span></div>
+<div id="fa fa-font" class="tooltip" onclick="iconClicked('fa fa-font')"><i class="fa fa-font"></i><span class="tooltiptext">font</span></div>
+<div id="fa fa-header" class="tooltip" onclick="iconClicked('fa fa-header')"><i class="fa fa-header"></i><span class="tooltiptext">header</span></div>
+<div id="fa fa-indent" class="tooltip" onclick="iconClicked('fa fa-indent')"><i class="fa fa-indent"></i><span class="tooltiptext">indent</span></div>
+<div id="fa fa-italic" class="tooltip" onclick="iconClicked('fa fa-italic')"><i class="fa fa-italic"></i><span class="tooltiptext">italic</span></div>
+<div id="fa fa-link" class="tooltip" onclick="iconClicked('fa fa-link')"><i class="fa fa-link"></i><span class="tooltiptext">link</span></div>
+<div id="fa fa-list" class="tooltip" onclick="iconClicked('fa fa-list')"><i class="fa fa-list"></i><span class="tooltiptext">list</span></div>
+<div id="fa fa-list-alt" class="tooltip" onclick="iconClicked('fa fa-list-alt')"><i class="fa fa-list-alt"></i><span class="tooltiptext">list-alt</span></div>
+<div id="fa fa-list-ol" class="tooltip" onclick="iconClicked('fa fa-list-ol')"><i class="fa fa-list-ol"></i><span class="tooltiptext">list-ol</span></div>
+<div id="fa fa-list-ul" class="tooltip" onclick="iconClicked('fa fa-list-ul')"><i class="fa fa-list-ul"></i><span class="tooltiptext">list-ul</span></div>
+<div id="fa fa-outdent" class="tooltip" onclick="iconClicked('fa fa-outdent')"><i class="fa fa-outdent"></i><span class="tooltiptext">outdent</span></div>
+<div id="fa fa-paperclip" class="tooltip" onclick="iconClicked('fa fa-paperclip')"><i class="fa fa-paperclip"></i><span class="tooltiptext">paperclip</span></div>
+<div id="fa fa-paragraph" class="tooltip" onclick="iconClicked('fa fa-paragraph')"><i class="fa fa-paragraph"></i><span class="tooltiptext">paragraph</span></div>
+<div id="fa fa-paste" class="tooltip" onclick="iconClicked('fa fa-paste')"><i class="fa fa-paste"></i><span class="tooltiptext">paste</span></div>
+<div id="fa fa-repeat" class="tooltip" onclick="iconClicked('fa fa-repeat')"><i class="fa fa-repeat"></i><span class="tooltiptext">repeat</span></div>
+<div id="fa fa-rotate-left" class="tooltip" onclick="iconClicked('fa fa-rotate-left')"><i class="fa fa-rotate-left"></i><span class="tooltiptext">rotate-left</span></div>
+<div id="fa fa-rotate-right" class="tooltip" onclick="iconClicked('fa fa-rotate-right')"><i class="fa fa-rotate-right"></i><span class="tooltiptext">rotate-right</span></div>
+<div id="fa fa-save" class="tooltip" onclick="iconClicked('fa fa-save')"><i class="fa fa-save"></i><span class="tooltiptext">save</span></div>
+<div id="fa fa-scissors" class="tooltip" onclick="iconClicked('fa fa-scissors')"><i class="fa fa-scissors"></i><span class="tooltiptext">scissors</span></div>
+<div id="fa fa-strikethrough" class="tooltip" onclick="iconClicked('fa fa-strikethrough')"><i class="fa fa-strikethrough"></i><span class="tooltiptext">strikethrough</span></div>
+<div id="fa fa-subscript" class="tooltip" onclick="iconClicked('fa fa-subscript')"><i class="fa fa-subscript"></i><span class="tooltiptext">subscript</span></div>
+<div id="fa fa-superscript" class="tooltip" onclick="iconClicked('fa fa-superscript')"><i class="fa fa-superscript"></i><span class="tooltiptext">superscript</span></div>
+<div id="fa fa-table" class="tooltip" onclick="iconClicked('fa fa-table')"><i class="fa fa-table"></i><span class="tooltiptext">table</span></div>
+<div id="fa fa-text-height" class="tooltip" onclick="iconClicked('fa fa-text-height')"><i class="fa fa-text-height"></i><span class="tooltiptext">text-height</span></div>
+<div id="fa fa-text-width" class="tooltip" onclick="iconClicked('fa fa-text-width')"><i class="fa fa-text-width"></i><span class="tooltiptext">text-width</span></div>
+<div id="fa fa-th" class="tooltip" onclick="iconClicked('fa fa-th')"><i class="fa fa-th"></i><span class="tooltiptext">th</span></div>
+<div id="fa fa-th-large" class="tooltip" onclick="iconClicked('fa fa-th-large')"><i class="fa fa-th-large"></i><span class="tooltiptext">th-large</span></div>
+<div id="fa fa-th-list" class="tooltip" onclick="iconClicked('fa fa-th-list')"><i class="fa fa-th-list"></i><span class="tooltiptext">th-list</span></div>
+<div id="fa fa-underline" class="tooltip" onclick="iconClicked('fa fa-underline')"><i class="fa fa-underline"></i><span class="tooltiptext">underline</span></div>
+<div id="fa fa-undo" class="tooltip" onclick="iconClicked('fa fa-undo')"><i class="fa fa-undo"></i><span class="tooltiptext">undo</span></div>
+<div id="fa fa-unlink" class="tooltip" onclick="iconClicked('fa fa-unlink')"><i class="fa fa-unlink"></i><span class="tooltiptext">unlink</span></div>
+<BR><BR><div>transportation</div><BR>
+<div id="fa fa-ambulance" class="tooltip" onclick="iconClicked('fa fa-ambulance')"><i class="fa fa-ambulance"></i><span class="tooltiptext">ambulance</span></div>
+<div id="fa fa-automobile" class="tooltip" onclick="iconClicked('fa fa-automobile')"><i class="fa fa-automobile"></i><span class="tooltiptext">automobile</span></div>
+<div id="fa fa-bicycle" class="tooltip" onclick="iconClicked('fa fa-bicycle')"><i class="fa fa-bicycle"></i><span class="tooltiptext">bicycle</span></div>
+<div id="fa fa-bus" class="tooltip" onclick="iconClicked('fa fa-bus')"><i class="fa fa-bus"></i><span class="tooltiptext">bus</span></div>
+<div id="fa fa-cab" class="tooltip" onclick="iconClicked('fa fa-cab')"><i class="fa fa-cab"></i><span class="tooltiptext">cab</span></div>
+<div id="fa fa-car" class="tooltip" onclick="iconClicked('fa fa-car')"><i class="fa fa-car"></i><span class="tooltiptext">car</span></div>
+<div id="fa fa-fighter-jet" class="tooltip" onclick="iconClicked('fa fa-fighter-jet')"><i class="fa fa-fighter-jet"></i><span class="tooltiptext">fighter-jet</span></div>
+<div id="fa fa-motorcycle" class="tooltip" onclick="iconClicked('fa fa-motorcycle')"><i class="fa fa-motorcycle"></i><span class="tooltiptext">motorcycle</span></div>
+<div id="fa fa-plane" class="tooltip" onclick="iconClicked('fa fa-plane')"><i class="fa fa-plane"></i><span class="tooltiptext">plane</span></div>
+<div id="fa fa-rocket" class="tooltip" onclick="iconClicked('fa fa-rocket')"><i class="fa fa-rocket"></i><span class="tooltiptext">rocket</span></div>
+<div id="fa fa-ship" class="tooltip" onclick="iconClicked('fa fa-ship')"><i class="fa fa-ship"></i><span class="tooltiptext">ship</span></div>
+<div id="fa fa-space-shuttle" class="tooltip" onclick="iconClicked('fa fa-space-shuttle')"><i class="fa fa-space-shuttle"></i><span class="tooltiptext">space-shuttle</span></div>
+<div id="fa fa-subway" class="tooltip" onclick="iconClicked('fa fa-subway')"><i class="fa fa-subway"></i><span class="tooltiptext">subway</span></div>
+<div id="fa fa-taxi" class="tooltip" onclick="iconClicked('fa fa-taxi')"><i class="fa fa-taxi"></i><span class="tooltiptext">taxi</span></div>
+<div id="fa fa-train" class="tooltip" onclick="iconClicked('fa fa-train')"><i class="fa fa-train"></i><span class="tooltiptext">train</span></div>
+<div id="fa fa-truck" class="tooltip" onclick="iconClicked('fa fa-truck')"><i class="fa fa-truck"></i><span class="tooltiptext">truck</span></div>
+<div id="fa fa-wheelchair" class="tooltip" onclick="iconClicked('fa fa-wheelchair')"><i class="fa fa-wheelchair"></i><span class="tooltiptext">wheelchair</span></div>
+<BR><BR><div>video</div><BR>
+<div id="fa fa-arrows-alt" class="tooltip" onclick="iconClicked('fa fa-arrows-alt')"><i class="fa fa-arrows-alt"></i><span class="tooltiptext">arrows-alt</span></div>
+<div id="fa fa-backward" class="tooltip" onclick="iconClicked('fa fa-backward')"><i class="fa fa-backward"></i><span class="tooltiptext">backward</span></div>
+<div id="fa fa-compress" class="tooltip" onclick="iconClicked('fa fa-compress')"><i class="fa fa-compress"></i><span class="tooltiptext">compress</span></div>
+<div id="fa fa-eject" class="tooltip" onclick="iconClicked('fa fa-eject')"><i class="fa fa-eject"></i><span class="tooltiptext">eject</span></div>
+<div id="fa fa-expand" class="tooltip" onclick="iconClicked('fa fa-expand')"><i class="fa fa-expand"></i><span class="tooltiptext">expand</span></div>
+<div id="fa fa-fast-backward" class="tooltip" onclick="iconClicked('fa fa-fast-backward')"><i class="fa fa-fast-backward"></i><span class="tooltiptext">fast-backward</span></div>
+<div id="fa fa-fast-forward" class="tooltip" onclick="iconClicked('fa fa-fast-forward')"><i class="fa fa-fast-forward"></i><span class="tooltiptext">fast-forward</span></div>
+<div id="fa fa-forward" class="tooltip" onclick="iconClicked('fa fa-forward')"><i class="fa fa-forward"></i><span class="tooltiptext">forward</span></div>
+<div id="fa fa-pause" class="tooltip" onclick="iconClicked('fa fa-pause')"><i class="fa fa-pause"></i><span class="tooltiptext">pause</span></div>
+<div id="fa fa-pause-circle" class="tooltip" onclick="iconClicked('fa fa-pause-circle')"><i class="fa fa-pause-circle"></i><span class="tooltiptext">pause-circle</span></div>
+<div id="fa fa-pause-circle-o" class="tooltip" onclick="iconClicked('fa fa-pause-circle-o')"><i class="fa fa-pause-circle-o"></i><span class="tooltiptext">pause-circle-o</span></div>
+<div id="fa fa-play" class="tooltip" onclick="iconClicked('fa fa-play')"><i class="fa fa-play"></i><span class="tooltiptext">play</span></div>
+<div id="fa fa-play-circle" class="tooltip" onclick="iconClicked('fa fa-play-circle')"><i class="fa fa-play-circle"></i><span class="tooltiptext">play-circle</span></div>
+<div id="fa fa-play-circle-o" class="tooltip" onclick="iconClicked('fa fa-play-circle-o')"><i class="fa fa-play-circle-o"></i><span class="tooltiptext">play-circle-o</span></div>
+<div id="fa fa-step-backward" class="tooltip" onclick="iconClicked('fa fa-step-backward')"><i class="fa fa-step-backward"></i><span class="tooltiptext">step-backward</span></div>
+<div id="fa fa-step-forward" class="tooltip" onclick="iconClicked('fa fa-step-forward')"><i class="fa fa-step-forward"></i><span class="tooltiptext">step-forward</span></div>
+<div id="fa fa-stop" class="tooltip" onclick="iconClicked('fa fa-stop')"><i class="fa fa-stop"></i><span class="tooltiptext">stop</span></div>
+<div id="fa fa-stop-circle" class="tooltip" onclick="iconClicked('fa fa-stop-circle')"><i class="fa fa-stop-circle"></i><span class="tooltiptext">stop-circle</span></div>
+<div id="fa fa-stop-circle-o" class="tooltip" onclick="iconClicked('fa fa-stop-circle-o')"><i class="fa fa-stop-circle-o"></i><span class="tooltiptext">stop-circle-o</span></div>
+<div id="fa fa-youtube-play" class="tooltip" onclick="iconClicked('fa fa-youtube-play')"><i class="fa fa-youtube-play"></i><span class="tooltiptext">youtube-play</span></div>
+<BR><BR><div>web application</div><BR>
+<div id="fa fa-address-book" class="tooltip" onclick="iconClicked('fa fa-address-book')"><i class="fa fa-address-book"></i><span class="tooltiptext">address-book</span></div>
+<div id="fa fa-address-book-o" class="tooltip" onclick="iconClicked('fa fa-address-book-o')"><i class="fa fa-address-book-o"></i><span class="tooltiptext">address-book-o</span></div>
+<div id="fa fa-address-card" class="tooltip" onclick="iconClicked('fa fa-address-card')"><i class="fa fa-address-card"></i><span class="tooltiptext">address-card</span></div>
+<div id="fa fa-address-card-o" class="tooltip" onclick="iconClicked('fa fa-address-card-o')"><i class="fa fa-address-card-o"></i><span class="tooltiptext">address-card-o</span></div>
+<div id="fa fa-adjust" class="tooltip" onclick="iconClicked('fa fa-adjust')"><i class="fa fa-adjust"></i><span class="tooltiptext">adjust</span></div>
+<div id="fa fa-american-sign-language-interpreting" class="tooltip" onclick="iconClicked('fa fa-american-sign-language-interpreting')"><i class="fa fa-american-sign-language-interpreting"></i><span class="tooltiptext">american-sign-language-interpreting</span></div>
+<div id="fa fa-anchor" class="tooltip" onclick="iconClicked('fa fa-anchor')"><i class="fa fa-anchor"></i><span class="tooltiptext">anchor</span></div>
+<div id="fa fa-archive" class="tooltip" onclick="iconClicked('fa fa-archive')"><i class="fa fa-archive"></i><span class="tooltiptext">archive</span></div>
+<div id="fa fa-area-chart" class="tooltip" onclick="iconClicked('fa fa-area-chart')"><i class="fa fa-area-chart"></i><span class="tooltiptext">area-chart</span></div>
+<div id="fa fa-arrows" class="tooltip" onclick="iconClicked('fa fa-arrows')"><i class="fa fa-arrows"></i><span class="tooltiptext">arrows</span></div>
+<div id="fa fa-arrows-h" class="tooltip" onclick="iconClicked('fa fa-arrows-h')"><i class="fa fa-arrows-h"></i><span class="tooltiptext">arrows-h</span></div>
+<div id="fa fa-arrows-v" class="tooltip" onclick="iconClicked('fa fa-arrows-v')"><i class="fa fa-arrows-v"></i><span class="tooltiptext">arrows-v</span></div>
+<div id="fa fa-asl-interpreting" class="tooltip" onclick="iconClicked('fa fa-asl-interpreting')"><i class="fa fa-asl-interpreting"></i><span class="tooltiptext">asl-interpreting</span></div>
+<div id="fa fa-assistive-listening-systems" class="tooltip" onclick="iconClicked('fa fa-assistive-listening-systems')"><i class="fa fa-assistive-listening-systems"></i><span class="tooltiptext">assistive-listening-systems</span></div>
+<div id="fa fa-asterisk" class="tooltip" onclick="iconClicked('fa fa-asterisk')"><i class="fa fa-asterisk"></i><span class="tooltiptext">asterisk</span></div>
+<div id="fa fa-at" class="tooltip" onclick="iconClicked('fa fa-at')"><i class="fa fa-at"></i><span class="tooltiptext">at</span></div>
+<div id="fa fa-automobile" class="tooltip" onclick="iconClicked('fa fa-automobile')"><i class="fa fa-automobile"></i><span class="tooltiptext">automobile</span></div>
+<div id="fa fa-audio-description" class="tooltip" onclick="iconClicked('fa fa-audio-description')"><i class="fa fa-audio-description"></i><span class="tooltiptext">audio-description</span></div>
+<div id="fa fa-balance-scale" class="tooltip" onclick="iconClicked('fa fa-balance-scale')"><i class="fa fa-balance-scale"></i><span class="tooltiptext">balance-scale</span></div>
+<div id="fa fa-ban" class="tooltip" onclick="iconClicked('fa fa-ban')"><i class="fa fa-ban"></i><span class="tooltiptext">ban</span></div>
+<div id="fa fa-bank" class="tooltip" onclick="iconClicked('fa fa-bank')"><i class="fa fa-bank"></i><span class="tooltiptext">bank</span></div>
+<div id="fa fa-bar-chart" class="tooltip" onclick="iconClicked('fa fa-bar-chart')"><i class="fa fa-bar-chart"></i><span class="tooltiptext">bar-chart</span></div>
+<div id="fa fa-bar-chart-o" class="tooltip" onclick="iconClicked('fa fa-bar-chart-o')"><i class="fa fa-bar-chart-o"></i><span class="tooltiptext">bar-chart-o</span></div>
+<div id="fa fa-barcode" class="tooltip" onclick="iconClicked('fa fa-barcode')"><i class="fa fa-barcode"></i><span class="tooltiptext">barcode</span></div>
+<div id="fa fa-bars" class="tooltip" onclick="iconClicked('fa fa-bars')"><i class="fa fa-bars"></i><span class="tooltiptext">bars</span></div>
+<div id="fa fa-bath" class="tooltip" onclick="iconClicked('fa fa-bath')"><i class="fa fa-bath"></i><span class="tooltiptext">bath</span></div>
+<div id="fa fa-bathtub" class="tooltip" onclick="iconClicked('fa fa-bathtub')"><i class="fa fa-bathtub"></i><span class="tooltiptext">bathtub</span></div>
+<div id="fa fa-battery-0" class="tooltip" onclick="iconClicked('fa fa-battery-0')"><i class="fa fa-battery-0"></i><span class="tooltiptext">battery-0</span></div>
+<div id="fa fa-battery-1" class="tooltip" onclick="iconClicked('fa fa-battery-1')"><i class="fa fa-battery-1"></i><span class="tooltiptext">battery-1</span></div>
+<div id="fa fa-battery-2" class="tooltip" onclick="iconClicked('fa fa-battery-2')"><i class="fa fa-battery-2"></i><span class="tooltiptext">battery-2</span></div>
+<div id="fa fa-battery-3" class="tooltip" onclick="iconClicked('fa fa-battery-3')"><i class="fa fa-battery-3"></i><span class="tooltiptext">battery-3</span></div>
+<div id="fa fa-battery-4" class="tooltip" onclick="iconClicked('fa fa-battery-4')"><i class="fa fa-battery-4"></i><span class="tooltiptext">battery-4</span></div>
+<div id="fa fa-battery-empty" class="tooltip" onclick="iconClicked('fa fa-battery-empty')"><i class="fa fa-battery-empty"></i><span class="tooltiptext">battery-empty</span></div>
+<div id="fa fa-battery-full" class="tooltip" onclick="iconClicked('fa fa-battery-full')"><i class="fa fa-battery-full"></i><span class="tooltiptext">battery-full</span></div>
+<div id="fa fa-battery-half" class="tooltip" onclick="iconClicked('fa fa-battery-half')"><i class="fa fa-battery-half"></i><span class="tooltiptext">battery-half</span></div>
+<div id="fa fa-battery-quarter" class="tooltip" onclick="iconClicked('fa fa-battery-quarter')"><i class="fa fa-battery-quarter"></i><span class="tooltiptext">battery-quarter</span></div>
+<div id="fa fa-battery-three-quarters" class="tooltip" onclick="iconClicked('fa fa-battery-three-quarters')"><i class="fa fa-battery-three-quarters"></i><span class="tooltiptext">battery-three-quarters</span></div>
+<div id="fa fa-bed" class="tooltip" onclick="iconClicked('fa fa-bed')"><i class="fa fa-bed"></i><span class="tooltiptext">bed</span></div>
+<div id="fa fa-beer" class="tooltip" onclick="iconClicked('fa fa-beer')"><i class="fa fa-beer"></i><span class="tooltiptext">beer</span></div>
+<div id="fa fa-bell" class="tooltip" onclick="iconClicked('fa fa-bell')"><i class="fa fa-bell"></i><span class="tooltiptext">bell</span></div>
+<div id="fa fa-bell-o" class="tooltip" onclick="iconClicked('fa fa-bell-o')"><i class="fa fa-bell-o"></i><span class="tooltiptext">bell-o</span></div>
+<div id="fa fa-bell-slash" class="tooltip" onclick="iconClicked('fa fa-bell-slash')"><i class="fa fa-bell-slash"></i><span class="tooltiptext">bell-slash</span></div>
+<div id="fa fa-bell-slash-o" class="tooltip" onclick="iconClicked('fa fa-bell-slash-o')"><i class="fa fa-bell-slash-o"></i><span class="tooltiptext">bell-slash-o</span></div>
+<div id="fa fa-bicycle" class="tooltip" onclick="iconClicked('fa fa-bicycle')"><i class="fa fa-bicycle"></i><span class="tooltiptext">bicycle</span></div>
+<div id="fa fa-binoculars" class="tooltip" onclick="iconClicked('fa fa-binoculars')"><i class="fa fa-binoculars"></i><span class="tooltiptext">binoculars</span></div>
+<div id="fa fa-birthday-cake" class="tooltip" onclick="iconClicked('fa fa-birthday-cake')"><i class="fa fa-birthday-cake"></i><span class="tooltiptext">birthday-cake</span></div>
+<div id="fa fa-blind" class="tooltip" onclick="iconClicked('fa fa-blind')"><i class="fa fa-blind"></i><span class="tooltiptext">blind</span></div>
+<div id="fa fa-bolt" class="tooltip" onclick="iconClicked('fa fa-bolt')"><i class="fa fa-bolt"></i><span class="tooltiptext">bolt</span></div>
+<div id="fa fa-bomb" class="tooltip" onclick="iconClicked('fa fa-bomb')"><i class="fa fa-bomb"></i><span class="tooltiptext">bomb</span></div>
+<div id="fa fa-book" class="tooltip" onclick="iconClicked('fa fa-book')"><i class="fa fa-book"></i><span class="tooltiptext">book</span></div>
+<div id="fa fa-bookmark" class="tooltip" onclick="iconClicked('fa fa-bookmark')"><i class="fa fa-bookmark"></i><span class="tooltiptext">bookmark</span></div>
+<div id="fa fa-bookmark-o" class="tooltip" onclick="iconClicked('fa fa-bookmark-o')"><i class="fa fa-bookmark-o"></i><span class="tooltiptext">bookmark-o</span></div>
+<div id="fa fa-braille" class="tooltip" onclick="iconClicked('fa fa-braille')"><i class="fa fa-braille"></i><span class="tooltiptext">braille</span></div>
+<div id="fa fa-briefcase" class="tooltip" onclick="iconClicked('fa fa-briefcase')"><i class="fa fa-briefcase"></i><span class="tooltiptext">briefcase</span></div>
+<div id="fa fa-bug" class="tooltip" onclick="iconClicked('fa fa-bug')"><i class="fa fa-bug"></i><span class="tooltiptext">bug</span></div>
+<div id="fa fa-building" class="tooltip" onclick="iconClicked('fa fa-building')"><i class="fa fa-building"></i><span class="tooltiptext">building</span></div>
+<div id="fa fa-building-o" class="tooltip" onclick="iconClicked('fa fa-building-o')"><i class="fa fa-building-o"></i><span class="tooltiptext">building-o</span></div>
+<div id="fa fa-bullhorn" class="tooltip" onclick="iconClicked('fa fa-bullhorn')"><i class="fa fa-bullhorn"></i><span class="tooltiptext">bullhorn</span></div>
+<div id="fa fa-bullseye" class="tooltip" onclick="iconClicked('fa fa-bullseye')"><i class="fa fa-bullseye"></i><span class="tooltiptext">bullseye</span></div>
+<div id="fa fa-bus" class="tooltip" onclick="iconClicked('fa fa-bus')"><i class="fa fa-bus"></i><span class="tooltiptext">bus</span></div>
+<div id="fa fa-cab" class="tooltip" onclick="iconClicked('fa fa-cab')"><i class="fa fa-cab"></i><span class="tooltiptext">cab</span></div>
+<div id="fa fa-calculator" class="tooltip" onclick="iconClicked('fa fa-calculator')"><i class="fa fa-calculator"></i><span class="tooltiptext">calculator</span></div>
+<div id="fa fa-calendar" class="tooltip" onclick="iconClicked('fa fa-calendar')"><i class="fa fa-calendar"></i><span class="tooltiptext">calendar</span></div>
+<div id="fa fa-calendar-o" class="tooltip" onclick="iconClicked('fa fa-calendar-o')"><i class="fa fa-calendar-o"></i><span class="tooltiptext">calendar-o</span></div>
+<div id="fa fa-calendar-check-o" class="tooltip" onclick="iconClicked('fa fa-calendar-check-o')"><i class="fa fa-calendar-check-o"></i><span class="tooltiptext">calendar-check-o</span></div>
+<div id="fa fa-calendar-minus-o" class="tooltip" onclick="iconClicked('fa fa-calendar-minus-o')"><i class="fa fa-calendar-minus-o"></i><span class="tooltiptext">calendar-minus-o</span></div>
+<div id="fa fa-calendar-plus-o" class="tooltip" onclick="iconClicked('fa fa-calendar-plus-o')"><i class="fa fa-calendar-plus-o"></i><span class="tooltiptext">calendar-plus-o</span></div>
+<div id="fa fa-calendar-times-o" class="tooltip" onclick="iconClicked('fa fa-calendar-times-o')"><i class="fa fa-calendar-times-o"></i><span class="tooltiptext">calendar-times-o</span></div>
+<div id="fa fa-camera" class="tooltip" onclick="iconClicked('fa fa-camera')"><i class="fa fa-camera"></i><span class="tooltiptext">camera</span></div>
+<div id="fa fa-camera-retro" class="tooltip" onclick="iconClicked('fa fa-camera-retro')"><i class="fa fa-camera-retro"></i><span class="tooltiptext">camera-retro</span></div>
+<div id="fa fa-car" class="tooltip" onclick="iconClicked('fa fa-car')"><i class="fa fa-car"></i><span class="tooltiptext">car</span></div>
+<div id="fa fa-caret-square-o-down" class="tooltip" onclick="iconClicked('fa fa-caret-square-o-down')"><i class="fa fa-caret-square-o-down"></i><span class="tooltiptext">caret-square-o-down</span></div>
+<div id="fa fa-caret-square-o-left" class="tooltip" onclick="iconClicked('fa fa-caret-square-o-left')"><i class="fa fa-caret-square-o-left"></i><span class="tooltiptext">caret-square-o-left</span></div>
+<div id="fa fa-caret-square-o-right" class="tooltip" onclick="iconClicked('fa fa-caret-square-o-right')"><i class="fa fa-caret-square-o-right"></i><span class="tooltiptext">caret-square-o-right</span></div>
+<div id="fa fa-caret-square-o-up" class="tooltip" onclick="iconClicked('fa fa-caret-square-o-up')"><i class="fa fa-caret-square-o-up"></i><span class="tooltiptext">caret-square-o-up</span></div>
+<div id="fa fa-cart-arrow-down" class="tooltip" onclick="iconClicked('fa fa-cart-arrow-down')"><i class="fa fa-cart-arrow-down"></i><span class="tooltiptext">cart-arrow-down</span></div>
+<div id="fa fa-cart-plus" class="tooltip" onclick="iconClicked('fa fa-cart-plus')"><i class="fa fa-cart-plus"></i><span class="tooltiptext">cart-plus</span></div>
+<div id="fa fa-cc" class="tooltip" onclick="iconClicked('fa fa-cc')"><i class="fa fa-cc"></i><span class="tooltiptext">cc</span></div>
+<div id="fa fa-certificate" class="tooltip" onclick="iconClicked('fa fa-certificate')"><i class="fa fa-certificate"></i><span class="tooltiptext">certificate</span></div>
+<div id="fa fa-check" class="tooltip" onclick="iconClicked('fa fa-check')"><i class="fa fa-check"></i><span class="tooltiptext">check</span></div>
+<div id="fa fa-check-circle" class="tooltip" onclick="iconClicked('fa fa-check-circle')"><i class="fa fa-check-circle"></i><span class="tooltiptext">check-circle</span></div>
+<div id="fa fa-check-circle-o" class="tooltip" onclick="iconClicked('fa fa-check-circle-o')"><i class="fa fa-check-circle-o"></i><span class="tooltiptext">check-circle-o</span></div>
+<div id="fa fa-check-square" class="tooltip" onclick="iconClicked('fa fa-check-square')"><i class="fa fa-check-square"></i><span class="tooltiptext">check-square</span></div>
+<div id="fa fa-check-square-o" class="tooltip" onclick="iconClicked('fa fa-check-square-o')"><i class="fa fa-check-square-o"></i><span class="tooltiptext">check-square-o</span></div>
+<div id="fa fa-child" class="tooltip" onclick="iconClicked('fa fa-child')"><i class="fa fa-child"></i><span class="tooltiptext">child</span></div>
+<div id="fa fa-circle" class="tooltip" onclick="iconClicked('fa fa-circle')"><i class="fa fa-circle"></i><span class="tooltiptext">circle</span></div>
+<div id="fa fa-circle-o" class="tooltip" onclick="iconClicked('fa fa-circle-o')"><i class="fa fa-circle-o"></i><span class="tooltiptext">circle-o</span></div>
+<div id="fa fa-circle-o-notch" class="tooltip" onclick="iconClicked('fa fa-circle-o-notch')"><i class="fa fa-circle-o-notch"></i><span class="tooltiptext">circle-o-notch</span></div>
+<div id="fa fa-circle-thin" class="tooltip" onclick="iconClicked('fa fa-circle-thin')"><i class="fa fa-circle-thin"></i><span class="tooltiptext">circle-thin</span></div>
+<div id="fa fa-clock-o" class="tooltip" onclick="iconClicked('fa fa-clock-o')"><i class="fa fa-clock-o"></i><span class="tooltiptext">clock-o</span></div>
+<div id="fa fa-clone" class="tooltip" onclick="iconClicked('fa fa-clone')"><i class="fa fa-clone"></i><span class="tooltiptext">clone</span></div>
+<div id="fa fa-close" class="tooltip" onclick="iconClicked('fa fa-close')"><i class="fa fa-close"></i><span class="tooltiptext">close</span></div>
+<div id="fa fa-cloud" class="tooltip" onclick="iconClicked('fa fa-cloud')"><i class="fa fa-cloud"></i><span class="tooltiptext">cloud</span></div>
+<div id="fa fa-cloud-download" class="tooltip" onclick="iconClicked('fa fa-cloud-download')"><i class="fa fa-cloud-download"></i><span class="tooltiptext">cloud-download</span></div>
+<div id="fa fa-cloud-upload" class="tooltip" onclick="iconClicked('fa fa-cloud-upload')"><i class="fa fa-cloud-upload"></i><span class="tooltiptext">cloud-upload</span></div>
+<div id="fa fa-code" class="tooltip" onclick="iconClicked('fa fa-code')"><i class="fa fa-code"></i><span class="tooltiptext">code</span></div>
+<div id="fa fa-code-fork" class="tooltip" onclick="iconClicked('fa fa-code-fork')"><i class="fa fa-code-fork"></i><span class="tooltiptext">code-fork</span></div>
+<div id="fa fa-coffee" class="tooltip" onclick="iconClicked('fa fa-coffee')"><i class="fa fa-coffee"></i><span class="tooltiptext">coffee</span></div>
+<div id="fa fa-cog" class="tooltip" onclick="iconClicked('fa fa-cog')"><i class="fa fa-cog"></i><span class="tooltiptext">cog</span></div>
+<div id="fa fa-cogs" class="tooltip" onclick="iconClicked('fa fa-cogs')"><i class="fa fa-cogs"></i><span class="tooltiptext">cogs</span></div>
+<div id="fa fa-comment" class="tooltip" onclick="iconClicked('fa fa-comment')"><i class="fa fa-comment"></i><span class="tooltiptext">comment</span></div>
+<div id="fa fa-comment-o" class="tooltip" onclick="iconClicked('fa fa-comment-o')"><i class="fa fa-comment-o"></i><span class="tooltiptext">comment-o</span></div>
+<div id="fa fa-comments" class="tooltip" onclick="iconClicked('fa fa-comments')"><i class="fa fa-comments"></i><span class="tooltiptext">comments</span></div>
+<div id="fa fa-comments-o" class="tooltip" onclick="iconClicked('fa fa-comments-o')"><i class="fa fa-comments-o"></i><span class="tooltiptext">comments-o</span></div>
+<div id="fa fa-commenting" class="tooltip" onclick="iconClicked('fa fa-commenting')"><i class="fa fa-commenting"></i><span class="tooltiptext">commenting</span></div>
+<div id="fa fa-commenting-o" class="tooltip" onclick="iconClicked('fa fa-commenting-o')"><i class="fa fa-commenting-o"></i><span class="tooltiptext">commenting-o</span></div>
+<div id="fa fa-compass" class="tooltip" onclick="iconClicked('fa fa-compass')"><i class="fa fa-compass"></i><span class="tooltiptext">compass</span></div>
+<div id="fa fa-copyright" class="tooltip" onclick="iconClicked('fa fa-copyright')"><i class="fa fa-copyright"></i><span class="tooltiptext">copyright</span></div>
+<div id="fa fa-credit-card" class="tooltip" onclick="iconClicked('fa fa-credit-card')"><i class="fa fa-credit-card"></i><span class="tooltiptext">credit-card</span></div>
+<div id="fa fa-credit-card-alt" class="tooltip" onclick="iconClicked('fa fa-credit-card-alt')"><i class="fa fa-credit-card-alt"></i><span class="tooltiptext">credit-card-alt</span></div>
+<div id="fa fa-creative-commons" class="tooltip" onclick="iconClicked('fa fa-creative-commons')"><i class="fa fa-creative-commons"></i><span class="tooltiptext">creative-commons</span></div>
+<div id="fa fa-crop" class="tooltip" onclick="iconClicked('fa fa-crop')"><i class="fa fa-crop"></i><span class="tooltiptext">crop</span></div>
+<div id="fa fa-crosshairs" class="tooltip" onclick="iconClicked('fa fa-crosshairs')"><i class="fa fa-crosshairs"></i><span class="tooltiptext">crosshairs</span></div>
+<div id="fa fa-cube" class="tooltip" onclick="iconClicked('fa fa-cube')"><i class="fa fa-cube"></i><span class="tooltiptext">cube</span></div>
+<div id="fa fa-cubes" class="tooltip" onclick="iconClicked('fa fa-cubes')"><i class="fa fa-cubes"></i><span class="tooltiptext">cubes</span></div>
+<div id="fa fa-cutlery" class="tooltip" onclick="iconClicked('fa fa-cutlery')"><i class="fa fa-cutlery"></i><span class="tooltiptext">cutlery</span></div>
+<div id="fa fa-dashboard" class="tooltip" onclick="iconClicked('fa fa-dashboard')"><i class="fa fa-dashboard"></i><span class="tooltiptext">dashboard</span></div>
+<div id="fa fa-database" class="tooltip" onclick="iconClicked('fa fa-database')"><i class="fa fa-database"></i><span class="tooltiptext">database</span></div>
+<div id="fa fa-deaf" class="tooltip" onclick="iconClicked('fa fa-deaf')"><i class="fa fa-deaf"></i><span class="tooltiptext">deaf</span></div>
+<div id="fa fa-deafness" class="tooltip" onclick="iconClicked('fa fa-deafness')"><i class="fa fa-deafness"></i><span class="tooltiptext">deafness</span></div>
+<div id="fa fa-desktop" class="tooltip" onclick="iconClicked('fa fa-desktop')"><i class="fa fa-desktop"></i><span class="tooltiptext">desktop</span></div>
+<div id="fa fa-diamond" class="tooltip" onclick="iconClicked('fa fa-diamond')"><i class="fa fa-diamond"></i><span class="tooltiptext">diamond</span></div>
+<div id="fa fa-dot-circle-o" class="tooltip" onclick="iconClicked('fa fa-dot-circle-o')"><i class="fa fa-dot-circle-o"></i><span class="tooltiptext">dot-circle-o</span></div>
+<div id="fa fa-download" class="tooltip" onclick="iconClicked('fa fa-download')"><i class="fa fa-download"></i><span class="tooltiptext">download</span></div>
+<div id="fa fa-drivers-license" class="tooltip" onclick="iconClicked('fa fa-drivers-license')"><i class="fa fa-drivers-license"></i><span class="tooltiptext">drivers-license</span></div>
+<div id="fa fa-drivers-license-o" class="tooltip" onclick="iconClicked('fa fa-drivers-license-o')"><i class="fa fa-drivers-license-o"></i><span class="tooltiptext">drivers-license-o</span></div>
+<div id="fa fa-edit" class="tooltip" onclick="iconClicked('fa fa-edit')"><i class="fa fa-edit"></i><span class="tooltiptext">edit</span></div>
+<div id="fa fa-ellipsis-h" class="tooltip" onclick="iconClicked('fa fa-ellipsis-h')"><i class="fa fa-ellipsis-h"></i><span class="tooltiptext">ellipsis-h</span></div>
+<div id="fa fa-ellipsis-v" class="tooltip" onclick="iconClicked('fa fa-ellipsis-v')"><i class="fa fa-ellipsis-v"></i><span class="tooltiptext">ellipsis-v</span></div>
+<div id="fa fa-envelope" class="tooltip" onclick="iconClicked('fa fa-envelope')"><i class="fa fa-envelope"></i><span class="tooltiptext">envelope</span></div>
+<div id="fa fa-envelope-o" class="tooltip" onclick="iconClicked('fa fa-envelope-o')"><i class="fa fa-envelope-o"></i><span class="tooltiptext">envelope-o</span></div>
+<div id="fa fa-envelope-open" class="tooltip" onclick="iconClicked('fa fa-envelope-open')"><i class="fa fa-envelope-open"></i><span class="tooltiptext">envelope-open</span></div>
+<div id="fa fa-envelope-open-o" class="tooltip" onclick="iconClicked('fa fa-envelope-open-o')"><i class="fa fa-envelope-open-o"></i><span class="tooltiptext">envelope-open-o</span></div>
+<div id="fa fa-envelope-square" class="tooltip" onclick="iconClicked('fa fa-envelope-square')"><i class="fa fa-envelope-square"></i><span class="tooltiptext">envelope-square</span></div>
+<div id="fa fa-eraser" class="tooltip" onclick="iconClicked('fa fa-eraser')"><i class="fa fa-eraser"></i><span class="tooltiptext">eraser</span></div>
+<div id="fa fa-exchange" class="tooltip" onclick="iconClicked('fa fa-exchange')"><i class="fa fa-exchange"></i><span class="tooltiptext">exchange</span></div>
+<div id="fa fa-exclamation" class="tooltip" onclick="iconClicked('fa fa-exclamation')"><i class="fa fa-exclamation"></i><span class="tooltiptext">exclamation</span></div>
+<div id="fa fa-exclamation-circle" class="tooltip" onclick="iconClicked('fa fa-exclamation-circle')"><i class="fa fa-exclamation-circle"></i><span class="tooltiptext">exclamation-circle</span></div>
+<div id="fa fa-exclamation-triangle" class="tooltip" onclick="iconClicked('fa fa-exclamation-triangle')"><i class="fa fa-exclamation-triangle"></i><span class="tooltiptext">exclamation-triangle</span></div>
+<div id="fa fa-external-link" class="tooltip" onclick="iconClicked('fa fa-external-link')"><i class="fa fa-external-link"></i><span class="tooltiptext">external-link</span></div>
+<div id="fa fa-external-link-square" class="tooltip" onclick="iconClicked('fa fa-external-link-square')"><i class="fa fa-external-link-square"></i><span class="tooltiptext">external-link-square</span></div>
+<div id="fa fa-eye" class="tooltip" onclick="iconClicked('fa fa-eye')"><i class="fa fa-eye"></i><span class="tooltiptext">eye</span></div>
+<div id="fa fa-eye-slash" class="tooltip" onclick="iconClicked('fa fa-eye-slash')"><i class="fa fa-eye-slash"></i><span class="tooltiptext">eye-slash</span></div>
+<div id="fa fa-eyedropper" class="tooltip" onclick="iconClicked('fa fa-eyedropper')"><i class="fa fa-eyedropper"></i><span class="tooltiptext">eyedropper</span></div>
+<div id="fa fa-fax" class="tooltip" onclick="iconClicked('fa fa-fax')"><i class="fa fa-fax"></i><span class="tooltiptext">fax</span></div>
+<div id="fa fa-female" class="tooltip" onclick="iconClicked('fa fa-female')"><i class="fa fa-female"></i><span class="tooltiptext">female</span></div>
+<div id="fa fa-fighter-jet" class="tooltip" onclick="iconClicked('fa fa-fighter-jet')"><i class="fa fa-fighter-jet"></i><span class="tooltiptext">fighter-jet</span></div>
+<div id="fa fa-file-archive-o" class="tooltip" onclick="iconClicked('fa fa-file-archive-o')"><i class="fa fa-file-archive-o"></i><span class="tooltiptext">file-archive-o</span></div>
+<div id="fa fa-file-audio-o" class="tooltip" onclick="iconClicked('fa fa-file-audio-o')"><i class="fa fa-file-audio-o"></i><span class="tooltiptext">file-audio-o</span></div>
+<div id="fa fa-file-code-o" class="tooltip" onclick="iconClicked('fa fa-file-code-o')"><i class="fa fa-file-code-o"></i><span class="tooltiptext">file-code-o</span></div>
+<div id="fa fa-file-excel-o" class="tooltip" onclick="iconClicked('fa fa-file-excel-o')"><i class="fa fa-file-excel-o"></i><span class="tooltiptext">file-excel-o</span></div>
+<div id="fa fa-file-image-o" class="tooltip" onclick="iconClicked('fa fa-file-image-o')"><i class="fa fa-file-image-o"></i><span class="tooltiptext">file-image-o</span></div>
+<div id="fa fa-file-movie-o" class="tooltip" onclick="iconClicked('fa fa-file-movie-o')"><i class="fa fa-file-movie-o"></i><span class="tooltiptext">file-movie-o</span></div>
+<div id="fa fa-file-pdf-o" class="tooltip" onclick="iconClicked('fa fa-file-pdf-o')"><i class="fa fa-file-pdf-o"></i><span class="tooltiptext">file-pdf-o</span></div>
+<div id="fa fa-file-photo-o" class="tooltip" onclick="iconClicked('fa fa-file-photo-o')"><i class="fa fa-file-photo-o"></i><span class="tooltiptext">file-photo-o</span></div>
+<div id="fa fa-file-picture-o" class="tooltip" onclick="iconClicked('fa fa-file-picture-o')"><i class="fa fa-file-picture-o"></i><span class="tooltiptext">file-picture-o</span></div>
+<div id="fa fa-file-powerpoint-o" class="tooltip" onclick="iconClicked('fa fa-file-powerpoint-o')"><i class="fa fa-file-powerpoint-o"></i><span class="tooltiptext">file-powerpoint-o</span></div>
+<div id="fa fa-file-sound-o" class="tooltip" onclick="iconClicked('fa fa-file-sound-o')"><i class="fa fa-file-sound-o"></i><span class="tooltiptext">file-sound-o</span></div>
+<div id="fa fa-file-video-o" class="tooltip" onclick="iconClicked('fa fa-file-video-o')"><i class="fa fa-file-video-o"></i><span class="tooltiptext">file-video-o</span></div>
+<div id="fa fa-file-word-o" class="tooltip" onclick="iconClicked('fa fa-file-word-o')"><i class="fa fa-file-word-o"></i><span class="tooltiptext">file-word-o</span></div>
+<div id="fa fa-file-zip-o" class="tooltip" onclick="iconClicked('fa fa-file-zip-o')"><i class="fa fa-file-zip-o"></i><span class="tooltiptext">file-zip-o</span></div>
+<div id="fa fa-film" class="tooltip" onclick="iconClicked('fa fa-film')"><i class="fa fa-film"></i><span class="tooltiptext">film</span></div>
+<div id="fa fa-filter" class="tooltip" onclick="iconClicked('fa fa-filter')"><i class="fa fa-filter"></i><span class="tooltiptext">filter</span></div>
+<div id="fa fa-fire" class="tooltip" onclick="iconClicked('fa fa-fire')"><i class="fa fa-fire"></i><span class="tooltiptext">fire</span></div>
+<div id="fa fa-fire-extinguisher" class="tooltip" onclick="iconClicked('fa fa-fire-extinguisher')"><i class="fa fa-fire-extinguisher"></i><span class="tooltiptext">fire-extinguisher</span></div>
+<div id="fa fa-flag" class="tooltip" onclick="iconClicked('fa fa-flag')"><i class="fa fa-flag"></i><span class="tooltiptext">flag</span></div>
+<div id="fa fa-flag-checkered" class="tooltip" onclick="iconClicked('fa fa-flag-checkered')"><i class="fa fa-flag-checkered"></i><span class="tooltiptext">flag-checkered</span></div>
+<div id="fa fa-flag-o" class="tooltip" onclick="iconClicked('fa fa-flag-o')"><i class="fa fa-flag-o"></i><span class="tooltiptext">flag-o</span></div>
+<div id="fa fa-flash" class="tooltip" onclick="iconClicked('fa fa-flash')"><i class="fa fa-flash"></i><span class="tooltiptext">flash</span></div>
+<div id="fa fa-flask" class="tooltip" onclick="iconClicked('fa fa-flask')"><i class="fa fa-flask"></i><span class="tooltiptext">flask</span></div>
+<div id="fa fa-folder" class="tooltip" onclick="iconClicked('fa fa-folder')"><i class="fa fa-folder"></i><span class="tooltiptext">folder</span></div>
+<div id="fa fa-folder-o" class="tooltip" onclick="iconClicked('fa fa-folder-o')"><i class="fa fa-folder-o"></i><span class="tooltiptext">folder-o</span></div>
+<div id="fa fa-folder-open" class="tooltip" onclick="iconClicked('fa fa-folder-open')"><i class="fa fa-folder-open"></i><span class="tooltiptext">folder-open</span></div>
+<div id="fa fa-folder-open-o" class="tooltip" onclick="iconClicked('fa fa-folder-open-o')"><i class="fa fa-folder-open-o"></i><span class="tooltiptext">folder-open-o</span></div>
+<div id="fa fa-frown-o" class="tooltip" onclick="iconClicked('fa fa-frown-o')"><i class="fa fa-frown-o"></i><span class="tooltiptext">frown-o</span></div>
+<div id="fa fa-futbol-o" class="tooltip" onclick="iconClicked('fa fa-futbol-o')"><i class="fa fa-futbol-o"></i><span class="tooltiptext">futbol-o</span></div>
+<div id="fa fa-gamepad" class="tooltip" onclick="iconClicked('fa fa-gamepad')"><i class="fa fa-gamepad"></i><span class="tooltiptext">gamepad</span></div>
+<div id="fa fa-gavel" class="tooltip" onclick="iconClicked('fa fa-gavel')"><i class="fa fa-gavel"></i><span class="tooltiptext">gavel</span></div>
+<div id="fa fa-gear" class="tooltip" onclick="iconClicked('fa fa-gear')"><i class="fa fa-gear"></i><span class="tooltiptext">gear</span></div>
+<div id="fa fa-gears" class="tooltip" onclick="iconClicked('fa fa-gears')"><i class="fa fa-gears"></i><span class="tooltiptext">gears</span></div>
+<div id="fa fa-genderless" class="tooltip" onclick="iconClicked('fa fa-genderless')"><i class="fa fa-genderless"></i><span class="tooltiptext">genderless</span></div>
+<div id="fa fa-gift" class="tooltip" onclick="iconClicked('fa fa-gift')"><i class="fa fa-gift"></i><span class="tooltiptext">gift</span></div>
+<div id="fa fa-glass" class="tooltip" onclick="iconClicked('fa fa-glass')"><i class="fa fa-glass"></i><span class="tooltiptext">glass</span></div>
+<div id="fa fa-globe" class="tooltip" onclick="iconClicked('fa fa-globe')"><i class="fa fa-globe"></i><span class="tooltiptext">globe</span></div>
+<div id="fa fa-graduation-cap" class="tooltip" onclick="iconClicked('fa fa-graduation-cap')"><i class="fa fa-graduation-cap"></i><span class="tooltiptext">graduation-cap</span></div>
+<div id="fa fa-group" class="tooltip" onclick="iconClicked('fa fa-group')"><i class="fa fa-group"></i><span class="tooltiptext">group</span></div>
+<div id="fa fa-hard-of-hearing" class="tooltip" onclick="iconClicked('fa fa-hard-of-hearing')"><i class="fa fa-hard-of-hearing"></i><span class="tooltiptext">hard-of-hearing</span></div>
+<div id="fa fa-hdd-o" class="tooltip" onclick="iconClicked('fa fa-hdd-o')"><i class="fa fa-hdd-o"></i><span class="tooltiptext">hdd-o</span></div>
+<div id="fa fa-handshake-o" class="tooltip" onclick="iconClicked('fa fa-handshake-o')"><i class="fa fa-handshake-o"></i><span class="tooltiptext">handshake-o</span></div>
+<div id="fa fa-hashtag" class="tooltip" onclick="iconClicked('fa fa-hashtag')"><i class="fa fa-hashtag"></i><span class="tooltiptext">hashtag</span></div>
+<div id="fa fa-headphones" class="tooltip" onclick="iconClicked('fa fa-headphones')"><i class="fa fa-headphones"></i><span class="tooltiptext">headphones</span></div>
+<div id="fa fa-heart" class="tooltip" onclick="iconClicked('fa fa-heart')"><i class="fa fa-heart"></i><span class="tooltiptext">heart</span></div>
+<div id="fa fa-heart-o" class="tooltip" onclick="iconClicked('fa fa-heart-o')"><i class="fa fa-heart-o"></i><span class="tooltiptext">heart-o</span></div>
+<div id="fa fa-heartbeat" class="tooltip" onclick="iconClicked('fa fa-heartbeat')"><i class="fa fa-heartbeat"></i><span class="tooltiptext">heartbeat</span></div>
+<div id="fa fa-history" class="tooltip" onclick="iconClicked('fa fa-history')"><i class="fa fa-history"></i><span class="tooltiptext">history</span></div>
+<div id="fa fa-home" class="tooltip" onclick="iconClicked('fa fa-home')"><i class="fa fa-home"></i><span class="tooltiptext">home</span></div>
+<div id="fa fa-hotel" class="tooltip" onclick="iconClicked('fa fa-hotel')"><i class="fa fa-hotel"></i><span class="tooltiptext">hotel</span></div>
+<div id="fa fa-hourglass" class="tooltip" onclick="iconClicked('fa fa-hourglass')"><i class="fa fa-hourglass"></i><span class="tooltiptext">hourglass</span></div>
+<div id="fa fa-hourglass-1" class="tooltip" onclick="iconClicked('fa fa-hourglass-1')"><i class="fa fa-hourglass-1"></i><span class="tooltiptext">hourglass-1</span></div>
+<div id="fa fa-hourglass-2" class="tooltip" onclick="iconClicked('fa fa-hourglass-2')"><i class="fa fa-hourglass-2"></i><span class="tooltiptext">hourglass-2</span></div>
+<div id="fa fa-hourglass-3" class="tooltip" onclick="iconClicked('fa fa-hourglass-3')"><i class="fa fa-hourglass-3"></i><span class="tooltiptext">hourglass-3</span></div>
+<div id="fa fa-hourglass-end" class="tooltip" onclick="iconClicked('fa fa-hourglass-end')"><i class="fa fa-hourglass-end"></i><span class="tooltiptext">hourglass-end</span></div>
+<div id="fa fa-hourglass-half" class="tooltip" onclick="iconClicked('fa fa-hourglass-half')"><i class="fa fa-hourglass-half"></i><span class="tooltiptext">hourglass-half</span></div>
+<div id="fa fa-hourglass-o" class="tooltip" onclick="iconClicked('fa fa-hourglass-o')"><i class="fa fa-hourglass-o"></i><span class="tooltiptext">hourglass-o</span></div>
+<div id="fa fa-hourglass-start" class="tooltip" onclick="iconClicked('fa fa-hourglass-start')"><i class="fa fa-hourglass-start"></i><span class="tooltiptext">hourglass-start</span></div>
+<div id="fa fa-i-cursor" class="tooltip" onclick="iconClicked('fa fa-i-cursor')"><i class="fa fa-i-cursor"></i><span class="tooltiptext">i-cursor</span></div>
+<div id="fa fa-id-badge" class="tooltip" onclick="iconClicked('fa fa-id-badge')"><i class="fa fa-id-badge"></i><span class="tooltiptext">id-badge</span></div>
+<div id="fa fa-id-card" class="tooltip" onclick="iconClicked('fa fa-id-card')"><i class="fa fa-id-card"></i><span class="tooltiptext">id-card</span></div>
+<div id="fa fa-id-card-o" class="tooltip" onclick="iconClicked('fa fa-id-card-o')"><i class="fa fa-id-card-o"></i><span class="tooltiptext">id-card-o</span></div>
+<div id="fa fa-image" class="tooltip" onclick="iconClicked('fa fa-image')"><i class="fa fa-image"></i><span class="tooltiptext">image</span></div>
+<div id="fa fa-inbox" class="tooltip" onclick="iconClicked('fa fa-inbox')"><i class="fa fa-inbox"></i><span class="tooltiptext">inbox</span></div>
+<div id="fa fa-industry" class="tooltip" onclick="iconClicked('fa fa-industry')"><i class="fa fa-industry"></i><span class="tooltiptext">industry</span></div>
+<div id="fa fa-info" class="tooltip" onclick="iconClicked('fa fa-info')"><i class="fa fa-info"></i><span class="tooltiptext">info</span></div>
+<div id="fa fa-info-circle" class="tooltip" onclick="iconClicked('fa fa-info-circle')"><i class="fa fa-info-circle"></i><span class="tooltiptext">info-circle</span></div>
+<div id="fa fa-institution" class="tooltip" onclick="iconClicked('fa fa-institution')"><i class="fa fa-institution"></i><span class="tooltiptext">institution</span></div>
+<div id="fa fa-key" class="tooltip" onclick="iconClicked('fa fa-key')"><i class="fa fa-key"></i><span class="tooltiptext">key</span></div>
+<div id="fa fa-keyboard-o" class="tooltip" onclick="iconClicked('fa fa-keyboard-o')"><i class="fa fa-keyboard-o"></i><span class="tooltiptext">keyboard-o</span></div>
+<div id="fa fa-language" class="tooltip" onclick="iconClicked('fa fa-language')"><i class="fa fa-language"></i><span class="tooltiptext">language</span></div>
+<div id="fa fa-laptop" class="tooltip" onclick="iconClicked('fa fa-laptop')"><i class="fa fa-laptop"></i><span class="tooltiptext">laptop</span></div>
+<div id="fa fa-leaf" class="tooltip" onclick="iconClicked('fa fa-leaf')"><i class="fa fa-leaf"></i><span class="tooltiptext">leaf</span></div>
+<div id="fa fa-legal" class="tooltip" onclick="iconClicked('fa fa-legal')"><i class="fa fa-legal"></i><span class="tooltiptext">legal</span></div>
+<div id="fa fa-lemon-o" class="tooltip" onclick="iconClicked('fa fa-lemon-o')"><i class="fa fa-lemon-o"></i><span class="tooltiptext">lemon-o</span></div>
+<div id="fa fa-level-down" class="tooltip" onclick="iconClicked('fa fa-level-down')"><i class="fa fa-level-down"></i><span class="tooltiptext">level-down</span></div>
+<div id="fa fa-level-up" class="tooltip" onclick="iconClicked('fa fa-level-up')"><i class="fa fa-level-up"></i><span class="tooltiptext">level-up</span></div>
+<div id="fa fa-life-bouy" class="tooltip" onclick="iconClicked('fa fa-life-bouy')"><i class="fa fa-life-bouy"></i><span class="tooltiptext">life-bouy</span></div>
+<div id="fa fa-life-buoy" class="tooltip" onclick="iconClicked('fa fa-life-buoy')"><i class="fa fa-life-buoy"></i><span class="tooltiptext">life-buoy</span></div>
+<div id="fa fa-life-ring" class="tooltip" onclick="iconClicked('fa fa-life-ring')"><i class="fa fa-life-ring"></i><span class="tooltiptext">life-ring</span></div>
+<div id="fa fa-life-saver" class="tooltip" onclick="iconClicked('fa fa-life-saver')"><i class="fa fa-life-saver"></i><span class="tooltiptext">life-saver</span></div>
+<div id="fa fa-lightbulb-o" class="tooltip" onclick="iconClicked('fa fa-lightbulb-o')"><i class="fa fa-lightbulb-o"></i><span class="tooltiptext">lightbulb-o</span></div>
+<div id="fa fa-line-chart" class="tooltip" onclick="iconClicked('fa fa-line-chart')"><i class="fa fa-line-chart"></i><span class="tooltiptext">line-chart</span></div>
+<div id="fa fa-location-arrow" class="tooltip" onclick="iconClicked('fa fa-location-arrow')"><i class="fa fa-location-arrow"></i><span class="tooltiptext">location-arrow</span></div>
+<div id="fa fa-lock" class="tooltip" onclick="iconClicked('fa fa-lock')"><i class="fa fa-lock"></i><span class="tooltiptext">lock</span></div>
+<div id="fa fa-low-vision" class="tooltip" onclick="iconClicked('fa fa-low-vision')"><i class="fa fa-low-vision"></i><span class="tooltiptext">low-vision</span></div>
+<div id="fa fa-magic" class="tooltip" onclick="iconClicked('fa fa-magic')"><i class="fa fa-magic"></i><span class="tooltiptext">magic</span></div>
+<div id="fa fa-magnet" class="tooltip" onclick="iconClicked('fa fa-magnet')"><i class="fa fa-magnet"></i><span class="tooltiptext">magnet</span></div>
+<div id="fa fa-mail-forward" class="tooltip" onclick="iconClicked('fa fa-mail-forward')"><i class="fa fa-mail-forward"></i><span class="tooltiptext">mail-forward</span></div>
+<div id="fa fa-mail-reply" class="tooltip" onclick="iconClicked('fa fa-mail-reply')"><i class="fa fa-mail-reply"></i><span class="tooltiptext">mail-reply</span></div>
+<div id="fa fa-mail-reply-all" class="tooltip" onclick="iconClicked('fa fa-mail-reply-all')"><i class="fa fa-mail-reply-all"></i><span class="tooltiptext">mail-reply-all</span></div>
+<div id="fa fa-male" class="tooltip" onclick="iconClicked('fa fa-male')"><i class="fa fa-male"></i><span class="tooltiptext">male</span></div>
+<div id="fa fa-map" class="tooltip" onclick="iconClicked('fa fa-map')"><i class="fa fa-map"></i><span class="tooltiptext">map</span></div>
+<div id="fa fa-map-o" class="tooltip" onclick="iconClicked('fa fa-map-o')"><i class="fa fa-map-o"></i><span class="tooltiptext">map-o</span></div>
+<div id="fa fa-map-pin" class="tooltip" onclick="iconClicked('fa fa-map-pin')"><i class="fa fa-map-pin"></i><span class="tooltiptext">map-pin</span></div>
+<div id="fa fa-map-signs" class="tooltip" onclick="iconClicked('fa fa-map-signs')"><i class="fa fa-map-signs"></i><span class="tooltiptext">map-signs</span></div>
+<div id="fa fa-map-marker" class="tooltip" onclick="iconClicked('fa fa-map-marker')"><i class="fa fa-map-marker"></i><span class="tooltiptext">map-marker</span></div>
+<div id="fa fa-meh-o" class="tooltip" onclick="iconClicked('fa fa-meh-o')"><i class="fa fa-meh-o"></i><span class="tooltiptext">meh-o</span></div>
+<div id="fa fa-microchip" class="tooltip" onclick="iconClicked('fa fa-microchip')"><i class="fa fa-microchip"></i><span class="tooltiptext">microchip</span></div>
+<div id="fa fa-microphone" class="tooltip" onclick="iconClicked('fa fa-microphone')"><i class="fa fa-microphone"></i><span class="tooltiptext">microphone</span></div>
+<div id="fa fa-microphone-slash" class="tooltip" onclick="iconClicked('fa fa-microphone-slash')"><i class="fa fa-microphone-slash"></i><span class="tooltiptext">microphone-slash</span></div>
+<div id="fa fa-minus" class="tooltip" onclick="iconClicked('fa fa-minus')"><i class="fa fa-minus"></i><span class="tooltiptext">minus</span></div>
+<div id="fa fa-minus-circle" class="tooltip" onclick="iconClicked('fa fa-minus-circle')"><i class="fa fa-minus-circle"></i><span class="tooltiptext">minus-circle</span></div>
+<div id="fa fa-minus-square" class="tooltip" onclick="iconClicked('fa fa-minus-square')"><i class="fa fa-minus-square"></i><span class="tooltiptext">minus-square</span></div>
+<div id="fa fa-minus-square-o" class="tooltip" onclick="iconClicked('fa fa-minus-square-o')"><i class="fa fa-minus-square-o"></i><span class="tooltiptext">minus-square-o</span></div>
+<div id="fa fa-mobile" class="tooltip" onclick="iconClicked('fa fa-mobile')"><i class="fa fa-mobile"></i><span class="tooltiptext">mobile</span></div>
+<div id="fa fa-mobile-phone" class="tooltip" onclick="iconClicked('fa fa-mobile-phone')"><i class="fa fa-mobile-phone"></i><span class="tooltiptext">mobile-phone</span></div>
+<div id="fa fa-money" class="tooltip" onclick="iconClicked('fa fa-money')"><i class="fa fa-money"></i><span class="tooltiptext">money</span></div>
+<div id="fa fa-moon-o" class="tooltip" onclick="iconClicked('fa fa-moon-o')"><i class="fa fa-moon-o"></i><span class="tooltiptext">moon-o</span></div>
+<div id="fa fa-mortar-board" class="tooltip" onclick="iconClicked('fa fa-mortar-board')"><i class="fa fa-mortar-board"></i><span class="tooltiptext">mortar-board</span></div>
+<div id="fa fa-motorcycle" class="tooltip" onclick="iconClicked('fa fa-motorcycle')"><i class="fa fa-motorcycle"></i><span class="tooltiptext">motorcycle</span></div>
+<div id="fa fa-mouse-pointer" class="tooltip" onclick="iconClicked('fa fa-mouse-pointer')"><i class="fa fa-mouse-pointer"></i><span class="tooltiptext">mouse-pointer</span></div>
+<div id="fa fa-music" class="tooltip" onclick="iconClicked('fa fa-music')"><i class="fa fa-music"></i><span class="tooltiptext">music</span></div>
+<div id="fa fa-navicon" class="tooltip" onclick="iconClicked('fa fa-navicon')"><i class="fa fa-navicon"></i><span class="tooltiptext">navicon</span></div>
+<div id="fa fa-newspaper-o" class="tooltip" onclick="iconClicked('fa fa-newspaper-o')"><i class="fa fa-newspaper-o"></i><span class="tooltiptext">newspaper-o</span></div>
+<div id="fa fa-object-group" class="tooltip" onclick="iconClicked('fa fa-object-group')"><i class="fa fa-object-group"></i><span class="tooltiptext">object-group</span></div>
+<div id="fa fa-object-ungroup" class="tooltip" onclick="iconClicked('fa fa-object-ungroup')"><i class="fa fa-object-ungroup"></i><span class="tooltiptext">object-ungroup</span></div>
+<div id="fa fa-paint-brush" class="tooltip" onclick="iconClicked('fa fa-paint-brush')"><i class="fa fa-paint-brush"></i><span class="tooltiptext">paint-brush</span></div>
+<div id="fa fa-paper-plane" class="tooltip" onclick="iconClicked('fa fa-paper-plane')"><i class="fa fa-paper-plane"></i><span class="tooltiptext">paper-plane</span></div>
+<div id="fa fa-paper-plane-o" class="tooltip" onclick="iconClicked('fa fa-paper-plane-o')"><i class="fa fa-paper-plane-o"></i><span class="tooltiptext">paper-plane-o</span></div>
+<div id="fa fa-paw" class="tooltip" onclick="iconClicked('fa fa-paw')"><i class="fa fa-paw"></i><span class="tooltiptext">paw</span></div>
+<div id="fa fa-pencil" class="tooltip" onclick="iconClicked('fa fa-pencil')"><i class="fa fa-pencil"></i><span class="tooltiptext">pencil</span></div>
+<div id="fa fa-pencil-square" class="tooltip" onclick="iconClicked('fa fa-pencil-square')"><i class="fa fa-pencil-square"></i><span class="tooltiptext">pencil-square</span></div>
+<div id="fa fa-pencil-square-o" class="tooltip" onclick="iconClicked('fa fa-pencil-square-o')"><i class="fa fa-pencil-square-o"></i><span class="tooltiptext">pencil-square-o</span></div>
+<div id="fa fa-percent" class="tooltip" onclick="iconClicked('fa fa-percent')"><i class="fa fa-percent"></i><span class="tooltiptext">percent</span></div>
+<div id="fa fa-phone" class="tooltip" onclick="iconClicked('fa fa-phone')"><i class="fa fa-phone"></i><span class="tooltiptext">phone</span></div>
+<div id="fa fa-phone-square" class="tooltip" onclick="iconClicked('fa fa-phone-square')"><i class="fa fa-phone-square"></i><span class="tooltiptext">phone-square</span></div>
+<div id="fa fa-photo" class="tooltip" onclick="iconClicked('fa fa-photo')"><i class="fa fa-photo"></i><span class="tooltiptext">photo</span></div>
+<div id="fa fa-picture-o" class="tooltip" onclick="iconClicked('fa fa-picture-o')"><i class="fa fa-picture-o"></i><span class="tooltiptext">picture-o</span></div>
+<div id="fa fa-pie-chart" class="tooltip" onclick="iconClicked('fa fa-pie-chart')"><i class="fa fa-pie-chart"></i><span class="tooltiptext">pie-chart</span></div>
+<div id="fa fa-plane" class="tooltip" onclick="iconClicked('fa fa-plane')"><i class="fa fa-plane"></i><span class="tooltiptext">plane</span></div>
+<div id="fa fa-plug" class="tooltip" onclick="iconClicked('fa fa-plug')"><i class="fa fa-plug"></i><span class="tooltiptext">plug</span></div>
+<div id="fa fa-plus" class="tooltip" onclick="iconClicked('fa fa-plus')"><i class="fa fa-plus"></i><span class="tooltiptext">plus</span></div>
+<div id="fa fa-plus-circle" class="tooltip" onclick="iconClicked('fa fa-plus-circle')"><i class="fa fa-plus-circle"></i><span class="tooltiptext">plus-circle</span></div>
+<div id="fa fa-plus-square" class="tooltip" onclick="iconClicked('fa fa-plus-square')"><i class="fa fa-plus-square"></i><span class="tooltiptext">plus-square</span></div>
+<div id="fa fa-plus-square-o" class="tooltip" onclick="iconClicked('fa fa-plus-square-o')"><i class="fa fa-plus-square-o"></i><span class="tooltiptext">plus-square-o</span></div>
+<div id="fa fa-podcast" class="tooltip" onclick="iconClicked('fa fa-podcast')"><i class="fa fa-podcast"></i><span class="tooltiptext">podcast</span></div>
+<div id="fa fa-power-off" class="tooltip" onclick="iconClicked('fa fa-power-off')"><i class="fa fa-power-off"></i><span class="tooltiptext">power-off</span></div>
+<div id="fa fa-print" class="tooltip" onclick="iconClicked('fa fa-print')"><i class="fa fa-print"></i><span class="tooltiptext">print</span></div>
+<div id="fa fa-puzzle-piece" class="tooltip" onclick="iconClicked('fa fa-puzzle-piece')"><i class="fa fa-puzzle-piece"></i><span class="tooltiptext">puzzle-piece</span></div>
+<div id="fa fa-qrcode" class="tooltip" onclick="iconClicked('fa fa-qrcode')"><i class="fa fa-qrcode"></i><span class="tooltiptext">qrcode</span></div>
+<div id="fa fa-question" class="tooltip" onclick="iconClicked('fa fa-question')"><i class="fa fa-question"></i><span class="tooltiptext">question</span></div>
+<div id="fa fa-question-circle" class="tooltip" onclick="iconClicked('fa fa-question-circle')"><i class="fa fa-question-circle"></i><span class="tooltiptext">question-circle</span></div>
+<div id="fa fa-question-circle-o" class="tooltip" onclick="iconClicked('fa fa-question-circle-o')"><i class="fa fa-question-circle-o"></i><span class="tooltiptext">question-circle-o</span></div>
+<div id="fa fa-quote-left" class="tooltip" onclick="iconClicked('fa fa-quote-left')"><i class="fa fa-quote-left"></i><span class="tooltiptext">quote-left</span></div>
+<div id="fa fa-quote-right" class="tooltip" onclick="iconClicked('fa fa-quote-right')"><i class="fa fa-quote-right"></i><span class="tooltiptext">quote-right</span></div>
+<div id="fa fa-random" class="tooltip" onclick="iconClicked('fa fa-random')"><i class="fa fa-random"></i><span class="tooltiptext">random</span></div>
+<div id="fa fa-recycle" class="tooltip" onclick="iconClicked('fa fa-recycle')"><i class="fa fa-recycle"></i><span class="tooltiptext">recycle</span></div>
+<div id="fa fa-refresh" class="tooltip" onclick="iconClicked('fa fa-refresh')"><i class="fa fa-refresh"></i><span class="tooltiptext">refresh</span></div>
+<div id="fa fa-registered" class="tooltip" onclick="iconClicked('fa fa-registered')"><i class="fa fa-registered"></i><span class="tooltiptext">registered</span></div>
+<div id="fa fa-remove" class="tooltip" onclick="iconClicked('fa fa-remove')"><i class="fa fa-remove"></i><span class="tooltiptext">remove</span></div>
+<div id="fa fa-reorder" class="tooltip" onclick="iconClicked('fa fa-reorder')"><i class="fa fa-reorder"></i><span class="tooltiptext">reorder</span></div>
+<div id="fa fa-reply" class="tooltip" onclick="iconClicked('fa fa-reply')"><i class="fa fa-reply"></i><span class="tooltiptext">reply</span></div>
+<div id="fa fa-reply-all" class="tooltip" onclick="iconClicked('fa fa-reply-all')"><i class="fa fa-reply-all"></i><span class="tooltiptext">reply-all</span></div>
+<div id="fa fa-retweet" class="tooltip" onclick="iconClicked('fa fa-retweet')"><i class="fa fa-retweet"></i><span class="tooltiptext">retweet</span></div>
+<div id="fa fa-road" class="tooltip" onclick="iconClicked('fa fa-road')"><i class="fa fa-road"></i><span class="tooltiptext">road</span></div>
+<div id="fa fa-rocket" class="tooltip" onclick="iconClicked('fa fa-rocket')"><i class="fa fa-rocket"></i><span class="tooltiptext">rocket</span></div>
+<div id="fa fa-rss" class="tooltip" onclick="iconClicked('fa fa-rss')"><i class="fa fa-rss"></i><span class="tooltiptext">rss</span></div>
+<div id="fa fa-rss-square" class="tooltip" onclick="iconClicked('fa fa-rss-square')"><i class="fa fa-rss-square"></i><span class="tooltiptext">rss-square</span></div>
+<div id="fa fa-s15" class="tooltip" onclick="iconClicked('fa fa-s15')"><i class="fa fa-s15"></i><span class="tooltiptext">s15</span></div>
+<div id="fa fa-search" class="tooltip" onclick="iconClicked('fa fa-search')"><i class="fa fa-search"></i><span class="tooltiptext">search</span></div>
+<div id="fa fa-search-minus" class="tooltip" onclick="iconClicked('fa fa-search-minus')"><i class="fa fa-search-minus"></i><span class="tooltiptext">search-minus</span></div>
+<div id="fa fa-search-plus" class="tooltip" onclick="iconClicked('fa fa-search-plus')"><i class="fa fa-search-plus"></i><span class="tooltiptext">search-plus</span></div>
+<div id="fa fa-send" class="tooltip" onclick="iconClicked('fa fa-send')"><i class="fa fa-send"></i><span class="tooltiptext">send</span></div>
+<div id="fa fa-send-o" class="tooltip" onclick="iconClicked('fa fa-send-o')"><i class="fa fa-send-o"></i><span class="tooltiptext">send-o</span></div>
+<div id="fa fa-server" class="tooltip" onclick="iconClicked('fa fa-server')"><i class="fa fa-server"></i><span class="tooltiptext">server</span></div>
+<div id="fa fa-share" class="tooltip" onclick="iconClicked('fa fa-share')"><i class="fa fa-share"></i><span class="tooltiptext">share</span></div>
+<div id="fa fa-share-alt" class="tooltip" onclick="iconClicked('fa fa-share-alt')"><i class="fa fa-share-alt"></i><span class="tooltiptext">share-alt</span></div>
+<div id="fa fa-share-alt-square" class="tooltip" onclick="iconClicked('fa fa-share-alt-square')"><i class="fa fa-share-alt-square"></i><span class="tooltiptext">share-alt-square</span></div>
+<div id="fa fa-share-square" class="tooltip" onclick="iconClicked('fa fa-share-square')"><i class="fa fa-share-square"></i><span class="tooltiptext">share-square</span></div>
+<div id="fa fa-share-square-o" class="tooltip" onclick="iconClicked('fa fa-share-square-o')"><i class="fa fa-share-square-o"></i><span class="tooltiptext">share-square-o</span></div>
+<div id="fa fa-shield" class="tooltip" onclick="iconClicked('fa fa-shield')"><i class="fa fa-shield"></i><span class="tooltiptext">shield</span></div>
+<div id="fa fa-ship" class="tooltip" onclick="iconClicked('fa fa-ship')"><i class="fa fa-ship"></i><span class="tooltiptext">ship</span></div>
+<div id="fa fa-shopping-bag" class="tooltip" onclick="iconClicked('fa fa-shopping-bag')"><i class="fa fa-shopping-bag"></i><span class="tooltiptext">shopping-bag</span></div>
+<div id="fa fa-shopping-basket" class="tooltip" onclick="iconClicked('fa fa-shopping-basket')"><i class="fa fa-shopping-basket"></i><span class="tooltiptext">shopping-basket</span></div>
+<div id="fa fa-shopping-cart" class="tooltip" onclick="iconClicked('fa fa-shopping-cart')"><i class="fa fa-shopping-cart"></i><span class="tooltiptext">shopping-cart</span></div>
+<div id="fa fa-shower" class="tooltip" onclick="iconClicked('fa fa-shower')"><i class="fa fa-shower"></i><span class="tooltiptext">shower</span></div>
+<div id="fa fa-sign-in" class="tooltip" onclick="iconClicked('fa fa-sign-in')"><i class="fa fa-sign-in"></i><span class="tooltiptext">sign-in</span></div>
+<div id="fa fa-sign-out" class="tooltip" onclick="iconClicked('fa fa-sign-out')"><i class="fa fa-sign-out"></i><span class="tooltiptext">sign-out</span></div>
+<div id="fa fa-sign-language" class="tooltip" onclick="iconClicked('fa fa-sign-language')"><i class="fa fa-sign-language"></i><span class="tooltiptext">sign-language</span></div>
+<div id="fa fa-signal" class="tooltip" onclick="iconClicked('fa fa-signal')"><i class="fa fa-signal"></i><span class="tooltiptext">signal</span></div>
+<div id="fa fa-signing" class="tooltip" onclick="iconClicked('fa fa-signing')"><i class="fa fa-signing"></i><span class="tooltiptext">signing</span></div>
+<div id="fa fa-sitemap" class="tooltip" onclick="iconClicked('fa fa-sitemap')"><i class="fa fa-sitemap"></i><span class="tooltiptext">sitemap</span></div>
+<div id="fa fa-sliders" class="tooltip" onclick="iconClicked('fa fa-sliders')"><i class="fa fa-sliders"></i><span class="tooltiptext">sliders</span></div>
+<div id="fa fa-smile-o" class="tooltip" onclick="iconClicked('fa fa-smile-o')"><i class="fa fa-smile-o"></i><span class="tooltiptext">smile-o</span></div>
+<div id="fa fa-snowflake-o" class="tooltip" onclick="iconClicked('fa fa-snowflake-o')"><i class="fa fa-snowflake-o"></i><span class="tooltiptext">snowflake-o</span></div>
+<div id="fa fa-soccer-ball-o" class="tooltip" onclick="iconClicked('fa fa-soccer-ball-o')"><i class="fa fa-soccer-ball-o"></i><span class="tooltiptext">soccer-ball-o</span></div>
+<div id="fa fa-sort" class="tooltip" onclick="iconClicked('fa fa-sort')"><i class="fa fa-sort"></i><span class="tooltiptext">sort</span></div>
+<div id="fa fa-sort-alpha-asc" class="tooltip" onclick="iconClicked('fa fa-sort-alpha-asc')"><i class="fa fa-sort-alpha-asc"></i><span class="tooltiptext">sort-alpha-asc</span></div>
+<div id="fa fa-sort-alpha-desc" class="tooltip" onclick="iconClicked('fa fa-sort-alpha-desc')"><i class="fa fa-sort-alpha-desc"></i><span class="tooltiptext">sort-alpha-desc</span></div>
+<div id="fa fa-sort-amount-asc" class="tooltip" onclick="iconClicked('fa fa-sort-amount-asc')"><i class="fa fa-sort-amount-asc"></i><span class="tooltiptext">sort-amount-asc</span></div>
+<div id="fa fa-sort-amount-desc" class="tooltip" onclick="iconClicked('fa fa-sort-amount-desc')"><i class="fa fa-sort-amount-desc"></i><span class="tooltiptext">sort-amount-desc</span></div>
+<div id="fa fa-sort-asc" class="tooltip" onclick="iconClicked('fa fa-sort-asc')"><i class="fa fa-sort-asc"></i><span class="tooltiptext">sort-asc</span></div>
+<div id="fa fa-sort-desc" class="tooltip" onclick="iconClicked('fa fa-sort-desc')"><i class="fa fa-sort-desc"></i><span class="tooltiptext">sort-desc</span></div>
+<div id="fa fa-sort-down" class="tooltip" onclick="iconClicked('fa fa-sort-down')"><i class="fa fa-sort-down"></i><span class="tooltiptext">sort-down</span></div>
+<div id="fa fa-sort-numeric-asc" class="tooltip" onclick="iconClicked('fa fa-sort-numeric-asc')"><i class="fa fa-sort-numeric-asc"></i><span class="tooltiptext">sort-numeric-asc</span></div>
+<div id="fa fa-sort-numeric-desc" class="tooltip" onclick="iconClicked('fa fa-sort-numeric-desc')"><i class="fa fa-sort-numeric-desc"></i><span class="tooltiptext">sort-numeric-desc</span></div>
+<div id="fa fa-sort-up" class="tooltip" onclick="iconClicked('fa fa-sort-up')"><i class="fa fa-sort-up"></i><span class="tooltiptext">sort-up</span></div>
+<div id="fa fa-space-shuttle" class="tooltip" onclick="iconClicked('fa fa-space-shuttle')"><i class="fa fa-space-shuttle"></i><span class="tooltiptext">space-shuttle</span></div>
+<div id="fa fa-spinner" class="tooltip" onclick="iconClicked('fa fa-spinner')"><i class="fa fa-spinner"></i><span class="tooltiptext">spinner</span></div>
+<div id="fa fa-spoon" class="tooltip" onclick="iconClicked('fa fa-spoon')"><i class="fa fa-spoon"></i><span class="tooltiptext">spoon</span></div>
+<div id="fa fa-square" class="tooltip" onclick="iconClicked('fa fa-square')"><i class="fa fa-square"></i><span class="tooltiptext">square</span></div>
+<div id="fa fa-square-o" class="tooltip" onclick="iconClicked('fa fa-square-o')"><i class="fa fa-square-o"></i><span class="tooltiptext">square-o</span></div>
+<div id="fa fa-star" class="tooltip" onclick="iconClicked('fa fa-star')"><i class="fa fa-star"></i><span class="tooltiptext">star</span></div>
+<div id="fa fa-star-half" class="tooltip" onclick="iconClicked('fa fa-star-half')"><i class="fa fa-star-half"></i><span class="tooltiptext">star-half</span></div>
+<div id="fa fa-star-half-empty" class="tooltip" onclick="iconClicked('fa fa-star-half-empty')"><i class="fa fa-star-half-empty"></i><span class="tooltiptext">star-half-empty</span></div>
+<div id="fa fa-star-half-full" class="tooltip" onclick="iconClicked('fa fa-star-half-full')"><i class="fa fa-star-half-full"></i><span class="tooltiptext">star-half-full</span></div>
+<div id="fa fa-star-half-o" class="tooltip" onclick="iconClicked('fa fa-star-half-o')"><i class="fa fa-star-half-o"></i><span class="tooltiptext">star-half-o</span></div>
+<div id="fa fa-star-o" class="tooltip" onclick="iconClicked('fa fa-star-o')"><i class="fa fa-star-o"></i><span class="tooltiptext">star-o</span></div>
+<div id="fa fa-sticky-note" class="tooltip" onclick="iconClicked('fa fa-sticky-note')"><i class="fa fa-sticky-note"></i><span class="tooltiptext">sticky-note</span></div>
+<div id="fa fa-sticky-note-o" class="tooltip" onclick="iconClicked('fa fa-sticky-note-o')"><i class="fa fa-sticky-note-o"></i><span class="tooltiptext">sticky-note-o</span></div>
+<div id="fa fa-street-view" class="tooltip" onclick="iconClicked('fa fa-street-view')"><i class="fa fa-street-view"></i><span class="tooltiptext">street-view</span></div>
+<div id="fa fa-suitcase" class="tooltip" onclick="iconClicked('fa fa-suitcase')"><i class="fa fa-suitcase"></i><span class="tooltiptext">suitcase</span></div>
+<div id="fa fa-sun-o" class="tooltip" onclick="iconClicked('fa fa-sun-o')"><i class="fa fa-sun-o"></i><span class="tooltiptext">sun-o</span></div>
+<div id="fa fa-support" class="tooltip" onclick="iconClicked('fa fa-support')"><i class="fa fa-support"></i><span class="tooltiptext">support</span></div>
+<div id="fa fa-tablet" class="tooltip" onclick="iconClicked('fa fa-tablet')"><i class="fa fa-tablet"></i><span class="tooltiptext">tablet</span></div>
+<div id="fa fa-tachometer" class="tooltip" onclick="iconClicked('fa fa-tachometer')"><i class="fa fa-tachometer"></i><span class="tooltiptext">tachometer</span></div>
+<div id="fa fa-tag" class="tooltip" onclick="iconClicked('fa fa-tag')"><i class="fa fa-tag"></i><span class="tooltiptext">tag</span></div>
+<div id="fa fa-tags" class="tooltip" onclick="iconClicked('fa fa-tags')"><i class="fa fa-tags"></i><span class="tooltiptext">tags</span></div>
+<div id="fa fa-tasks" class="tooltip" onclick="iconClicked('fa fa-tasks')"><i class="fa fa-tasks"></i><span class="tooltiptext">tasks</span></div>
+<div id="fa fa-taxi" class="tooltip" onclick="iconClicked('fa fa-taxi')"><i class="fa fa-taxi"></i><span class="tooltiptext">taxi</span></div>
+<div id="fa fa-television" class="tooltip" onclick="iconClicked('fa fa-television')"><i class="fa fa-television"></i><span class="tooltiptext">television</span></div>
+<div id="fa fa-terminal" class="tooltip" onclick="iconClicked('fa fa-terminal')"><i class="fa fa-terminal"></i><span class="tooltiptext">terminal</span></div>
+<div id="fa fa-thermometer" class="tooltip" onclick="iconClicked('fa fa-thermometer')"><i class="fa fa-thermometer"></i><span class="tooltiptext">thermometer</span></div>
+<div id="fa fa-thermometer-0" class="tooltip" onclick="iconClicked('fa fa-thermometer-0')"><i class="fa fa-thermometer-0"></i><span class="tooltiptext">thermometer-0</span></div>
+<div id="fa fa-thermometer-1" class="tooltip" onclick="iconClicked('fa fa-thermometer-1')"><i class="fa fa-thermometer-1"></i><span class="tooltiptext">thermometer-1</span></div>
+<div id="fa fa-thermometer-2" class="tooltip" onclick="iconClicked('fa fa-thermometer-2')"><i class="fa fa-thermometer-2"></i><span class="tooltiptext">thermometer-2</span></div>
+<div id="fa fa-thermometer-3" class="tooltip" onclick="iconClicked('fa fa-thermometer-3')"><i class="fa fa-thermometer-3"></i><span class="tooltiptext">thermometer-3</span></div>
+<div id="fa fa-thermometer-4" class="tooltip" onclick="iconClicked('fa fa-thermometer-4')"><i class="fa fa-thermometer-4"></i><span class="tooltiptext">thermometer-4</span></div>
+<div id="fa fa-thermometer-empty" class="tooltip" onclick="iconClicked('fa fa-thermometer-empty')"><i class="fa fa-thermometer-empty"></i><span class="tooltiptext">thermometer-empty</span></div>
+<div id="fa fa-thermometer-full" class="tooltip" onclick="iconClicked('fa fa-thermometer-full')"><i class="fa fa-thermometer-full"></i><span class="tooltiptext">thermometer-full</span></div>
+<div id="fa fa-thermometer-half" class="tooltip" onclick="iconClicked('fa fa-thermometer-half')"><i class="fa fa-thermometer-half"></i><span class="tooltiptext">thermometer-half</span></div>
+<div id="fa fa-thermometer-quarter" class="tooltip" onclick="iconClicked('fa fa-thermometer-quarter')"><i class="fa fa-thermometer-quarter"></i><span class="tooltiptext">thermometer-quarter</span></div>
+<div id="fa fa-thermometer-three-quarters" class="tooltip" onclick="iconClicked('fa fa-thermometer-three-quarters')"><i class="fa fa-thermometer-three-quarters"></i><span class="tooltiptext">thermometer-three-quarters</span></div>
+<div id="fa fa-thumb-tack" class="tooltip" onclick="iconClicked('fa fa-thumb-tack')"><i class="fa fa-thumb-tack"></i><span class="tooltiptext">thumb-tack</span></div>
+<div id="fa fa-thumbs-down" class="tooltip" onclick="iconClicked('fa fa-thumbs-down')"><i class="fa fa-thumbs-down"></i><span class="tooltiptext">thumbs-down</span></div>
+<div id="fa fa-thumbs-o-up" class="tooltip" onclick="iconClicked('fa fa-thumbs-o-up')"><i class="fa fa-thumbs-o-up"></i><span class="tooltiptext">thumbs-o-up</span></div>
+<div id="fa fa-thumbs-up" class="tooltip" onclick="iconClicked('fa fa-thumbs-up')"><i class="fa fa-thumbs-up"></i><span class="tooltiptext">thumbs-up</span></div>
+<div id="fa fa-ticket" class="tooltip" onclick="iconClicked('fa fa-ticket')"><i class="fa fa-ticket"></i><span class="tooltiptext">ticket</span></div>
+<div id="fa fa-times" class="tooltip" onclick="iconClicked('fa fa-times')"><i class="fa fa-times"></i><span class="tooltiptext">times</span></div>
+<div id="fa fa-times-circle" class="tooltip" onclick="iconClicked('fa fa-times-circle')"><i class="fa fa-times-circle"></i><span class="tooltiptext">times-circle</span></div>
+<div id="fa fa-times-circle-o" class="tooltip" onclick="iconClicked('fa fa-times-circle-o')"><i class="fa fa-times-circle-o"></i><span class="tooltiptext">times-circle-o</span></div>
+<div id="fa fa-times-rectangle" class="tooltip" onclick="iconClicked('fa fa-times-rectangle')"><i class="fa fa-times-rectangle"></i><span class="tooltiptext">times-rectangle</span></div>
+<div id="fa fa-times-rectangle-o" class="tooltip" onclick="iconClicked('fa fa-times-rectangle-o')"><i class="fa fa-times-rectangle-o"></i><span class="tooltiptext">times-rectangle-o</span></div>
+<div id="fa fa-tint" class="tooltip" onclick="iconClicked('fa fa-tint')"><i class="fa fa-tint"></i><span class="tooltiptext">tint</span></div>
+<div id="fa fa-toggle-down" class="tooltip" onclick="iconClicked('fa fa-toggle-down')"><i class="fa fa-toggle-down"></i><span class="tooltiptext">toggle-down</span></div>
+<div id="fa fa-toggle-left" class="tooltip" onclick="iconClicked('fa fa-toggle-left')"><i class="fa fa-toggle-left"></i><span class="tooltiptext">toggle-left</span></div>
+<div id="fa fa-toggle-right" class="tooltip" onclick="iconClicked('fa fa-toggle-right')"><i class="fa fa-toggle-right"></i><span class="tooltiptext">toggle-right</span></div>
+<div id="fa fa-toggle-up" class="tooltip" onclick="iconClicked('fa fa-toggle-up')"><i class="fa fa-toggle-up"></i><span class="tooltiptext">toggle-up</span></div>
+<div id="fa fa-toggle-off" class="tooltip" onclick="iconClicked('fa fa-toggle-off')"><i class="fa fa-toggle-off"></i><span class="tooltiptext">toggle-off</span></div>
+<div id="fa fa-toggle-on" class="tooltip" onclick="iconClicked('fa fa-toggle-on')"><i class="fa fa-toggle-on"></i><span class="tooltiptext">toggle-on</span></div>
+<div id="fa fa-trademark" class="tooltip" onclick="iconClicked('fa fa-trademark')"><i class="fa fa-trademark"></i><span class="tooltiptext">trademark</span></div>
+<div id="fa fa-trash" class="tooltip" onclick="iconClicked('fa fa-trash')"><i class="fa fa-trash"></i><span class="tooltiptext">trash</span></div>
+<div id="fa fa-trash-o" class="tooltip" onclick="iconClicked('fa fa-trash-o')"><i class="fa fa-trash-o"></i><span class="tooltiptext">trash-o</span></div>
+<div id="fa fa-tree" class="tooltip" onclick="iconClicked('fa fa-tree')"><i class="fa fa-tree"></i><span class="tooltiptext">tree</span></div>
+<div id="fa fa-trophy" class="tooltip" onclick="iconClicked('fa fa-trophy')"><i class="fa fa-trophy"></i><span class="tooltiptext">trophy</span></div>
+<div id="fa fa-truck" class="tooltip" onclick="iconClicked('fa fa-truck')"><i class="fa fa-truck"></i><span class="tooltiptext">truck</span></div>
+<div id="fa fa-tty" class="tooltip" onclick="iconClicked('fa fa-tty')"><i class="fa fa-tty"></i><span class="tooltiptext">tty</span></div>
+<div id="fa fa-tv" class="tooltip" onclick="iconClicked('fa fa-tv')"><i class="fa fa-tv"></i><span class="tooltiptext">tv</span></div>
+<div id="fa fa-umbrella" class="tooltip" onclick="iconClicked('fa fa-umbrella')"><i class="fa fa-umbrella"></i><span class="tooltiptext">umbrella</span></div>
+<div id="fa fa-universal-access" class="tooltip" onclick="iconClicked('fa fa-universal-access')"><i class="fa fa-universal-access"></i><span class="tooltiptext">universal-access</span></div>
+<div id="fa fa-university" class="tooltip" onclick="iconClicked('fa fa-university')"><i class="fa fa-university"></i><span class="tooltiptext">university</span></div>
+<div id="fa fa-unlock" class="tooltip" onclick="iconClicked('fa fa-unlock')"><i class="fa fa-unlock"></i><span class="tooltiptext">unlock</span></div>
+<div id="fa fa-unlock-alt" class="tooltip" onclick="iconClicked('fa fa-unlock-alt')"><i class="fa fa-unlock-alt"></i><span class="tooltiptext">unlock-alt</span></div>
+<div id="fa fa-unsorted" class="tooltip" onclick="iconClicked('fa fa-unsorted')"><i class="fa fa-unsorted"></i><span class="tooltiptext">unsorted</span></div>
+<div id="fa fa-upload" class="tooltip" onclick="iconClicked('fa fa-upload')"><i class="fa fa-upload"></i><span class="tooltiptext">upload</span></div>
+<div id="fa fa-user" class="tooltip" onclick="iconClicked('fa fa-user')"><i class="fa fa-user"></i><span class="tooltiptext">user</span></div>
+<div id="fa fa-user-circle" class="tooltip" onclick="iconClicked('fa fa-user-circle')"><i class="fa fa-user-circle"></i><span class="tooltiptext">user-circle</span></div>
+<div id="fa fa-user-circle-o" class="tooltip" onclick="iconClicked('fa fa-user-circle-o')"><i class="fa fa-user-circle-o"></i><span class="tooltiptext">user-circle-o</span></div>
+<div id="fa fa-user-o" class="tooltip" onclick="iconClicked('fa fa-user-o')"><i class="fa fa-user-o"></i><span class="tooltiptext">user-o</span></div>
+<div id="fa fa-user-plus" class="tooltip" onclick="iconClicked('fa fa-user-plus')"><i class="fa fa-user-plus"></i><span class="tooltiptext">user-plus</span></div>
+<div id="fa fa-user-secret" class="tooltip" onclick="iconClicked('fa fa-user-secret')"><i class="fa fa-user-secret"></i><span class="tooltiptext">user-secret</span></div>
+<div id="fa fa-user-times" class="tooltip" onclick="iconClicked('fa fa-user-times')"><i class="fa fa-user-times"></i><span class="tooltiptext">user-times</span></div>
+<div id="fa fa-users" class="tooltip" onclick="iconClicked('fa fa-users')"><i class="fa fa-users"></i><span class="tooltiptext">users</span></div>
+<div id="fa fa-vcard" class="tooltip" onclick="iconClicked('fa fa-vcard')"><i class="fa fa-vcard"></i><span class="tooltiptext">vcard</span></div>
+<div id="fa fa-vcard-o" class="tooltip" onclick="iconClicked('fa fa-vcard-o')"><i class="fa fa-vcard-o"></i><span class="tooltiptext">vcard-o</span></div>
+<div id="fa fa-video-camera" class="tooltip" onclick="iconClicked('fa fa-video-camera')"><i class="fa fa-video-camera"></i><span class="tooltiptext">video-camera</span></div>
+<div id="fa fa-volume-control-phone" class="tooltip" onclick="iconClicked('fa fa-volume-control-phone')"><i class="fa fa-volume-control-phone"></i><span class="tooltiptext">volume-control-phone</span></div>
+<div id="fa fa-volume-down" class="tooltip" onclick="iconClicked('fa fa-volume-down')"><i class="fa fa-volume-down"></i><span class="tooltiptext">volume-down</span></div>
+<div id="fa fa-volume-off" class="tooltip" onclick="iconClicked('fa fa-volume-off')"><i class="fa fa-volume-off"></i><span class="tooltiptext">volume-off</span></div>
+<div id="fa fa-volume-up" class="tooltip" onclick="iconClicked('fa fa-volume-up')"><i class="fa fa-volume-up"></i><span class="tooltiptext">volume-up</span></div>
+<div id="fa fa-warning" class="tooltip" onclick="iconClicked('fa fa-warning')"><i class="fa fa-warning"></i><span class="tooltiptext">warning</span></div>
+<div id="fa fa-wheelchair" class="tooltip" onclick="iconClicked('fa fa-wheelchair')"><i class="fa fa-wheelchair"></i><span class="tooltiptext">wheelchair</span></div>
+<div id="fa fa-wheelchair-alt" class="tooltip" onclick="iconClicked('fa fa-wheelchair-alt')"><i class="fa fa-wheelchair-alt"></i><span class="tooltiptext">wheelchair-alt</span></div>
+<div id="fa fa-window-close" class="tooltip" onclick="iconClicked('fa fa-window-close')"><i class="fa fa-window-close"></i><span class="tooltiptext">window-close</span></div>
+<div id="fa fa-window-close-o" class="tooltip" onclick="iconClicked('fa fa-window-close-o')"><i class="fa fa-window-close-o"></i><span class="tooltiptext">window-close-o</span></div>
+<div id="fa fa-window-maximize" class="tooltip" onclick="iconClicked('fa fa-window-maximize')"><i class="fa fa-window-maximize"></i><span class="tooltiptext">window-maximize</span></div>
+<div id="fa fa-window-minimize" class="tooltip" onclick="iconClicked('fa fa-window-minimize')"><i class="fa fa-window-minimize"></i><span class="tooltiptext">window-minimize</span></div>
+<div id="fa fa-window-restore" class="tooltip" onclick="iconClicked('fa fa-window-restore')"><i class="fa fa-window-restore"></i><span class="tooltiptext">window-restore</span></div>
+<div id="fa fa-wifi" class="tooltip" onclick="iconClicked('fa fa-wifi')"><i class="fa fa-wifi"></i><span class="tooltiptext">wifi</span></div>
+<div id="fa fa-wrench" class="tooltip" onclick="iconClicked('fa fa-wrench')"><i class="fa fa-wrench"></i><span class="tooltiptext">wrench</span></div>
+</body>
+</html>

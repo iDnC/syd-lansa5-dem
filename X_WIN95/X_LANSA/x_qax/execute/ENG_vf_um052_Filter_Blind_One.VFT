@@ -1,0 +1,132 @@
+<caption>
+CRUD Filter and Instance List      
+</caption>
+<preamble>
+ENG_vf_um052_Filter_Blind_One.htm
+</preamble>
+<context>
+Filter 
+</context>
+<mode>
+ONE
+</mode>
+<sequence>
+000100  
+</sequence>
+<handlertxt>
+Specify the physical file that your business object is to be based on.  Then choose which fields to show on the instance list and which field / fields uniquely identify a record.
+Choose any other options you may want. 
+</handlertxt>
+<handler>
+VF_UM128 
+VF_UM109 
+</handler>
+<hint>
+This assistant produces the code for a filter that requires little or no manual completion based on a specified file or view. It is designed for developers who are new to the VL Framework.
+</hint>
+<code>
+<<include VF_UM052_Filter_Preamble.vfi>>
+Function Options(*DIRECT)
+Begin_Com Role(*EXTENDS #VF_AC007O) Height(182) Width(326) 
+* <<majorsep>>
+* Simple Field, Group and Condition Definitions
+* <<majorsep>>
+Group_By   Name(#XG_Ident)   Fields(<<UM055_GenFldList>>)
+Group_By   Name(#XG_Keys)   Fields(<<UM055_BaseFileKeys>>)
+
+* The list used to receive data from the file access Server Module 
+Def_List Name(#<<UM055_BaseFile>>List) Counter(#ListCount) Type(*Working) Entrys(*Max)  <<UM055_BaseFileFields>> 
+
+* <<majorsep>>
+* Routines
+* <<majorsep>>
+
+<<CommentBlock>>
+Mthroutine Name(uInitialize) Options(*Redefine)
+* Define the data service
+Define_Com Class(#<<UM055_BaseFileWAM>>.FindAll) Name(#FindAll)
+
+* Make this a hidden filter
+Set Com(#Com_Owner) Avfilterlocation(NONE)
+* Hidden filters are not allowed to be moved to TOP LEFT RIGHT BOTTOM
+Set Com(#Com_Owner) Avallowlocationchange(False)
+
+* Go to busy state
+#COM_OWNER.avGotoBusyState Showbusytext('Searching') Animated(False)
+
+* Ask Server Module <<UM055_BaseFileWAM>>  to get the all the data from the server
+#XG_Keys := *NULL
+#FindAll.ExecuteAsync( #<<UM055_BaseFile>>List )
+
+Evtroutine Handling(#FindAll.Completed)
+
+#avListManager.ClearList
+
+Selectlist Named(#<<UM055_BaseFile>>List)
+
+* Extra selection logic could go here
+
+<<UM055_AddtoList>>  
+
+Endselect
+Clr_List Named(#<<UM055_BaseFile>>List)
+
+* Go back to display free state
+#com_Owner.avGotoFreeState
+
+Endroutine
+Endroutine
+
+<<if CA_UM109_TERMINATE>>
+Mthroutine Name(uTerminate) Options(*REDEFINE)
+<<CommentBlock>>
+* <your termination logic goes here>
+* <your termination logic goes here>
+* <your termination logic goes here>
+<<CommentBlock>>
+<<Comment>>Do any termination defined in the ancestor
+#Com_Ancestor.uTerminate
+<<CommentBlock>>
+Endroutine
+<<endif>>
+
+<<if CA_UM109_LISTEN>>
+* <<minorsep>>
+* Handle any external requests to update the Instance List  
+* <<minorsep>>
+EvtRoutine #Com_owner.avEvent WithId(#EventId) WithAInfo1(#AInfo1) WithAInfo2(#AInfo2) WithAInfo3(#AInfo3) WithAInfo4(#AInfo4) WithAInfo5(#AInfo5)  WithNInfo1(#NInfo1) WithNInfo2(#NInfo2) WithNInfo3(#NInfo3) WithNInfo4(#NInfo4) WithNInfo5(#NInfo5)
+
+* put the received values into fields
+#vf_elIdn := #EventId.Value
+
+* Map the AInfo and NInfo values passed, into the key fields - <<UM055_BaseFileKeys>>
+<<UM055_GenMapKeys>> 
+
+Case #vf_elIDN
+
+when value_is(= Refresh_Instance_List)
+* Reload the Instance List
+
+#Com_Owner.uInitialize
+
+when value_is(= Add_List_Entry)
+* Add an entry to the list view
+
+* <your  logic goes here>
+
+when value_is(= Update_List_Entry)
+* Update an entry that already exists in the instance list
+
+* <your  logic goes here>
+
+when value_is(=  Delete_List_Entry)
+
+* <your  logic goes here>
+
+endcase
+
+Endroutine
+<<endif>>
+
+End_Com
+</code>  

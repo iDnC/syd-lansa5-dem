@@ -1,0 +1,28 @@
+<context>
+Filter
+</context>
+<mode>
+WAM
+</mode>
+<preamble>
+JPN_vf_um052_Filter_AddToList_Wam.htm
+</preamble>
+<caption>
+#avListManager.AddtoList (ｺｰﾄﾞ ﾌﾗｸﾞﾒﾝﾄ)
+</caption>
+<sequence>
+000400   
+</sequence>
+<handler>
+VF_UM055 
+</handler>
+<handlertxt>
+このﾋﾞｼﾞﾈｽ ｵﾌﾞｼﾞｪｸﾄに使用する識別ﾌﾟﾛﾄｺﾙを指定します。物理ﾌｧｲﾙがこのﾋﾞｼﾞﾈｽ ｵﾌﾞｼﾞｪｸﾄと類似する場合は、その名前を指定すると、ｳｨｻﾞｰﾄﾞが自動的に基本となる識別ﾌﾟﾛﾄｺﾙの推定を試みます。
+</handlertxt>
+<hint>
+<hint>
+このｳｨｻﾞｰﾄﾞでは、特有のｺｰﾄﾞ ﾌﾗｸﾞﾒﾝﾄを作成し、それは、#avListManager.AddtoList を使用してｴﾝﾄﾘをﾋﾞｼﾞﾈｽ ｵﾌﾞｼﾞｪｸﾄ ｲﾝｽﾀﾝｽ ﾘｽﾄに追加するものです。
+</hint>
+<code> 
+<<UM055_AddtoList>>  
+</code>  

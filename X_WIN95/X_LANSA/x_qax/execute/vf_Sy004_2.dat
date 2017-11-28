@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+<html>   
+<head> 
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="robots" content="noindex, nofollow">  
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+>>TITLE<<
+<script language="JavaScript" type="text/javascript" FOR="window" EVENT="onload">
+   var intParms = window.location.href.indexOf("?"); 
+   var strParms = "";
+   if (intParms >= 0) strParms = window.location.href.substr(intParms);
+   window.open(("<<LAUNCH_FILE>>" + strParms),"_blank","fullscreen=yes, channelmode=no, directories=no, fullscreen=no, location=no, menubar=no, resizable=yes, scrollbars=yes, status=no, titlebar=yes, toolbar=no");
+</script>  
+</head>
+<body>
+<p>System has been launched in a separate window</p>
+</body>  
+</html>

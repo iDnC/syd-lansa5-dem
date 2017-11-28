@@ -1,0 +1,58 @@
+<caption>
+Préciser vos préférences de génération de code 
+</caption>
+<preamble>
+FRA_vf_um052_Coding_Preferences.HTM 
+</preamble>
+<context>
+Framework 
+</context>
+<mode>
+EITHER
+</mode>
+<hint>
+Utiliser cet assistant pour définir ou modifier vos options pour la génération du code par l´assistant. 
+</hint>
+<context>
+Framework 
+</context>
+<sequence>
+999999     
+</sequence>
+<handler>
+VF_UM053
+</handler>
+<handlertxt>
+Préciser vos préférences puis cliquer sur le bouton "Générer le code". Un exemple du code généré à partir de vos préférences sera affiché.     
+</handlertxt>
+<code>
+<<comment>>Vos informations de copyright seront du type
+<<comment>> <<copyright>>
+<<comment>>Le code nécessitant des compléments manuels sera noté : 
+<<comment>> <<tba>>  
+* <<majorsep>>
+* Ceci est un exemple de bloc de code principal	 
+* <<majorsep>>     
+* 
+* <<minorsep>>
+* Ceci est un exemple de bloc de code secondaire
+* <<minorsep>>    
+<<Comment>>Les lignes de commentaires individuelles sont espacées comme ceci 
+<<Comment>>Les lignes de commentaires individuelles sont espacées comme ceci 
+<<Comment>>Les lignes de commentaires individuelles sont espacées comme ceci 
+<<commentBlock>> 
+* Bloc de commentaire 1 
+* Bloc de commentaire 1 
+* Bloc de commentaire 1 
+<<commentBlock>> 
+* Bloc de commentaire 2 
+* Bloc de commentaire 2 
+<<commentBlock>> 
+* Bloc de commentaire 3 
+* Bloc de commentaire 3 
+* Bloc de commentaire 3
+<<Comment>>Les zones affichées sur les panneaux filtres ont ces attributs
+Define_Com Class(£Std_Num) Name(£SimpleField1) <<filterfield>>
+<<Comment>>Les zones sur les panneaux du gestionnaire d´action ont ces attributs
+Define_Com Class(£Std_Num) Name(£SimpleField2) <<handlerfield>>
+</code>

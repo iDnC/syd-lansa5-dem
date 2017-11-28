@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<caption>
+Squelette de critère de recherche          
+</caption>
+<preamble>
+FRA_vf_um052_Filter_Skeleton_One.htm
+</preamble>
+<context>
+Filter 
+</context> 
+<mode>
+ONE
+</mode>
+<sequence>
+000200   
+</sequence>
+<handler>
+VF_UM055 
+VF_UM054  
+</handler>
+<handlertxt>
+Préciser le protocole d´identification que vous avez choisi d´utiliser pour cet objet métier. Si un fichier physique ressemble à cet objet métier, donner son nom et l´assistant essaiera automatiquement de déduire un protocole d´identification type pour vous.
+Précisez les choses que vous voudriez inclure dans le code généré.     
+</handlertxt>
+<hint>
+Cet assistant produit le code d'un squelette de filtre basique qui nécessite d'être complété manuellement. Il est conçu pour les développeurs qui ont utilisé des filtres de nombreuses fois et souhaitent ajouter leur propre code manuellement dans le filtre.  
+</hint>
+<code>
+<<include VF_UM052_Filter_Preamble.vfi>>
+Function Options(*DIRECT)
+Begin_Com Role(*EXTENDS £VF_AC007O) Height(182) Width(326) Layoutmanager(£TableLayout_Main)
+
+* Présentation de Table
+
+Define_Com Class(£PRIM_TBLO) Name(£TableLayout_Main)
+
+Define_Com Class(£PRIM_TBLO.Column) Name(£Column1) Displayposition(1) Parent(£TableLayout_Main)
+Define_Com Class(£PRIM_TBLO.Row) Name(£Row1) Displayposition(1) Parent(£TableLayout_Main) Height(1,72)
+Define_Com Class(£PRIM_TBLO.Row) Name(£Row2) Displayposition(2) Parent(£TableLayout_Main) Height(25) Units(Pixels)
+
+* Eléments de présentation
+
+Define_Com Class(£PRIM_TBLO.Item) Name(£EXAMPLE_LABL_2Item1) Manage(£EXAMPLE_LABL_2) Parent(£TableLayout_Main) Row(£Row1) Sizing(None) Column(£Column1) Alignment(TopLeft) Flow(Down)
+Define_Com Class(£PRIM_TBLO.Item) Name(£CLEARLIST_CKBXItem1) Manage(£CLEARLIST_CKBX) Parent(£TableLayout_Main) Row(£Row1) Sizing(None) Column(£Column1) Alignment(TopLeft) Flow(Down)
+Define_Com Class(£PRIM_TBLO.Item) Name(£EXAMPLE_USERItem1) Manage(£EXAMPLE_USER) Parent(£TableLayout_Main) Row(£Row1) Sizing(None) Column(£Column1) Alignment(TopLeft) Flow(Down)
+Define_Com Class(£PRIM_TBLO.Item) Name(£EXAMPLE_DATEItem1) Manage(£EXAMPLE_DATE) Parent(£TableLayout_Main) Row(£Row1) Sizing(None) Column(£Column1) Alignment(TopLeft) Flow(Down)
+Define_Com Class(£PRIM_TBLO.Item) Name(£SEARCH_BUTTON_1Item1) Manage(£SEARCH_BUTTON_1) Parent(£TableLayout_Main) Row(£Row2) Sizing(FitToHeight) Column(£Column1) Alignment(CenterLeft) Flow(Right)
+
+* Définitions des composants
+
+* Texte instruction (peut être supprimée en bloc si non nécessaire)
+
+Define_Com Class(£PRIM_LABL) Name(£EXAMPLE_LABL_2) Caption('Placer les zones sur ce panneau') Displayposition(1) Height(20) Left(0) Parent(£COM_OWNER) Tabposition(3) Tabstop(False) Top(0) Verticalalignment(Center) Visible(False) Width(326)
+
+* Case à cocher vider la liste
+
+Define_Com Class(£PRIM_CKBX) Name(£CLEARLIST_CKBX) Buttonstate(Checked) Caption('Vider la liste') Displayposition(2) Height(22) Parent(£COM_OWNER) Tabposition(1) Top(20) Width(326) Left(0)
+
+* Zones exemples (peut être supprimée en bloc si non nécessaire)
+
+Define_Com Class(£USER.Visual) Name(£EXAMPLE_USER) Caption('Utilisateur') Displayposition(3) Height(19) Labeltype(Caption) Marginleft(30) Parent(£COM_OWNER) Tabposition(2) Top(42) Width(326) Usepicklist(False)
+Define_Com Class(£DATE.Visual) Name(£EXAMPLE_DATE) Caption('Date') Displayposition(4) Height(19) Labeltype(Caption) Marginleft(30) Parent(£COM_OWNER) Tabposition(4) Top(61) Width(326) Usepicklist(False)
+
+* Bouton de recherche exemple
+
+Define_Com Class(£PRIM_PHBN) Name(£SEARCH_BUTTON_1) Buttondefault(True) Caption('Rechercher ') Displayposition(1) Left(237) Parent(£Com_Owner) Tabposition(1) Top(0) Width(89) Height(30)
+
+*  La liste utilisée pour communiquer avec le module de service 
+Def_List Name(£<<UM055_BaseFile>>List) Counter(£ListCount) Type(*Working) Entrys(*Max) <<UM055_BaseFileFields>> 
+
+* <<majorsep>>
+* Routines
+* <<majorsep>>
+
+<<if CA_UM054_INITIALIZE>>
+Mthroutine Name(uInitialize) Options(*REDEFINE)
+<<Comment>>Exécuter toute logique d'initialisation définie dans l'ancêtre 
+£Com_Ancestor.uInitialize
+<<CommentBlock>>
+£COM_OWNER.avFilterLocation := LEFT /* Ce filtre est à gauche */
+£COM_OWNER.avAllowLocationChange := True /*  autoriser l'utilisateur à déplacer le filtre */
+<<CommentBlock>>
+* <ici votre logique d'initialisation> 
+* <ici votre logique d'initialisation> 
+* <ici votre logique d'initialisation> 
+<<CommentBlock>>
+Endroutine
+<<endif>>
+
+<<if CA_UM054_TERMINATE>>
+Mthroutine Name(uTerminate) Options(*REDEFINE)
+<<CommentBlock>>
+* <ici votre logique de fin> 
+* <ici votre logique de fin> 
+* <ici votre logique de fin> 
+<<CommentBlock>>
+<<Comment>>Exécuter toute logique de fin définie dans l'ancêtre
+£Com_Ancestor.uTerminate
+<<CommentBlock>>
+Endroutine
+<<endif>>
+
+<<if CA_UM054_SEARCHBTN>>
+Evtroutine Handling(£SEARCH_BUTTON_1.Cliquer)
+£Com_Owner.Search
+Endroutine
+
+Mthroutine Search
+* Définir la mthroutine du module de service qui va fournir les données - le service de données
+* Vous pouvez créer un module de service comme ceci en créant un nouveau module de service dans l'IDE et en précisant le nom de fichier.
+Define_Com Class(£<<UM055_BaseFileWAM>>.FindAll) Name(£FindAll)
+
+<<CommentBlock>>
+* Lancer le timer occupé pour cette recherche
+* Note si vous utilisez avGotoBusyState( ou tout indicateur visuel en-cours) , le module de service devrait être exécuté de façon asynchrone
+£com_Owner.avGotoBusyState Showbusytext('Recherche en cours') Animated(False)
+<<CommentBlock>>
+*   Passer les clés au module de service et récupérer les données dans une liste
+£FindAll.ExecuteAsync(<<UM055_BaseFileKeys>> £<<UM055_BaseFile>>List )
+<<CommentBlock>>
+Evtroutine Handling(£FindAll.Completed)
+
+If Cond(£CLEARLIST_CKBX.ButtonState *EQ Checked)
+£AVLISTMANAGER.ClearList
+Endif
+
+* Lire les données et les écrire dans la liste d'instance
+Selectlist Named(£<<UM055_BaseFile>>List)
+
+<<UM055_AddtoList>>  
+
+Endselect
+Clr_List Named(£<<UM055_BaseFile>>List)
+
+* revenir à l'état disponible
+£com_Owner.avGotoFreeState
+<<CommentBlock>>
+Endroutine
+Endroutine
+<<endif>>
+
+End_Com
+</code>  

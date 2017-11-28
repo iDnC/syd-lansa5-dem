@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<context>
+Filter 
+</context>
+<mode>
+WAM
+</mode>
+<preamble>
+FRA_vf_um052_Filter_AddToList_Wam.htm
+</preamble>
+<caption>
+£avListManager.AddtoList (fragment de code)   
+</caption>
+<sequence>
+000400   
+</sequence>
+<handler>
+VF_UM055 
+</handler>
+<handlertxt>
+Préciser le protocole d´identification que vous avez choisi d´utiliser pour cet objet métier. Si un fichier physique ressemble à cet objet métier, donner son nom et l´assistant essaiera automatiquement de déduire un protocole d´identification type pour vous.  
+</handlertxt>
+<hint>
+<hint>
+Cet assistant crée un fragment de code type qui utilise £avListManager.AddtoList pour ajouter une entrée à la liste d´instances de l´objet métier.  
+</hint>
+<code> 
+<<UM055_AddtoList>>  
+</code>  

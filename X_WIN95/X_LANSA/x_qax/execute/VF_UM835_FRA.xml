@@ -1,0 +1,758 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<EXTRACT>
+<MENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Cadre d'application en cours" />
+<SUBMENUS>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Légende" />
+<PROPERTY NAME="STRING" VALUE="objFramework.uCaption" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Environnement d'exécution (WIN ou WEB)" />
+<PROPERTY NAME="STRING" VALUE="objFramework.ExecutionEnvironment" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Mode designer newlook (TRUE ou FALSE)" />
+<PROPERTY NAME="STRING" VALUE="objFramework.flagDesignMode" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Partition en cours" />
+<PROPERTY NAME="STRING" VALUE="objFramework.Partition" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Langue en cours" />
+<PROPERTY NAME="STRING" VALUE="objFramework.Language" />
+</SUBMENUITEM>
+</SUBMENUS>  
+</MENUITEM>
+<MENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Application en cours" />
+<SUBMENUS>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Légende" />
+<PROPERTY NAME="STRING" VALUE="objApplication.uCaption" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Nom/Type de l'objet utilisateur" />
+<PROPERTY NAME="STRING" VALUE="objApplication.uUserObjectType" />
+</SUBMENUITEM>
+</SUBMENUS>  
+</MENUITEM>
+<MENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Objet métier en cours" />
+<SUBMENUS>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Légende" />
+<PROPERTY NAME="STRING" VALUE="objBusinessObject.uCaption" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Nom/Type de l'objet utilisateur" />
+<PROPERTY NAME="STRING" VALUE="objBusinessObject.uUserObjectType" />
+</SUBMENUITEM>
+</SUBMENUS>  
+</MENUITEM>
+<MENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Commande en cours" />
+<SUBMENUS>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Légende" />
+<PROPERTY NAME="STRING" VALUE="objCommand.uCaption" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Nom/Type de l'objet utilisateur" />
+<PROPERTY NAME="STRING" VALUE="objCommand.uUserObjectType" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+ <PROPERTY NAME="CAPTION" VALUE="Argument alpha 1" />
+ <PROPERTY NAME="STRING" VALUE="objCommand.uAlphaArg1" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+ <PROPERTY NAME="CAPTION" VALUE="Argument alpha 2" />
+ <PROPERTY NAME="STRING" VALUE="objCommand.uAlphaArg2" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+ <PROPERTY NAME="CAPTION" VALUE="Argument numérique 1" />
+ <PROPERTY NAME="STRING" VALUE="objCommand.uNumArg1" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+ <PROPERTY NAME="CAPTION" VALUE="Argument numérique 2" />
+ <PROPERTY NAME="STRING" VALUE="objCommand.uNumArg2" />
+</SUBMENUITEM>
+</SUBMENUS>  
+</MENUITEM>
+<MENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Entrée en cours de la liste d'instances" />
+<SUBMENUS>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Clé alpha 1" />
+<PROPERTY NAME="STRING" VALUE="objListManager.AKey1[0]" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Clé alpha 2" />
+<PROPERTY NAME="STRING" VALUE="objListManager.AKey2[0]" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Clé alpha 3" />
+<PROPERTY NAME="STRING" VALUE="objListManager.AKey3[0]" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Clé alpha 4" />
+<PROPERTY NAME="STRING" VALUE="objListManager.AKey4[0]" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Clé alpha 5" />
+<PROPERTY NAME="STRING" VALUE="objListManager.AKey5[0]" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Clé numérique 1" />
+<PROPERTY NAME="STRING" VALUE="objListManager.NKey1[0]" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Clé numérique 2" />
+<PROPERTY NAME="STRING" VALUE="objListManager.NKey2[0]" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Clé numérique 3" />
+<PROPERTY NAME="STRING" VALUE="objListManager.NKey3[0]" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Clé numérique 4" />
+<PROPERTY NAME="STRING" VALUE="objListManager.NKey4[0]" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Clé numérique 5" />
+<PROPERTY NAME="STRING" VALUE="objListManager.NKey5[0]" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Identifiant visuel 1" />
+<PROPERTY NAME="STRING" VALUE="objListManager.VisualId1[0]" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Identifiant visuel 2" />
+<PROPERTY NAME="STRING" VALUE="objListManager.VisualId2[0]" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Colonne alpha additionnelle 1" />
+<PROPERTY NAME="STRING" VALUE="objListManager.AColumn1[0]" />
+</SUBMENUITEM><SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Colonne alpha additionnelle 2" />
+<PROPERTY NAME="STRING" VALUE="objListManager.AColumn2[0]" />
+</SUBMENUITEM><SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Colonne alpha additionnelle 3" />
+<PROPERTY NAME="STRING" VALUE="objListManager.AColumn3[0]" />
+</SUBMENUITEM><SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Colonne alpha additionnelle 4" />
+<PROPERTY NAME="STRING" VALUE="objListManager.AColumn4[0]" />
+</SUBMENUITEM><SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Colonne alpha additionnelle 5" />
+<PROPERTY NAME="STRING" VALUE="objListManager.AColumn5[0]" />
+</SUBMENUITEM><SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Colonne alpha additionnelle 6" />
+<PROPERTY NAME="STRING" VALUE="objListManager.AColumn6[0]" />
+</SUBMENUITEM><SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Colonne alpha additionnelle 7" />
+<PROPERTY NAME="STRING" VALUE="objListManager.AColumn7[0]" />
+</SUBMENUITEM><SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Colonne alpha additionnelle 8" />
+<PROPERTY NAME="STRING" VALUE="objListManager.AColumn8[0]" />
+</SUBMENUITEM><SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Colonne alpha additionnelle 9" />
+<PROPERTY NAME="STRING" VALUE="objListManager.AColumn9[0]" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Colonne alpha additionnelle 10" />
+<PROPERTY NAME="STRING" VALUE="objListManager.AColumn10[0]" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Colonne numérique additionnelle 1" />
+<PROPERTY NAME="STRING" VALUE="objListManager.NColumn1[0]" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Colonne numérique additionnelle 2" />
+<PROPERTY NAME="STRING" VALUE="objListManager.NColumn2[0]" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Colonne numérique additionnelle 3" />
+<PROPERTY NAME="STRING" VALUE="objListManager.NColumn3[0]" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Colonne numérique additionnelle 4" />
+<PROPERTY NAME="STRING" VALUE="objListManager.NColumn4[0]" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Colonne numérique additionnelle 5" />
+<PROPERTY NAME="STRING" VALUE="objListManager.NColumn5[0]" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Colonne numérique additionnelle 6" />
+<PROPERTY NAME="STRING" VALUE="objListManager.NColumn6[0]" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Colonne numérique additionnelle 7" />
+<PROPERTY NAME="STRING" VALUE="objListManager.NColumn7[0]" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Colonne numérique additionnelle 8" />
+<PROPERTY NAME="STRING" VALUE="objListManager.NColumn8[0]" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Colonne numérique additionnelle 9" />
+<PROPERTY NAME="STRING" VALUE="objListManager.NColumn9[0]" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Colonne numérique additionnelle 10" />
+<PROPERTY NAME="STRING" VALUE="objListManager.NColumn10[0]" />
+</SUBMENUITEM>
+</SUBMENUS>  
+</MENUITEM>
+
+<MENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Gestion de sous fichier 5250" />
+<PROPERTY NAME="HANDLER" VALUE="NEWLOOK" />
+<SUBMENUS>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Utiliser SUBFILE_ACCESSOR avec des colonnes nommées" />
+<PROPERTY NAME="STRING" VALUE= "{" />
+<PROPERTY NAME="STRING" VALUE= "   /* Créer un objet d accès au sous-fichier */" />
+<PROPERTY NAME="STRING" VALUE= "   var objSFL = new SUBFILE_ACCESSOR(&quot;&lt;nom du contrôle grille de données&gt;&quot;);" />
+<PROPERTY NAME="STRING" VALUE= "   var flagSelected = false;" />
+<PROPERTY NAME="STRING" VALUE= " " />
+<PROPERTY NAME="STRING" VALUE= "   /* Définir le nom de la colonne de sélection et l option de sélection */" />
+<PROPERTY NAME="STRING" VALUE= "   objSFL.SetSelectionColumnName(&quot;&lt;Nom de colonne&gt;&quot;,&quot;&lt;Numéro d option de sélection&gt;&quot;);" />
+<PROPERTY NAME="STRING" VALUE= " " />
+<PROPERTY NAME="STRING" VALUE= "   /* Définir le nom de la colonne de recherche et la valeur de recherche */ " />
+<PROPERTY NAME="STRING" VALUE= "   objSFL.SetSearchColumnName(&quot;&lt;Nom de colonne&gt;&quot;,&quot;&lt;Valeur à rechercher&gt;&quot;); " />
+<PROPERTY NAME="STRING" VALUE= " " />
+<PROPERTY NAME="STRING" VALUE= "   /* Effectuer la sélection */ " />
+<PROPERTY NAME="STRING" VALUE= "   flagSelected = objSFL.SelectSubFileEntry(); " />
+<PROPERTY NAME="STRING" VALUE= " " />
+<PROPERTY NAME="STRING" VALUE= "   /* Eliminer l objet d accès */ " />
+<PROPERTY NAME="STRING" VALUE= "   objSFL.Dispose(); " />
+<PROPERTY NAME="STRING" VALUE= " " />
+<PROPERTY NAME="STRING" VALUE= "   /* En cas de problème cacher le formulaire 5250 avec un message d erreur */" />
+<PROPERTY NAME="STRING" VALUE= "   if (!(flagSelected)) HIDE_CURRENT_FORM(&quot;XXXXXXXXXXX n a pas pu être affiché&quot;);" />
+<PROPERTY NAME="STRING" VALUE= "}" />
+<PROPERTY NAME="HANDLER" VALUE="NEWLOOK" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Utiliser SUBFILE_ACCESSOR avec les numéros des colonnes" />
+<PROPERTY NAME="STRING" VALUE= "{" />
+<PROPERTY NAME="STRING" VALUE= "   /* Créer un objet d accès au sous-fichier */" />
+<PROPERTY NAME="STRING" VALUE= "   var objSFL = new SUBFILE_ACCESSOR(&quot;&lt;nom du contrôle grille de données&gt;&quot;);" />
+<PROPERTY NAME="STRING" VALUE= "   var flagSelected = false;" />
+<PROPERTY NAME="STRING" VALUE= " " />
+<PROPERTY NAME="STRING" VALUE= "   /* Définir le numéro de la colonne de sélection et l option de sélection */" />
+<PROPERTY NAME="STRING" VALUE= "   objSFL.SetSelectionColumnNumber(&lt;Numéro de colonne&gt;,&quot;&lt;Numéro d option de sélection&gt;&quot;);" />
+<PROPERTY NAME="STRING" VALUE= " " />
+<PROPERTY NAME="STRING" VALUE= "   /* Définir le numéro de la colonne de recherche et la valeur de recherche */" />
+<PROPERTY NAME="STRING" VALUE= "   objSFL.SetSearchColumnNumber(&lt;Numéro de colonne&gt;,&quot;&lt;Valeur à rechercher&gt;&quot;);" />
+<PROPERTY NAME="STRING" VALUE= " " />
+<PROPERTY NAME="STRING" VALUE= "   /* Effectuer la sélection */" />
+<PROPERTY NAME="STRING" VALUE= "   flagSelected = objSFL.SelectSubFileEntry();" />
+<PROPERTY NAME="STRING" VALUE= " " />
+<PROPERTY NAME="STRING" VALUE= "   /* Eliminer l objet d accès */" />
+<PROPERTY NAME="STRING" VALUE= "   objSFL.Dispose();" />
+<PROPERTY NAME="STRING" VALUE= " " />
+<PROPERTY NAME="STRING" VALUE= "   /* En cas de problème cacher le formulaire 5250 avec un message d erreur */" />
+<PROPERTY NAME="STRING" VALUE= "   if (!(flagSelected)) HIDE_CURRENT_FORM(&quot;XXXXXXXXXXX n a pas pu être affiché&quot;);" />
+<PROPERTY NAME="STRING" VALUE= "}" />
+<PROPERTY NAME="HANDLER" VALUE="NEWLOOK" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Accès direct au sous-fichier - script de base" />
+<PROPERTY NAME="STRING" VALUE= "{" />  
+<PROPERTY NAME="STRING" VALUE= "   var strDataGridName       = &quot;xxxxxxxxx&quot;; /* Remplacer par le nom de grille de données (sensible à la casse) */" />
+<PROPERTY NAME="STRING" VALUE= "   var flagAnotherPageExists = true;        /* Il existe une autre page de sous-fichier           */" />
+<PROPERTY NAME="STRING" VALUE= "   do " />
+<PROPERTY NAME="STRING" VALUE= "   {" />
+<PROPERTY NAME="STRING" VALUE= "      var intColumnCount    = TONUMBER(GETVALUE(strDataGridName + &quot;.Columns.Count&quot;));" />   
+<PROPERTY NAME="STRING" VALUE= "      var intRowCount       = TONUMBER(GETVALUE(strDataGridName + &quot;.RowCount&quot;));" />
+<PROPERTY NAME="STRING" VALUE= "      var intColumn, intRow = 0;" />     
+<PROPERTY NAME="STRING" VALUE= "      /* Pour tous les éléments de la page de sous-fichier en cours */" /> 
+<PROPERTY NAME="STRING" VALUE= "      for (intColumn = 0; intColumn &lt; intColumnCount; intColumn++) /* Pour chaque colonne */" />
+<PROPERTY NAME="STRING" VALUE= "      {" />  
+<PROPERTY NAME="STRING" VALUE= "         var strColumn     = intColumn.toString();" />  
+<PROPERTY NAME="STRING" VALUE= "         var strColumnName = GETVALUE(strDataGridName + &quot;.Columns(&quot; + strColumn + &quot;).Name&quot;);" />   
+<PROPERTY NAME="STRING" VALUE= "         TRACE(&quot;La colonne numéro &quot; + strColumn + &quot; est nommée \&quot;&quot; + strColumnName + &quot;\&quot;&quot;);" />  
+<PROPERTY NAME="STRING" VALUE= "         for (intRow = 0; intRow &lt; intRowCount; intRow++) /* Pour chaque ligne de la colonne */" />
+<PROPERTY NAME="STRING" VALUE= "         {" /> 
+<PROPERTY NAME="STRING" VALUE= "            var strRow          = intRow.toString();" />  
+<PROPERTY NAME="STRING" VALUE= "            var strRowCellValue = GETVALUE(strDataGridName + &quot;.Columns(&quot; + strColumn + &quot;).Cells(&quot; + strRow + &quot;).Text&quot;);" />    
+<PROPERTY NAME="STRING" VALUE= "            TRACE(&quot;   La ligne &quot; + strRow + &quot; contient la valeur \&quot;&quot; + strRowCellValue + &quot;\&quot;&quot;);" />           
+<PROPERTY NAME="STRING" VALUE= "         } /* fin de traitement des lignes pour une colonne */" /> 
+<PROPERTY NAME="STRING" VALUE= "      } /* fin de traitement des colonnes */" />
+<PROPERTY NAME="STRING" VALUE= "      /* Passer (ou non) à la page de sous-fichier suivante en fonction du marqueur */" />
+<PROPERTY NAME="STRING" VALUE= "      flagAnotherPageExists = (GETVALUE(strDataGridName + &quot;.Marker&quot;) != &quot;&quot;);" />     
+<PROPERTY NAME="STRING" VALUE= "      if (flagAnotherPageExists) { TRACE(&quot;Passer à la page suivante.&quot;); SENDKEY(KeyPageDown); }" /> 
+<PROPERTY NAME="STRING" VALUE= "      else                       { TRACE(&quot;Fin du sous-fichier atteinte&quot;); }" />  
+<PROPERTY NAME="STRING" VALUE= "   } while(flagAnotherPageExists); /* Boucler et traiter la page suivante du sous-fichier */" />  
+<PROPERTY NAME="STRING" VALUE= "} /* NOTE: Ce script est dépendant de l utilisation de Newlook pour l accès 5250 */" />
+<PROPERTY NAME="HANDLER" VALUE="NEWLOOK" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="MAKESUBFILEINTOSTRING - Retourne un sous fichier comme une chaîne de caractères" />
+<PROPERTY NAME="STRING" VALUE= "/* MAKESUBFILEINTOSTRING(DataGridName, Toutes les pages, Inclure les entêtes, Nos colonnes entête, Nos colonnes détail)*/" />
+<PROPERTY NAME="STRING" VALUE= "MAKESUBFILEINTOSTRING(&quot;&lt;&lt;Nom du DataGrid&gt;&gt;&quot;, true ou false , true ou false , &quot;0,1,2,3,4,5&quot; , &quot;0,1,2,3,4,5&quot; );" />
+<PROPERTY NAME="HANDLER" VALUE="NEWLOOK" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="COPYTOCLIPBOARD(MAKESUBFILEINTOSTRING()) - Copie un sous-fichier dans le presse-papier (à coller dans excel, MS word, etc" />
+<PROPERTY NAME="STRING" VALUE= "/* COPYTOCLIPBOARD(MAKESUBFILEINTOSTRING(DataGridName, All Pages, Include Heading, Nos colonnes entête, Nos colonnes détail)) */" />
+<PROPERTY NAME="STRING" VALUE= "COPYTOCLIPBOARD(MAKESUBFILEINTOSTRING(&quot;&lt;&lt;Nom du DataGrid&gt;&gt;&quot;, true ou false , true ou false , &quot;0,1,2,3,4,5&quot; , &quot;0,1,2,3,4,5&quot; ));" />
+<PROPERTY NAME="HANDLER" VALUE="NEWLOOK" />
+</SUBMENUITEM>
+</SUBMENUS>  
+</MENUITEM>
+<MENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Contrôle de la session" />
+<SUBMENUS>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Naviguer vers la jonction" />
+<PROPERTY NAME="STRING" VALUE= "NAVIGATE_TO_JUNCTION(&quot;&lt;&lt;nom du formulaire de jonction&gt;&gt;&quot;);" />
+<PROPERTY NAME="HANDLER" VALUE="NEWLOOK" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Naviguer vers la destination" />
+<PROPERTY NAME="STRING" VALUE= "NAVIGATE_TO_DESTINATION(&quot;&lt;&lt;nom du formulaire de destination&gt;&gt;&quot;);" />
+<PROPERTY NAME="HANDLER" VALUE="NEWLOOK" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Naviguer vers un écran" />
+<PROPERTY NAME="STRING" VALUE= "NAVIGATE_TO_SCREEN(&quot;&lt;&lt;nom écran&gt;&gt;&quot;);" />
+<PROPERTY NAME="HANDLER" VALUE="RAMPTS" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Mettre en file d attente une demande pour naviguer vers un écran" />
+<PROPERTY NAME="STRING" VALUE= "Q_NAVIGATE_TO_SCREEN(&quot;=&lt;&lt;nom écran&gt;&gt;&quot;,&quot;&lt;&lt;nom écran&gt;&gt;&quot;);" />
+<PROPERTY NAME="HANDLER" VALUE="RAMPTS" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Lit une référence à l écran nommé" />
+<PROPERTY NAME="STRING" VALUE= "var oScreen = SCREEN(&quot;&lt;&lt;nom écran&gt;&gt;&quot;);" />
+<PROPERTY NAME="HANDLER" VALUE="RAMPTS" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Naviguer vers une destination précédente" />
+<PROPERTY NAME="STRING" VALUE= "NAVIGATE_TO_PREV_DESTINATION(&lt;&lt;nombre de retours en arrière de destinations&gt;&gt;);" />
+<PROPERTY NAME="HANDLER" VALUE="NEWLOOK" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Nom de l'utilisateur" />
+<PROPERTY NAME="STRING" VALUE= "objUser.Name" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Mot de passe utilisateur" />
+<PROPERTY NAME="STRING" VALUE= "objUser.Password" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Envoyer une touche de fonction"  />
+<PROPERTY NAME="STRING" VALUE="SENDKEY(&lt;&lt;Nom de la touche&gt;&gt;);" />
+<PROPERTY NAME="HANDLER" VALUE="NEWLOOK" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Envoyer une touche de fonction"  />
+<PROPERTY NAME="STRING" VALUE="SENDKEY(&lt;&lt;Nom de la touche&gt;&gt;, &lt;&lt;payload object&gt;&gt;);" />
+<PROPERTY NAME="HANDLER" VALUE="RAMPTS" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Mettre en file d attente une demande d envoi de touche de fonction"  />
+<PROPERTY NAME="STRING" VALUE="Q_SENDKEY(&quot;=&lt;&lt;nom écran&gt;&gt;&quot;,&lt;&lt;Nom de la touche&gt;&gt;, &lt;&lt;payload object&gt;&gt;);" />
+<PROPERTY NAME="HANDLER" VALUE="RAMPTS" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Valoriser une zone du formulaire"  />
+<PROPERTY NAME="STRING" VALUE="SETVALUE(&quot;&lt;&lt;Nom de la zone du formulaire&gt;&gt;&quot;,&quot;&lt;&lt;Valeur&gt;&gt;&quot;);" />
+<PROPERTY NAME="HANDLER" VALUE="NEWLOOK" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Valoriser une zone du formulaire"  />
+<PROPERTY NAME="STRING" VALUE="SETVALUE(&quot;&lt;&lt;Nom de la zone du formulaire&gt;&gt;&quot;,&quot;&lt;&lt;Valeur&gt;&gt;&quot;,&lt;&lt;subfile index&gt;&gt;);" />
+<PROPERTY NAME="HANDLER" VALUE="RAMPTS" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Mettre en file d attente une demande pour valoriser une zone du formulaire"  />
+<PROPERTY NAME="STRING" VALUE="Q_SETVALUE(&quot;=&lt;&lt;nom écran&gt;&gt;&quot;,&quot;&lt;&lt;Form Field Name&gt;&gt;&quot;,&quot;&lt;&lt;Value&gt;&gt;&quot;,&lt;&lt;subfile index&gt;&gt;);" />
+<PROPERTY NAME="HANDLER" VALUE="RAMPTS" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Gérer l invite" />
+<PROPERTY NAME="STRING" VALUE="if ( HANDLE_PROMPT() ) return;" />
+</SUBMENUITEM>
+</SUBMENUS>  
+</MENUITEM>
+<MENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Substitution de libellé de touche de fonction" />
+<SUBMENUS>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Remplacer un libellé de touche de fonction pour une destination" />
+<PROPERTY NAME="STRING" VALUE= "/* Remplacer le libellé de touche de fonction pour un écran */" />
+<PROPERTY NAME="STRING" VALUE= "OVERRIDE_KEY_CAPTION_SCREEN(&quot;&lt;&lt;nom formulaire destination&gt;&gt;&quot;, &lt;&lt;nom de la touche&gt;&gt;, &quot;&lt;&lt;nouveau libellé&gt;&gt;&quot;);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Remplacer un libellé de touche de fonction pour toutes les destinations" />
+<PROPERTY NAME="STRING" VALUE= "/* Remplacer le libellé de touche de fonction pour tous les écrans */" />
+<PROPERTY NAME="STRING" VALUE= "OVERRIDE_KEY_CAPTION_ALL( &lt;&lt;nom de la touche&gt;&gt;, &quot;&lt;&lt;nouveau libellé&gt;&gt;&quot;);" />
+</SUBMENUITEM>
+</SUBMENUS>  
+</MENUITEM>
+<MENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="SENDKEY - Touches de fonctions usuelles" />
+<SUBMENUS>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Entrée" />
+<PROPERTY NAME="STRING" VALUE= "SENDKEY(KeyEnter);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Page préc." />
+<PROPERTY NAME="STRING" VALUE= "SENDKEY(KeyPageUp);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Page suiv." />
+<PROPERTY NAME="STRING" VALUE= "SENDKEY(KeyPageDown);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Attn" />
+<PROPERTY NAME="STRING" VALUE= "SENDKEY(KeyAttn);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Clear" />
+<PROPERTY NAME="STRING" VALUE= "SENDKEY(KeyClear);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Entrée" />
+<PROPERTY NAME="STRING" VALUE= "SENDKEY(KeyEnter);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Aide" />
+<PROPERTY NAME="STRING" VALUE= "SENDKEY(KeyHelp);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Imprimer" />
+<PROPERTY NAME="STRING" VALUE= "SENDKEY(KeyPrint);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Touche de fonction 1" />
+<PROPERTY NAME="STRING" VALUE= "SENDKEY(KeyF1);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Touche de fonction 2" />
+<PROPERTY NAME="STRING" VALUE= "SENDKEY(KeyF2);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Touche de fonction 3" />
+<PROPERTY NAME="STRING" VALUE= "SENDKEY(KeyF3);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Touche de fonction 4" />
+<PROPERTY NAME="STRING" VALUE= "SENDKEY(KeyF4);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Touche de fonction 5" />
+<PROPERTY NAME="STRING" VALUE= "SENDKEY(KeyF5);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Touche de fonction 6" />
+<PROPERTY NAME="STRING" VALUE= "SENDKEY(KeyF6);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Touche de fonction 7" />
+<PROPERTY NAME="STRING" VALUE= "SENDKEY(KeyF7);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Touche de fonction 8" />
+<PROPERTY NAME="STRING" VALUE= "SENDKEY(KeyF8);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Touche de fonction 9" />
+<PROPERTY NAME="STRING" VALUE= "SENDKEY(KeyF9);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Touche de fonction 10" />
+<PROPERTY NAME="STRING" VALUE= "SENDKEY(KeyF10);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Touche de fonction 11" />
+<PROPERTY NAME="STRING" VALUE= "SENDKEY(KeyF11);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Touche de fonction 12" />
+<PROPERTY NAME="STRING" VALUE= "SENDKEY(KeyF12);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Touche de fonction 13" />
+<PROPERTY NAME="STRING" VALUE= "SENDKEY(KeyF13);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Touche de fonction 14" />
+<PROPERTY NAME="STRING" VALUE= "SENDKEY(KeyF14);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Touche de fonction 15" />
+<PROPERTY NAME="STRING" VALUE= "SENDKEY(KeyF15);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Touche de fonction 16" />
+<PROPERTY NAME="STRING" VALUE= "SENDKEY(KeyF16);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Touche de fonction 17" />
+<PROPERTY NAME="STRING" VALUE= "SENDKEY(KeyF17);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Touche de fonction 18" />
+<PROPERTY NAME="STRING" VALUE= "SENDKEY(KeyF18);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Touche de fonction 19" />
+<PROPERTY NAME="STRING" VALUE= "SENDKEY(KeyF19);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Touche de fonction 20" />
+<PROPERTY NAME="STRING" VALUE= "SENDKEY(KeyF20);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Touche de fonction 21" />
+<PROPERTY NAME="STRING" VALUE= "SENDKEY(KeyF21);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Touche de fonction 22" />
+<PROPERTY NAME="STRING" VALUE= "SENDKEY(KeyF22);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Touche de fonction 23" />
+<PROPERTY NAME="STRING" VALUE= "SENDKEY(KeyF23);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Touche de fonction 24" />
+<PROPERTY NAME="STRING" VALUE= "SENDKEY(KeyF24);" />
+</SUBMENUITEM>
+</SUBMENUS>  
+</MENUITEM>
+<MENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Fonctions usuelles de script RAMP" />
+<SUBMENUS>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="SENDKEY - Envoie une touche de fonction au serveur" />
+<PROPERTY NAME="STRING" VALUE= "/* Envoie la touche de fonction xxxx au serveur */" />
+<PROPERTY NAME="STRING" VALUE= "SENDKEY(KeyEnter ou KeyFn);" />
+<PROPERTY NAME="HANDLER" VALUE="NEWLOOK" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="SENDKEY - Envoie une touche de fonction au serveur" />
+<PROPERTY NAME="STRING" VALUE= "/* Envoie la touche de fonction xxxx au serveur */" />
+<PROPERTY NAME="STRING" VALUE= "SENDKEY(KeyEnter ou KeyFn, &lt;&lt;payload object&gt;&gt;);" />
+<PROPERTY NAME="HANDLER" VALUE="RAMPTS" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Q_SENDKEY - Mettre en file d attente une demande d envoi de touche de fonction au serveur" />
+<PROPERTY NAME="STRING" VALUE= "/* Mettre en file d attente une demande d envoi de le touche de fonction xxxx au serveur */" />
+<PROPERTY NAME="STRING" VALUE="Q_SENDKEY(&quot;=&lt;&lt;nom écran&gt;&gt;&quot;,&lt;&lt;key name&gt;&gt;, &lt;&lt;payload object&gt;&gt;);" />
+<PROPERTY NAME="HANDLER" VALUE="RAMPTS" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="CURRENT_FORM - Lit le nom du formulaire 5250 en cours" />
+<PROPERTY NAME="STRING" VALUE= "/* Lit le nom du formulaire en cours dans la variable strFormName */" />
+<PROPERTY NAME="STRING" VALUE= "var strFormName = CURRENT_FORM();" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="GETVALUE - Lit la valeur d'une zone 5250" />
+<PROPERTY NAME="STRING" VALUE= "/* Lit la valeur de xxxxxxxx */" />
+<PROPERTY NAME="STRING" VALUE= "var strValue = GETVALUE(&quot;Nom de zone 5250&quot;);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="SETVALUE - Valorise une zone 5250" />
+<PROPERTY NAME="STRING" VALUE= "/* Valorise xxxxxxxx */" />
+<PROPERTY NAME="STRING" VALUE= "SETVALUE(&quot;Nom de zone 5250&quot;,&quot;Valeur&quot;);" />
+<PROPERTY NAME="HANDLER" VALUE="NEWLOOK" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="SETVALUE - Valorise une zone 5250" />
+<PROPERTY NAME="STRING" VALUE= "/* Valorise xxxxxxxx */" />
+<PROPERTY NAME="STRING" VALUE= "SETVALUE(&quot;Nom de zone 5250&quot;,&quot;Valeur&quot;,&lt;&lt;index sous fichier&gt;&gt;);" />
+<PROPERTY NAME="HANDLER" VALUE="RAMPTS" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="Q_SETVALUE - Mettre en file d attente une demande pour valoriser une zone 5250" />
+<PROPERTY NAME="STRING" VALUE= "/* Mettre en file d attente une demande pour valoriser xxxxxxxx avec l index du sous fichier */" />
+<PROPERTY NAME="STRING" VALUE="Q_SETVALUE(&quot;=&lt;&lt;nom écran&gt;&gt;&quot;,&quot;&lt;&lt;Nom zone formulaire&gt;&gt;&quot;,&quot;&lt;&lt;Valeur&gt;&gt;&quot;,&lt;&lt;index sous fichier&gt;&gt;);" />
+<PROPERTY NAME="HANDLER" VALUE="RAMPTS" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="AVSAVEVALUE - Enregistrer une valeur alphanumérique ou numérique dans le presse-papier virtuel du VLF" />
+<PROPERTY NAME="STRING" VALUE= "/* Enregistrer une valeur dans le presse-papier virtuel du VLF */" />
+<PROPERTY NAME="STRING" VALUE= "AVSAVEVALUE(&quot;valeur à enregistrer&quot;,&quot;identifiant 1&quot;,&quot;identifiant 2&quot;,&quot;identifiant 3&quot;,instance,&quot;langue&quot;);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="AVRESTOREAVALUE - Restaurer une valeur alphanumérique à partir du presse-papier virtuel du VLF" />
+<PROPERTY NAME="STRING" VALUE= "/* Restaurer une valeur alphanumérique à partir du presse-papier virtuel du VLF */" />
+<PROPERTY NAME="STRING" VALUE= "var strValue = AVRESTOREAVALUE(&quot;valeur par dft si non trouvée&quot;,&quot;identifiant 1&quot;,&quot;identifiant 2&quot;,&quot;identifiant 3&quot;,instance,&quot;langue&quot;);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="AVRESTORENVALUE - Restaurer une valeur numérique à partir du presse-papier virtuel du VLF" />
+<PROPERTY NAME="STRING" VALUE= "/* Restaurer une valeur numérique à partir du presse-papier virtuel du VLF */" />
+<PROPERTY NAME="STRING" VALUE= "var numValue = AVRESTORENVALUE(&quot;valeur par dft si non trouvée,&quot;identifiant 1&quot;,&quot;identifiant 2&quot;,&quot;identifiant 3&quot;,instance,&quot;langue&quot;);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="CHECK_CURRENT_FORM - Vérifie si RAMP affiche un écran" />
+<PROPERTY NAME="STRING" VALUE= "/* Vérifie que RAMP affiche l écran souhaité */" />
+<PROPERTY NAME="STRING" VALUE= "var flagCorrectScreen = CHECK_CURRENT_FORM(&quot;Nom de l écran&quot;,&quot;1er texte de message d erreur&quot;,&quot;2ème texte de message d erreur&quot;);" />
+<PROPERTY NAME="STRING" VALUE= "if (!(flagCorrectScreen)) return;" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="AVCLOSEFORM - Signale au cadre d'application de fermer un formulaire" />
+<PROPERTY NAME="STRING" VALUE= "/* Fermer le gestionnaire de commande, la tâche est terminée  */" />
+<PROPERTY NAME="STRING" VALUE= "AVCLOSEFORM();" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="HIDE_CURRENT_FORM - Cache le formulaire en cours et affiche un message" />
+<PROPERTY NAME="STRING" VALUE= "/* Cacher ce formulaire et avertir l utilisateur  */" />
+<PROPERTY NAME="STRING" VALUE= "HIDE_CURRENT_FORM(&quot;1er texte de message d erreur&quot;,&quot;2ème texte de message d erreur&quot;,&quot;Nème texte de message d erreur&quot;);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="SETCURSOR - Positionne le curseur sur une ligne et une colonne" />
+<PROPERTY NAME="STRING" VALUE= "/* Déplacer le curseur à cette position  */" />
+<PROPERTY NAME="STRING" VALUE= "SETCURSOR(Numéro de ligne,Numéro de colonne,Décalage de ligne);" />
+<PROPERTY NAME="HANDLER" VALUE="NEWLOOK" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="SETCURSORTOROW - Positionne le curseur sur une ligne et une colonne" />
+<PROPERTY NAME="STRING" VALUE= "/* Déplacer le curseur à cette position  */" />
+<PROPERTY NAME="STRING" VALUE= "SETCURSORTOROW(Numéro de ligne,Numéro de colonne);" />
+<PROPERTY NAME="HANDLER" VALUE="RAMPTS" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="SETCURSORTOFIELD - Positionne le curseur sur une zone donnée" />
+<PROPERTY NAME="STRING" VALUE= "/* Déplacer le curseur sur la zone  */" />
+<PROPERTY NAME="STRING" VALUE= "SETCURSORTOFIELD(&quot;Nom de zone&quot;,Index zone);" />
+<PROPERTY NAME="HANDLER" VALUE="RAMPTS" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="GETFOCUS - Retourne le nom de la zone avec focus" />
+<PROPERTY NAME="STRING" VALUE= "/* Récupère le nom de la zone ayant le focus  */" />
+<PROPERTY NAME="STRING" VALUE= "var strValue = GETFOCUS();" />
+<PROPERTY NAME="HANDLER" VALUE="NEWLOOK" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="SETFOCUS - Positionne le curseur sur une zone donnée" />
+<PROPERTY NAME="STRING" VALUE= "/* Déplace le curseur vers cette zone  */" />
+<PROPERTY NAME="STRING" VALUE= "SETFOCUS(&quot;nom de zone 5250&quot;);" />
+<PROPERTY NAME="HANDLER" VALUE="NEWLOOK" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="ALERT_MESSAGE - Envoie un message d'alerte" />
+<PROPERTY NAME="STRING" VALUE= "/* Envoie un message d alerte */" />
+<PROPERTY NAME="STRING" VALUE= "ALERT_MESSAGE(&quot;1er texte de message&quot;,&quot;2ème texte de message&quot;,&quot;Nème texte de message&quot;);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="CLEAR_MESSAGE - Vide tous les messages actuellement dans la pile" />
+<PROPERTY NAME="STRING" VALUE= "/* Vide tous les messages actuellement dans la pile  */" />
+<PROPERTY NAME="STRING" VALUE= "CLEAR_MESSAGES();" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="FATAL_MESSAGE - Envoie un message fatal et terminer l'application" />
+<PROPERTY NAME="STRING" VALUE= "/* Envoie un message fatal et terminer toute l application  */" />
+<PROPERTY NAME="STRING" VALUE= "FATAL_MESSAGE(&quot;1er texte de message&quot;,&quot;2ème texte de message&quot;,&quot;Nème texte de message&quot;);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="MESSAGE - Envoie un message" />
+<PROPERTY NAME="STRING" VALUE= "/* Envoie un message  */" />
+<PROPERTY NAME="STRING" VALUE= "MESSAGE(&quot;1er texte de message&quot;,&quot;2ème texte de message&quot;,&quot;Nème texte de message&quot;);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="AVSIGNALEVENT - Signale un évènement aux critères de sélection du cadre d'application et aux écrans RAMP" />
+<PROPERTY NAME="STRING" VALUE= "/* Signale cet évènement et passe des information additionnelles */" />
+<PROPERTY NAME="STRING" VALUE= "AVSIGNALEVENT(&quot;Id évènement&quot;,&quot;Cible&quot;,1ère info add., 2ème info add., 3ème info add., 4ème info add., 5ème info add.);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="TRACE - Ajoute des informations d'exécution au panneau de trace" />
+<PROPERTY NAME="STRING" VALUE= "/* Enregistre dans la trace que cet évènement s est produit */" />
+<PROPERTY NAME="STRING" VALUE= "TRACE(&quot;1er texte de trace&quot;,&quot;2ème texte de trace&quot;,&quot;Nème texte de trace&quot;);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="RUNMACRO - Exécute une macro Newlook" />
+<PROPERTY NAME="STRING" VALUE= "/* Exécute cette macro Newlook */" />
+<PROPERTY NAME="STRING" VALUE= "RUNMACRO(&quot;Nom de macro&quot;);" />
+<PROPERTY NAME="HANDLER" VALUE="NEWLOOK" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="GET_MENU_OPTION_NUMBER - Retourne le numéro d'une option de menu" />
+<PROPERTY NAME="STRING" VALUE= "/* Retourne le numéro de cette option de menu  */" />
+<PROPERTY NAME="STRING" VALUE= "GET_MENU_OPTION_NUMBER(&quot;Texte recherché&quot;,true ou false,true ou false);" />
+<PROPERTY NAME="HANDLER" VALUE="NEWLOOK" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="STRIP_LEADING_NUMBERS - Retourne les chiffres en tête d'une chaîne de caractères" />
+<PROPERTY NAME="STRING" VALUE= "/* Retourne tous les chiffres en tête de cette chaîne  */" />
+<PROPERTY NAME="STRING" VALUE= "var strResult = STRIP_LEADING_NUMBERS(&quot;Chaîne&quot;);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="ADD_STRING - Assigne un numéro unique à une chaîne" />
+<PROPERTY NAME="STRING" VALUE= "/* Assigne un numéro unique à une chaîne pour utilisation dans d autres scripts */" />
+<PROPERTY NAME="STRING" VALUE= "ADD_STRING(Numéro,&quot;Chaîne&quot;);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="STRING - Retourne la chaîne avec son numéro d'identification " />
+<PROPERTY NAME="STRING" VALUE= "/* Génère un message avec les chaînes de numéros ID suivants  */" />
+<PROPERTY NAME="STRING" VALUE= "var strMessage = STRING(1er numéro) + STRING(2ème numéro);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="COPYTOCLIPBOARD - Copie une chaîne vers le presse-papier (à coller dans excel, MS word, etc" />
+<PROPERTY NAME="STRING" VALUE= "/* Copie une chaîne vers le presse-papier */" />
+<PROPERTY NAME="STRING" VALUE= "COPYTOCLIPBOARD(&quot;&lt;&lt;texte à copier&gt;&gt;&quot;);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="SETKEYENABLED - Active ou désactive un bouton du VLF ou une touche de fonction 5250" />
+<PROPERTY NAME="STRING" VALUE= "/* Passer les indicateurs à true ou false. Passer à null pour ignorer */" />
+<PROPERTY NAME="STRING" VALUE= "SETKEYENABLED(&quot;&lt;&lt;Nom de destination&gt;&gt;&quot;,&lt;&lt;Nom de la touche&gt;&gt;, &lt;&lt;Active VLF, booléen ou null&gt;&gt;,&lt;&lt;Active NL, booléen ou null&gt;&gt;);" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="CHECK_FIELD_EXISTS - Vérifie si une zone est présente sur l écran en cours" />
+<PROPERTY NAME="STRING" VALUE= "/* Vérifie si une zone est présente sur l écran en cours */" />
+<PROPERTY NAME="STRING" VALUE= "var flagFieldFound = CHECK_FIELD_EXISTS(&quot;&lt;&lt;Nom de zone&gt;&gt;&quot;, &lt;&lt;Instance de la zone dans sous fichier&gt;&gt;);" />
+<PROPERTY NAME="HANDLER" VALUE="RAMPTS" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="GET_FORM_MESSAGE - Lit le texte du message 5250 sur la ligne précisée" />
+<PROPERTY NAME="STRING" VALUE= "/* Lit le texte du message 5250 sur la ligne précisée */" />
+<PROPERTY NAME="STRING" VALUE= "var flagMoreRecords = GET_FORM_MESSAGE([iRow,][sMoreIndicator,][bRuote]);" />
+<PROPERTY NAME="HANDLER" VALUE="RAMPTS" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="HIDE_5250_BUTTONS - Masquer tous les boutons des touches de fonction 5250" />
+<PROPERTY NAME="STRING" VALUE= "/* Masquer tous les boutons des touches de fonction 5250 */" />
+<PROPERTY NAME="STRING" VALUE= "HIDE_5250_BUTTONS();" />
+<PROPERTY NAME="HANDLER" VALUE="RAMPTS" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="SET_BUSY(true/false) - Activer ou enlever le mode occupé du Framework" />
+<PROPERTY NAME="STRING" VALUE= "/* Libérer le Framework du mode Occupé */" />
+<PROPERTY NAME="STRING" VALUE= "SETBUSY(false);" />
+<PROPERTY NAME="HANDLER" VALUE="RAMPTS" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="SHOW_5250_BUTTONS - Afficher tous les boutons des touches de fonction 5250" />
+<PROPERTY NAME="STRING" VALUE= "/* Afficher tous les boutons des touches de fonction 5250 */" />
+<PROPERTY NAME="STRING" VALUE= "SHOW_5250_BUTTONS();" />
+<PROPERTY NAME="HANDLER" VALUE="RAMPTS" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="SHOW_CURRENT_FORM(true/false) - Afficher ou masquer le formulaire en cours" />
+<PROPERTY NAME="STRING" VALUE= "/* Afficher le formulaire en cours */" />
+<PROPERTY NAME="STRING" VALUE= "SHOW_CURRENT_FORM(true);" />
+<PROPERTY NAME="HANDLER" VALUE="RAMPTS" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="SHOWMENUBAR(true/false) - Afficher ou masquer la barre de menu" />
+<PROPERTY NAME="STRING" VALUE= "/* Masquer la barre de menu */" />
+<PROPERTY NAME="STRING" VALUE= "SHOWMENUBAR(false);" />
+<PROPERTY NAME="HANDLER" VALUE="RAMPTS" />
+</SUBMENUITEM>
+<SUBMENUITEM>
+<PROPERTY NAME="CAPTION" VALUE="SHOWSTATUSBAR(true/false) - Afficher ou masquer la barre d état" />
+<PROPERTY NAME="STRING" VALUE= "/* Masquer la barre d état */" />
+<PROPERTY NAME="STRING" VALUE= "SHOWSTATUSBAR(false);" />
+<PROPERTY NAME="HANDLER" VALUE="RAMPTS" />
+</SUBMENUITEM>
+</SUBMENUS>  
+</MENUITEM>  
+</EXTRACT>
